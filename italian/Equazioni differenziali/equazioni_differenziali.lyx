@@ -1,0 +1,3309 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Indice
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Appunti di equazioni differenziali
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quest'opera è sotto licenza Creative Commons Attribuzione - Non commerciale
+ - Condividi allo stesso modo 2.5 Italia License.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Daniele Iamartino
+\end_layout
+
+\begin_layout Date
+2010
+\end_layout
+
+\begin_layout Section*
+Definizione generale
+\end_layout
+
+\begin_layout Standard
+Si dice 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+equazione differenziale
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ di ordine 
+\emph on
+n
+\emph default
+ un'equazione del tipo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F\left(t,y,y',y",...,y^{\left(n\right)}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ è la funzione incognita e 
+\begin_inset Formula $y^{\left(n\right)}$
+\end_inset
+
+ è la derivata 
+\emph on
+n-esima
+\emph default
+ di 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+L'ordine dell'equazione è l'rodine massimo di derivazione che vi compare.
+\end_layout
+
+\begin_layout Standard
+Chiameremo 
+\series bold
+soluzione 
+\series default
+o 
+\begin_inset Quotes eld
+\end_inset
+
+integrale
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph on
+ 
+\emph default
+una funzione 
+\begin_inset Formula $\varphi\left(t\right)$
+\end_inset
+
+ definita in un intervallo 
+\begin_inset Formula $I\subset\mathbb{R}$
+\end_inset
+
+ che verifica la condizione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F\left(t,\varphi,\varphi',\varphi",...,\varphi^{\left(n\right)}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Equazioni differenziali del primo ordine
+\end_layout
+
+\begin_layout Standard
+Consideriamo ora equazioni differenziali del tipo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $F\left(t,y,y'\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Caso particolare
+\end_layout
+
+\begin_layout Standard
+Nel caso particolare in cui l'equazione differenziale si presenta nella
+ forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'\left(t\right)=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Avremo che essa ha infinite soluzioni del tipo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=\int f\left(t\right)dt\,+c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Che sono quindi dipendenti dalla variazione della costante 
+\begin_inset Formula $c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per questo si dice che la famiglia di soluzioni prende il nome di 
+\series bold
+integrale generale.
+\end_layout
+
+\begin_layout Standard
+Se aggiungiamo una condizione possiamo calcolare il valore di tale costante.
+ Ad esempio aggiungendo la condizione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t_{0}\right)=y_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possiamo selezionare la nostra 
+\series bold
+soluzione particolare
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Il problema di risolvere l'integrale generale e di calcolare le costanti
+ utilizzando condizioni aggiuntive si chiama 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+problema di Cauchy
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Caso generale
+\end_layout
+
+\begin_layout Standard
+Quando l'equazione differenziale si presenta nella forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'\left(t\right)=f\left(t,y\left(t\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si dice che essa si presenta in 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+forma normale
+\series default
+\emph on
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+È possibile affermare che il problema di Cauchy associato ammette un'unica
+ soluzione almeno 
+\emph on
+localmente
+\emph default
+, cioè per valori di 
+\begin_inset Formula $t$
+\end_inset
+
+ in un intorno del punto 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ della condizione iniziale.
+\end_layout
+
+\begin_layout Subsection*
+Equazioni differenziali a variabili separabili
+\end_layout
+
+\begin_layout Standard
+Esiste un tipo particolare di equazioni in forma normale, che sono quelle
+ a 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+variabili separabili
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ e si presentano nella forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'=a\left(t\right)\cdot b\left(y\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $a\left(t\right)$
+\end_inset
+
+ continua in un intervallo 
+\begin_inset Formula $I\subset\mathbb{R}$
+\end_inset
+
+ e 
+\begin_inset Formula $b\left(t\right)$
+\end_inset
+
+ continua in un intervallo 
+\begin_inset Formula $J\subset\mathbb{R}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Equazioni differenziali in forma normale si possono trattare in questo modo
+ quando è possibile appunto 
+\begin_inset Quotes eld
+\end_inset
+
+separare
+\begin_inset Quotes erd
+\end_inset
+
+ le variabili 
+\begin_inset Formula $t$
+\end_inset
+
+ ed 
+\begin_inset Formula $y$
+\end_inset
+
+ della equazione in forma normale ed esprimerle nel prodotto di due funzioni
+ 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ è una soluzione di 
+\begin_inset Formula $b\left(y\right)=0$
+\end_inset
+
+ avremo che 
+\begin_inset Formula $y'=0$
+\end_inset
+
+.
+ Derivata nulla significa funzione costante, quindi in quel caso la soluzione
+ diventa 
+\begin_inset Formula $y\left(t\right)=\overline{y}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Se invece 
+\begin_inset Formula $b\left(y\right)\neq0$
+\end_inset
+
+ allora è possibile riscrivere l'equazione differenziale come 
+\begin_inset Formula $\frac{y'}{b\left(y\right)}=a\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In questo ultimo caso se supponiamo di avere già la soluzione 
+\begin_inset Formula $y=y\left(t\right)$
+\end_inset
+
+ allora possiamo integrare ambo i membri della precedente equazione ottenendo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\int\frac{y'\left(t\right)}{b\left(y\left(t\right)\right)}\cdot dt=\int a\left(t\right)dt\,+c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se facciamo un cambio di variabile 
+\begin_inset Formula $dy=y'\left(t\right)dt$
+\end_inset
+
+ otteniamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\int\frac{dy}{b\left(y\right)}=\int a\left(t\right)\cdot dt\,+c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Supponiamo di trovare le primitive dei due integrali e chiamiamole 
+\begin_inset Formula $B\left(y\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $A\left(t\right)$
+\end_inset
+
+, allora avremo una equazione della forma 
+\begin_inset Formula $B\left(y\right)=A\left(t\right)+c$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+Se riusciamo ad invertire 
+\begin_inset Formula $B\left(y\right)$
+\end_inset
+
+ possiamo anche calcolare 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y=B^{-1}\left(A\left(t\right)+c\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In conclusione se abbiamo una equazione differenziale di questo tipo non
+ è detto che riusciremo a calcolare le due primitive 
+\begin_inset Formula $A$
+\end_inset
+
+ e 
+\begin_inset Formula $B$
+\end_inset
+
+, e non è neanche detto che una volta fatto ciò riusciremo ad invertire
+ la funzione 
+\begin_inset Formula $B\left(y\right)$
+\end_inset
+
+ per calcolare la soluzione generica 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+, ciò sarà possibile 
+\series bold
+solo in casi molto semplici.
+\end_layout
+
+\begin_layout Subparagraph*
+Problema di Cauchy
+\end_layout
+
+\begin_layout Standard
+Se abbiamo una equazione in forma normale a variabili separabili e una condizion
+e aggiuntiva ci sarà un problema di Cauchy del tipo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{cases}
+y'=a\left(t\right)\cdot b\left(y\right)\\
+y\left(t_{0}\right)=y_{0}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove 
+\begin_inset Formula $a$
+\end_inset
+
+ è una funzione continua in un intorno 
+\begin_inset Formula $I$
+\end_inset
+
+ di 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+ è una funzione continua in un intorno 
+\begin_inset Formula $J$
+\end_inset
+
+ di 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ allora esiste una funzione 
+\begin_inset Formula $y\in C^{1}\left(I'\right)$
+\end_inset
+
+, dove 
+\begin_inset Formula $I'\subset I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Se inoltre 
+\begin_inset Formula $b\in C^{1}\left(J\right)$
+\end_inset
+
+ allora la soluzione è 
+\emph on
+unica
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Equazioni differenziali lineari del primo ordine
+\end_layout
+
+\begin_layout Standard
+Si tratta sempre di equazioni differenziali del primo ordine della forma
+ 
+\begin_inset Formula $F\left(t,y,y'\right)=0$
+\end_inset
+
+ dove però 
+\begin_inset Formula $F$
+\end_inset
+
+ è una funzione lineare.
+\end_layout
+
+\begin_layout Standard
+Possiamo scriverla allora nella forma: 
+\begin_inset Formula $a_{1}\left(t\right)\cdot y'\left(t\right)+a_{0}\cdot y\left(t\right)=g\left(t\right)$
+\end_inset
+
+.
+ Se 
+\begin_inset Formula $a_{1}\left(t\right)$
+\end_inset
+
+ non si annulla mai possiamo dividendo tutto per questo, otteniamo la 
+\series bold
+\emph on
+forma normale
+\series default
+\emph default
+ è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'\left(t\right)+a\left(t\right)\cdot y\left(t\right)=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Supporremo 
+\begin_inset Formula $a\left(t\right)$
+\end_inset
+
+ ed 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+ continue nell'intervallo 
+\begin_inset Formula $I\subset\mathbb{R}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $f\left(t\right)=0$
+\end_inset
+
+ l'equazione si chiama 
+\series bold
+omogenea
+\series default
+ e la si riscrive quindi come 
+\begin_inset Formula $y'\left(t\right)+a\left(t\right)\cdot y\left(t\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'equazione normale 
+\begin_inset Formula $y'\left(t\right)+a\left(t\right)\cdot y\left(t\right)=f\left(t\right)$
+\end_inset
+
+ si chiamerà invece 
+\series bold
+completa
+\series default
+.
+\end_layout
+
+\begin_layout Theorem
+L'integrale generale dell'equazione completa si ottiene aggiungendo all'integral
+e generale dell'omogenea una soluzione particolare della completa.
+\end_layout
+
+\begin_layout Paragraph*
+Dimostriamo il teorema appena esposto:
+\end_layout
+
+\begin_layout Standard
+Chiamiamo 
+\begin_inset Formula $z$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+soluzione della equazione omogenea
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e chiamiamo 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+soluzione particolare della equazione completa
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+La soluzione della omogenea verifica allora 
+\begin_inset Formula $z'\left(t\right)+a\left(t\right)\cdot z\left(t\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Supponiamo che 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ è una soluzione particolare della completa, allora deve essere verificato
+ il sistema:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+y'+a\left(t\right)\cdot y\left(t\right)=f\left(t\right)\\
+\overline{y}'+a\left(t\right)\cdot\overline{y}\left(t\right)=f\left(t\right)
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ricorrendo al metodo della sottrazione otteniamo: 
+\begin_inset Formula $\left(y'-\overline{y}'\right)+a\left(t\right)\cdot\left(y-\overline{y}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per le proprietà della derivazione 
+\begin_inset Formula $\left(y'-\overline{y}'\right)$
+\end_inset
+
+ diventa 
+\begin_inset Formula $\left(y-\overline{y}\right)^{\shortmid}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ci accorgiamo che se 
+\begin_inset Formula $z=y-\overline{y}$
+\end_inset
+
+ otteniamo la stessa equazione della omogenea
+\end_layout
+
+\begin_layout Standard
+Se abbiamo che 
+\begin_inset Formula $z(t)=y\left(t\right)-\overline{y}\left(t\right)$
+\end_inset
+
+ allora troviamo che la soluzione generale 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ è:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=z\left(t\right)+\overline{y}\left(t\right)$
+\end_inset
+
+, cioè è data dalla somma della soluzione della omogenea e da una soluzione
+ particolare dell'equazione generale.
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph*
+Soluzione della omogenea
+\end_layout
+
+\begin_layout Standard
+Dobbiamo allora calcolare la soluzione 
+\begin_inset Formula $z\left(t\right)$
+\end_inset
+
+ della omogenea:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z'\left(t\right)+a\left(t\right)\cdot z\left(t\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Supponiamo di avere 
+\begin_inset Formula $A\left(t\right)=\int a\left(t\right)dt$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per le proprietà dell'esponenziale (non si annulla mai), possiamo eseguire
+ la seguente operazione sulla equazione della omogenea:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z'\left(t\right)\cdot e^{A\left(t\right)}+a\left(t\right)\cdot z\left(t\right)\cdot e^{A\left(t\right)}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Non cambiano le soluzioni della equazione.
+\end_layout
+
+\begin_layout Standard
+Ci accorgiamo che quello che abbiamo appena scritto è esattamente la derivata
+ di:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z\left(t\right)\cdot e^{A\left(t\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Allora possiamo riscrivere tutto come:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[z\left(t\right)\cdot e^{A\left(t\right)}\right]^{\shortmid}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Integrando ambo i membri:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z\left(t\right)\cdot e^{A\left(t\right)}=c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se risostituiamo 
+\begin_inset Formula $A\left(t\right)=\int a\left(t\right)dt$
+\end_inset
+
+ otteniamo dalla precedente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z\left(t\right)\cdot e^{\int a\left(t\right)dt}=c$
+\end_inset
+
+ e quindi 
+\begin_inset Formula $z\left(t\right)=\frac{c}{e^{\int a\left(t\right)dt}}$
+\end_inset
+
+ , da cui invertendo l'esponente otteniamo finalmente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z\left(t\right)=c\cdot e^{-\int a\left(t\right)dt}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Soluzione particolare della completa
+\end_layout
+
+\begin_layout Standard
+Dobbiamo determinare una delle soluzioni particolari 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ dell'equazione completa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{y}'\left(t\right)+a\left(t\right)\cdot\overline{y}\left(t\right)=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Andiamo alla ricerca di una soluzione 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ che sia della seguente forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{y}\left(t\right)=c\left(t\right)\cdot e^{-A\left(t\right)}$
+\end_inset
+
+ che deve ovviamente risolvere l'equazione precedente.
+ Quindi la risostituiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e^{-A\left(t\right)}\cdot\left[c'\left(t\right)-a\left(t\right)\cdot c\left(t\right)\right]+a\left(t\right)\cdot\left[c\left(t\right)\cdot e^{-A\left(t\right)}\right]=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e^{-A\left(t\right)}\cdot\left[c'\left(t\right)-a\left(t\right)\cdot c\left(t\right)+a\left(t\right)\cdot c\left(t\right)\right]=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e^{-A\left(t\right)}\cdot\left[c'\left(t\right)\right]=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da questa vogliamo ricavare la 
+\begin_inset Quotes eld
+\end_inset
+
+costante
+\begin_inset Quotes erd
+\end_inset
+
+ (in realtà dipende dal tempo) 
+\begin_inset Formula $c\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c'\left(t\right)=f\left(t\right)\cdot e^{A\left(t\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c\left(t\right)=\int f\left(t\right)\cdot e^{A\left(t\right)}dt$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ora che abbiamo calcolato la 
+\begin_inset Quotes eld
+\end_inset
+
+costante
+\begin_inset Quotes erd
+\end_inset
+
+ possiamo riportarla nella forma della soluzione che cercavamo, ottenendo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{y}\left(t\right)=\left(\int f\left(t\right)\cdot e^{A\left(t\right)}dt\right)\cdot e^{-A\left(t\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Soluzione generale
+\end_layout
+
+\begin_layout Standard
+Abbiamo calcolato la soluzione della omogenea e una soluzione particolare
+ della completa.
+ Per il teorema enunciato prima ci basterà quindi sommarle per ottenere
+ la soluzione generale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=z\left(t\right)+\overline{y}\left(t\right)=\left(c\cdot e^{-\int a\left(t\right)dt}\right)+\left(\left(\int f\left(t\right)\cdot e^{A\left(t\right)}dt\right)\cdot e^{-A\left(t\right)}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Raccogliendo l'esponenziale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=e^{-A\left(t\right)}\cdot\left[c+\int f\left(t\right)\cdot e^{A\left(t\right)}dt\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Però nella soluzione resta ancora una costante 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Quella è infatti la soluzione generale, ora sfruttiamo un 
+\emph on
+problema di Cauchy
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+Se sappiamo che
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t_{0}\right)=y_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Scegliendo la primitiva 
+\begin_inset Formula $A\left(t\right)$
+\end_inset
+
+ in modo che 
+\begin_inset Formula $A\left(t_{0}\right)=0$
+\end_inset
+
+, cioè 
+\begin_inset Formula $A\left(t\right)=\int_{t_{0}}^{t}a\left(s\right)ds$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sostituiamo la condizione nella soluzione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t_{0}\right)=y_{0}=e^{-A\left(t_{0}\right)}\cdot\left[c+\int_{t_{0}}^{t_{0}}f\left(s\right)\cdot e^{A\left(s\right)}ds\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'esponenziale ha esponente 0 e diventa 1, mentre l'integrale si annulla
+ avendo estremi uguali
+\end_layout
+
+\begin_layout Standard
+Otteniamo allora che 
+\begin_inset Formula $c=y_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da questo definiamo finalmente che la soluzione generale con la condizione
+ del problema di 
+\emph on
+Cauchy
+\emph default
+ è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=e^{-A\left(t\right)}\cdot\left[y_{0}+\int_{t_{0}}^{t}f\left(s\right)\cdot e^{A\left(s\right)}ds\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Se 
+\begin_inset Formula $a$
+\end_inset
+
+ ed 
+\begin_inset Formula $f$
+\end_inset
+
+ sono funzioni continue in 
+\begin_inset Formula $I$
+\end_inset
+
+, per ogni 
+\begin_inset Formula $y_{0}\in\mathbb{R}$
+\end_inset
+
+ il problema di Cauchy 
+\begin_inset Formula $\begin{cases}
+y'+a\left(t\right)\cdot y\left(t\right)=f\left(t\right)\\
+y\left(t_{0}\right)=y_{0}
+\end{cases}$
+\end_inset
+
+ ha 
+\series bold
+una ed una sola
+\series default
+ soluzione 
+\begin_inset Formula $y\in C^{1}\left(I\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Altra forma 
+\end_layout
+
+\begin_layout Standard
+È possibile scrivere l'equazione differenziale anche nella forma
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y'\left(t\right)=a\left(t\right)\cdot y\left(t\right)+f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ed in questo caso la formula finale diventa
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=e^{A\left(t\right)}\cdot\left[c+\int f\left(t\right)\cdot e^{-A\left(t\right)}dt\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Che se messa a sistema con un problema di Cauchy del tipo 
+\begin_inset Formula $y\left(t_{0}\right)=y_{0}$
+\end_inset
+
+ diventa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y\left(t\right)=e^{A\left(t\right)}\cdot\left[y_{0}+\int_{t_{0}}^{t}f\left(s\right)\cdot e^{-A\left(s\right)}ds\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Equazioni differenziali lineari del secondo ordine
+\end_layout
+
+\begin_layout Standard
+Compaiono nella forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{2}\left(t\right)\cdot y"+a_{1}\left(t\right)\cdot y'+a_{0}\left(t\right)\cdot y=g\left(t\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $g\left(t\right)=0\:\forall t$
+\end_inset
+
+ allora l'equazione si dice 
+\series bold
+omogenea
+\series default
+, altrimenti si dice 
+\series bold
+completa
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $a_{2}\left(t\right)$
+\end_inset
+
+, 
+\begin_inset Formula $a_{1}\left(t\right)$
+\end_inset
+
+, 
+\begin_inset Formula $a_{0}\left(t\right)$
+\end_inset
+
+ sono funzioni costanti allora l'equazione differenziale si dirà a 
+\series bold
+coefficienti costanti
+\series default
+, altrimenti a 
+\series bold
+coefficienti variabili
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $a_{2}\left(t\right)=1$
+\end_inset
+
+ allora si dirà in forma 
+\series bold
+normale
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $a_{2}\left(t\right)$
+\end_inset
+
+ non si annulla mai per nessun valore di 
+\begin_inset Formula $t$
+\end_inset
+
+ allora è possibile dividere per questo e ottenere la forma normale: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y"+a\left(t\right)\cdot y'+b\left(t\right)\cdot y=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Problema di Cauchy
+\end_layout
+
+\begin_layout Standard
+Se le funzioni 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $b$
+\end_inset
+
+ ed 
+\begin_inset Formula $f$
+\end_inset
+
+ sono continue in un intervallo 
+\begin_inset Formula $I$
+\end_inset
+
+ (con 
+\begin_inset Formula $t_{0}\in I$
+\end_inset
+
+) allora il problema di Cauchy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{cases}
+y"+a\left(t\right)\cdot y'+b\left(t\right)\cdot y=f\left(t\right)\\
+y\left(t_{0}\right)=y_{0}\\
+y'\left(t_{0}\right)=y_{1}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ha 
+\series bold
+una
+\series default
+ ed una sola soluzione 
+\begin_inset Formula $y\in C^{2}\left(I\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Procedimento generale di soluzione
+\end_layout
+
+\begin_layout Enumerate
+Determiniamo l'
+\series bold
+integrale generale della equazione omogenea
+\series default
+, cioè troviamo due soluzioni 
+\begin_inset Formula $z_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)$
+\end_inset
+
+ linearmente indipendenti e quindi l'integrale generale 
+\begin_inset Formula $c_{1}\cdot z_{1}\left(t\right)+c_{2}\cdot z_{2}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Esistono due soluzioni dell'equazione omogenea, tali che sono linearmente
+ indipendenti (cioè non è possibile scrivere una delle due come un multiplo
+ dell'altra), tutte le altre soluzioni sono una combinazione lineare di
+ queste due soluzioni indipendenti.
+ Detto ciò sappiamo allora che l'integrale generale dell'equazione omogena
+ dovrà presentarsi nella forma: 
+\begin_inset Formula $c_{1}\cdot z_{1}\left(t\right)+c_{2}\cdot z_{2}\left(t\right)$
+\end_inset
+
+ al variare dei coefficienti 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Per verificare che le soluzioni siano linearmente indipendenti è possibile
+ utilizzare la 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+matrice Worokesiana
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+, cioè verificando che il determinante della matrice: 
+\begin_inset Formula $\mbox{\ensuremath{\left[\begin{array}{cc}
+z_{1}\left(t\right) & z_{2}\left(t\right)\\
+z_{1}^{\shortmid}\left(t\right) & z_{2}^{\shortmid}\left(t\right)
+\end{array}\right]}}$
+\end_inset
+
+ sia diverso da 
+\begin_inset Formula $0$
+\end_inset
+
+ per ogni valore di 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Se esiste almeno un valore di 
+\begin_inset Formula $t$
+\end_inset
+
+ per cui il determinante si annulla, allora le soluzioni non sono linearmente
+ indipendenti.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Determiniamo una 
+\series bold
+soluzione particolare
+\series default
+ 
+\begin_inset Formula $\overline{y}\left(t\right)$
+\end_inset
+
+
+\series bold
+ dell'equazione completa
+\end_layout
+
+\begin_layout Enumerate
+Calcoliamo l'integrale generale o 
+\begin_inset Quotes eld
+\end_inset
+
+soluzione
+\begin_inset Quotes erd
+\end_inset
+
+ dell'equazione differenziale utilizzando il teorema 1 e sommando quindi
+ i due precedenti risultati:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $y\left(t\right)=\overline{y}\left(t\right)+c_{1}\cdot z_{1}\left(t\right)+c_{2}\cdot z_{2}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph*
+Condizione del problema
+\end_layout
+
+\begin_layout Standard
+Purtroppo però non esiste un modo per risolvere i punti prima esposti, amenochè:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $a\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $b\left(t\right)$
+\end_inset
+
+ sono due funzioni 
+\series bold
+costanti
+\end_layout
+
+\begin_layout Standard
+Sapendo questo poi possiamo risolvere l'equazione completa con due metodi:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Metodo di somiglianza
+\series default
+ se 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+ è una funzione particolare abbastanza semplice
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Metodo di variazione delle costanti
+\series default
+, sempre applicabile ma laborioso
+\end_layout
+
+\begin_layout Paragraph*
+Calcolo dell'integrale generale dell'equazione omogenea
+\end_layout
+
+\begin_layout Standard
+Dobbiamo trovare le soluzioni indipendenti 
+\begin_inset Formula $z_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)$
+\end_inset
+
+ dell'equazione omogenea sotto ipotesi di 
+\series bold
+coefficienti 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+ costanti
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $z"\left(t\right)+a\cdot z'\left(t\right)+b\cdot z\left(t\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stiamo cercando delle soluzioni della forma esponenziale: 
+\begin_inset Formula $z\left(t\right)=e^{rt}$
+\end_inset
+
+.
+ Allora sostituiamolo nell'omogenea:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $r^{2}\cdot e^{rt}+a\cdot r\cdot e^{rt}+b\cdot e^{rt}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Raccolgo l'esponenziale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e^{rt}\cdot\left(r^{2}+a\cdot r+b\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left(r^{2}+a\cdot r+b\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi affinchè 
+\begin_inset Formula $z\left(t\right)=e^{rt}$
+\end_inset
+
+ sia una soluzione dell'equazione omogenea devo avere un valore di 
+\begin_inset Formula $r$
+\end_inset
+
+ che verifica l'ultima equazione scritta.
+\end_layout
+
+\begin_layout Standard
+L'ultima equazione scritta è una equazione di secondo grado, quindi abbiamo
+ tre possibili casi:
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta>0$
+\end_inset
+
+ (cioè 
+\begin_inset Formula $a^{2}-4b>0\:\Rightarrow\: a^{2}>4b$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allora abbiamo due valori distinti di 
+\begin_inset Formula $r$
+\end_inset
+
+ pari a: 
+\begin_inset Formula $r_{1,2}=\frac{-a\pm\sqrt{a^{2}-4b}}{2}$
+\end_inset
+
+ (dove con 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+ si intendono i coefficienti del polinomio caratteristico considerato e
+ non generico)
+\end_layout
+
+\begin_layout Itemize
+Risostituendo i due valori 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ ed 
+\begin_inset Formula $r_{2}$
+\end_inset
+
+ trovati nella soluzione che cercavamo, otteniamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $z_{1}\left(t\right)=e^{r_{1}t}$
+\end_inset
+
+ e anche 
+\begin_inset Formula $z_{2}\left(t\right)=e^{r_{2}t}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per quanto detto inizialmente sull'equazione omogenea, i due risultati linearmen
+te indipendenti vanno combinati per trovare tutte le soluzioni possibili,
+ quindi tutte le soluzioni della omogenea saranno:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $z\left(t\right)=c_{1}\cdot e^{r_{1}t}+c_{2}\cdot e^{r_{2}t}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta<0$
+\end_inset
+
+ (cioè 
+\begin_inset Formula $a^{2}-4b<0\:\Rightarrow\: a^{2}<4b$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allora avremo due valori di 
+\begin_inset Formula $r$
+\end_inset
+
+ complessi coniugati: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $r_{1}=\alpha+i\beta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{2}=\alpha-i\beta$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Da cui otteniamo le due soluzioni indipendenti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $z_{1}\left(t\right)=e^{\left(\alpha+i\beta\right)t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $z_{2}\left(t\right)=e^{\left(\alpha-i\beta\right)t}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Utilizzando le proprietà dei numeri complessi scriviamo la soluzione generale
+ dell'omogenea, espressa come combinazione lineare delle due indipendenti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $z\left(t\right)=e^{\alpha t}\cdot\left(c_{1}\cdot cos\left(\beta t\right)+c_{2}\cdot sin\left(\beta t\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In alcuni casi è più comodo utilizzare costanti di tipo diverso (
+\begin_inset Formula $\varphi$
+\end_inset
+
+ ed 
+\begin_inset Formula $A$
+\end_inset
+
+), riscrivendo la precedente come 
+\begin_inset Formula $z\left(t\right)=e^{\alpha t}\cdot A\cdot\left(\beta t+\varphi\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta=0$
+\end_inset
+
+ (cioè 
+\begin_inset Formula $a^{2}-4b=0\:\Rightarrow\: a^{2}=4b$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allora avremo due soluzioni coincidenti 
+\begin_inset Formula $r_{1,2}=-\frac{a}{2}$
+\end_inset
+
+ conseguenti dal 
+\begin_inset Formula $\Delta=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $z_{1}\left(t\right)=e^{r_{1,2}\cdot t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per trovare 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ si usa il metodo della variazione delle costanti 
+\series bold
+(non viene qui dimostrato)
+\end_layout
+
+\begin_layout Itemize
+Infine si trova che 
+\begin_inset Formula $z\left(t\right)=e^{r_{1,2}\cdot t}\cdot\left(c_{1}+c_{2}t\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Riassumendo:
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta>0$
+\end_inset
+
+ allora 
+\begin_inset Formula $z_{1}\left(t\right)=e^{r_{1}t}$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)=e^{r_{2}t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta<0$
+\end_inset
+
+ allora 
+\begin_inset Formula $z_{1}\left(t\right)=e^{\alpha t}cos\left(\beta t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)=e^{\alpha t}sin\left(\beta t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\Delta=0$
+\end_inset
+
+ allora 
+\begin_inset Formula $z_{1}\left(t\right)=e^{r_{1,2}\cdot t}$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)=t\cdot e^{r_{1,2}\cdot t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Calcolo dell'integrale particolare dell'equazione completa con il 
+\begin_inset Quotes eld
+\end_inset
+
+Metodo di somiglianza
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'equazione differenziale lineare completa è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y"\left(t\right)+a\cdot y'\left(t\right)+b\cdot y\left(t\right)=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+ è un polinomio di grado 
+\begin_inset Formula $r$
+\end_inset
+
+, allora poniamo che la soluzione che cerchiamo deve essere del tipo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=q_{r}\left(t\right)$
+\end_inset
+
+ se 
+\begin_inset Formula $b\neq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=t\cdot q_{r}\left(t\right)$
+\end_inset
+
+ se 
+\begin_inset Formula $b=0$
+\end_inset
+
+ e 
+\begin_inset Formula $a\neq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=t^{2}\cdot q_{r}\left(t\right)$
+\end_inset
+
+ se 
+\begin_inset Formula $b=0$
+\end_inset
+
+ e 
+\begin_inset Formula $a=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $q_{r}\left(t\right)$
+\end_inset
+
+ è un polinomio generico di grado 
+\begin_inset Formula $r$
+\end_inset
+
+.
+ Ad esempio se 
+\begin_inset Formula $r=2$
+\end_inset
+
+ abbiamo 
+\begin_inset Formula $q_{2}\left(t\right)=c_{0}+c_{1}\cdot t+c_{2}\cdot t^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per risolvere allora prendo la 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ trovata e la derivo quante volte compare nell'equazione completa, poi la
+ sostituiamo dentro.
+\end_layout
+
+\begin_layout Itemize
+A questo punto per calcolare le costanti incognite del polinomio 
+\begin_inset Formula $q_{r}\left(t\right)$
+\end_inset
+
+ basterà uguagliare i termini di grado pari dai due lati dell'equazione.
+\end_layout
+
+\begin_layout Itemize
+Una volta calcolate le costanti possiamo risostituirle nella 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ ed ottenere la soluzione completa.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se se 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+ si presenta nella forma: 
+\begin_inset Formula $f\left(t\right)=A\cdot e^{\lambda t}$
+\end_inset
+
+ con 
+\begin_inset Formula $\lambda\in\mathbb{C}$
+\end_inset
+
+ allora:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Cerco una soluzione della forma: 
+\begin_inset Formula $y\left(t\right)=e^{\lambda t}\cdot\gamma\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La 
+\begin_inset Formula $\gamma\left(t\right)$
+\end_inset
+
+ deve soddisfare 
+\begin_inset Formula $\gamma"+\gamma'\cdot\left(2\lambda+a\right)+\gamma\cdot\left(\lambda^{2}+a\lambda+b\right)=A$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\lambda^{2}+a\lambda+b\neq0$
+\end_inset
+
+ allora basta prendere:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\gamma\left(t\right)=\frac{A}{\lambda^{2}+a\lambda+b}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=\frac{Ae^{\lambda t}}{\lambda^{2}+a\lambda+b}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\lambda^{2}+a\lambda+b=0$
+\end_inset
+
+ ma 
+\begin_inset Formula $2\lambda+a\neq0$
+\end_inset
+
+ allora basta prendere:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\gamma'\left(t\right)=\frac{A}{2\lambda+a}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=\frac{Ate^{\lambda t}}{2\lambda+a}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\lambda^{2}+a\lambda+b=0$
+\end_inset
+
+ e anche 
+\begin_inset Formula $2\lambda+a=0$
+\end_inset
+
+ allora basta prendere:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\gamma"\left(t\right)=A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=\frac{A}{2}t^{2}e^{\lambda t}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Paragraph*
+Altro tipo di metodo di somiglianza complementare
+\end_layout
+
+\begin_layout Standard
+L'equazione differenziale lineare completa è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y"\left(t\right)+a\cdot y'\left(t\right)+b\cdot y\left(t\right)=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+ è della forma: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f\left(t\right)=P_{m}\left(t\right)\cdot e^{\alpha t}\cdot cos\left(\beta t\right)$
+\end_inset
+
+ (oppure anche 
+\begin_inset Formula $f\left(t\right)=P_{m}\left(t\right)\cdot e^{\alpha t}\cdot sin\left(\beta t\right)$
+\end_inset
+
+ è indifferente
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Se ad esempio 
+\begin_inset Formula $f\left(t\right)=5t$
+\end_inset
+
+ non compare nè seno nè coseno, quindi sceglieremo di prendere in ogni caso
+ 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+ e quindi la seconda forma
+\end_layout
+
+\end_inset
+
+ )
+\end_layout
+
+\begin_layout Standard
+Prendiamo 
+\begin_inset Formula $\lambda=\alpha+i\beta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ 
+\series bold
+non è
+\series default
+ soluzione del polinomio caratteristico (cioè 
+\begin_inset Formula $\lambda^{2}+a\lambda+b\neq0$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allora bisogna cercare una soluzione particolare della forma: 
+\begin_inset Formula $y_{p}\left(t\right)=Q_{m}\left(t\right)\cdot e^{\alpha t}\cdot cos\left(\beta t\right)+R_{m}\left(t\right)\cdot e^{\alpha t}\cdot sin\left(\beta t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q_{m}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $R_{m}\left(t\right)$
+\end_inset
+
+ sono due polinomi generici di grado 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ 
+\series bold
+è
+\series default
+ soluzione del polinomio caratteristico (cioè 
+\begin_inset Formula $\lambda^{2}+a\lambda+b=0$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allora posto che 
+\begin_inset Formula $\rho$
+\end_inset
+
+ sia la 
+\emph on
+molteplicità algebrica 
+\emph default
+di 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ (il numero di volte che 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ compare come soluzione del polinomio caratteristico)
+\end_layout
+
+\begin_layout Itemize
+Bisogna cercare una soluzione particolare della forma: 
+\begin_inset Formula $y_{p}\left(t\right)=t^{\rho}\left[Q_{m}\left(t\right)\cdot e^{\alpha t}\cdot cos\left(\beta t\right)+R_{m}\left(t\right)\cdot e^{\alpha t}\cdot sin\left(\beta t\right)\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph*
+Calcolo dell'integrale particolare dell'equazione completa con il 
+\begin_inset Quotes eld
+\end_inset
+
+Metodo di variazione delle costanti
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È possibile applicarlo qualunque sia la forma di 
+\begin_inset Formula $f\left(t\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Ci servono due soluzioni indipendenti della omogenea per utilizzarlo.
+\end_layout
+
+\begin_layout Standard
+Ricordiamo che supponiamo sempre in questo caso 
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+ due funzioni costanti.
+ In realtà esistono metodi risolutivi anche se queste non sono costanti,
+ ma non verranno qui analizzati.
+\end_layout
+
+\begin_layout Itemize
+Abbiamo due soluzioni indipendenti della omogenea: 
+\begin_inset Formula $z_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Vogliamo che la soluzione particolare cercata sia della forma: 
+\begin_inset Formula $\overline{y}\left(t\right)=c_{1}\left(t\right)\cdot z_{1}\left(t\right)+c_{2}\left(t\right)\cdot z_{2}\left(t\right)$
+\end_inset
+
+, dove 
+\begin_inset Formula $c_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}\left(t\right)$
+\end_inset
+
+ sono due funzioni incognite.
+\end_layout
+
+\begin_layout Itemize
+Determiniamo 
+\begin_inset Formula $c_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}\left(t\right)$
+\end_inset
+
+ in modo che 
+\begin_inset Formula $\overline{y}$
+\end_inset
+
+ soddifi l'equazione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}"+a\overline{y}'+b\overline{y}=f\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Calcoliamo allora 
+\begin_inset Formula $\overline{y}"$
+\end_inset
+
+ e 
+\begin_inset Formula $\overline{y}'$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}'=c_{1}^{\shortmid}z_{1}+c_{2}^{\shortmid}z_{2}+c_{1}z_{2}^{\shortmid}+c_{2}z_{2}^{\shortmid}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Scegliamo di 
+\series bold
+imporre
+\series default
+ come condizione iniziale che 
+\begin_inset Formula $c_{1}^{\shortmid}z_{1}+c_{2}^{\shortmid}z_{2}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}'$
+\end_inset
+
+ diventa allora: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\overline{y}'=c_{1}z_{2}^{\shortmid}+c_{2}z_{2}^{\shortmid}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}"=c_{1}^{\shortmid}z_{1}^{\shortmid}+c_{2}^{\shortmid}z_{2}^{\shortmid}+c_{1}z_{1}^{\shortmid\shortmid}+c_{2}z_{2}^{\shortmid\shortmid}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Risostituendo tutto nella equazione completa otteniamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $c_{1}\left(z_{1}^{\shortmid\shortmid}+az_{1}^{\shortmid}+bz_{1}\right)+c_{2}\left(z_{2}^{\shortmid\shortmid}+az_{2}^{\shortmid}+bz_{2}\right)+\left(c_{1}^{\shortmid}z_{1}^{\shortmid}+c_{2}^{\shortmid}z_{2}^{\shortmid}\right)=f$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Però già sappiamo che 
+\begin_inset Formula $z_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ risolvono l'equazione.
+ Allora:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $c_{1}^{\shortmid}z_{1}^{\shortmid}+c_{2}^{\shortmid}z_{2}^{\shortmid}=f$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ora possiamo metterlo a sistema per trovare la soluzione particolare:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+c_{1}^{\shortmid}z_{1}+c_{2}^{\shortmid}z_{2}=0\\
+c_{1}^{\shortmid}z_{1}^{\shortmid}+c_{2}^{\shortmid}z_{2}^{\shortmid}=f
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se riscriviamo il sistema in forma matriciale
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left[\begin{array}{cc}
+z_{1} & z_{2}\\
+z_{1}^{\shortmid} & z_{2}^{\shortmid}
+\end{array}\right]\cdot\left[\begin{array}{c}
+c_{1}^{\shortmid}\\
+c_{2}^{\shortmid}
+\end{array}\right]=\left[\begin{array}{c}
+0\\
+f
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ci accorgiamo che la matrice dei coefficienti è la Wrokesiana e sappiamo
+ a priori che 
+\begin_inset Formula $z_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ sono indipendenti perchè sono soluzioni della omogenea, quindi 
+\series bold
+sicuramente
+\series default
+ il determinante della matrice dei coefficienti non sarà 
+\series bold
+mai
+\series default
+ uguale a 
+\begin_inset Formula $0$
+\end_inset
+
+ per nessun valore di 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Questo significa anche che il sistema è risolubile e che le sue soluzioni
+ sono:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{1}^{\shortmid}=\frac{-z_{2}f}{\left(z_{2}^{\shortmid}z_{1}-z_{2}z_{1}^{\shortmid}\right)}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}^{\shortmid}=\frac{z_{1}f}{\left(z_{2}^{\shortmid}z_{1}-z_{2}z_{1}^{\shortmid}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sappiamo per ipotesi che 
+\begin_inset Formula $f$
+\end_inset
+
+ è continua, che 
+\begin_inset Formula $z_{1}$
+\end_inset
+
+e 
+\begin_inset Formula $z_{2}$
+\end_inset
+
+ sono derivabili con continuità e che quindi 
+\begin_inset Formula $c_{1}^{\shortmid}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}^{\shortmid}$
+\end_inset
+
+ sono continue.
+ Dunque 
+\series bold
+è poissibile antiderivare (integrare) con continuità
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Inizialmente avevamo detto che cercavamo una soluzione della forma 
+\begin_inset Formula $\overline{y}\left(t\right)=c_{1}\left(t\right)\cdot z_{1}\left(t\right)+c_{2}\left(t\right)\cdot z_{2}\left(t\right)$
+\end_inset
+
+, ora conosciamo 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+, quindi risostituendole otteniamo una soluzione particolare.
+\end_layout
+
+\begin_layout Itemize
+Se sostituiamo le 
+\series bold
+generiche primitive 
+\series default
+
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ (cioè con addizionate delle costanti
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In realtà ci sono 4 costanti sommando la soluzione particolare alla omogenea.
+ È possibile però raccogliere e accorpare le costanti da cercare a coppie.
+\end_layout
+
+\end_inset
+
+) otteniamo invece finalmente l'
+\series bold
+integrale generale o soluzione completa.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y\left(t\right)=\left(c_{1}\left(t\right)+k_{1}\right)\cdot z_{1}\left(t\right)+\left(c_{2}\left(t\right)+k_{2}\right)\cdot z_{2}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Il problema di questo metodo è che non sempre si riesce ad integrare analiticame
+nte 
+\begin_inset Formula $c_{1}^{\shortmid}$
+\end_inset
+
+ e 
+\begin_inset Formula $c_{2}^{\shortmid}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Equazione di Eulero del secondo ordine
+\end_layout
+
+\begin_layout Standard
+Si tratta di equazioni differenziali particolari a coefficienti non costanti
+ della forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{0}\cdot x^{2}\cdot y^{\shortmid\shortmid}\left(t\right)+a_{1}\cdot x\cdot y^{\shortmid}\left(t\right)+a_{2}\cdot y\left(t\right)=f\left(x\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{0},a_{1},a_{2}\in\mathbb{R}$
+\end_inset
+
+ con 
+\begin_inset Formula $f\in C\left(I\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possiamo parametrizzare utilizzando 
+\begin_inset Formula $t=log|x|$
+\end_inset
+
+ (cioè 
+\begin_inset Formula $x=\begin{cases}
+e^{t} & x>0\\
+-e^{t} & x<0
+\end{cases}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Il caso 
+\begin_inset Formula $x=0$
+\end_inset
+
+ è sempre un asse singolare per l'equazione di Eulero.
+\end_layout
+
+\begin_layout Standard
+Si procede per prima cosa guardando se c'è un problema di Cauchy definito
+ per 
+\begin_inset Formula $t>0$
+\end_inset
+
+ o 
+\begin_inset Formula $t<0$
+\end_inset
+
+ e quindi si sceglie quali delle due sostituzioni adottare.
+\end_layout
+
+\begin_layout Standard
+Se non c'è nessun problema di Cauchy si procede con entrambe le sostituzioni
+ rifacendo tutto il procedimento due volte.
+\end_layout
+
+\begin_layout Standard
+Facciamo un esempio per 
+\begin_inset Formula $x=e^{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $U\left(t\right)=y\left(e^{t}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $U^{\shortmid}\left(t\right)=y^{\shortmid}\left(e^{t}\right)\cdot e^{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $U^{\shortmid\shortmid}\left(t\right)=y^{\shortmid\shortmid}\left(e^{t}\right)\cdot e^{2t}+y^{\shortmid}\left(e^{t}\right)\cdot e^{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da cui ricaviamo ad esempio che 
+\begin_inset Formula $\left[U^{\shortmid\shortmid}\left(t\right)-U^{\shortmid}\left(t\right)\right]=y^{\shortmid\shortmid}\left(e^{t}\right)\cdot e^{2t}$
+\end_inset
+
+ cioè senza parametrizzazione 
+\begin_inset Formula $x^{2}\cdot y^{\shortmid\shortmid\shortmid}$
+\end_inset
+
+, che sarebbe proprio il primo termine dell'equazione.
+ Nel caso di equazioni di Eulero di ordine superiore si procede derivando
+ ancora e si ottengono i termini successivi.
+\end_layout
+
+\begin_layout Standard
+In questo caso del secondo ordine otteniamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{0}\cdot\left[U^{\shortmid\shortmid}\left(t\right)-U^{\shortmid}\left(t\right)\right]+a_{1}\cdot U^{\shortmid}\left(t\right)+a_{2}\cdot U\left(t\right)=f\left(e^{t}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+cioè
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a_{0}\cdot U^{\shortmid\shortmid}\left(t\right)+\left[a_{1}-a_{0}\right]\cdot U^{\shortmid}\left(t\right)+a_{2}\cdot U\left(t\right)=f\left(e^{t}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Che si riconduce quindi ad una equazione differenziale lineare del secondo
+ ordine a coefficienti costanti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $U^{\shortmid\shortmid}\left(t\right)+\frac{\left[a_{1}-a_{0}\right]}{a_{0}}\cdot U^{\shortmid}\left(t\right)+\frac{a_{2}}{a_{0}}\cdot U\left(t\right)=\frac{f\left(e^{t}\right)}{a_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A questo punto potrebbe essere conveniente ricondurre tutto risostituendo
+ 
+\begin_inset Formula $t=log\left(x\right)$
+\end_inset
+
+ per non rendere troppo complicata la risoluzione della equazione completa.
+\end_layout
+
+\begin_layout Section*
+Sistema di equazioni lineari del primo ordine
+\end_layout
+
+\begin_layout Subsection*
+Caso omogeneo
+\end_layout
+
+\begin_layout Standard
+Consideriamo il seguente sistema di equazioni differenziali omogenee.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{cases}
+y_{1}^{\shortmid}= & a_{11}\cdot y_{1}+a_{12}\cdot y_{2}+\ldots+a_{1n}\cdot y_{n}\\
+y_{2}^{\shortmid}= & a_{21}\cdot y_{1}+a_{22}\cdot y_{2}+\ldots+a_{2n}\cdot y_{n}\\
+\ldots & \ldots\\
+y_{n}^{\shortmid}= & a_{n1}\cdot y_{1}+a_{n2}\cdot y_{2}+\ldots+a_{nn}\cdot y_{n}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esso può essere riscritto in forma matriciale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[\begin{array}{c}
+y_{1}^{\shortmid}\\
+y_{2}^{\shortmid}\\
+\ldots\\
+y_{n}^{\shortmid}
+\end{array}\right]=\left[\begin{array}{cccc}
+a_{11} & a_{12} & \ldots & a_{1n}\\
+a_{21} & \cdots & \ldots & \vdots\\
+\vdots & \ldots & \ldots & \vdots\\
+a_{n1} & a_{n2} & \ldots & a_{nn}
+\end{array}\right]\cdot\left[\begin{array}{c}
+y_{1}\\
+y_{2}\\
+\vdots\\
+y_{n}
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cioè:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{Y}'=A\cdot\overline{Y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si risolve come nel caso delle normali equazioni differenziali del primo
+ ordine:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{Y}=C\cdot e^{At}$
+\end_inset
+
+ dove 
+\begin_inset Formula $e^{At}$
+\end_inset
+
+ è l'esponenziale della matrice 
+\begin_inset Formula $A$
+\end_inset
+
+ e 
+\begin_inset Formula $C$
+\end_inset
+
+ è un vettore di costanti arbirarie.
+\end_layout
+
+\begin_layout Paragraph*
+Esponenziale di una matrice
+\end_layout
+
+\begin_layout Standard
+Per calcolare 
+\begin_inset Formula $e^{At}$
+\end_inset
+
+ bisogna calcolare l'esponenziale della matrice 
+\begin_inset Formula $A$
+\end_inset
+
+ in questo modo:
+\end_layout
+
+\begin_layout Itemize
+Verifichiamo che 
+\begin_inset Formula $A$
+\end_inset
+
+ sia diagonalizzabile
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Calcoliamo gli autovalori.
+\end_layout
+
+\begin_layout Itemize
+Calcoliamo gli autovettori.
+\end_layout
+
+\begin_layout Itemize
+Verifichiamo che la molteplicità algebrica sia uguale alla molteplicità
+ geometrica
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Cioè se il numero degli autovalori è uguale al numero di autovettori
+\end_layout
+
+\end_inset
+
+, se sì allora la matrice è 
+\series bold
+diagonalizzabile
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Scrivo la matrice 
+\begin_inset Formula $S$
+\end_inset
+
+ di transizione mettendo gli autovettori incolonnati al suo interno
+\end_layout
+
+\begin_layout Itemize
+Scrivo
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+È molto importante ricordarsi che è essenziale che l'ordine in cui vengono
+ messi gli autovalori nella matrice 
+\begin_inset Formula $e^{\Lambda}$
+\end_inset
+
+ sia lo stesso dei relativi autovalori nella matrice 
+\begin_inset Formula $S$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ la matrice 
+\begin_inset Formula $e^{\Lambda}=\left[\begin{array}{cccc}
+e^{\lambda_{1}} & 0 & \cdots & 0\\
+0 & e^{\lambda_{2}} & 0 & \vdots\\
+\vdots & \cdots & \ddots & \vdots\\
+0 & 0 & \ldots & e^{\lambda_{n}}
+\end{array}\right]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Calcolo infine l'esponenziale della matrice facendo: 
+\begin_inset Formula $e^{A}=S\cdot e^{\Lambda}\cdot S^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subparagraph*
+Nota sull'inversa:
+\end_layout
+
+\begin_layout Standard
+L'inversa (se è necessario calcolarla) si calcola facendo 
+\begin_inset Formula $S^{-1}=\frac{1}{det\left(S\right)}\cdot\left[a_{ij}^{\shortmid}\right]^{T}$
+\end_inset
+
+ , dove 
+\begin_inset Formula $\left[a_{ij}^{\shortmid}\right]$
+\end_inset
+
+ è la matrice dei complementi algebrici.
+ Per calcolare il complemento algebrico di una entrata della matrice 
+\begin_inset Formula $S$
+\end_inset
+
+ si fa: 
+\begin_inset Formula $a_{ij}^{\shortmid}=\left(-1\right)^{i+j}\cdot det\left(S_{\text{senza riga \ensuremath{i}e colonna \ensuremath{j}}}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Nota sul caso omogeneo
+\end_layout
+
+\begin_layout Standard
+Se stiamo risolvendo una sistema lineare omogeneo di equazioni differenziali
+ possiamo anche evitare di calcolare l'inversa della matrice di transizione
+ 
+\begin_inset Formula $S$
+\end_inset
+
+, infatti se pensiamo al calcolo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{Y}=S\cdot e^{\Lambda t}\cdot S^{-1}\cdot C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci accorgiamo che l'ultima matrice 
+\begin_inset Formula $S^{-1}$
+\end_inset
+
+ è composta in realtà sempre delle costanti, così come il vettore 
+\begin_inset Formula $C$
+\end_inset
+
+, allora possiamo anche semplicemente scrivere:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{Y}=S\cdot e^{\Lambda t}C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Caso non omogeneo:
+\end_layout
+
+\begin_layout Standard
+Abbiamo un sistema che si può scrivere come:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{y}'\left(t\right)=A\left(t\right)\cdot\overline{y}\left(t\right)+\overline{b}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $A\left(t\right)$
+\end_inset
+
+ è una matrice composta solo da costanti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Calcolo il sistema omogeneo e trovo una soluzione 
+\begin_inset Formula $\overline{z}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Calcolo una soluzione particolare: 
+\begin_inset Formula $\overline{y}_{p}=\int e^{\left(t-s\right)A}\cdot\overline{b}\left(s\right)\, ds$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se ho una condizione di Cauchy la soluzione completa (integrale generale)
+ diventa:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}\left(t\right)=e^{\left(t-t_{0}\right)A}\cdot\overline{y}_{0}+\int_{t_{0}}^{t}e^{\left(t-s\right)A}\cdot\overline{b}\left(s\right)\, ds$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Nota:
+\series default
+ ricordiamo che se ho una funzione 
+\begin_inset Formula $\overline{g}\left(x\right)=\left[\begin{array}{c}
+g_{1}\left(x\right)\\
+\vdots\\
+g_{n}\left(x\right)
+\end{array}\right]$
+\end_inset
+
+ l'integrale 
+\begin_inset Formula $\int\overline{g}\left(x\right)ds$
+\end_inset
+
+ diventa: 
+\begin_inset Formula $\int\overline{g}\left(x\right)ds=\left[\begin{array}{c}
+\int g_{1}\left(x\right)\\
+\int g_{2}\left(x\right)\\
+\int g_{n}\left(x\right)
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $A\left(t\right)$
+\end_inset
+
+ contiene valori dipendenti da 
+\begin_inset Formula $t$
+\end_inset
+
+ allora:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Calcolo il sistema omogeneo e trovo una soluzione 
+\begin_inset Formula $\overline{z}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Calcolo una soluzione particolare:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}_{p}\left(t\right)=W\left(t\right)\cdot\int_{t_{0}}^{t}W^{-1}\left(s\right)\cdot b\left(s\right)\cdot ds$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W\left(t\right)$
+\end_inset
+
+ è la matrice wrokesiana che ha sulle colonne le soluzioni omogenee
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Calcolo la soluzione completa sommando la particolare alla omogenea:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\overline{y}\left(t\right)=\overline{y}_{p}\left(t\right)+\overline{z}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section*
+Sistemi di equazioni differenziali lineari
+\end_layout
+
+\begin_layout Standard
+Ammettiamo di avere una equazione differenziale della forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y^{\left(n\right)}=a_{1}\left(t\right)\cdot y^{\left(n-1\right)}\left(t\right)+a_{2}\left(t\right)\cdot y^{\left(n-2\right)}\left(t\right)+...+a_{n}\left(t\right)\cdot y\left(t\right)+b\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per 
+\begin_inset Formula $n\geq2$
+\end_inset
+
+ non esiste un metodo risolutivo per le equazioni differenziali lineari
+ a coefficienti non costanti.
+ È possibile però tramite un cambio di variabile e applicando il principio
+ di sovrapposizione risolvere l'equazione sopra riconducendola ad un sistema
+ lineare del primo ordine della forma 
+\begin_inset Formula $\overline{y}^{\shortmid}\left(t\right)=A\left(t\right)\cdot y\left(t\right)+B\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Rinominiamo le varie derivate che compaiono secondo il seguente schema:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+y_{1}=y\\
+y_{2}=y^{\shortmid}\\
+y_{3}=y^{\shortmid\shortmid}\\
+\vdots\\
+y_{n}=y^{\left(n-1\right)}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Questo diventerà quindi il vettore 
+\begin_inset Formula $\overline{y}\left(t\right)=\left[\begin{array}{c}
+y_{1}\\
+y_{2}\\
+\vdots\\
+y_{n}
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il vettore 
+\begin_inset Formula $\overline{y}^{\shortmid}\left(t\right)$
+\end_inset
+
+ sarà quindi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+y_{1}^{\shortmid}=y^{\shortmid}\\
+y_{2}^{\shortmid}=y^{\shortmid\shortmid}\\
+y_{3}^{\shortmid}=y^{\shortmid\shortmid\shortmid}\\
+\vdots\\
+y_{n}^{\shortmid}=y^{\left(n\right)}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cioè 
+\begin_inset Formula $\overline{y}^{\shortmid}\left(t\right)=\left[\begin{array}{c}
+y_{1}^{\shortmid}\\
+y_{2}^{\shortmid}\\
+\vdots\\
+y_{n}^{\shortmid}
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per la matrice 
+\begin_inset Formula $A\left(t\right)$
+\end_inset
+
+ dei coefficienti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $A\left(t\right)=\left[\begin{array}{cccc}
+0 & 1 & \cdots & 0\\
+0 & 0 & \cdots & 0\\
+\vdots & \vdots & \cdots & 1\\
+a_{n}\left(t\right) & a_{n-1}\left(t\right) & \cdots & a_{1}\left(t\right)
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per la matrice 
+\begin_inset Formula $B\left(t\right):$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $B\left(t\right)=\left[\begin{array}{c}
+0\\
+0\\
+\vdots\\
+b\left(t\right)
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Si procede quindi a risolvere il sistema 
+\begin_inset Formula $\overline{y}^{\shortmid}\left(t\right)=A\left(t\right)\cdot\overline{y}\left(t\right)+B\left(t\right)$
+\end_inset
+
+ in base a quanto descritto prima.
+ Il primo valore del vettore soluzione 
+\begin_inset Formula $\overline{y}\left(t\right)$
+\end_inset
+
+ sarà dunque la soluzione.
+\end_layout
+
+\end_body
+\end_document
