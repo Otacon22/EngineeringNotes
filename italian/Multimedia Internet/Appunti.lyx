@@ -1802,5 +1802,135 @@ Inoltre gli operatori hanno anche osservato che il loro servizio dominante
  reti, arrivando a pochi punti percentuali rispetto all'intero traffico.
 \end_layout
 
+\begin_layout Itemize
+Abbiamo poca banda per avere 
+\series bold
+video streaming
+\end_layout
+
+\begin_layout Itemize
+Abbiamo poca banda per avere 
+\series bold
+servizi
+\series default
+ 
+\series bold
+p2p
+\end_layout
+
+\begin_layout Subsection*
+Next Generation Access Network
+\end_layout
+
+\begin_layout Standard
+Il nostro scopo è di sostituire il collegamento fino a casa dell'utente
+ con un collegamento in fibra ottica.
+\end_layout
+
+\begin_layout Standard
+I vari modi per ottenere una rete di nuova generazione sono diversi:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Fiber to the Exchange 
+\series default
+\emph default
+(
+\series bold
+\emph on
+FTTE
+\series default
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Fiber to the Cabinet 
+\series default
+\emph default
+(
+\series bold
+\emph on
+FTT
+\emph default
+C
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Fiber to the Building 
+\series default
+\emph default
+(
+\series bold
+\emph on
+FTT
+\emph default
+B
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Fiber to the Home 
+\series default
+\emph default
+(
+\series bold
+\emph on
+FTT
+\emph default
+H
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+Ovviamente abbiamo un trade-off in base alla scelta che facciamo.
+ L'ultima è la più costosa ma anche la migliore, la prima è la più economica
+ ma anche la peggiore.
+\end_layout
+
+\begin_layout Standard
+Saltiamo la Fiber to Exchange.
+\end_layout
+
+\begin_layout Subsubsection*
+Fiber to the Cabinet
+\end_layout
+
+\begin_layout Standard
+Abbiamo il vantaggio di poter andare più veloce perché il collegamento tra
+ cabinet e casa resta in fibra ma è molto più corto del collegamento tra
+ cabinet e central office (che invece è in fibra).
+ Possiamo arrivare ad utilizzare collegamenti VDSL con 50Mb/s di download
+ e 10 Mb7s di upload.
+\end_layout
+
+\begin_layout Standard
+Abbiamo il problema che al cabinet arriva un segnale ottico e deve uscire
+ un segnale elettrico.
+ Serve un adattatore nel cabinet, non è più una matrice di collegamenti.
+\end_layout
+
+\begin_layout Standard
+Quindi il cabinet diventa un dispositivo attivo! Quindi serve anche energia
+ al cabinet! Il cabinet diventa più grande, bisogna chiedere dei permessi..
+ Diventa complicato.
+\end_layout
+
 \end_body
 \end_document
