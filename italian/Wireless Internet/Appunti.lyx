@@ -1,0 +1,1524 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Wireless Internet
+\end_layout
+
+\begin_layout Author
+Daniele Iamartino
+\end_layout
+
+\begin_layout Section*
+Introduzione
+\end_layout
+
+\begin_layout Standard
+Orario ricevimento 14:00-15:30
+\end_layout
+
+\begin_layout Section*
+Canale wireless
+\end_layout
+
+\begin_layout Standard
+I canali wireless hanno caratteristiche peggiori rispetot ai mezzi trasmissivi
+ wired, ovviamente.
+ 
+\end_layout
+
+\begin_layout Standard
+Abbiamo:
+\end_layout
+
+\begin_layout Itemize
+Attenuazione causata dalla distanza tra trasmettitore e ricevitore
+\end_layout
+
+\begin_layout Itemize
+Attenuazione causata da ostacoli tra trasmettitore e ricevitore.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Parte dell'energia dei segnali wireless viene assorbita degli ostacoli
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Propagazione lungo diversi percorsi
+\end_layout
+
+\begin_layout Subsection*
+Lo spettro radio
+\end_layout
+
+\begin_layout Standard
+I segnali radio sono caratterizzati da:
+\end_layout
+
+\begin_layout Itemize
+Lunghezza d'
+\series bold
+\emph on
+onda
+\series default
+\emph default
+ e 
+\series bold
+\emph on
+frequenza 
+\begin_inset Formula 
+\[
+\lambda=\frac{c}{f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $c\cong3\cdot10^{8}\,\left[\frac{m}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $s\left(t\right)=cos\left(2\pi\cdot f\cdot t+\varphi\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename spettro.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ELF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+<3KHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Controllo remoto, voce, telefono analogico
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VLF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3-30 KHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30-300 KHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300 kHz - 3 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3-30 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VHF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30-300 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UHF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300 MHz - 3 GHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SHF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3-30 GHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EHF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30-300 GHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+300 GHz - 400THz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Light
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+400-900 THz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Porzioni di spettro di interesse
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Reti radiomobili
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+900-2200 MHz (VHF-UHF)
+\end_layout
+
+\begin_layout Itemize
+Le antenne sono semplici e corte (pochi centimetri)
+\end_layout
+
+\begin_layout Itemize
+Con 
+\begin_inset Formula $1\, W$
+\end_inset
+
+ di potenza possiamo coprire diversi chilometri e attraversare i muri degli
+ edifici
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Collegamenti 
+\series bold
+punto-punto
+\series default
+ e alcuni collegamenti 
+\series bold
+satellitari
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+3-30 GHz (SHF)
+\end_layout
+
+\begin_layout Itemize
+C'è molta banda disponibile ma ha il problema di essere fortemente influenzata
+ da effetti atmosferici (pioggia, neve...)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Reti wireless dati
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+2.4 GHz e 5 GHz
+\end_layout
+
+\begin_layout Itemize
+C'è interferenza con molti altri sistemi che utilizzano questa banda
+\end_layout
+
+\begin_layout Itemize
+In 5 GHz c'è attenuazione a causa di nebbia e pioggia.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Tradeoff sulle frequenze
+\end_layout
+
+\begin_layout Itemize
+Ad 
+\series bold
+alte frequenze
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è molta banda disponibile man mano che saliamo di frequenza, non molti
+ sistemi le usano.
+\end_layout
+
+\begin_layout Itemize
+È però più difficile penetrare gli ostacoli.
+ Pensiamo alla luce che ha frequenza più elevata.
+ Viene bloccata facilmente.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A 
+\series bold
+basse frequenze
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è poca banda disponibile perché viene condivisa tra molti sistemi e servizi
+\end_layout
+
+\begin_layout Itemize
+Abbiamo il problema di necessitare di antenne più grandi
+\end_layout
+
+\begin_layout Itemize
+È più facile penetrare gli ostacoli
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Antenne
+\end_layout
+
+\begin_layout Standard
+Le antenne sono dei conduttori o sistemi in grado di:
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+trasmissione
+\series default
+: irradiano energia elettromagnetica nello spazio
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+ricezione
+\series default
+: catturano energia elettromagnetica dallo spazio
+\end_layout
+
+\begin_layout Standard
+Lo stesso dispositivo può essere utilizzato per entrambe le funzioni.
+\end_layout
+
+\begin_layout Subsubsection*
+Antenna isotropica 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'antenna più semplice in assoluto è quella 
+\emph on
+isotropica
+\emph default
+, un punto che irradia in tutte le direzioni.
+\end_layout
+
+\begin_layout Standard
+Questa antenna può emettere una potenza 
+\begin_inset Formula $P_{T}$
+\end_inset
+
+ in tutte le direzioni.
+\end_layout
+
+\begin_layout Standard
+Se vogliamo valutare la densità di potenza ad una certa distanza 
+\begin_inset Formula $d$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+F\left(d\right)=\frac{P_{T}}{4\pi d^{2}}\quad\left[\frac{W}{m^{2}}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Antenne reali
+\end_layout
+
+\begin_layout Standard
+Le antenne reali però non irradiano in tutte le direzioni.
+\end_layout
+
+\begin_layout Standard
+Solitamente utilizziamo la funzione di 
+\series bold
+\emph on
+guadagno dell'antenna 
+\series default
+\emph default
+per analizzare le caratteristiche di una antenna reale 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g\left(\theta\right)=\frac{P\left(\theta\right)\cdot4\pi}{P_{T}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Solitamente però consideremo la direzione con l'emissione massima di potenza,
+ cioè quando 
+\begin_inset Formula $\theta=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Caratteristiche delle antenne
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Guadagno dell'antenna
+\series default
+\emph default
+: È il rapporto tra la densità di potenza nella direzione di massima irradiazion
+e e la densità di potenza di un irradiatore isotropico alla distanza di
+ riferimento.
+ (Solitamente questo si esprime in 
+\begin_inset Formula $dBi$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Direttività dell'antenna
+\series default
+\emph default
+: È il rapporto tra la densità di potenza nella direzione di massima irradiazion
+e e la densità di potenza media ad una distanza di riferimento.
+\end_layout
+
+\begin_layout Itemize
+[omissis]
+\end_layout
+
+\begin_layout Subsubsection*
+Antenne direzionali
+\end_layout
+
+\begin_layout Standard
+Di solito si utilizzano antenne di tipo direzionali, cioè antenne che hanno
+ maggior densità di potenza in una certa direzione.
+\end_layout
+
+\begin_layout Subsubsection*
+Potenza ricevuta
+\end_layout
+
+\begin_layout Standard
+Denotando con 
+\begin_inset Formula $g_{T}$
+\end_inset
+
+, il guadagno massimo dell'antenna, possiamo scrivere la densità di potenza
+ come: 
+\begin_inset Formula 
+\[
+F\left(d\right)=\frac{P_{T}g_{T}}{4\pi d^{2}}\quad\left[\frac{W}{m^{2}}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il prodotto 
+\begin_inset Formula $P_{T}g_{T}$
+\end_inset
+
+ è chiamato anche 
+\series bold
+EIRP
+\emph on
+ 
+\series default
+\emph default
+(
+\emph on
+Effective Isotropically Radiated Power
+\emph default
+) e rappresenta la potenza di un irradiatore isotropico per arrivare alla
+ stessa densità di potenza dell'antenna direttiva.
+\end_layout
+
+\begin_layout Standard
+Perché utilizzare una antenna direzionale?
+\end_layout
+
+\begin_layout Itemize
+Risparmiamo energia per trasmettere nella stessa direzione
+\end_layout
+
+\begin_layout Itemize
+Non abbiamo solo un vantaggio in trasmissione, ma anche in 
+\series bold
+ricezione
+\series default
+ (in quella direzione)
+\end_layout
+
+\begin_layout Standard
+La potenza catturata dall'antenna dipende dalla densità di potenza incidente
+ e l'
+\emph on
+area effettiva
+\emph default
+ 
+\begin_inset Formula $A_{e}$
+\end_inset
+
+ dell'antenna.
+\end_layout
+
+\begin_layout Standard
+Nel caso dell'irradiatore isotropico: 
+\begin_inset Formula 
+\[
+P_{R}=F\left(d\right)\cdot A_{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{e}=\frac{\lambda^{2}}{4\pi}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso di una antenna reale, l'area effettiva è 
+\begin_inset Formula $g_{R}\cdot A_{e}$
+\end_inset
+
+, dove 
+\begin_inset Formula $g_{R}$
+\end_inset
+
+ è il guadagno dell'antenna reale e 
+\begin_inset Formula $A_{e}$
+\end_inset
+
+ è l'area effettiva di una equivalente antenna isotropica.
+\end_layout
+
+\begin_layout Standard
+Quindi nel caso di una 
+\series bold
+antenna reale
+\series default
+ otteniamo che: 
+\begin_inset Formula 
+\[
+P_{R}=F\left(d\right)\cdot g_{R}A_{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{R}=P_{T}g_{T}g_{R}\cdot\left(\frac{\lambda}{4\pi d}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $P_{T}$
+\end_inset
+
+ è la potenza irradiata dal trasmettitore, 
+\begin_inset Formula $g_{T}$
+\end_inset
+
+ e 
+\begin_inset Formula $g_{R}$
+\end_inset
+
+ sono i guadagni di trasmettitore e ricevitore, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ è la lunghezza d'onda e 
+\begin_inset Formula $d$
+\end_inset
+
+ la distanza.
+\end_layout
+
+\begin_layout Standard
+Teniamo conto che stiamo facendo un po' di semplificazioni.
+\end_layout
+
+\begin_layout Subsubsection*
+Free space model (Friis)
+\end_layout
+
+\begin_layout Standard
+Riassumendo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{R}=P_{T}g_{T}g_{R}\left(\frac{\lambda}{4\pi d}\right)^{2}=P_{T}g_{T}g_{R}\left(\frac{c}{4\pi fd}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questo è ovviamente un modello valido solo in spazio aperto.
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Subsubsection*
+Attenuazione in spazio aperto 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L=\left(\frac{\lambda}{4\pi d}\right)^{-2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rappresenta l'attenuazione in spazio aperto, senza ostacoli tra trasmettitore
+ e ricevitore.
+\end_layout
+
+\begin_layout Standard
+Questo modello è valido se non ci sono percorsi riflessi per passare da
+ trasmetittore e ricevitore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questo modello rappresenta il caso di collegamenti terresti in linea d'aria
+ con antenne direzionali, oppure collegamenti satellitari (sopra i 30MHz,
+ altrimenti si riflette sulla ionosfera).
+\end_layout
+
+\begin_layout Standard
+Ricordiamo inoltre che l'orizzonte ottico non è uguale all'orizzonte radio,
+ a causa della riflessione delle onde radio nella bassa atmosfera.
+\end_layout
+
+\begin_layout Itemize
+Orizzonte ottico: 
+\begin_inset Formula $d=3.57\cdot\sqrt{h}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Orizzonte radio: 
+\begin_inset Formula $d=3.57\cdot\sqrt{K\cdot h}$
+\end_inset
+
+ con 
+\begin_inset Formula $K\approx\frac{4}{3}$
+\end_inset
+
+ cioè 
+\begin_inset Formula 
+\[
+d=3.57\cdot\left(\sqrt{K\cdot h_{T}}+\sqrt{K\cdot h_{R}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nota bene
+\series default
+: 
+\begin_inset Formula $d\:\left[Km\right]$
+\end_inset
+
+ e 
+\begin_inset Formula $h\:\left[m\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Effetti di propagazione
+\end_layout
+
+\begin_layout Standard
+L'attenuazione in spazio libero non è ovviamente l'unico tipo di attenuazione
+ che è presente a livello terrestre.
+\end_layout
+
+\begin_layout Standard
+Diversi tipi di attenuazione possono essere dovuti alle condizioni atmosferiche.
+ Ad esempio a causa di pioggia, nebbia e neve.
+\end_layout
+
+\begin_layout Standard
+Oltre a questo, nella propagazione a terra ci sono una serie di problemi
+ relativi agli ostacoli di dimensioni superiore alla lunghezza d'onda del
+ segnale che stiamo trasmettendo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Riflessione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È quando il segnale si riflette lungo un altro percorso, perde energia e
+ arriva però comunque al ricevitore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna3.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Shadowing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È quando il segnale attraversa un ostacolo completamente ma perde buona
+ parte del suo segnale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna4.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Scattering
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È quando una parte dell'energia viene assorbita dall'ostacolo e ritrasmessa
+ in 
+\series bold
+tutte le direzioni
+\series default
+, ovviamente attenuata.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna6.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Diffrazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È quando l'ostacolo è più grande della lunghezza d'onda del segnale.
+ Come prima viene assorbita energia e riflessa in tutte le direzioni ma
+ in modo lineare.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna5.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Two-ray model
+\end_layout
+
+\begin_layout Standard
+Consideriamo uno scenario in cui abbiamo una trasmissione diretta ed una
+ riflessione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna7.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo una distanza calcolata in piano tra trasmettitore e ricevitore (
+\begin_inset Formula $d$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Calcoliamo la distanza percorsa dai due segnali, quello diretto e quello
+ trasmesso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d_{direct}=\sqrt{d^{2}+\left(h_{T}-h_{R}\right)^{2}}=d\cdot\left[1+\left(\frac{h_{T}-h_{R}}{d}\right)^{2}\right]^{\frac{1}{2}}\approx d\left[1+\frac{1}{2}\left(\frac{h_{T}-h_{R}}{d}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d_{reflected}=\sqrt{d^{2}+\left(h_{T}+h_{R}\right)^{2}}=d\cdot\left[1+\left(\frac{h_{T}+h_{R}}{d}\right)^{2}\right]^{\frac{1}{2}}\approx d\left[1+\frac{1}{2}\left(\frac{h_{T}+h_{R}}{d}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota: 
+\series default
+(Sfruttiamo solo i primi due elementi dell'espansione in serie)
+\end_layout
+
+\begin_layout Standard
+Quello che accade è quindi che i due segnali arrivano al ricevitore con
+ un ritardo leggermente diverso.
+ Ma di quanto?
+\end_layout
+
+\begin_layout Standard
+Iniziamo a vedere la differenza nella distanza percorsa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d_{reflect}-d_{direct}\approx d\left[1+\frac{1}{2}\left(\frac{h_{T}+h_{R}}{d}\right)^{2}\right]-d\left[1+\frac{1}{2}\left(\frac{h_{T}-h_{R}}{d}\right)^{2}\right]=2\frac{h_{T}h_{R}}{d}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Poiché i segnali arrivano percorrendo una distanza diversa, avranno una
+ fase diversa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s_{direct}\left(t\right)=A\cdot cos\left[2\pi f\left(t-\frac{d_{direct}}{c}\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s_{reflect}\left(t\right)=B\cdot cos\left[2\pi f\left(t-\frac{d_{reflect}}{c}\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo quindi una differenza di fase di:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta\varphi=2\pi f\cdot\frac{\Delta d}{c}=4\pi\cdot\frac{h_{T}h_{R}}{\lambda d}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se denotiamo con 
+\begin_inset Formula $E_{direct}$
+\end_inset
+
+ l'ampiezza del segnale diretto e con 
+\begin_inset Formula $E$
+\end_inset
+
+ denotiamo l'ampiezza del segnale composto tra diretto e riflesso, abbiamo
+ che: 
+\begin_inset Formula 
+\[
+E=E_{direct}\cdot\llcorner1+\rho e^{-j\Delta\varphi}\lrcorner
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $\rho$
+\end_inset
+
+ rappresenta il coefficiente di riflessione.
+ Se supponiamo di avere una riflessione completa del segnale (cioè 
+\begin_inset Formula $\rho=-1$
+\end_inset
+
+), 
+\series bold
+l'ampiezza
+\series default
+ diventa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E=E_{direct}\llcorner1-e^{-j\Delta\varphi}\lrcorner=E_{direct}\left[1-cos\left(\Delta\varphi\right)+j\cdot sin\left(\Delta\varphi\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left|E\right|=\left|E_{direct}\right|\cdot\left[1+cos^{2}\left(\Delta\varphi\right)-2\cdot cos\left(\Delta\varphi\right)+sin^{2}\left(\Delta\varphi\right)\right]^{\frac{1}{2}}=2\cdot\left|E_{direct}\right|\sqrt{\frac{1-cos\left(\Delta\varphi\right)}{2}}=2\cdot\left|E_{direct}\right|\cdot sin\left(\frac{\Delta\varphi}{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La 
+\series bold
+potenza ricevuta 
+\series default
+diventa quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{R}\propto\left|E\right|^{2}=4\left|E_{direct}\right|^{2}sin^{2}\left(\frac{\Delta\varphi}{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi otteniamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{R}\left(d\right)=4\cdot P_{T}g_{T}g_{R}\left(\frac{\lambda}{4\pi d}\right)^{2}\cdot sin\left(\frac{2\pi h_{T}h_{R}}{\lambda d}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $\frac{2\pi h_{T}h_{R}}{\lambda d}$
+\end_inset
+
+ è sufficientemente piccolo, abbiamo che 
+\begin_inset Formula 
+\[
+sin^{2}\left(\frac{2\pi h_{T}h_{R}}{\lambda d}\right)\approx\left(\frac{2\pi h_{T}h_{R}}{\lambda d}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi otteniamo infine che la potenza ricevuta in base alla distanza è:
+ 
+\begin_inset Formula 
+\[
+P_{R}\left(d\right)\approx4\cdot P_{T}g_{T}g_{R}\left(\frac{\lambda}{4\pi d}\right)^{2}\cdot\left(\frac{2\pi h_{T}h_{R}}{\lambda d}\right)^{2}=P_{T}g_{T}g_{R}\cdot\frac{h_{T}^{2}h_{R}^{2}}{d^{4}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi otteniamo che nel modello 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+two-ray
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ la potenza di ricezione è in relazione proporzionale alla distanza come
+ segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{R}\left(d\right)\propto d^{-4}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Riassumendo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{P_{R}}{P_{T}}=g_{R}g_{T}\left(\frac{h_{1}h_{2}}{d^{2}}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi, paragonando quanto abbiamo definito adesso per il caso della riflessione
+ rispetto al caso della diffusione in spazio libero, ci accorgiamo che la
+ potenza del segnale ricevuto decresce molto di più nel caso del segnale
+ riflesso (
+\begin_inset Formula $\sim\frac{1}{d^{4}}$
+\end_inset
+
+) rispetto al caso di segnale in spazio libero (
+\begin_inset Formula $\sim\frac{1}{d^{2}}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+La propagazione reale dei sistemi wireless è però solitamente diversa sia
+ da questo caso riflesso che dal caso di diffusione in spazio libero.
+\end_layout
+
+\begin_layout Standard
+Un approccio tipicamente ingegneristico è quello di utilizzare una formula
+ empirica per combinare i casi precedenti: 
+\begin_inset Formula 
+\[
+P_{R}=P_{T}g_{T}g_{R}\left(\frac{\lambda}{4\pi}\right)^{2}\cdot\frac{1}{d^{\eta}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove l'esponente 
+\begin_inset Formula $\eta$
+\end_inset
+
+ applicato alla distanza viene scelto in modo sperimentale in un valore
+ tra 2 (spazio libero) e 5 (forte attenuazione in spazio urbano)
+\end_layout
+
+\begin_layout Standard
+Ci sono ovviamente tecniche precise per calcolare la potenza ricevuta tramite
+ software di simulazione, come viene solitamente fatto per le reti radiomobili.
+\end_layout
+
+\begin_layout Standard
+Quindi queste regole empiriche vengono utilizzate solo per raccogliere informazi
+oni generali sull'area di trasmissione.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
