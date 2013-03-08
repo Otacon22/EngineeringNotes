@@ -1914,6 +1914,16 @@ e degli ostacoli.
 \end_layout
 
 \begin_layout Standard
+In realtà la riflessione e il problema del 
+\series bold
+multi-path
+\series default
+ non è un problema.
+ Spesso la riflessione permette al segnale di arrivare in zone diverse,
+ dove servirebbe un numero maggiore di antenne se non ci fosse riflessione
+\end_layout
+
+\begin_layout Standard
 \begin_inset Graphics
 	filename antenna11.png
 	scale 50
@@ -1921,6 +1931,643 @@ e degli ostacoli.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Tipicamente 
+\series bold
+se la frequenza è bassa
+\series default
+ riusciamo a penetrare la maggior parte degli ostacoli, mentre salendo diventa
+ sempre più difficile e la frequenza tende a riflettersi.
+ Sopra i 
+\series bold
+5 GHz
+\series default
+ solitamente è possibile solo la comunicazione in visione diretta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna12.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con il 
+\series bold
+multi-path
+\series default
+ riceviamo copie multiple dello stesso segnale lungo percorsi diversi.
+\end_layout
+
+\begin_layout Standard
+In generale otteniamo un segnale dove abbiamo diverse copie con diversa
+ ampiezza e fase
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e_{R}\left(t\right)=\sum_{k=1}^{N}a_{k}cos\left(2\pi f_{0}t+\varphi_{k}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N$
+\end_inset
+
+ è il numero di repliche
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\varphi$
+\end_inset
+
+ è la fase relativa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ è l'ampiezza del segnale 
+\begin_inset Formula $k$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f_{0}$
+\end_inset
+
+ è la frequenza del segnale
+\end_layout
+
+\begin_layout Standard
+A seconda di come si combinano i vari segnali, possiamo avere una amplificazione
+ o attenuazione.
+\end_layout
+
+\begin_layout Standard
+Vediamo ad esempio i due grafici del caso 
+\begin_inset Formula $T=\frac{4}{5}\pi$
+\end_inset
+
+ e 
+\begin_inset Formula $T=\frac{\pi}{6}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna13.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inoltre le caratteristiche di questo segnale composto 
+\series bold
+variano durante il tempo
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna14.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci sono dei picchi nel segnale ad intervalli corrispondenti al tempo necessario
+ per coprire metà della lunghezza d'onda.
+ Succede spesso di avere delle caratteristiche del segnale periodiche (attenuazi
+one in un certo momento periodico).
+\end_layout
+
+\begin_layout Subsubsection*
+Rappresentazione statistica dell'effetto multi-path fading
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+e_{R}\left(t\right)=\sum_{k=1}^{N}a_{k}\cdot cos\left(2\pi f_{0}t+\varphi_{k}\right)=cos\left(2\pi f_{0}t\right)\cdot\sum_{k=1}^{N}a_{k}\cdot cos\left(\varphi_{k}\right)-sin\left(2\pi f_{0}t\right)\cdot\sum_{k=1}^{N}a_{k}sin\left(\varphi_{k}\right)=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=X\cdot cos\left(2\pi f_{0}t\right)-Y\cdot sin\left(2\pi f_{0}t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modello Rayleigh fading
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è un numero infinito di percorsi
+\end_layout
+
+\begin_layout Itemize
+Non c'è nessuna componente dominante (
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ comparabili)
+\end_layout
+
+\begin_layout Itemize
+Ci sono fasi uniformi in 
+\begin_inset Formula $\left[0,2\pi\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le due componenti del segnale 
+\begin_inset Formula $X$
+\end_inset
+
+ e 
+\begin_inset Formula $Y$
+\end_inset
+
+ sono delle variabili gaussiane indipendenti: 
+\begin_inset Formula 
+\[
+f_{X}\left(x\right)=f_{Y}\left(x\right)\cdot\frac{1}{\sqrt{2\pi}\cdot\sigma}\cdot e^{-\frac{\left(x-m\right)^{2}}{2\sigma^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'ampiezza del vettore è: 
+\begin_inset Formula 
+\[
+R=\sqrt{X^{2}+Y^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Abbiamo quindi una distribuzione del tipo: 
+\begin_inset Formula 
+\[
+f_{R}\left(x\right)=\frac{x}{\sigma^{2}}\cdot e^{-\frac{x^{2}}{2\sigma^{2}}}\qquad\qquad\text{con}\: x\geq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna15.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Con:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $E_{R}\left(x\right)=\sigma\sqrt{\frac{\pi}{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $E_{R}\left(x^{2}\right)=2\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{R}^{2}=\sigma^{2}\left(\frac{4-\pi}{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Di solito viene considerata una distribuzione normalizzata 
+\begin_inset Formula 
+\[
+E_{R}\left(x^{2}\right)=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+potenza
+\series default
+ di un segnale con la distribuzione di Rayleigh ha una distribuzione esponenzial
+e: 
+\begin_inset Formula 
+\[
+f_{P}\left(x\right)=\frac{1}{2\sigma^{2}}\cdot e^{-\frac{x}{2\sigma^{2}}}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+F_{P}\left(x\right)=1-e^{-\frac{x}{2\sigma^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quindi la potenza media è 
+\begin_inset Formula $2\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename antenna16.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Probabilità di outage
+\end_layout
+
+\begin_layout Standard
+È la probabilità che la potenza del segnale sia sotto una determinata soglia.
+\end_layout
+
+\begin_layout Standard
+La potenza media è 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+, la soglia è 
+\begin_inset Formula $\gamma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F_{P}\left(\gamma\right)=1-e^{-\frac{\gamma}{P_{0}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Esempio 1:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Potenza media 
+\begin_inset Formula $P_{0}=100\mu W$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Soglia: 
+\begin_inset Formula $\gamma=5\mu W$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Probabilità di outage: 
+\begin_inset Formula $4.9\%$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Esempio 2:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Potenza media 
+\begin_inset Formula $P_{0}=-75dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Soglia: 
+\begin_inset Formula $\gamma=-90dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Probabilità di outage: 
+\begin_inset Formula $3.1\%$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+In alcuni paesi la soglia legale è 
+\begin_inset Formula $5\%$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Subsection*
+Shadowing
+\end_layout
+
+\begin_layout Standard
+Quando gli ostacoli non solo riflettono ma assorbono parte dell'energia,
+ abbiamo che l'energia totale ricevuta varia a seconda degli ostacoli che
+ ci troviamo intorno
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna18.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In alcune zone probabilmente riceviamo il segnale direttamente dalla stazione
+ base.
+ In altri punti riceviamo solo il segnale riflesso (ma con meno energia
+ poiché assorbita dagli ostacoli), siamo nella zona d'ombra del segnale.
+ Ovviamente dobbiamo conoscere bene la zona dove il segnale è presente per
+ capire come questo effetto si manifesterà.
+ Comunque ci sono modelli statistici anche per questo.
+\end_layout
+
+\begin_layout Subsubsection*
+Modello statistico
+\end_layout
+
+\begin_layout Standard
+È stato osservato che solitamente l'attenuazione a causa di questo effetto
+ è una variabile casuale di tipo log-normal
+\end_layout
+
+\begin_layout Standard
+Quindi la potenza in dB (il valore medio 
+\begin_inset Formula $P_{dB}$
+\end_inset
+
+) ha un componente di attenuazione 
+\begin_inset Formula $Z=log\left(x\right)$
+\end_inset
+
+ che è una variabile gaussiana con deviazione standard 
+\begin_inset Formula $\sigma_{dB}$
+\end_inset
+
+ che solitamente ha valore tra 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $12\, dB$
+\end_inset
+
+ a seconda dell'ambiente in cui ci troviamo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{Z}\left(x\right)=\frac{1}{\sqrt{2\pi}\cdot\sigma_{dB}}\cdot e^{\frac{-\left(x-P_{dB}\right)^{2}}{2\sigma_{dB}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Probabilità di outage
+\end_layout
+
+\begin_layout Standard
+Vediamo anche in questo caso la probabilità di outage:
+\end_layout
+
+\begin_layout Standard
+Dobbiamo convertire la soglia: 
+\begin_inset Formula 
+\[
+g=\frac{P_{dB}-\gamma}{\sqrt{2}\sigma_{dB}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna19.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E la probabilità è: 
+\begin_inset Formula 
+\[
+Prob=\frac{\left[1-erf\left(g\right)\right]}{2}=\frac{ergc\left(g\right)}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Esempio 1:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Potenzia media 
+\begin_inset Formula $P_{dB}=-75\, dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Soglia: 
+\begin_inset Formula $-85\, dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{dB}=6\, dB$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Probabilità di outage: 
+\begin_inset Formula $4.8\%$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Esempio 2:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Potenzia media 
+\begin_inset Formula $P_{dB}=-75\, dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Soglia: 
+\begin_inset Formula $-90\, dBm$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{dB}=8\, dB$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Probabilità di outage: 
+\begin_inset Formula $3\%$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna20.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Concetti base di reti wireless
 \end_layout
 
 \begin_layout Standard
