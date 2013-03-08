@@ -61,6 +61,19 @@
 
 \begin_layout Title
 Wireless Internet
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\lang italian
+Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
+ stesso modo 2.5 Italia License.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Author
@@ -1514,6 +1527,400 @@ Ci sono ovviamente tecniche precise per calcolare la potenza ricevuta tramite
 \begin_layout Standard
 Quindi queste regole empiriche vengono utilizzate solo per raccogliere informazi
 oni generali sull'area di trasmissione.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Scenari
+\series default
+ applicativi considerati:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Aree urbane
+\series default
+ (città medio/grandi/piccole), aree rurali
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Combinazione
+\series default
+ di modelli elementari (LOS, riflessione semplice, ...)
+\end_layout
+
+\begin_layout Itemize
+Parametri impostati utilizzando una grande base di 
+\series bold
+dati empirici
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Parametri
+\series default
+ considerati
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Frequenza
+\end_layout
+
+\begin_layout Itemize
+Altezza dell'antenna
+\end_layout
+
+\begin_layout Itemize
+Distanza
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Parametri di 
+\series bold
+correzione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Montagne, laghi, strade, ostacoli...
+\end_layout
+
+\begin_layout Itemize
+Si possono fare correzioni 
+\begin_inset Quotes eld
+\end_inset
+
+custom
+\begin_inset Quotes erd
+\end_inset
+
+ al modello per considerare questo tipo di problemi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Modelli empirici
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il primo modello reale è stato realizzato da 
+\series bold
+Hata
+\series default
+ (1968).
+ Un modello molto complesso e con molti parametri.
+\end_layout
+
+\begin_layout Itemize
+Il modello più famoso per calcolare l'attenuazione in base alla distanza
+ è il 
+\series bold
+Okumura-Hata
+\series default
+ (1980).
+ Questo modello fornisce le formule per diversi scenari applicativi.
+ È un modello pensato per distanze superiori al chilometro anche se nella
+ pratica è molto simile ai modelli usati per distanze intorno al chilometro.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Il modello urbano Okumura-Hata (1980)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{P}=69.55+26.16\cdot log\left(f\right)-13.82\cdot log\left(h_{T}\right)-a\left(h_{R}\right)+\left(44.9-6.55\cdot log\left(h_{T}\right)\right)\cdot log\left(d\right)\quad\quad\left[dB\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questo modello ci dà 
+\bar under
+solo l'attenuazione
+\bar default
+ del segnale in dB.
+\end_layout
+
+\begin_layout Standard
+Nella formula abbiamo che:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f$
+\end_inset
+
+ è la frequenza in 
+\begin_inset Formula $MHz$
+\end_inset
+
+ (valida tra 
+\begin_inset Formula $150$
+\end_inset
+
+ e 
+\begin_inset Formula $1500\: MHz$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h_{T}$
+\end_inset
+
+ è l'altezza della stazione base (in metri)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $h_{R}$
+\end_inset
+
+ è l'altezza del terminale mobile (in metri)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $a\left(h_{R}\right)$
+\end_inset
+
+ è un parametro di correzione che dipende dal tipo di area
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d$
+\end_inset
+
+ è la distanza (
+\series bold
+in km
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+Nel caso delle 
+\series bold
+grandi città
+\series default
+ abbiamo che 
+\begin_inset Formula 
+\[
+a\left(h_{R}\right)=3.2\left[log_{10}\left(11.75\cdot h_{R}\right)\right]^{2}-4.97
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per le città 
+\series bold
+medio-piccole: 
+\begin_inset Formula 
+\[
+a\left(h_{R}\right)=\left[1.1\cdot log_{10}\left(f\right)-0.7\right]\cdot h_{R}-\left[1.56\cdot log_{10}\left(f\right)-0.8\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modello sub-urbano
+\end_layout
+
+\begin_layout Standard
+Prima si calcola 
+\begin_inset Formula $L_{P}$
+\end_inset
+
+ nel caso delle aree urbane, poi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{path}=L_{P}-2\cdot\left[log_{10}\left(\frac{f}{28}\right)\right]^{2}-5.4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modello rurale
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L_{path}=L_{P}-4.78\cdot\left[log_{10}\left(f\right)\right]^{2}+18.33\cdot log_{10}\left(f\right)-40.94
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio numerico del modello Okumura-Hata
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna9.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F=900\, MHz\quad\quad h_{bs}=80\, m\quad\quad h_{ms}=3\, m
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci accorgiamo che quando impostiamo certi specifici parametri otteniamo
+ proprio il modello in spazio libero che abbiamo già visto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna10.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In pratica abbiamo che nella formula vista, pensando al modello in spazio
+ libero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(44.9-6.55\cdot log\left(h_{T}\right)\right)=10\eta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Altri modelli empirici
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lee's model
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Frequenza intorno ai 900 MHz
+\end_layout
+
+\begin_layout Itemize
+Distanza > 1 Km
+\end_layout
+
+\begin_layout Itemize
+È più complesso di Okumura-Hata
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Walfish-Ikegami model
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Frequenza intorno ai 800-2000 MHz
+\end_layout
+
+\begin_layout Itemize
+Valido per distanze tra 20 metri e 5 km
+\end_layout
+
+\begin_layout Itemize
+È un modello utilizzato per sistemi 3G
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Indoor model
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ci sono diversi modelli
+\end_layout
+
+\begin_layout Itemize
+Includono i livelli di penetrazione dei muri
+\end_layout
+
+\begin_layout Itemize
+Sono basati su zone (piccoli, medi e grandi stanze)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Multi-path fading
+\end_layout
+
+\begin_layout Standard
+Nella propagazione tra trasmettitore e ricevitore il segnale può seguire
+ diversi percorsi a causa di ostacoli e riflessione.
+ Il comportamento delle onde radio dipende dalla lunghezza d'onda e la dimension
+e degli ostacoli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna11.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
