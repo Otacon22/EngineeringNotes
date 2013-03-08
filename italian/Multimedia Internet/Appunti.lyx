@@ -1584,13 +1584,34 @@ Solitamente il central office è collegato al backbone tramite una rete in
  fibra.
 \end_layout
 
+\begin_layout Itemize
+Spesso nelle grandi città il costo del posto fisico dove mettere il 
+\emph on
+central office
+\emph default
+ è abbastanza critico.
+ Si cerca di risparmiare lo spazio, eventualmente accorpando con l'
+\emph on
+SL
+\emph default
+.
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 
 \series bold
-DISLAM
+DSLAM
 \series default
-, in italiano chiamati 
+ (
+\emph on
+Digital Subscriber
+\emph default
+ 
+\emph on
+Line Access Multiplexer
+\emph default
+), in italiano chiamati 
 \series bold
 \emph on
 Stadio di Linea 
@@ -1609,12 +1630,38 @@ central office
  (in rame o fibra a seconda del livello di sviluppo della rete).
  Questo 
 \emph on
-dislam
+dslam
 \emph default
  risuddivide a sua volta la rete.
- Il dislam ha poi una serie di collegamenti in rame con un altro dispositivo
+ Il DSLAM ha poi una serie di collegamenti in rame con un altro dispositivo
  (SDF).
  In italia ce ne sono circa 10'000.
+ Insieme al 
+\emph on
+dslam
+\emph default
+ c'è prima l'
+\emph on
+ODF
+\emph default
+ (
+\emph on
+Optical Distribution Frame
+\emph default
+), una matrice di collegamenti in fibra.
+ E dopo il 
+\emph on
+dslam
+\emph default
+ c'è il 
+\emph on
+MDF
+\emph default
+ (
+\emph on
+Main Distribution Frame
+\emph default
+), che è invece una matrice di collegamenti in rame.
 \end_layout
 
 \begin_layout Itemize
@@ -1650,13 +1697,13 @@ chiostrino
 
 .
  Sono quei dispositivi che vediamo per strada.
- Essi si collegano con il DISLAM in rame e fanno multiplexing per le abitazioni.
+ Essi si collegano con il DSLAM in rame e fanno multiplexing per le abitazioni.
  Questi elementi di rete sono 
 \series bold
 passivi
 \series default
 ! È semplicemente una matrice di collegamenti che mappa un cavo verso l'abitazio
-ne verso un cavo verso il dislam.
+ne verso un cavo verso il dslam.
  Quindi non effettua multiplexing.
  È comodo perché permette di cambiare facilmente i collegamenti verso le
  abitazioni.
@@ -1905,11 +1952,11 @@ Ovviamente abbiamo un trade-off in base alla scelta che facciamo.
 \end_layout
 
 \begin_layout Standard
-Saltiamo la Fiber to Exchange.
+La Fiber to Exchange perché è una soluzione ormai sfruttata ovunque.
 \end_layout
 
 \begin_layout Subsubsection*
-Fiber to the Cabinet
+Fiber to the Cabinet (FTTC)
 \end_layout
 
 \begin_layout Standard
@@ -1917,7 +1964,7 @@ Abbiamo il vantaggio di poter andare più veloce perché il collegamento tra
  cabinet e casa resta in fibra ma è molto più corto del collegamento tra
  cabinet e central office (che invece è in fibra).
  Possiamo arrivare ad utilizzare collegamenti VDSL con 50Mb/s di download
- e 10 Mb7s di upload.
+ e 10 Mb/s di upload.
 \end_layout
 
 \begin_layout Standard
@@ -1930,6 +1977,173 @@ Abbiamo il problema che al cabinet arriva un segnale ottico e deve uscire
 Quindi il cabinet diventa un dispositivo attivo! Quindi serve anche energia
  al cabinet! Il cabinet diventa più grande, bisogna chiedere dei permessi..
  Diventa complicato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 001.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come fa un nuovo ISP a entrare nel mercato? Solitamente le leggi di molti
+ stati obbligano il provider di linea principale a permettere ad altri ISP
+ di usare la rete di accesso (sotto pagamento fissato dall'autorità per
+ la competizione nelle telecomunicazioni).
+\end_layout
+
+\begin_layout Standard
+L'ISP dominante si chiama 
+\emph on
+inconbent
+\emph default
+, quelli secondari si chiamano operatori 
+\emph on
+OLO
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Quindi può succedere che all'interno dello stesso cabinet sia presente hardware
+ di più operatori.
+\end_layout
+
+\begin_layout Subsubsection*
+Fiber To The Building (FTTB)
+\end_layout
+
+\begin_layout Standard
+Abbiamo un collegamento ottico dal central office fino al distribution frame
+ dell'edificio, non passiamo per nessun cabinet.
+ Però poi dal distribution frame al collegamento domestico c'è un collegamento
+ in rame.
+ Nel distribution frame c'è un convertitore ottico-elettrico.
+\end_layout
+
+\begin_layout Standard
+Sfruttando VDSL2 possiamo raggiungere anche i 100Mbps.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 002.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema è che dobbiamo scavare diversi chilometri nelle strade per posare
+ la fibra.
+ 
+\bar under
+Non abbiamo il costo dei cabinet
+\bar default
+ ma abbiamo il costo degli scavi.
+\end_layout
+
+\begin_layout Subsubsection*
+Fiber To The Home (FTTH)
+\end_layout
+
+\begin_layout Standard
+È il metodo migliore di tutti, la terminazione ottica arriva all'interno
+ dell'appartamento.
+ Nell'interno o l'esterno dell'edificio, nel distribution frame abbiamo
+ una matrice di collegamenti.
+ Abbiamo una rete di accesso completamente in fibra.
+\end_layout
+
+\begin_layout Standard
+Inoltre possiamo avere collegamenti simmetrici, possiamo arrivare fino a
+ 1 Gbps di banda.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 003.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo lo stesso problema di FTTB e dobbiamo anche arrivare all'interno
+ degli appartamenti.
+\end_layout
+
+\begin_layout Standard
+È uguale mettere il distribution frame dentro o fuori l'edificio?
+\end_layout
+
+\begin_layout Itemize
+Se lo mettiamo dentro l'edificio bisogna anche bucare un muro e portare
+ il cavo all'interno di qualche locale all'interno dell'edificio.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo può essere un problema perché spesso il punto d'ingresso più semplice
+ è la porta o il cancello d'ingresso.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se lo lasciamo all'esterno ci potrebbero essere meno problemi.
+\end_layout
+
+\begin_layout Standard
+Il tratto tra l'esterno dell'abitazione e l'interno è chiamato 
+\emph on
+tratto di adduzione
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+A volte si possono sfruttare i buchi presenti per i tubi del gas, acqua,
+ elettricità.
+\end_layout
+
+\begin_layout Standard
+A volte dal distribution frame dell'edificio si fa partire un cavo per ogni
+ piano, dove poi c'è un collegamento a stella, chiamato 
+\emph on
+straccietto
+\emph default
+ che collega più appartamenti.
+\end_layout
+
+\begin_layout Standard
+La terminazione ottica che arriva all'utente è chiamata anche 
+\series bold
+\emph on
+ONU
+\series default
+\emph default
+ (
+\emph on
+Optical Network Unit
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+Arriva solitamente 1 fibra per utente da OLT (Optical Line Termination,
+ dove c'è il central office) fino all'ONU.
+\end_layout
+
+\begin_layout Standard
+[omissis su ptp]
 \end_layout
 
 \end_body
