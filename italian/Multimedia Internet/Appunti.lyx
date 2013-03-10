@@ -2404,5 +2404,435 @@ ni massime.
  
 \end_layout
 
+\begin_layout Subsection*
+Sistemi punto-punto
+\end_layout
+
+\begin_layout Subsubsection*
+Caso (FTTC) Fiber To The Cabinet
+\end_layout
+
+\begin_layout Standard
+La fibra arriva dal 
+\emph on
+central office 
+\emph default
+oppure dallo 
+\emph on
+stadio di linea
+\emph default
+, fino al 
+\emph on
+cabinet
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In questo caso nel 
+\emph on
+cabinet
+\emph default
+ c'è l'ONU dove si intercollegano fibra e rame.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 004.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Caso (FTTB) Fiber To The Building
+\end_layout
+
+\begin_layout Standard
+In questo caso la fibra ottica arriva fino al 
+\emph on
+distribution frame
+\emph default
+ al'interno dell'edificio.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 005.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il dispositivo ONU in questo caso è posto all'interno del 
+\emph on
+distribution frame
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Caso (FTTH) Fiber To The Home
+\end_layout
+
+\begin_layout Standard
+È il caso in cui la fibra arriva fino all'interno degli apparamenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 006.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le terminazioni ottiche sono poste ad ogni piano dell'edificio.
+\end_layout
+
+\begin_layout Standard
+Se l'edificio è molto distante dallo stadio di linea o central office può
+ essere necessario l'utilizzo di due fibre per raggiungere la velocità di
+ 1Gbps o 10Gbps.
+\end_layout
+
+\begin_layout Subsection*
+POM - Passive Optical Network
+\end_layout
+
+\begin_layout Standard
+Nelle reti di tipo POM si utilizzano solo dispositivi passivi tra l'OLT
+ (all'interno del 
+\emph on
+central office 
+\emph default
+o 
+\emph on
+stadio di linea
+\emph default
+) e l'ONU/ONT.
+\end_layout
+
+\begin_layout Standard
+In questo caso la capacità della fibra ottica è condivisa tra più utenti.
+\end_layout
+
+\begin_layout Standard
+I dispositivi passivi possono essere 
+\series bold
+\emph on
+splitters
+\series default
+\emph default
+, dispositivi che sudidvidono la banda per più utenti.
+ Cioè effettua il multiplexing del segnale da più fibre su una fibra unica.
+\end_layout
+
+\begin_layout Standard
+Uno splitter è caratterizzato da:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Split ratio:
+\series default
+\emph default
+ 
+\begin_inset Formula $\left(1:n\right)$
+\end_inset
+
+ dove 
+\emph on
+n
+\emph default
+ è il numero di fibre ottiche in uscita (in direzione downlink)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il valore di 
+\begin_inset Formula $n$
+\end_inset
+
+ può variare tra valori tipici di 32,64,128.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Il segnale in ingresso allo splitter (in direzione di downlink) viene ritrasmess
+o su tutte le 
+\begin_inset Formula $n$
+\end_inset
+
+ fibre di uscita.
+\end_layout
+
+\begin_layout Standard
+La 
+\series bold
+privacy
+\series default
+ dei dati in questo caso è un problema!
+\end_layout
+
+\begin_layout Standard
+In figura vediamo un esempio di utilizzo di splitter in una architettura
+ FTTB:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 007.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questi splitter vengono solitamente posti all'interno di cabinet sotterranei.
+\end_layout
+
+\begin_layout Standard
+Lo splitting può essere effettuato più volte, come in figura sopra.
+\end_layout
+
+\begin_layout Standard
+Lo scopo del secondo splitter è quello di posare meno fibre nell'ultimo
+ tratto.
+\end_layout
+
+\begin_layout Subsubsection*
+Architettura PON nel caso FTTH
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 008.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso di solito gli splitters si mettono all'interno del 
+\emph on
+cabinet
+\emph default
+ e nel 
+\emph on
+distribution frame 
+\emph default
+dell'edificio.
+\end_layout
+
+\begin_layout Standard
+Gli splitters stradali in questo caso sono di solito 
+\begin_inset Formula $\left(1:2\right)$
+\end_inset
+
+ o 
+\begin_inset Formula $\left(1:4\right)$
+\end_inset
+
+, mentre quelli 
+\emph on
+distribution frame
+\emph default
+ sono 
+\begin_inset Formula $\left(1:8\right)$
+\end_inset
+
+ o 
+\begin_inset Formula $\left(1:32\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi si raggiunge alla fine un multiplex di valore 
+\begin_inset Formula $\left(1:16\right)$
+\end_inset
+
+ fino a 
+\begin_inset Formula $\left(1:128\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+TDM-PON
+\end_layout
+
+\begin_layout Standard
+Time Division Multiplexing PONs utilizzano due diverse lunghezze d'onda
+ per uplink e downlink.
+ L'OLT all'interno del 
+\emph on
+central office
+\emph default
+ applica le procedure per l'accesso al mezzo condiviso.
+ L'OLT applica una divisione di tempo: il tempo viene suddiviso in slots
+ e ogni ramo di collegamento ONU-ONT (user-end) ha un time-slot dedicato.
+\end_layout
+
+\begin_layout Standard
+Per evitare collisioni viene trasmesso un segnale di sincronizzazione dall'ONT.
+\end_layout
+
+\begin_layout Standard
+Due standard che sono stati creati per le TDM-PONs sono:
+\end_layout
+
+\begin_layout Itemize
+ITU G.984 Gigabit-capable-PON (
+\series bold
+GPON
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1480 nm - 1500 nm per il downlink
+\end_layout
+
+\begin_layout Itemize
+1260 nm - 1360 nm per l'uplink
+\end_layout
+
+\begin_layout Itemize
+Possiamo arrivare fino a circa 2.5 Gbps in downstream e 1.25 Gbps in upstream
+\end_layout
+
+\begin_layout Itemize
+Il rapporto di splitting massimo è 1:128
+\end_layout
+
+\begin_layout Itemize
+La lunghezza massima del collegamento può superare i 20 km
+\end_layout
+
+\begin_layout Itemize
+GPON può trasportare ATM o Ethernet tramite incapsulamento
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+802.3ah Ethernet-PON (
+\series bold
+EPON
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Trasporta frame Ethernet nativi e utilizza una lunghezza d'onda 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1490 nm per downstream
+\end_layout
+
+\begin_layout Itemize
+1310 nm per upstream
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Si raggiungono 1.25 Gbps simmetrici di velocità
+\end_layout
+
+\begin_layout Itemize
+Un singolo collegamento EPON può raggiungere fino a 32 utenti con una distanza
+ massima di 20 km
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Per aumentare la capacità delle reti di accesso ottiche condivise è possibile
+ utilizzare la divisione del canale a lunghezza d'onda (WDMA).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Coarse WDM 
+\series default
+(
+\series bold
+CWDM
+\series default
+) si raggiungono fino a 18 lunghezze d'onda differenti.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dense WDM
+\series default
+ (
+\series bold
+DWDM
+\series default
+) permette fino a 162 lunghezze d'onda differenti.
+\end_layout
+
+\begin_layout Subsubsection*
+Dispositivi per reti WDM-PON
+\end_layout
+
+\begin_layout Standard
+Il dispositivo fondamentale per creare un collegamento WDM-PON è la 
+\emph on
+Arrayed Waveguide Grating 
+\emph default
+(
+\series bold
+AWG
+\series default
+).
+\end_layout
+
+\begin_layout Standard
+Si tratta di un dispositivo passivo che suddivide diverse lunghezze d'onda
+ provenienti da una fibra in differenti fibre.
+\end_layout
+
+\begin_layout Standard
+È un dispositivo 
+\series bold
+bidirezionale.
+\end_layout
+
+\begin_layout Standard
+Per collegare 
+\begin_inset Formula $n$
+\end_inset
+
+ utenti sono necessarie 
+\begin_inset Formula $2n$
+\end_inset
+
+ lunghezze d'onda, una per l'uplink e una per downlink per ogni utente.
+\end_layout
+
 \end_body
 \end_document
