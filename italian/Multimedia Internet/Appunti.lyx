@@ -1635,7 +1635,7 @@ dslam
  risuddivide a sua volta la rete.
  Il DSLAM ha poi una serie di collegamenti in rame con un altro dispositivo
  (SDF).
- In italia ce ne sono circa 10'000.
+ In italia ci sono circa 10'000 SL.
  Insieme al 
 \emph on
 dslam
@@ -1664,6 +1664,20 @@ Main Distribution Frame
 ), che è invece una matrice di collegamenti in rame.
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Quindi nello 
+\emph on
+stadio di linea
+\emph default
+ c'è: 
+\begin_inset Formula $\text{ODF}\:\rightarrow\:\text{DSLAM}\:\rightarrow\:\text{MDF}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1707,7 +1721,7 @@ ne verso un cavo verso il dslam.
  Quindi non effettua multiplexing.
  È comodo perché permette di cambiare facilmente i collegamenti verso le
  abitazioni.
- In italia ce ne sono circa 150'000.
+ In Italia ce ne sono circa 150'000.
 \end_layout
 
 \begin_layout Itemize
@@ -1715,8 +1729,9 @@ ne verso un cavo verso il dslam.
 \series bold
 DF 
 \series default
-(Distribution Frame): È un dispositivo presente solo in alcuni grossi edifici,
- è sostanzialmente uguale all'SDF e serve a gestire i collegamenti del palazzo.
+(Distribution Frame): È un dispositivo presente solitamente solo in alcuni
+ grossi edifici, è sostanzialmente uguale all'SDF e serve a gestire i collegamen
+ti del palazzo.
  In Italia ce ne sono circa 1,5 milioni.
 \end_layout
 
@@ -1729,7 +1744,21 @@ I segmenti di rete sono chiamati in questo modo:
 \series bold
 Rete di giunzione 
 \series default
-(junction network): il segmento che collega il central office al backbone.
+(
+\emph on
+\bar under
+junction network
+\emph default
+\bar default
+): il segmento che collega il 
+\emph on
+central office
+\emph default
+ al 
+\emph on
+backbone
+\emph default
+.
  
 \end_layout
 
@@ -1738,9 +1767,14 @@ Rete di giunzione
 \series bold
 Rete di distribuzione primaria
 \series default
- (primary distribution network): il segmento che collega il central office
- all'armadio (solitamente tra 200 e 3000 metri, a seconda del tipo di zona
- montuosa o meno).
+ (
+\emph on
+\bar under
+primary distribution network
+\emph default
+\bar default
+): il segmento che collega il central office all'armadio (solitamente tra
+ 200 e 3000 metri, a seconda del tipo di zona montuosa o meno).
 \end_layout
 
 \begin_layout Itemize
@@ -1748,13 +1782,19 @@ Rete di distribuzione primaria
 \series bold
 Rete di distribuzione secondaria
 \series default
- (secondary distribution network): il segmento che collega l'armadio all'abitazi
-one (solitamente tra 100 e 700 metri).
+ (
+\emph on
+\bar under
+secondary distribution network
+\emph default
+\bar default
+): il segmento che collega l'armadio all'abitazione (solitamente tra 100
+ e 700 metri).
 \end_layout
 
 \begin_layout Standard
-Solitamente l'unica cosa che vediamo di tutta questa rete è l'SDF.
- Tutto il resto della rete è sottoterra.
+Solitamente l'unica cosa che vediamo di tutta questa rete è l'SDF (l'armadio).
+ Tutto il resto della rete è sottoterra o all'interno di edifici.
 \end_layout
 
 \begin_layout Standard
@@ -1765,12 +1805,12 @@ I collegamenti in rame sono dei collegamenti in rame ad alta capacità.
 \begin_layout Standard
 Solitamente questi cavi sono pressurizzati, cioè sono riempiti di gas.
  Se qualcosa buca i cavi c'è un sensore che si accorge della pressione e
- viene inviata una squadra tecnica.
+ viene inviata una squadra tecnica per dei controlli.
 \end_layout
 
 \begin_layout Standard
-In Italia la lunghezza dei collegamenti in rame sono mediamente più corti
- che negli altri paesi.
+In Italia la lunghezza media dei collegamenti in rame è pù bassa che negli
+ altri paesi.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1778,8 +1818,9 @@ Tipico caso di ADSL
 \end_layout
 
 \begin_layout Standard
-Abbiamo qualche Mbit/s di downstream e ~100kB/s di upstream.
- Abbiamo più capacità in downstream rispetto a capacità in upstream.
+Con l'ADSL classica abbiamo qualche Mbit/s di downstream e ~100kB/s di upstream.
+ Abbiamo più capacità in downstream rispetto a capacità in upstream perché
+ è una linea asimmetrica.
 \end_layout
 
 \begin_layout Standard
@@ -1813,7 +1854,8 @@ web 3.0
 \end_inset
 
 , dove abbiamo applicazioni p2p.
- Più di metà del traffico di internet è generato da applicazioni p2p.
+ Più di metà del traffico di internet è generato da applicazioni p2p, quindi
+ serve anche traffico upstream.
 \end_layout
 
 \begin_layout Standard
@@ -1863,6 +1905,10 @@ servizi
  
 \series bold
 p2p
+\end_layout
+
+\begin_layout Standard
+Quindi servono reti di nuova generazione.
 \end_layout
 
 \begin_layout Subsection*
@@ -1948,11 +1994,61 @@ H
 \begin_layout Standard
 Ovviamente abbiamo un trade-off in base alla scelta che facciamo.
  L'ultima è la più costosa ma anche la migliore, la prima è la più economica
- ma anche la peggiore.
+ ma anche la peggiore (in termini di velocità).
+\end_layout
+
+\begin_layout Subsubsection*
+Fiber to the Exchange (FTTE)
 \end_layout
 
 \begin_layout Standard
-La Fiber to Exchange perché è una soluzione ormai sfruttata ovunque.
+È la soluzione già adottata in Italia e in molti altri pesi per raggiungere
+ le velocità classiche dell'ADSL moderna.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename copper_network2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si tratta di far arrivare la fibra ottica dal 
+\emph on
+central office
+\emph default
+ allo 
+\emph on
+stadio di linea
+\emph default
+.
+ Quindi insieme al dislam ci dovrà essere un qualche dispositivo per la
+ conversione ottica/elettrica.
+ Nei vecchi sistemi italiani lo 
+\emph on
+stadio di linea
+\emph default
+ e il 
+\emph on
+dislam
+\emph default
+ sono collegati al 
+\emph on
+central office
+\emph default
+ tramite il protocollo ATM (o Ethernet in alcuni casi).
+ Dal 
+\emph on
+dislam
+\emph default
+ verso la rete dell'utente si riesce poi ad utilizzare tecnologie tipo ADSL,
+ ADSL2 o ADSL2+.
+ Per connessioni con collegamenti inferiori ai 400 metri è possibile anche
+ utilizzare VDSL2 (che arriva a velocità molto elevate).
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1976,7 +2072,7 @@ Abbiamo il problema che al cabinet arriva un segnale ottico e deve uscire
 \begin_layout Standard
 Quindi il cabinet diventa un dispositivo attivo! Quindi serve anche energia
  al cabinet! Il cabinet diventa più grande, bisogna chiedere dei permessi..
- Diventa complicato.
+ Diventa complicato aumentare le dimensioni del cabinet.
 \end_layout
 
 \begin_layout Standard
@@ -1987,6 +2083,11 @@ Quindi il cabinet diventa un dispositivo attivo! Quindi serve anche energia
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In questo caso con VDSL2 si riesce a raggiungere 50 Mbps in download e 10
+ Mbps in upload.
 \end_layout
 
 \begin_layout Standard
@@ -2011,6 +2112,7 @@ OLO
 \begin_layout Standard
 Quindi può succedere che all'interno dello stesso cabinet sia presente hardware
  di più operatori.
+ Quindi il cabinet deve diventare ancora più grande.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2020,13 +2122,14 @@ Fiber To The Building (FTTB)
 \begin_layout Standard
 Abbiamo un collegamento ottico dal central office fino al distribution frame
  dell'edificio, non passiamo per nessun cabinet.
- Però poi dal distribution frame al collegamento domestico c'è un collegamento
- in rame.
+ Quindi possiamo rimuovere i cabinet.
+ Però poi dal distribution frame al collegamento domestico c'è un breve
+ collegamento in rame.
  Nel distribution frame c'è un convertitore ottico-elettrico.
 \end_layout
 
 \begin_layout Standard
-Sfruttando VDSL2 possiamo raggiungere anche i 100Mbps.
+Sfruttando VDSL2 sul distribution frame possiamo raggiungere anche i 100Mbps.
 \end_layout
 
 \begin_layout Standard
@@ -2063,7 +2166,11 @@ Fiber To The Home (FTTH)
 
 \begin_layout Standard
 Inoltre possiamo avere collegamenti simmetrici, possiamo arrivare fino a
- 1 Gbps di banda.
+ 1 Gbps di banda 
+\series bold
+simmetrica
+\series default
+.
 \end_layout
 
 \begin_layout Standard
@@ -2116,7 +2223,11 @@ A volte si possono sfruttare i buchi presenti per i tubi del gas, acqua,
 
 \begin_layout Standard
 A volte dal distribution frame dell'edificio si fa partire un cavo per ogni
- piano, dove poi c'è un collegamento a stella, chiamato 
+ piano, dove poi c'è un 
+\bar under
+collegamento a stella
+\bar default
+, chiamato 
 \emph on
 straccietto
 \emph default
@@ -2143,7 +2254,154 @@ Arriva solitamente 1 fibra per utente da OLT (Optical Line Termination,
 \end_layout
 
 \begin_layout Standard
-[omissis su ptp]
+Per utilizzare la fibra possiamo avere:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PTP
+\series default
+ (
+\emph on
+Point-To-Point Systems
+\emph default
+): fibra ottica dedicata che utilizza Fast Ethernet o Gigabit Ethernet dall'ONU
+ fino al central office dell'ISP.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PON
+\series default
+ (
+\emph on
+Passive Optical Network
+\emph default
+): Una unica fibra viene condivisa tra più utenti che accedono alla rete
+ (abbiamo visto l'esempio del piano).
+ Vediamo di seguito alcune tecniche per realizzare questa soluzione.
+\end_layout
+
+\begin_layout Subsection*
+Elementi delle reti di accesso di nuova generazione (NGAN)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+OLT
+\series default
+ (
+\emph on
+Optical Line Termination
+\emph default
+): È il dispositivo terminale che può essere posto nell' SL o nel 
+\emph on
+central office
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ONU
+\series default
+ (
+\emph on
+Optical Network Unit
+\emph default
+): É il dispositivo lato utente che effettua la conversione tra segnale
+ ottico e segnale elettrico.
+ È posto il più vicino possibile all'utente.
+ Più ONU possono essere collegati ad un unico OLT.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nel caso di FTTC si trova all'interno del 
+\bar under
+cabinet
+\end_layout
+
+\begin_layout Itemize
+Nel caso di FTTB si trova nel 
+\bar under
+distribution frame
+\bar default
+ dell'edificio
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+ONT 
+\series default
+(
+\emph on
+Optical Network Termination
+\emph default
+): Nel caso di FTTH è la terminazione in fibra che arriva 
+\bar under
+a casa
+\bar default
+ dell'utente.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ODF
+\series default
+ (
+\emph on
+Optical Distribution Frame
+\emph default
+): È un dispositivo che sostituisce l'MDF all'interno degli edifici dello
+ 
+\emph on
+stadio di linea
+\emph default
+ (SL).
+\end_layout
+
+\begin_layout Standard
+In alcuni casi quando si effettua un collegamento all'utente può arrivare
+ una sola fibra.
+ Questo significa che per inviare e ricevere si utilizzano due lunghezze
+ d'onda diverse.
+ Si divide il canale con WDMA.
+\end_layout
+
+\begin_layout Standard
+Però di solito il collegamento OLT-ONU utilizza due fibre distinte.
+ In altri casi ancora si tiene una fibra aggiuntiva ma spenta (spesso per
+ questioni legate all'affitto della linea ad altri operatori.
+\end_layout
+
+\begin_layout Standard
+I 
+\series bold
+sistemi punto-punto (PTP systems)
+\series default
+ sono quei sistemi dove c'è una connessione ottica dedicata tra OLT e ONU
+ (oppure ONT).
+ Utilizza collegamenti Fast Ethernet (100 Mbps) o Gigabit Ethernet (1 Gbps)
+\end_layout
+
+\begin_layout Standard
+Solitamente la rete di accesso ha una topologia a stella, comune anche alle
+ reti in rame.
+\end_layout
+
+\begin_layout Standard
+Essendo la linea completamente dedicata per l'utente si raggiungono le prestazio
+ni massime.
+ Però tutta questa fibra ha un costo non indifferente.
+ 
 \end_layout
 
 \end_body
