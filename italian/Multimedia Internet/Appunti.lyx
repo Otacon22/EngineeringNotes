@@ -2812,6 +2812,16 @@ AWG
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename 009.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Si tratta di un dispositivo passivo che suddivide diverse lunghezze d'onda
  provenienti da una fibra in differenti fibre.
 \end_layout
@@ -2820,6 +2830,16 @@ Si tratta di un dispositivo passivo che suddivide diverse lunghezze d'onda
 È un dispositivo 
 \series bold
 bidirezionale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 010.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2832,6 +2852,129 @@ Per collegare
 \end_inset
 
  lunghezze d'onda, una per l'uplink e una per downlink per ogni utente.
+\end_layout
+
+\begin_layout Standard
+Utilizzando fibre basate su WDM-PON si può condividere la stessa fibra tra
+ più operatori.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 011.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Situazione attuale delle reti NGAN
+\end_layout
+
+\begin_layout Itemize
+Definizione di 
+\series bold
+banda larga
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La raccomandazione ITU-T I.113 definisce la banda larga come una collegamento
+ con velocità superiore a quella di ISDN (Integrated Services Digital Network)
+ a 1.5 o 2.0 Mbps
+\end_layout
+
+\begin_layout Itemize
+La FCC definisce 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Broadband: 200 kbps in una direzione
+\end_layout
+
+\begin_layout Itemize
+Advanced broadband: almeno 200 kbps in entrambe le direzioni
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La commissione europea definisce la banda larga come: capacità di downstream
+ superiore a 144 kbps
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Definizione di 
+\series bold
+Ultra Large Bandwidth
+\series default
+ (
+\series bold
+ULB
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È definita come il la banda di picco superiore a 30 Mbps nella direzione
+ di downstream, per un singolo utente.
+\end_layout
+
+\begin_layout Itemize
+La vera capacità della linea (non di picco) può essere inferiore a causa
+ delle policy per la concentrazione e shaping del traffico adottate dall'ISP.
+\end_layout
+
+\begin_layout Itemize
+La ULB è definita in base alla capacità teorica della linea, poi bisogna
+ vedere le scelte dell'ISP
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Sviluppo nei vari paesi
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+Giappone
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le soluzioni FTTH stanno aumentando, mentre diminuiscono quelle ADSL
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In 
+\series bold
+America
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le soluzioni FTTH stanno aumentando con un tasso di crescita molto elevato
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Scelte degli ISP
+\end_layout
+
+\begin_layout Standard
+...
 \end_layout
 
 \end_body
