@@ -25,9 +25,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \use_mhchem 1
@@ -42,6 +43,13 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 0.5cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -65,8 +73,6 @@ Wireless Internet
 status open
 
 \begin_layout Plain Layout
-
-\lang italian
 Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
  stesso modo 2.5 Italia License.
 \end_layout
@@ -78,6 +84,10 @@ Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
 
 \begin_layout Author
 Daniele Iamartino
+\end_layout
+
+\begin_layout Date
+2013
 \end_layout
 
 \begin_layout Section*
@@ -197,7 +207,7 @@ ELF
 \begin_inset Text
 
 \begin_layout Plain Layout
-<3KHz
+< 3KHz
 \end_layout
 
 \end_inset
@@ -226,7 +236,7 @@ VLF
 \begin_inset Text
 
 \begin_layout Plain Layout
-3-30 KHz
+3 - 30 KHz
 \end_layout
 
 \end_inset
@@ -235,7 +245,7 @@ VLF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Sottomarini, lunga distanza
 \end_layout
 
 \end_inset
@@ -255,7 +265,7 @@ LF
 \begin_inset Text
 
 \begin_layout Plain Layout
-30-300 KHz
+30 - 300 KHz
 \end_layout
 
 \end_inset
@@ -264,7 +274,7 @@ LF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Lunga distanza, beacons marittimi
 \end_layout
 
 \end_inset
@@ -293,7 +303,7 @@ MF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Radio AM, radio marina
 \end_layout
 
 \end_inset
@@ -313,7 +323,7 @@ HF
 \begin_inset Text
 
 \begin_layout Plain Layout
-3-30 MHz
+3 - 30 MHz
 \end_layout
 
 \end_inset
@@ -322,7 +332,7 @@ HF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Radio amatoriale, radio militare, collegamenti aerei e navali
 \end_layout
 
 \end_inset
@@ -342,7 +352,7 @@ VHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-30-300 MHz
+30 - 300 MHz
 \end_layout
 
 \end_inset
@@ -351,7 +361,7 @@ VHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+TV VHF, FM radio, AM x comunicazione aerea
 \end_layout
 
 \end_inset
@@ -380,7 +390,7 @@ UHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Cellulari, TV UHF, radar
 \end_layout
 
 \end_inset
@@ -400,7 +410,7 @@ SHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-3-30 GHz
+3 - 30 GHz
 \end_layout
 
 \end_inset
@@ -409,7 +419,7 @@ SHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Satellite, radar, reti wireless terrestri, WLL
 \end_layout
 
 \end_inset
@@ -429,7 +439,7 @@ EHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-30-300 GHz
+30 - 300 GHz
 \end_layout
 
 \end_inset
@@ -438,7 +448,7 @@ EHF
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Banda sperimentale, WLL
 \end_layout
 
 \end_inset
@@ -467,7 +477,7 @@ IR
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+LAN a infrarossi
 \end_layout
 
 \end_inset
@@ -487,7 +497,7 @@ Light
 \begin_inset Text
 
 \begin_layout Plain Layout
-400-900 THz
+400 - 900 THz
 \end_layout
 
 \end_inset
@@ -496,7 +506,7 @@ Light
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Comunicazioni ottiche
 \end_layout
 
 \end_inset
@@ -773,7 +783,23 @@ e e la densità di potenza media ad una distanza di riferimento.
 \end_layout
 
 \begin_layout Itemize
-[omissis]
+Per il 
+\series bold
+guadagno
+\series default
+ calcoliamo la densità dell'irradiatore isotropico come: 
+\begin_inset Formula $\frac{P_{T}}{4\pi d^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mentre per la 
+\series bold
+direttività
+\series default
+ consideriamo la densità di potenza media, escludendo le perdite
 \end_layout
 
 \begin_layout Subsubsection*
@@ -783,6 +809,28 @@ Antenne direzionali
 \begin_layout Standard
 Di solito si utilizzano antenne di tipo direzionali, cioè antenne che hanno
  maggior densità di potenza in una certa direzione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna21.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Abbiamo dei vantaggi sia in trasmissione che in ricezione
+\end_layout
+
+\begin_layout Itemize
+Ricevendo in modalità direttiva riduciamo l'interferenza da altre sorgenti
+\end_layout
+
+\begin_layout Itemize
+È però più complesso il puntamento dell'antenna (ed il costo!)
 \end_layout
 
 \begin_layout Subsubsection*
@@ -972,8 +1020,53 @@ P_{R}=P_{T}g_{T}g_{R}\left(\frac{\lambda}{4\pi d}\right)^{2}=P_{T}g_{T}g_{R}\lef
 Questo è ovviamente un modello valido solo in spazio aperto.
 \end_layout
 
-\begin_layout Standard
-[omissis]
+\begin_layout Itemize
+\begin_inset Formula $P_{T}$
+\end_inset
+
+ è la potenza trasmessa (in W)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{R}$
+\end_inset
+
+ è la potenza ricevuta (in W)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g_{T}$
+\end_inset
+
+ è il guadagno dell'antenna in trasmissione
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $g_{R}$
+\end_inset
+
+ è il guadagno dell'antenna in ricezione
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\lambda=\frac{c}{f}\;$
+\end_inset
+
+ è la lunghezza d'onda (in m)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d$
+\end_inset
+
+ è la distanza (in m)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{T}g_{T}$
+\end_inset
+
+ è l'EIRP
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1063,7 +1156,18 @@ Nota bene
 \begin_inset Formula $h\:\left[m\right]$
 \end_inset
 
+ 
+\end_layout
 
+\begin_layout Itemize
+\begin_inset Formula $h$
+\end_inset
+
+ è l'altezza dell'antenna, 
+\begin_inset Formula $d$
+\end_inset
+
+ è la distanza del collegamento.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1239,6 +1343,16 @@ d_{reflected}=\sqrt{d^{2}+\left(h_{T}+h_{R}\right)^{2}}=d\cdot\left[1+\left(\fra
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename antenna8.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \series bold
 Nota: 
@@ -1361,7 +1475,7 @@ E=E_{direct}\llcorner1-e^{-j\Delta\varphi}\lrcorner=E_{direct}\left[1-cos\left(\
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left|E\right|=\left|E_{direct}\right|\cdot\left[1+cos^{2}\left(\Delta\varphi\right)-2\cdot cos\left(\Delta\varphi\right)+sin^{2}\left(\Delta\varphi\right)\right]^{\frac{1}{2}}=2\cdot\left|E_{direct}\right|\sqrt{\frac{1-cos\left(\Delta\varphi\right)}{2}}=2\cdot\left|E_{direct}\right|\cdot sin\left(\frac{\Delta\varphi}{2}\right)
+\left|E\right|=\left|E_{direct}\right|\cdot\left[1+cos^{2}\left(\Delta\varphi\right)-2\cdot cos\left(\Delta\varphi\right)+sin^{2}\left(\Delta\varphi\right)\right]^{\frac{1}{2}}=
 \]
 
 \end_inset
@@ -1370,6 +1484,13 @@ E=E_{direct}\llcorner1-e^{-j\Delta\varphi}\lrcorner=E_{direct}\left[1-cos\left(\
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula 
+\[
+\left|E\right|==2\cdot\left|E_{direct}\right|\sqrt{\frac{1-cos\left(\Delta\varphi\right)}{2}}=2\cdot\left|E_{direct}\right|\cdot sin\left(\frac{\Delta\varphi}{2}\right)
+\]
+
+\end_inset
+
 La 
 \series bold
 potenza ricevuta 
@@ -2362,8 +2483,91 @@ In alcuni paesi la soglia legale è
  
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+Rice fading
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le assunzioni del modello di Reyleigh non sono verificate quando c'è un
+ raggio diretto e molti raggi riflessi
+\end_layout
+
+\begin_layout Itemize
+In questo caso di solito l'ampiezza del segnale è rappresentata come una
+ variabile casuale di Rice: 
+\begin_inset Formula 
+\[
+p\left(r\right)=\frac{r}{\sigma^{2}}e^{-\frac{r^{2}+r_{s}^{2}}{2\sigma^{2}}}\cdot I_{0}\left(\frac{r\cdot r_{s}}{\sigma^{2}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r^{2}$
+\end_inset
+
+ è la potenza del segnale diretto, mentre 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ la potenza cumulativa di tutti gli altri
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ è la funzione di Bessel di 1° tipo e ordine 0
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-[omissis]
+Nel multipath-fading, il fattore 
+\begin_inset Formula 
+\[
+K=\frac{r_{s}^{2}}{\sigma^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Denota quanto la componente diretta domina le altre componenti.
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Formula $K=0$
+\end_inset
+
+ otteniamo la distribuzione di Reyleigh, in figura vediamo distribuzioni
+ con 
+\begin_inset Formula $\sigma^{2}=1$
+\end_inset
+
+ e differenti valori di 
+\begin_inset Formula $K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna17.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
