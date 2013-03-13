@@ -2775,6 +2775,954 @@ Concetti base di reti wireless
 \end_layout
 
 \begin_layout Standard
+[slides 3 basic concepts wireless networks]
+\end_layout
+
+\begin_layout Section*
+Wireless Local Area Networks (WLAN)
+\end_layout
+
+\begin_layout Standard
+Come tutte le tecnologie che vedremo, è sottoposta a regolazione dello spettro.
+\end_layout
+
+\begin_layout Standard
+La banda 
+\series bold
+ISM
+\series default
+ (
+\emph on
+Industrial Scientific Medical
+\emph default
+) è una banda intorno ai 2.4 GHz, che viene utilizzata per WiFi, bluetooth
+ e zigbee.
+ È stata la prima banda allocata per utilizzo senza licenza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan0.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È una frequenza alta, ma non così alta da avere problemi nella propagazione.
+\end_layout
+
+\begin_layout Standard
+La frequenza scelta è un buon compromesso.
+\end_layout
+
+\begin_layout Standard
+A 5 GHz in realtà c'è più banda libera, però abbiamo problemi con la propagazion
+e del segnale (come abbiamo già visto).
+\end_layout
+
+\begin_layout Standard
+La banda sui 5GHz era stata inizialmente liberata per una vecchia tecnologia:
+ 
+\emph on
+HiperLan
+\emph default
+, ormai non più utilizzata.
+\end_layout
+
+\begin_layout Standard
+C'è un'altra piccola porzione dello spettro sotto al GHz, quella tra intorno
+ ai 902 MHz, che è disponibile in Nord America (mentre in Europa intorno
+ a 868 MHz).
+ C'è poca banda ma la propagazione è migliore.
+ Essendoci poca banda non possiamo trasmettere con un rate elevato.
+ Questa parte dello spettro è stata utilizzata spesso per applicazioni di
+ 
+\emph on
+sensing
+\emph default
+ e 
+\emph on
+metering
+\emph default
+.
+ Però molto recentemente un nuovo standard è stato approvato per utilizzare
+ questa parte dello spettro.
+\end_layout
+
+\begin_layout Standard
+La possibilità di utilizzare queste parti dello spettro è stata 
+\series bold
+fondamentale
+\series default
+ per il successo e lo sviluppo delle reti wireless.
+\end_layout
+
+\begin_layout Subsection*
+ISM
+\end_layout
+
+\begin_layout Standard
+La banda principale è quella tra 2.40 GHz e 2.48 GHz, con quindi una banda
+ larga 80 MHz, che è una banda piuttosto grande.
+\end_layout
+
+\begin_layout Standard
+Questa banda è praticamente utilizzabile in qualunque paese al mondo.
+\end_layout
+
+\begin_layout Standard
+Essendo una banda molto affollata dobbiamo aspettarci tante interferenze.
+\end_layout
+
+\begin_layout Subsubsection*
+Regole per utilizzare la banda ISM
+\end_layout
+
+\begin_layout Standard
+Essendo condiviso ci sono delle regole per utilizzare questa parte dello
+ spettro.
+\end_layout
+
+\begin_layout Standard
+La prima regola più importante era quella di utilizzare tecniche a 
+\emph on
+spread spectrum
+\emph default
+ (tecniche basate su CDMA, quindi non utilizzando direttamente bits ma 
+\emph on
+chips
+\emph default
+).
+ Questa regola non è più presente.
+\end_layout
+
+\begin_layout Standard
+Utilizzando CDMA, se ci sono interferenze da segnali 
+\emph on
+narrow
+\emph default
+, riusciamo a ricostruire il nostro segnale anche con l'interferenza sopra.
+\end_layout
+
+\begin_layout Standard
+La tecnologia WiFi è stata influenzata pesantamente da queste regole.
+\end_layout
+
+\begin_layout Subsubsection*
+Potenza sulla banda ISM
+\end_layout
+
+\begin_layout Standard
+In Europa il limite di potenza sull'EIRP (quindi considerando il guadagno
+ dell'antenna) è 100mW, mentre in America è 1W
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Su Linux la gestione dei limiti di potenza in base al paese è gestita dal
+ CRDA (
+\emph on
+Central Regulatory Domain Agent
+\emph default
+)
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Banda intorno ai 5 GHz
+\end_layout
+
+\begin_layout Itemize
+In 
+\series bold
+Europa
+\series default
+ ERC/DEC/(99)/23:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Low band
+\series default
+\emph default
+: Banda a 5.2 (5.15-5.35) GHz (inizialmente per HiperLan o 802.11a)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+High band
+\series default
+\emph default
+: Banda a 5.4 (5.47-5.725) GHz (inizialmente per HiperLan II o 802.11a)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In 
+\series bold
+Nord America
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Banda 
+\series bold
+UNII
+\series default
+ (
+\emph on
+Unlicensed National Information Infrastructure
+\emph default
+) 300 MHz di banda tra 5.2 e 5.8 GHz con pochi limiti.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Inizialmente in Europa non era possibile utilizzare 802.11a, ora esistono
+ dispositivi che seguono le frequenze europee, tramite lo standard 802.11h.
+\end_layout
+
+\begin_layout Itemize
+Vantaggi della banda a 5 GHz:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è bassa interferenza 
+\end_layout
+
+\begin_layout Itemize
+Banda molto larga, è possibile 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Svantaggi della banda a 5 GHz:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è forte attenuazione
+\end_layout
+
+\begin_layout Itemize
+È necessaria più potenza per trasmettere
+\end_layout
+
+\begin_layout Itemize
+Gli ostacoli sono più difficili da superare.
+\end_layout
+
+\begin_layout Itemize
+Sono necessari più access point per coprire la stessa area
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Banda 
+\series bold
+UNII americana
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Subsubsection*
+802.11h
+\end_layout
+
+\begin_layout Standard
+Abbassare la potenza e cambiare frequenza quando viene rilevato un radar.
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+L'idea iniziale era di creare una versione di Ethernet wireless.
+ Ethernet (802.3) era ormai uno standard applicaot da tutti.
+\end_layout
+
+\begin_layout Standard
+Nelle prime versioni di Ethernet c'era il 
+\emph on
+medium access control
+\emph default
+ (basato su CSMA/CD) che gestiva la possibilità di collisioni su un canale
+ di comunicazione condiviso.
+\end_layout
+
+\begin_layout Standard
+L'idea delle reti wireless era quella di applicare la stessa idea utilizzata
+ per Ethernet, sul wireless, dato che anche il wireless è un mezzo condiviso
+ così come un cavo 
+\begin_inset Quotes eld
+\end_inset
+
+condiviso
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il gruppo di IEEE che si occupa di creare gli standard per le reti locali
+ (il gruppo 802) ha iniziato ad occuparsi di questo problema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan2.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il gruppo 802 si occupa sempre del livello 2, il livello 
+\emph on
+datalink
+\emph default
+, che viene suddiviso in 
+\emph on
+Medium Access Control
+\emph default
+ (MAC) e 
+\emph on
+Logical Link Control
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Nella figura seguente vediamo lo sviluppo degli standard nel tempo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan3.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli standard principali che vedremo saranno 802.11a,b,g.
+\end_layout
+
+\begin_layout Standard
+802.11i è la nuova versione del 
+\emph on
+medium access control
+\emph default
+.
+ Nel corso vedremo sia la versione 
+\emph on
+legacy
+\emph default
+ che quella aggiornata.
+\end_layout
+
+\begin_layout Standard
+802.11af utilizza la banda libera tra i canali televisivi per creare WLAN.
+\end_layout
+
+\begin_layout Standard
+802.11ah è l'unico standard per utilizzare wifi sotto al GHz (a basse potenze
+ e bassa velocità).
+\end_layout
+
+\begin_layout Standard
+Quasi tutte le tecnologie viste utilizzano una banda di 20MHz per canale,
+ a parte 802.11n che utilizza 40MHz.
+\end_layout
+
+\begin_layout Subsubsection*
+Storia degli standard
+\end_layout
+
+\begin_layout Standard
+[omissis, saltato]
+\end_layout
+
+\begin_layout Subsubsection*
+Wireless Ethernet Compatibility Alliance (WECA)
+\end_layout
+
+\begin_layout Standard
+È una associazione di diversi costruttori di dispositivi WiFi, si occupano
+ di:
+\end_layout
+
+\begin_layout Itemize
+Garantire l'interoperabilità tra prodotti basati su tecnologia 802.11
+\end_layout
+
+\begin_layout Itemize
+Gestiscono il trademark per la sigla 
+\emph on
+Wi-Fi
+\emph default
+ (
+\emph on
+Wireless Fidelity
+\emph default
+).
+ Il nome Wi-Fi può essere utilizzato solo se il dispositivo supera una serie
+ di controlli di compatibilità.
+\end_layout
+
+\begin_layout Itemize
+Ci sono diverse certificazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Certificazione di conformità ad uno degli standard 802.11abgn...
+\end_layout
+
+\begin_layout Itemize
+Certificazione di conformità alla sicurezza (WPA/WPA2)
+\end_layout
+
+\begin_layout Itemize
+Certificazione di conformità al QoS (WiFi Multimedia)
+\end_layout
+
+\begin_layout Itemize
+Certificazione di conformità al risparmio energetico
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Standard 802.11 
+\end_layout
+
+\begin_layout Subsection*
+Requisiti
+\end_layout
+
+\begin_layout Subsection*
+Vecchio standard
+\end_layout
+
+\begin_layout Standard
+Il primo standard è del 1997 e non è praticamente più utilizzato.
+ È la versione 
+\emph on
+legacy
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Struttura del sistema
+\end_layout
+
+\begin_layout Standard
+È strutturato con un sottostrato MAC
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Subsubsection*
+Componenti del sistema
+\end_layout
+
+\begin_layout Itemize
+Stations (
+\series bold
+STA
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Access Point (
+\series bold
+AP
+\series default
+): Come le stations ma con la possibilità di fare bridging tra la rete wireless
+ ed una rete cablata.
+ Opera a livello 2.
+\end_layout
+
+\begin_layout Itemize
+Basic Service Set (
+\series bold
+BSS
+\series default
+): È l'insieme di stazioni che sono collegati insieme direttamente.
+ Ci sono due tipi di BSS:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Indipendent BSS (
+\series bold
+IBBS
+\series default
+): È il caso di una rete composta solo da stations, una rete 
+\emph on
+ad-hoc
+\end_layout
+
+\begin_layout Itemize
+Infrastructure BSS: È il caso di una rete che si basa su un access point
+ per il relay dei messaggi tra le stations.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Extended Service Set (
+\series bold
+ESS
+\series default
+): È un insieme di infrastructure BSS, oppure un insieme di 
+\emph on
+access points
+\emph default
+ collegati tramite un 
+\emph on
+distribution system
+\end_layout
+
+\begin_layout Itemize
+Distribution System (
+\series bold
+DS
+\series default
+): È il sistema di distribuzione cablato o wireless.
+\end_layout
+
+\begin_layout Subsubsection*
+Basic Service Set (BSS)
+\end_layout
+
+\begin_layout Itemize
+Le stazioni sono tutte controllate dalla stessa 
+\emph on
+coordination function
+\emph default
+: la funzione logica che controlla l'accesso al canale radio condiviso.
+\end_layout
+
+\begin_layout Itemize
+È un concetto simile alle celle nelle reti cellulari
+\end_layout
+
+\begin_layout Subsubsection*
+Infrastructure BSS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan5.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Indipendent Basic Service Set (IBSS)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan6.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questa rete 
+\series bold
+non c'è routing
+\series default
+, quindi si suppone che tutti i dispositivi siano in grado di comunicare
+ 
+\series bold
+direttamente 
+\series default
+tra di loro.
+\end_layout
+
+\begin_layout Standard
+Adesso con 
+\series bold
+Wi-Fi direct
+\series default
+ è possibile stabilire collegamenti diretti tra i dispositivi 
+\series bold
+mentre
+\series default
+ si è collegati anche in modalità 
+\series bold
+infrastructure
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Extended Service Set (ESS)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan7.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nello standard non è specificato, però il sistema di distribuzione deve
+ essere in grado di veicolare i frame utilizzati a livello 2 per il wifi.
+\end_layout
+
+\begin_layout Standard
+Infatti spesso per realizzare il distribution system si può utilizzare sempre
+ WiFi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan8.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Servizi di rete
+\end_layout
+
+\begin_layout Standard
+La rete viene definita in base ai servizi che offre.
+\end_layout
+
+\begin_layout Standard
+Dividiamo tra due categorie:
+\end_layout
+
+\begin_layout Itemize
+Servizi delle stazioni: specifici per l'interfaccia wireless
+\end_layout
+
+\begin_layout Itemize
+Servizi per la distribuzione: specifici per il sistema di distribuzione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Servizio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integrazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Associazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Riassociazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deassociazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Autenticazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stazioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deautenticazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stazioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Privacy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stazioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MSDU delivery
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stazioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Procedura di associazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan9.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La procedura di associazione è equivalente a 
+\begin_inset Quotes eld
+\end_inset
+
+collegare il cavo Ethernet alla presa
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ogni STA sceglie l'AP a cui collegarsi e si associa ad un solo AP (dopo
+ averne fatto richiesta).
+\end_layout
+
+\begin_layout Standard
+Dobbiamo pensare all'AP come ad un bridge/switch dove però le porte sono
+ wireless, quindi non è chiaro chi e se è collegato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan10.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi, il 
+\begin_inset Quotes eld
+\end_inset
+
+bridge
+\begin_inset Quotes erd
+\end_inset
+
+ per sapere chi è collegato ha bisogno una lista di associazioni.
+ Quindi il BSS è sostanzialmente una lista di stations associate memorizzata
+ all'interno dell'AP.
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
