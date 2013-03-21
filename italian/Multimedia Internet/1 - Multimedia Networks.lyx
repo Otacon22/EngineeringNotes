@@ -1,0 +1,2557 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multimedia Networks
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
+ stesso modo 2.5 Italia License.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Daniele Iamartino
+\end_layout
+
+\begin_layout Date
+Anno scolastico 2012/2013
+\end_layout
+
+\begin_layout Section*
+Lezione 1 - Quality of service (QoS) in IP networks
+\end_layout
+
+\begin_layout Standard
+Il metodo tradizionale di qualità del servizio (QoS) su internet è il 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+best effort service
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, cioè la rete tenta di consegnare i dati nel modo migliore possibile,
+\series bold
+ senza garanzie
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Lo strato trasporto di Internet è basato su pacchetti.
+ Questo significa che un contenuto è suddiviso in una serie di blocchi di
+ bytes.
+\end_layout
+
+\begin_layout Standard
+Il servizio 
+\begin_inset Quotes eld
+\end_inset
+
+best effort
+\begin_inset Quotes erd
+\end_inset
+
+ è riferito a come vengono trattati i singoli pacchetti.
+\end_layout
+
+\begin_layout Standard
+Nel servizio best effort non vengono fornite garanzie su:
+\end_layout
+
+\begin_layout Itemize
+Consegna con successo: il pacchetto può essere consegnato o perso
+\end_layout
+
+\begin_layout Itemize
+Delay (ritardo): il pacchetto può essere trasportato correttamente ma con
+ un certo delay
+\end_layout
+
+\begin_layout Itemize
+Sequence (sequenza): più pacchetti possono essere consegnati in ordine diverso
+ da come sono stati inviati
+\end_layout
+
+\begin_layout Standard
+Ad esempio nei contratti ADSL classici abbiamo solitamente un servizio best
+ effort.
+\end_layout
+
+\begin_layout Standard
+A livello trasporto, TCP si occupa di risolvere i problemi citati sopra.
+\end_layout
+
+\begin_layout Subsection*
+Servizi multimediali
+\end_layout
+
+\begin_layout Standard
+Una volta Internet poteva basarsi completamente su servizi 
+\emph on
+best effort
+\emph default
+, però da quando le reti sono cresciute in modo esponenziale negli anni
+ 90', i requisiti sono cambiati.
+ Ora c'è molto più bisogno di servizi multimediali.
+ 
+\end_layout
+
+\begin_layout Standard
+Però per i servizi multimediali una qualità del servizio di tipo 
+\emph on
+best effort
+\emph default
+ può non essere sufficiente.
+ Uno dei problemi principali è il 
+\series bold
+ritardo non controllato
+\series default
+ (
+\series bold
+ritardo variabile
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Cos'è un servizio multimediale?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un servizio che si occupa del trasporto di diversi componenti, ad esempio
+ video e audio.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ci sono problemi anche con un servizio multimediale singolo.
+ Ad esempio la 
+\series bold
+telefonia
+\series default
+ è un servizio singolo, dobbiamo trasportare solo audio, comunque ci sono
+ problemi analoghi ad un servisio multimediale, quindi li vedremo insieme.
+\end_layout
+
+\begin_layout Itemize
+Con un trasporto 
+\emph on
+best effort
+\emph default
+ non possiamo controllare il delay.
+ Quindi per questi requisiti dobbiamo trovare una soluzione migliore della
+ trasmissione 
+\emph on
+best effort
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+La qualità del servizio è qualcosa correlato allo strato rete (dal livello
+ 3 in giù).
+\end_layout
+
+\begin_layout Itemize
+Nelle reti IP la 
+\series bold
+QoS
+\series default
+ è una misura 
+\series bold
+quantitativa
+\series default
+ di come i pacchetti sono trattati.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio la QoS possiamo esprimerla come:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Packet loss
+\end_layout
+
+\begin_layout Itemize
+Delay distribution
+\end_layout
+
+\begin_layout Itemize
+Percentuale di pacchetti fuori sequenza.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi la QoS è una misura oggettiva di come la rete tratta i pacchetti.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+QoE
+\series default
+ (
+\series bold
+\emph on
+Quality of Experience
+\series default
+\emph default
+) invece è una misura 
+\series bold
+soggettiva
+\series default
+, dipendente da come l'utente percepisce il servizio offerto.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio se sentiamo una telefonata rumorosa, non sappiamo quant'è la
+ perdita dei pacchetti, ma sappiamo qual'è la qualità percepita dell'utente.
+\end_layout
+
+\begin_layout Itemize
+Una sfida abbastanza difficile è 
+\bar under
+associare QoS e QoE
+\bar default
+.
+ È 
+\series bold
+difficile
+\series default
+ capire quali sono gli effetti sulla QoE di avere certe caratteristiche
+ di QoS da noi scelte.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo nuove architetture di rete, progettate per abilitare la previsione
+ di un trasporto orientato alla qualità.
+\end_layout
+
+\begin_layout Standard
+Il nostro primo obbiettivo adesso è: cos'è il QoS, com'è correlato a QoE,
+ come progettiamo una rete con QoS?
+\end_layout
+
+\begin_layout Subsection*
+Cos'è la QoS?
+\end_layout
+
+\begin_layout Standard
+Tradizionalmente viene definita in un modo che non ha niente a che vedere
+ con le nostre richieste.
+\end_layout
+
+\begin_layout Standard
+Formalmente la QoS è una forma di 
+\series bold
+contratto
+\series default
+ tra un client e un provider.
+ 
+\end_layout
+
+\begin_layout Itemize
+Guardiamo ad esempio quando un ISP fa un contratto con un utente business.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solitamente viene steso un contratto dedicato con una sezione riguardo alla
+ qualità del servizio.
+ Ma tradizionamente la QoS viene espressa in questo contratto come 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+percentage availability
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Ad esempio pensiamo al caso di un ISP che collega due filiali distanti di
+ una banca.
+ L'ISP dovrà decidere nel contratto qual'è la percentuale di disponibilità
+ del collegamento tra le due filiali.
+ Ad esempio 99.65% di disponibilità.
+\end_layout
+
+\begin_layout Itemize
+Però questo non ha 
+\bar under
+niente a che vedere con ritardo, perdita di pacchetti e riordino
+\bar default
+!
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nel contratto di solito troviamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Descrizione degli elementi di rete a cui si applica il QoS.
+\end_layout
+
+\begin_layout Itemize
+Si dà una percentuale di disponibilità per ogni link o elemento di rete.
+\end_layout
+
+\begin_layout Itemize
+Devono essere definite le procedure con le quali la qualità viene misurata
+ la QoS! Altrimenti se ad esempio c'è un blackout di 5 secondi sulla rete
+ ma la misura viene fatta ogni 10 secondi, l'ISP dice di non aver visto
+ nessun problema e che la disponibilità era sempre del 100%.
+\end_layout
+
+\begin_layout Itemize
+Vengono definite delle punizioni per le violazioni del contratto.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo parlato di link attivi e disponibilità di essi, però i link possono
+ essere attivi ma potremmo avere delle performance diverse riguardo a delay,
+ perdita e sequenza.
+\end_layout
+
+\begin_layout Itemize
+Per le applicazioni di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+real-time application
+\emph default
+s
+\begin_inset Quotes erd
+\end_inset
+
+, la semplice disponibilità della rete non è sufficiente.
+ Bisogna misurare delay, perdita e sequenza.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per esempio porebbe esserci un limite sul delay tra 
+\emph on
+50 e 60 ms
+\emph default
+ per avere telefonate VoIP fluide.
+\end_layout
+
+\begin_layout Itemize
+TCP con la sua ristrasmissione non ci interessa, non vogliamo ricevere i
+ pacchetti persi, non c'è tempo.
+\end_layout
+
+\begin_layout Itemize
+Anche la sequenza è importante nelle telefonate, perché si trasforma in
+ ritardo! Se ci arriva il pacchetto 2 prima del pacchetto 1, dobbiamo salvarlo
+ e aspettare l'arrivo del pacchetto 1 prima di poterlo usare!
+\end_layout
+
+\begin_layout Itemize
+Ad esempio se guardiamo un video in streaming usando TCP potremmo arrivare
+ ad un delay di ~5 secondi di ritardo.
+\end_layout
+
+\begin_layout Itemize
+Nella telefonia il ritardo è un requisito molto importante, però anche la
+ perdita ci fa perdere dei piccoli pezzi della conversazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le applicazioni dati di solito 
+\bar under
+non sono solo real time
+\bar default
+.
+ Ad esempio browsing web, email, file transfer, etc...
+ non sono realtime.
+ Sono chiamate 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+elastic applications
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, come opposte a 
+\begin_inset Quotes eld
+\end_inset
+
+real time applications
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Possiamo tollerare perdita dati o riordino (perché di solito si utilizza
+ TCP) e delay.
+\end_layout
+
+\begin_layout Itemize
+Però non vale per tutto! Ad esempio le applicazioni 
+\series bold
+HFT
+\series default
+ (
+\series bold
+\emph on
+High Frequency Trading
+\series default
+\emph default
+) utilizzate per operazioni azionistiche, è necessario un ritardo molto
+ basso.
+ Ci sono dei requisiti al di sotto del millisecondo! La soluzione che viene
+ utilizzata per questo tipo di applicazioni (e anche alcune applicazioni
+ bancarie che operano in borsa), è quella di mettere i server della borsa
+ molto vicini ai server bancari con linee dedicate.
+ (Ognuno tenta di avere il collegamento più vicino).
+\end_layout
+
+\begin_layout Standard
+Noi però non lavoraremo su reti dedicate come queste, noi lavoreremo su
+ reti IP, reti multi-servizio, che possono funzionare per il 99% dei requisiti
+ che abbiamo (HFT a parte..).
+ HFT è un problema non risolvibile con reti IP multiservizio.
+\end_layout
+
+\begin_layout Section*
+Lezione 2 - QoS in IP networks
+\end_layout
+
+\begin_layout Standard
+Con 
+\begin_inset Quotes eld
+\end_inset
+
+IP network
+\begin_inset Quotes erd
+\end_inset
+
+ intendiamo una rete multiservizio basata su IP.
+ Abbiamo visto l'eccezione delle applicazioni HFT che non vengono mai unite
+ a reti multiservizio ma sono invece su reti dedicate.
+\end_layout
+
+\begin_layout Standard
+Abbiamo visto che le applicazioni di tipo elastico non sono influenzate
+ da perdita, riordino e delay dei pacchetti.
+ Però di solito queste applicazioni soffrono della eventuale mancanza di
+ banda.
+\end_layout
+
+\begin_layout Standard
+Di solito una sottocategoria delle applicazioni real-time sono le 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+playback applications
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ In queste applicazioni è necessario che alla sorgente lo stream di dati
+ venga suddiviso in pacchetti che viaggiano attraverso la rete.
+ Il ricevitore (il consumatore) deve poi ritrasformare il pacchetto in un
+ qualche tipo di segnale.
+\end_layout
+
+\begin_layout Subsubsection*
+Playback buffer
+\end_layout
+
+\begin_layout Standard
+Uno dei componenti più importanti del ricevitore è il 
+\series bold
+\emph on
+buffer di playback
+\series default
+\emph default
+.
+ Si tratta di un buffer dove i pacchetti vengono memorizzati prima di essere
+ riprodotti, per ricostruire l'informazione originale.
+ Pensiamo all'esempio classico di uno streaming video.
+\end_layout
+
+\begin_layout Standard
+Il buffer di playback è solitamente caratterizzato da una caratteristica
+ di profondità (
+\series bold
+\emph on
+depth
+\series default
+\emph default
+), solitamente espressa in secondi 
+\begin_inset Formula $\left[s\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Solitamente:
+\end_layout
+
+\begin_layout Itemize
+Alla sorgente c'è un 
+\series bold
+coder
+\series default
+ che trasforma i dati da inviare e genera ogni 
+\begin_inset Formula $T_{F}$
+\end_inset
+
+ secondi un pacchetto da inviare.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In una rete 
+\series bold
+ideale
+\series default
+ i pacchetti inviati dalla sorgente arrivano nello stesso ordine, distanziati
+ nello stesso modo ma tutti spostati di un ritardo costante.
+ Questo non è quello che succede realmente.
+ Nelle reti reali i pacchetti possono tutti arrivare con un ritardo diverso
+ tra di loro.
+\end_layout
+
+\begin_layout Itemize
+Solitamente c'è una componente fissa di ritardo, a cui si aggiunge un ritardo
+ aggiuntivo variabile.
+ 
+\begin_inset Formula 
+\[
+t=\Delta t_{0}+\Delta t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Supponiamo di esprimere la profondità del nostro playback buffer come 
+\begin_inset Formula $T$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Al tempo 
+\begin_inset Formula $t'_{0}$
+\end_inset
+
+ il playback buffer inizia a riempirsi con il primo pacchetto che arriva.
+ Continuiamo a accumulare pacchetti a sufficienza per avere abbastanza dati
+ da riprodurre anche se la rete è ferma.
+\end_layout
+
+\begin_layout Itemize
+Diciamo che
+\begin_inset Formula $1$
+\end_inset
+
+ pacchetto inviato dalla sorgente contiene 
+\begin_inset Formula $T_{F}$
+\end_inset
+
+ secondi di informazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ammettiamo di voler memorizzare un certo numero di secondi di informazione,
+ quanti pacchetti dobbiamo ricevere? 
+\begin_inset Formula 
+\[
+n=\frac{T}{T_{F}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Questo buffer ci permette di risolvere il problema del delay variabile.
+ Quando il buffer contiene il numero di pacchetti 
+\begin_inset Formula $n$
+\end_inset
+
+ che ci interessano, avviamo la fase di playback.
+ Avviando il playback iniziamo a consumare i pacchetti nel buffer e intando
+ salviamo nel buffer i pacchetti in arrivo.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se il coder genera 
+\begin_inset Formula $\frac{1\,\text{[pacchetto]}}{T_{F}\,\text{[s]}}\;\text{pkg/s}$
+\end_inset
+
+ , dobbiamo essere in grado di ricevere i pacchetti alla stessa velocità.
+ Anche se la rete rallenta per un breve momento, non cambia la percezione
+ dell'utente.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $T$
+\end_inset
+
+, la dimensione in secondi del buffer, diventa il nostro 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+playback delay
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ È la quantità di tempo che l'utente deve attendere prima di iniziare la
+ riproduzione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+L'unico problema che può accedere è quando il buffer esaurisce l'ultimo
+ pacchetto e non arriva in tempo un nuovo pacchetto dalla rete.
+ Questo problema si chiama 
+\series bold
+buffer underflow
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Però non è che possiamo semplicemente allargare il buffer il più grande
+ possibile.
+ Perché se prendiamo un buffer troppo grande l'utente dovrà attendere troppo.
+ Se si tratta di una telefonata l'attesa è un problema e degrada sensibilmente
+ la qualità della telefonata.
+ C'è un trade-off in cui dobbiamo dimensionare il buffer.
+\end_layout
+
+\begin_layout Itemize
+Quindi di solito un stream dati multimediali viene definito tra un 
+\series bold
+tradeoff tra latenza e qualità
+\series default
+: latency and fidelity.
+ Bisogna trovare una via di mezzo, se aumento la qualità devo diminuire
+ la latenza e viceversa.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Tolleranza per le applicazioni multimediali
+\end_layout
+
+\begin_layout Standard
+Dobbiamo ricordarci che i requisiti per vari tipi di dati multimediali sono
+ molto diversi.
+ Ad esempio i requisiti sul delay di una telefonata e di un film sono molto
+ diversi! Molte delle applicazioni real-time sono anche playback applications
+\end_layout
+
+\begin_layout Standard
+Dividiamo i tipi di playback applications in base alla tolleranza sul delay:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tolerant applications
+\series default
+ (comprende telefonate e film, anche se le telefonate sono un po' meno tollerant
+i).
+ Questo tipo di applicazioni possono accettare un tipo di servizio
+\emph on
+ predictive/statistical service
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Intolerant applications
+\series default
+ (c'è solo una applicazione significativa: applicazione pseudowire).
+ Questo tipo di applicazioni hanno bisogno di un 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+guaranteed service
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, un servizio con banda e risorse allocate.
+\end_layout
+
+\begin_layout Subsection*
+Allocazione delle risorse di rete 
+\end_layout
+
+\begin_layout Standard
+È uno dei punti chiave che riguarda il QoS.
+\end_layout
+
+\begin_layout Standard
+Si tratta principalmente della capacità di routing e switching della rete.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Perché
+\series default
+ dovrei allocare risorse di traffico nella rete? Perché vogliamo QoS!
+\end_layout
+
+\begin_layout Standard
+Ogni applicazione abbiamo visto che ha diversi requisiti.
+ Quindi dobbiamo dare una certa quantità di risorse a ciascuna applicazione.
+\end_layout
+
+\begin_layout Standard
+Abbiamo applicazioni:
+\end_layout
+
+\begin_layout Itemize
+Elastiche
+\end_layout
+
+\begin_layout Itemize
+Real-time
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Playback
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tolleranti al delay
+\end_layout
+
+\begin_layout Itemize
+Intolleranti al delay
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Il modo migliore per gestire questa varietà di applicazioni è l'allocazione
+ di una serie di risorse.
+\end_layout
+
+\begin_layout Standard
+Ci sono due modi principali per allocare risorse nella rete:
+\end_layout
+
+\begin_layout Itemize
+Allocazione in 
+\series bold
+base al flusso
+\series default
+ (
+\emph on
+allocation on a per-flow base
+\emph default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le risorse all'interno della rete di transito sono allocate per 
+\bar under
+un certo flusso in transito
+\bar default
+ tra una sorgente e una destiazione.
+\end_layout
+
+\begin_layout Itemize
+Questo ha efficienza massima ma un problema di scalabilità.
+ Se abbiamo a che fare con una rete molto grande, potremmo avere milioni
+ di flussi contemporanei.
+ E ogni singolo core-router potrebbe dover gestire uno stato per ogni singolo
+ flusso.
+ Diventa computazionalmente così pesante che diventa complicato fare questo
+ tipo di allocazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Allocazione in 
+\series bold
+base al servizio
+\series default
+ (
+\emph on
+allocation on per-service base
+\emph default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le risorse all'interno della rete di transito sono allocate per un certo
+ tipo di servizio in transito.
+ Non distinguo tra due telefonate, ma distinguo tra il traffico telefonico
+ e il traffico video.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Nella realtà si utilizzano entrambi i modi per farlo.
+\end_layout
+
+\begin_layout Standard
+Con tecnologie tipo MPLS a livello carrier è possibile fare allocazione
+ in base al flusso.
+\end_layout
+
+\begin_layout Standard
+Però come punto d'inizio vedremo come farlo a livello di servizio.
+\end_layout
+
+\begin_layout Subsection*
+Categorie di servizi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Telephony
+\series default
+ service class:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È caratterizzata da requisiti di delay stringenti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Multimedia 
+\series default
+streaming:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un tipo di applicazione di tipo 
+\emph on
+playblack tolerant
+\emph default
+ 
+\end_layout
+
+\begin_layout Itemize
+Possiamo avere requisiti di delay stringenti o no a seconda del contratto
+ di chi fornisce il contenuto multimediale.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Broadcast 
+\series default
+video: distribuzione tv con eventi real-time
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È una applicazione 
+\emph on
+playback tolerant
+\emph default
+, ma non tanto.
+ Dipende se stiamo vedendo qualcosa in diretta o no.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Multimedia conferencing
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È quando due o più persone si collegano tramite la rete in una conferenza
+ audio/video.
+\end_layout
+
+\begin_layout Itemize
+Bisogna considerare il problema che ci sono delay diversi tra le varie persone
+ all'interno della conferenza.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Pseudowire
+\series default
+ application:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non è un tipo di applicazione utilizzata da utenti finali.
+ È un tipo di servizio utilizzato tra due operatori.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+General data 
+\series default
+applications:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Email, ftp, http (browser), ...
+\end_layout
+
+\begin_layout Itemize
+Non ci sono requisiti sul delay, al massimo sulla banda
+\end_layout
+
+\begin_layout Itemize
+Questo è il tipo di applicazioni che accettano una qualità del servizio
+ 
+\emph on
+best-effort
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Low-latency data 
+\series default
+applications:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Servizi per transazioni con requisiti di delay, ma non molto stringenti.
+\end_layout
+
+\begin_layout Itemize
+Non elenchiamo HFT perché servono reti dedicate per quello
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+High-throughput data
+\series default
+ applications:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Trasferimento di dati 
+\begin_inset Quotes eld
+\end_inset
+
+bulk
+\begin_inset Quotes erd
+\end_inset
+
+ (trasferimento dati di backup).
+\end_layout
+
+\begin_layout Itemize
+Serve tanta banda ma non ci sono requisiti sul ritardo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Signaling
+\series default
+ :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sono una serie di messaggi di transazione inviati dagli utenti finali con
+ lo scopo di stabilire connessioni di altro tipo (ad esempio il signaling
+ per stabilire una telefonata).
+\end_layout
+
+\begin_layout Itemize
+Siamo molto sensibili alla perdita di pacchetti.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Network signaling
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sono i messaggi di rete utilizzati per la manutenzione della rete.
+ Ad esempio i messaggi per scambiare le informazioni di routing inviati
+ dai routers.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Non esiste uno standard su Internet per questo tipo di servizi.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio di requisiti qualitativi
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Packet loss tolerance
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Delay tolerance
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Multimedia streaming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low/medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Broadcast Video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+High-throughput data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium/High
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Multimedia conference
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Network control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Best effort
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Any
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Any
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Continuazione su QoS
+\end_layout
+
+\begin_layout Standard
+Non sappiamo a priori l'effeto della matrice di rete di QoS e la matrice
+ utente di QoE.
+\end_layout
+
+\begin_layout Standard
+Non c'è un algoritmo generale che mappa la matrice di QoS nella matrice
+ di QoE.
+\end_layout
+
+\begin_layout Standard
+In realtà esiste un algoritmo ma solo per il servizio VoIP.
+\end_layout
+
+\begin_layout Standard
+Riguardo alla variazione del delay dobbiamo considerare il 
+\series bold
+\emph on
+jitter
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Solitamente guardiamo la distribuzione casuale del ritardo e calcoliamo
+ il jitter come l'intervallo di variazione del ritardo.
+\end_layout
+
+\begin_layout Standard
+Il jitter è molto importante per applicazioni realtime e per tutte le applicazio
+ni che utilizzano un buffer di playout.
+\end_layout
+
+\begin_layout Standard
+Il jitter non è causato solo dal ritardo, ma anche dai pacchetti fuori sequenza!
+\end_layout
+
+\begin_layout Standard
+Perché abbiamo pacchetti fuori sequenza? È una caratteristica classica dei
+ servizi best effort.
+\end_layout
+
+\begin_layout Standard
+Pensiamo ad esempio ad una rete dove abbiamo un servizio di rete garantito
+ e un servizio best effort.
+ Utilizzano quindi le stesse risorse e collegamenti ma sono trattate diversament
+e.
+ Solitamente abbiamo un percorso fisso per il servizio garantito.
+ 
+\end_layout
+
+\begin_layout Standard
+I router implementano una funzionalità di 
+\series bold
+\emph on
+load sharing
+\series default
+\emph default
+, cioè tentano di riempire di traffico tutti i link.
+ Quindi accade spesso che alcuni pacchetti seguono percorsi diversi (a seconda
+ di quanto è congestionato il percorso principale).
+\end_layout
+
+\begin_layout Standard
+Come fanno due applicazioni a parlarsi tra di loro? Utilizzano un socket.
+\end_layout
+
+\begin_layout Standard
+Per applicazioni real time esiste già RTP che ha già la funzionalità di
+ ricostruire i pacchetti in sequenza senza utilizzare TCP.
+\end_layout
+
+\begin_layout Subsection*
+Infinite bandwidth paradigm
+\end_layout
+
+\begin_layout Standard
+È un'idea che alcune persone supportano.
+ Posto che le fibre hanno tanta banda (in aumento), si può continuare ad
+ utilizzare un servizio best-effort.
+ Tanto c'è la banda.
+\end_layout
+
+\begin_layout Standard
+Uno dei problemi però è il costo.
+ La fibra ha tanta banda ma costa! Non ovunque abbiamo la fibra e la banda
+ ultralarga.
+ Oltre alla fibra dobbiamo pagare anche per le interfacce, switches e routers.
+\end_layout
+
+\begin_layout Standard
+Quello che succedere è invece che con le nuove reti di applica QoS.
+\end_layout
+
+\begin_layout Subsection*
+Utenti business nelle reti multiservizio
+\end_layout
+
+\begin_layout Standard
+Immaginiamo un utente buisness interessato ad una rete multiservizio.
+\end_layout
+
+\begin_layout Standard
+Un ISP può servire all'utente un 
+\series bold
+Olympic service:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SLA (
+\series bold
+QoS
+\series default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Velocità di accesso 2.048 Mbps
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Velocità di accesso 4 Mbps
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Gold
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=90\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=80\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Silver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=120\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=100\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Bronze
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=250\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $d=210\, ms,\quad p=0.001$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $d=\text{delay massimo}$
+\end_inset
+
+ e 
+\begin_inset Formula $p=\text{frazione dei pacchetti che possono superare il ritardo massimo}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Questo è un linguaggio utilizzato anche nei contratti)
+\end_layout
+
+\begin_layout Standard
+Abbiamo visto uno 
+\series bold
+SLA
+\series default
+ (
+\emph on
+Statistical Service Level Agreement
+\emph default
+)
+\emph on
+.
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Section*
+Come creare una rete multiservizio
+\end_layout
+
+\begin_layout Standard
+Per cominciare ci serve un 
+\series bold
+SLA 
+\series default
+(
+\emph on
+Service Level Agreement
+\emph default
+) ed un 
+\series bold
+TCA
+\series default
+ (
+\emph on
+Traffic Conditioning Agreement
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+Un 
+\series bold
+TCA
+\series default
+ è il contratto su quello che l'utente invia nella rete.
+ Sopra una certa soglia di traffico emesso l'ISP non può garantire niente.
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+TCA
+\series default
+ definisce il cosidetto 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+traffic profile
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ (profilo di traffico).
+ È un qualche tipo di limite superiore.
+\end_layout
+
+\begin_layout Standard
+Questo 
+\series bold
+TCA
+\series default
+ può essere definito in 
+\emph on
+conformant traffic 
+\emph default
+(anche detto 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+in-profile traffic
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+o 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+in-traffic
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+) e 
+\emph on
+non-conformant traffic
+\emph default
+ (quello sopra la soglia, detto anche 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+dropped
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ o 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+out-of-profile traffic
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph on
+ 
+\emph default
+o 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+out-traffic
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+).
+ La 
+\series bold
+SLA
+\series default
+ è applicata al 
+\emph on
+conformant traffic
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Ci sono tre modi diversi con cui un ISP può controllare il TCA:
+\end_layout
+
+\begin_layout Itemize
+Policing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si droppano pacchetti.
+ Solitamente si preferisce evitare perché tutti i dati trasportati sono
+ un guadagno per l'ISP
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Shaping
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il traffico in uscita viene ritardato
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Marking (spesso il più utilizzato)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Dropping priority marking
+\series default
+: Si marcano i pacchetti da droppare.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Service marking
+\series default
+: Si marcano i pacchetti di trasporare in best effort, quelli da traspostare
+ con una certa QoS, etc...
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Come si definisce un TCA
+\end_layout
+
+\begin_layout Itemize
+Il valore di picco del traffico.
+ (Ad esempio 
+\begin_inset Formula $P=2\, Mbps$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Il valore medio del traffico.
+ (Ad esempio 
+\begin_inset Formula $A=200\, Kbps$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Massima lunghezza del 
+\series bold
+\emph on
+burst
+\series default
+\emph default
+ di dati (Numero massimo di pacchetti consecutivi trasmessi alla velocità
+ di picco)
+\end_layout
+
+\begin_layout Itemize
+Lunghezza massima e minima dei pacchetti
+\end_layout
+
+\begin_layout Standard
+Pensiamo ad una telefonata con la soppressione dei silenzi.
+ La differenza tra banda di picco e banda media è ben diversa.
+\end_layout
+
+\begin_layout Subsection*
+Accesso alla rete
+\end_layout
+
+\begin_layout Standard
+Subito dopo l'accesso alla rete per l'utente c'è il 
+\emph on
+traffic regulator
+\emph default
+, che verifica se il profilo di traffico viene rispettato.
+ Lo stesso regolatore verifica il traffico e lo divide in traffico 
+\emph on
+green
+\emph default
+ e traffico 
+\emph on
+red
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se il traffico 
+\emph on
+green 
+\emph default
+e 
+\emph on
+red
+\emph default
+ vengono mandati in rete, allora stiamo parlando di un 
+\series bold
+\emph on
+two-coloured
+\series default
+\emph default
+ 
+\series bold
+\emph on
+regulator
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se il traffico 
+\emph on
+red
+\emph default
+ viene droppato, abbiamo un 
+\series bold
+\emph on
+policer
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se il traffico 
+\emph on
+red
+\emph default
+ viene rallentato tramite un buffer, abbiamo un 
+\series bold
+\emph on
+shaper.
+\end_layout
+
+\begin_layout Itemize
+Se il traffico 
+\emph on
+red
+\emph default
+ viene rimandato in rete dopo essere marcato, abbiamo un 
+\series bold
+\emph on
+marker
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Classificatore Lato ISP (marker?)
+\end_layout
+
+\begin_layout Standard
+Cos'è il 
+\series bold
+\emph on
+classifier
+\series default
+\emph default
+ (o 
+\series bold
+\emph on
+traffic conditioner
+\series default
+\emph default
+) ? È un dispositivo lato ISP che riceve il traffico da diversi utenti e
+ deve occuparsi del controllo del traffico lato ISP.
+\end_layout
+
+\begin_layout Standard
+Deve occuparsi si capire quale TCA deve essere associata a ciascun utente.
+\end_layout
+
+\begin_layout Standard
+All'interno di questo dispositivo abbiamo anche il 
+\series bold
+\emph on
+meter
+\series default
+\emph default
+, che riceve un segnale dal TCA e guarda i pacchetti in transito, il momento
+ di arrivo, la TCA da applicare e decide il colore da applicare (
+\emph on
+red, green, yellow
+\emph default
+).
+ Il pacchetto può essere 
+\emph on
+in-profile
+\emph default
+ o 
+\emph on
+out-of-profile
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Questa informazione viene comunicata ad un 
+\series bold
+\emph on
+actuator 
+\series default
+\emph default
+che colora il pacchetto.
+\end_layout
+
+\begin_layout Standard
+Qual'è il campo del pacchetto IPv4 utilizzato per trasportare queste informazion
+i? È il 
+\emph on
+differentiated services codepoint
+\emph default
+ (
+\series bold
+\emph on
+DSCP
+\series default
+\emph default
+).
+ È 1 byte dell'header dell pacchetto IPv4.
+ Ha preso il posto del vecchio 
+\emph on
+Type of Service
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Il DSCP definisce il 
+\series bold
+PHB 
+\series default
+(
+\emph on
+Per-Hop-Behaviour
+\emph default
+), la politica adottata dai routers lungo il percorso.
+\end_layout
+
+\begin_layout Subsection*
+Riassunto 
+\end_layout
+
+\begin_layout Itemize
+ISP e utente devono accordarsi su SLA e TCA
+\end_layout
+
+\begin_layout Itemize
+L'ISP può allocare risorse sulla rete per garantire questo servizio.
+\end_layout
+
+\begin_layout Itemize
+In accesso alla rete, l'utente vede un regolatore di traffico
+\end_layout
+
+\begin_layout Itemize
+In mezzo alla rete ci sono dei routers (che verificano il campo DSCP per
+ pacchetti e determinano il PHB).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ma chi scrive il DSCP dentro i pacchetto? Il classificatore
+\end_layout
+
+\begin_layout Itemize
+Il PHB viene definito in base a SLA e TCA, ma anche in base a quanto traffico
+ l'utente sta immettendo in rete
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo viene verificato tramite il 
+\begin_inset Quotes eld
+\end_inset
+
+colore
+\begin_inset Quotes erd
+\end_inset
+
+ applicato dal classifier 
+\end_layout
+
+\begin_layout Itemize
+Ad esempio un
+\series bold
+\emph on
+ Assured Forwarding PHB
+\series default
+\emph default
+ è un tipo di comportamento di PHB.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Perché non facciamo classificazione su routers del backbone? Sui routers
+ passano milioni di connessioni al secondo, non c'è tempo per fare questo
+ tipo di confronti, quindi si fa sui routers di frontiera.
+\end_layout
+
+\begin_layout Standard
+Come è possibile per l'ISP assicurarsi di garantire la SLA sapendo del traffico
+ condiviso sulle interfacce dei routers? Risponderemo a questa domanda alla
+ fine del corso.
+\end_layout
+
+\begin_layout Subsection*
+Connection admission control
+\end_layout
+
+\begin_layout Standard
+Abbiamo diverse scale temporali:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Contract timescale
+\series default
+ (~mese)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Connection timescale 
+\series default
+(~min/~hours)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Packet timescale 
+\series default
+(~microsecondi)
+\end_layout
+
+\begin_layout Standard
+Ora lavoriamo sulla 
+\emph on
+connection timescale
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Quando arriva una nuova connessione si verifica se TCA o SLA va applicato.
+\end_layout
+
+\begin_layout Standard
+Si verifica se ci sono abbastanza risorse e si abilita la connessione solo
+ se viene verificato che l'accettazione della connessione non va contro
+ la SLA applicata alle connessioni esistenti.
+\end_layout
+
+\begin_layout Subsection*
+
+\emph on
+Policer 
+\emph default
+(versione 
+\emph on
+token bucket
+\emph default
+)
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+\emph on
+policer
+\series default
+\emph default
+ può essere costituito in questo modo: 
+\end_layout
+
+\begin_layout Itemize
+Abbiamo uno stream di pacchetti in ingresso
+\end_layout
+
+\begin_layout Itemize
+C'è un bucket che svolge il ruolo di contatore
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il bucket ha due parametri:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La sua 
+\series bold
+profondità
+\series default
+ 
+\begin_inset Formula $b$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+rate di riempimento
+\series default
+ 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il bucket non è un buffer, non memorizza pacchetti in questo caso, è un
+ numero intero!
+\end_layout
+
+\begin_layout Itemize
+La misura 
+\begin_inset Formula $b$
+\end_inset
+
+ del buffer può essere in bit o byte.
+\end_layout
+
+\begin_layout Itemize
+Il contatore viene incrementato ogni 
+\begin_inset Formula $\frac{1}{r}$
+\end_inset
+
+ secondi, dove 
+\begin_inset Formula $r$
+\end_inset
+
+ è il rate.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Un pacchetto può attraversare il policer se il contatore è positivo.
+ Dopo il passaggio il contatore viene decrementato.
+\end_layout
+
+\begin_layout Itemize
+Se il contatore è a 0, il pacchetto viene droppato.
+\end_layout
+
+\begin_layout Itemize
+Quindi 
+\begin_inset Formula $\text{1 credito}=\text{permesso di trasmettere }1\:\text{pacchetto}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo rappresentare questa policy utilizzando un linguaggio di descrizione
+ delle specifiche come SDL.
+\end_layout
+
+\begin_layout Subsection*
+
+\emph on
+Shaper 
+\emph default
+(versione 
+\emph on
+token bucket
+\emph default
+)
+\end_layout
+
+\begin_layout Standard
+Abbiamo ancora un bucket, riempito con 
+\begin_inset Formula $r$
+\end_inset
+
+ token al secondo.
+ Il suo valore massimo è 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ Prima abbiamo in testa un buffer largo 
+\begin_inset Formula $P\left(t\right)$
+\end_inset
+
+.
+ Il traffico entra nel buffer, il contatore funziona esattmaente come nel
+ policer.
+ Incrementiamo il contatore ogni 
+\begin_inset Formula $\frac{1}{r}$
+\end_inset
+
+ secondi.
+\end_layout
+
+\begin_layout Standard
+Il rate massimo di pacchetti può servire il sistema è 
+\begin_inset Formula $r\;\left[\frac{packets}{s}\right]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Arriva un pacchetto:
+\end_layout
+
+\begin_layout Itemize
+Il buffer può essere vuoto
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il sistema verifica il numero di crediti nel counter:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se ho 0 crediti il pacchetto viene accodato
+\end_layout
+
+\begin_layout Itemize
+Se ho 1 o più crediti, il pacchetto attraversa il sistema e il counter viene
+ decrementato di 1.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Il buffer può contere già pacchetti
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il pacchetto viene accodato sulla coda del buffer.
+\end_layout
+
+\begin_layout Itemize
+Il pacchetto in cima al buffer attraversa il sistema e il counter viene
+ decrementato di 1.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Se il rate di pacchetti in ingresso è maggiore di 
+\begin_inset Formula $r$
+\end_inset
+
+ , i pacchetti in arrivo si accodano in contuazione fino ad esaurire il
+ buffer.
+ Si parla di operazione 
+\emph on
+non stabile
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+La capacità del buffer però non è infinita, se arrivano troppi pacchetti
+ si droppano.
+\end_layout
+
+\begin_layout Subsection*
+Constraint functions
+\end_layout
+
+\begin_layout Standard
+Questi dispositivi costruiti realizzano una constraint function 
+\begin_inset Formula $b+rt$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le caratteristiche di un policer/shaper sono:
+\end_layout
+
+\begin_layout Itemize
+Valore di picco
+\end_layout
+
+\begin_layout Itemize
+Massima lunghezza del burst
+\end_layout
+
+\begin_layout Itemize
+Velocità media
+\end_layout
+
+\begin_layout Standard
+Un token bucket non può determinare la velocità di picco.
+\end_layout
+
+\begin_layout Subsection*
+Token bucket marker (SRTCM)
+\end_layout
+
+\begin_layout Standard
+Funziona come il token bucket policer, ma al posto di droppare i pacchetti
+ li marca e li forwarda.
+\end_layout
+
+\begin_layout Itemize
+Committed information rate (CIR): traffico 
+\series bold
+green
+\end_layout
+
+\begin_layout Itemize
+Committed burst size (CBS): traffico 
+\series bold
+yellow
+\end_layout
+
+\begin_layout Itemize
+Excess burst size (EBS): traffico 
+\series bold
+red
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

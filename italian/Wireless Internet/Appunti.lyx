@@ -113,21 +113,45 @@ Abbiamo:
 \end_layout
 
 \begin_layout Itemize
-Attenuazione causata dalla distanza tra trasmettitore e ricevitore
+
+\series bold
+Attenuazione
+\series default
+ causata dalla 
+\series bold
+distanza
+\series default
+ tra trasmettitore e ricevitore
 \end_layout
 
 \begin_layout Itemize
-Attenuazione causata da ostacoli tra trasmettitore e ricevitore.
+
+\series bold
+Attenuazione
+\series default
+ causata da 
+\series bold
+ostacoli
+\series default
+ tra trasmettitore e ricevitore.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Parte dell'energia dei segnali wireless viene assorbita degli ostacoli
+Parte dell'
+\series bold
+energia
+\series default
+ dei segnali wireless viene 
+\series bold
+assorbita degli ostacoli
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Propagazione lungo diversi percorsi
+Propagazione lungo 
+\series bold
+diversi percorsi
 \end_layout
 
 \begin_layout Subsection*
@@ -162,6 +186,14 @@ frequenza
 \begin_deeper
 \begin_layout Itemize
 Dove 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ è la lunghezza d'onda, 
+\begin_inset Formula $f$
+\end_inset
+
+ è la frequenza e 
 \begin_inset Formula $c\cong3\cdot10^{8}\,\left[\frac{m}{s}\right]$
 \end_inset
 
@@ -173,7 +205,7 @@ Dove
 \begin_inset Formula $s\left(t\right)=cos\left(2\pi\cdot f\cdot t+\varphi\right)$
 \end_inset
 
-
+ è l'equazione con cui si modella solitamente un segnale.
 \end_layout
 
 \begin_layout Standard
@@ -198,6 +230,8 @@ Dove
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 ELF
 \end_layout
 
@@ -227,6 +261,8 @@ Controllo remoto, voce, telefono analogico
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 VLF
 \end_layout
 
@@ -256,6 +292,8 @@ Sottomarini, lunga distanza
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 LF
 \end_layout
 
@@ -285,6 +323,8 @@ Lunga distanza, beacons marittimi
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 MF
 \end_layout
 
@@ -314,6 +354,8 @@ Radio AM, radio marina
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 HF
 \end_layout
 
@@ -343,6 +385,8 @@ Radio amatoriale, radio militare, collegamenti aerei e navali
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 VHF
 \end_layout
 
@@ -372,6 +416,8 @@ TV VHF, FM radio, AM x comunicazione aerea
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 UHF
 \end_layout
 
@@ -401,6 +447,8 @@ Cellulari, TV UHF, radar
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 SHF
 \end_layout
 
@@ -430,6 +478,8 @@ Satellite, radar, reti wireless terrestri, WLL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 EHF
 \end_layout
 
@@ -459,6 +509,8 @@ Banda sperimentale, WLL
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 IR
 \end_layout
 
@@ -488,6 +540,8 @@ LAN a infrarossi
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Light
 \end_layout
 
@@ -531,7 +585,11 @@ Reti radiomobili
 
 \begin_deeper
 \begin_layout Itemize
-900-2200 MHz (VHF-UHF)
+900-2200 MHz (
+\series bold
+VHF-UHF
+\series default
+)
 \end_layout
 
 \begin_layout Itemize
@@ -543,8 +601,11 @@ Con
 \begin_inset Formula $1\, W$
 \end_inset
 
- di potenza possiamo coprire diversi chilometri e attraversare i muri degli
- edifici
+ di potenza possiamo 
+\series bold
+coprire diversi chilometri
+\series default
+ e attraversare i muri degli edifici
 \end_layout
 
 \end_deeper
@@ -562,12 +623,23 @@ satellitari
 
 \begin_deeper
 \begin_layout Itemize
-3-30 GHz (SHF)
+3-30 GHz (
+\series bold
+SHF
+\series default
+)
 \end_layout
 
 \begin_layout Itemize
-C'è molta banda disponibile ma ha il problema di essere fortemente influenzata
- da effetti atmosferici (pioggia, neve...)
+C'è 
+\series bold
+molta banda
+\series default
+ disponibile ma ha il problema di essere fortemente
+\series bold
+ influenzata da effetti atmosferici 
+\series default
+(pioggia, neve...)
 \end_layout
 
 \end_deeper
@@ -579,11 +651,17 @@ Reti wireless dati
 
 \begin_deeper
 \begin_layout Itemize
+
+\series bold
 2.4 GHz e 5 GHz
 \end_layout
 
 \begin_layout Itemize
-C'è interferenza con molti altri sistemi che utilizzano questa banda
+C'è 
+\series bold
+interferenza
+\series default
+ con molti altri sistemi che utilizzano questa banda
 \end_layout
 
 \begin_layout Itemize
@@ -605,12 +683,19 @@ alte frequenze
 
 \begin_deeper
 \begin_layout Itemize
-C'è molta banda disponibile man mano che saliamo di frequenza, non molti
- sistemi le usano.
+C'è 
+\bar under
+molta banda disponibile
+\bar default
+ man mano che saliamo di frequenza, non molti sistemi le usano.
 \end_layout
 
 \begin_layout Itemize
-È però più difficile penetrare gli ostacoli.
+È però 
+\bar under
+più difficile penetrare gli ostacoli
+\bar default
+.
  Pensiamo alla luce che ha frequenza più elevata.
  Viene bloccata facilmente.
 \end_layout
@@ -626,15 +711,23 @@ basse frequenze
 
 \begin_deeper
 \begin_layout Itemize
-C'è poca banda disponibile perché viene condivisa tra molti sistemi e servizi
+C'è 
+\bar under
+poca banda disponibile
+\bar default
+ perché viene condivisa tra molti sistemi e servizi
 \end_layout
 
 \begin_layout Itemize
-Abbiamo il problema di necessitare di antenne più grandi
+Abbiamo il problema di necessitare di 
+\series bold
+antenne più grandi
 \end_layout
 
 \begin_layout Itemize
-È più facile penetrare gli ostacoli
+È più 
+\bar under
+facile penetrare gli ostacoli
 \end_layout
 
 \end_deeper
@@ -2775,7 +2868,720 @@ Concetti base di reti wireless
 \end_layout
 
 \begin_layout Standard
-[slides 3 basic concepts wireless networks]
+Il mezzo fisico diverso provoca pesanti differenze nella progettazione del
+ sistema, inoltre dobbiamo considerare che con il wifi gli utenti acquisicono
+ la possibilità di 
+\emph on
+mobility
+\emph default
+, di spostarsi all'interno della rete (anche mentre sono collegati), con
+ tutti i problemi che questo comporta.
+\end_layout
+
+\begin_layout Standard
+Nella progettazione delle reti wireless è un 
+\begin_inset Quotes eld
+\end_inset
+
+classico
+\begin_inset Quotes erd
+\end_inset
+
+ che la rete venga suddivisa in una parte 
+\emph on
+di accesso
+\emph default
+, composta da access point e reti wireless, e da una parte 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+di backbone
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, con collegamenti cablati tra access point che vanno verso reti esterne.
+\end_layout
+
+\begin_layout Standard
+Esistono collegamenti radio anche nelle reti backbone, però questi collegamenti
+ sono 
+\emph on
+punto-punto
+\emph default
+ e non vengono quindi considerati come 
+\begin_inset Quotes eld
+\end_inset
+
+reti wireless
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Una delle prime differenze del mezzo fisico radio è che qualunque tipo di
+ trasmissione è per sua natura 
+\emph on
+broadcast
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Ci sono due modalità principali con cui si può strutturare una rete wireless:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Centralized broadcast channel
+\series default
+\emph default
+: c'è una stazione principale che coordina la trasmissione delle altre stazioni
+ e inoltra i messaggi tra le varie stazioni se necessario.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È il caso delle reti cellulari, WLAN e WMAN.
+ Nelle reti cellulari ci sono una serie di 
+\emph on
+base stations
+\emph default
+ che coprono delle 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+celle
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ di territorio con il loro segnale.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Distributed broadcast channel
+\series default
+\emph default
+: tutte le stazioni si parlano tra di loro direttamente.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È il caso delle reti WiFi 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Ad-Hoc
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+, così come anche quello delle 
+\emph on
+reti mesh
+\emph default
+ (802.11s e simili) o reti di sensori.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Se consideriamo una serie di stazioni collegate ad un access point, dobbiamo
+ ricordare che il mezzo fisico è sempre condiviso, quindi non abbiamo 
+\begin_inset Quotes eld
+\end_inset
+
+linee dedicate
+\begin_inset Quotes erd
+\end_inset
+
+ verso ogni stazione.
+\end_layout
+
+\begin_layout Itemize
+Sappiamo che le caratteristiche del canale radio sono molto variabili, quindi
+ dovremo utilizzare tecniche di modulazione e coding per affrontare diversi
+ tipi di scenari.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Mobility
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+\begin_inset Quotes eld
+\end_inset
+
+Stand-by
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+/
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph on
+cell selection
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+: Un utente può spostarsi tra un access-point e un altro mentre è in 
+\begin_inset Quotes eld
+\end_inset
+
+stand-by
+\begin_inset Quotes erd
+\end_inset
+
+ (quindi si ricollega).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solitamente le stazioni trasmettono in continuazione le proprie informazioni
+ e la selezione dell'access-point viene svolta in base alla 
+\bar under
+potenza del segnale
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+handover
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+: Un utente può spostarsi tra due access-point mentre sta effettuando una
+ connessione (o una telefonata nel caso della rete cellulare).
+ Questo richiede una buona gestione del 
+\series bold
+routing
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È necessario tenere una qualche sorta di database con informazioni sulla
+ 
+\emph on
+location
+\emph default
+ delle varie stazioni collegate.
+ Quando una stazione si sposta, si attiva la procedura di 
+\emph on
+location update
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+L'handover scatta in base a misurazioni fatte sulla rete e sulla qualità
+ e potenza del segnale ricevuto.
+ L'handover deve essere 
+\series bold
+veloce
+\series default
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Paging
+\series default
+: Quando arriva una chiamata per una station in movimento, si invia una
+ richiesta in broadcast su una serie di celle adiacenti all'ultima cella
+ dove è stata ricevuta la station.
+ Quando la station risponde, la chiamata viene inoltrata.
+\end_layout
+
+\begin_layout Itemize
+Solitamente all'interno della stessa rete, la mobility è gestita a livello
+ 2 (datalink).
+ Invece per altre reti è gestita a livello 3 (rete).
+\end_layout
+
+\begin_layout Subsubsection*
+Multiple access
+\end_layout
+
+\begin_layout Standard
+Abbiamo diverse informazioni che condividono lo stesso mezzo fisico
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multiplexing
+\series default
+: una stazione che trasmette.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multiple-access
+\series default
+: più stazioni che trasmettono (una per flusso).
+\end_layout
+
+\begin_layout Itemize
+C'è problema sia in downlink che in uplink, perché il mezzo è condiviso,
+ quindi si possono sfruttare canali radio diversi, ma non sono tanti! Inoltre
+ c'è il problema di fare uplink e downlink contemporaneamente!
+\end_layout
+
+\begin_layout Itemize
+Gli stessi canali radio possono essere utilizzati in celle diverse, a patto
+ che siano sufficientemente distanti.
+\end_layout
+
+\begin_layout Itemize
+C'è un tradeoff tra la quantità e la 
+\begin_inset Quotes eld
+\end_inset
+
+qualità
+\begin_inset Quotes erd
+\end_inset
+
+ dei canali.
+ O ne facciamo pochi di buona qualità o tanti di bassa qualità.
+\end_layout
+
+\begin_layout Standard
+Da adesso in poi, quando parleremo di 
+\begin_inset Quotes eld
+\end_inset
+
+multiple access
+\begin_inset Quotes erd
+\end_inset
+
+ intenderemo multiplexing e duplexing.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multiple access al layer fisico
+\series default
+: Un singolo canale è suddiviso in sottocanali utilizzando parametri fisici
+ (frequenza, tempo, codice).
+ 
+\bar under
+Gestione statica delle risorse
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multiple access al layer logico
+\series default
+: Ci sono informazioni logiche nel pacchetto e le funzioni di coordinamento
+ distribuito.
+ 
+\bar under
+Allocazione dimanica delle risorse
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Nei sistemi reali, tecniche di multiple access a livello fisico e logico
+ sono combinate insieme.
+\end_layout
+
+\begin_layout Subsubsection*
+FDM/FDMA
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\emph on
+Frequency Division Multiple Access
+\series default
+\emph default
+, significa che la banda disponibile viene suddivisa in varie sotto-bande
+ chiamate 
+\emph on
+canali
+\emph default
+.
+ È una tecnica di multiple access molto semplice e molto utilizzata.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna22.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+TDM/TMDA
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\emph on
+Time Division Multiple Access
+\series default
+\emph default
+, significa che il tempo viene suddiviso in 
+\series bold
+\emph on
+slots
+\series default
+\emph default
+.
+ Gruppi di 
+\begin_inset Formula $N$
+\end_inset
+
+ slots consecutivi vengono organizzati in 
+\series bold
+\emph on
+frames
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Un 
+\begin_inset Quotes eld
+\end_inset
+
+sottocanale
+\begin_inset Quotes erd
+\end_inset
+
+ può utilizzare un singolo slot in ogni frame:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna23.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dobbiamo considerare anche il problema del 
+\series bold
+\emph on
+guard time
+\series default
+\emph default
+, ovvero la quantità di tempo necessaria all'andata e ritorno del segnale
+ radio.
+ Così come già visto per Ethernet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna24.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Timing advance
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna25.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se il delay di propagazione 
+\begin_inset Formula $\tau$
+\end_inset
+
+ è noto, può essere compensato anticipando la trasmissione (solo nel caso
+ di accesso centralizzato!)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\tau$
+\end_inset
+
+ deve essere stimato dinamicamente e segnalato al dispostivio collegato
+ alla base station.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+CDM/CDMA
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\emph on
+Code Division Multiplexing 
+\series default
+\emph default
+o 
+\series bold
+\emph on
+Code Division Multiple Access
+\series default
+\emph default
+: è una tecnica dove i simboli da trasmettere (i bits) vengono moltiplicati
+ per un 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+codice
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna26.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{0}^{T}C_{1}\left(t\right)\cdot C_{2}\left(t\right)=0
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\sum_{i=1}^{N}c_{1i}\cdot c_{2i}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In CDM i codici sono 
+\emph on
+ortogonali
+\emph default
+, mentre in CDMA hanno una correlazione limitata.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna27.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\int_{T}\left(\sum_{i=0}^{N-1}s_{i}C_{i}\right)\cdot C_{k}=s_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il codice 
+\begin_inset Quotes eld
+\end_inset
+
+espande
+\begin_inset Quotes erd
+\end_inset
+
+ la banda occupata dal segnale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna28.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n$
+\end_inset
+
+ è il numero di 
+\series bold
+\emph on
+chips
+\series default
+\emph default
+ nel codice e viene chiamato anche 
+\emph on
+spreading factor
+\emph default
+ (SF).
+\end_layout
+
+\begin_layout Standard
+Quindi più segnali radio utilizzano la stessa banda con codici diversi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna29.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al ricevitore il segnale è moltiplicato per il codice e viene quindi effettuta
+ l'operazione di 
+\emph on
+de-spreading
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna30.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un effetto interessante ottenuto tramite l'operazione di 
+\emph on
+de-spreading
+\emph default
+ è che l'interferenza di altri segnali sovrapposti viene diminuita di un
+ fattore 
+\begin_inset Formula $\frac{1}{n}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna31.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Multiplexing a layer 2
+\end_layout
+
+\begin_layout Standard
+Ovviamente poi multiplexing viene anche effettuato a livello 2 tramite protocoll
+i ad accesso multiplo.
+ I primi protocolli per accesso multiplo ad un canale condiviso sono stati
+ sviluppati proprio per le reti locali (vedi ALOHA).
+\end_layout
+
+\begin_layout Subsubsection*
+Riassunto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename antenna32.png
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -2784,6 +3590,78 @@ Wireless Local Area Networks (WLAN)
 
 \begin_layout Standard
 Come tutte le tecnologie che vedremo, è sottoposta a regolazione dello spettro.
+\end_layout
+
+\begin_layout Itemize
+Lo 
+\series bold
+spettro
+\series default
+ elettromagnetico è una 
+\bar under
+risorsa scarsa
+\bar default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Regolamentarlo è 
+\series bold
+fondamentale
+\end_layout
+
+\begin_layout Itemize
+La priorità per le allocazioni viene data per applicazioni dedicate (militari,
+ mediche,...)
+\end_layout
+
+\begin_layout Itemize
+Per utilizzare la maggior parte delle bande serve una licenza (bisogna pagare
+ delle tasse alle autorità)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Lo spettro radio è 
+\series bold
+regolamentato
+\series default
+ a livello internazionale da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Federal Communications Commission
+\emph default
+ (
+\series bold
+FCC
+\series default
+) nel Nord America
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+European Telecommunications Standard Institute 
+\emph default
+(
+\series bold
+ETSI
+\series default
+) in Europa
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Ci sono alcune parti di banda che possono essere utilizzate 
+\bar under
+senza licenza
+\bar default
+.
 \end_layout
 
 \begin_layout Standard
@@ -2810,20 +3688,23 @@ Industrial Scientific Medical
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 È una frequenza alta, ma non così alta da avere problemi nella propagazione.
 \end_layout
 
-\begin_layout Standard
-La frequenza scelta è un buon compromesso.
+\begin_deeper
+\begin_layout Itemize
+La frequenza scelta è un buon compromesso tra alta velocità e buona propagazione
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 A 5 GHz in realtà c'è più banda libera, però abbiamo problemi con la propagazion
 e del segnale (come abbiamo già visto).
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 La banda sui 5GHz era stata inizialmente liberata per una vecchia tecnologia:
  
 \emph on
@@ -2832,13 +3713,27 @@ HiperLan
 , ormai non più utilizzata.
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 C'è un'altra piccola porzione dello spettro sotto al GHz, quella tra intorno
  ai 902 MHz, che è disponibile in Nord America (mentre in Europa intorno
  a 868 MHz).
- C'è poca banda ma la propagazione è migliore.
- Essendoci poca banda non possiamo trasmettere con un rate elevato.
- Questa parte dello spettro è stata utilizzata spesso per applicazioni di
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'è poca banda ma la propagazione è migliore.
+ 
+\end_layout
+
+\begin_layout Itemize
+Essendoci poca banda non possiamo trasmettere con un rate elevato.
+ 
+\end_layout
+
+\begin_layout Itemize
+Questa parte dello spettro è stata utilizzata spesso per applicazioni di
  
 \emph on
 sensing
@@ -2852,6 +3747,7 @@ metering
  questa parte dello spettro.
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 La possibilità di utilizzare queste parti dello spettro è stata 
 \series bold
@@ -2865,15 +3761,22 @@ ISM
 \end_layout
 
 \begin_layout Standard
-La banda principale è quella tra 2.40 GHz e 2.48 GHz, con quindi una banda
- larga 80 MHz, che è una banda piuttosto grande.
+La banda principale è quella 
+\series bold
+tra
+\series default
+ 
+\series bold
+2.40 GHz e 2.48 GHz
+\series default
+, con quindi una banda larga 80 MHz, che è una banda piuttosto grande.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Questa banda è praticamente utilizzabile in qualunque paese al mondo.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Essendo una banda molto affollata dobbiamo aspettarci tante interferenze.
 \end_layout
 
@@ -2882,14 +3785,23 @@ Regole per utilizzare la banda ISM
 \end_layout
 
 \begin_layout Standard
-Essendo condiviso ci sono delle regole per utilizzare questa parte dello
- spettro.
+Essendo condiviso ci sono delle 
+\series bold
+regole per utilizzare
+\series default
+ questa parte dello spettro.
 \end_layout
 
 \begin_layout Standard
-La prima regola più importante era quella di utilizzare tecniche a 
+La prima regola più importante 
+\series bold
+era
+\series default
+ quella di utilizzare tecniche a 
+\series bold
 \emph on
 spread spectrum
+\series default
 \emph default
  (tecniche basate su CDMA, quindi non utilizzando direttamente bits ma 
 \emph on
@@ -2904,11 +3816,13 @@ Utilizzando CDMA, se ci sono interferenze da segnali
 \emph on
 narrow
 \emph default
-, riusciamo a ricostruire il nostro segnale anche con l'interferenza sopra.
+ (a stretta banda), riusciamo a ricostruire il nostro segnale anche con
+ l'interferenza sopra.
 \end_layout
 
 \begin_layout Standard
-La tecnologia WiFi è stata influenzata pesantamente da queste regole.
+La tecnologia WiFi, nel suo sviluppo iniziale, è stata influenzata pesantamente
+ da queste regole.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2916,18 +3830,33 @@ Potenza sulla banda ISM
 \end_layout
 
 \begin_layout Standard
-In Europa il limite di potenza sull'EIRP (quindi considerando il guadagno
- dell'antenna) è 100mW, mentre in America è 1W
+In Europa il limite di potenza sull'
+\series bold
+EIRP 
+\series default
+(quindi considerando il guadagno dell'antenna) è 
+\series bold
+100mW
+\series default
+, mentre in America è 
+\series bold
+1W
+\series default
+
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 Su Linux la gestione dei limiti di potenza in base al paese è gestita dal
- CRDA (
+ 
+\series bold
+CRDA
+\series default
+ (
 \emph on
 Central Regulatory Domain Agent
 \emph default
-)
+), in altri sistemi operativi esistono strumenti simili
 \end_layout
 
 \end_inset
@@ -2955,7 +3884,11 @@ Europa
 Low band
 \series default
 \emph default
-: Banda a 5.2 (5.15-5.35) GHz (inizialmente per HiperLan o 802.11a)
+: Banda a 5.2 (5.15-5.35) GHz (inizialmente per HiperLan o 
+\series bold
+802.11a
+\series default
+)
 \end_layout
 
 \begin_layout Itemize
@@ -2965,7 +3898,11 @@ Low band
 High band
 \series default
 \emph default
-: Banda a 5.4 (5.47-5.725) GHz (inizialmente per HiperLan II o 802.11a)
+: Banda a 5.4 (5.47-5.725) GHz (inizialmente per HiperLan II o 
+\series bold
+802.11a
+\series default
+)
 \end_layout
 
 \end_deeper
@@ -2997,38 +3934,71 @@ Inizialmente in Europa non era possibile utilizzare 802.11a, ora esistono
 \end_layout
 
 \begin_layout Itemize
-Vantaggi della banda a 5 GHz:
+
+\series bold
+Vantaggi
+\series default
+ della banda a 5 GHz:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-C'è bassa interferenza 
+C'è 
+\series bold
+bassa interferenza
+\series default
+, pochi sistemi la usano
 \end_layout
 
 \begin_layout Itemize
-Banda molto larga, è possibile 
+
+\series bold
+Banda molto larga
+\series default
+, è possibile aumentare la velocità
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Svantaggi della banda a 5 GHz:
+
+\series bold
+Svantaggi
+\series default
+ della banda a 5 GHz:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-C'è forte attenuazione
+C'è
+\series bold
+ forte attenuazione
+\series default
+, specialmente per effetti atmosferici
 \end_layout
 
 \begin_layout Itemize
-È necessaria più potenza per trasmettere
+È 
+\series bold
+necessaria più potenza
+\series default
+ per trasmettere
 \end_layout
 
 \begin_layout Itemize
-Gli ostacoli sono più difficili da superare.
+Gli 
+\series bold
+ostacoli
+\series default
+ sono più 
+\series bold
+difficili da superare
+\series default
+.
 \end_layout
 
 \begin_layout Itemize
-Sono necessari più access point per coprire la stessa area
+Sono necessari più access point per coprire la stessa area.
+ A parità di potenza l'area di copertura è minore.
 \end_layout
 
 \end_deeper
@@ -3039,27 +4009,124 @@ UNII americana
 \end_layout
 
 \begin_layout Standard
-[omissis]
+Sono 300 MHz di banda tra 5.2 e 5.8 GHz.
 \end_layout
 
+\begin_layout Itemize
+Questi 300 MHz sono suddivisi in 3 sottobande da 100 MHz ciascuna, con una
+ serie di limiti di potenza (EIRP):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Low
+\begin_inset Quotes erd
+\end_inset
+
+: 5.15 - 5.25 GHz a potenza massima di 50 mW 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Middle
+\begin_inset Quotes erd
+\end_inset
+
+: 5.25 - 5.35 GHz a potenza massima di 250 mW
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+High
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+: 5.725 - 5.825 GHz a potenza massima di 1 W
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Utilizzo delle sottobande:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Low/Middle: indoor
+\end_layout
+
+\begin_layout Itemize
+High: outdoor
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection*
 802.11h
 \end_layout
 
 \begin_layout Standard
-Abbassare la potenza e cambiare frequenza quando viene rilevato un radar.
+L'
+\bar under
+802.11a non è permesso in Europa
+\bar default
+ per via delle frequenze.
+ 
 \end_layout
 
 \begin_layout Standard
-[omissis]
+Una variante nota come 802.11h è permessa e ha funzionalità aggiuntive:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Trasmission Power Control
+\emph default
+ (TPC)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Dynamic Frequency Selection 
+\emph default
+(DFS)
+\end_layout
+
+\begin_layout Standard
+Queste due funzionalità vengono utilizzate per 
+\bar under
+abbassare la potenza
+\bar default
+ e 
+\bar under
+cambiare frequenza
+\bar default
+ quando viene rilevato un radar sulla stessa frequenza.
+ Ovviamente le probabilità di fare interfenza con un radar sono infinitamente
+ basse, però è stato imposto comunque per sicurezza questo limite.
+\end_layout
+
+\begin_layout Subsection*
+WLANs basics
 \end_layout
 
 \begin_layout Standard
 L'idea iniziale era di creare una versione di Ethernet wireless.
- Ethernet (802.3) era ormai uno standard applicaot da tutti.
+ Ethernet (802.3) era ormai uno standard applicato da tutti.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Nelle prime versioni di Ethernet c'era il 
 \emph on
 medium access control
@@ -3068,7 +4135,7 @@ medium access control
  di comunicazione condiviso.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 L'idea delle reti wireless era quella di applicare la stessa idea utilizzata
  per Ethernet, sul wireless, dato che anche il wireless è un mezzo condiviso
  così come un cavo 
@@ -3127,11 +4194,11 @@ Nella figura seguente vediamo lo sviluppo degli standard nel tempo:
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Gli standard principali che vedremo saranno 802.11a,b,g.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 802.11i è la nuova versione del 
 \emph on
 medium access control
@@ -3144,11 +4211,11 @@ legacy
  che quella aggiornata.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 802.11af utilizza la banda libera tra i canali televisivi per creare WLAN.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 802.11ah è l'unico standard per utilizzare wifi sotto al GHz (a basse potenze
  e bassa velocità).
 \end_layout
@@ -3162,8 +4229,159 @@ Quasi tutte le tecnologie viste utilizzano una banda di 20MHz per canale,
 Storia degli standard
 \end_layout
 
+\begin_layout Itemize
+Nella seconda metà degli anni 80:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+C'erano standard proprietari per le LAN wireless (specialmente nel Nord
+ America)
+\end_layout
+
+\begin_layout Itemize
+Operavano sulla banda dei 900MHz
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+1991: IEEE inizia la standardizzazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Alcuni manufacturers spingono per la standardizzazione 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+1997: Viene approvato il primo standard della serie 802.11
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Vengono proposti 3 layer fisici a 1 o 2 Mb/s
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Frequency Hopping Spread Spectrum 
+\emph default
+(FHSS)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Direct Sequence Spread Spectrum 
+\emph default
+(DSSS)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Infrared
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+1999: Due nuovi layer fisici vengono approvati
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11a da 6 a 54 Mb/s nella banda dei 5 GHz
+\end_layout
+
+\begin_layout Itemize
+802.11b da 5.5 a 11 Mb/s nella banda dei 2.4 GHz
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+2003:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11g (OFDM nella banda dei 2.4 GHz)
+\end_layout
+
+\begin_layout Itemize
+802.11f (Inter access-point protocol)
+\end_layout
+
+\begin_layout Itemize
+802.11h (Radio resource management, channel selection e control power)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+2004:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11i (Network Security)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+2005:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11e (Nuovo strato MAC con supporto per il QoS)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+2009:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11n (High Rate)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aggiornamenti recenti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+802.11p: Comunicazione tra veicoli 
+\end_layout
+
+\begin_layout Itemize
+802.11s: Reti mesh a livello 2 (Routing)
+\end_layout
+
+\begin_layout Itemize
+802.11ac: Rate molto elevato fino a 1Gb/s con modulazione densa (256 QAM),
+ MIMO (con 8 stream), canali più larghi (da 80 a 160MHz).
+ Draft del 2011 ed i primi chips rilasciati nel Gennaio 2012
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-[omissis, saltato]
+Vediamo la timeline:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan4.png
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3219,16 +4437,40 @@ Certificazione di conformità al risparmio energetico
 Standard 802.11 
 \end_layout
 
-\begin_layout Subsection*
-Requisiti
+\begin_layout Standard
+[TODO]
 \end_layout
 
 \begin_layout Subsection*
+Architettura del sistema
+\end_layout
+
+\begin_layout Subsubsection*
+Requisiti
+\end_layout
+
+\begin_layout Itemize
+Un singolo sottostrato MAC deve essere in grado di supportare più tipi di
+ layer fisici
+\end_layout
+
+\begin_layout Itemize
+Deve essere una architettura robusta alle interferenze (interne o esterne
+ alla rete)
+\end_layout
+
+\begin_layout Itemize
+È necessario risolvere il problema della 
+\emph on
+stazione nascosta
+\end_layout
+
+\begin_layout Subsubsection*
 Vecchio standard
 \end_layout
 
 \begin_layout Standard
-Il primo standard è del 1997 e non è praticamente più utilizzato.
+Il primo standard rilasciato è del 1997 e non è praticamente più utilizzato.
  È la versione 
 \emph on
 legacy
@@ -3236,42 +4478,86 @@ legacy
 .
 \end_layout
 
-\begin_layout Subsubsection*
-Struttura del sistema
+\begin_layout Standard
+Questo standard non è più utilizzato ma ha senso guardarlo per motivi didattici,
+ dato che è strettamente legato allo standard attuale.
 \end_layout
 
 \begin_layout Standard
-È strutturato con un sottostrato MAC
+È strutturato in:
 \end_layout
 
-\begin_layout Standard
-[omissis]
+\begin_layout Itemize
+
+\series bold
+Sottostrato MAC
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+Protocollo di gestione del sottostrato MAC e servizi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Physical (PHY) layers
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Infrarossi
+\end_layout
+
+\begin_layout Itemize
+FHSS
+\end_layout
+
+\begin_layout Itemize
+DSSS
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection*
 Componenti del sistema
 \end_layout
 
 \begin_layout Itemize
-Stations (
+
+\series bold
+Stations
+\series default
+ (
 \series bold
 STA
 \series default
-)
+): Sono i dispositivi che si collegano ad una rete
 \end_layout
 
 \begin_layout Itemize
-Access Point (
+
+\series bold
+Access Point
+\series default
+ (
 \series bold
 AP
 \series default
-): Come le stations ma con la possibilità di fare bridging tra la rete wireless
- ed una rete cablata.
+): Come le stations ma con la 
+\bar under
+possibilità di fare bridging 
+\bar default
+tra la rete wireless ed una rete cablata.
  Opera a livello 2.
 \end_layout
 
 \begin_layout Itemize
-Basic Service Set (
+
+\series bold
+Basic Service Set
+\series default
+ (
 \series bold
 BSS
 \series default
@@ -3281,7 +4567,11 @@ BSS
 
 \begin_deeper
 \begin_layout Itemize
-Indipendent BSS (
+
+\series bold
+Indipendent BSS
+\series default
+ (
 \series bold
 IBBS
 \series default
@@ -3291,13 +4581,21 @@ ad-hoc
 \end_layout
 
 \begin_layout Itemize
-Infrastructure BSS: È il caso di una rete che si basa su un access point
- per il relay dei messaggi tra le stations.
+
+\series bold
+Infrastructure BSS
+\series default
+: È il caso di una rete che si basa su un access point per il relay dei
+ messaggi tra le stations.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Extended Service Set (
+
+\series bold
+Extended Service Set
+\series default
+ (
 \series bold
 ESS
 \series default
@@ -3311,7 +4609,11 @@ distribution system
 \end_layout
 
 \begin_layout Itemize
-Distribution System (
+
+\series bold
+Distribution System
+\series default
+ (
 \series bold
 DS
 \series default
@@ -3324,8 +4626,10 @@ Basic Service Set (BSS)
 
 \begin_layout Itemize
 Le stazioni sono tutte controllate dalla stessa 
+\series bold
 \emph on
 coordination function
+\series default
 \emph default
 : la funzione logica che controlla l'accesso al canale radio condiviso.
 \end_layout
@@ -3334,6 +4638,28 @@ coordination function
 È un concetto simile alle celle nelle reti cellulari
 \end_layout
 
+\begin_layout Itemize
+Ci sono due possibili tipi di BSS:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Infrastructure
+\emph default
+ BSS
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Independent
+\emph default
+ BSS (IBBS)
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection*
 Infrastructure BSS
 \end_layout
@@ -3722,8 +5048,961 @@ bridge
  all'interno dell'AP.
 \end_layout
 
+\begin_layout Subsection*
+Sottostrato MAC di 802.11
+\end_layout
+
+\begin_layout Subsubsection*
+Funzioni e servizi del layer MAC
+\end_layout
+
+\begin_layout Itemize
+Accesso al canale
+\end_layout
+
+\begin_layout Itemize
+Controllo d'errore
+\end_layout
+
+\begin_layout Itemize
+Frammentazione e riassemblazione
+\end_layout
+
+\begin_layout Itemize
+Power saving
+\end_layout
+
+\begin_layout Itemize
+Addressing
+\end_layout
+
+\begin_layout Itemize
+Framing
+\end_layout
+
+\begin_layout Subsubsection*
+Accesso al mezzo fisico
+\end_layout
+
+\begin_layout Standard
+L'accesso al canale è coordinato da delle 
+\emph on
+coordination functions
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Nello standard 802.11 c'è:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Distributed Coordination Function
+\emph default
+ (
+\series bold
+DCF
+\series default
+) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È molto simile ad Ethernet
+\end_layout
+
+\begin_layout Itemize
+È basato sul 
+\emph on
+backoff
+\emph default
+ di CSMA
+\end_layout
+
+\begin_layout Itemize
+In realtà 
+\series bold
+mai utilizzata
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Point Coordination Function
+\emph default
+ (
+\series bold
+PCF
+\series default
+) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un approccio 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+collision free
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, si evitano le collisioni 
+\begin_inset Quotes eld
+\end_inset
+
+per design
+\begin_inset Quotes erd
+\end_inset
+
+ del protocollo.
+\end_layout
+
+\begin_layout Itemize
+È basato su un paradigma 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+poll-response
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Controllo d'errore
+\end_layout
+
+\begin_layout Standard
+Il controllo d'errore è fondamentale su un mezzo di trasmissione 
+\emph on
+noisy
+\emph default
+ come le onde elettromagnetiche.
+\end_layout
+
+\begin_layout Standard
+Il controllo d'errore è gestito con un protocollo in stile 
+\emph on
+stop-and-wait
+\emph default
+: abbiamo un frame di acknowledgement per ogni frame.
+\end_layout
+
+\begin_layout Standard
+Il controllo d'errore è attivo 
+\bar under
+solo per comunicazioni 
+\emph on
+unicast
+\emph default
+\bar default
+ (per multicast non è affidabile).
+\end_layout
+
+\begin_layout Standard
+È basato sull'
+\bar under
+utilizzo di timers
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Perché non utilizziamo lo stesso meccanismo di Ethernet anche per il wireless?
+ Perché non possiamo replicare lo stesso collision detection sul wireless.
+\end_layout
+
+\begin_layout Standard
+Solitamente in Ethernet si ascolta nel canale mentre si trasmette e si individua
+no collisioni.
+ Però nel wifi la nostra potenza è così alta che non riusciamo ad accorgerci
+ delle possibili collisioni, non riceviamo gli altri mentre trasmettiamo.
+\end_layout
+
+\begin_layout Paragraph*
+Interframe spacing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan12.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo standard 802.11 definisce una serie di intervalli temporali per regolare
+ l'accesso al canale.
+\end_layout
+
+\begin_layout Standard
+È un meccanismo per determinare la quantità minima di tempo tra la fine
+ del frame precedente e l'inizio del frame successivo.
+\end_layout
+
+\begin_layout Standard
+Il principale è 
+\series bold
+DIFS
+\series default
+.
+ Le trame di controllo hanno un intervallo più breve quindi 
+\begin_inset Quotes eld
+\end_inset
+
+vincono
+\begin_inset Quotes erd
+\end_inset
+
+ sempre e vengono trasmette priam delle altre.
+\end_layout
+
+\begin_layout Standard
+Il meccanismo di base di accesso al canale è il 
+\emph on
+carrier sensing
+\emph default
+, cioè l'ascolto 
+\bar under
+prima
+\bar default
+ di trasmettere.
+\end_layout
+
+\begin_layout Standard
+I vari intervalli temporali sono:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Short Inter Frame Spacing
+\series default
+ 
+\emph default
+(SIFS): Le trasmissioni con alta priorità possono iniziare dopo un intervallo
+ SIFS dopo la precedente trasmissione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+PCF Inter Frame Spacing
+\series default
+\emph default
+ (PIFS): È la quantità minima di tempo per cui il canale deve essere libero
+ prima di accedere in modalità PCF
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+DCF Inter Frame Spacing
+\series default
+\emph default
+ (DIFS): È il tempo da attendere prima di iniziare una trasmissione durante
+ la DCF mode
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Extended Inter Frame Spacing
+\series default
+\emph default
+ (EIFS): È il tempo di attesa utilizzato dopo una trasmissione nel caso
+ in cui non possa essere decodificata (ad esempio a causa di una collisione).
+\end_layout
+
+\begin_layout Subsubsection*
+Modalità di accesso DCF
+\end_layout
+
+\begin_layout Standard
+DCF permette il coordinamento nella trasmissione da parte di più stazioni
+ quando non c'è un controller centrale.
+\end_layout
+
+\begin_layout Standard
+Può essere utilizzato sia in 
+\emph on
+IBBS
+\emph default
+ che in 
+\emph on
+infrastructure BSS
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+È basato su 
+\emph on
+Carrier Sense Multiple Access 
+\emph default
+with 
+\emph on
+Collision Avoidance
+\emph default
+ (CSMA/CA).
+ 
+\end_layout
+
+\begin_layout Itemize
+Prima di iniziare una trasmissione, una stazione ascolta il canale per una
+ quantità di tempo pari a DIFS
+\end_layout
+
+\begin_layout Itemize
+Se il canale è libero: la stazione trasmette 
+\end_layout
+
+\begin_layout Itemize
+Se il canale è occupato: la stazione aspetta 
+\series bold
+ed inizia una procedura di 
+\emph on
+backoff
+\emph default
+ 
+\end_layout
+
+\begin_layout Itemize
+Il tempo di attesa è misurato in slots (time tick)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan13.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se il canale è occupato, ogni stazione che desidera trasmettere aspetta
+ un numero di slots 
+\begin_inset Formula $DIFS+R$
+\end_inset
+
+ dove 
+\begin_inset Formula $R$
+\end_inset
+
+ è un numero casuale tra 1 e CW (
+\emph on
+Congestion Window
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Se durante il backoff, il canale diventa occupato, si ferma il backoff e
+ si continua a farlo quando il canale torna libero.
+\end_layout
+
+\begin_layout Itemize
+Se due o più frame consecutivi devono essere trasmessi, il backoff è utilizzato
+ anche se il canale è libero.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan14.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Algoritmo di backoff
+\end_layout
+
+\begin_layout Standard
+Il numero casuale di slot abbiamo visto che viene calcolato in un numero
+ massimo all'interno di un intervallo di 
+\emph on
+backoff
+\emph default
+ 
+\begin_inset Formula $\left[0,CW\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il valore di 
+\begin_inset Formula $CW$
+\end_inset
+
+ è impostato in base alle due regole seguenti:
+\end_layout
+
+\begin_layout Itemize
+Dopo una trasmissione senza successo 
+\begin_inset Formula $CW=2\cdot\left(CW+1\right)-1$
+\end_inset
+
+ , con un massimo di 
+\begin_inset Formula $CW_{max}=1023$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dopo una trasmissione corretta 
+\begin_inset Formula $CW=CW_{min}=31$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan15.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Controllo d'errore
+\end_layout
+
+\begin_layout Standard
+Il controllo d'errore è basato su messaggi di 
+\begin_inset Quotes eld
+\end_inset
+
+positive 
+\emph on
+acknowledgement
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Ogni frame unicast deve essere confermato mediante acknowledgement.
+\end_layout
+
+\begin_layout Standard
+Se il messaggio di acknowledgement non viene ricevuto, il frame è ritrasmesso.
+ C'è un numero massimo di ritrasmissioni per frame.
+\end_layout
+
+\begin_layout Standard
+I contatori di retry sono due:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Short Retry Counter
+\emph default
+ (per frame corti)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Long Retry Counter
+\emph default
+ (per frame più lunghi)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan16.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo visto che nei vari tempi di attesa abbiamo che 
+\begin_inset Formula 
+\[
+SIFS<DIFS
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi l'ACK ha priorità in trasmissione rispetto a frame dati.
+\end_layout
+
 \begin_layout Standard
 
+\end_layout
+
+\begin_layout Subsubsection*
+Problema della stazione nascosta
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan17.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema di un setup come quello in figura è che la stazione A vede l'access-
+point (
+\begin_inset Quotes eld
+\end_inset
+
+vede
+\begin_inset Quotes erd
+\end_inset
+
+ in termini di area di copertura radio).
+ Anche C vede l'access-point, però A e C non si vedono a vicenda.
+ Quindi non si possono accorgere delle collisioni, che possono diventare
+ continue.
+\end_layout
+
+\begin_layout Standard
+Il problema viene risolto in 802.11 aggiungendo al 
+\emph on
+carrier sensing
+\emph default
+ (CS) fisico anche un 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+logical carrier sensing
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questo 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+logical carrier sensing
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ è basato su delle informazioni di controllo che vengono utilizzate per
+ i 
+\emph on
+Network Allocation Vector
+\emph default
+ (NAV).
+ Se tra NAV e CS uno dei due ha collisione, salta tutto.
+\end_layout
+
+\begin_layout Standard
+Il NAV indica la durata della trasmissione che si sta per effettuare sul
+ canale.
+\end_layout
+
+\begin_layout Standard
+Le stazioni che ricevono un frame contenente NAV, evitano di trasmettere
+ per la quantità di tempo notificata dal NAV.
+ Evitano di trasmettere anche se a livello fisico il canale risulta libero.
+\end_layout
+
+\begin_layout Standard
+Quindi per realizzare questo meccanismo si utilizza NAV, CTS (Clear To Send),
+ RTS (Request To Send).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan18.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema della stazione nascosta è risolto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan19.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La stazione C in questa figura riceve la trama CTS contenente le informazioni
+ NAV e quindi non trasmette per la durata della trasmissione di A.
+\end_layout
+
+\begin_layout Subsubsection*
+Discussione sul Virtual 
+\emph on
+Carrirer Sense
+\end_layout
+
+\begin_layout Standard
+Questo meccanismo di carrier sense virtuale crea un altro problema, noto
+ come il 
+\series bold
+problema del terminale esposto
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Il riutilizzo delle risorse è limitato.
+\end_layout
+
+\begin_layout Standard
+Due possibili soluzioni sono:
+\end_layout
+
+\begin_layout Itemize
+Scheduling intelligente
+\end_layout
+
+\begin_layout Itemize
+Planning della frequenza
+\end_layout
+
+\begin_layout Standard
+Si riduce la capacità del sistema (c'è overhead a causa dello scambio di
+ frame di controllo)
+\end_layout
+
+\begin_layout Standard
+L'efficienza del NAV dipende da:
+\end_layout
+
+\begin_layout Itemize
+Caratteristiche del canale
+\end_layout
+
+\begin_layout Itemize
+Dimensione del frame dati
+\end_layout
+
+\begin_layout Standard
+Lo standard 802.11 definisce una soglia (
+\emph on
+RTS_Threshold
+\emph default
+) sulla dimensione 
+\begin_inset Formula $D$
+\end_inset
+
+ dei frame dati.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $D<RTSThreshold$
+\end_inset
+
+, il NAV non è utilizzato (la trasmissione non è 
+\begin_inset Quotes eld
+\end_inset
+
+protetta
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $D>RTSThreshold$
+\end_inset
+
+, il NAV non è utilizzato (la trasmissione non è 
+\begin_inset Quotes eld
+\end_inset
+
+protetta
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection*
+Procedura di accesso PCF 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\emph on
+Point Coordination Function
+\end_layout
+
+\begin_layout Itemize
+L'accesso al canale è gestito da un 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+point coordinator
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ implementato nell'access point
+\end_layout
+
+\begin_layout Itemize
+PCF funziona solo in una architettura di tipo centralizzata (
+\emph on
+infrastructure BSS
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Le stazioni associate possono inviare frames dopo autorizzazione esplicita
+ da parte del 
+\emph on
+point coordinato
+\end_layout
+
+\begin_layout Itemize
+È simile ad un meccanismo basato su tokens.
+\end_layout
+
+\begin_layout Subsubsection*
+PCF duration
+\end_layout
+
+\begin_layout Standard
+C'è il problema che si vuole iniziare CFP ma potrebbe esserci una trasmissione
+ in corso e bisogna attendere che termini.
+\end_layout
+
+\begin_layout Subsubsection*
+Commenti su PCF
+\end_layout
+
+\begin_layout Standard
+C'è l'altro problema che quando si trasmette un pacchetto di polling, la
+ stazione può rispondere tenendo il canale occupato per poco o tanto tempo.
+\end_layout
+
+\begin_layout Standard
+802.11e è il Quality of Service MAC, una versione del protocollo MAC che
+ garantisce la qualità del servizio.
+\end_layout
+
+\begin_layout Subsection*
+Sinassi del livello MAC 802.11
+\end_layout
+
+\begin_layout Standard
+Il formato è in qualche modo simile ad Ethernet, principalmente perché la
+ rete di distribuzione è solitamente Ethernet.
+\end_layout
+
+\begin_layout Standard
+Lo strato MAC è progettato per supportare più tipi di layer fisici.
+\end_layout
+
+\begin_layout Standard
+È una sintassi complessa perché ci sono 
+\series bold
+tanti tipi di frame
+\series default
+ e l'interpretazione è complessa.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Protocol Version
+\emph default
+: È sempre legacy o 802.11e, che sono gli unici due valori validi
+\end_layout
+
+\begin_layout Itemize
+[omissis]
+\end_layout
+
+\begin_layout Subsection*
+Network management
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Scanning
+\emph default
+: È l'operazione per scoprire i nuovi access point diponibili
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Authentication
+\emph default
+: È effettuata da una stazione sulla BSS
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Association
+\emph default
+: È l'operazione di 
+\begin_inset Quotes eld
+\end_inset
+
+check-in
+\begin_inset Quotes erd
+\end_inset
+
+ di una station con un'altra STA o BSS
+\end_layout
+
+\begin_layout Itemize
+[......]
+\end_layout
+
+\begin_layout Subsubsection*
+Scanning
+\end_layout
+
+\begin_layout Standard
+È l'operazione utilizzata per scoprire le BSS disponibili a cui collegarsi.
+\end_layout
+
+\begin_layout Standard
+Non esiste un equivalente nelle reti cablate ovviamente.
+\end_layout
+
+\begin_layout Standard
+Ci sono due possibili modi per fare scanning: 
+\emph on
+passive mode
+\emph default
+ e 
+\emph on
+active mode
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Passive mode: La STA ascolta su tutti i canali disponibili in sequenza e
+ aspetta l'arrivo di un 
+\emph on
+beacon
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Active scanning: La STA può inviare una 
+\emph on
+probe request
+\emph default
+ in unicast o broadcast, per sollecitare una risposta, una 
+\emph on
+probe response
+\emph default
+ da parte dell'access point.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo sistema velocizza leggermente il processo di connessione.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Power management 
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+Solo in questo caso la poll viene inviata dalla station invece dell'access
+ point, per notificare che è sveglia.
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+RTS,CTS e gli altri frame di controllo sono trasmessi in modalità FHSS,
+ spread spectrum.
+ Questo perché sono più robusti e che la probabilità di avere errori (indipenden
+temente dal fatto di utilizzare FHSS o meno), è più alta se la velocità
+ è elevata.
 \end_layout
 
 \end_body
