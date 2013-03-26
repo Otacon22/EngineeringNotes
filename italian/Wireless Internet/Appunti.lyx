@@ -5727,8 +5727,11 @@ Planning della frequenza
 \end_layout
 
 \begin_layout Standard
-Si riduce la capacità del sistema (c'è overhead a causa dello scambio di
- frame di controllo)
+Si riduce la capacità del sistema (c'è 
+\series bold
+overhead
+\series default
+ a causa dello scambio di frame di controllo)
 \end_layout
 
 \begin_layout Standard
@@ -5804,8 +5807,10 @@ L'accesso al canale è gestito da un
 \end_inset
 
 
+\series bold
 \emph on
 point coordinator
+\series default
 \emph default
 
 \begin_inset Quotes erd
@@ -5815,7 +5820,11 @@ point coordinator
 \end_layout
 
 \begin_layout Itemize
-PCF funziona solo in una architettura di tipo centralizzata (
+PCF funziona solo in una architettura di tipo 
+\series bold
+centralizzata
+\series default
+ (
 \emph on
 infrastructure BSS
 \emph default
@@ -5823,14 +5832,212 @@ infrastructure BSS
 \end_layout
 
 \begin_layout Itemize
-Le stazioni associate possono inviare frames dopo autorizzazione esplicita
+Le stazioni associate possono inviare frames 
+\bar under
+dopo autorizzazione esplicita
+\bar default
  da parte del 
 \emph on
 point coordinato
 \end_layout
 
 \begin_layout Itemize
-È simile ad un meccanismo basato su tokens.
+È simile ad un 
+\bar under
+meccanismo basato su tokens
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Il tempo viene 
+\bar under
+suddiviso in periodi
+\bar default
+ governati dal DCF (basati su 
+\begin_inset Quotes eld
+\end_inset
+
+contenimento
+\begin_inset Quotes erd
+\end_inset
+
+) e da PCF (senza 
+\begin_inset Quotes eld
+\end_inset
+
+contenimento
+\begin_inset Quotes erd
+\end_inset
+
+), che si alternano.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan20.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La durata di questo 
+\series bold
+super frame
+\series default
+ è definita dai 
+\series bold
+\emph on
+beacons
+\series default
+\emph default
+ inviati dall'access point.
+\end_layout
+
+\begin_layout Subsubsection*
+Procedura di accesso PCF
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan21.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+All'inizio di un 
+\emph on
+Contention Free Period
+\emph default
+ (
+\series bold
+CFP
+\series default
+), l'access point invia un 
+\series bold
+\emph on
+beacon
+\series default
+\emph default
+ 
+\emph on
+frame
+\emph default
+ con l'indicazione della durata massima del CFP (
+\emph on
+CFPMaxDuration
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Tutte le stazioni ricevono il beacon e impostano il NAV per un tempo uguale
+ a 
+\emph on
+CFPMaxDuration 
+\emph default
+(DCF disattivato)
+\end_layout
+
+\begin_layout Itemize
+Durante trasmissioni CFP si segue un meccanismo 
+\series bold
+\emph on
+poll
+\series default
+\emph default
+/
+\series bold
+\emph on
+response 
+\series default
+\emph default
+(con 
+\emph on
+piggybacking
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan22.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui il contenimento del canale venga prolungato, l'inizio della
+ CFP può essere ritardato o la CFP può essere ridotta.
+\end_layout
+
+\begin_layout Itemize
+L'access point può terminare la CFP mediante un (
+\emph on
+CF-End Frame
+\emph default
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Commenti su PCF
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+PCF non è solitamente utilizzato 
+\bar default
+a causa della gestione complessa e della impossibilità di gestire servizi
+ 
+\emph on
+real time
+\emph default
+ che non possono essere 
+\begin_inset Quotes eld
+\end_inset
+
+interrotti
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Infatti 
+\series bold
+non ci sono limiti
+\series default
+ alla durata delle trasmissioni e ci sono 
+\series bold
+ritardi
+\series default
+ nella trasmissione del 
+\emph on
+beacon frame
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Nessun servizio per la gestione della qualità del servizio può essere implementa
+to con PCF.
+\end_layout
+
+\begin_layout Standard
+Questi problemi hanno portato allo sviluppo dello 
+\series bold
+standard 802.11e
+\series default
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -5861,12 +6068,13 @@ Sinassi del livello MAC 802.11
 \end_layout
 
 \begin_layout Standard
-Il formato è in qualche modo simile ad Ethernet, principalmente perché la
- rete di distribuzione è solitamente Ethernet.
+L'approccio dello standard 802.11 è quello di definire un sottostrato MAC
+ in grado di supportare più tipi di layer fisici.
 \end_layout
 
 \begin_layout Standard
-Lo strato MAC è progettato per supportare più tipi di layer fisici.
+Il formato è in qualche modo simile ad Ethernet, principalmente perché la
+ rete di distribuzione è solitamente Ethernet.
 \end_layout
 
 \begin_layout Standard
@@ -5874,21 +6082,1268 @@ Lo strato MAC è progettato per supportare più tipi di layer fisici.
 \series bold
 tanti tipi di frame
 \series default
- e l'interpretazione è complessa.
+ e l'interpretazione del significato delle varie parti è complessa.
+\end_layout
+
+\begin_layout Subsubsection*
+Formato del frame
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="9">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0-2312 Bytes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 Bytes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Frame Control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Duration ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sequence control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Address 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Body
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CRC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I due bytes di 
+\series bold
+\emph on
+frame control
+\series default
+\emph default
+ sono strutturati come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="11">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bits
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 Bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Protocol Version
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SubType
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+To DS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+From DS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+More frag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Retry
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Power Mgt.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+More Data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WEP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rsvd
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Protocol Version
+\series default
+\emph default
+: È sempre 
+\begin_inset Quotes eld
+\end_inset
+
+legacy
+\begin_inset Quotes erd
+\end_inset
+
+ o 802.11e, che sono gli unici due valori validi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Type 
+\series default
+e 
+\series bold
+SubType
+\series default
+: La combinazione di questi due valori indica il tipo di frame.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Management Type 
+\series default
+(
+\begin_inset Formula $Type=00$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0000$
+\end_inset
+
+: Association 
+\series default
+Request
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0001$
+\end_inset
+
+: Association 
+\series default
+Response
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0010$
+\end_inset
+
+: Reassociation 
+\series default
+Request
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0011$
+\end_inset
+
+: Reassociation 
+\series default
+Response
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0100$
+\end_inset
+
+: Probe 
+\series default
+request
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0101$
+\end_inset
+
+: Probe 
+\series default
+response
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1000$
+\end_inset
+
+: Beacon
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1010$
+\end_inset
+
+: Disassociation
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1011$
+\end_inset
+
+: Authentication
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1100$
+\end_inset
+
+: Deauthentication
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Control Type
+\series default
+ (
+\begin_inset Formula $Type=01$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1011$
+\end_inset
+
+: RTS
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1100$
+\end_inset
+
+: CTS
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1101$
+\end_inset
+
+: ACK
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Data Type
+\series default
+ (
+\begin_inset Formula $Type=10$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0000$
+\end_inset
+
+: Data
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0001$
+\end_inset
+
+: Data+CF-ACK
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0010$
+\end_inset
+
+: Data+CF-Poll
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $0100$
+\end_inset
+
+: Null
+\end_layout
+
+\begin_layout Itemize
+SubType
+\series bold
+ 
+\begin_inset Formula $1000$
+\end_inset
+
+: QoS data
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Indirizzi: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Destination Address 
+\emph default
+(
+\series bold
+DA
+\series default
+): È l'indirizzo della 
+\series bold
+destinazione finale
 \end_layout
 
 \begin_layout Itemize
 
 \emph on
-Protocol Version
+Source Address 
 \emph default
-: È sempre legacy o 802.11e, che sono gli unici due valori validi
+(
+\series bold
+SA
+\series default
+): È l'indirizzo 
+\series bold
+sorgente originario
 \end_layout
 
 \begin_layout Itemize
-[omissis]
+
+\emph on
+Receiver Address 
+\emph default
+(
+\series bold
+RA
+\series default
+): È l'indirizzo dell' interfaccia wireless ricevente
 \end_layout
 
+\begin_layout Itemize
+
+\emph on
+Transmitter Address
+\emph default
+ (
+\series bold
+TA
+\series default
+): È l'indirizzo dell' interfaccia trasmettitrice
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Basic Service Set ID
+\emph default
+ (
+\series bold
+BSSID
+\series default
+): È l'indirizzo della BSS
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Infrastructure BSS
+\emph default
+: MAC address dell'AP
+\end_layout
+
+\begin_layout Itemize
+IBBS: Numero pseudocasuale
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tipo di TX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+To DS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+From DS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Addr 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Addr 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Addr 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Addr 4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IBBS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BSSID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not used
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+To AP Infra.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BSSID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not used
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+From AP Infra.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BSSID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not used
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+WDS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SA
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Ricordiamo che WDS sta per 
+\emph on
+Wireless Distribution System
+\emph default
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Revisione dei tipi di addressing:
+\end_layout
+
+\begin_layout Itemize
+Tipo di trasmissione: IBBS
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan23.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso due stations della rete si inviano un pacchetto a vicenda.
+ Nel caso di rete Ad-Hoc il BSSID sarà l'indirizzo di una delle due stations.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tipo di trasmissione: To AP infra.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan24.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso una trama in arrivo da un server SRV sulla rete di distribuzione,
+ viene inviata ad una stations sulla rete
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tipo di trasmissione: From AP infra.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan25.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso viene inviata una trama da una stations della rete wireless
+ ad un server sulla rete di distribuzione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tipo di trasmissione: WDS
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan26.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso si sta guardando un pacchetto in transito tra due BSS diversi
+ tramite WDS.
+ Il pacchetto in transito contiene informazioni sui due access point su
+ cui transita e sorgente/destinatario 
+\begin_inset Quotes eld
+\end_inset
+
+reali
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
 Network management
 \end_layout
@@ -5926,7 +7381,19 @@ check-in
 \end_layout
 
 \begin_layout Itemize
-[......]
+
+\emph on
+Power Management
+\emph default
+: Gestisce le modalità di basso consumo energetico
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Syncronization
+\emph default
+: Procedure distribuite per sincronizzazione a layer fisico
 \end_layout
 
 \begin_layout Subsubsection*
@@ -5981,16 +7448,245 @@ Questo sistema velocizza leggermente il processo di connessione.
 
 \end_deeper
 \begin_layout Subsubsection*
+Associazione
+\end_layout
+
+\begin_layout Standard
+È equivalente a 
+\begin_inset Quotes eld
+\end_inset
+
+collegare il cavo
+\begin_inset Quotes erd
+\end_inset
+
+ alla rete.
+\end_layout
+
+\begin_layout Standard
+Con la procedura di associazione: 
+\end_layout
+
+\begin_layout Itemize
+L'access point salva le informazioni sulla stazione base nel database delle
+ associazioni
+\end_layout
+
+\begin_layout Itemize
+La STA può iniziare ad utilizzare i servizi del distribution system
+\end_layout
+
+\begin_layout Itemize
+Lo standard 802.11 non permette associazioni multiple
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan27.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La procedura viene avviata dalla station, che scambia dei frame di management
+ unicast
+\end_layout
+
+\begin_layout Itemize
+L'access point assegna alla station un ID di associazione (
+\emph on
+Association ID - AID
+\emph default
+) unico
+\end_layout
+
+\begin_layout Subsubsection*
+Synchronization
+\end_layout
+
+\begin_layout Itemize
+Infrastructure BSS:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La sincronizzazione è gestita dall'access point
+\end_layout
+
+\begin_layout Itemize
+L'access point include le sue informazioni di clock locale nei beacons e
+ nei probe response 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Independent BSS (Ad-Hoc):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le stations sincronizzano il clock dell' iniziatore del IBSS che è incaricato
+ di inviare i frames beacon
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
 Power management 
+\end_layout
+
+\begin_layout Itemize
+Modalità attiva: Sempre attivo e pronto a inviare e ricevere.
+ Il relativo campo nella trama è di valore 0
+\end_layout
+
+\begin_layout Itemize
+Modalità power save: Il transreciver viene spento, il bit nella trama relativa
+ è di valore 1.
+ L'access point dovrà occuparsi di salvare in un buffer il traffico per
+ quella stazione.
+ Solo in questo caso la poll viene inviata dalla station invece dell'access
+ point, per notificare che è sveglia.
+ Nel caso di una rete Ad-Hoc le operazioni saranno diverse.
+\end_layout
+
+\begin_layout Subsubsection*
+Power Management: Traffic Indication Map (TIM)
+\end_layout
+
+\begin_layout Itemize
+Quando una stazione si associa ad un access point, ottiene un AID
+\end_layout
+
+\begin_layout Itemize
+Quando la stazione va in modalità 
+\emph on
+power save
+\emph default
+, l'access point bufferizza il traffico
+\end_layout
+
+\begin_layout Itemize
+Quando il traffico viene bufferizzato, l'AID delle stazioni che hanno del
+ traffico bufferizzato in attesa viene segnalato nella 
+\series bold
+\emph on
+Traffic Indication Map
+\emph default
+ 
+\series default
+(
+\series bold
+TIM
+\series default
+) all'interno del 
+\emph on
+beacon frame
+\emph default
+.
+ Quindi la 
+\series bold
+TIM
+\series default
+ informa tutte le stazioni se c'è traffico per loro in attesa
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I 
+\emph on
+beacons
+\emph default
+ sono trasmessi a intervalli regolari (
+\emph on
+Target Beacon Transmission Time - 
+\emph default
+TBTT)
+\end_layout
+
+\begin_layout Itemize
+Le stazioni possono andare in modalità sleep per più di un intervallo di
+ beacon.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quando la stazione si 
+\begin_inset Quotes eld
+\end_inset
+
+sveglia
+\begin_inset Quotes erd
+\end_inset
+
+, controlla i beacons e quindi l'AID nel TIM
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se la stazione vede il proprio AID nel TIM, invia all'access-point un 
+\series bold
+frame PS-Poll
+\end_layout
+
+\begin_layout Itemize
+L'access point inizia poi ad inviare il traffico che ha bufferizzato in
+ precedenza.
+ Per farlo imposta ad 1 il bit del campo 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+More Data
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quando 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+More Data
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ diventa 0 significa che non c'è più traffico da trasmettere.
+ Quando non ci sono più dati si rimuove anche l'AID dal TIM.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan28.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Standard
 [omissis]
-\end_layout
-
-\begin_layout Standard
-Solo in questo caso la poll viene inviata dalla station invece dell'access
- point, per notificare che è sveglia.
 \end_layout
 
 \begin_layout Standard
