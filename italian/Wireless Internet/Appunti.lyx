@@ -5233,6 +5233,22 @@ no collisioni.
  delle possibili collisioni, non riceviamo gli altri mentre trasmettiamo.
 \end_layout
 
+\begin_layout Standard
+
+\series bold
+Nota
+\series default
+:
+\series bold
+ 
+\series default
+RTS,CTS e gli altri frame di controllo sono trasmessi in modalità FHSS,
+ spread spectrum.
+ Questo perché sono più robusti e che la probabilità di avere errori (indipenden
+temente dal fatto di utilizzare FHSS o meno), è più alta se la velocità
+ è elevata.
+\end_layout
+
 \begin_layout Paragraph*
 Interframe spacing
 \end_layout
@@ -7396,7 +7412,7 @@ Syncronization
 : Procedure distribuite per sincronizzazione a layer fisico
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Scanning
 \end_layout
 
@@ -7447,8 +7463,8 @@ Questo sistema velocizza leggermente il processo di connessione.
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
-Associazione
+\begin_layout Subsection*
+Association
 \end_layout
 
 \begin_layout Standard
@@ -7503,7 +7519,7 @@ Association ID - AID
 ) unico
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Synchronization
 \end_layout
 
@@ -7533,7 +7549,7 @@ Le stations sincronizzano il clock dell' iniziatore del IBSS che è incaricato
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Power management 
 \end_layout
 
@@ -7681,24 +7697,1212 @@ More Data
 
 \end_layout
 
+\begin_layout Subsubsection*
+Power Management: Delivery Traffic Indication Message (DTIM)
+\end_layout
+
 \begin_layout Standard
+È utilizzato per 
+\begin_inset Quotes eld
+\end_inset
+
+svegliare
+\begin_inset Quotes erd
+\end_inset
+
+ delle stations per 
+\series bold
+traffico broadcast e multicast
+\series default
+.
+ È un tipo speciale di TIM.
+\end_layout
+
+\begin_layout Standard
+L'intervallo di trasmissione DTIM è relativamente lungo e superiore a quello
+ TIM.
+ Tutte le stazioni si svegliano per l'arrivo del segnale DTIM.
+ Anche DTIM è inviato insieme al beacon.
+\end_layout
+
+\begin_layout Subsubsection*
+Power Management: Ad-Hoc Traffic Indication Message (ATIM)
+\end_layout
+
+\begin_layout Itemize
+Quando c'è una IBBS, non abbiamo nessun access-point centrale.
+\end_layout
+
+\begin_layout Itemize
+Ogni stazione avvisa le altre di essere in modalità power save (ponendo
+ ad 1 il bit relativo)
+\end_layout
+
+\begin_layout Itemize
+Le altre stazioni che vogliono inviare si occuperanno di fare buffering
+ del traffico
+\end_layout
+
+\begin_layout Itemize
+Periodicamente le stazioni si 
+\begin_inset Quotes eld
+\end_inset
+
+svegliano
+\begin_inset Quotes erd
+\end_inset
+
+ e controllano se c'è traffico per loro.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le altre stazioni invieranno periodicamente un frame ATIM per notificare
+ la presenza di traffico in attesa.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Authentication
+\end_layout
+
+\begin_layout Standard
+Nel caso delle reti wireless il mezzo fisico è condiviso, quindi a differenza
+ delle reti cablate c'è un problema di confidenzialità molto più elevato.
+ Potenzialmente qualunque stazione può accedere alla rete.
+ È necessario verificare l'identità delle stazioni che accedono alla rete
+ con un qualche tipo di controllo di accesso, 
+\series bold
+\emph on
+access control
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Ci sono fondamentalmente due approcci:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Open System Authentication
+\emph default
+ (default): Nessuna limitazione per l'accesso (vedremo poi che questa è
+ al giorno d'oggi la modalità più utilizzata.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Shared Key Authentication
+\emph default
+ (opzionale): L'autenticazione è basata su un segreto condiviso.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\emph on
+Open System Authentication
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan29.png
+	scale 30
+
+\end_inset
+
 
 \end_layout
 
 \begin_layout Standard
-[omissis]
+L'access point autentica qualunque stazione che fa una richiesta.
+ Non c'è 
+\series bold
+nessun tipo di controllo
+\series default
+.
 \end_layout
 
 \begin_layout Standard
-[omissis]
+Possiamo utilizzare una 
+\emph on
+whitelist
+\emph default
+ sui MAC address, che però possono comunque essere spoofati.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\emph on
+Shared System Authentication
 \end_layout
 
 \begin_layout Standard
-RTS,CTS e gli altri frame di controllo sono trasmessi in modalità FHSS,
- spread spectrum.
- Questo perché sono più robusti e che la probabilità di avere errori (indipenden
-temente dal fatto di utilizzare FHSS o meno), è più alta se la velocità
- è elevata.
+È composta da due componenti principali:
+\end_layout
+
+\begin_layout Itemize
+Un meccanismo 
+\series bold
+\emph on
+challange/response
+\end_layout
+
+\begin_layout Itemize
+Un 
+\series bold
+algoritmo crittografico
+\series default
+ con chiave privata condivisa (basato su 
+\series bold
+WEP
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan30.svg
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+La station invia all'access point una richiesta di autenticazione (SKA),
+ con numero di sequenza 1
+\end_layout
+
+\begin_layout Enumerate
+L'access point risponde alla station con una 
+\begin_inset Quotes eld
+\end_inset
+
+challange
+\begin_inset Quotes erd
+\end_inset
+
+ , numero di sequenza 2, stato 0
+\end_layout
+
+\begin_layout Enumerate
+La station risponde alla challange dell'access point con la risposta cifrata
+ con la challange inviata dall'access point, numero di sequenza 3
+\end_layout
+
+\begin_layout Enumerate
+L'access point risponde alla station confermando l'autenticazione, numero
+ di sequenza 4, stato 1.
+\end_layout
+
+\begin_layout Subsubsection*
+WEP - Wired Equivalent Privacy
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan31.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+IV
+\series default
+ sta per 
+\emph on
+Initialization Vector
+\end_layout
+
+\begin_layout Itemize
+L'algoritmo di cifratura utilizzato con il 
+\emph on
+keystream 
+\emph default
+è basato su RC4.
+ Il 
+\emph on
+keystream
+\emph default
+ è di 64 bits
+\end_layout
+
+\begin_layout Itemize
+WEP riutilizza la stessa chiave per tutti i pacchetti cambiando solo l'IV.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un access point con forte traffico e pacchetti dati da 1500 bytes a 11 Mb/s
+ consuma tutto lo spazio IV in meno di 
+\series bold
+5 ore
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Un hacker è in grado di ottenere in relativamente poco tempo dei messaggi
+ cifrati con la stessa chiave e IV.
+ Sono possibili sia attacchi statistici che attacchi statistici combinati
+ ad attacchi 
+\begin_inset Quotes eld
+\end_inset
+
+attivi
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Vulnerabilità per l'integrità (CRC è lineare e debole):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un attaccante può semplicemente cambiare i bit nel pacchetto cifrato e cambiare
+ dei bit corrispondenti nel CRC
+\end_layout
+
+\begin_layout Itemize
+Il pacchetto è correttamente cifrato per il ricevitore ma non ha nessun
+ senso.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Problemi di sicurezza
+\end_layout
+
+\begin_layout Itemize
+Problemi di 
+\series bold
+autenticazione
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solo le stazioni devono autenticarsi, non gli access-point, quindi posso
+ tentare di spacciarmi per l'access point.
+\end_layout
+
+\begin_layout Itemize
+Questo approccio è vulnerabile ad attacchi 
+\emph on
+man-in-the-middle
+\emph default
+ (un access point malevolo può intercettare il traffico di autenticazione).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Problemi di 
+\series bold
+privacy
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È stato mostrato che WEP può essere violato in relativamente poco tempo
+ (
+\emph on
+Airsnort
+\emph default
+, 
+\emph on
+aircrack
+\emph default
+, etc...), semplicemente ascoltando il traffico (o in modo attivo mandando
+ richieste di autenticazione).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+C'è necessità di
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Autenticazione robusta
+\end_layout
+
+\begin_layout Itemize
+Algoritmi crittografici avanzati
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Questa necessità è risolta con l'implementazione di 
+\series bold
+\emph on
+802.11i
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+802.11i
+\end_layout
+
+\begin_layout Standard
+È il nuovo standard di sicurezza rilasciato a Giugno 2004
+\end_layout
+
+\begin_layout Itemize
+Le principali caratteristiche sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'autenticazione è gestita a livello superiore (non a livello 
+\emph on
+datalink
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Introduzione di nuovi protocolli e infrastruttura per l'autenticazione
+\end_layout
+
+\begin_layout Itemize
+Miglioramenti in termini di integrità (funzione di hash) e privacy (algoritmo
+ di cifratura)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+I device che implementano questo standard ottengono una 
+\begin_inset Quotes eld
+\end_inset
+
+certificazione
+\begin_inset Quotes erd
+\end_inset
+
+ da parte della 
+\emph on
+WiFi Alliance
+\emph default
+, chiamata 
+\series bold
+\emph on
+Wireless Protected Access 
+\series default
+\emph default
+(
+\series bold
+WPA1 
+\series default
+e
+\series bold
+ WPA2
+\series default
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Fase di autenticazione di 802.11i
+\end_layout
+
+\begin_layout Standard
+Per la fase di autenticazione viene utilizzato il protocollo 802.1X, inizialmente
+ progettato per la sicurezza delle reti cablate.
+\end_layout
+
+\begin_layout Subsubsection*
+Privacy di 802.11i
+\end_layout
+
+\begin_layout Standard
+Ci sono due sistemi:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Temporary Key Integrity Protocol 
+\emph default
+(TKIP)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basato su RC4
+\end_layout
+
+\begin_layout Itemize
+Il check di integrità è robusto con 
+\emph on
+Message Integrity Check 
+\emph default
+(MIC)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Counter Mode/CBC MAC Protocol 
+\emph default
+(CCMP)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basato su AES
+\end_layout
+
+\begin_layout Itemize
+Più robusto di TKIP
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Autenticazione su 802.1X
+\end_layout
+
+\begin_layout Standard
+Basato su 
+\series bold
+\emph on
+Extensibile Authentication Protocol
+\series default
+ 
+\emph default
+(EAP)
+\end_layout
+
+\begin_layout Itemize
+Entità di autenticazione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Supplicant
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Authenticator
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Authentication Server
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan32.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Funzionamento del protocollo EAP
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan33.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ci sono funzionalità per lo scambio di chiavi crittografiche
+\end_layout
+
+\begin_layout Itemize
+È possibile un tipo di autenticazione 
+\emph on
+two-ways
+\end_layout
+
+\begin_layout Subsubsection*
+Scambio delle chiavi
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan34.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Programmi di certificazione WPA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WPA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WPA2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Enterprise
+\series default
+ Mode (Business and Government)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Autenticazione
+\series default
+: IEEE 802.1X/EAP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Autenticazione
+\series default
+: IEEE 802.1X/EAP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cifratura
+\series default
+: TKIP/MIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cifratura
+\series default
+: AES-CCMP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Personal
+\series default
+ Mode (SOHO/personal)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Autenticazione
+\series default
+: PSK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Autenticazione
+\series default
+: PSK
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cifratura
+\series default
+: TKIP/MIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cifratura
+\series default
+: AES-CCMP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+WPA permette diversi di tipi di EAP:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+LightWeigth EAP
+\emph default
+ (
+\series bold
+LEAP
+\series default
+): Standard proprietario CISCO, basato su password
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+EAP Transport Layer Security
+\emph default
+ (
+\series bold
+EAP-TLS
+\series default
+): Basato sull'uso di certificati 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+EAP Tunneled TLS
+\emph default
+ (
+\series bold
+EAP-TTLS
+\series default
+): Soluzione ibrida password con certificato
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Protected EAP
+\emph default
+ (
+\series bold
+PEAP
+\series default
+): Soluzione ibrida password con certificato
+\end_layout
+
+\begin_layout Section*
+Layer fisico 802.11
+\end_layout
+
+\begin_layout Standard
+Il primo layer fisico che era stato proposto era così strutturato:
+\end_layout
+
+\begin_layout Itemize
+Canale radio condiviso, su parte dello spettro 
+\emph on
+unlicensed
+\end_layout
+
+\begin_layout Itemize
+Interferenza fortemente variabile
+\end_layout
+
+\begin_layout Standard
+Era quindi necessaria la realizzazione di un layer fisico robusto alle interfere
+nze provenienti da altri sistemi sulla stessa frequenza.
+\end_layout
+
+\begin_layout Subsection*
+Struttura del layer fisico
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan35.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Physical Layer Convergence Procedure 
+\emph default
+(
+\series bold
+PLCP
+\series default
+):
+\emph on
+ 
+\emph default
+layer for adapting MAC frames to the physical layer transmission
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Physical Medium Dependent 
+\emph default
+(
+\series bold
+PMD
+\series default
+): transmission layer (modulation and physical layer signaling)
+\end_layout
+
+\begin_layout Standard
+Nel primo standard erano possibili tre modalità di comunicazione fisica:
+\end_layout
+
+\begin_layout Itemize
+Infrarossi 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Frequency Hopping Spread Spectrum
+\emph default
+ (
+\series bold
+FHSS
+\series default
+): 1-2Mb/s, utilizzato in condizioni particolari.
+ Si salta in continuazione da una frequenza all'altra.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\bar under
+FHSS divide la banda in sottocanali da 1MHz ciascuno
+\bar default
+ e ad ogni trasmissione ci si sposta di canale in base ad una certa sequenza.
+ L'hopping di frequenze delle varie stazioni è ortogonale.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Direct Sequence Spread Spectrum 
+\emph default
+(
+\series bold
+DSSS
+\series default
+): 1-2Mb/s, normalmente utilizzato dal wifi per le trame di management (RTS,
+ CTS,...).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\bar under
+Distribuisce l'energia del segnale su una banda più larga rispetto a quella
+ originale del segnale.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Sia DSSS che FHSS hanno entrambi lo scopo di ridurre l'effetto delle interferenz
+e sulle performance del sistema di ricetrasmissione.
+\end_layout
+
+\begin_layout Subsubsection*
+DSSS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan36.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Viene utilizata una 
+\series bold
+\emph on
+barker sequence 
+\series default
+\emph default
+per le operazioni 
+\emph on
+spread spectrum
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan37.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il segnale, tramite lo spreading, diventa robusto a picchi di interferenza.
+\end_layout
+
+\begin_layout Standard
+Tutte le trasmissioni utilizzano la stessa sequenza barker per fare spreading.
+\end_layout
+
+\begin_layout Subsubsection*
+Canali fisici
+\end_layout
+
+\begin_layout Standard
+Lo standard definisce 14 canali radio spaziati 5MHz partendo dalla frequenza
+ 2.412 GHz
+\end_layout
+
+\begin_layout Standard
+Non tutti i canali sono disponibili in tutti i paesi al mondo.
+ Ad esempio il canale 14 è utilizzabile solo in Giappone.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Nazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Canali disponibili
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+USA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1-11 (2.412-2.462 GHz)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Europa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1-11 (2.412-2.462 GHz)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spagna
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10-11 (2.457-2.462 GHz)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Francia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10-13 (2.457-2.472 GHz)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Giappone
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1-14 (2.412-2.484 GHz)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per ogni canale, la maggior parte dell'energia del segnale è racchiusa in
+ una banda di 22MHz.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan38.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In realtà in 802.11 ci sono solo 3 canali che non si sovrappongono tra di
+ loro in frequenza: 1,6 e 11.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan39.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan40.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Allocazione complessia delle frequenze dei 5 GHz e 2.4 GHz:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan41.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
