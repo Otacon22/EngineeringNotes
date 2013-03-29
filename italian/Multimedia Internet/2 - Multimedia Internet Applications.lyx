@@ -25,9 +25,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \use_mhchem 1
@@ -42,6 +43,13 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 0.5cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -216,7 +224,11 @@ Come è strutturata la rete solitamente?
 \end_layout
 
 \begin_layout Itemize
-Backbone dell'ISP
+
+\series bold
+Backbone
+\series default
+ dell'ISP
 \end_layout
 
 \begin_layout Itemize
@@ -226,7 +238,11 @@ Un
 Central Office
 \series default
 \emph default
- dell'ISP (in italiano chiamato SGU)
+ dell'ISP (in italiano chiamato 
+\series bold
+SGU
+\series default
+)
 \end_layout
 
 \begin_deeper
@@ -260,17 +276,9 @@ SL
 \begin_layout Itemize
 
 \series bold
-DSLAM
+Exchange
 \series default
- (
-\emph on
-Digital Subscriber
-\emph default
- 
-\emph on
-Line Access Multiplexer
-\emph default
-), in italiano chiamati 
+, in italiano chiamati 
 \series bold
 \emph on
 Stadio di Linea 
@@ -282,14 +290,36 @@ Stadio di Linea
 SL
 \series default
 \emph default
-), sono una serie di elementi di rete che si collegano ad un unico 
+), sono altri 
+\begin_inset Quotes eld
+\end_inset
+
+edifici
+\begin_inset Quotes erd
+\end_inset
+
+ che contengono una serie di elementi di rete che si collegano ad un unico
+ 
 \emph on
 central office
 \emph default
  (in rame o fibra a seconda del livello di sviluppo della rete).
+ L'elemento principale nello stadio di linea è il 
+\series bold
+DSLAM
+\series default
+ (
+\emph on
+Digital Subscriber
+\emph default
+ 
+\emph on
+Line Access Multiplexer
+\emph default
+).
  Questo 
 \emph on
-dslam
+DSLAM
 \emph default
  risuddivide a sua volta la rete.
  Il DSLAM ha poi una serie di collegamenti in rame con un altro dispositivo
@@ -342,7 +372,11 @@ stadio di linea
 \series bold
 SDF
 \series default
- (Service Distribution Frame), in italiano 
+ (
+\emph on
+Service Distribution Frame
+\emph default
+), in italiano 
 \begin_inset Quotes eld
 \end_inset
 
@@ -370,13 +404,13 @@ chiostrino
 
 .
  Sono quei dispositivi che vediamo per strada.
- Essi si collegano con il DSLAM in rame e fanno multiplexing per le abitazioni.
+ Essi si collegano con il DSLAM in rame e le abitazioni.
  Questi elementi di rete sono 
 \series bold
 passivi
 \series default
 ! È semplicemente una matrice di collegamenti che mappa un cavo verso l'abitazio
-ne verso un cavo verso il dslam.
+ne verso un cavo verso il DSLAM.
  Quindi non effettua multiplexing.
  È comodo perché permette di cambiare facilmente i collegamenti verso le
  abitazioni.
@@ -388,9 +422,12 @@ ne verso un cavo verso il dslam.
 \series bold
 DF 
 \series default
-(Distribution Frame): È un dispositivo presente solitamente solo in alcuni
- grossi edifici, è sostanzialmente uguale all'SDF e serve a gestire i collegamen
-ti del palazzo.
+(
+\emph on
+Distribution Frame
+\emph default
+): È un dispositivo presente solitamente solo in alcuni grossi edifici,
+ è sostanzialmente uguale all'SDF e serve a gestire i collegamenti del palazzo.
  In Italia ce ne sono circa 1,5 milioni.
 \end_layout
 
@@ -1542,9 +1579,20 @@ banda larga
 
 \begin_deeper
 \begin_layout Itemize
-La raccomandazione ITU-T I.113 definisce la banda larga come una collegamento
- con velocità superiore a quella di ISDN (Integrated Services Digital Network)
- a 1.5 o 2.0 Mbps
+La raccomandazione ITU-T I.113 definisce la banda larga come un 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+collegamento con velocità superiore a quella di ISDN (Integrated Services
+ Digital Network) a 1.5 o 2.0 Mbit/s
+\series default
+
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1553,17 +1601,17 @@ La FCC definisce
 
 \begin_deeper
 \begin_layout Itemize
-Broadband: 200 kbps in una direzione
+Broadband: 200 kbit/s in una direzione
 \end_layout
 
 \begin_layout Itemize
-Advanced broadband: almeno 200 kbps in entrambe le direzioni
+Advanced broadband: almeno 200 kbit/s in entrambe le direzioni
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 La commissione europea definisce la banda larga come: capacità di downstream
- superiore a 144 kbps
+ superiore a 144 kbit/s
 \end_layout
 
 \end_deeper
@@ -1581,8 +1629,11 @@ ULB
 
 \begin_deeper
 \begin_layout Itemize
-È definita come il la banda di picco superiore a 30 Mbps nella direzione
- di downstream, per un singolo utente.
+È definita come il la banda 
+\series bold
+di picco
+\series default
+ superiore a 30 Mbit/s nella direzione di downstream, per un singolo utente.
 \end_layout
 
 \begin_layout Itemize
@@ -1629,15 +1680,263 @@ Le soluzioni FTTH stanno aumentando con un tasso di crescita molto elevato
 
 \end_deeper
 \begin_layout Subsubsection*
-Scelte degli ISP
+Ultra Large Bandwidth
 \end_layout
 
 \begin_layout Standard
-...
+Una strategia per lo sviluppo di una rete NGAN deve tenere conto di vari
+ problemi economici.
 \end_layout
 
+\begin_layout Itemize
+Gli investimenti richiesti per la rete NGAN, daranno realmente un miglioramento
+ nei servizi forniti all'utente? Se sì, è conveniente sviluppare una rete
+ NGAN?
+\end_layout
+
+\begin_layout Itemize
+Nel caso delle utenze domestiche, si avranno dei miglioramenti tali da portare
+ l'utente a spendere maggiormente? Solo un sottoinsieme della popolazione
+ sarà interessato a pagare maggiormente per i servizi.
+\end_layout
+
+\begin_layout Itemize
+NGAN aumenterà anche la velocità dei collegamenti P2P, quindi parte degli
+ utenti potrebbe essere interessata per questo motivo.
+ Infatti nei sistemi P2P il 
+\begin_inset Quotes eld
+\end_inset
+
+ranking
+\begin_inset Quotes erd
+\end_inset
+
+ dell'utente dipende soprattutto dalla capacità di acesso alla rete dell'utente!
+\end_layout
+
+\begin_layout Itemize
+Quindi, è probabile che un aumento di velocità nei collegamenti crei nuova
+ richiesta del servizio, in base al principio 
+\begin_inset Quotes eld
+\end_inset
+
+nuove strade creno nuovo traffico
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Inoltre gli utenti SOHO (
+\emph on
+Small Office Home Office
+\emph default
+) e SME (
+\emph on
+Small Medium Enterprise
+\emph default
+)
+\emph on
+ 
+\emph default
+saranno potenzialmente interessati a migliorare i propri servizi.
+\end_layout
+
+\begin_layout Subsubsection*
+Lo sviluppo delle reti NGAN
+\end_layout
+
+\begin_layout Standard
+Tutte le varie soluzioni FTTx (FTTE,FTTC,...) richiedono infrastrutture costose.
+\end_layout
+
+\begin_layout Standard
+La migrazione a una archiettura 100% FTTH richiede costi superiori a FTCC
+ e FTTB ovviamente.
+ Quindi gli operatori devono cercare un qualche tipo di 
+\emph on
+tradeoff
+\emph default
+ tra performance e costi.
+\end_layout
+
+\begin_layout Standard
+In alcuni paesi comunuque, tipo in Italia, la differenza tra una migrazione
+ FTTC/FTTB e FTTH non è così alta.
+\end_layout
+
+\begin_layout Standard
+Questo dipende dallo stato attuale della rete di distribuzione, dalla popolazion
+e, dalla struttura geografica e territorio nazionale.
+\end_layout
+
+\begin_layout Itemize
+FTTH può richiedere fino a 5 volte costi maggiori rispetto a FTTC
+\end_layout
+
+\begin_layout Itemize
+FTTH PTP può richiedere il 10% in più di investimento rispetto a FTTH PON.
+\end_layout
+
+\begin_layout Itemize
+Le principali spese sono: cablaggio e scavi nelle strade.
+\end_layout
+
+\begin_layout Itemize
+Un problema importante è replicare l'infrastruttura per permettere la condivisio
+ne dei mezzi fisici da parte di più operatori.
+ Questo è particolarmente vantaggioso nelle aree densamente popolate.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 012.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La figura sopra mostra i dati relativi allo sviluppo di NGAN in UK per collegare
+ tutta la popolazione (comparando FTTC/VDSL, FTTH/GPON, FTTH/PTP).
+\end_layout
+
+\begin_layout Itemize
+FTTH/PTP offre performance migliori ma costi più elevati
+\end_layout
+
+\begin_layout Itemize
+FTTH costa circa 5 volte di più di FTTC
+\end_layout
+
+\begin_layout Itemize
+FTTH/PTP costa circa il 15% rispetto a FTTH/GPON
+\end_layout
+
+\begin_layout Itemize
+Notiamo anche come i costi fissi (per costruire l'infrastruttura) sono molto
+ più alti dei costi variabili (che sono invece i costi per attivare la connessio
+ne dell'utente).
+\end_layout
+
+\begin_layout Itemize
+Una strategia comune degli 
+\emph on
+Incumbent Operators
+\emph default
+ (gli operatori leader di mercato in un paese), è quella di costruire una
+ infrastruttura FTTC come passo di transizione verso FTTH.
+\end_layout
+
+\begin_layout Subsubsection*
+Sviluppo di NGAN in Italia
+\end_layout
+
+\begin_layout Standard
+In Italia le soluzioni VDSL sono relativamente convenienti poiché la distanza
+ dallo stadio di linea non è solitamente molto alta.
+\end_layout
+
+\begin_layout Standard
+In Italia inoltre il 60% della popolazione vive in appartamenti in aree
+ densamente popolate (mentre in UK solo il 15%!).
+ Le due situazioni sono abbastanza diverse perché i costi di sviluppo per
+ le aree urbane densamente popolate sono più bassi.
+\end_layout
+
+\begin_layout Subsubsection*
+Sviluppo di NGAN e digital divide
+\end_layout
+
+\begin_layout Itemize
+Il costo per utente crasce appena passiamo dagli utenti che vivono in aree
+ metropolitane a utenti che vivono in aree rurali.
+\end_layout
+
+\begin_layout Itemize
+Il costo per utente è 
+\begin_inset Quotes eld
+\end_inset
+
+fisso
+\begin_inset Quotes erd
+\end_inset
+
+ per il 60% della popolazione che vive in aree metropolitane, per il restante
+ 20-30% i costi salgono per raggiungere le aree rurali.
+\end_layout
+
+\begin_layout Itemize
+Coprire il 100% della popolazione potrebbe non essere conveniente.
+ Questo genererà però un nuovo 
+\emph on
+digital divide
+\emph default
+ tra gli utenti ULB e gli utenti con normale accesso LB.
+\end_layout
+
+\begin_layout Itemize
+Ci si aspetta che questo nuovo 
+\emph on
+digital divide
+\emph default
+ possa essere risolto solo con fondi governativi, basati sull'idea di garantire
+ uguale accesso a tutti.
+\end_layout
+
+\begin_layout Standard
+Per esempio:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+UK
+\series default
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Banda larga standard a tutti gli utenti entro la fine del 2012
+\end_layout
+
+\begin_layout Itemize
+Accesso ULB al 90% degli utenti entro il 2017
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Francia
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Banda larga a 512 kbit/s a tutti gli utenti entro la fine del 2012
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
 Servizi consegnati tramite una rete NGAN
+\end_layout
+
+\begin_layout Standard
+La migrazione tecnologica dalle reti attuali alle reti NGAN richiede un
+ adattamento dei servizi che attualmente vengono forniti tramite una rete
+ classica in rame.
+\end_layout
+
+\begin_layout Standard
+I servizi possono essere emulati/simulati o sostituiti.
+\end_layout
+
+\begin_layout Standard
+Partiamo classificando i tipi di servizi che ci interessano:
 \end_layout
 
 \begin_layout Itemize
@@ -1677,7 +1976,7 @@ backhauling connection
  precisamente sincronizzato.
  Inoltre questa linea non trasmette pacchetti ma stream di bit.
  Il problema è che se convertiamo la trasmissione da uno stream di bit in
- pacchetti IP, però perdiamo la sincronia.
+ pacchetti IP perdiamo la sincronia (che viene sfruttata per diverse operazioni).
 \end_layout
 
 \end_deeper
@@ -1699,7 +1998,7 @@ da operatori per altri operatori.
 \emph on
 colocation
 \emph default
- e 
+ (far ospitare dei propri apparati nelle infrastrutture di altri) e 
 \emph on
 unbundling
 \emph default
@@ -1713,7 +2012,637 @@ unbundling
 Retail services
 \series default
 \emph default
-: Sono i servizi per gli utenti finali
+: Sono i servizi per gli utenti finali.
+\end_layout
+
+\begin_layout Subsubsection*
+Intermediate services
+\end_layout
+
+\begin_layout Standard
+Un tipico esempio di questi servizi, come abbiamo già detto, è il collegamento
+ di antenne radiomobili (GSM/UMTS/LTE) al core della rete.
+\end_layout
+
+\begin_layout Standard
+In questo esempio specifico la tecnologia 
+\emph on
+pseudowire
+\emph default
+ potrebbe essere utilizzata come soluzione al problema.
+ Un'altra possibilità è di utilizzare 
+\emph on
+Syncronous Ethernet
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Tutt'oggi gli operatori hanno questo problema e una delle soluzioni è di
+ tenere un collegamento in fibra ottica affiancato da una linea E1 utilizzata
+ unicamente per il sincronismo.
+\end_layout
+
+\begin_layout Standard
+Un'altra soluzione al problema è di utilizzare dei ricevitori GPS per il
+ sincronismo, però il sistema GPS è sotto il controllo del dipartimento
+ della difesa americano, che può spegnerlo in qualunque momento.
+\end_layout
+
+\begin_layout Subsubsection*
+Wholesale services
+\end_layout
+
+\begin_layout Standard
+Un servizio di tipo 
+\emph on
+wholesale
+\emph default
+ può essere all'interno di tre categorie principali:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bitstream access
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Da un punto di vista tecnico i servizi bitstream non generano problemi,
+ il NGAN può offrire accesso a larga banda customizzabile.
+ Solitamente per gli utenti business.
+\end_layout
+
+\begin_layout Itemize
+La qualità del servizio (QoS) può essere differenziata almeno per i livello
+ di priorità, per esempio con 802.1p
+\end_layout
+
+\begin_layout Itemize
+Offrire diverse QoS tramite NGAN permette di condividere l'infrastruttura
+ in modo intelligente per più applicazioni.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Wholesale Line Rental
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il servizio classico di affitto di una linea può essere sostituito con una
+ condivisione basata su trasmissione a pacchetti.
+ 
+\end_layout
+
+\begin_layout Itemize
+Abbiamo anche qua però il problema di gestire il sincronismo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Individual Line Rental
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Unbundling 
+\series default
+e 
+\series bold
+colocation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solo i grossi operatori possono sostenere gli investimenti necessari per
+ passare ad una rete NGAN.
+ Permettere che anche i piccoli operatori possano competere è un problema.
+\end_layout
+
+\begin_layout Itemize
+Per l'operatore 
+\emph on
+incumbent
+\emph default
+, la migrazione a NGAN porta alla rimozione dei 
+\emph on
+local exchange offices
+\emph default
+ (stadio di linea).
+ Il problema è che queste strutture sono massicciamente utilizzate per la
+ 
+\emph on
+colocation
+\emph default
+ delle apparecchiature dei concorrenti, per implementare 
+\emph on
+unbundling 
+\emph default
+del 
+\emph on
+Local Loop
+\emph default
+ (ULL).
+\end_layout
+
+\begin_layout Itemize
+In alcuni paesi come soluzione si lascia un po' di tempo (~5 anni) agli
+ operatori per accordarsi su cosa fare.
+\end_layout
+
+\begin_layout Itemize
+Un operatore in 
+\emph on
+colocation
+\emph default
+ può trasferire gli 
+\emph on
+unbundling 
+\emph default
+in altre locazioni oppure può realizzare dei 
+\emph on
+sub-loop unbundle 
+\emph default
+all'interno degli armadi stradali (solo nel caso FTTC).
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Reti di accesso metropolitane e rete di backbone
+\end_layout
+
+\begin_layout Standard
+NGAN è riferito soltanto alla parte di accesso alla rete, in realtà il component
+e centrale della rete dell'operatore è costituito dalla rete backbone nazionali
+ o metropolitane.
+\end_layout
+
+\begin_layout Standard
+Un possibile (non l'unica) soluzione architetturale è quella di operare
+ a livello IP nella rete di accesso e backbone, mentre a livello Ethernet
+ nella rete metropolitana, come mostrato in figura:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 013.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La differenziazione della qualità del servizio è una questione abbastanza
+ critica in questo caso.
+\end_layout
+
+\begin_layout Itemize
+Nelle reti metropolitane il QoS può essere realizzato utilizzando più 
+\series bold
+VLANs IEEE 802.11q
+\series default
+ oppure 
+\series bold
+IEEE 802.1ad
+\end_layout
+
+\begin_layout Itemize
+IEEE 802.1q differenzia la priorità all'interno delle VLAN tramite un campo
+ di priorità inserito nel frame Ethernet.
+ IEEE 802.1p è la reference che specifica il significato dei bit di priorità
+ nel campo priorità di 802.1q
+\end_layout
+
+\begin_layout Itemize
+Utilizzando 802.1q è possibile definire fino a 4096 VLAN differenti
+\end_layout
+
+\begin_layout Itemize
+Con IEEE 802.1ad è possibile definire delle VLAN 802.1Q 
+\begin_inset Quotes eld
+\end_inset
+
+stacked
+\begin_inset Quotes erd
+\end_inset
+
+, cioè delle VLAN all'interno di una singola VLAN.
+ Con questo metodo si può arrivare fino a 16'777'216 VLAN.
+\end_layout
+
+\begin_layout Itemize
+La divisione delle VLAN potrebbe non essere così semplice.
+ L'operatore potrebbe decidere di utilizzare alcune VLAN per operazioni
+ di servizio: distizione tra 
+\emph on
+Customer VLANs 
+\emph default
+(
+\series bold
+C-VLAN
+\series default
+) e 
+\emph on
+Service VLANs
+\emph default
+ (
+\series bold
+S-VLAN
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Nelle reti metropolitane è spesso utilizato anche 
+\series bold
+MPLS
+\series default
+ (
+\emph on
+MultiProtocol Label Switching
+\emph default
+) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un interessante feature di MPLS è la gestione del multicasting, che evita
+ di replicare dei flussi identici.
+ È utile per la distribuzione di contenuti audio/video.
+\end_layout
+
+\begin_layout Itemize
+Per contrasto, nelle reti basate su VLAN Ethernet si replicano per forza
+ tutti i flussi anche identici.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Servizi multimediali IP nelle reti NGN
+\end_layout
+
+\begin_layout Standard
+ETSI (
+\emph on
+European Telecommunications Standards Institute
+\emph default
+) ha creato un gruppo di lavoro chiamato 
+\series bold
+TISPAN
+\series default
+ (
+\emph on
+Telecommunications and Internet converged Services and Protocols for Advanced
+ Networking
+\emph default
+) ha già definito diversi standard per le reti NGN.
+ Una parte rilevante di questi standard copre i problemi relativi all'interconne
+ssioni di diverse reti NGN di diversi operatori.
+\end_layout
+
+\begin_layout Standard
+I requisiti 
+\begin_inset Quotes eld
+\end_inset
+
+ad alto livello
+\begin_inset Quotes erd
+\end_inset
+
+ sono:
+\end_layout
+
+\begin_layout Itemize
+Il QoS deve essere negoziato sia al momento di instaurazione della connessione,
+ sia quando la connessione è già stabilita.
+\end_layout
+
+\begin_layout Itemize
+La negoziazione del QoS deve essere abilitata anche nel caso di 
+\emph on
+roaming
+\emph default
+ tra diversi operatori.
+\end_layout
+
+\begin_layout Itemize
+Le sessioni multimediali IP devono supportare un vasto tipo di codecs audio
+ e video.
+\end_layout
+
+\begin_layout Itemize
+I servizi multimediali IP devono, il più possibile, essere forniti a una
+ varietà di tecnologie di accesso (UTRAN, WiMAX, ...)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 014.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questa figura mostra la suddivisione logica tra i livelli di servizio e
+ i livello di trasporto nelle NGN:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NGN Access Network Provider (NANP)
+\series default
+: concentra il traffico proveniente da più linee attraverso uno o più NGN
+ Connectivity Providers.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NGN Connectivity Provider (NCP)
+\series default
+: fornisce la connettività al NGN Core Network Provider.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NGN Core Network Provider (NCNP)
+\series default
+: aggrega il traffico proveniente dai nodi estermi di diverse reti di accesso,
+ verso diverse reti esterne.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NGN Service Provider (NSP)
+\series default
+: Si occupa dei servizi necessari al trasporto sulla NGN: autenticazione,
+ service control, management, pagamenti.
+ Nel caso dei servizi IPTV si occupa anche dei diritti d'autore (DRM).
+\end_layout
+
+\begin_layout Standard
+Due operatori NGN interconnessi offrono dei servizi 
+\emph on
+end-to-end
+\emph default
+.
+ La qualità del servizio deve essere garantita anche per collegamenti 
+\emph on
+end-to-end
+\emph default
+ tramite cooperazione tra gli operatori.
+ Un esempio è Carrier-grade VoIP services.
+\end_layout
+
+\begin_layout Standard
+TISPAN identifica la emulazione/sostituzione dei servizi PSTN/ISDN come
+ punto chiave.
+\end_layout
+
+\begin_layout Standard
+Con l'emulazione del servizio, un nuovo servizio è fornito tramite NGN con
+ le stesse caratteristiche del vecchio servizio.
+\end_layout
+
+\begin_layout Standard
+Per 
+\begin_inset Quotes eld
+\end_inset
+
+sostituzione
+\begin_inset Quotes erd
+\end_inset
+
+ si intende che alcune caratteristiche del servizio potrebbero cambiare.
+\end_layout
+
+\begin_layout Subsubsection*
+Requisiti base per i servizi classici PSTN/ISDN
+\end_layout
+
+\begin_layout Itemize
+Gestione della numerazione preservata
+\end_layout
+
+\begin_layout Itemize
+Intercettazioni legali devono essere garantite
+\end_layout
+
+\begin_layout Itemize
+I servizi di emergenza devono essere garantiti
+\end_layout
+
+\begin_layout Itemize
+Il servizio 
+\emph on
+Malicious Call Identification
+\emph default
+ (MCID) deve essere garantito
+\end_layout
+
+\begin_layout Itemize
+Il servizio 
+\emph on
+Anonymous Call Rejection
+\emph default
+ (ACR) deve essere garantito
+\end_layout
+
+\begin_layout Itemize
+L'interoperabilità con il vecchio sistema deve essere garantita
+\end_layout
+
+\begin_layout Standard
+Ci sono due categorie base in cui viene suddiviso il sistema telefonico:
+\end_layout
+
+\begin_layout Itemize
+Servizi telefonici pubblici (PATS): È il servizio per mappare il servizio
+ classico PSTN/ISDN e ha più stretti requisiti rispetto a ECS
+\end_layout
+
+\begin_layout Itemize
+Electronic Communication Service, ECS
+\end_layout
+
+\begin_layout Standard
+L'emulazione del servizio classico PSTN/ISDN è solitamente chiamato 
+\series bold
+ToIP
+\series default
+ (Telephony over IP), per distinguerlo da servizi ECS come VoIN (Voice over
+ Internet).
+\end_layout
+
+\begin_layout Itemize
+Nel servizio VoIN, solitamente gli operatori non controllano il servizio
+ e non garantiscono QoS.
+\end_layout
+
+\begin_layout Itemize
+Tipicamente i servizi VoIN sono la telefonia P2P come Skype o altri.
+\end_layout
+
+\begin_layout Itemize
+Il servizio VoIN In&Out permette agli utenti di interconnettersi tramite
+ reti esterne come PSTN/PLMN
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 015.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Chiamate a PSTN e PLMN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Servizi addizionali (chiamate di emergenza, portabiltà numero, ...)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VoIN P2P
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+no
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VoIN In&Out
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sì (ma non completamente)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ToIP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sì
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \end_body
