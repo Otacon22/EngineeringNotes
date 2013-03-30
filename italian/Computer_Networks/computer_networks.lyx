@@ -101,7 +101,7 @@ Daniele Iamartino
 \end_layout
 
 \begin_layout Date
-2012
+2013
 \end_layout
 
 \begin_layout Part*
@@ -57668,6 +57668,8 @@ In realtà ci sono problemi di sicurezza poiché un eventuale attaccante potrebb
  esistenti.
  L'implementazione reale della generazione degli ISN dipende dal sistema
  operativo, ma non è (solitamente) come quella qui descritta teoricamente.
+ I problemi di sicurezza legati alla scelta dell'ISN sono trattati nella
+ RFC1948.
 \end_layout
 
 \begin_layout Subsubsection*
