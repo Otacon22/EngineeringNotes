@@ -8252,6 +8252,10 @@ Ci sono funzionalità per lo scambio di chiavi crittografiche
 two-ways
 \end_layout
 
+\begin_layout Itemize
+L'authentication server può anche non essere locale ma remoto.
+\end_layout
+
 \begin_layout Subsubsection*
 Scambio delle chiavi
 \end_layout
@@ -8901,8 +8905,4104 @@ Allocazione complessia delle frequenze dei 5 GHz e 2.4 GHz:
 
 \end_layout
 
+\begin_layout Subsubsection*
+Modulazione
+\end_layout
+
+\begin_layout Standard
+Oltre al modo di trasmissione abbiamo la modulazione.
+ Ce ne sono vari tipi utilizzati per 802.11:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Differential Phase Shift Keying 
+\emph default
+(
+\series bold
+DPSK
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Data Rate: 1 Mbit/s
+\end_layout
+
+\begin_layout Itemize
+1 bit per ogni simbolo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Differential Quadrature Phase Shift Keying
+\emph default
+ (
+\series bold
+DQPSK
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Data Rate: 2 Mbit/s
+\end_layout
+
+\begin_layout Itemize
+2 bit per ogni simbolo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per data rate superiori:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si utilizzano modulazioni differenti (
+\series bold
+HR/DSSS
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Differenti layer fisici
+\series default
+ (caso di 
+\series bold
+802.11a/g
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Approcci TX-RX diversi (
+\series bold
+MIMO, 802.11n
+\series default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+PLCP
+\end_layout
+
+\begin_layout Standard
+PLCP aggiunge una 
+\begin_inset Quotes eld
+\end_inset
+
+protezione
+\begin_inset Quotes erd
+\end_inset
+
+ ulteriore per l'interferenza e il controllo d'errore: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Scrambling
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Cyclic Redundant Check
+\series default
+\emph default
+ (
+\series bold
+CRC
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan42.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 
+\series bold
+La struttura PLCP varia a seconda delle diverse versioni degli standard
+ fisici.
+\end_layout
+
+\begin_layout Standard
+La sincronizzazione nel caso multicarrier è infatti diversa, quindi PLCP
+ è diverso.
+\end_layout
+
+\begin_layout Subsubsection*
+Parametri
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametro
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Valore
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Slot Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $20\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIFS Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CW (backoff)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31-1023 slots
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preambolo PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $144\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Header PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $48\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame MAC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4-8191\: bytes$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Evoluzione dei Layer fisici del gruppo 802.11
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan43.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+802.11b
+\end_layout
+
+\begin_layout Standard
+Utilizza HR/DSSS
+\end_layout
+
+\begin_layout Itemize
+Modifiche al 
+\series bold
+PMD
+\series default
+ (
+\emph on
+Physical Medium Dependent
+\emph default
+): Il nuovo sistema di modulazione garantisce banda superiore fino a 
+\begin_inset Formula $11Mbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Modifiche a 
+\series bold
+PLCP
+\series default
+: Nuovo header e preambolo PLCP
+\end_layout
+
+\begin_layout Itemize
+È compatibile con lo standard 
+\emph on
+legacy
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+PMD - Modulazione CCK (
+\emph on
+Complementary code keying
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+La modulazione utilizzata è 
+\series bold
+QPSK
+\series default
+ (
+\emph on
+Quadrature Phase Shift Keying
+\emph default
+) con spreading
+\end_layout
+
+\begin_layout Itemize
+Rate di trasmissione: 
+\begin_inset Formula $1.375Msymbols/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ci sono due data rate definiti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $5.5Mbit/s$
+\end_inset
+
+, 4 bit per simbolo
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $11Mbit/s$
+\end_inset
+
+, 8 bit per simbolo
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan44.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Qui sopra in figura la struttura logica del trasmettitore.
+\end_layout
+
+\begin_layout Subsubsection*
+Modifiche a PLCP
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan45.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Velocità reale di 802.11b
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan46.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+802.11a - La soluzione OFDM
+\end_layout
+
+\begin_layout Itemize
+Motivazione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Risolvere il problema di congestione della banda 2.4 GHz
+\end_layout
+
+\begin_layout Itemize
+Necessità di velocità superiori rispetto a 11 Mbit/s
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Soluzione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Utilizzo della banda U-NII (
+\emph on
+Unlicensed National Information Infrastructure
+\emph default
+) attorno a 
+\series bold
+5 GHz
+\end_layout
+
+\begin_layout Itemize
+Utilizzo della modulazione 
+\series bold
+OFDM
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Vantaggi e svantaggi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vantaggi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Data rate superiori (fino a 54 Mbit/s)
+\end_layout
+
+\begin_layout Itemize
+Interferenza minore (banda meno affollata)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Svantaggi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Copertura minore (propagazione minore del segnale)
+\end_layout
+
+\begin_layout Itemize
+Maggiori consumi energetici 
+\end_layout
+
+\begin_layout Itemize
+Non compatibile con la regolamentazione delle frequenze in Europa
+\end_layout
+
+\begin_layout Itemize
+Costi maggiori
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+OFDM
+\end_layout
+
+\begin_layout Itemize
+OFDM converte un flusso di bit ad alta frequenza in più flussi separati
+ a bassa frequenza.
+\end_layout
+
+\begin_layout Itemize
+I differenti flussi sono multiplexati insieme su portanti ortogonali.
+\end_layout
+
+\begin_layout Itemize
+È possibile utilizzare tecniche di elaborazione numerica dei segnali per
+ la modulazione e demodulazione (FFT/IFFT)
+\end_layout
+
+\begin_layout Itemize
+Schema di modulazione a più portanti
+\end_layout
+
+\begin_layout Itemize
+È possibile interferenza tra simboli adiacenti
+\end_layout
+
+\begin_layout Subsubsection*
+Spettro
+\end_layout
+
+\begin_layout Standard
+La trasmissione di un singolo simbolo si presenta come di seguito:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan47.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso della trasmissione di più simboli invece:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan48.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È un sistema più efficiente rispetto a una semplice FDM, si riesce a sfruttare
+ meglio lo spettro.
+\end_layout
+
+\begin_layout Subsubsection*
+OFDM
+\end_layout
+
+\begin_layout Standard
+Le 
+\emph on
+sotto-portanti
+\emph default
+ (
+\series bold
+sub-carriers
+\series default
+) sono il numero di unità minime in cui lo spettro può essere suddiviso.
+\end_layout
+
+\begin_layout Standard
+Un 
+\series bold
+simbolo OFDM
+\series default
+ è un simbolo che viene suddiviso sulle 
+\begin_inset Formula $N$
+\end_inset
+
+ sotto-portanti.
+\end_layout
+
+\begin_layout Subsubsection*
+Inter Symbol Interference
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan49.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sono necessari di simboli 
+\begin_inset Quotes eld
+\end_inset
+
+di guardia
+\begin_inset Quotes erd
+\end_inset
+
+ in OFDM (basati su prefissi ciclici)
+\end_layout
+
+\begin_layout Subsubsection*
+Tempo di guardia
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan50.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I prefissi ciclici permettono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Di preservare portanti ortogonali
+\end_layout
+
+\begin_layout Itemize
+Evitare 
+\emph on
+Inter Symbol Interference
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il tempo di guardia dipende da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Massimo ritardo di diffusione (4 volte)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+OFDM in 802.11a
+\end_layout
+
+\begin_layout Itemize
+Lo spettro è organizzato in canali da 20MHz 
+\end_layout
+
+\begin_layout Itemize
+Ogni canale è diviso in 52 sotto-portanti spaziate 0.3125 MHz
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan51.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+48 sotto-portanti per dati, 4 sotto-portanti per il controllo
+\end_layout
+
+\begin_layout Itemize
+Durata del simbolo OFDM: 
+\begin_inset Formula $4\mu s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di guardia: 
+\begin_inset Formula $0.8\mu s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Durata del simbolo utile: 
+\begin_inset Formula $3.2\mu s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per proteggere le tramissioni viene utilizzato: 
+\emph on
+interleaving, scarmbling 
+\emph default
+e 
+\emph on
+coding
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Trasmettitore 802.11a
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan52.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Ricevitore
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan53.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Multipli Modi/Data Rate
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data Rate (Mbps)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coding Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modulation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+# of coded bits/OFDM Symbols
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+# of data bits/OFDM symbols
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BPSK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+BPSK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+QPSK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+QPSK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+192
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+192
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+144
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{2}{3}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64 QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+288
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+192
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+54
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\frac{3}{4}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64 QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+288
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+216
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+PLCP di 802.11a
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan54.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diverso rispetto al PLCP di 802.11 e 802.11b
+\end_layout
+
+\begin_layout Subsubsection*
+Parametri
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametro
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Valore
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Slot Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIFS Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CW (backoff)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15-1023 slots
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preambolo PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Header PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame MAC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4-4095\: bytes$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+802.11g
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Motivazione
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Aumentare la banda rispetto a 802.11b, restando nella banda ISM dei 2.4GHz
+\end_layout
+
+\begin_layout Itemize
+Mantenere la compatibilità con i dispositivi 802.11 classici
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Altre due soluzioni in competizione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+PBCC, sviluppato da 
+\emph on
+Texas Instruments
+\end_layout
+
+\begin_layout Itemize
+DSSS-OFDM, sviluppato da 
+\emph on
+Intersil
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Soluzione
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Mantenere uno strato fisico obbligatorio (
+\emph on
+Extended Rate Physical OFDM
+\emph default
+), in pratica lo stesso di 802.11a.
+\end_layout
+
+\begin_layout Itemize
+Poi ci sono due alternative opzionali per lo strato fisico: PBCC o DSSS-OFDM
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Parametri
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Parametro
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Valore
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Slot Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $9\mu s$
+\end_inset
+
+ o 
+\begin_inset Formula $20\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIFS Duration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10\mu s$
+\end_inset
+
+ (
+\begin_inset Formula $+6\mu s$
+\end_inset
+
+ della estensione virtuale)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CW (backoff)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15-1023 slots
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preambolo PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $16\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Header PLCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4\mu s$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame MAC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4-4095\: bytes$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Compatibilità di 802.11b
+\end_layout
+
+\begin_layout Itemize
+802.11g è in grado di riconoscere i preamboli di 802.11b (short, long) e 802.11a.
+ È possibile il 
+\emph on
+carrier sensing
+\emph default
+, quindi le varie tecnologie possono coesistere sulla stessa frequenza.
+\end_layout
+
+\begin_layout Itemize
+802.11g utilizza lo strato fisico di 802.11b per lo scambio di frame di controllo
+ RTS/CTS
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Stesso data rate
+\end_layout
+
+\begin_layout Itemize
+Stessa modulazione
+\end_layout
+
+\begin_layout Itemize
+Stessa durata dello slot
+\end_layout
+
+\begin_layout Itemize
+In questo modo delle stazioni 802.11g possono accorgersi della presenza di
+ 802.11b e possono cambiare la configurazione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I dispositivi 802.11b non sono in grado di ricevere le trasmissioni 802.11g
+\end_layout
+
+\begin_layout Subsection*
+Performance dei vari layer
+\end_layout
+
+\begin_layout Standard
+Segue una tabella, distribuita dal vendor 
+\emph on
+Broadcom
+\emph default
+, che analizza le performance dei vari stanard WiFi in base al throughput
+ in Mb/s escludendo l'overhead a livello MAC e fisico.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Distanza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Solo 802.11g
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11g/b RTS/CTS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11g/b Self CTS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+45m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+75m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+90m
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Quale standard scegliere?
+\end_layout
+
+\begin_layout Standard
+Ci sono diversi parametri da considerare:
+\end_layout
+
+\begin_layout Itemize
+Data rate nominale
+\end_layout
+
+\begin_layout Itemize
+Distanza massima
+\end_layout
+
+\begin_layout Itemize
+Capacità (in termini di numero di canali disponibili)
+\end_layout
+
+\begin_layout Itemize
+Costo
+\end_layout
+
+\begin_layout Itemize
+Compatibilità
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tecnologia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Distanza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Compatibilità 802.11b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Capacità
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Costo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+802.11b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+802.11a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alto
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bassa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+802.11g
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alto
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Alta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Media
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Basso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+802.11n
+\end_layout
+
+\begin_layout Standard
+È uno standard ufficiale dal Settembre 2009
+\end_layout
+
+\begin_layout Standard
+Lo scopo principale è quello di 
+\bar under
+raggiungere data rate superiori
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Approccio
+\series default
+ seguito per la standardizzazione: modifiche dello strato fisico 
+\series bold
+OFDM
+\series default
+ e modifiche allo strato 
+\series bold
+MAC
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Come aumentare la banda?
+\end_layout
+
+\begin_layout Standard
+Sappiamo che il data rate è calcolato come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan55.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli approcci possibili possono essere diversi:
+\end_layout
+
+\begin_layout Itemize
+Multiplexing spaziale (aumentare il numero di antenne che trasmettono contempora
+neamente)
+\end_layout
+
+\begin_layout Itemize
+Banda superiore
+\end_layout
+
+\begin_layout Itemize
+Modulazione maggiore sulla grandezza della costellazione
+\end_layout
+
+\begin_layout Itemize
+Code rate più elevato
+\end_layout
+
+\begin_layout Itemize
+Tempo di guardia minore
+\end_layout
+
+\begin_layout Subsubsection*
+Parametri
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11a/g
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+802.11n
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Requisito
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Throughput Scaling Factor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Banda canale: 20MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Banda canale: 20MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numero di sottoportanti
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sottoportanti dati: 48
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+per i dati: 48
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Banda canale: 40MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.25x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sottoportanti dati: 108
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numero antenne TX: 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numero antenne TX: 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numero antenne TX > 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opzionale (3 o 4)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3x o 4x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dimensione massima costellazione: 64QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64-QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+> 64 QAM
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256QAM opzionale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.16x (128-QAM)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(ad es: 128 o 256QAM)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.33x (256-QAM)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GI=
+\begin_inset Formula $800ns$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GI/Tsymbol=
+\begin_inset Formula $800ns/3200ns$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tsymbol=
+\begin_inset Formula $3200ns$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GI/Tsymbol=
+\begin_inset Formula $400ns/3200ns$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.11x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coding Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1/2, 2/3, 3/4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7/8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obbligatorio
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.167x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+802.11n opera su più bande: può operare sia su 2.4GHz, 5GHz che 4.9GHz (solo
+ Giappone).
+\end_layout
+
+\begin_layout Itemize
+Le modifiche principali rispetto agli standard precedenti sono state:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+MIMO - OFDM
+\series default
+: 
+\emph on
+Space multiplexing
+\emph default
+ di flussi diversi
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+2 Antenne (obbligatorie)
+\end_layout
+
+\begin_layout Itemize
+4 Antenne (opzionali)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Canali più larghi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+20MHz (obbligatori)
+\end_layout
+
+\begin_layout Itemize
+40MHz (opzionale)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Altre modifiche:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tempi di guardia minori tra i simboli OFDM (
+\begin_inset Formula $400ns$
+\end_inset
+
+ obbligatori sui 20MHz di banda)
+\end_layout
+
+\begin_layout Itemize
+Modulazioni fino a 64QAM
+\end_layout
+
+\begin_layout Itemize
+Coding convoluzionale
+\end_layout
+
+\begin_layout Itemize
+Coding ottimizzato per MIMO (space multiplexing)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+È possibile raggiungere una velocità massima teorica di 600Mb/s !!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan56.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lo standard 802.11 incorpora al suo interno 802.11e come nuovo sottostrato
+ MAC.
+ Aggiungono funzionalità tipo l'aggregazione dei frames.
+ Viene inoltre estesa l'entità per la gestione del sottostrato MAC per supportar
+e funzioni avanzate per la gestione delle risorse radio.
+\end_layout
+
+\begin_layout Subsection*
+802.11e - Evoluzione del sottostrato MAC per supportare QoS (Quality of Service)
+\end_layout
+
+\begin_layout Subsubsection*
+Problemi con PCF
+\end_layout
+
+\begin_layout Itemize
+Non c'è un meccanismo per differenziare i flussi di traffico.
+ Ogni pacchetto va in coda allo strato MAC.
+\end_layout
+
+\begin_layout Itemize
+Sono possibili dei ritardi riguardo al tempo di arrivo del 
+\emph on
+super frame
+\emph default
+.
+ Le trasmissioni dei beacons e i periodi CF possono essere ritardati
+\end_layout
+
+\begin_layout Itemize
+Non c'è controllo sulle trasmissioni: una stazione che riceve un poll frame
+ da un pc può trasmettere frames multipli o un frame di lunghezza arbitraria.
+\end_layout
+
+\begin_layout Subsubsection*
+Scelte di 802.11e
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Differenziazione dei flussi
+\series default
+: Ogni dispositivo ha 4 code per 4 categorie di traffico.
+\end_layout
+
+\begin_layout Itemize
+Vengono introdotte le 
+\series bold
+\emph on
+transmission opportunities
+\series default
+\emph default
+ (
+\series bold
+TXOP
+\series default
+): Ad ogni trasmissione, un tempo massimo è assegnato per il completamento
+ della trasmissione.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+trasmissione diretta tra due stazioni
+\series default
+ è possibile anche durante un collegamento a infrastruttura BSS (vedi WiFi
+ Direct).
+\end_layout
+
+\begin_layout Itemize
+Utilizzo della tecnica 
+\series bold
+\emph on
+Block ACK
+\series default
+\emph default
+ (Un ACK singolo per un 
+\begin_inset Quotes eld
+\end_inset
+
+treno
+\begin_inset Quotes erd
+\end_inset
+
+ di frame).
+\end_layout
+
+\begin_layout Itemize
+Utilizzo della 
+\series bold
+\emph on
+Hybrid Coordination Function 
+\series default
+\emph default
+(
+\series bold
+HCF
+\series default
+) in due modalità:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Contention based
+\series default
+, basata sul 
+\begin_inset Quotes eld
+\end_inset
+
+contenimento
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\series bold
+EDCA
+\series default
+, 
+\emph on
+Enhanced Distributed Channel Access
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Controlled access
+\series default
+ (
+\series bold
+HCCA
+\series default
+, 
+\emph on
+HCF Controlled Channel Access
+\emph default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+EDCA - Contention based access
+\end_layout
+
+\begin_layout Itemize
+EDCA definisce 4 categorie di accesso (
+\emph on
+Access Categories - AC
+\emph default
+) che corrispondono a 4 tipi diversi di traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AC_VO: voce
+\end_layout
+
+\begin_layout Itemize
+AC_VI: video
+\end_layout
+
+\begin_layout Itemize
+AC_BE: best effort
+\end_layout
+
+\begin_layout Itemize
+AC_BK: background
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni categoria di traffico è caratterizzata da diversi parametri di 
+\emph on
+backoff
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+AIFS[AC]
+\emph default
+: 
+\emph on
+Interframe Spaces
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+CWMin[AC]: Finestra di backoff minima
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+CWMax[AC]: Finestra di backoff massima
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TXOPlimit[AC]: Durata massima di una trasmissione
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan57.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In EDCA non solo l'interframe spacing è diverso, ma anche il tmepo di backoff.
+ Quindi si ottiene la priorità in modo probabilistico.
+\end_layout
+
+\begin_layout Standard
+Ci sono diverse entità di backoff nella stessa stazione.
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio di EDCA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan58.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+HCCA
+\end_layout
+
+\begin_layout Standard
+L'approccio HCCA è simile a PCF.
+ 
+\end_layout
+
+\begin_layout Itemize
+L'
+\emph on
+Hybrid Controller
+\emph default
+ (HC) può decidere di inviare un poll ad una stazione inviando una frame
+ 
+\emph on
+QoS CF-Frame
+\emph default
+ o un frame dati.
+\end_layout
+
+\begin_layout Itemize
+L'HC può accedere al canale dopo un PIFS, senza backoff, quindi con priorità
+ massima.
+\end_layout
+
+\begin_layout Itemize
+Differenze rispetto a PCF:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+HC specifica un TXOPlimit per ogni categoria di traffico
+\end_layout
+
+\begin_layout Itemize
+È possibile una operazione 
+\begin_inset Quotes eld
+\end_inset
+
+ibrida
+\begin_inset Quotes erd
+\end_inset
+
+ alternando periodi di contenimento con periodi senza contenimento.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Esempio di HCCA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan59.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'HC può inviare un Poll a una stazione anche durante il periodo di contenimento.
+\end_layout
+
+\begin_layout Subsubsection*
+Altri miglioramenti
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Block ACK
+\series default
+\emph default
+: È un ACK cumulativo per un gruppo di frame consecutivi (quindi non è più
+ un protocollo 
+\emph on
+stop-n-wait
+\emph default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si riduce l'overhead
+\end_layout
+
+\begin_layout Itemize
+Funziona solo con canali di buona qualità
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Direct Link Protocol 
+\series default
+\emph default
+(
+\series bold
+DLP
+\series default
+): È il protocollo per la comunicazione diretta delle stazioni senza l'ausilio
+ dell'access point nelle configurazioni 
+\emph on
+infrastructure
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si aumenta la capacità di trasferimento
+\end_layout
+
+\begin_layout Itemize
+È una operazione un po' complessa da gestire per il risparmio energetico,
+ sincronia, ...
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Power Save Mode
+\end_layout
+
+\begin_layout Standard
+Anche se già c'era in 802.11 un sistema per il risparmio energetico, si introduce
+ una dipendenza tra il ritardo di downlink (dall' access point alla stazione)
+ e l'intervallo di ascolto.
+\end_layout
+
+\begin_layout Standard
+Quindi alcuni intervalli di ascolto possono risultare in ritardi di downlink
+ che non sono accettabili per alcune applicazioni sensibili alla qualità
+ del servizio (ad esempio il VoIP)
+\end_layout
+
+\begin_layout Subsubsection*
+Automatic Power Save Delivery (APSD)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IEEE 802.11e
+\series default
+ definisce un miglioramento della modalità power save di 802.11, la 
+\emph on
+Automatic Power Save Delivery 
+\emph default
+(APSD)
+\end_layout
+
+\begin_layout Itemize
+Due modalità APSD sono disponibili: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Unscheduled APSD
+\emph default
+ (
+\series bold
+U-APSD
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Scheduled APSD 
+\emph default
+(
+\series bold
+S-APSD
+\series default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+U-APSD
+\end_layout
+
+\begin_layout Standard
+La principale novità di U-APSD è quella di 
+\bar under
+inviare dei poll all'access point per richiedere dei frame bufferizzati
+\bar default
+, invece di attendere i frame di notifica (TIM).
+\end_layout
+
+\begin_layout Itemize
+I frame dati o i frame di poll possono essere utilizzati in direzione uplink
+ come triggers per avviare un 
+\emph on
+Service Period
+\emph default
+ (SP).
+\end_layout
+
+\begin_layout Itemize
+In U-APSD ogni 
+\emph on
+Access Category
+\emph default
+ può essere configurata separatamente 
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+Service Period
+\emph default
+ (SP) è terminato dalla ricezione con il flag 
+\emph on
+End Of Service Period 
+\emph default
+(EOSP) impostato 
+\end_layout
+
+\begin_layout Itemize
+Durante un 
+\emph on
+Service Period 
+\emph default
+(SP), uno o più frame dati possono essere consegnati, fino ad un valore
+ massimo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan60.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In figura vediamo un esempio di operazione U-APSD.
+ Nella configurazione AC VO e AC VI entrambe trigger-enabled e delivery-enabled
+ e AC BK senza delivery o trigger enable.
+\end_layout
+
+\begin_layout Subsubsection*
+S-APSD
+\end_layout
+
+\begin_layout Standard
+La principale novità di S-APSD è che l'access point può schedulare il tempo
+ di risveglio per ricevere dei frame bufferizzati
+\end_layout
+
+\begin_layout Standard
+La programmazione del periodo di 
+\emph on
+wake up
+\emph default
+ è basata sui parametri 
+\emph on
+Service Start Time
+\emph default
+ (SST) e 
+\emph on
+Service Internal 
+\emph default
+(SI).
+\end_layout
+
+\begin_layout Standard
+SST e SI sono definiti per ogni categoria di accesso per cui viene attivato
+ S-APSD
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan61.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In figura c'è un esempio di funzionamento di S-APSD.
+ La configurazione comprende: traffico VoIP in direzione downstream , configurat
+o per utilizzare S-APSD con HCCA access mode, il traffico AC VI in direzione
+ downlink utilizza S-APSD con modalità di accesso EDCA, AC BE e AC BK configurat
+i per utilizzare la modalità di risparmio energetico 802.11 legacy.
+\end_layout
+
+\begin_layout Section*
+Mesh Networking su reti WiFi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Scopo
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Estendere la dimensione di un 
+\emph on
+hot spot 
+\emph default
+WiFi tramite una infrastruttura a rete mesh
+\end_layout
+
+\begin_layout Itemize
+Estendere l'applicazione delle WLAN anche per reti metropolitane
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Soluzione
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Progettare una infrastruttura distribuita 
+\end_layout
+
+\begin_layout Itemize
+Creare reti mesh di access point, collegati quindi a maglia sulla rete di
+ distribuzione, non sulla rete di accesso (che resta 
+\begin_inset Quotes eld
+\end_inset
+
+centralizzata
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan62.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Scenari applicativi
+\end_layout
+
+\begin_layout Itemize
+Accesso residenziale (competitore di WiMAX quindi)
+\end_layout
+
+\begin_layout Itemize
+Uffici
+\end_layout
+
+\begin_layout Itemize
+Reti pubbliche per accesso comunitario ad Internet in spazi comuni (solitamente
+ esterni).
+\end_layout
+
+\begin_layout Itemize
+Reti militari
+\end_layout
+
+\begin_layout Subsubsection*
+Standardizzazione
+\end_layout
+
+\begin_layout Standard
+È stato creato un gruppo di lavoro 
+\series bold
+802.11s
+\series default
+ con lo scopo di definire un 
+\emph on
+Extended Service Set 
+\emph default
+(ESS) per supportare servizi 
+\emph on
+boradcast, multicast 
+\emph default
+e 
+\emph on
+unicast 
+\emph default
+in reti 
+\emph on
+multihop
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+L'ultima draft è stata approvata a Luglio 2011.
+\end_layout
+
+\begin_layout Subsection*
+802.11s
+\end_layout
+
+\begin_layout Itemize
+Robusto e con routing efficiente (a livello 2!):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Mesh Topology Learning
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Routing and Forwarding
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Sicurezza:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Compatibilità con 802.11X
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Flessibilità del layer MAC:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Mesh Measurement
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Mesh Discovery and Association
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Mesh Medium Access Coordination
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Support to QoS 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+È trasparente ai layer protocollari superiori
+\end_layout
+
+\begin_layout Itemize
+Compatibile con device legacy.
+\end_layout
+
+\begin_layout Itemize
+Per il routing si utilizza 
+\emph on
+Hybrid Wireless Mesh Protocol 
+\emph default
+(HWMP), una combinazione di AODV e un protocollo tree-based.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wlan63.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Stack protocollare
+\end_layout
+
+\begin_layout Itemize
+Modifiche a livello MAC
+\end_layout
+
+\begin_layout Itemize
+Aggiunto il layer per il routing a livello 2
+\end_layout
+
+\begin_layout Itemize
+Lo strato fisico non viene modificato.
 \end_layout
 
 \end_body
