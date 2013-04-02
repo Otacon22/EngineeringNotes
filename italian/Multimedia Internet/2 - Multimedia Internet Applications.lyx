@@ -2645,5 +2645,991 @@ sì
 
 \end_layout
 
+\begin_layout Subsection*
+Interconnessione di reti NGN
+\end_layout
+
+\begin_layout Standard
+La interconnessione tra NGN è definita dallo standard ETSI/TISPAN di cui
+ abbiamo già parlato.
+\end_layout
+
+\begin_layout Standard
+In base a questi standard, l'interconnessione può essere effettuata mediante:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Service-Oriented Interconnection 
+\emph default
+(
+\series bold
+SoIx
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Connectivity-Oriented Interconnection 
+\emph default
+(
+\series bold
+CoIx
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+SoIx
+\series default
+ opera a livello a livello 
+\emph on
+service
+\emph default
+, mentre 
+\series bold
+CoIx 
+\series default
+opera a livello di trasporto.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SoIx
+\series default
+ è la interconnessione fisica e logica tra due diversi domini di due diversi
+ operatori NGN.
+ Permette agli operatori di offrire dei servizi con QoS 
+\emph on
+end-to-end
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CoIx
+\series default
+ opera invece a livello IP, senza considerare QoS in stile 
+\emph on
+end-to-end
+\emph default
+.
+ Può garantire solo requisiti di servizio a livello IP.
+\end_layout
+
+\begin_layout Subsubsection*
+Funzionalità di interconnessione
+\end_layout
+
+\begin_layout Itemize
+Riguardo alla interconnessione di diversi sistemi ToIP la funzione 
+\series bold
+\emph on
+InterWorking Function 
+\series default
+\emph default
+(
+\series bold
+IWF
+\series default
+) permette l'interconnessione tra diversi protocolli come SIP (
+\emph on
+Session Initiation Protocol
+\emph default
+) e ISUP (
+\emph on
+Integrated Services User Part
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+Border Gateway Function 
+\series default
+\emph default
+(
+\series bold
+BGF
+\series default
+) separa i due domini amministrativi permettendo QoS, sicurezza, tracciamento
+ delle chiamate, log del traffico.
+\end_layout
+
+\begin_layout Itemize
+La funzione di 
+\series bold
+\emph on
+Resource and Admission Control Subsystem
+\series default
+\emph default
+ (
+\series bold
+RACS
+\series default
+) controlla l'utilizzo di risorse a livello IP ed è resposabile del QoS
+ a livello IP.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 016.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La interconnessione di tipo CoIx permette agli operatori di fornire ai propri
+ clienti la connettività necessaria per raggiungere le reti esterne.
+ 
+\end_layout
+
+\begin_layout Standard
+Un esempio di interconnessione CoIx tipico è il peering IP.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="16" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Interconnection service
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Definizione
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Esempi di applicazione
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Termination
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Richieste di servizio originate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Terminazione telefonica, 
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dal lato OLO/SP e terminate a clienti 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+video streaming, sistemi di
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dell'operatore interconnesso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+messaggistica
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Collection
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Le richieste di servizio da parte degli
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Comunicazione con numeri 
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+utenti sono inoltrate all'OLO/SP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+non geografici,carrier-selection e
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ carrier-preselection
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Transit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Le richieste di servizio da parte dell'
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Transito della telefonia
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OLO/SP sono inoltrate nella rete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ e video telefonia
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+IP transit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Traffico IP dell'OLO/SP inoltrato sulla
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Transito IP verso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rete dell'operatore interconnesso
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+domini di peering
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Access
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il traffico IP dei clienti è inoltrato
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bitstream,
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+all'OLO/SP
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Linee in affitto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+IP transport
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Traffico IP dell'OLO/SP tra due punti
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Linee in affitto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+remoti che transitano sulla rete
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interconnessioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+dell'operatore interconnesso
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VPN
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Requisiti SoIx
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 017.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Requisiti per il signaling
+\series default
+: Interoperabilità del signaling e identificazione del servizio
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Requisiti per i codecs
+\series default
+: Un insieme di codecs devono essere supportati, almeno G.711,AMR, G.729A,
+ EVCR.
+ La selezione automatica dei codecs deve essere abilitata.
+ Deve essere possibile per il sistema utilizzare il codec a più bassa qualità
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Codecs video
+\series default
+: H.263 e H.264
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Routing
+\series default
+: Il routing basato sul servizio deve essere supportato
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Security
+\series default
+: Intercettazioni legali, autorizzazione, autenticazione, access control,
+ integrità dei dati, privacy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Billing e accounting
+\series default
+: Logs, report del traffico, generazione conti e controllo consumi (
+\emph on
+Charing Data Record 
+\series bold
+\emph default
+CDR
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+QoS & SLA
+\series default
+: Prenotazione di risorse per sessioni QoS
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Connection Admission Control
+\end_layout
+
+\begin_layout Section*
+Multimedia Streaming
+\end_layout
+
+\begin_layout Standard
+Per 
+\emph on
+Media Streaming
+\emph default
+ si intende la distribuzione di contenuti audio/video, solitamente sincronizzati.
+\end_layout
+
+\begin_layout Standard
+La funzionalità base del media streaming è che il contenuto viene utilizzato
+ 
+\series bold
+mentre è trasferito sulla rete
+\series default
+, invece di scaricare e poi riprodurre in un secondo momento.
+ Questa è la principale differenza tra i normali servizi di file sharing
+ e il media streaming.
+\end_layout
+
+\begin_layout Subsection*
+Codecs
+\end_layout
+
+\begin_layout Standard
+I codecs audio e video svolgono un ruolo importante nel media streaming.
+\end_layout
+
+\begin_layout Itemize
+Alcuni codecs forniscono solo una velocità di trasmissione, con 
+\emph on
+layered codecs 
+\emph default
+e i 
+\emph on
+multi-description codecs 
+\emph default
+è possibile scegliere diverse velocità di trasmissione che corrispondono
+ solitamente a diverse qualità dei contenuti audio/video.
+\end_layout
+
+\begin_layout Itemize
+I codecs di tipo 
+\series bold
+\emph on
+layered
+\series default
+\emph default
+ suddividono uno stream in un insieme di 
+\emph on
+substreams
+\emph default
+ separati chiamati 
+\series bold
+\emph on
+layers
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+L'utente deve essere in grado di ricevere almeno il layer più basso per
+ poter iniziare la riproduzione
+\end_layout
+
+\begin_layout Itemize
+Aggiungere layer sopra a quello base aumenta la qualità, se l'utente ha
+ la banda necessaria per scaricarli.
+\end_layout
+
+\begin_layout Itemize
+I codecs 
+\emph on
+layered 
+\emph default
+sono quindi migliori perchè il contenuto multimediale si può 
+\begin_inset Quotes eld
+\end_inset
+
+adattare
+\begin_inset Quotes erd
+\end_inset
+
+ alle risorse dell'utente.
+\end_layout
+
+\begin_layout Itemize
+Lo svantaggio è che a parità di qualità, i codecs layered consumano più
+ banda.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document
