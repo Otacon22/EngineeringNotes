@@ -7866,6 +7866,7 @@ WEP
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan30.svg
+	scale 60
 
 \end_inset
 
@@ -8315,7 +8316,7 @@ WPA2
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -8356,7 +8357,7 @@ Autenticazione
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -8393,7 +8394,7 @@ Cifratura
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -8434,7 +8435,7 @@ Autenticazione
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -8898,7 +8899,7 @@ Allocazione complessia delle frequenze dei 5 GHz e 2.4 GHz:
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan41.png
-	scale 30
+	scale 45
 
 \end_inset
 
@@ -9234,7 +9235,7 @@ Evoluzione dei Layer fisici del gruppo 802.11
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan43.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -9350,7 +9351,7 @@ Modifiche a PLCP
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan45.png
-	scale 30
+	scale 45
 
 \end_inset
 
@@ -10264,7 +10265,7 @@ PLCP di 802.11a
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan54.png
-	scale 40
+	scale 45
 
 \end_inset
 
@@ -12230,7 +12231,7 @@ Coding ottimizzato per MIMO (space multiplexing)
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan56.png
-	scale 40
+	scale 60
 
 \end_inset
 
@@ -12453,7 +12454,7 @@ TXOPlimit[AC]: Durata massima di una trasmissione
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan57.png
-	scale 30
+	scale 45
 
 \end_inset
 
@@ -12476,7 +12477,7 @@ Esempio di EDCA
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan58.png
-	scale 40
+	scale 45
 
 \end_inset
 
@@ -12539,7 +12540,7 @@ Esempio di HCCA
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan59.png
-	scale 30
+	scale 50
 
 \end_inset
 
@@ -12724,7 +12725,7 @@ Service Period
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan60.png
-	scale 30
+	scale 45
 
 \end_inset
 
@@ -12841,7 +12842,7 @@ centralizzata
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan62.png
-	scale 30
+	scale 45
 
 \end_inset
 
@@ -13003,6 +13004,123 @@ Aggiunto il layer per il routing a livello 2
 
 \begin_layout Itemize
 Lo strato fisico non viene modificato.
+\end_layout
+
+\begin_layout Section*
+WPAN - Bluetooth
+\end_layout
+
+\begin_layout Standard
+slow frequency hopping
+\end_layout
+
+\begin_layout Standard
+Ci sono 69 canali, possiamo arrivare a fare fino a 69 collegamenti contemporanei.
+\end_layout
+
+\begin_layout Standard
+Il wifi occupa 20 canali del bluetooth.
+\end_layout
+
+\begin_layout Standard
+Poichè di fa hopping continuo, se c'è una interferenza non è persistente.
+ Non c'è il carrier sense!!
+\end_layout
+
+\begin_layout Standard
+Master e slave si alternano in continuo.
+\end_layout
+
+\begin_layout Standard
+Possono esserci slots di lunghezza maggiore.
+ Questa è l'unica differenza che può esserci.
+\end_layout
+
+\begin_layout Standard
+I pacchetti sono di lunghezza fissa, poi possono aumentare fino a un multiplo
+ di 5.
+\end_layout
+
+\begin_layout Standard
+Se trasmetto 5 slot consecutivi, salto 4 sequenze di hopping (vedi f in
+ alto nel disegno)
+\end_layout
+
+\begin_layout Standard
+Lo slave che ha ricevuto un pacchetto da un master può rispondere nello
+ slot successivo.
+\end_layout
+
+\begin_layout Standard
+A differenza del wifi:
+\end_layout
+
+\begin_layout Itemize
+La lunghezza dei pacchetti è definita in slots, in wifi è variabile
+\end_layout
+
+\begin_layout Itemize
+La trasmissione è sincronizzata, a differenza del wifi.
+\end_layout
+
+\begin_layout Itemize
+La stazione che può rispondere al master è quella che ha appena ricevuto
+ dal master.
+ Nel wifi non è così! Nel wifi la destinazione e la stazione pollata possono
+ essere diverse.
+\end_layout
+
+\begin_layout Itemize
+Il master può trasmettere pacchetti vuoti ad uno slave solo per dargli il
+ permesso di trasmettere
+\end_layout
+
+\begin_layout Standard
+Le unitià di misura sono bits nel formato pacchetti.
+\end_layout
+
+\begin_layout Standard
+L'access code è simile al preambolo del wifi, ma è anche utilizzato per
+ indicare il mac address della stazione.
+\end_layout
+
+\begin_layout Standard
+Nell'access code c'è l'indirizzo del master, no slaves.
+ Gli slaves vengono identificati con ibit dentro AMA.
+\end_layout
+
+\begin_layout Standard
+Controllo di flusso a 1 bit è sufficiente per numerare il sequence number,
+ sempre 0, 1,0, 1...
+\end_layout
+
+\begin_layout Standard
+L'header viene trasmesso 3 volte consecutive, in questo modo il FEC diventa
+ più efficiente.
+\end_layout
+
+\begin_layout Standard
+Abbiamo diversi formati pacchetti a seconda dell'utilizzo.
+\end_layout
+
+\begin_layout Standard
+L'header è protetto molto, però può succedere che il payload sia errato.
+\end_layout
+
+\begin_layout Standard
+In bluetooth non abbiamo beacons, niente segnala la presenza della rete.
+ I due dispositivi devono trovarsi a vicenda e creare un link.
+ Non hanno la possibilità di vedersi a vicenda.
+ Questo è un tipico problema di creazione di una rete ad-hoc
+\end_layout
+
+\begin_layout Standard
+Page scan e inquiry scan sono modalità di ascolto pasimo.
+ Inquiry e page sono modalità attive.
+\end_layout
+
+\begin_layout Standard
+La procedura page è per cercare uno specifico dispositivo già noto.
 \end_layout
 
 \end_body
