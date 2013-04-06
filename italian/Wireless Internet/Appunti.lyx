@@ -90,7 +90,7 @@ Daniele Iamartino
 2013
 \end_layout
 
-\begin_layout Section*
+\begin_layout Part*
 Introduzione
 \end_layout
 
@@ -3584,7 +3584,7 @@ Riassunto
 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Part
 Wireless Local Area Networks (WLAN)
 \end_layout
 
@@ -4117,7 +4117,7 @@ cambiare frequenza
  basse, però è stato imposto comunque per sicurezza questo limite.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 WLANs basics
 \end_layout
 
@@ -4435,10 +4435,6 @@ Certificazione di conformità al risparmio energetico
 \end_deeper
 \begin_layout Section*
 Standard 802.11 
-\end_layout
-
-\begin_layout Standard
-[TODO]
 \end_layout
 
 \begin_layout Subsection*
@@ -13006,39 +13002,431 @@ Aggiunto il layer per il routing a livello 2
 Lo strato fisico non viene modificato.
 \end_layout
 
+\begin_layout Part*
+WPAN - Bluetooth e Zigbee
+\end_layout
+
+\begin_layout Standard
+In questa sezione vedremo delle tecnologie 
+\emph on
+Wireless Personal Area Networks.
+\end_layout
+
+\begin_layout Subsubsection*
+Personal Area
+\end_layout
+
+\begin_layout Itemize
+Abbiamo visto le WLAN che sono reti locali wireless, pensate per essere
+ utilizzate in campus universitari, uffici, scuole areoporti, hotel, case,
+ ...
+\end_layout
+
+\begin_layout Itemize
+Abbiamo poi le reti cellulari, che fanno copertura globale del territorio
+ 
+\end_layout
+
+\begin_layout Itemize
+Infine abbiamo le reti WPAN: sono pensate per utilizzi 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+person space
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ (singolo ufficio, stanza, tasca, all'interno dell'automobile).
+\end_layout
+
+\begin_layout Subsubsection*
+Caratteristiche delle WPAN:
+\end_layout
+
+\begin_layout Itemize
+Bassa portata, bassa potenza
+\end_layout
+
+\begin_layout Itemize
+Trasporto voce e dati
+\end_layout
+
+\begin_layout Itemize
+Low-cost
+\end_layout
+
+\begin_layout Itemize
+dispositivi piccoli da costruire
+\end_layout
+
+\begin_layout Itemize
+Considerare la presenza di molte reti adiacenti
+\end_layout
+
+\begin_layout Itemize
+Renderla una tecnologia per accedere ad altre reti
+\end_layout
+
+\begin_layout Subsubsection*
+Sviluppo delle reti WPANs
+\end_layout
+
+\begin_layout Standard
+La IEEE ha creato un gruppo di lavoro per le reti WPAN chiamato IEEE 802.15.
+ Lo scopo di questo gruppo è quello di creare una tecnologia per collegamenti
+ wireless:
+\end_layout
+
+\begin_layout Itemize
+A bassa portata e potenza 
+\end_layout
+
+\begin_layout Itemize
+A basso costo
+\end_layout
+
+\begin_layout Itemize
+Per reti piccole 
+\end_layout
+
+\begin_layout Itemize
+Per la comunicazione tra dispositivi nell'area dei dispositivi personali.
+\end_layout
+
+\begin_layout Standard
+Creando questo gruppo di lavoro, la IEEE ha spinto il mondo dell'industria
+ a lavorare su una tecnologia di questo tipo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+La famiglia 802.15
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan12.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
-WPAN - Bluetooth
+Bluetooth - 802.15.1
 \end_layout
 
 \begin_layout Standard
-slow frequency hopping
+Il 
+\series bold
+Bluetooth
+\series default
+ è uno standard industriale per le reti WPAN, il gruppo di lavoro 802.15.1
+ ha adattato le specifiche industriali per i livelli 1 e 2.
+\end_layout
+
+\begin_layout Itemize
+Nel 1996-1997 Bluetooth era un progetto interno di Ericsson
+\end_layout
+
+\begin_layout Itemize
+Nel 1998 Viene creato un gruppo di lavoro tra aziende: Ericsson, IBM, Intel,
+ Toshiba, Nokia
+\end_layout
+
+\begin_layout Itemize
+Nel 1999 Nuovi membri entrano in questo gruppo di lavoro: 3Com, Lucent Technolog
+ies, Microsoft, Motorola.
+\end_layout
+
+\begin_layout Subsection*
+Bluetooth™
 \end_layout
 
 \begin_layout Standard
-Ci sono 69 canali, possiamo arrivare a fare fino a 69 collegamenti contemporanei.
+È una tecnologia radio a basso costo, bassa copertura, bassa complessità,
+ piccole dimensioni.
+ Utilizza la banda ISM dei 2.4 GHz così come il WiFi.
+ È stato creato da un consorzio di industrie.
+ Solo i primi due livelli protocollari di questa tecnologia sono poi stati
+ standardizzati ufficialmente da IEEE.
 \end_layout
 
 \begin_layout Standard
-Il wifi occupa 20 canali del bluetooth.
+Il nome 
+\emph on
+Bluetooth
+\emph default
+ deriva da quello di un re medioevale danese che unificò la Danimarca e
+ la Svezia.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection*
+Scenari applicativi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Headset
+\series default
+: Collegamento senza fili tra computer/palmari/cellulari e un dispositivo
+ audio senza fili.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Sincronizzazione dati
+\series default
+: Collegamento per scaricamento/caricamento dati per dispositivi portatili
+ come palmari/cellulari.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Access point
+\series default
+: Così come un access point WLAN permette l'accesso di un portatile ad Internet
+ o una LAN, un access point bluetooth può essere un cellulare che fornisce
+ accesso GPRS/3G ad Internet per un portatile.
+\end_layout
+
+\begin_layout Subsection*
+Layer fisico
+\end_layout
+
+\begin_layout Itemize
+Viene utilizzata la 
+\series bold
+banda ISM
+\series default
+ dei 2.4GHz
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+79 Canali 
+\series default
+a disposizione (solo 23 in Francia e Giappone).
+ I canali sono 
+\series bold
+spaziati
+\series default
+ 
+\series bold
+1MHz tra 2402-2480MHz
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il 
+\series bold
+WiFi 802.11
+\series default
+ occupa 20 canali del Bluetooth.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Modulazione
+\series default
+ G-FSK (1 Mb/s)
+\end_layout
+
+\begin_layout Itemize
+Vengono definite 3 classi di dispositivi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Classe 1: Potenza 
+\series bold
+100mW
+\series default
+ (
+\begin_inset Formula $20dBm$
+\end_inset
+
+), distanza massima ~100 metri
+\end_layout
+
+\begin_layout Itemize
+Classe 2: Potenza 
+\series bold
+2,5mW
+\series default
+ (
+\begin_inset Formula $4dBm$
+\end_inset
+
+), distanza massima ~10 metri
+\end_layout
+
+\begin_layout Itemize
+Classe 3: Potenza 
+\series bold
+1mW
+\series default
+ (
+\begin_inset Formula $0dBm$
+\end_inset
+
+), distanza massima ~1 metri
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Viene fatto 
+\series bold
+frequency hopping
+\series default
+ tra i vari canali in modo 
+\begin_inset Quotes eld
+\end_inset
+
+slow
+\begin_inset Quotes erd
+\end_inset
+
+ e continuo.
+ Se si verifica una interferenza non c'è problema, perché in ogni caso la
+ trasmissione passerà prima o poi su una frequenza non occupata.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $1600\,\frac{hops}{s}$
+\end_inset
+
+, quindi 
+\begin_inset Formula $625\mu s$
+\end_inset
+
+ per ogni hop.
+\end_layout
+
+\begin_layout Itemize
 Poichè di fa hopping continuo, se c'è una interferenza non è persistente.
- Non c'è il carrier sense!!
+ 
+\series bold
+Non c'è il carrier sense
+\series default
+! E non è necessario averlo, per come è stato progettato Bluetooth.
+\end_layout
+
+\begin_layout Itemize
+La sequenza di hopping è 
+\emph on
+pseudo-casuale 
+\emph default
+ed è determinata dal clock e l'indirizzo del device 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+master
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, che regola l'accesso al canale.
+\end_layout
+
+\begin_layout Itemize
+Gli altri device sono 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+slaves
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ e seguono la sequenza 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ definita dal master.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Master e slave si alternano in continuazione durante la trasmissione:
 \end_layout
 
 \begin_layout Standard
-Master e slave si alternano in continuo.
+\begin_inset Graphics
+	filename wpan9.png
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Possono esserci slots di lunghezza maggiore.
- Questa è l'unica differenza che può esserci.
+È anche possibile trasmettere pacchetti che occupano 2,3,4,5 slots.
+ In ogni caso i pacchetti sono sempre formati da una 
+\begin_inset Quotes eld
+\end_inset
+
+unità
+\begin_inset Quotes erd
+\end_inset
+
+ di 
+\series bold
+lunghezza fissa
+\series default
+.
 \end_layout
 
 \begin_layout Standard
-I pacchetti sono di lunghezza fissa, poi possono aumentare fino a un multiplo
- di 5.
+\begin_inset Graphics
+	filename wpan14.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan8.png
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -13051,52 +13439,517 @@ Lo slave che ha ricevuto un pacchetto da un master può rispondere nello
  slot successivo.
 \end_layout
 
-\begin_layout Standard
-A differenza del wifi:
+\begin_layout Subsubsection*
+Alcune differenze con il WiFi
 \end_layout
 
 \begin_layout Itemize
-La lunghezza dei pacchetti è definita in slots, in wifi è variabile
+La lunghezza dei pacchetti è definita in 
+\series bold
+slots
+\series default
+, in WiFi è 
+\series bold
+variabile
 \end_layout
 
 \begin_layout Itemize
-La trasmissione è sincronizzata, a differenza del wifi.
+La trasmissione è sincronizzata, a differenza del WiFi.
 \end_layout
 
 \begin_layout Itemize
 La stazione che può rispondere al master è quella che ha appena ricevuto
  dal master.
- Nel wifi non è così! Nel wifi la destinazione e la stazione pollata possono
+ Nel WiFi non è così! Nel WiFi la destinazione e la stazione pollata possono
  essere diverse.
 \end_layout
 
 \begin_layout Itemize
 Il master può trasmettere pacchetti vuoti ad uno slave solo per dargli il
- permesso di trasmettere
+ permesso di trasmettere.
+\end_layout
+
+\begin_layout Subsection*
+Piconet
 \end_layout
 
 \begin_layout Standard
-Le unitià di misura sono bits nel formato pacchetti.
+È la architettura di rete più semplice definita in Bluetooth.
+ 
+\end_layout
+
+\begin_layout Itemize
+Si tratta di una rete 
+\emph on
+Ad-Hoc
+\emph default
+ composta da 2 o più dispositivi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Un
+\series default
+ device opera da 
+\series bold
+master
+\series default
+, tutti gli altri da 
+\series bold
+slave
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+La comunicazione è centralizzata: può avvenire solo tra master e slave,
+ non tra slave.
+\end_layout
+
+\begin_layout Itemize
+Possiamo avere fino a 7 slave attivi e altri in:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Stand-by
+\emph default
+: Non sono parte della piconet
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Parked
+\emph default
+: Sono parte della Piconet ma non sono attivi.
+ Possono essere fino a 256 in una singola Piconet.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan2.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Indirizzi
 \end_layout
 
 \begin_layout Standard
-L'access code è simile al preambolo del wifi, ma è anche utilizzato per
- indicare il mac address della stazione.
+Vengono utilizzati gli indirizzi MAC classici a 48 bit, come in tutti i
+ protocolli 802.
 \end_layout
 
 \begin_layout Standard
-Nell'access code c'è l'indirizzo del master, no slaves.
+Oltre a questi ci sono degli indirizzi interni alla Piconet:
+\end_layout
+
+\begin_layout Itemize
+AMA (
+\emph on
+Active Member Address
+\emph default
+): 3 bits
+\end_layout
+
+\begin_layout Itemize
+PMA (
+\emph on
+Parked Member Address
+\emph default
+): 8 bits
+\end_layout
+
+\begin_layout Subsubsection*
+Tipi di collegamenti
+\end_layout
+
+\begin_layout Standard
+In Bluetooth ci sono due tipi di collegamenti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SCO 
+\series default
+(
+\emph on
+Syncronous Connection Oriented
+\emph default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Connessione bidirezionale a velocità fissa (circuito)
+\end_layout
+
+\begin_layout Itemize
+FEC (
+\emph on
+Forward Error Connection
+\emph default
+) per migliorare la qualità
+\end_layout
+
+\begin_layout Itemize
+Velocità di 
+\begin_inset Formula $64\,\frac{Kbit}{s}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+ACL
+\series default
+\emph on
+ 
+\emph default
+(
+\emph on
+Asynchronous
+\emph default
+ 
+\emph on
+ConnectionLess
+\emph default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Connessione 
+\emph on
+packet-switched
+\emph default
+ condivisa tra master e slave attivi basata su uno schema di accesso 
+\series bold
+\emph on
+polling
+\end_layout
+
+\begin_layout Itemize
+Diverse operazioni a seconda del formato dei pacchetti e codici nel layer
+ fisico (slots da 1,3 o 5)
+\end_layout
+
+\begin_layout Itemize
+Velocità fino a 
+\begin_inset Formula $433.9\,\frac{Kbit}{s}$
+\end_inset
+
+ simmetrica (utilizzando pacchetti a 5 slots per ogni direzione)
+\end_layout
+
+\begin_layout Itemize
+Velocità fino a 
+\begin_inset Formula $723.2\,\frac{Kbit}{s}$
+\end_inset
+
+ e 
+\begin_inset Formula $57.6\,\frac{Kbit}{s}$
+\end_inset
+
+ asimmetrica (utilizzando pacchetti a 5 slots in una direzione e 1 slot
+ nell'altra direzione)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Multiple Access
+\end_layout
+
+\begin_layout Standard
+Abbiamo detto che ogni slave può trasmettere dopo aver ottenuto il 
+\begin_inset Quotes eld
+\end_inset
+
+permesso
+\begin_inset Quotes erd
+\end_inset
+
+ da parte del master.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan23.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Architettura protocollare
+\end_layout
+
+\begin_layout Standard
+L'architettura originaria non era compatibile con lo standard IEEE.
+ È stata successivamente modificata per adattarla alle specifiche IEEE.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan16.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Formato dei pacchetti
+\series medium
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan4.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Access code
+\series default
+\emph default
+: Utilizzato per la sincronizzazione e anche l'identificazione (MAC address)
+ nella piconet.
+ È simile al preambolo del WiFI (però questo contiene anche l'identificazione)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Header
+\series default
+\emph default
+: Utilizzato per il 
+\emph on
+Link Control
+\emph default
+ (LC), che include anche lo schema di ritrasmissione.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Payload
+\series default
+\emph default
+: Il formato del payload dipende dal tipo di connessione e il tipo di pacchetto
+ (numero di slots, protezione fisica, ...).
+\end_layout
+
+\begin_layout Subsubsection*
+Access code
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan15.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci sono tre tipi di access code:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Channel Access Code
+\series default
+\emph default
+ (
+\series bold
+CAC
+\series default
+): È il messaggio che inizializza e definisce una piconet, la 
+\emph on
+synchronization word 
+\emph default
+viene derivata dall'indirizzo MAC del master che crea la rete.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Device Access Mode
+\series default
+\emph default
+ (
+\series bold
+DAM
+\series default
+): Viene utilizzato per indirizzare un pacchetto ad un device specifico
+ durante la procedura di 
+\emph on
+page
+\emph default
+, la 
+\emph on
+synchronization word 
+\emph default
+deriva anche in questo caso dal MAC address.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Inquiry Access Code
+\series default
+\emph default
+ (
+\series bold
+IAC
+\series default
+): È utilizzato per scoprire tutti i dispositivi nel campo durante la procedura
+ di 
+\emph on
+inquiry
+\end_layout
+
+\begin_layout Standard
+Nell'access code c'è sempre l'indirizzo del master, no slaves.
  Gli slaves vengono identificati con ibit dentro AMA.
 \end_layout
 
-\begin_layout Standard
-Controllo di flusso a 1 bit è sufficiente per numerare il sequence number,
- sempre 0, 1,0, 1...
+\begin_layout Subsubsection*
+Header
 \end_layout
 
 \begin_layout Standard
-L'header viene trasmesso 3 volte consecutive, in questo modo il FEC diventa
- più efficiente.
+\begin_inset Graphics
+	filename wpan6.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Active Member Address
+\series default
+ 
+\emph default
+(
+\series bold
+AMA
+\series default
+): È l'indirizzo del device all'interno della piconet.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Type of packet
+\series default
+\emph default
+ (
+\series bold
+Type
+\series default
+): Ci sono 16 tipi diversi di pacchetto, la cui differenza è principalmente
+ legata alla lunghezza, tipo di protezione del layer fisico e connessione.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Flow
+\series default
+\emph default
+ : Controllo di flusso
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+ARQ
+\series default
+\emph default
+: Ritrasmissione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+SQN
+\series default
+\emph default
+: Numero di sequenza.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1 bit è sufficiente per numerare il sequence number, sempre 0, 1,0, 1...
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+HEC
+\series default
+\emph default
+: Checksum con funzione FEC
+\end_layout
+
+\begin_layout Standard
+Prima abbiamo visto che l'header è lungo 54 bit.
+ Questo è perchè l'header viene trasmesso 3 volte consecutive, in questo
+ modo il FEC diventa più efficiente.
+\end_layout
+
+\begin_layout Standard
+L'header è protetto molto, però può succedere che il payload sia errato.
+\end_layout
+
+\begin_layout Subsubsection*
+Formati dei pacchetti
 \end_layout
 
 \begin_layout Standard
@@ -13104,23 +13957,508 @@ Abbiamo diversi formati pacchetti a seconda dell'utilizzo.
 \end_layout
 
 \begin_layout Standard
-L'header è protetto molto, però può succedere che il payload sia errato.
+\begin_inset Graphics
+	filename wpan21.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Ritrasmissione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan7.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Stati del link controller
 \end_layout
 
 \begin_layout Standard
 In bluetooth non abbiamo beacons, niente segnala la presenza della rete.
  I due dispositivi devono trovarsi a vicenda e creare un link.
  Non hanno la possibilità di vedersi a vicenda.
- Questo è un tipico problema di creazione di una rete ad-hoc
+ Questo è un tipico problema di creazione di una rete 
+\emph on
+Ad-Hoc
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Stand-by
+\series default
+\emph default
+: Il device non è attivo e la radio è spenta
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Connection
+\series default
+\emph default
+: Il device è collegato con altri dispositivi.
+ Questo stato include diversi sotto-stati.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Inquiry
+\series default
+\emph default
+: Il device cerca altri dispositivi nel campo di ricezione.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Inquiry-scan
+\series default
+\emph default
+: Il device ascolta passivamente per richieste 
+\emph on
+inquiry
+\emph default
+ durante un breve periodo di tempo (duty cicle basso).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Page
+\series default
+\emph default
+: Il device tenta di creare una nuova piconet collegandosi ad un dispositivo
+ di cui conosce già l'indirizzo.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Page-scan
+\series default
+\emph default
+: Il device ascolta passivamente sui canali per richieste 
+\emph on
+page
+\emph default
+ per un breve periodo di tempo.
 \end_layout
 
 \begin_layout Standard
-Page scan e inquiry scan sono modalità di ascolto pasimo.
- Inquiry e page sono modalità attive.
+\begin_inset Graphics
+	filename wpan13.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Procedura di 
+\emph on
+Page
 \end_layout
 
 \begin_layout Standard
-La procedura page è per cercare uno specifico dispositivo già noto.
+Se un dispositivo vuole collegarsi ad un altro dispositivo di cui conosce
+ l'indirizzo MAC, avvia la procedura di 
+\emph on
+Page.
+\end_layout
+
+\begin_layout Itemize
+A partire dall'indirizzo viene calcolato il 
+\emph on
+Device Access Code 
+\emph default
+(
+\series bold
+DAC
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Un dispositivo in 
+\emph on
+stand-by 
+\emph default
+entra periodicamente in modalità 
+\emph on
+page-scan
+\emph default
+ e inizia l'ascolto per 
+\series bold
+DAC 
+\series default
+sul canale.
+\end_layout
+
+\begin_layout Itemize
+A causa delle regole per l'utilizzo della banda ISM, la procedura di page
+ non può essere eseguita su un canale fisso.
+\end_layout
+
+\begin_layout Itemize
+Il device in modalità 
+\emph on
+page-scan
+\emph default
+ segue una sequenza pseudocasuale su 32 canali (dei 79 canali disponibili).
+\end_layout
+
+\begin_layout Itemize
+Per limitare il consumo di energia, la procedura di 
+\emph on
+page-scan
+\emph default
+ viene eseguita per 
+\begin_inset Formula $10\, ms$
+\end_inset
+
+ su un canale e poi il device entra in sleep per un periodo di alcuni secondi
+ (tra 
+\begin_inset Formula $1.28\, s$
+\end_inset
+
+ e 
+\begin_inset Formula $3.85\, s$
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad ogni periodo di scan, un nuovo canale viene selezionato in base alla
+ sequenza pseudocasuale 
+\end_layout
+
+\begin_layout Itemize
+Il device in procedura 
+\emph on
+page
+\emph default
+ può calcolare la sequenza ma di solito non conosce la fase (il clock).
+ Quindi trasmette il 
+\series bold
+DAC
+\series default
+ in sequenza su tutti i canali.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan19.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In 
+\begin_inset Formula $10\, ms$
+\end_inset
+
+ il dispositivo in 
+\emph on
+page
+\emph default
+ può trasmettere su 16 dei 32 canali di scan.
+\end_layout
+
+\begin_layout Itemize
+La trasmissione sui 16 canali è ripetuta fino a quando non viene ottenuta
+ una risposta.
+\end_layout
+
+\begin_layout Itemize
+Se dopo un periodo di sleep non viene ricevuta nessuna risposta, vengono
+ utilizzati i successivi 16 canali.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+risposta
+\series default
+ è la ritrasmissione del DAC
+\end_layout
+
+\begin_layout Itemize
+Nella maggior parte dei casi la connessione viene stabilita entro 2 periodi
+ di sleep
+\end_layout
+
+\begin_layout Itemize
+Un terzo pacchetto è inviato dal device in 
+\emph on
+page mode
+\emph default
+ per confermare di aver ricevuto la risposta.
+ Si tratta del pacchetto 
+\series bold
+FHS
+\series default
+, che include tutte le informazioni sul dispositivo, tra cui il 
+\series bold
+clock
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+La connessione è ora attiva:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il device che stava facendo 
+\emph on
+paging
+\emph default
+ prende il ruolo di master, il device che stava facendo scanning prende
+ il ruolo di slave.
+\end_layout
+
+\begin_layout Itemize
+Un indirizzo AMA è assegnato allo 
+\emph on
+slave
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Procedura 
+\emph on
+Inquiry
+\end_layout
+
+\begin_layout Standard
+La procedura di 
+\emph on
+Inquiry
+\emph default
+ viene utilizzata per scoprire altri dipositivi.
+\end_layout
+
+\begin_layout Itemize
+È molto simile alla procedura di 
+\emph on
+page
+\emph default
+, ma l'
+\series bold
+\emph on
+access code 
+\series default
+\emph default
+utilizzato è universale: 
+\series bold
+\emph on
+Inquiry Access Code
+\series default
+\emph default
+ (
+\series bold
+IAC
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Inoltre la sequenza dell'
+\emph on
+inquiry scan
+\emph default
+ è pseudocasuale.
+\end_layout
+
+\begin_layout Itemize
+La risposta per una richiesta 
+\emph on
+inquiry
+\emph default
+ è un pacchetto 
+\series bold
+FHS
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Potrebbero esserci delle 
+\series bold
+collisioni
+\series default
+ nella risposta.
+\end_layout
+
+\begin_layout Itemize
+Dopo una 
+\emph on
+inquiry
+\emph default
+, il device va in 
+\emph on
+page mode 
+\emph default
+e può calcolare velocemente la sequenza di 
+\emph on
+page scan 
+\emph default
+e la fase per tutti i dispositivi.
+ Quindi il ritardo per la connessione è solitamente relativamente basso,
+ è maggiore quello per fare 
+\emph on
+inquiry
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Modalità 
+\emph on
+low-power
+\end_layout
+
+\begin_layout Standard
+Durante la connessione stabilita, un device slave può andare in modalità
+ 
+\emph on
+low power
+\emph default
+:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hold
+\series default
+: In questo stato lo slave smette di ascoltare il canale per un periodo
+ di tempo negoziato con il master (e l'indirizzo AMA è mantenuto)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Sniff
+\series default
+: In questo stato lo slave ascolta il canale ad intervalli regolari (l'indirizzo
+ AMA è mantenuto).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Park
+\series default
+: In questo stato l'AMA viene rilasciato e viene assegnato un PMA.
+ Lo slave ascolta il canale regolarmente (con un duty cycle molto basso)
+ e torna attivo dopo aver ricevuto il messaggio 
+\emph on
+unpark 
+\emph default
+dal master.
+\end_layout
+
+\begin_layout Subsubsection*
+Gestione del link
+\end_layout
+
+\begin_layout Standard
+Il protocollo per la gestione del link deve occuparsi di:
+\end_layout
+
+\begin_layout Itemize
+Messaggi di setup per la connessione, la sicurezza e il controllo della
+ connessione.
+\end_layout
+
+\begin_layout Itemize
+Creazione di connessioni ACL e SCO.
+\end_layout
+
+\begin_layout Itemize
+Gestione di procedure di sicurezza 
+\end_layout
+
+\begin_layout Itemize
+Aggiungere e rimuovere slaves da una piconet 
+\end_layout
+
+\begin_layout Itemize
+I messaggi LMP hanno priorità superiore a tutti gli altri.
+\end_layout
+
+\begin_layout Subsubsection*
+Sicurezza
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan22.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan0.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan3.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+L2CAP
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
