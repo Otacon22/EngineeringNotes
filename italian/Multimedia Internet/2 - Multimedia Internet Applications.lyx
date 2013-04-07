@@ -3627,6 +3627,873 @@ Lo svantaggio è che a parità di qualità, i codecs layered consumano più
  banda.
 \end_layout
 
+\begin_layout Subsection*
+Costi per la comunicazione
+\end_layout
+
+\begin_layout Itemize
+I costi per il trasporto di contenuti multimediali a livello di provider
+ sono un problema da tenere in considerazione
+\end_layout
+
+\begin_layout Itemize
+I costi possono essere molto variabili.
+ Un'idea ragionevole è che la trasmissione di un film medio compresso con
+ MPEG2 a 5Mbit/s non deve costare più di 1$.
+\end_layout
+
+\begin_layout Itemize
+Per ridurre i costi del trasporto possono essere adottate una serie di soluzioni
+, tra cui il 
+\emph on
+caching
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Anche il 
+\series bold
+multicast
+\series default
+ è una soluzione efficiente, anche se non viene spesso utilizzata dai providers
+ a causa della difficoltà di gestione.
+ Spesso è più comodo sfruttare MPLS per fare multicasting.
+\end_layout
+
+\begin_layout Subsection*
+Media Streaming
+\end_layout
+
+\begin_layout Standard
+Un servizio per la distribuzione di contenuti multimediali può utilizzare
+ una tecnologia di trasporto seguendo due stili:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pull
+\series default
+: L'utente sceglie e richiede esplicitamente un contenuto specifico.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Push
+\series default
+: I contenuti sono forniti, tramite un canale di distribuzione, in base
+ ad una certa pianificazione
+\end_layout
+
+\begin_layout Standard
+Un altro modo per caratterizzare i servizi di media streaming è tramite
+ la loro dipendenza dal ritardo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Live events
+\series default
+: Per esempio una partita di calcio, richiede di riuscire a garantire un
+ ritardo massimo dello stream nell'ordine di 1 secondo.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Eventi non live
+\series default
+: Ad esempio un film.
+ Il ritardo anche di qualche secondo è ammesso.
+\end_layout
+
+\begin_layout Subsubsection*
+Playout buffer
+\end_layout
+
+\begin_layout Standard
+Nel client dell'utente finale, una parte del contenuto multimediale viene
+ accumulato in un buffer di playout prima di essere riprodotto.
+\end_layout
+
+\begin_layout Itemize
+Il buffer di playout compensa la variazione di velocità della rete.
+\end_layout
+
+\begin_layout Itemize
+Maggiore è la dimensione del buffer, minore diventa la frequenza dei buffer
+ underflows, che degradano la qualità video.
+\end_layout
+
+\begin_layout Itemize
+Tuttavia, più aumentiamo la dimensione del buffer, più aumentiamo il delay
+ complessivo dello stream e il delay iniziale di riproduzione.
+\end_layout
+
+\begin_layout Itemize
+Quindi è necessario trovare un tradeoff sulla dimensione di questo buffer.
+ Questo tradeoff varia solitamente a seconda del tipo di contenuto (push/pull,
+ live/non live).
+\end_layout
+
+\begin_layout Subsubsection*
+Streaming unicast
+\end_layout
+
+\begin_layout Standard
+Unicast streaming significa la trasmissione di un contenuto multimediale
+ con un approccio classico 
+\emph on
+client-server
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 018.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Almeno 
+\series bold
+due flussi 
+\series default
+vengono stabiliti tra il client e il server.
+ In uno viene inviato il contenuto multimediale, nell'altro viene fatto
+ 
+\emph on
+signaling
+\emph default
+ per scambiare dei 
+\emph on
+feedback
+\emph default
+ sulla qualità.
+\end_layout
+
+\begin_layout Standard
+Per aumentare le performance è possibile mettere dei server periferici (dei
+ proxy) e poi distribuire i contenuti dai proxy verso l'utente finale.
+ Questo è quello che fanno sostanzialmente i CDN (
+\emph on
+Content Delivery Network
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 019.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La distribuzione dei contenuti verso i proxy è solitamente fatta tramite
+ ftp o ftps.
+\end_layout
+
+\begin_layout Subsubsection*
+Streaming Multicast
+\end_layout
+
+\begin_layout Standard
+Il 
+\emph on
+multicasting
+\emph default
+ è un modo molto efficiacie per distribuire lo stesso contenuto a più utenti
+ senza replicare i flussi.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+problema
+\series default
+ basilare è che IP fornisce solo delle primitive per capacità di multicasting,
+ insufficienti per fornire una distribuzione scalabile dei contenuti.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Perché?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tecnologie come MPLS sono piuttosto efficaci per implementare il multicasting
+ a livello superiore, aggregando i flussi identici.
+\end_layout
+
+\begin_layout Itemize
+Nei sistemi P2P il multicasting è effettuato a livello di overlay, a livello
+ 7.
+\end_layout
+
+\begin_layout Subsubsection*
+Real Time Streaming Protocol 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Real Time Streaming Protocol
+\emph default
+ (
+\series bold
+RTSP
+\series default
+) è un protocollo 
+\emph on
+client-server
+\emph default
+ per la distribuzione di contenuti multimediali su reti IP.
+\end_layout
+
+\begin_layout Standard
+RTSP è stato inizialmente sviluppato da 
+\emph on
+Progressive Networks
+\emph default
+, 
+\emph on
+Netscape Communications 
+\emph default
+e 
+\emph on
+Columbia University
+\emph default
+ in modo congiunto.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+RTSP può interoperare
+\series default
+ con popolari protocolli media-related di Internet:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Real Time Protocol 
+\emph default
+(
+\series bold
+RTP
+\series default
+) e 
+\emph on
+Real Time Control Protocol
+\emph default
+ (
+\series bold
+RTCP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ReSerVation Protocol
+\emph default
+ (
+\series bold
+RSVP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+HyperText Transfer Protocol 
+\emph default
+(
+\series bold
+HTTP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Session Description Protocol
+\emph default
+ (
+\series bold
+SDP
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+RTSP fornisce all'utente una serie di comandi per controllare la riproduzione
+ di un video:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Start
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pause
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Jump
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Fast forward
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Fast reverse
+\end_layout
+
+\begin_layout Standard
+Solitamente lato server abbiamo un media server e un web server dove l'utente
+ può scegliere il contenuto da riprodurre.
+ L'utente tramite HTTP può ottenere l' 
+\series bold
+SDP
+\series default
+ (
+\emph on
+Session Description Protocol
+\emph default
+) la descrizione della sessione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 020.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio: Comunicazione con il webserver
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+GET /Mission_to_Mars.sdp HTTP/1.1
+\end_layout
+
+\begin_layout Plain Layout
+
+Host: www.movieinfo.com
+\end_layout
+
+\begin_layout Plain Layout
+
+Accept: application/sdp
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+HTTP/1.1 200 OK
+\end_layout
+
+\begin_layout Plain Layout
+
+Content-Type: application/sdp
+\end_layout
+
+\begin_layout Plain Layout
+
+V=0
+\end_layout
+
+\begin_layout Plain Layout
+
+O=2890844526 2890842807 IN IP4 192.16.24.202
+\end_layout
+
+\begin_layout Plain Layout
+
+S=RTSP session
+\end_layout
+
+\begin_layout Plain Layout
+
+M=audio 0 RTP/AVP 0
+\end_layout
+
+\begin_layout Plain Layout
+
+A=control:rtsp://audio.source.com/Mission_to_Mars/audio
+\end_layout
+
+\begin_layout Plain Layout
+
+M=video 0 RTP/AVP 32
+\end_layout
+
+\begin_layout Plain Layout
+
+A=control:rstp://video.source.com/Mission_to_Mars/video 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio RTSP: Setup audio/video server
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//client to audio server 
+\end_layout
+
+\begin_layout Plain Layout
+
+SETUP rtsp://audio.source.com/Mission_to_Mars/audio RTSP/1.0
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:1 
+\end_layout
+
+\begin_layout Plain Layout
+
+Transport: RTP/AVP/UDP;unicast;client_port=3056-3057
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//audio server to client 
+\end_layout
+
+\begin_layout Plain Layout
+
+RTSP/1.0 200 OK
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:1
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 12345678
+\end_layout
+
+\begin_layout Plain Layout
+
+Transport: RTP/AVP/UDP;unicast;client_port=3056-3057;server_port=5000-5001
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//client to video server
+\end_layout
+
+\begin_layout Plain Layout
+
+SETUP rtsp://video.source.com/Mission_to_Mars/video RTSP/1.0
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:1 Transport: RTP/AVP/UDP;unicast;client_port=3058-3059
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//video server to client 
+\end_layout
+
+\begin_layout Plain Layout
+
+RTSP/1.0 200 OK
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:1
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 23456789
+\end_layout
+
+\begin_layout Plain Layout
+
+Transport: RTP/AVP/UDP;unicast;client_port=3058-3059;server_port=5002-5003
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio RTSP: Play media
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\ttfamily}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//play instructions to servers 
+\end_layout
+
+\begin_layout Plain Layout
+
+PLAY rtsp://video.source.com/Mission_to_Mars/video RTSP/1.0
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:2
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 23456789 #range: smte=0:10:00-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+RTSP/1.0 200 OK
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:2 
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 23456789 #range: smte=0:10:00-
+\end_layout
+
+\begin_layout Plain Layout
+
+RTP-info: url=rstp://video.source.com/Mission_to_Mars/video;seq=123122322;rtptime=
+78712811
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+PLAY rtsp://audio.source.com/Mission_to_Mars/audio.it RTSP/1.0
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:2 
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 12345678 #range: smte=0:10:00-
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+RTSP/1.0 200 OK
+\end_layout
+
+\begin_layout Plain Layout
+
+CSeq:2
+\end_layout
+
+\begin_layout Plain Layout
+
+Session: 12345678 #range: smte=0:10:00- 
+\end_layout
+
+\begin_layout Plain Layout
+
+RTP-info: url=rstp://audio.source.com/Mission_to_Mars/audio.it;seq=876655;rtptime=1
+0325465 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Sistemi per 
+\emph on
+Real Time Streaming
+\end_layout
+
+\begin_layout Standard
+Negli anni 90' il 
+\emph on
+Video on Demand
+\emph default
+ era considerato una delle applicazioni più interessanti e con più successo
+ per i collegamenti a banda larga.
+ La previsione fu errata perché il problema di stabilire un servizio di
+ 
+\emph on
+video on demand
+\emph default
+ ha diversi problemi di business (non tecnologici).
+\end_layout
+
+\begin_layout Standard
+Infatti fornire 
+\emph on
+video on demand
+\emph default
+ è molto costoso ed è difficile formare un modello di business dove i costi
+ sono compensati dai guadagni ottenuti dai soldi che l'utente ha intenzione
+ di spendere per un servizio del genere.
+\end_layout
+
+\begin_layout Standard
+Dagli anni 90' in poi ci sono stati diversi sviluppi in vari campi:
+\end_layout
+
+\begin_layout Itemize
+Sviluppo di nuovi codecs a basso rate 
+\end_layout
+
+\begin_layout Itemize
+Server video più efficienti e più scalabili
+\end_layout
+
+\begin_layout Itemize
+Accesso a banda larga per più utenti
+\end_layout
+
+\begin_layout Subsubsection*
+Multimedia Servers
+\end_layout
+
+\begin_layout Standard
+I server video multimediali devono memorizzare un grosso contenuto di dati,
+ quindi è necessaria una grossa capacità di storage, nell'ordine dei diversi
+ 
+\emph on
+terabytes
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+I server devono anche avere un accesso a banda molto larga per poter ricevere
+ le richieste da parte di moltissimi utenti.
+\end_layout
+
+\begin_layout Itemize
+L'efficienza sui costi per lo storage è un problema
+\end_layout
+
+\begin_layout Itemize
+Le tecniche più comuni sono architetture di storage gerarchico, dove i contenuti
+ ad alto rate sono memorizzati su dischi ottici o nastri, mentre gli hard
+ disk e gli array di dischi vengono utilizzati per i contenuti richiesti
+ da molti utenti.
+ In questo caso lo 
+\emph on
+striping
+\emph default
+ è una tecnica adottata comunemente.
+\end_layout
+
+\begin_layout Subsubsection*
+RAID
+\end_layout
+
+\begin_layout Standard
+Significa 
+\emph on
+Redundant Array of Inexpensive Disks
+\emph default
+, è una architettura di storage efficiente dal punto di vista dei costi.
+\end_layout
+
+\begin_layout Standard
+Un grosso numero di dischi a basso costo è utilizzato per raggiungere una
+ quantità di spazio superiore.
+\end_layout
+
+\begin_layout Standard
+Gli 
+\series bold
+\emph on
+stripes
+\series default
+\emph default
+ (chunk dello stesso media) sono salvati su dischi diversi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 021.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+La 
+\emph on
+long tail
+\emph default
+ dei contenuti
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 022.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Long Tail
+\emph default
+ è un termine che indica il fatto che alcuni produttori di contenuti multimedial
+i 
+\begin_inset Quotes eld
+\end_inset
+
+fisici
+\begin_inset Quotes erd
+\end_inset
+
+ hanno pochi prodotti e molte vendite, mentre i rivenditori di contenuti
+ digitali hanno solitamente tantissimi prodotti ma pochissime vendite (vedi
+ figura).
+\end_layout
+
+\begin_layout Standard
+Il modello di distribuzione basato sul web permette ai distributori di creare
+ un catalogo infinito di contenuti, in contrasto con (ad esempio), un negozio
+ di DVD dove lo spazio fisico è un problema.
+\end_layout
+
+\begin_layout Standard
+Un altro esempio è l'evoluzione del mercato dei libri con l'avvento della
+ vendita online
+\end_layout
+
+\begin_layout Subsubsection*
+YouTube
+\end_layout
+
+\begin_layout Standard
+YouTube è il tipico esempio di un distributore 
+\emph on
+long-tailed
+\emph default
+ di contenuti digitali.
+ YouTube fornisce sia contenuti ad alto che a basso bitrate.
+ Il numero di contenuti forniti è virtualmente infinito.
+ YouTube inoltre fornisce dei contenuti caricati dagli utenti, un business
+ che non si può raggiungere con la vendita classica di contenuti multimediali.
+\end_layout
+
 \begin_layout Standard
 
 \end_layout
