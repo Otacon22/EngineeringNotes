@@ -4494,8 +4494,579 @@ long-tailed
  che non si può raggiungere con la vendita classica di contenuti multimediali.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Part*
+Peer-To-Peer Systems
+\end_layout
 
+\begin_layout Standard
+Solitamente hanno un underlay che è internet e una rete di overlay creata
+ dal sistema che si occupa di collegare tra di loro vari peer.
+ Nella rete di overlay possiamo quindi costruire delle topologie di rete
+ complesse, anche ad albero per esempio.
+\end_layout
+
+\begin_layout Standard
+Si può implementare il multicast a livello di overlay.
+\end_layout
+
+\begin_layout Standard
+I sistemi p2p spesso utilizzano le 
+\emph on
+Distributed Hash Table
+\emph default
+ (DHT) per associare i contenuti ai peer.
+ Ci sono varie implementazioni, tra cui ad esempio chord, pastry....
+ Noi analizzeremo chord come esempio.
+\end_layout
+
+\begin_layout Standard
+Hash, ad esempio md5 fa 128bit di ash (32 caratteri hex).
+\end_layout
+
+\begin_layout Subsection*
+Chord
+\end_layout
+
+\begin_layout Standard
+Tiene delle coppie 
+\begin_inset Formula $\left(key,value\right)$
+\end_inset
+
+ .
+ Implementa una grossa tabella di coppie.
+ Questa tabella non è centralizzata ma è distribuita tra i peer del sistema
+ peer-to-peer.
+\end_layout
+
+\begin_layout Standard
+Il sistema ha un algoritmo per assegnare ai nodi (peers) le chiavi per le
+ quali sono responsabili (un piccolo sottoinsieme).
+\end_layout
+
+\begin_layout Standard
+Trovare una risorsa significa trovare un nodo responsabile per quella risorsa.
+\end_layout
+
+\begin_layout Standard
+Le risorse sono identificate dall'hash di qualche testo che le identifica.
+ Come identifico un nodo? Si fa l'hash dell'indirizzo IP.
+\end_layout
+
+\begin_layout Standard
+Assumiamo di avere un hash di 
+\begin_inset Formula $m$
+\end_inset
+
+ bits, allora abbiamo 
+\begin_inset Formula $2^{m}$
+\end_inset
+
+ nodi.
+ Abbiamo un evidente problema di collissioni: due cose diverse che diventano
+ lo stesso hash.
+ Questo problema è abbastanza improbabile comunque.
+\end_layout
+
+\begin_layout Standard
+Abbiamo un problema di 
+\series bold
+consistenza
+\series default
+ perché quando allochiamo gli hash dei nomi dobbiamo tentare di occupare
+ con probabilità uniforme tutte le parti dello spazio di hashing: consistent
+ hashing.
+\end_layout
+
+\begin_layout Standard
+L'idea di chord è che ogni peer è responsabile per una quantità di chiavi
+ equivalente alla quantità di spazio di hashing tra lui e il peer seguente.
+\end_layout
+
+\begin_layout Standard
+Se l'algoritmo di hash non è consistente avremo anche un problema di load
+ balancing, perchè alcuni peers sono carichi di lavoro rispetto ad altri.
+\end_layout
+
+\begin_layout Standard
+Il fatto che un host contenga la tabella di certe chiavi infatti non significa
+ che lui contiene quei contenuti, significa solo che sa chi li possiede
+ (il valore nella coppia che ha in tabella).
+\end_layout
+
+\begin_layout Standard
+Quando devo fare una query la faccio ad un vicino, se lui non lo sa gira
+ la richiesta ad altri peers.
+\end_layout
+
+\begin_layout Standard
+La query ha una complessità minima di 
+\begin_inset Formula $log\left(N\right)$
+\end_inset
+
+, quindi chord è molto efficiente.
+\end_layout
+
+\begin_layout Standard
+Quindi le feature di chord sono:
+\end_layout
+
+\begin_layout Itemize
+Load balancing: perchè consistent hashing
+\end_layout
+
+\begin_layout Itemize
+Decentralizzazione completa
+\end_layout
+
+\begin_layout Itemize
+Scalabilità: possiamo arrivare fino a milioni di nodi
+\end_layout
+
+\begin_layout Itemize
+Lo spazio delle chiavi è 
+\begin_inset Quotes eld
+\end_inset
+
+piatto
+\begin_inset Quotes erd
+\end_inset
+
+, non c'è gerarchia.
+\end_layout
+
+\begin_layout Standard
+SOlitamente l'applicazione p2p contiene al suo interno vari componenti:
+\end_layout
+
+\begin_layout Itemize
+Una tabella di chiavi e valori che associano i computer responsabili per
+ un certo hash.
+ Questa tabella deve essere strutturata in modo che quando arriva una query
+ sia consultata e sia data una risposta
+\end_layout
+
+\begin_layout Itemize
+C'è poi una sezione di risorse, i contenuti che l'host condivide (che devono
+ essere indicizzati da altri sistemi)
+\end_layout
+
+\begin_layout Itemize
+Ci deve poi essere un sistema per costruire delle queries.
+ Ovviamente deve avere qualche parametro di sistema che descrive dov'è il
+ computer (il suo 
+\begin_inset Quotes eld
+\end_inset
+
+indirizzo
+\begin_inset Quotes erd
+\end_inset
+
+) E quali computer deve interrogare per construire una richiesta.
+ Quindi il computer ha informazioni riguardo ad altri 
+\series bold
+pochi 
+\series default
+nodi (
+\begin_inset Formula $log\left(N\right)$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Vediamo un esempio di rete:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m=3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $2^{m}=8$
+\end_inset
+
+ punti sul cerchio di hash
+\end_layout
+
+\begin_layout Standard
+Assegnamo delle chiavi ai nodi.
+ Le chiavi sono assegnati al primo nodo il cui identificatore segue il valore
+ delle chiave 
+\begin_inset Formula $k$
+\end_inset
+
+ sulla circonferenza di hash.
+ Questo nodo ha un nome, si chiama 
+\begin_inset Formula $successor\left(k\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Key location
+\end_layout
+
+\begin_layout Standard
+Per trovare le chiavi, ogni nodo mantiene la così chiamata 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+finger table
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, cioè la tabella di host da contattare per le richieste.
+ È una sorta di overlay routing table.
+ In ogni caso questa tabella ha 
+\begin_inset Formula $m$
+\end_inset
+
+ righe, quindi in questo esempio 
+\begin_inset Formula $3$
+\end_inset
+
+ host.
+\end_layout
+
+\begin_layout Subsubsection*
+Finger table
+\end_layout
+
+\begin_layout Standard
+Questa tabella ha 
+\begin_inset Formula $m$
+\end_inset
+
+ entries, numerate 
+\begin_inset Formula $0\leq k\leq m$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+finger[k].start=\left(m+2^{k-1}\right)\%2^{m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sull'intervallo di chiavi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+[finger[k].start,\quad finger[k+1].start)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I nodi sono:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+startNode\geq n.finger[k].start
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E il successore .....[omissis]
+\end_layout
+
+\begin_layout Standard
+E il predecessore ....[omissis] .
+ Il predecessore (che funziona da puntatore in senso anti-orario) può essere
+ utile quando dobbiamo riorganizzare il cerchio perché un nuovo nodo entra
+ o esce dal sistema.
+\end_layout
+
+\begin_layout Standard
+Il join e leave sono un problema serio per i sistmei p2p perché dobbiam
+ oessere in grado di riorganizzare la rete per aggiungere il nodo.
+ Specialmente nei sistemi p2p2 di video streamin, le leaves sono il problema
+ principale di degradazione della qualità video.
+\end_layout
+
+\begin_layout Standard
+Proviamo a disegnare nel caso dell'esempio precedente:
+\end_layout
+
+\begin_layout Itemize
+Finger table del nodo 
+\begin_inset Formula $n=0$
+\end_inset
+
+ :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $finger[1].start=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[1].interval=[1,\,2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].start=2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].interval=[2,\,4)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[3].start=4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[3].interval=[4,\,0)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Finger table del nodo 
+\begin_inset Formula $n=3$
+\end_inset
+
+ :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $finger[1].start=4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[1].interval=[4,\,5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[1].successor=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].start=5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].interval=[5,\,7)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].successor=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[3].start=7$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[3].interval=[7,\,3)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $finger[2].successor=0$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Supponiamo che il nodo 
+\begin_inset Formula $n=3$
+\end_inset
+
+ vuole cercare la chiave 
+\begin_inset Formula $k=1$
+\end_inset
+
+.
+ Dov'è? È nell'intervallo 
+\begin_inset Formula $[7,\,3)$
+\end_inset
+
+ , quindi l'unica informazione di routing utile è quella dell'ultima riga
+ della finger table.
+ Chi è il successore? 
+\begin_inset Formula $0$
+\end_inset
+
+ , quindi il nodo 
+\begin_inset Formula $0$
+\end_inset
+
+ è respnsabile di quella risorsa.
+ Il nodo 
+\begin_inset Formula $n=3$
+\end_inset
+
+ non ha informazioni sul nodo 0, ma sa che il nodo da contattare è 0, quindi
+ avvisa il nodo 3 che inoltra la richiesta al nodo 3 per ricerare il contenuto.
+\end_layout
+
+\begin_layout Standard
+Quando il nodo 0 riceve la richiesta trova il contenuto e sa che deve rispondere
+ direttamente al nodo 
+\begin_inset Formula $3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Quindi da ora in poi, dato che il nodo 3 ha scoperto chi è il nodo responsabile
+ per quella risorsa, lo può contattare direttamente per le query.
+ 
+\series bold
+Se
+\series default
+ il nodo 0 non ha fisicamente la risorsa, può rispondere con l'
+\begin_inset Quotes erd
+\end_inset
+
+indirizzo
+\begin_inset Quotes erd
+\end_inset
+
+ di chi possiede la risorsa.
+\end_layout
+
+\begin_layout Standard
+Nel caso pessimo abbiamo sempre 
+\begin_inset Formula $log\left(N\right)$
+\end_inset
+
+, dove 
+\begin_inset Formula $N$
+\end_inset
+
+ è il numero di nodi.
+\end_layout
+
+\begin_layout Subsection*
+Join e leaves
+\end_layout
+
+\begin_layout Standard
+È la parte veramente difficile di chord e di tutti i sistemi di sistribuzione
+ p2p basati su DHT.
+ Il problema principale è che questo cerchio può arrivare a trovarsi in
+ una situazione di inconsistenza.
+ Il problema è ancora pià grave quando siamo su un sistema real-time come
+ un sistema di distribuzione video p2p.
+\end_layout
+
+\begin_layout Standard
+In ogni caso i 
+\emph on
+join
+\emph default
+ e 
+\emph on
+laves
+\emph default
+ implicano la ridistribuzione di chiavi tra i peer della rete.
+\end_layout
+
+\begin_layout Subsection*
+Ingresso nella rete 
+\end_layout
+
+\begin_layout Standard
+L'host che entra nella rete ha bisogno di una finger table iniziale, che
+ deve poter ottenere da qualche host sempre attivo.
+ Questa finger table iniziale deve contenere una lista di indizzi di nodi
+ che possono essere raggiunti sia in senso orario che in senso antiorario
+ (perché dobbiamo essere in grado di poter ridistribuire le chiavi).
+\end_layout
+
+\begin_layout Standard
+Nei sistemi di distribuzione video p2p abbiamo il problema che utilizzano
+ un sistema di distribuzione ad albero, se alcuni peers abbandonano la rete
+ abbiamo una interruzione nell'albero! Il sistema può reagire ricostruendo
+ parti dell'albero, ma è probabile che perderemo alcuni frame nella trasmissione
+ video.
+ Ecco perché le 
+\emph on
+leaves
+\emph default
+ nei sistemi p2p sono importanti.
+ Quindi nei sistemi di 
+\emph on
+p2p
+\emph default
+ video moderni non si utilizza alberi ma sistemi mesh, per riuscire a gestire
+ nel modo migliore possibile il fatto di host che escono dal sistema.
+ 
 \end_layout
 
 \end_body
