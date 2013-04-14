@@ -14630,8 +14630,2695 @@ Scatternet
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
+Un dispositivo può prendere parte a più di una 
+\series bold
+\emph on
+piconet
+\series default
+\emph default
+.
+\end_layout
 
+\begin_layout Itemize
+Ogni dispositivo può essere master all'interno di una sola 
+\emph on
+piconet
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+C'è una gestione dei periodi di assenza tramite gli stati 
+\series bold
+\emph on
+hold
+\series default
+\emph default
+ e 
+\series bold
+\emph on
+sniff
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan26.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La scatternet permette di stabilire link 
+\series bold
+diretti
+\series default
+ tra due nodi, anche nel caso in cui essi siano già parte di una 
+\series bold
+piconet
+\series default
+.
+ Questo evita di creare overhead sul master.
+ Ovviamente dovranno essere utilizzati canali di comunicazione diversi.
+\end_layout
+
+\begin_layout Subsection*
+Bluetooth 2.0
+\end_layout
+
+\begin_layout Standard
+La versione 2.0 è del
+\series bold
+ 2004
+\series default
+, mentre la versione 2.1 è del 
+\series bold
+2007
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Utilizza 
+\emph on
+Adaptive Frequency Hopping
+\emph default
+ (
+\series bold
+AFH
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+extended Synchronous Connections (eSCO) 
+\end_layout
+
+\begin_layout Itemize
+Supporta 
+\series bold
+multicast
+\series default
+ e 
+\series bold
+broadcast
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Enhanced Data Rate
+\series default
+ (EDR): rate fino a 
+\series bold
+3 Mb/s
+\series default
+ utilizzando 
+\emph on
+Differential encoded Phase Shift Keying
+\emph default
+ (
+\series bold
+DPSK
+\series default
+) con simboli 4 e 8 (sulla stessa banda) 
+\end_layout
+
+\begin_layout Subsection*
+Bluetooth 3.0
+\end_layout
+
+\begin_layout Standard
+La versione 3.0 è del 
+\series bold
+2009
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+La velocità arriva fino a 
+\series bold
+24Mb/s
+\series default
+, ma utilizzando un layer fisico e MAC che è di fatto WiFi.
+ Il bluetooth classico viene utilizzato esclusivamente per la negoziazione
+ dei parametri tra i due dispositivi.
+\end_layout
+
+\begin_layout Subsection*
+Bluetooth 4.0
+\end_layout
+
+\begin_layout Standard
+La versione 4.0 è del 
+\series bold
+2010
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Si tratta di una versione rivisitata di:
+\end_layout
+
+\begin_layout Itemize
+Bluetooth classico
+\end_layout
+
+\begin_layout Itemize
+Bluetooth 
+\emph on
+high speed
+\end_layout
+
+\begin_layout Itemize
+Bluetooth 
+\emph on
+low energy
+\emph default
+ (
+\series bold
+BLE
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+È un nuovo stack che incorpora il lavoro di 
+\series bold
+\emph on
+WiBree
+\series default
+\emph default
+.
+ Il nuovo nome commerciale è 
+\series bold
+Bluetooth smart
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+La velocità è ridotta: 
+\series bold
+260Kb/s
+\series default
+, bassa copertura, bassa potenza perché è pensato per sensori e piccoli
+ dispositivi.
+\end_layout
+
+\begin_layout Itemize
+È un competitore potenziale di 
+\emph on
+ZigBee
+\emph default
+.
+\end_layout
+
+\begin_layout Section*
+ZigBee - 
+\series bold
+IEEE 802.15.4
+\end_layout
+
+\begin_layout Standard
+La maggior parte delle applicazioni del wireless networking richiedono velocità
+ di trasferimento medio/alte.
+ La maggior parte delle tecnologie WiFi, WiMax e Bluetooth sono state devote
+ a questo scopo, di raggiungere alte velocità.
+\end_layout
+
+\begin_layout Standard
+Più di recente però è nata la necessità di creare reti wireless a basso
+ rate di trasmissione, bassa copertura e bassa potenza.
+ Pensiamo ad esempio allo scenario di 
+\emph on
+Internet of Things
+\emph default
+, dove si suppone di collegare diversi elettrodomestici in rete.
+\end_layout
+
+\begin_layout Standard
+Le reti 
+\series bold
+\emph on
+LR-WPAN
+\series default
+\emph default
+ sono la risposta a questa necessità.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan27.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Caratteristiche
+\end_layout
+
+\begin_layout Itemize
+Hardware e software 
+\series bold
+\emph on
+low-cost
+\series default
+\emph default
+ : meno di 2$
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bassa copertura
+\series default
+ (inferiore ai 10 metri)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bassa latenza
+\series default
+, quando necessario.
+\end_layout
+
+\begin_layout Itemize
+Ma soprattutto: 
+\series bold
+basso consumo energetico
+\series default
+.
+\end_layout
+
+\begin_layout Subsection*
+Wireless Sensor Networks
+\end_layout
+
+\begin_layout Standard
+A partire dagli anni 90, i costruttori di hardware hanno iniziato a costruire
+ soluzioni proprietarie diverse per le reti wireless di sensori (
+\emph on
+Wireless Sensor Networks
+\emph default
+).
+ Questo ha generato grossi problemi di compatibilità e costi elevati.
+\end_layout
+
+\begin_layout Standard
+Nel 
+\series bold
+2001
+\series default
+ è stato creato il gruppo di lavoro 
+\series bold
+IEEE 802.15.4
+\series default
+ .Nel 2003 sono state pubblicate le specifiche per il layer fisico e MAC.
+ La tecnologia prende il nome commerciale di 
+\series bold
+\emph on
+ZigBee
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Stack protocollare di 
+\emph on
+ZigBee
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan28.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan29.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo stack ZigBee è diviso in due 
+\begin_inset Quotes eld
+\end_inset
+
+colonne
+\begin_inset Quotes erd
+\end_inset
+
+, a seconda se si sceglie di utilizzare lo stack completo ZigBee oppure
+ il layer fisico 802.15.4 insieme ad una pila protocollare proposta da IETF,
+ basata su IPv6 e UDP.
+\end_layout
+
+\begin_layout Subsection*
+Velocità e frequenze
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Banda
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Copertura
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Data Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Numero di canali
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.4 GHz ISM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mondiale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+250 kb/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+868 MHz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Europa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 kb/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+915 MHz ISM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+America
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40 kb/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan30.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Confronto tra 
+\emph on
+ZigBee
+\emph default
+ e 
+\emph on
+Bluetooth
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ZigBee
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DSSS 
+\begin_inset Formula $11\:\frac{chips}{symbol}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $62.5\: k\,\frac{symbol}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $4\:\frac{bits}{symbol}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di accesso alla rete: 
+\begin_inset Formula $30\, ms$
+\end_inset
+
+ tipicamente
+\end_layout
+
+\begin_layout Itemize
+Gli slave passano da 
+\emph on
+sleeping
+\emph default
+ ad 
+\emph on
+active 
+\emph default
+ogni 
+\begin_inset Formula $15ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di accesso al canale per uno slave attivo: 
+\begin_inset Formula $15ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Numero massimo di dispositivi attivi per rete: 255
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Bluetooth
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+FHSS
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $1\: M\,\frac{symbol}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Rate di picco: 
+\begin_inset Formula $720\, k\,\frac{bit}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di accesso alla rete: 
+\begin_inset Formula $>3\, s$
+\end_inset
+
+ tipicamente
+\end_layout
+
+\begin_layout Itemize
+Gli slave passano da 
+\emph on
+sleeping
+\emph default
+ ad 
+\emph on
+active 
+\emph default
+ogni 
+\begin_inset Formula $3\, s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di accesso al canale per uno slave attivo: 
+\begin_inset Formula $2ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Numero massimo di dispositivi attivi per rete: 8
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Tipi di dispositivi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Full Function Device 
+\series default
+(
+\series bold
+FFD
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Può trasmettere dei 
+\series bold
+\emph on
+beacon
+\series default
+ frame
+\end_layout
+
+\begin_layout Itemize
+Può 
+\series bold
+comunicare direttamente
+\series default
+ con altre FFD
+\end_layout
+
+\begin_layout Itemize
+Può
+\series bold
+ fare routing del traffico
+\end_layout
+
+\begin_layout Itemize
+Può operare come 
+\series bold
+coordinatore
+\series default
+ PAN
+\end_layout
+
+\begin_layout Itemize
+Può essere 
+\series bold
+alimentata da una sorgente esterna
+\series default
+ di energia
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Reduced Function Device 
+\series default
+(
+\series bold
+RFD
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non può fare routing del traffico
+\end_layout
+
+\begin_layout Itemize
+Non può comunicare direttamente con altre RFD, ma solo con delle FFD.
+\end_layout
+
+\begin_layout Itemize
+È solitamente alimentata a batteria
+\end_layout
+
+\begin_layout Itemize
+Può utilizzare tecniche avanzate di risparmio energetico e modalità 
+\emph on
+sleep.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Topologie di rete
+\end_layout
+
+\begin_layout Subsubsection*
+Rete a stella
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan31.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il PAN Coordinator deve essere ovviamente una 
+\emph on
+Full Function Device
+\emph default
+, di modo da poter collegare le 
+\emph on
+Reduced Function Device
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Rete a maglia (mesh)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan32.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Clustered stars: rete a stella con grappoli
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan33.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Layer fisico
+\end_layout
+
+\begin_layout Standard
+Il dettaglio principale è legato all'accensione e spegimento continui del
+ ricetrasmettitore radio.
+\end_layout
+
+\begin_layout Itemize
+C'è una funzionalità di 
+\series bold
+\emph on
+Energy Detection
+\series default
+\emph default
+ (
+\series bold
+ED
+\series default
+) sul canale corrente.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Identifico il livello di energia per ogni canale (utilizzato per implementare
+ le tecniche di scanning)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo un 
+\emph on
+Link Quality Indicator 
+\emph default
+(
+\series bold
+LQI
+\series default
+) per i pacchetti ricevuti 
+\end_layout
+
+\begin_layout Itemize
+C'è una funzionalità di 
+\emph on
+Clear Channel Assessment 
+\emph default
+(
+\series bold
+CCA
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Utilizzata per implementare il 
+\emph on
+Carrier Sense Multiple Access 
+\emph default
+con 
+\emph on
+Collision Avoidance
+\emph default
+ (
+\series bold
+CSMA-CA
+\series default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La tecnica di trasmissione utilizzata è 
+\emph on
+Direct Sequence Spread Spectrum 
+\emph default
+(
+\series bold
+DSSS
+\series default
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Formato del frame fisico
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Bytes:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Variabile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preambolo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Start o Frame delimiter (
+\series bold
+SFD
+\series default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Lenght (7 bit)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reserved (1 bit)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSDU
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Synchronization header (
+\series bold
+SHR
+\series default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Protocol Header (
+\series bold
+PHR
+\series default
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Payload
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sono previste due modalità operative:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Beacon Enabled 
+\series default
+(CSMA/CA slotted)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan34.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Durata del frame da 
+\begin_inset Formula $15\, ms$
+\end_inset
+
+ a 
+\begin_inset Formula $252\, s$
+\end_inset
+
+ (
+\begin_inset Formula $15.38ms\,\cdot\,2n$
+\end_inset
+
+ dove 
+\begin_inset Formula $0\leq n\leq14$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+Guaranteed Time Slot 
+\emph default
+(
+\series bold
+GTS
+\series default
+) è assegnato nel beacon frame.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Questa parte deve essere riguardata!!!!
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'unità di tempo è il periodo di backoff (
+\series bold
+BP
+\series default
+), il cui valore di default è 
+\begin_inset Formula $20$
+\end_inset
+
+ periodi di simboli
+\end_layout
+
+\begin_layout Itemize
+Abbiamo 3 variabili:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+NB
+\series default
+: Numero di tentati accessi al canale per andare in trasmissione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CW
+\series default
+: Numero di BP dopo la fine del periodo di backoff, prima di iniziare la
+ trasmissione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+BE
+\series default
+: Esponente che definisce il massimo numero di BP necessari per iniziare
+ la procedura CCA (
+\emph on
+Clear Channel Assessment
+\emph default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La procedura di trasmissione (e l'ACK opzionale) deve essere completata
+ entro la fine del periodo CAP.
+ Nel caso in cui questo non sia possibile, l'entità MAC deve sospendere
+ il backoff casuale e attendere l'inizio del CAP successivo (poiché stiamo
+ usando un sistema slotted).
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui il flag 
+\emph on
+macBattLifeExt
+\emph default
+ è a 1, il countdown di backoff può essere svolto solo nei primi 6 BP dopo
+ il 
+\emph on
+beacon frame
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan35.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Non beacon Enabled
+\series default
+ (CSMA/CA non slotted)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Classimo meccanismo di accesso al canale CSMA/CA utilizzando ACK.
+ Non c'è sincronizzazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan36.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Funzioni dello strato MAC
+\end_layout
+
+\begin_layout Itemize
+Beacon management (sincronizzazione)
+\end_layout
+
+\begin_layout Itemize
+Gestione dell'accesso al canale
+\end_layout
+
+\begin_layout Itemize
+Gestione del 
+\emph on
+Guaranteed Time Slot
+\emph default
+ (
+\series bold
+GTS
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Associazione
+\emph default
+ e 
+\emph on
+de-associazione
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Frame Acknowledgement
+\end_layout
+
+\begin_layout Subsubsection*
+Formato trama MAC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="9">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bytes:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0/2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0/2/8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0/2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0/2/8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sequence Number
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dest.
+ PAN ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dest.
+ Addr
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Src.
+ PAN ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Src.
+ Addr.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Payload
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FCS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Campi di indirizzamento
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAC Header
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MAC Payload
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CRC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Frame Control
+\series default
+: Identifica il tipo di frame, il tipo di indirizzamento, la sicurezza
+\end_layout
+
+\begin_layout Itemize
+Nella parte di indirizzi si può utilizzare un indirizzo MAC a 48 bit classico
+ o un indirizzo 
+\emph on
+short
+\emph default
+ di 16 bit assegnato dal PAN coordinator
+\end_layout
+
+\begin_layout Subsubsection*
+Frame Dati
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan37.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Può contenere fino a 104 Bytes di dati
+\end_layout
+
+\begin_layout Subsubsection*
+Frame Ack
+\end_layout
+
+\begin_layout Standard
+È trasmesso subito dopo in risposta al frame dati
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan38.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Frame di comando
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan39.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Permette la configurazione e il controllo di dispositivi remoti 
+\end_layout
+
+\begin_layout Itemize
+Permette l'implementazione di alcune semplici procedure di controllo centralizza
+to sulla rete
+\end_layout
+
+\begin_layout Subsubsection*
+Beacon Frame Format
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan40.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Permette la sincronizzazione e l'assegnamento di GTS
+\end_layout
+
+\begin_layout Subsection*
+Creazione della rete
+\end_layout
+
+\begin_layout Standard
+Un device FFD cerca dei canali disponibili e seleziona un PAN ID (
+\emph on
+Channel Scanning
+\emph default
+).
+ Poi inizia a trasmettere dei 
+\emph on
+beacon frames
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Un dispositivo che vuole collegarsi alla rete inizia a ascoltare sui vari
+ canali per cercare dei beacon frames.
+\end_layout
+
+\begin_layout Itemize
+Una volta che la fase di scanning è completata, il dispositivo imposta i
+ propri parametri in base a quanto indicato nei beacon frames che vengono
+ diffusi.
+ 
+\end_layout
+
+\begin_layout Itemize
+Poi trasmette un comando di 
+\emph on
+Association Request
+\emph default
+ al 
+\emph on
+PAN Coordinator
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+PAN
+\emph default
+ 
+\emph on
+Coordinator
+\emph default
+ risponde con un 
+\emph on
+Association Response
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Scanning
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Scanning Attivo
+\series default
+ (solo per FFD):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un beacon request message viene inviato per stimolare la generazione di
+ beacons:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan41.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Alla terminazione della procedura di scanning viene scelto un PAN ID.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Passive scanning
+\series default
+ (per FFD e RMD):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È simile allo scanning attivo, però non ci sono delle 
+\emph on
+beacon request
+\emph default
+ esplicite.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Associazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan42.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Formato del frame a livello di rete
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bytes:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variabile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dest.
+ Addr.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Src.
+ Addr.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcast radius
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcast seq.num.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame Payload
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Campi per il routing
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+NWK Header
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+NWK Payload
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Frame Control
+\series default
+: Include tipo di frame, versione, informazioni di 
+\emph on
+route discovery
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Broadcast Radius
+\series default
+: Massimo numero di hop che un messaggio può attraversare (come il TTL in
+ IP).
+\end_layout
+
+\begin_layout Subsection*
+Routing in 
+\emph on
+ZigBee
+\end_layout
+
+\begin_layout Standard
+È definito nelle specifiche di ZigBee, definite dalla 
+\emph on
+ZigBee Alliance.
+\end_layout
+
+\begin_layout Standard
+Ci sono 3 tipi di dispositivi:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ZB Coordinator
+\emph default
+ (
+\series bold
+FFD
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ZB Router
+\emph default
+ (
+\series bold
+FFD
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ZB End-Device
+\emph default
+ (
+\series bold
+RFD
+\series default
+ o 
+\series bold
+FFD
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+Il routing è specifico per 
+\emph on
+ZigBee
+\emph default
+.
+ Si tratta di un protocollo adattato a partire da protocolli per 
+\emph on
+ad-hoc routing
+\emph default
+ e considera i tipi di dispositivi presenti in 
+\emph on
+ZigBee
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+L'algoritmo integra due meccanismi:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Ad-Hoc On-Demand Distance Vector 
+\emph default
+(
+\series bold
+AODV
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un semplice protocollo per reti 
+\emph on
+Ad-Hoc
+\emph default
+ basato sul paradigma 
+\emph on
+on-demand/reactive
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Vedremo in seguito come funziona quando parleremo di routing in reti ad-hoc.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Cluster Tree Algorithm
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La procedura viene avviata da un FFD che diventa il coordinatore della rete.
+\end_layout
+
+\begin_layout Itemize
+L'FFD chiede alle entità MAC di identificare i canali disponibili, assegna
+ un PAN ID alla rete e l'indirizzo 0 a se stesso.
+\end_layout
+
+\begin_layout Itemize
+Poi la procedura di associazione alla rete prosegue in base alle regole
+ del layer MAC.
+ Ogni nuovo dispositivo associato alla rete diventa uno 
+\emph on
+ZB Router
+\emph default
+ oppure un 
+\emph on
+ZB End-Device
+\emph default
+.
+ Uno 
+\emph on
+ZB Router
+\emph default
+ può a sua volta permettere l'accesso ad altri dispositivi.
+\end_layout
+
+\begin_layout Itemize
+Gli indirizzi sono assegnati in modo gerarchico e distribuito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan43.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Regola di assegnamento degli indirizzi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'intervallo di indirizzamento 
+\begin_inset Formula $A\left(d\right)$
+\end_inset
+
+ degli indirizzi assegnati ai nodi router (per se stessi e per i figli)
+ ad una profondità 
+\begin_inset Formula $d<L_{m}$
+\end_inset
+
+ è definita da:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A\left(d\right)=\begin{cases}
+1+D_{m}+R_{m} & \text{per}\: d=L_{m}-1\\
+1+D_{m}+R_{m}\cdot A\left(d+1\right) & \text{per}\:0\leq d\leq L_{m}-1
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I nodi a profondità 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+ e gli 
+\emph on
+end-device
+\emph default
+ hanno assegnati un unico indirizzo.
+\end_layout
+
+\begin_layout Itemize
+La semplice regola di assegnamento è:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad un nodo di livello 
+\begin_inset Formula $d$
+\end_inset
+
+ è assegnato un indirizzo nell'intevallo 
+\begin_inset Formula $\left[x,\, x+A\left(d\right)-1\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Si assegnerà 
+\begin_inset Formula $\left[x+\left(i-1\right)\cdot A\left(d+1\right)+1,\, x+i\cdot A\left(d+1\right)\right]$
+\end_inset
+
+ all'
+\emph on
+i-esimo 
+\emph default
+router figlio (
+\begin_inset Formula $i\leq R_{m}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Si assegnerà 
+\begin_inset Formula $x+R_{m}\cdot A\left(d+1\right)+j$
+\end_inset
+
+ al 
+\emph on
+j-esimo
+\emph default
+ 
+\emph on
+end-device
+\emph default
+ figlio del router (
+\begin_inset Formula $1\leq j\leq D_{m}$
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Esempio
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Allocazione degli indirizzi per 
+\begin_inset Formula $R_{m}=2$
+\end_inset
+
+, 
+\begin_inset Formula $D_{m}=2$
+\end_inset
+
+, 
+\begin_inset Formula $L_{m}=3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mbox{A\left(2\right)=5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mbox{A\left(1\right)=13}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mbox{A\left(0\right)=29}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi il PAN coordinator potrà assegnare indirizzi tra 
+\begin_inset Formula $\left[0,28\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan44.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection*
+Principi di routing ad albero
+\end_layout
+
+\begin_layout Itemize
+Se l'indirizzo di destinazione è quello di un end-device figlio: route diretta
+\end_layout
+
+\begin_layout Itemize
+Se l'indirizzo di destinazione è quello di un intervallo assegnato ad un
+ router: inoltra al router
+\end_layout
+
+\begin_layout Itemize
+Altrimenti: manda al nodo padre
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan45.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il routing potrebbe non essere ottimizzato, dato che non c'è una metrica
+ sulla 
+\begin_inset Quotes eld
+\end_inset
+
+qualità
+\begin_inset Quotes erd
+\end_inset
+
+ dei collegamenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan46.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Application Profiles di 
+\emph on
+ZigBee
+\end_layout
+
+\begin_layout Itemize
+Necessità:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Linguaggio comune per scambiare dati
+\end_layout
+
+\begin_layout Itemize
+Set di azioni ben definite
+\end_layout
+
+\begin_layout Itemize
+Interoperabilità tra dispositivi costruiti da vari costruttori
+\end_layout
+
+\begin_layout Itemize
+Affidabilità per l'utente finale
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Definizione dei profili (attualmente 9 librerie specificate):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un insieme di device nell'area applicativa
+\end_layout
+
+\begin_layout Itemize
+Un insieme di 
+\emph on
+clusters
+\emph default
+ per implementare la funzionalità
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un insieme di attributi per rappresentare lo stato del dispositivo
+\end_layout
+
+\begin_layout Itemize
+Un insieme di comandi per abilitare la comunicazione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Specifica di quali clusters sono richiesti da quale device
+\end_layout
+
+\begin_layout Itemize
+Descrizione funzionale specifica per ogni dispositivo
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+High Rate PAN - IEEE 802.15.3
+\end_layout
+
+\begin_layout Standard
+IEEE 802.15.3a era un tentativo di migliorare il layer fisico di IEEE 802.15.3
+ ultilizzando la tecnologia 
+\emph on
+Ultra Wide Band
+\emph default
+ (UWB) per applicazioni multimediali.
 \end_layout
 
 \end_body
