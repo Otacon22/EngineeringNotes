@@ -14255,6 +14255,33 @@ slave
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Si trasmette su 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ e 
+\begin_inset Formula $f_{k+1}$
+\end_inset
+
+ , poi si ascolta su 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ e 
+\begin_inset Formula $f_{k+1}$
+\end_inset
+
+ .
+ Non viene fatta trasmissione e ascolto alternati per poter ridurre il numero
+ di switch tra trasmissione e ascolto sulla scheda.
+\end_layout
+
+\begin_layout Itemize
+I dispositivi master sono svantaggiati dal punto di vista energetico perché
+ sono sempre in procedura Page quando non sono collegati.
+\end_layout
+
 \begin_layout Subsubsection*
 Procedura 
 \emph on
@@ -14454,7 +14481,153 @@ Sicurezza
 \end_layout
 
 \begin_layout Subsubsection*
-L2CAP
+L2CAP - 
+\emph on
+Logical Link Control and Adaptation Protocol
+\end_layout
+
+\begin_layout Standard
+Funziona da sistema di adattamento tra il protocollo di livello 2 e i vari
+ servizi superiori.
+\end_layout
+
+\begin_layout Standard
+Fornisce le funzioni di segmentazione, riassemblamento e multiplexing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan24.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Profili
+\end_layout
+
+\begin_layout Standard
+Sono le modalità operative caratteristiche di diverse applicazioni.
+ Sono utilizzate per garantire l'interoperabilità tra dispositivi di diversi
+ vendor, a livello applicativo nel caso in cui non si utilizza TCP/IP come
+ livello 3 e 4.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Generic Access Profile
+\end_layout
+
+\begin_layout Itemize
+Service Discovery Application Profile
+\end_layout
+
+\begin_layout Itemize
+Cordless Telephony Profile
+\end_layout
+
+\begin_layout Itemize
+Intercom Profile 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Serial Port Profile
+\series default
+ (emula la porta seriale)
+\end_layout
+
+\begin_layout Itemize
+Headset Profile 
+\end_layout
+
+\begin_layout Itemize
+Dial-up Networking Profile 
+\end_layout
+
+\begin_layout Itemize
+Fax Profile 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LAN Access Profile 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Generic Object Exchange Profile 
+\end_layout
+
+\begin_layout Itemize
+Object Push Profile
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+File Transfer Profile
+\end_layout
+
+\begin_layout Itemize
+Synchronization Profile 
+\end_layout
+
+\begin_layout Itemize
+Advanced Audio Distribution
+\end_layout
+
+\begin_layout Itemize
+PAN
+\end_layout
+
+\begin_layout Itemize
+Audio Video Remote Control
+\end_layout
+
+\begin_layout Itemize
+Basic Printing
+\end_layout
+
+\begin_layout Itemize
+Basic Imaging
+\end_layout
+
+\begin_layout Itemize
+Extended Service Discovery
+\end_layout
+
+\begin_layout Itemize
+Generic Audio Video Distribution 
+\end_layout
+
+\begin_layout Itemize
+Hands Free
+\end_layout
+
+\begin_layout Itemize
+Hardcopy Cable Replacement 
+\end_layout
+
+\begin_layout Subsection*
+Scatternet
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wpan25.png
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
