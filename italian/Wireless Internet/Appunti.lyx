@@ -17318,7 +17318,186 @@ IEEE 802.15.3a era un tentativo di migliorare il layer fisico di IEEE 802.15.3
 \emph on
 Ultra Wide Band
 \emph default
- (UWB) per applicazioni multimediali.
+ (UWB) per applicazioni multimediali (tra 11 e 55 Mb/s).
+\end_layout
+
+\begin_layout Standard
+Il risultato è stato quello di unificare 23 proposte in 2:
+\end_layout
+
+\begin_layout Itemize
+Multi-Band Orthogonal Frequency Division Multiplexing (MB-OFDM) UWB, 
+\series bold
+WiMedia Alliance 
+\end_layout
+
+\begin_layout Itemize
+Direct Sequence - UWB (DS-UWB), 
+\series bold
+UWB Forum
+\end_layout
+
+\begin_layout Standard
+Nel Gennaio 2006 il gruppo di lavoro è stato sospeso a causa di mancanza
+ di accordi per le proposte.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IEEE 802.15.3b
+\series default
+ introdotti alcuni miglioramenti per la interoprabilità a livello MAC
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IEEE 802.15.3c
+\series default
+: voleva utilizzare come frequenze le 57-64 GHz.
+ Lo scopo era quello di raggiungere delle velocità molto elevate per applicazion
+i multimediali.
+\end_layout
+
+\begin_layout Subsection*
+Altre iniziative per il wireless ad alta velocità
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Wireless USB
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basato su 
+\series bold
+UWB
+\end_layout
+
+\begin_layout Itemize
+480 Mb/s a distanze fino a 3 metri e 110 Mb/s fino a 10 metri
+\end_layout
+
+\begin_layout Itemize
+Progettato per operare alle frequenze da 3.1 a 10.6 GHz 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+WirelessHD 
+\series default
+(
+\series bold
+WiHD
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Basato su canali larghi 7 GHz nella banda dei 60 GHz
+\end_layout
+
+\begin_layout Itemize
+Velocità 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ da 4 Gb/s a 25 Gb/s
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Wireless Gigabit Initiative 
+\series default
+(
+\series bold
+WiGig
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Opera nelle bande dei 2.4, 5 e 60 GHz 
+\end_layout
+
+\begin_layout Itemize
+Velocità fino a 7 Gbit/s
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Wireless Home Digital Interface 
+\series default
+(
+\series bold
+WHDI
+\series default
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un protocollo pensato per la HDTV wireless
+\end_layout
+
+\begin_layout Itemize
+Velocità di 3 Gb/s (che permette streaming 1080p) in un canale da 40 MHz,
+ oppure banda di 1.5 Gb/s utilizzando una canale da 20 MHz nella frequenza
+ del wifi da 5 GHz.
+\end_layout
+
+\end_deeper
+\begin_layout Part*
+WMAN - Wireless Metropolitan Area Networks
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename wman01.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si tratta di una tecnologia per portare connettività wireless ad alta velocità
+ direttamente ad utenti residenziali, sfruttando una infrastruttura 
+\series bold
+\emph on
+low-cost
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Section*
+WiMAX
+\end_layout
+
+\begin_layout Itemize
+È una infrastruttura basata su IP, diversa dai sistemi cellulare (3G,4G).
+ WiMAX è stato disegnato per accesso wireless fisso, la 
+\emph on
+mobility
+\emph default
+ è stata introdotta in seguito.
 \end_layout
 
 \end_body

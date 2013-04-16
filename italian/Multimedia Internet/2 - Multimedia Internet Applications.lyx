@@ -4421,6 +4421,11 @@ stripes
 \end_layout
 
 \begin_layout Standard
+Si riesce a distribuire i contenuti visualizzati da molti utenti ed evitare
+ i colli di bottiglia su un unico disco.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Graphics
 	filename 021.png
 	scale 30
@@ -4475,7 +4480,7 @@ Il modello di distribuzione basato sul web permette ai distributori di creare
 
 \begin_layout Standard
 Un altro esempio è l'evoluzione del mercato dei libri con l'avvento della
- vendita online
+ vendita online.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -4498,61 +4503,266 @@ long-tailed
 Peer-To-Peer Systems
 \end_layout
 
-\begin_layout Standard
-Solitamente hanno un underlay che è internet e una rete di overlay creata
- dal sistema che si occupa di collegare tra di loro vari peer.
- Nella rete di overlay possiamo quindi costruire delle topologie di rete
- complesse, anche ad albero per esempio.
+\begin_layout Subsection*
+Caratteristiche dei sistemi P2P
 \end_layout
 
-\begin_layout Standard
-Si può implementare il multicast a livello di overlay.
+\begin_layout Itemize
+
+\series bold
+Vantaggi
 \end_layout
 
-\begin_layout Standard
-I sistemi p2p spesso utilizzano le 
+\begin_deeper
+\begin_layout Itemize
+Sono basati sua una infrastruttura di rete che non è centralizzata, i vari
+ peer comunicano tra di loro invece che con un server centrale.
+ Questo permette di scalare il sistema a milioni di utenti senza problemi
+ sull'infrastruttura.
+\end_layout
+
+\begin_layout Itemize
+Permettono una migliore gestione della banda disponibile, che non è possibile
+ con il modello 
+\emph on
+client/server
+\emph default
+ che genera rallentamenti all'aumentare dei clients.
+\end_layout
+
+\begin_layout Itemize
+Non c'è necessità di amministrare il sistema.
+ Il sistema di autoregola.
+ È un sistema tollerante ai guasti perché nessun nodo è indispensabile al
+ funzionamento dell'architettura.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Svantaggi
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non è sempre facile effettuare l'operazione di ricerca, quindi bisogna sempre
+ sviluppare sistemi di ricerca leggermente complessi nelle reti P2P
+\end_layout
+
+\begin_layout Itemize
+La diffusione del materiale DRM, coperto da copyright è un problema.
+\end_layout
+
+\begin_layout Itemize
+La banda disponibile in upload per i peers può essere il collo di bottiglia
+ del sistema.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Caratteristiche
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I sistemi P2P sono suddivisi in un 
+\series bold
+\emph on
+overlay
+\series default
+\emph default
+ e un 
+\series bold
+\emph on
+underlay
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Solitamente l'
+\emph on
+underlay
+\emph default
+ è Internet e la rete di 
+\emph on
+overlay
+\emph default
+ è creata dal sistema che si occupa di collegare tra di loro vari peer.
+ 
+\end_layout
+
+\begin_layout Itemize
+Nella rete di 
+\emph on
+overlay
+\emph default
+ possiamo quindi costruire delle topologie di rete complesse, anche ad albero
+ per esempio.
+\end_layout
+
+\begin_layout Itemize
+Si può implementare il 
+\series bold
+multicast
+\series default
+ a livello di 
+\emph on
+overlay
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+I sistemi P2P spesso utilizzano le 
+\series bold
 \emph on
 Distributed Hash Table
+\series default
 \emph default
- (DHT) per associare i contenuti ai peer.
- Ci sono varie implementazioni, tra cui ad esempio chord, pastry....
- Noi analizzeremo chord come esempio.
+ (
+\series bold
+DHT
+\series default
+) per associare i contenuti ai peer.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+
+\emph on
+Distributed Hash Tables
 \end_layout
 
 \begin_layout Standard
-Hash, ad esempio md5 fa 128bit di ash (32 caratteri hex).
+È un sistema che implementa un servizio di ricerca simile ad una tabella
+ di hash, che è però suddivisa tra vari nodi di una rete.
+ La suddivisione è strutturata in modo che se viene a mancare uno dei membri
+ della rete, la perdita di informazione è minima.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Standard
+I componenti di una DHT sono:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Keyspace
+\series default
+\emph default
+: Ad esempio l'insieme delle stringhe md5 da 128bit di hash (32 caratteri
+ hex)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Schema di partizionamento del keyspace
+\series default
+: suddivide le proprietà delle varie parti del 
+\emph on
+keyspace
+\emph default
+ tra i vari nodi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Rete di 
+\emph on
+overlay
+\emph default
+: 
+\series default
+connette i nodi tra di loro, permettendo di trovare i proprietari delle
+ varie parti di chiavi.
+\end_layout
+
+\begin_layout Standard
+Ci sono varie implementazioni, tra cui ad esempio 
+\emph on
+chord
+\emph default
+, 
+\emph on
+pastry
+\emph default
+....
+ Noi analizzeremo 
+\series bold
+\emph on
+chord
+\series default
+\emph default
+ come esempio.
+\end_layout
+
+\begin_layout Section*
 Chord
 \end_layout
 
 \begin_layout Standard
+È una implementazione di un sistema a DHT sviluppata nel 2001 insieme ad
+ altri famosi sistemi DHT.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 023.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Tiene delle coppie 
 \begin_inset Formula $\left(key,value\right)$
 \end_inset
 
- .
- Implementa una grossa tabella di coppie.
+ , implementa una grossa tabella di coppie.
  Questa tabella non è centralizzata ma è distribuita tra i peer del sistema
  peer-to-peer.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Il sistema ha un algoritmo per assegnare ai nodi (peers) le chiavi per le
  quali sono responsabili (un piccolo sottoinsieme).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Trovare una risorsa significa trovare un nodo responsabile per quella risorsa.
+ Le risorse sono identificate dall'hash di qualche testo che le identifica.
+ Questa è la 
+\series bold
+chiave
+\series default
+.
 \end_layout
 
-\begin_layout Standard
-Le risorse sono identificate dall'hash di qualche testo che le identifica.
- Come identifico un nodo? Si fa l'hash dell'indirizzo IP.
+\begin_layout Itemize
+I 
+\series bold
+valori
+\series default
+ sono invece gli identificatori dei peer responsabili per una certa chiave.
+ Quindi l'hash dell'indirizzo IP o di altre informazioni sulla rete di 
+\emph on
+overlay
+\emph default
+.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Assumiamo di avere un hash di 
 \begin_inset Formula $m$
 \end_inset
@@ -4568,58 +4778,139 @@ Assumiamo di avere un hash di
 \end_layout
 
 \begin_layout Standard
+Solitamente rappresentiamo questi 
+\begin_inset Formula $2^{m}$
+\end_inset
+
+ nodi in un cerchio che rappresenta l'intero 
+\begin_inset Quotes eld
+\end_inset
+
+spazio
+\begin_inset Quotes erd
+\end_inset
+
+ di hashing coperto dalla nostra funzione.
+ All'interno di questo spazio sono presenti i vari nodi distribuiti in modo
+ uniforme.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 024.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il cerchio può contenere ID/chiavi da 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $2^{m}-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Consistenza delle chiavi
+\end_layout
+
+\begin_layout Standard
 Abbiamo un problema di 
 \series bold
 consistenza
 \series default
  perché quando allochiamo gli hash dei nomi dobbiamo tentare di occupare
- con probabilità uniforme tutte le parti dello spazio di hashing: consistent
- hashing.
+ con probabilità uniforme tutte le parti dello spazio di hashing: 
+\series bold
+\emph on
+consistent hashing
+\series default
+\emph default
+.
+ 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
+L'algoritmo SHA-1 è quello utilizzato in questo caso per realizzare la funzione
+ di hashing (SHA-1 utilizza 160 bits di digest).
+\end_layout
+
+\begin_layout Itemize
 L'idea di chord è che ogni peer è responsabile per una quantità di chiavi
- equivalente alla quantità di spazio di hashing tra lui e il peer seguente.
+ equivalente alla quantità di spazio di hashing tra lui e il peer seguente
+ all'interno della circonferenza che rappresenta lo spazio di hashing.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Se l'algoritmo di hash non è consistente avremo anche un problema di load
  balancing, perchè alcuni peers sono carichi di lavoro rispetto ad altri.
 \end_layout
 
-\begin_layout Standard
-Il fatto che un host contenga la tabella di certe chiavi infatti non significa
- che lui contiene quei contenuti, significa solo che sa chi li possiede
- (il valore nella coppia che ha in tabella).
+\begin_layout Itemize
+Il fatto di avere 
+\emph on
+consistent hashing
+\emph default
+ è anche una caratteristica importante per riuscire a gestire le azioni
+ di join e leave dalla rete senza grossi problemi.
 \end_layout
 
-\begin_layout Standard
-Quando devo fare una query la faccio ad un vicino, se lui non lo sa gira
- la richiesta ad altri peers.
+\begin_layout Subsection*
+Altre caratteristiche
 \end_layout
 
-\begin_layout Standard
-La query ha una complessità minima di 
+\begin_layout Itemize
+Il fatto che un host contenga la tabella di certe chiavi non significa che
+ lui contiene quei contenuti, significa solo che sa chi li possiede (il
+ valore nella coppia che ha in tabella).
+\end_layout
+
+\begin_layout Itemize
+Quando devo fare una query la faccio ad un vicino, se lui non lo sa, sarà
+ lui a girare la richiesta ad altri peers.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La query per una risorsa ha una complessità di 
 \begin_inset Formula $log\left(N\right)$
 \end_inset
 
 , quindi chord è molto efficiente.
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 Quindi le feature di chord sono:
 \end_layout
 
 \begin_layout Itemize
-Load balancing: perchè consistent hashing
+
+\series bold
+Load balancing
+\series default
+: perchè consistent hashing
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 Decentralizzazione completa
 \end_layout
 
 \begin_layout Itemize
-Scalabilità: possiamo arrivare fino a milioni di nodi
+
+\series bold
+Scalabilità
+\series default
+: possiamo arrivare fino a milioni di nodi
 \end_layout
 
 \begin_layout Itemize
@@ -4631,27 +4922,46 @@ piatto
 \begin_inset Quotes erd
 \end_inset
 
-, non c'è gerarchia.
+, 
+\series bold
+non c'è gerarchia
+\series default
+.
 \end_layout
 
 \begin_layout Standard
-SOlitamente l'applicazione p2p contiene al suo interno vari componenti:
+Solitamente l'applicazione p2p tipo 
+\emph on
+chord
+\emph default
+ contiene al suo interno vari componenti:
 \end_layout
 
 \begin_layout Itemize
-Una tabella di chiavi e valori che associano i computer responsabili per
- un certo hash.
+Una 
+\series bold
+tabella di chiavi e valori
+\series default
+ che associano i computer responsabili per un certo hash.
  Questa tabella deve essere strutturata in modo che quando arriva una query
- sia consultata e sia data una risposta
+ sia consultata e sia data una risposta.
 \end_layout
 
 \begin_layout Itemize
-C'è poi una sezione di risorse, i contenuti che l'host condivide (che devono
- essere indicizzati da altri sistemi)
+C'è poi una sezione di 
+\series bold
+risorse
+\series default
+, i contenuti che l'host condivide (che devono essere indicizzati da altri
+ sistemi).
 \end_layout
 
 \begin_layout Itemize
-Ci deve poi essere un sistema per costruire delle queries.
+Ci deve poi essere un sistema per 
+\series bold
+costruire delle queries
+\series default
+.
  Ovviamente deve avere qualche parametro di sistema che descrive dov'è il
  computer (il suo 
 \begin_inset Quotes eld
@@ -4674,7 +4984,11 @@ nodi (
 \end_layout
 
 \begin_layout Standard
-Vediamo un esempio di rete:
+Vediamo un 
+\series bold
+esempio di rete chord
+\series default
+:
 \end_layout
 
 \begin_layout Itemize
@@ -4688,13 +5002,16 @@ Vediamo un esempio di rete:
 \begin_inset Formula $2^{m}=8$
 \end_inset
 
- punti sul cerchio di hash
+ peers sul cerchio di hash
 \end_layout
 
 \begin_layout Standard
 Assegnamo delle chiavi ai nodi.
- Le chiavi sono assegnati al primo nodo il cui identificatore segue il valore
- delle chiave 
+ Le chiavi sono assegnate al primo nodo il cui hash (
+\emph on
+value
+\emph default
+) segue il valore delle chiave 
 \begin_inset Formula $k$
 \end_inset
 
@@ -4704,6 +5021,29 @@ Assegnamo delle chiavi ai nodi.
 \end_inset
 
 .
+ 
+\end_layout
+
+\begin_layout Standard
+Se ci sono 
+\begin_inset Formula $N$
+\end_inset
+
+ nodi e 
+\begin_inset Formula $K$
+\end_inset
+
+ chiavi, ogni nodo è responsabile di 
+\begin_inset Formula $\frac{K}{N}$
+\end_inset
+
+ chiavi.
+ Quindi quando un nodo lascia la rete è necessario una ridistribuzione di
+ 
+\begin_inset Formula $O\left(\frac{K}{N}\right)$
+\end_inset
+
+ chiavi.
 \end_layout
 
 \begin_layout Subsection*
@@ -4711,13 +5051,15 @@ Key location
 \end_layout
 
 \begin_layout Standard
-Per trovare le chiavi, ogni nodo mantiene la così chiamata 
+Per trovare le chiavi, ogni nodo mantiene la 
 \begin_inset Quotes eld
 \end_inset
 
 
+\series bold
 \emph on
 finger table
+\series default
 \emph default
 
 \begin_inset Quotes erd
@@ -4725,7 +5067,7 @@ finger table
 
 , cioè la tabella di host da contattare per le richieste.
  È una sorta di overlay routing table.
- In ogni caso questa tabella ha 
+ Questa tabella ha 
 \begin_inset Formula $m$
 \end_inset
 
@@ -4741,21 +5083,22 @@ Finger table
 \end_layout
 
 \begin_layout Standard
-Questa tabella ha 
+È una tabella di 
 \begin_inset Formula $m$
 \end_inset
 
  entries, numerate 
-\begin_inset Formula $0\leq k\leq m$
+\begin_inset Formula $1\leq k\leq m$
 \end_inset
 
-:
+ che contiene gli indirizzi di alcuni nodi della rete.
+ Quali nodi?
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-finger[k].start=\left(m+2^{k-1}\right)\%2^{m}
+finger[k].start=\left(n+2^{k-1}\right)\: mod\:2^{m}
 \]
 
 \end_inset

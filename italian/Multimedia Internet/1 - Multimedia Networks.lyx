@@ -2549,6 +2549,299 @@ red
 [omissis]
 \end_layout
 
+\begin_layout Subsection*
+AF - 
+\emph on
+Assured forwarding 
+\emph default
+- PHB Group
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Class 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Class 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Class 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Class 4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Drop precedence 1 (low)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Drop precedence 2 (medium)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Drop precedence 3 (high)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Di solito abbiamo 4 buffers, uno per ogni classe.
+ In ogni buffer entrano pacchetti di tutti i colori: high,medium low.
+ Questo perché utilizziamo nei buffer una 
+\emph on
+3 level active queue management
+\emph default
+ per servire in modo diverso ogni colore.
+\end_layout
+
+\begin_layout Itemize
+Vedi figura quaderno blu numero 1.
+\end_layout
+
+\begin_layout Itemize
+Figura 2: Potremmo avere cattive performance a causa dei pacchetti che non
+ arrivano in ordine.
+\end_layout
+
+\begin_layout Itemize
+Figura 1: questa configurazione preserva la sequenza dei pacchetti.
+\end_layout
+
+\begin_layout Standard
+class selector phb group (CS):
+\end_layout
+
+\begin_layout Standard
+Ogni PHB ha un nome di un byte, per questo tipo ti classe è: XXX000XX
+\end_layout
+
+\begin_layout Standard
+I primi tre bit sono gli 8 livelli di priorità, esattamente come il vecchio
+ TOS faceva.
+\end_layout
+
+\begin_layout Standard
+Gli ultimi due bit sono semplicemente riservati.
+\end_layout
+
+\begin_layout Itemize
+A flow with larger CS should receive a smaller delay than a flow with smaller
+ CS.
+\end_layout
+
+\begin_layout Itemize
+Quindi le 8 classi che abbiamo visto sono un ranking 
+\series bold
+qualitativo
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Possiamo anche utilizzare schedulers GPS.
+\end_layout
+
+\begin_layout Standard
+PHBs:
+\end_layout
+
+\begin_layout Itemize
+1 EF
+\end_layout
+
+\begin_layout Itemize
+12 AF
+\end_layout
+
+\begin_layout Itemize
+8 CS: codice 000000XX
+\end_layout
+
+\begin_layout Itemize
+1 Default (Best Effort): codice 000000XX
+\end_layout
+
+\begin_layout Standard
+CS e BE coincidono in codice, quindi in pratica abbiamo 21 PHBs.
+\end_layout
+
 \begin_layout Standard
 
 \end_layout
