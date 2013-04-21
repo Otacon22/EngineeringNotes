@@ -4640,8 +4640,8 @@ Distributed Hash Tables
 \end_layout
 
 \begin_layout Standard
-È un sistema che implementa un servizio di ricerca simile ad una tabella
- di hash, che è però suddivisa tra vari nodi di una rete.
+È un sistema che implementa un servizio simile ad una tabella di hash, che
+ è però suddivisa tra vari nodi di una rete.
  La suddivisione è strutturata in modo che se viene a mancare uno dei membri
  della rete, la perdita di informazione è minima.
 \end_layout
@@ -4687,19 +4687,33 @@ connette i nodi tra di loro, permettendo di trovare i proprietari delle
 \end_layout
 
 \begin_layout Standard
+La DHT è composta da un insieme di coppie 
+\begin_inset Formula $\left(chiave,\, valore\right)$
+\end_inset
+
+ o 
+\begin_inset Formula $\left(key,\, value\right)$
+\end_inset
+
+.
+ Ad ogni nodo vengono assegnate alcune chiavi.
+ Il nodo è responsabile di mantenere il valore associato a quelle chiavi.
+\end_layout
+
+\begin_layout Standard
 Ci sono varie implementazioni, tra cui ad esempio 
 \emph on
-chord
+Chord, CAN, Tapestry 
 \emph default
-, 
+e
 \emph on
-pastry
+ Pastry
 \emph default
-....
+.
  Noi analizzeremo 
 \series bold
 \emph on
-chord
+Chord
 \series default
 \emph default
  come esempio.
@@ -4724,6 +4738,12 @@ Chord
 
 \end_layout
 
+\begin_layout Standard
+Chord sostanzilmente supporta una sola funzione: 
+\series bold
+data una chiave, mappa la chiave su un nodo.
+\end_layout
+
 \begin_layout Itemize
 Tiene delle coppie 
 \begin_inset Formula $\left(key,value\right)$
@@ -4740,13 +4760,22 @@ Il sistema ha un algoritmo per assegnare ai nodi (peers) le chiavi per le
 \end_layout
 
 \begin_layout Itemize
-Trovare una risorsa significa trovare un nodo responsabile per quella risorsa.
+Trovare una risorsa significa trovare 
+\series bold
+un nodo responsabile
+\series default
+ per quella risorsa.
  Le risorse sono identificate dall'hash di qualche testo che le identifica.
  Questa è la 
 \series bold
 chiave
 \series default
 .
+\end_layout
+
+\begin_layout Itemize
+Una caratteristica fondamentale di Chord è che quando cerchiamo una chiave,
+ non troviamo il valore ma il nodo responsabile per essa.
 \end_layout
 
 \begin_layout Itemize
@@ -4838,8 +4867,12 @@ consistent hashing
 \end_layout
 
 \begin_layout Itemize
-L'algoritmo SHA-1 è quello utilizzato in questo caso per realizzare la funzione
- di hashing (SHA-1 utilizza 160 bits di digest).
+L'algoritmo 
+\series bold
+SHA-1
+\series default
+ è quello utilizzato in questo caso per realizzare la funzione di hashing
+ (SHA-1 utilizza 160 bits di digest).
 \end_layout
 
 \begin_layout Itemize
@@ -4862,6 +4895,11 @@ consistent hashing
  di join e leave dalla rete senza grossi problemi.
 \end_layout
 
+\begin_layout Itemize
+Poiché la tabella di routing è distribuita, un modo può risolvere la funzione
+ di hash comunicando con pochi altri nodi.
+\end_layout
+
 \begin_layout Subsection*
 Altre caratteristiche
 \end_layout
@@ -4879,11 +4917,24 @@ Quando devo fare una query la faccio ad un vicino, se lui non lo sa, sarà
 
 \begin_deeper
 \begin_layout Itemize
-La query per una risorsa ha una complessità di 
-\begin_inset Formula $log\left(N\right)$
+Se la rete contiene 
+\begin_inset Formula $N$
+\end_inset
+
+ nodi, la query per una risorsa ha una complessità di 
+\begin_inset Formula $O\left(log\left(N\right)\right)$
 \end_inset
 
 , quindi chord è molto efficiente.
+\end_layout
+
+\begin_layout Itemize
+Allo stesso tempo ogni nodo deve tenere in memoria le informazioni di solo
+ altri 
+\begin_inset Formula $O\left(log\left(N\right)\right)$
+\end_inset
+
+ nodi.
 \end_layout
 
 \end_deeper
@@ -4903,6 +4954,8 @@ Load balancing
 
 \series bold
 Decentralizzazione completa
+\series default
+: nessun nodo è più importante degli altri
 \end_layout
 
 \begin_layout Itemize
@@ -4910,7 +4963,8 @@ Decentralizzazione completa
 \series bold
 Scalabilità
 \series default
-: possiamo arrivare fino a milioni di nodi
+: possiamo arrivare fino a milioni di nodi e il costo di una ricerca è di
+ complessità logaritmica.
 \end_layout
 
 \begin_layout Itemize
@@ -4927,6 +4981,22 @@ piatto
 non c'è gerarchia
 \series default
 .
+ Non ci sono limitazion sulla struttura delle chiavi da cercare.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Disponibilità
+\series default
+ (Availability): Chord aggiorna automaticamente le sue tabelle per includere
+ i nuovi nodo entrati nella rete, così come i nodi che sono usciti dalla
+ rete.
+ Assumendo i 
+\emph on
+failure
+\emph default
+ possibili si riesce sempre a trovare un nodo responsabile per una chiave.
 \end_layout
 
 \begin_layout Standard
@@ -5007,7 +5077,11 @@ esempio di rete chord
 
 \begin_layout Standard
 Assegnamo delle chiavi ai nodi.
- Le chiavi sono assegnate al primo nodo il cui hash (
+ La chiave 
+\begin_inset Formula $k$
+\end_inset
+
+ è assegnata al primo nodo il cui hash (
 \emph on
 value
 \emph default
@@ -5018,6 +5092,10 @@ value
  sulla circonferenza di hash.
  Questo nodo ha un nome, si chiama 
 \begin_inset Formula $successor\left(k\right)$
+\end_inset
+
+, cioè il nodo successore di 
+\begin_inset Formula $k$
 \end_inset
 
 .
@@ -5046,8 +5124,43 @@ Se ci sono
  chiavi.
 \end_layout
 
+\begin_layout Itemize
+Se gli identificatori sono rapresentati nel cerchio di hashing con numeri
+ da 0 a 
+\begin_inset Formula $2^{m}-1$
+\end_inset
+
+, allora il 
+\begin_inset Formula $successor\left(k\right)$
+\end_inset
+
+ è il primo nodo in senso orario da 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 025.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection*
 Key location
+\end_layout
+
+\begin_layout Standard
+Assumiamo che la nostra rete utilizzi 
+\begin_inset Formula $m$
+\end_inset
+
+ bits per gli identificatori di chiavi e nodi.
 \end_layout
 
 \begin_layout Standard
@@ -5071,7 +5184,11 @@ finger table
 \begin_inset Formula $m$
 \end_inset
 
- righe, quindi in questo esempio 
+ righe (
+\begin_inset Formula $O\left(log\left(N\right)\right)=O\left(log\left(2^{m}\right)\right)=O\left(m\right)$
+\end_inset
+
+), quindi in questo esempio 
 \begin_inset Formula $3$
 \end_inset
 
@@ -5092,7 +5209,236 @@ Finger table
 \end_inset
 
  che contiene gli indirizzi di alcuni nodi della rete.
- Quali nodi?
+ 
+\end_layout
+
+\begin_layout Standard
+La tabella del nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ è strutturata come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+k
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+start
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+interval
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+successor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(n+2^{k-1}\right)\, mod\,2^{m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[finger[k].start, finger[k+1].start)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $successor\left(n.finger\left[k\right].start\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota
+\series default
+: Il 
+\begin_inset Formula $k$
+\end_inset
+
+ nella tabella 
+\series bold
+non è
+\series default
+ una chiave, è solo un indice della riga della tabella, uno stupido contatore.
+\end_layout
+
+\begin_layout Standard
+Quindi riassumendo la tabella contiene 
+\begin_inset Formula $k$
+\end_inset
+
+ righe da 1 a 
+\begin_inset Formula $m$
+\end_inset
+
+, ogni riga indica un nodo successivo, chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+start
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, il cui hash è:
 \end_layout
 
 \begin_layout Standard
@@ -5107,7 +5453,7 @@ finger[k].start=\left(n+2^{k-1}\right)\: mod\:2^{m}
 \end_layout
 
 \begin_layout Standard
-Sull'intervallo di chiavi:
+Questo nodo è responsabile dell'intervallo di chiavi:
 \end_layout
 
 \begin_layout Standard
@@ -5122,7 +5468,23 @@ Sull'intervallo di chiavi:
 \end_layout
 
 \begin_layout Standard
-I nodi sono:
+
+\series bold
+Nota:
+\series default
+ 
+\begin_inset Formula $k+1$
+\end_inset
+
+ può essere superiore a 
+\begin_inset Formula $m$
+\end_inset
+
+, tanto poi il modulo lo sistema.
+\end_layout
+
+\begin_layout Standard
+I nodi nella tabella sono tutti:
 \end_layout
 
 \begin_layout Standard
@@ -5137,20 +5499,48 @@ startNode\geq n.finger[k].start
 \end_layout
 
 \begin_layout Standard
-E il successore .....[omissis]
+Il successore del nodo 
+\emph on
+start
+\emph default
+ di ogni riga è calcolato come:
 \end_layout
 
 \begin_layout Standard
-E il predecessore ....[omissis] .
- Il predecessore (che funziona da puntatore in senso anti-orario) può essere
+\begin_inset Formula 
+\[
+finger\left[k\right].successor=successor\left(finger\left[k\right].start\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cioè si va a prendere il successore del nodo 
+\emph on
+start
+\emph default
+ della riga, quindi bisogna vedere quali nodi sono attivi.
+ Se il nodo 
+\emph on
+start
+\emph default
+ della riga è attivo, il successore è lui, altrimenti è il nodo attivo seguente
+ in senso orario.
+\end_layout
+
+\begin_layout Standard
+Il predecessore (che funziona da puntatore in senso anti-orario) può essere
  utile quando dobbiamo riorganizzare il cerchio perché un nuovo nodo entra
  o esce dal sistema.
 \end_layout
 
 \begin_layout Standard
-Il join e leave sono un problema serio per i sistmei p2p perché dobbiam
- oessere in grado di riorganizzare la rete per aggiungere il nodo.
- Specialmente nei sistemi p2p2 di video streamin, le leaves sono il problema
+Il join e leave sono un problema serio per i sistemi p2p perché dobbiamo
+ essere in grado di riorganizzare la rete per aggiungere il nodo.
+ Specialmente nei sistemi p2p2 di video streaming, le leaves sono il problema
  principale di degradazione della qualità video.
 \end_layout
 
@@ -5158,181 +5548,245 @@ Il join e leave sono un problema serio per i sistmei p2p perché dobbiam
 Proviamo a disegnare nel caso dell'esempio precedente:
 \end_layout
 
-\begin_layout Itemize
-Finger table del nodo 
-\begin_inset Formula $n=0$
-\end_inset
-
- :
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $finger[1].start=1$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[1].interval=[1,\,2)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].start=2$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].interval=[2,\,4)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[3].start=4$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[3].interval=[4,\,0)$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Finger table del nodo 
-\begin_inset Formula $n=3$
-\end_inset
-
- :
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $finger[1].start=4$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[1].interval=[4,\,5)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[1].successor=0$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].start=5$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].interval=[5,\,7)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].successor=0$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[3].start=7$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[3].interval=[7,\,3)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $finger[2].successor=0$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Standard
-Supponiamo che il nodo 
+\begin_inset Graphics
+	filename 027.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Notiamo che:
+\end_layout
+
+\begin_layout Itemize
+La 
+\emph on
+finger table
+\emph default
+ è molto compatta rispetto alla rete e lista solo pochi nodi
+\end_layout
+
+\begin_layout Itemize
+La 
+\emph on
+finger table
+\emph default
+ di solito non contiene abbastanza informazioni per determinare il successore
+ di una chiave arbitraria.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per esempio nella figura sopra vediamo che il nodo 
 \begin_inset Formula $n=3$
 \end_inset
 
- vuole cercare la chiave 
+ non conosce il successore della chiave 
 \begin_inset Formula $k=1$
 \end_inset
 
+ (
+\begin_inset Formula $successor\left(1\right)$
+\end_inset
+
+) .
+ Questo perché il 
+\begin_inset Formula $successor\left(1\right)$
+\end_inset
+
+ non compare nella tabella.
+ Allora 
+\series bold
+come facciamo?
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Scalable key location
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Cosa succede quando un nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ non conosce il successore di una chiave 
+\begin_inset Formula $k$
+\end_inset
+
+ ?
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $n$
+\end_inset
+
+ può trovare un nodo il cui identificatore è più vicino a 
+\begin_inset Formula $k$
+\end_inset
+
+, quel nodo saprà di più riguardo a 
+\begin_inset Formula $k$
+\end_inset
+
+ di quanto non ne sappia 
+\begin_inset Formula $n$
+\end_inset
+
 .
- Dov'è? È nell'intervallo 
-\begin_inset Formula $[7,\,3)$
+\end_layout
+
+\begin_layout Itemize
+Quindi 
+\begin_inset Formula $n$
 \end_inset
 
- , quindi l'unica informazione di routing utile è quella dell'ultima riga
- della finger table.
- Chi è il successore? 
-\begin_inset Formula $0$
+ cerca nella sua 
+\emph on
+finger table
+\emph default
+ un nodo 
+\begin_inset Formula $j$
 \end_inset
 
- , quindi il nodo 
-\begin_inset Formula $0$
+ il cui identificatore precede immediatamente 
+\begin_inset Formula $k$
 \end_inset
 
- è respnsabile di quella risorsa.
- Il nodo 
+ e chiede a 
+\begin_inset Formula $j$
+\end_inset
+
+ l'identificatore del nodo più vicino a 
+\begin_inset Formula $k$
+\end_inset
+
+ che conosce.
+ Quindi è una sorta di ricerca per passaparola.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Esempio
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Il nodo 
 \begin_inset Formula $n=3$
 \end_inset
 
- non ha informazioni sul nodo 0, ma sa che il nodo da contattare è 0, quindi
- avvisa il nodo 3 che inoltra la richiesta al nodo 3 per ricerare il contenuto.
-\end_layout
-
-\begin_layout Standard
-Quando il nodo 0 riceve la richiesta trova il contenuto e sa che deve rispondere
- direttamente al nodo 
-\begin_inset Formula $3$
+ vuole trovare il successore per l'identificatore 
+\begin_inset Formula $1$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-Quindi da ora in poi, dato che il nodo 3 ha scoperto chi è il nodo responsabile
- per quella risorsa, lo può contattare direttamente per le query.
- 
-\series bold
-Se
-\series default
- il nodo 0 non ha fisicamente la risorsa, può rispondere con l'
+\begin_layout Itemize
+Nella 
+\emph on
+finger table
+\emph default
+, il nodo 
+\begin_inset Formula $3$
+\end_inset
+
+ vede che l'identificatore 
+\begin_inset Formula $1$
+\end_inset
+
+ ricade nell'intervallo 
+\begin_inset Formula $[7,\,3)$
+\end_inset
+
+, cioè l'intervallo della terza riga della sua finger table (
+\begin_inset Formula $3.finger[3].interval$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Allora il nodo 3 controlla il successore dell'intervallo dell'ultima riga,
+ che è 
+\begin_inset Formula $0$
+\end_inset
+
+ (
+\begin_inset Formula $3.finger[3].successor=0$
+\end_inset
+
+).
+ Però il nodo 
+\begin_inset Formula $0$
+\end_inset
+
+ non è il successore dell'identificatore 
+\begin_inset Formula $1$
+\end_inset
+
+ perché lo precede! Allora il nostro nodo 
+\begin_inset Formula $3$
+\end_inset
+
+ manderà un messaggio al nodo 
+\begin_inset Formula $0$
+\end_inset
+
+ chiedendo quale sia il successore del nodo 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il nodo 
+\begin_inset Formula $0$
+\end_inset
+
+ riceve il mesaggio, controlla la sua 
+\emph on
+finger table
+\emph default
+ e vede che il successore della chiave
+\begin_inset Formula $1$
+\end_inset
+
+ è il nodo 
+\begin_inset Formula $1$
+\end_inset
+
+, quindi ritorna il nodo 
+\begin_inset Formula $1$
+\end_inset
+
+ al nodo 
+\begin_inset Formula $3$
+\end_inset
+
+ che gli aveva chiesto.
+\end_layout
+
+\begin_layout Itemize
+Quindi da ora in poi, dato che il nodo 
+\begin_inset Formula $3$
+\end_inset
+
+ ha scoperto chi è il nodo responsabile per quella risorsa, lo può contattare
+ direttamente per le query.
+ Se il nodo interrogato non ha fisicamente la risorsa, può rispondere con
+ l'
 \begin_inset Quotes erd
 \end_inset
 
@@ -5344,15 +5798,29 @@ indirizzo
 \end_layout
 
 \begin_layout Standard
-Nel caso pessimo abbiamo sempre 
-\begin_inset Formula $log\left(N\right)$
-\end_inset
+Poiché i puntatori della 
+\emph on
+finger table
+\emph default
+ raddoppiano sempre le distanze attorno al cerchio, ad ogni iterazione si
+ dimezza la distanza dalla destinazione.
+\end_layout
 
-, dove 
+\begin_layout Standard
+Da questa intuizione nasce un teorema dimostrabile che afferma:
+\end_layout
+
+\begin_layout Standard
+Con alta probabilità, il numero di nodi da contattare per trovare un successore
+ in una rete di 
 \begin_inset Formula $N$
 \end_inset
 
- è il numero di nodi.
+ nodi è 
+\begin_inset Formula $O\left(log\left(N\right)\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection*
@@ -5360,12 +5828,24 @@ Join e leaves
 \end_layout
 
 \begin_layout Standard
-È la parte veramente difficile di chord e di tutti i sistemi di sistribuzione
+È la parte veramente difficile di Chord e di tutti i sistemi di sistribuzione
  p2p basati su DHT.
  Il problema principale è che questo cerchio può arrivare a trovarsi in
- una situazione di inconsistenza.
+ una situazione di 
+\series bold
+inconsistenza
+\series default
+.
  Il problema è ancora pià grave quando siamo su un sistema real-time come
- un sistema di distribuzione video p2p.
+ un sistema di distribuzione video p2p, dove non possiamo 
+\begin_inset Quotes eld
+\end_inset
+
+perdere troppo tempo
+\begin_inset Quotes erd
+\end_inset
+
+ in riallocazioni.
 \end_layout
 
 \begin_layout Standard
@@ -5378,38 +5858,2825 @@ join
 laves
 \emph default
  implicano la ridistribuzione di chiavi tra i peer della rete.
+ In particolare sono richiesti 
+\begin_inset Formula $O\left(log^{2}\left(N\right)\right)$
+\end_inset
+
+ messaggi e solo una frazione di 
+\begin_inset Formula $O\left(\frac{1}{N}\right)$
+\end_inset
+
+ chiavi vengono spostate in una nuova locazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 026.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quando un nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ 
+\series bold
+entra
+\series default
+ nella rete, alcune chiavi che erano prima assegnate al successore di 
+\begin_inset Formula $n$
+\end_inset
+
+, diventano ora chiavi di 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Devono essere preservati due 
+\emph on
+invarianti
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il successore di ogni nodo deve essere mantenuto
+\end_layout
+
+\begin_layout Itemize
+Per ogni chiave 
+\begin_inset Formula $k$
+\end_inset
+
+, il nodo 
+\begin_inset Formula $successor\left(k\right)$
+\end_inset
+
+ è responsabile per 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per mantenere i lookup veloci la 
+\emph on
+finger table 
+\emph default
+deve essere sempre corretta.
+\end_layout
+
+\begin_layout Itemize
+Per ristibilire gli invarianti di Chord servono, come abbiamo già visto,
+ 
+\begin_inset Formula $O\left(log^{2}\left(N\right)\right)$
+\end_inset
+
+ messaggi scambiati.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quando un nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ 
+\series bold
+lascia
+\series default
+ la rete, tutte le chiavi assegnate a lui vengono riassegnate al successore
+ di 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Per semplificare i meccanismi di join e leave, ogni nodo di Chord mangiene
+ un 
+\emph on
+predecessor pointer
+\emph default
+.
+ Questo 
+\emph on
+predecessor pointer
+\emph default
+ contiene l'identificatore Chord e indirizzo IP del predecessore immediato
+ di quel nodo in questione.
+ Può essere utilizzato per spostarsi in modo anti-orario intorno al cerchio
+ degli identificatori.
 \end_layout
 
 \begin_layout Subsection*
-Ingresso nella rete 
+Join
 \end_layout
 
 \begin_layout Standard
-L'host che entra nella rete ha bisogno di una finger table iniziale, che
- deve poter ottenere da qualche host sempre attivo.
- Questa finger table iniziale deve contenere una lista di indizzi di nodi
- che possono essere raggiunti sia in senso orario che in senso antiorario
- (perché dobbiamo essere in grado di poter ridistribuire le chiavi).
+Per preservare gli invarianti detti prima, Chord deve fare 3 operazioni
+ quando un nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ entra nella rete:
+\end_layout
+
+\begin_layout Enumerate
+Inizializzare il 
+\emph on
+predecessor
+\emph default
+ e 
+\emph on
+finger table
+\emph default
+ del nodo 
+\begin_inset Formula $n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Aggiornare le 
+\emph on
+finger tables
+\emph default
+ e 
+\emph on
+predecessors
+\emph default
+ dei nodi esistenti, per notificare l'aggiunta di 
+\begin_inset Formula $n$
+\end_inset
+
+ nella rete.
+\end_layout
+
+\begin_layout Enumerate
+Notificare il software ad alto livello che ora può trasmettere lo stato
+ dei 
+\emph on
+values
+\emph default
+ che possiede.
 \end_layout
 
 \begin_layout Standard
-Nei sistemi di distribuzione video p2p abbiamo il problema che utilizzano
- un sistema di distribuzione ad albero, se alcuni peers abbandonano la rete
- abbiamo una interruzione nell'albero! Il sistema può reagire ricostruendo
- parti dell'albero, ma è probabile che perderemo alcuni frame nella trasmissione
- video.
- Ecco perché le 
+Si asume che il nuovo nodo scopre l'identità di un nodo 
+\begin_inset Formula $n'$
+\end_inset
+
+ già esistente in Chord tramite 
+\series bold
+qualche meccanismo esterno
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Il nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ utilizza il nodo 
+\begin_inset Formula $n'$
+\end_inset
+
+ per inizializzare il suo stato e aggiungersi alla rete Chord esistente,
+ nelle tre fasi viste.
+\end_layout
+
+\begin_layout Subsubsection*
+Aggiornare le 
 \emph on
-leaves
+finger tables
 \emph default
- nei sistemi p2p sono importanti.
- Quindi nei sistemi di 
+ dei nodi già esistenti
+\end_layout
+
+\begin_layout Standard
+Il nodo 
+\begin_inset Formula $n$
+\end_inset
+
+ avrà bisogno di entrare nelle 
 \emph on
-p2p
+finger tables
 \emph default
- video moderni non si utilizza alberi ma sistemi mesh, per riuscire a gestire
- nel modo migliore possibile il fatto di host che escono dal sistema.
+ di alcuni nodi già esistenti.
+\end_layout
+
+\begin_layout Standard
+Riprendiamo l'esempio di prima.
+ Immaginiamo che il nodo 
+\begin_inset Formula $n=6$
+\end_inset
+
+ entra nella rete e diventa il terzo 
+\begin_inset Formula $successor$
+\end_inset
+
+ nei nodi 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Diventa inoltre il primo e il secondo 
+\begin_inset Formula $successor$
+\end_inset
+
+ del nodo 
+\begin_inset Formula $3$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 028.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Stabilizzazione
+\end_layout
+
+\begin_layout Itemize
+Quando entrano dei nuovi nodi nella rete, possono creare temporaneamente
+ inconsistenza in un'area dell'anello di Chord.
+ Un lookup in corso prima che il sistema si sia stabilizzato può mostrare
+ tre comportamenti diversi.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il caso più comune è che le entries della 
+\emph on
+finger table
+\emph default
+ coinvolte nel lookup siano corrette e quindi viene trovato il successore
+ corretto in 
+\begin_inset Formula $O\left(log\left(N\right)\right)$
+\end_inset
+
+ passi.
+\end_layout
+
+\begin_layout Itemize
+Un altro csao è che i puntatori al successore siano corretti, ma le 
+\emph on
+finger tables
+\emph default
+ non sono accurate.
+ Questo causa dei lookup corretti ma più lenti
+\end_layout
+
+\begin_layout Itemize
+Un terzo caso è quello in cui i nodi della regione hanno dei 
+\begin_inset Formula $successor$
+\end_inset
+
+ pointers errati, o le chiavi non sono ancora state migrate al nuovo nodo.
+ In questo caso il lookup può fallire.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il software di alto livello che utilizza chord noterà questo problema e
+ ha l'opzione di ritentare dopo un certo periodo di tempo.
+\end_layout
+
+\begin_layout Subsection*
+Attacco 
+\emph on
+Eclipse
+\emph default
+ a Chord
+\end_layout
+
+\begin_layout Standard
+In un attacco 
+\emph on
+Eclipse
+\emph default
+, un insieme di nodi malevoli possono essere sfruttati per interporsi tra
+ tutti gli altri.
+ Se l'attacco ha successo è possibile porsi nel mezzo della maggior parte
+ o tutte le comunicazioni da e verso la vittima.
+\end_layout
+
+\begin_layout Standard
+Inoltre dando delle informazioni errate sui vicini durante normali operazioni
+ di mantenimento della rete di overlay, un numero modesto di nodi malevoli
+ può eclissare un grosso numero di vittime.
+\end_layout
+
+\begin_layout Section*
+P2P Video streaming
+\end_layout
+
+\begin_layout Standard
+Le funzionalità principali dei sistemi di streaming video P2P sono principalment
+e nove:
+\end_layout
+
+\begin_layout Enumerate
+Distribuzione dei contenuti
+\end_layout
+
+\begin_layout Enumerate
+Costruzione della topologia di overlay
+\end_layout
+
+\begin_layout Enumerate
+Tipo di topologia
+\end_layout
+
+\begin_layout Enumerate
+Sorgenti
+\end_layout
+
+\begin_layout Enumerate
+Coordinamento e startup
+\end_layout
+
+\begin_layout Enumerate
+Join
+\end_layout
+
+\begin_layout Enumerate
+Leave
+\end_layout
+
+\begin_layout Enumerate
+Performance
+\end_layout
+
+\begin_layout Enumerate
+Cryptography
+\end_layout
+
+\begin_layout Subsection*
+Requisiti tecnologici per il P2P Video streaming
+\end_layout
+
+\begin_layout Itemize
+È necessario accesso a Internet a banda larga, quindi almeno servizio ADSL
+ o superiore
+\end_layout
+
+\begin_layout Itemize
+Servono dei computer degli utenti che siano di potenza-medio bassa
+\end_layout
+
+\begin_layout Standard
+Riguardo all'
+\series bold
+ADSL
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Le tecnologie ADSL utilizzano doppini in rame per fornire connettività IP
+ agli utenti
+\end_layout
+
+\begin_layout Itemize
+La velocità di trasmissione dipende, tra le altre cose, dalla 
+\series bold
+qualità del doppino
+\series default
+, dall'
+\series bold
+interferenza
+\series default
+ e dalla 
+\series bold
+lunghezza
+\series default
+ del cavo.
+\end_layout
+
+\begin_layout Itemize
+I doppini in rame tradizionale possono fornire velocità soddisfacienti se
+ non sono eccessivamente lunghi.
+ Un cavo lungo meno di 3Km è adatto.
+\end_layout
+
+\begin_layout Itemize
+In italia la lunghezza media dei doppini in rame è più bassa che in altri
+ paese europei, quindi c'è un vantaggio per la tecnologia ADSL.
+\end_layout
+
+\begin_layout Standard
+I sistemi 
+\series bold
+P2P
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+I sistemi P2P non adottano la classica architettura 
+\emph on
+client-server
+\emph default
+ di tante applicazioni distribuite.
+\end_layout
+
+\begin_layout Standard
+Nei sistemi P2P ogni nodo che partecipa viene riferito come 
+\emph on
+peer
+\emph default
+ e può agire sia come 
+\emph on
+server
+\emph default
+, sia come 
+\emph on
+client
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 029.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Pro e contro dei sistemi P2P
+\end_layout
+
+\begin_layout Subsubsection*
+Pro
+\end_layout
+
+\begin_layout Itemize
+Permettono agli utenti di raggiunere un elevatissimo numero di contenuti,
+ memorizzati nei computer dei 
+\emph on
+peers
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Possono scalare e raggiungere dimensioni molto elevate senza problemi di
+ performance.
+ I sistemi classici 
+\emph on
+client-server
+\emph default
+ hanno invece sempre problemi a scalare (ed è necessaria amministrazione
+ di rete per farlo).
+\end_layout
+
+\begin_layout Itemize
+I protocolli P2P non hanno bisogno di coordinamento da parte di un amministrator
+e, si 
+\emph on
+auto-gestiscono
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Contro
+\end_layout
+
+\begin_layout Itemize
+I sistemi P2P possono essere attaccati facilmente e come conseguenza la
+ loro performance può peggiorare pesantamente.
+\end_layout
+
+\begin_layout Itemize
+Un problema grave di performance è la banda di upload dei 
+\emph on
+peers
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pensiamo ad un esempio 
+\begin_inset Quotes eld
+\end_inset
+
+classico
+\begin_inset Quotes erd
+\end_inset
+
+ di un peer su ADSL con 10Mb/s in download e 1Mb/s in upload.
+\end_layout
+
+\begin_layout Itemize
+Anche se un singolo nodo ha una capacità in download di 10 Mb/s, poi se
+ lo stream arriva da un altro nodo su ADSL, quest'ultimo non potrà trasmettere
+ a più di 1Mb/s in upload, tagliando quindi la capacità in ricezione del
+ primo a 1Mb/s.
+\end_layout
+
+\begin_layout Itemize
+Poi dobbiamo anche ricordare che un singolo nodo da upload su tanti altri
+ nodi, quindi quel 1Mb/s deve essere suddiviso più volte per tanti peers!
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il problema dei contenuti protetti da diritto d'autore è serio.
+ Possono nascere problemi levali se i 
+\emph on
+peers
+\emph default
+ distribuiscono materiale protetto da copyright.
+\end_layout
+
+\begin_layout Subsection*
+1 - Distribuzione dei contenuti multimediali
+\end_layout
+
+\begin_layout Itemize
+Overlay 
+\series bold
+\emph on
+end-to-end
+\series default
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ogni 
+\emph on
+peer
+\emph default
+ scambia contenuti e costribuisce anche alla gestione della topologia di
  
+\emph on
+overlay.
+
+\emph default
+ Tutti i nodi hanno lo stesso ruolo nel sistema P2P
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Overlay 
+\series bold
+\emph on
+proxy-based
+\series default
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il sistema P2P implementa una gerarchia, in modo che solo alcuni nodi selezioni
+ fanno routing dei contenuti al 
+\emph on
+peer
+\emph default
+ finale.
+ Questi nodi che fanno routing sono chiamati 
+\emph on
+multicast nodes
+\emph default
+.
+ In questo modo i 
+\emph on
+multicast nodes
+\emph default
+ formano un backbone per la rete di overlay che viene suddivisa in due 
+\emph on
+layers:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Peers che mandano e ricevono contenuti dal 
+\emph on
+backbone
+\end_layout
+
+\begin_layout Itemize
+Peers che non scambiano direttamente contenuti con il 
+\emph on
+backbone
+\emph default
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Nel confronto delle due tecniche vediamo che:
+\end_layout
+
+\begin_layout Itemize
+Nei sistemi 
+\emph on
+proxy-based
+\emph default
+ si semplifica la gestione della topologia di overlay (solo il backbone
+ ha una topologia 
+\series bold
+mesh
+\series default
+, mentre da ogni rete 
+\emph on
+backbone
+\emph default
+ parte una topologia ad albero o stella per raggiungere i peers.
+ 
+\end_layout
+
+\begin_layout Itemize
+I nodi di 
+\emph on
+multicast
+\emph default
+ possono essere 
+\emph on
+peers
+\emph default
+ che sono stati promossi dal sistema, ad esempio nodi con particolare potenza
+ di calcolo e banda.
+\end_layout
+
+\begin_layout Itemize
+Nei sistemi 
+\emph on
+end-to-end
+\emph default
+ invece i peers hanno bisogno di scambiare tante informazioni per mantenere
+ consistenza nella topologia per la rete di overlay.
+\end_layout
+
+\begin_layout Itemize
+I sistemi 
+\emph on
+end-to-end
+\emph default
+ overlay sono anche chiamati 
+\series bold
+\emph on
+application level multicast
+\series default
+\emph default
+ (
+\series bold
+ALM
+\series default
+), mentre gli overlay 
+\emph on
+proxy-based
+\emph default
+ sono anche chiamati 
+\series bold
+\emph on
+overlay multicast
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+2 - Costruzione della topologia di rete
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Diretta
+\series default
+: Quando un peer entra nel sistema è immediamente assegnato ad un peer genitore
+ al quale deve collegarsi.
+ Questa è la strategia tipica implementata in topologie ad albero e foresta.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Indiretta
+\series default
+, 
+\series bold
+mesh
+\series default
+: Quando un peer entra nel sistema, c'è una fase di 
+\emph on
+signaling
+\emph default
+ iniziale, con la quale viene collegato ad uno o più 
+\emph on
+peers
+\emph default
+ in modo 
+\series bold
+\emph on
+mesh
+\series default
+\emph default
+.
+ Il 
+\emph on
+peer
+\emph default
+ può comunicare con più peer diversi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Indiretta
+\series default
+,
+\series bold
+ clusters gerarchici
+\series default
+: I 
+\emph on
+peers
+\emph default
+ vengono divisi in livelli gerarchici e sono anche raggruppati in clusters.
+ Solo un 
+\emph on
+subset
+\emph default
+ dei 
+\emph on
+peers
+\emph default
+ in un cluster ha la possibilità di comunicare direttamente con i 
+\emph on
+peers
+\emph default
+ in un altro cluster.
+ Quindi una topologia di overlay 
+\emph on
+inter-cluster
+\emph default
+ e 
+\emph on
+intra-cluster
+\emph default
+ deve essere creata.
+ In alcuni casi pratici, la topologia 
+\emph on
+inter-cluster
+\emph default
+ è un albero.
+\end_layout
+
+\begin_layout Subsection*
+3 - Topologie di rete
+\end_layout
+
+\begin_layout Standard
+Le tipologie di rete P2P sono sostanzialmente tre:
+\end_layout
+
+\begin_layout Itemize
+Albero singolo
+\end_layout
+
+\begin_layout Itemize
+Foresta: alberi multipli con lo stesso nodo radice
+\end_layout
+
+\begin_layout Itemize
+Generica (rete 
+\series bold
+\emph on
+mesh
+\series default
+\emph default
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 030.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Topologia ad albero con costruzione indiretta, 
+\emph on
+cluster-based
+\end_layout
+
+\begin_layout Itemize
+Il nodo radice manda il contenuto a tutti i membri del suo 
+\emph on
+cluster
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+peer
+\emph default
+ che riceve il contenuto lo ridistribuisce a tutti i compagni del 
+\emph on
+cluster
+\emph default
+, se non ha già ricevuto il contenuto da un compagno di 
+\emph on
+cluster
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Quindi in ogni cluster solo un 
+\emph on
+peer
+\emph default
+ distribuisce il contenuto ai compagni dello stesso 
+\emph on
+cluster
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 031.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In figura vediam un cluster a 3 livelli.
+\end_layout
+
+\begin_layout Subsubsection*
+Topologia ad albero con costruzione indiretta basata su rete 
+\emph on
+mesh
+\end_layout
+
+\begin_layout Standard
+In questo tipo di sistema viene costruita una topologia di mesh basilare.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 032.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questa topologia i percorsi per raggiungere la sorgente di un contenuto
+ possono essere calcolati.
+ Ad esempio con un classico algoritmo di routing 
+\emph on
+distance-vector
+\end_layout
+
+\begin_layout Itemize
+Un peer tiene una tabella dei percorsi minimi per raggiungere tutti gli
+ altri peers, insieme ad una misura convenzionale del corso di ogni percorso
+ (per esempio la lunghezza del percorso in numeri di 
+\begin_inset Quotes eld
+\end_inset
+
+hop
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Delle tabelle vengono continuamente aggiornate dalle comunicazione di signalling
+ tra i peers.
+\end_layout
+
+\begin_layout Itemize
+Per la distribuzione di un contenuto, la sorgente calcolare un albero di
+ multicast sopra la topologia di mesh basilare.
+\end_layout
+
+\begin_layout Itemize
+La metrica elementare per misurare il costo del percorso è il numero di
+ hops.
+ Possono essere implementate metriche più complesse.
+\end_layout
+
+\begin_layout Subsubsection*
+Topologia a foresta
+\end_layout
+
+\begin_layout Standard
+Una topologia a foresta è costituita da un numero (
+\begin_inset Formula $\geq1$
+\end_inset
+
+) di alberi, che condividono la stessa sorgente.
+\end_layout
+
+\begin_layout Itemize
+È una topologia più affidabile dell'albero semplice: se un 
+\emph on
+peer
+\emph default
+ lascia la rete un singolo albero si scollega.
+ Nella topologia a foresta invece la distribuzione globale può essere disponibil
+e (almeno parzialmente) anche se un peer lascia la rete (in una topologia
+ a foresta 
+\series bold
+i percorsi sono ridondanti
+\series default
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questa proprietà della topologia a foresta è chiamata 
+\series bold
+\emph on
+tree diversity
+\series default
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gli alberi con bassa profondità e alta biforcazione sono preferiti perché
+ il ritardo è minore rispetto agli alberi profondi e con poche biforcazioni.
+\end_layout
+
+\begin_layout Itemize
+D'altro canto però possiamo aumentare le biforcazioni se la capacità di
+ upload dei 
+\emph on
+peers
+\emph default
+ è alta.
+\end_layout
+
+\begin_layout Itemize
+Le topologie a foresta possono essere utilizzate per distriubire multimedia
+ streaming in modo P2P:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Lo stream può essere diviso in 
+\emph on
+sotto-stream
+\emph default
+ (questo può essere fatto se lo stream è 
+\emph on
+coded
+\emph default
+ con un 
+\emph on
+multi-layered coder
+\emph default
+ o un 
+\emph on
+multiple description coder
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Ogni 
+\emph on
+sotto-stream
+\emph default
+ è assegnato ad un albero diverso
+\end_layout
+
+\begin_layout Itemize
+In questo modo anche se un albero si scollega perchè un peer lascia la rete,
+ gli altri continuano a ricevere gli altri sottostream.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Topologia mesh
+\end_layout
+
+\begin_layout Itemize
+Un peer deve svolgere due attività basilari:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Fare 
+\emph on
+signaling
+\emph default
+ con altri 
+\emph on
+peers
+\emph default
+ per stabiliare e mantenere la rete 
+\series bold
+\emph on
+mesh
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Scambiare contenuti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nel caso dei sistemi di video streaming P2P, assumiamo che uno stream sia
+ diviso in segmenti (chiamati 
+\emph on
+chunks
+\emph default
+).
+ I peers scambiano i segmenti.
+\end_layout
+
+\begin_layout Itemize
+Una dimensione massima tipica di un segmento è circa 10 KBytes.
+\end_layout
+
+\begin_layout Itemize
+Ogni peer mantiene una lista dei segmenti che ha ricevuto (la 
+\series bold
+\emph on
+Buffer Map, 
+\emph default
+BM
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Tramite 
+\emph on
+signaling 
+\emph default
+con i 
+\emph on
+peers
+\emph default
+ vicini (nella rete di overlay mesh), ogni peer mantiene anche la 
+\emph on
+mCache
+\emph default
+, una tabella di segmenti che i 
+\emph on
+peers
+\emph default
+ vicini già hanno.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+Buffer Map
+\series default
+ è una lista di segmenti che il 
+\emph on
+peer
+\emph default
+ ha.
+ Questa lista è tempo-limitata (comprende un intervallo di tempo limitato).
+ Essa contiene i seguenti parametri:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Offset
+\emph default
+: È l'indice del primo segmento (solitamente 2-4 Bytes)
+\end_layout
+
+\begin_layout Itemize
+La 
+\emph on
+lunghezza del buffer map
+\end_layout
+
+\begin_layout Itemize
+Un vettore di 
+\emph on
+flags
+\emph default
+ binari per indicare la disponibilità di ogni segmento nell'intervallo di
+ tempo limitato
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per esempio, se un segmento contiene 1 secondodi contenuto, la BM può contenere
+ informazioni riguardo a 120 segmenti (2 minuti).
+ Per ogni secondo nell'intervallo di tempo, un flag binario indica che il
+ corrispondente contenuto è disponibile.
+\end_layout
+
+\begin_layout Itemize
+Tremite la sua BM, un 
+\emph on
+peer
+\emph default
+ può determinare di quale segmento ha bisogno.
+ Per determinare i 
+\emph on
+peers
+\emph default
+ da contattare per ottenere il segmento mancante, un 
+\emph on
+peer
+\emph default
+ deve anche avere le BM di un certo numero di 
+\emph on
+peers
+\emph default
+ (partner 
+\emph on
+peers
+\emph default
+), solitamente i suoi 
+\emph on
+peers
+\emph default
+ vicini nella rete di overlay.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quando questa informazione è disponibile, il 
+\emph on
+peer
+\emph default
+ esegue un algoritmo di scheduling, per schedulare richieste ad altri 
+\emph on
+peers
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+I BM dei nodi partner sono ottenuti tramite 
+\emph on
+signaling
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+La rete 
+\series bold
+DONet
+\series default
+/
+\series bold
+Coolstreaming
+\series default
+ adotta un algoritmo di scheduling euristico:
+\end_layout
+
+\begin_layout Itemize
+Per ogni segmento mancante, il peer esamina il BM dei suoi nodi partner
+ e conta il numero dei fornitori possibili.
+\end_layout
+
+\begin_layout Itemize
+Le richieste vengono schedulate partendo dal segmento con il più basso numero
+ di fornitori, poi per il secondo con meno fornitori e così via...
+\end_layout
+
+\begin_layout Itemize
+Chiaramente questo algoritmo di scheduling migliora la affidabilità.
+ Se più di 1 segmento è richoiesto dallo stesso fornitore, viene fatto con
+ una richiesta singola.
+\end_layout
+
+\begin_layout Standard
+La costruzione della 
+\emph on
+mcache
+\emph default
+ è critica.
+ I peers scambiano messaggi di refresh specificando:
+\end_layout
+
+\begin_layout Itemize
+Numero di sequenza dei segmenti disponibili
+\end_layout
+
+\begin_layout Itemize
+Identificatore del peer nel sistema
+\end_layout
+
+\begin_layout Itemize
+Numero di partners del peer
+\end_layout
+
+\begin_layout Itemize
+TTL (Time To Live: tempo di vita rimanente del segmento)
+\end_layout
+
+\begin_layout Standard
+Quando un peer riceve un messaggio di refersh, aggiorna la sua mCache.
+ Ogni peer, periodciamente controlla per altri partners, se decide che non
+ ha abbastanza parners.
+\end_layout
+
+\begin_layout Standard
+Un peer può anche misurare la 
+\begin_inset Quotes eld
+\end_inset
+
+qualità
+\begin_inset Quotes erd
+\end_inset
+
+ di un partner osservando quanti segmenti riesce a scambiare con successo
+ con esso.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+numero di partners
+\series default
+ voluti dal 
+\emph on
+peer
+\emph default
+ è un parametro critico del sistema.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se abbiamo tanti partners abbiamo maggiore affidabilità
+\end_layout
+
+\begin_layout Itemize
+Tuttavia con tanti partners aumentiamo parecchio il traffico di 
+\emph on
+signaling
+\end_layout
+
+\begin_layout Itemize
+Quindi un valore ottimo di 
+\begin_inset Formula $M$
+\end_inset
+
+ esiste.
+ Da un punto di vista pratico è stato concluso che un numero di partners
+ tra 2 e 5 è una scelta ragionevole.
+\end_layout
+
+\begin_layout Itemize
+In 
+\emph on
+Coolstreaming
+\emph default
+, il traffico di overhead aggiunge circa l'1% dal traffico totale.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le topologie di rete mesh ragiscono meglio alla perdita di un nodo rispetto
+ alle topologie a foresta.
+\end_layout
+
+\begin_layout Subsection*
+Procedure di Join
+\end_layout
+
+\begin_layout Itemize
+Nelle topologie a foresta con costruzione diretta, il sistema deve assegnare
+ un genitore ad ogni 
+\emph on
+peer
+\end_layout
+
+\begin_layout Itemize
+In topologie più complesse, il sistema deve assegnare al peer un insieme
+ di genitori (nel caso della topologia a 
+\series bold
+foresta
+\series default
+) o un numero di pertners (nel caso della topologia 
+\series bold
+mesh
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Nei sistemi basati su alberi, il nuovo 
+\emph on
+peer
+\emph default
+ diverta una foglia dell'albero.
+ In seguito può essere promosso e avvicinarsi alla radice dell'albero.
+\end_layout
+
+\begin_layout Subsection*
+Join in COOPNET
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 033.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso di una costruzione 
+\series bold
+diretta
+\series default
+ della topologia di overlay, il nuovo peer deve essere connesso ad esattamente
+ un 
+\emph on
+peer
+\emph default
+ genitore.
+\end_layout
+
+\begin_layout Itemize
+Ci sarà un server dedicato a raccogliere le 
+\emph on
+join requests
+\emph default
+ e redirigere il 
+\emph on
+peer
+\emph default
+ verso un potenziale nodo padre
+\end_layout
+
+\begin_layout Itemize
+Nel caso della rete 
+\series bold
+\emph on
+coopnet 
+\series default
+\emph default
+(che è una rete a foresta):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il nuovo 
+\emph on
+peer
+\emph default
+ contatta il server.
+ Il peer può anche fare una richiesta per uno specifico contenuto e dare
+ informazioni tipo la sua banda di upload/download.
+\end_layout
+
+\begin_layout Itemize
+Il server risponde al 
+\emph on
+peer
+\emph default
+ con una lista di altri 
+\emph on
+peers
+\emph default
+ da contattare per ottenere il contenuto.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Leave
+\end_layout
+
+\begin_layout Standard
+Il processo di leave è invocato quando un peer lascia il sistema.
+ In una topologia ad albero, tutti i figli di un peer che lascia la rete
+ 
+\series bold
+vengono scollegati
+\series default
+.
+ Il sistema deve fornire un nuovo genitore per i 
+\emph on
+peers
+\emph default
+ orfani.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Failure detection
+\series default
+\emph default
+: Il sistema deve implementare delle procedure per capire il prima possibile
+ quando un nodo ha lasciato la rete (perché il nodo potrebbe anche non inviare
+ una notifica esplicita):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+keep-alive
+\emph default
+: I nodi scambiano periodicamente dei messaggi di 
+\emph on
+keep-alive
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Packet loss monitoring
+\emph default
+ (come fatto in CoopNet): I nodi figli monitorano la percentuale di pacchetti
+ persi.
+ Se questa percentuale cresce sopra una certa soglia, il nodo padre è dichiarato
+ morto.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Alcuni sistemi di P2P video streaming
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Nome
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Distribuzione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Costruzione Topologia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Topologia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Sorgenti
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Failure Detection
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+vidTorrent
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Foresta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+CoolStreaming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+CoopNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Server centrale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Diretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Foresta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+packet loss monitoring
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+GridMedia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Narada
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Nice
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+proxy-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cluster Gerarchico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Overcast
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+proxy-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Diretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+PPLive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Scattercast
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+proxy-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\geq1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+SplitStream
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mesh indiretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Foresta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+Zig-zag
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+proxy-based
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cluster Gerarchico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\emph on
+PeerCast
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+end-to-end
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Diretta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Albero
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+keep-alive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+VidTorrent
+\end_layout
+
+\begin_layout Standard
+Implementa una topologia a foresta dove ogni albero trasposta un diverso
+ 
+\emph on
+sotto-stream
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+peer
+\emph default
+, per ricevere lo stream completo, deve essere inserito in tutti i sotoalberi.
+\end_layout
+
+\begin_layout Itemize
+Gli alberi vengono costruiti in modo che i 
+\emph on
+peers
+\emph default
+ con più larga capacità di trasmissione siano vicini alla radice dell'albero.
+\end_layout
+
+\begin_layout Itemize
+L'associazione padre-figlio dei 
+\emph on
+peers 
+\emph default
+viene fatta stimando la banda di comunicazione e il 
+\emph on
+round trip delay
+\emph default
+ tra i due nodi.
+\end_layout
+
+\begin_layout Subsubsection*
+Join
+\end_layout
+
+\begin_layout Standard
+La procedura di join deve essere effettuata per ogni sotto-albero.
+\end_layout
+
+\begin_layout Itemize
+Il nuovo 
+\emph on
+peer
+\emph default
+ deve contattare un nodo noto di 
+\emph on
+randez-vous
+\emph default
+ nel sistema
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+nodo 
+\emph default
+di incontro funzionaerà da server e risponderà con una lista di 
+\emph on
+peers
+\emph default
+ da contattare.
+\end_layout
+
+\begin_layout Itemize
+Il nuovo 
+\emph on
+peer
+\emph default
+ contatta questi 
+\emph on
+peers
+\emph default
+.
+ Nelle risposte può trovare altri 
+\emph on
+peers
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il nuovo 
+\emph on
+peer
+\emph default
+ manda a questi 
+\emph on
+peers
+\emph default
+ trovati due pacchetti per stimare la banda e il ritardo.
+ Se il risultato della misurazione è accettabile, il 
+\emph on
+peer
+\emph default
+ contattato invia al nuovo peer un 
+\emph on
+acceptation ticket
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il nuovo peer sceglie tra i vari ticket quello con il ritardo più basso.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 034.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Leave
+\end_layout
+
+\begin_layout Standard
+Quando un albero viene scollegato, i peer isolati contattano il punto di
+ 
+\emph on
+randez-vous
+\emph default
+ per ottenere un nuovo genitore.
+\end_layout
+
+\begin_layout Standard
+La procedura è molto simile alla prodecura di 
+\emph on
+join
+\emph default
+ di un nuovo nodo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 035.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Suddividere uno stream in sotto-stream
+\end_layout
+
+\begin_layout Standard
+VidTorrent può dividere uno stream in sotto-stream.
+ La divisione è gerarchica: frame, sottoframe e segmenti.
+\end_layout
+
+\begin_layout Standard
+Questa struttura dello stream può essere utilizzata per encoding scalabili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 036.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lo stream viene diviso in 
+\begin_inset Formula $m$
+\end_inset
+
+ frames.
+ Ogni frame è diviso in 
+\begin_inset Formula $n$
+\end_inset
+
+ subframes.
+\end_layout
+
+\begin_layout Itemize
+I segmenti sono costruiti in modo che il segmento S0 contenga tuti i subframes
+ 0 dei primi 
+\begin_inset Formula $k$
+\end_inset
+
+ frames.
+\end_layout
+
+\begin_layout Itemize
+Il segmento S1 contiene tutti i subframes 1 dei primi 
+\begin_inset Formula $k$
+\end_inset
+
+ frames, etc...
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $k=3$
+\end_inset
+
+ allora ogni segmento contiene 3 subframes e se il numero di subframes per
+ frame è 
+\begin_inset Formula $n=4$
+\end_inset
+
+, allora per trasmettere i primi 
+\begin_inset Formula $k$
+\end_inset
+
+ frames sono richiesti 
+\begin_inset Formula $4$
+\end_inset
+
+ segmenti.
+\end_layout
+
+\begin_layout Itemize
+Il quinto segmento S4, contiene tutti i subframe 0 dei frames da 3 a 5 e
+ oltre
+\end_layout
+
+\begin_layout Subsubsection*
+Substreams
+\end_layout
+
+\begin_layout Itemize
+I segmenti sono assegnati in modo ciclico ai substreams.
+\end_layout
+
+\begin_layout Itemize
+Un substream è una sequenza di segmenti trasmessa su un dato albero
+\end_layout
+
+\begin_layout Itemize
+Ogni albero trasporta un substream diverso.
+\end_layout
+
+\begin_layout Subsubsection*
+Diversity
+\end_layout
+
+\begin_layout Itemize
+Un substream può coincidere con una descrizione o può essere parte di una
+ descrizione.
+\end_layout
+
+\begin_layout Itemize
+Una descrizione può essere distribuita ai 
+\emph on
+peers
+\emph default
+ tramite un singolo albero o alberi multipli (
+\begin_inset Formula $d$
+\end_inset
+
+ alberi)
+\end_layout
+
+\begin_layout Itemize
+Nel primo caso (
+\begin_inset Formula $d=1$
+\end_inset
+
+), c'è una mappatura 
+\emph on
+uno-ad-uno
+\emph default
+ tra gli alberi e la descrizione.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $d>1$
+\end_inset
+
+, la descrizione è trasportata da 
+\begin_inset Formula $d$
+\end_inset
+
+ alberi
+\end_layout
+
+\begin_layout Itemize
+I segmenti sono assegnati in modo ciclico ai substreams 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 037.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Il client
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 038.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I subframes sonoricevuti alla velocità di downstream 
+\series bold
+CDOWN
+\end_layout
+
+\begin_layout Itemize
+I subframes sono inviati al componenti di overlay del client e sono riassemblati
+ in segmenti
+\end_layout
+
+\begin_layout Itemize
+I segmenti completi sono inviati ad altri peers
+\end_layout
+
+\begin_layout Itemize
+Naturalmente, se il client deve distribuire il contenuto a 
+\begin_inset Formula $M$
+\end_inset
+
+ partners, dovrà inviare 
+\begin_inset Formula $M$
+\end_inset
+
+ copie del contenuto.
+\end_layout
+
+\begin_layout Subsubsection*
+Performance di VidTorrent
+\end_layout
+
+\begin_layout Itemize
+Accesso simmetrico: 
+\begin_inset Formula $Cdown=7Mbit/s$
+\end_inset
+
+, 
+\begin_inset Formula $Cup=7Mbit/s$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Accesso asimettrico: 
+\begin_inset Formula $Cdown=7Mbit/s$
+\end_inset
+
+, 
+\begin_inset Formula $Cup=1Mbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+875 kbit/s di traccia video, 4 descriptions
+\end_layout
+
+\begin_layout Itemize
+4 alberi, diversity 1
+\end_layout
+
+\begin_layout Itemize
+1 segmento ha 20 frames e trasporta 0.8 secondi
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N=250$
+\end_inset
+
+ utenti (media)
+\end_layout
+
+\begin_layout Itemize
+Tempo medio di visione degli utenti: 15 minuti
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $T_{rejoin}=100s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Profondità del buffer di playout: 5 segmenti (4 secondi)
+\end_layout
+
+\begin_layout Itemize
+Le curve rilevanti sono in legenda:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename 039.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Percentuale di frames ricevuti nel tempo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 040.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Il ritardo visto come funzione del tempo medio di presenza dei peers
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 041.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Percentuale di frames ricevuti nel tempo come funzione del tempo di rejoin
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 042.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
