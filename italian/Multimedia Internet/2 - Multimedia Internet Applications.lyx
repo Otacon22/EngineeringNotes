@@ -5,7 +5,7 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language italian
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -7310,7 +7310,8 @@ Leave
 \end_layout
 
 \begin_layout Standard
-Il processo di leave è invocato quando un peer lascia il sistema.
+Il processo di leave è invocato quando un peer lascia il sistema o c'è un
+ problema di connettività con quel peer.
  In una topologia ad albero, tutti i figli di un peer che lascia la rete
  
 \series bold
@@ -8610,7 +8611,7 @@ Tempo medio di visione degli utenti: 15 minuti
 \begin_inset Formula $T_{rejoin}=100s$
 \end_inset
 
-
+ (tempo tra node failure e identificazione del nuovo parent)
 \end_layout
 
 \begin_layout Itemize
@@ -8675,7 +8676,7 @@ Percentuale di frames ricevuti nel tempo come funzione del tempo di rejoin
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsection*
 
 \end_layout
 

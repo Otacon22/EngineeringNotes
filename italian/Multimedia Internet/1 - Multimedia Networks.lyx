@@ -5,7 +5,7 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language italian
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -25,9 +25,10 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \use_mhchem 1
@@ -42,6 +43,13 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1.5cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -82,8 +90,8 @@ Daniele Iamartino
 Anno scolastico 2012/2013
 \end_layout
 
-\begin_layout Section*
-Lezione 1 - Quality of service (QoS) in IP networks
+\begin_layout Part*
+Quality of service (QoS) in IP networks
 \end_layout
 
 \begin_layout Standard
@@ -201,7 +209,7 @@ Ci sono problemi anche con un servizio multimediale singolo.
 telefonia
 \series default
  è un servizio singolo, dobbiamo trasportare solo audio, comunque ci sono
- problemi analoghi ad un servisio multimediale, quindi li vedremo insieme.
+ problemi analoghi ad un servizio multimediale, quindi li vedremo insieme.
 \end_layout
 
 \begin_layout Itemize
@@ -209,7 +217,11 @@ Con un trasporto
 \emph on
 best effort
 \emph default
- non possiamo controllare il delay.
+ non possiamo controllare il 
+\emph on
+delay
+\emph default
+.
  Quindi per questi requisiti dobbiamo trovare una soluzione migliore della
  trasmissione 
 \emph on
@@ -257,7 +269,11 @@ Percentuale di pacchetti fuori sequenza.
 
 \end_deeper
 \begin_layout Itemize
-Quindi la QoS è una misura oggettiva di come la rete tratta i pacchetti.
+Quindi la QoS è una misura 
+\series bold
+oggettiva
+\series default
+ di come la rete tratta i pacchetti.
 \end_layout
 
 \end_deeper
@@ -324,7 +340,7 @@ Formalmente la QoS è una forma di
 \series bold
 contratto
 \series default
- tra un client e un provider.
+ tra un cliente e un provider.
  
 \end_layout
 
@@ -336,7 +352,7 @@ Guardiamo ad esempio quando un ISP fa un contratto con un utente business.
 \begin_layout Itemize
 Solitamente viene steso un contratto dedicato con una sezione riguardo alla
  qualità del servizio.
- Ma tradizionamente la QoS viene espressa in questo contratto come 
+ Ma tradizionalmente la QoS viene espressa in questo contratto come 
 \emph on
 
 \begin_inset Quotes eld
@@ -377,22 +393,37 @@ Nel contratto di solito troviamo:
 
 \begin_deeper
 \begin_layout Itemize
-Descrizione degli elementi di rete a cui si applica il QoS.
+
+\series bold
+Descrizione degli elementi di rete
+\series default
+ a cui si applica il QoS.
 \end_layout
 
 \begin_layout Itemize
-Si dà una percentuale di disponibilità per ogni link o elemento di rete.
+Si dà una 
+\series bold
+percentuale di disponibilità
+\series default
+ per ogni link o elemento di rete.
 \end_layout
 
 \begin_layout Itemize
-Devono essere definite le procedure con le quali la qualità viene misurata
- la QoS! Altrimenti se ad esempio c'è un blackout di 5 secondi sulla rete
- ma la misura viene fatta ogni 10 secondi, l'ISP dice di non aver visto
- nessun problema e che la disponibilità era sempre del 100%.
+Devono essere definite le 
+\series bold
+procedure con le quali la viene misurata la QoS
+\series default
+! Altrimenti se ad esempio c'è un blackout di 5 secondi sulla rete ma la
+ misura viene fatta ogni 10 secondi, l'ISP dice di non aver visto nessun
+ problema e che la disponibilità era sempre del 100%.
 \end_layout
 
 \begin_layout Itemize
-Vengono definite delle punizioni per le violazioni del contratto.
+Vengono definite delle 
+\series bold
+punizioni
+\series default
+ per le violazioni del contratto.
 \end_layout
 
 \end_deeper
@@ -421,7 +452,7 @@ s
 
 \begin_deeper
 \begin_layout Itemize
-Per esempio porebbe esserci un limite sul delay tra 
+Per esempio potrebbe esserci un limite sul delay tra 
 \emph on
 50 e 60 ms
 \emph default
@@ -429,14 +460,24 @@ Per esempio porebbe esserci un limite sul delay tra
 \end_layout
 
 \begin_layout Itemize
-TCP con la sua ristrasmissione non ci interessa, non vogliamo ricevere i
+TCP con la sua ritrasmissione non ci interessa, non vogliamo ricevere i
  pacchetti persi, non c'è tempo.
+ Infatti VoIP si basa su UDP.
 \end_layout
 
 \begin_layout Itemize
-Anche la sequenza è importante nelle telefonate, perché si trasforma in
- ritardo! Se ci arriva il pacchetto 2 prima del pacchetto 1, dobbiamo salvarlo
- e aspettare l'arrivo del pacchetto 1 prima di poterlo usare!
+Anche 
+\bar under
+la sequenza
+\bar default
+ è importante nelle telefonate, perché 
+\series bold
+\bar under
+si trasforma in ritardo
+\series default
+\bar default
+! Se ci arriva il pacchetto 2 prima del pacchetto 1, dobbiamo salvarlo e
+ aspettare l'arrivo del pacchetto 1 prima di poterlo usare!
 \end_layout
 
 \begin_layout Itemize
@@ -472,11 +513,15 @@ elastic applications
 \begin_inset Quotes erd
 \end_inset
 
-, come opposte a 
+, come opposte alle 
 \begin_inset Quotes eld
 \end_inset
 
+
+\series bold
 real time applications
+\series default
+
 \begin_inset Quotes erd
 \end_inset
 
@@ -506,14 +551,14 @@ High Frequency Trading
 \end_layout
 
 \begin_layout Standard
-Noi però non lavoraremo su reti dedicate come queste, noi lavoreremo su
+Noi però non lavoreremo su reti dedicate come queste, noi lavoreremo su
  reti IP, reti multi-servizio, che possono funzionare per il 99% dei requisiti
  che abbiamo (HFT a parte..).
  HFT è un problema non risolvibile con reti IP multiservizio.
 \end_layout
 
 \begin_layout Section*
-Lezione 2 - QoS in IP networks
+QoS in IP networks
 \end_layout
 
 \begin_layout Standard
@@ -538,21 +583,26 @@ Abbiamo visto che le applicazioni di tipo elastico non sono influenzate
 \end_layout
 
 \begin_layout Standard
-Di solito una sottocategoria delle applicazioni real-time sono le 
+Di solito una sotto-categoria delle applicazioni real-time sono le 
 \begin_inset Quotes eld
 \end_inset
 
 
+\series bold
 \emph on
 playback applications
+\series default
 \emph default
 
 \begin_inset Quotes erd
 \end_inset
 
 .
- In queste applicazioni è necessario che alla sorgente lo stream di dati
- venga suddiviso in pacchetti che viaggiano attraverso la rete.
+ In queste applicazioni è necessario che alla sorgente lo 
+\emph on
+stream
+\emph default
+ di dati venga suddiviso in pacchetti che viaggiano attraverso la rete.
  Il ricevitore (il consumatore) deve poi ritrasformare il pacchetto in un
  qualche tipo di segnale.
 \end_layout
@@ -568,7 +618,7 @@ Uno dei componenti più importanti del ricevitore è il
 buffer di playback
 \series default
 \emph default
-.
+ (vedi RFC1633).
  Si tratta di un buffer dove i pacchetti vengono memorizzati prima di essere
  riprodotti, per ricostruire l'informazione originale.
  Pensiamo all'esempio classico di uno streaming video.
@@ -686,14 +736,14 @@ Questo buffer ci permette di risolvere il problema del delay variabile.
 \end_inset
 
  che ci interessano, avviamo la fase di playback.
- Avviando il playback iniziamo a consumare i pacchetti nel buffer e intando
+ Avviando il playback iniziamo a consumare i pacchetti nel buffer e intanto
  salviamo nel buffer i pacchetti in arrivo.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Se il coder genera 
-\begin_inset Formula $\frac{1\,\text{[pacchetto]}}{T_{F}\,\text{[s]}}\;\text{pkg/s}$
+\begin_inset Formula $\frac{1\,\text{[pacchetto]}}{T_{F}\,\text{[s]}}\;\text{pkt/s}$
 \end_inset
 
  , dobbiamo essere in grado di ricevere i pacchetti alla stessa velocità.
@@ -888,7 +938,11 @@ un certo flusso in transito
 \end_layout
 
 \begin_layout Itemize
-Questo ha efficienza massima ma un problema di scalabilità.
+Questo ha efficienza massima ma un 
+\series bold
+problema di scalabilità
+\series default
+.
  Se abbiamo a che fare con una rete molto grande, potremmo avere milioni
  di flussi contemporanei.
  E ogni singolo core-router potrebbe dover gestire uno stato per ogni singolo
@@ -1109,7 +1163,10 @@ Signaling
 \begin_deeper
 \begin_layout Itemize
 Sono una serie di messaggi di transazione inviati dagli utenti finali con
- lo scopo di stabilire connessioni di altro tipo (ad esempio il signaling
+ lo scopo di stabilire connessioni di altro tipo (ad esempio il 
+\emph on
+signaling
+\emph default
  per stabilire una telefonata).
 \end_layout
 
@@ -1416,6 +1473,8 @@ Best effort
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Any
 \end_layout
 
@@ -1425,6 +1484,8 @@ Any
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Any
 \end_layout
 
@@ -1438,25 +1499,23 @@ Any
 
 \end_layout
 
-\begin_layout Section*
-Continuazione su QoS
-\end_layout
-
-\begin_layout Standard
-Non sappiamo a priori l'effeto della matrice di rete di QoS e la matrice
+\begin_layout Itemize
+Non sappiamo a priori l'effetto della matrice di rete di QoS e la matrice
  utente di QoE.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Non c'è un algoritmo generale che mappa la matrice di QoS nella matrice
  di QoE.
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 In realtà esiste un algoritmo ma solo per il servizio VoIP.
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 Riguardo alla variazione del delay dobbiamo considerare il 
 \series bold
 \emph on
@@ -1466,25 +1525,29 @@ jitter
 .
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 Solitamente guardiamo la distribuzione casuale del ritardo e calcoliamo
  il jitter come l'intervallo di variazione del ritardo.
 \end_layout
 
-\begin_layout Standard
-Il jitter è molto importante per applicazioni realtime e per tutte le applicazio
-ni che utilizzano un buffer di playout.
+\begin_layout Itemize
+Il jitter è molto importante per applicazioni real-time e per tutte le applicazi
+oni che utilizzano un buffer di playout.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Il jitter non è causato solo dal ritardo, ma anche dai pacchetti fuori sequenza!
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 Perché abbiamo pacchetti fuori sequenza? È una caratteristica classica dei
  servizi best effort.
 \end_layout
 
+\end_deeper
+\end_deeper
 \begin_layout Standard
 Pensiamo ad esempio ad una rete dove abbiamo un servizio di rete garantito
  e un servizio best effort.
@@ -1504,10 +1567,6 @@ load sharing
 , cioè tentano di riempire di traffico tutti i link.
  Quindi accade spesso che alcuni pacchetti seguono percorsi diversi (a seconda
  di quanto è congestionato il percorso principale).
-\end_layout
-
-\begin_layout Standard
-Come fanno due applicazioni a parlarsi tra di loro? Utilizzano un socket.
 \end_layout
 
 \begin_layout Standard
@@ -1534,7 +1593,7 @@ Uno dei problemi però è il costo.
 \end_layout
 
 \begin_layout Standard
-Quello che succedere è invece che con le nuove reti di applica QoS.
+Quello che succede è invece che con le nuove reti di applica QoS.
 \end_layout
 
 \begin_layout Subsection*
@@ -1542,7 +1601,7 @@ Utenti business nelle reti multiservizio
 \end_layout
 
 \begin_layout Standard
-Immaginiamo un utente buisness interessato ad una rete multiservizio.
+Immaginiamo un utente business interessato ad una rete multiservizio.
 \end_layout
 
 \begin_layout Standard
@@ -1553,8 +1612,9 @@ Olympic service:
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
+<lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -1581,11 +1641,20 @@ Velocità di accesso 2.048 Mbps
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Velocità di accesso 4 Mbps
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
 \end_layout
 
 \end_inset
@@ -1615,7 +1684,7 @@ Gold
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1623,6 +1692,15 @@ Gold
 \end_inset
 
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
 \end_layout
 
 \end_inset
@@ -1652,7 +1730,7 @@ Silver
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1660,6 +1738,15 @@ Silver
 \end_inset
 
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
 \end_layout
 
 \end_inset
@@ -1689,7 +1776,7 @@ Bronze
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1697,6 +1784,15 @@ Bronze
 \end_inset
 
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
 \end_layout
 
 \end_inset
@@ -1734,13 +1830,389 @@ SLA
 \emph on
 Statistical Service Level Agreement
 \emph default
-)
+) definito come: 
+\begin_inset Formula 
+\[
+P\left(D>d\right)<p
+\]
+
+\end_inset
+
+ dove 
+\begin_inset Formula $D$
+\end_inset
+
+ è il ritardo reale del pacchetto e 
+\begin_inset Formula $P$
+\end_inset
+
+ è la densità di probabilità in funziona del ritardo del pacchetto.
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ è la frazione di pacchetti a cui è permesso superare la soglia 
+\begin_inset Formula $d$
+\end_inset
+
+ di ritardo massimo.
+\end_layout
+
+\begin_layout Standard
+Notiamo che in questo caso anche il servizio 
 \emph on
+best effort 
+\emph default
+viene offerto.
+ Ma appunto per la sua natura viene fornito senza SLA.
+\end_layout
+
+\begin_layout Subsection*
+SLA basato su un ritardo statistico
+\end_layout
+
+\begin_layout Standard
+Un ritardo statico è basato su una funzione di probabilità 
+\begin_inset Formula $f\left(D\right)$
+\end_inset
+
+ che indica la probabilità di un certo ritardo per un pacchetto.
+\end_layout
+
+\begin_layout Standard
+Data questa distribuzione, la probabilità di superare una soglia di ritardo
+ 
+\begin_inset Formula $d$
+\end_inset
+
+ è l'area sottesa dalla curva 
+\begin_inset Formula $f\left(D\right)$
+\end_inset
+
+ da 
+\begin_inset Formula $d$
+\end_inset
+
+ a infinito:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P\left(D>d\right)=\int_{d}^{\infty}f\left(D\right)\, dD
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-001.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi gli SLA basati su delay statistici sono basati sul concetto di 
+\series bold
+\emph on
+delay tail
+\series default
+\emph default
+, la cui area non deve superare un certo valore.
+\end_layout
+
+\begin_layout Standard
+Un SLA delay-statistico può essere indicato in notazione ristretta con 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+, dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d=$
+\end_inset
+
+soglia di ritardo massimo
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p=$
+\end_inset
+
+area della coda
+\end_layout
+
+\begin_layout Subsubsection*
+Implementazione di una SLA a ritardo statistico
+\end_layout
+
+\begin_layout Standard
+Può essere implementata come segue:
+\end_layout
+
+\begin_layout Itemize
+La SLA 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+ viene definita
+\end_layout
+
+\begin_layout Itemize
+La SLA viene misurata sul sistema (per esempio il numero di pacchetti che
+ superano la soglia di ritardo viene conteggiato a intervalli di tempo preassegn
+ati)
+\end_layout
+
+\begin_layout Itemize
+Il cliente può verificare se ha ricevuto la SLA corretta
+\end_layout
+
+\begin_layout Standard
+Nella vita reale non è facile raggiungere un accordo su come la SLA viene
+ misurata.
+\end_layout
+
+\begin_layout Subsubsection*
+Il modo 
+\bar under
+sbagliato
+\bar default
+ di definire la misurazione della SLA
+\end_layout
+
+\begin_layout Standard
+Il provider TELCO propone al suo cliente ACME il metodo seguente per misurare
+ la SLA:
+\end_layout
+
+\begin_layout Itemize
+Data una SLA 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Periodicamente, ogni 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ secondi, viene inviato un pacchetto di ping 
+\emph on
+end-to-end
+\end_layout
+
+\begin_layout Itemize
+Definiamo 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ il ritardo dell'
+\emph on
+i-esimo 
+\emph default
+ping inviato
+\end_layout
+
+\begin_layout Itemize
+In un periodo di tempo 
+\begin_inset Formula $T>\Delta t$
+\end_inset
+
+ abbiamo che 
+\begin_inset Formula $\frac{T}{\Delta t}=N$
+\end_inset
+
+ pacchetti vengono inviati e il loro ritardo è calcolato.
+\end_layout
+
+\begin_layout Itemize
+La seguente formula per calcolare il ritardo viene proposta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Delay=\frac{1}{N}\sum_{i=1}^{N}D_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $Delay>d$
+\end_inset
+
+ allora la SLA è stata violata
+\end_layout
+
+\begin_layout Standard
+C'è qualcosa che 
+\series bold
+non va
+\series default
+ in questo metodo?
+\end_layout
+
+\begin_layout Standard
+Sì! Perché 
+\begin_inset Formula $Delay$
+\end_inset
+
+ è in realtà il valore 
+\series bold
+medio
+\series default
+ del ritardo punto punto!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-002.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È praticamente impossibile che il valore medio sia superiore della soglia
+ 
+\begin_inset Formula $d$
+\end_inset
+
+, se 
+\begin_inset Formula $d$
+\end_inset
+
+ è superiore al valore medio della distribuzione del ritardo!
+\end_layout
+
+\begin_layout Standard
+In questo modo, il risultato della misurazione è che la SLA viene sempre
+ rispettata al 100%, anche per i pacchetti che superano la soglia 
+\begin_inset Formula $d$
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Standard
-[omissis]
+Notiamo tra l'altro che il parametro 
+\begin_inset Formula $p$
+\end_inset
+
+ non viene menzionato nel metodo proposto.
+\end_layout
+
+\begin_layout Standard
+Il cliente ACME si lamenta con TELCO riguardo a questo metodo per misurare
+ la SLA e viene elaborata un'altra proposta:
+\end_layout
+
+\begin_layout Itemize
+Il sistema precedente viene mantenuto
+\end_layout
+
+\begin_layout Itemize
+Il 10% dei ritardi più elevati viene tolto
+\end_layout
+
+\begin_layout Itemize
+Se la misura di ritardo 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ viene fatta quando un router è congestionato, la misura viene cancellata.
+\end_layout
+
+\begin_layout Standard
+Chiaramente anche questo sistema fallisce miseramente.
+ Infatti un alto ritardo è necessariamente conseguenza di un link o un router
+ congestionato, mentre con questa procedura i ritardi vengono tolti.
+\end_layout
+
+\begin_layout Subsubsection*
+Un metodo funzionante per misurare la SLA
+\end_layout
+
+\begin_layout Standard
+Data una SLA 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Periodicamente, ogni 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ secondi viene inviato un pacchetto 
+\emph on
+end-to-end
+\emph default
+ per misurare il ritardo.
+\end_layout
+
+\begin_layout Itemize
+Definiamo 
+\begin_inset Formula $D_{i}$
+\end_inset
+
+ come il ritardo dell'
+\emph on
+i-esimo
+\emph default
+ pacchetto di ping
+\end_layout
+
+\begin_layout Itemize
+In un periodo di tempo 
+\begin_inset Formula $T>\Delta t$
+\end_inset
+
+ abbiamo 
+\begin_inset Formula $\frac{T}{\Delta t}=N$
+\end_inset
+
+ pacchetti di ping inviati e il delay misurato
+\end_layout
+
+\begin_layout Itemize
+Diciamo 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ il numero di pacchetti che superano la soglia di ritardo 
+\begin_inset Formula $d$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\frac{N_{1}}{N}>p$
+\end_inset
+
+ , allora la SLA è stata violata
 \end_layout
 
 \begin_layout Section*
