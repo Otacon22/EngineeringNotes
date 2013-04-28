@@ -2215,6 +2215,21 @@ Se
  , allora la SLA è stata violata
 \end_layout
 
+\begin_layout Standard
+L'esperienza insegna che garantire una SLA statistica 
+\emph on
+end-to-end
+\emph default
+ non è facile.
+ Quindi i service providers potrebbero cercare della protezione con delle
+ clausole nel contratto.
+\end_layout
+
+\begin_layout Standard
+Il modo giusto di fare QoS è quello di suddividere la banda per servizi
+ per assegnare una certa quantità di risorse ad ogni servizio.
+\end_layout
+
 \begin_layout Section*
 Come creare una rete multiservizio
 \end_layout
@@ -2239,16 +2254,18 @@ Traffic Conditioning Agreement
 ).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Un 
 \series bold
 TCA
 \series default
  è il contratto su quello che l'utente invia nella rete.
- Sopra una certa soglia di traffico emesso l'ISP non può garantire niente.
+ Sopra una certa soglia di traffico emesso l'ISP non può garantire niente
+ all'utente.
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 Il 
 \series bold
 TCA
@@ -2271,7 +2288,7 @@ traffic profile
  È un qualche tipo di limite superiore.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Questo 
 \series bold
 TCA
@@ -2286,7 +2303,11 @@ conformant traffic
 \begin_inset Quotes eld
 \end_inset
 
+
+\series bold
 in-profile traffic
+\series default
+
 \begin_inset Quotes erd
 \end_inset
 
@@ -2326,7 +2347,10 @@ dropped
 \begin_inset Quotes eld
 \end_inset
 
+
+\series bold
 out-of-profile traffic
+\series default
 \emph default
 
 \begin_inset Quotes erd
@@ -2360,11 +2384,14 @@ conformant traffic
 .
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 Ci sono tre modi diversi con cui un ISP può controllare il TCA:
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 Policing
 \end_layout
 
@@ -2372,22 +2399,29 @@ Policing
 \begin_layout Itemize
 Si droppano pacchetti.
  Solitamente si preferisce evitare perché tutti i dati trasportati sono
- un guadagno per l'ISP
+ un guadagno per l'ISP.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 Shaping
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Il traffico in uscita viene ritardato
+Il traffico in uscita viene ritardato fino a quando non è possibile trasmetterlo
+ in accordo con la TCA.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Marking (spesso il più utilizzato)
+
+\series bold
+Marking
+\series default
+ (spesso il più utilizzato)
 \end_layout
 
 \begin_deeper
@@ -2396,7 +2430,7 @@ Marking (spesso il più utilizzato)
 \series bold
 Dropping priority marking
 \series default
-: Si marcano i pacchetti da droppare.
+: Si marcano i pacchetti da droppare, in caso di congestione vengono droppati.
 \end_layout
 
 \begin_layout Itemize
@@ -2409,12 +2443,42 @@ Service marking
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+Il motivo di questa strategia è che il provider, per garantire la SLA, deve
+ riservare un certo numero di risorse.
+ Il numero di risorse disponibili dipende sia dall'SLA che dal TCA.
+ Le risorse sono allocare per il traffico in profilo.
+ Una volta che le risorse sono state allocate, accettare il traffico fuori
+ profilo è un pericolo perché rischia di non far rispettare la SLA.
+ 
+\end_layout
+
+\begin_layout Standard
+La politica adottata più spesso è quella di accettare il traffico fuori
+ profilo e marcalo.
+ Se ci si accorge che sta degradando la SLA, viene droppato o trasportato
+ con bassa priorità.
+ In questo modo l'ISP riesce a guadagnare di più, infatti molto spesso il
+ pagamento è per traffico, quindi l'ISP ha interesse a trasportare anche
+ il traffico fuori profilo.
+\end_layout
+
 \begin_layout Subsection*
 Come si definisce un TCA
 \end_layout
 
+\begin_layout Standard
+Un TCA può contenere una serie di parametri per caratterizzare il traffico
+ in profilo o fuori profilo.
+ Ad esempio:
+\end_layout
+
 \begin_layout Itemize
-Il valore di picco del traffico.
+Il valore di 
+\series bold
+picco
+\series default
+ del traffico.
  (Ad esempio 
 \begin_inset Formula $P=2\, Mbps$
 \end_inset
@@ -2423,7 +2487,11 @@ Il valore di picco del traffico.
 \end_layout
 
 \begin_layout Itemize
-Il valore medio del traffico.
+Il valore 
+\series bold
+medio
+\series default
+ del traffico.
  (Ad esempio 
 \begin_inset Formula $A=200\, Kbps$
 \end_inset
@@ -2443,7 +2511,13 @@ burst
 \end_layout
 
 \begin_layout Itemize
-Lunghezza massima e minima dei pacchetti
+
+\series bold
+Lunghezza
+\series default
+ massima e minima dei 
+\series bold
+pacchetti
 \end_layout
 
 \begin_layout Standard
@@ -2457,40 +2531,68 @@ Accesso alla rete
 
 \begin_layout Standard
 Subito dopo l'accesso alla rete per l'utente c'è il 
+\series bold
 \emph on
 traffic regulator
+\series default
 \emph default
-, che verifica se il profilo di traffico viene rispettato.
- Lo stesso regolatore verifica il traffico e lo divide in traffico 
-\emph on
-green
-\emph default
- e traffico 
-\emph on
-red
-\emph default
-.
+ dell'ISP, che verifica se il profilo di traffico viene rispettato.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-003.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Se il traffico 
-\emph on
-green 
-\emph default
-e 
-\emph on
-red
-\emph default
- vengono mandati in rete, allora stiamo parlando di un 
+Il regolatore verifica il traffico e lo divide in traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
 \series bold
 \emph on
-two-coloured
+green
 \series default
 \emph default
- 
+: IN-traffic, il traffico che è in profilo
+\end_layout
+
+\begin_layout Itemize
+
 \series bold
 \emph on
-regulator
+red
+\series default
+\emph default
+: OUT-traffic, il traffico fuori profilo
+\end_layout
+
+\begin_layout Itemize
+Questo tipo di regolatori è chiamato 
+\series bold
+\emph on
+two-color regulator
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Alcuni regolatori invece suddividono il traffico in: 
+\emph on
+green, yellow, red.
+ 
+\emph default
+In questo caso parliamo di 
+\series bold
+\emph on
+three-color regulator
 \series default
 \emph default
 .
@@ -2507,20 +2609,99 @@ red
 policer
 \series default
 \emph default
-.
+:
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-004.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solo il traffico 
+\emph on
+green
+\emph default
+ procede, tutto il traffico 
+\emph on
+red
+\emph default
+ viene droppato.
+\end_layout
+
+\begin_layout Itemize
+In questo modo i flussi di traffico già stabiliti sono sempre protetti dal
+ traffico eccessivo generato da altri utenti.
+\end_layout
+
+\begin_layout Itemize
+Però usando questo metodo, anche quando la rete ha risorse libere, queste
+ non vengono sfruttate e si droppa comunque.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Se il traffico 
 \emph on
 red
 \emph default
- viene rallentato tramite un buffer, abbiamo un 
+ viene rallentato tramite un buffer e poi inviato comunque, abbiamo un 
 \series bold
 \emph on
-shaper.
+shaper
+\series default
+\emph default
+:
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-005.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il traffico viene allocato all'interno di un buffer e trasmesso quando non
+ viola il TCA.
+ Quindi il traffico che viene immesso nella rete è sempre 
+\emph on
+green
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Anche in questo caso, i flussi già stabiliti sono protetti da eccessi di
+ traffico da parte di altri utenti.
+\end_layout
+
+\begin_layout Itemize
+Anche in questo caso se ci sono risorse libere nella rete, non vengono sfruttate
+ perchè si fa comunque shaping.
+ Comunque questo metodo resta più efficiente di un 
+\emph on
+policer
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Un problema è che la coda del buffer può allungarsi troppo e con essa anche
+ i tempi di ritardo medio dei pacchetti.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Se il traffico 
 \emph on
@@ -2532,11 +2713,48 @@ red
 marker
 \series default
 \emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-006.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il traffico viene lasciato proseguire, ma viene marcato come 
+\emph on
+red
+\emph default
+.
+ Il marking viene fatto con lo scopo di aumentare la proprità di dropping
+ di un certo pacchetto rispetto ad altri.
+ In alternativa al drop, il pacchetto può essere inviato su una classe di
+ servizio diversa, tipo 
+\emph on
+best effort
+\emph default
 .
 \end_layout
 
+\begin_layout Itemize
+Se la rete ha risorse libere, in questo caso vengono utilizzate in modo
+ più efficiente.
+\end_layout
+
+\begin_layout Itemize
+Tuttavia, il problema della gestione della congestione è importante.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
-Classificatore Lato ISP (marker?)
+Traffic conditioner
 \end_layout
 
 \begin_layout Standard
@@ -2546,21 +2764,47 @@ Cos'è il
 classifier
 \series default
 \emph default
- (o 
+ o 
 \series bold
 \emph on
 traffic conditioner
 \series default
 \emph default
-) ? È un dispositivo lato ISP che riceve il traffico da diversi utenti e
- deve occuparsi del controllo del traffico lato ISP.
+ ? È un elemento di rete, lato ISP, che riceve il traffico da diversi utenti
+ e deve occuparsi del controllo del traffico lato ISP.
 \end_layout
 
 \begin_layout Standard
-Deve occuparsi si capire quale TCA deve essere associata a ciascun utente.
+Deve occuparsi si capire 
+\series bold
+quale TCA deve essere associata a ciascun utente
+\series default
+.
 \end_layout
 
 \begin_layout Standard
+Al suo interno troviamo: 
+\emph on
+meter, marker, shaper
+\emph default
+ e 
+\emph on
+dropper
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-007.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 All'interno di questo dispositivo abbiamo anche il 
 \series bold
 \emph on
@@ -2584,7 +2828,7 @@ out-of-profile
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Questa informazione viene comunicata ad un 
 \series bold
 \emph on
@@ -2594,9 +2838,14 @@ actuator
 che colora il pacchetto.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
+Nel grafico in figura le linee nere rappresentano il flusso dei pacchetti,
+ mentre le linee rosse rappresentano il flusso di controllo.
+\end_layout
+
+\begin_layout Itemize
 Qual'è il campo del pacchetto IPv4 utilizzato per trasportare queste informazion
-i? È il 
+i di marking? È il 
 \emph on
 differentiated services codepoint
 \emph default
@@ -2615,7 +2864,7 @@ Type of Service
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Il DSCP definisce il 
 \series bold
 PHB 
@@ -2625,6 +2874,19 @@ PHB
 Per-Hop-Behaviour
 \emph default
 ), la politica adottata dai routers lungo il percorso.
+ Il marker sceglierà il valore da impostare come PHB a seconda di quello
+ che gli comunica il meter.
+\end_layout
+
+\begin_layout Itemize
+In alternativa può essere utilizzato lo shaper.
+ Ricordiamoci che lo shaper ha una coda finita, quando si riempie inizia
+ a droppare pacchetti.
+\end_layout
+
+\begin_layout Itemize
+Il dropper invece droppa semplicemente.
+ Può essere implementato come uno shaper con coda a pochi o zero pacchetti.
 \end_layout
 
 \begin_layout Subsection*
@@ -2650,7 +2912,7 @@ In mezzo alla rete ci sono dei routers (che verificano il campo DSCP per
 
 \begin_deeper
 \begin_layout Itemize
-Ma chi scrive il DSCP dentro i pacchetto? Il classificatore
+Ma chi scrive il DSCP dentro i pacchetto? Il classificatore.
 \end_layout
 
 \begin_layout Itemize
@@ -2716,7 +2978,7 @@ Contract timescale
 \series bold
 Connection timescale 
 \series default
-(~min/~hours)
+(~min/~ore)
 \end_layout
 
 \begin_layout Itemize
@@ -2745,8 +3007,32 @@ Si verifica se ci sono abbastanza risorse e si abilita la connessione solo
  la SLA applicata alle connessioni esistenti.
 \end_layout
 
+\begin_layout Standard
+Il problema è riuscire a stabilire la regione di accettazione.
+ Infatti essa dipende dalla distribuzione statistica del traffico, dalla
+ capacità del link, dalla SLA e dalla politica di scheduling.
+\end_layout
+
+\begin_layout Standard
+La difficoltà aumenta ancora quando si considerano dei percorsi con più
+ 
+\emph on
+hops
+\emph default
+ intermedi.
+\end_layout
+
+\begin_layout Standard
+Vedremo che con recenti metodi di calcolo statistico di rete, questo problema
+ può essere risolto in modo relativamente semplice.
+\end_layout
+
 \begin_layout Subsection*
 
+\emph on
+Token Bucket
+\emph default
+ 
 \emph on
 Policer 
 \emph default
@@ -2755,6 +3041,16 @@ Policer
 token bucket
 \emph default
 )
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-008.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2768,11 +3064,15 @@ policer
 \end_layout
 
 \begin_layout Itemize
-Abbiamo uno stream di pacchetti in ingresso
+Abbiamo uno stream di pacchetti in ingresso 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
-C'è un bucket che svolge il ruolo di contatore
+C'è un bucket che svolge il ruolo di contatore di crediti (tokens)
 \end_layout
 
 \begin_deeper
@@ -2790,7 +3090,11 @@ profondità
 \begin_inset Formula $b$
 \end_inset
 
- 
+ (
+\emph on
+token bucket size
+\emph default
+)
 \end_layout
 
 \begin_layout Itemize
@@ -2802,7 +3106,8 @@ rate di riempimento
 \begin_inset Formula $r$
 \end_inset
 
-
+.
+ 
 \end_layout
 
 \end_deeper
@@ -2833,7 +3138,11 @@ Il contatore viene incrementato ogni
 
 \end_deeper
 \begin_layout Itemize
-Un pacchetto può attraversare il policer se il contatore è positivo.
+Un pacchetto può attraversare il 
+\emph on
+policer
+\emph default
+ se il contatore è positivo.
  Dopo il passaggio il contatore viene decrementato.
 \end_layout
 
@@ -2843,17 +3152,36 @@ Se il contatore è a 0, il pacchetto viene droppato.
 
 \begin_layout Itemize
 Quindi 
-\begin_inset Formula $\text{1 credito}=\text{permesso di trasmettere }1\:\text{pacchetto}$
+\begin_inset Formula $\text{1 credito}=\text{permesso per trasmettere }1\:\text{pacchetto}$
 \end_inset
 
+ (
+\begin_inset Formula $r\,\left[\frac{packets}{s}\right]$
+\end_inset
 
+)
 \end_layout
 
 \begin_layout Itemize
-Possiamo rappresentare questa policy utilizzando un linguaggio di descrizione
- delle specifiche come SDL.
+Possiamo rappresentare questa 
+\emph on
+policy
+\emph default
+ utilizzando un linguaggio di descrizione delle specifiche come 
+\series bold
+\emph on
+SDL
+\series default
+\emph default
+.
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+[immagine mancante]
+\end_layout
+
+\end_deeper
 \begin_layout Subsection*
 
 \emph on
@@ -2867,13 +3195,27 @@ token bucket
 \end_layout
 
 \begin_layout Standard
-Abbiamo ancora un bucket, riempito con 
+\begin_inset Graphics
+	filename net-009.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo ancora un 
+\emph on
+bucket
+\emph default
+, riempito con 
 \begin_inset Formula $r$
 \end_inset
 
  token al secondo.
  Il suo valore massimo è 
-\begin_inset Formula $B$
+\begin_inset Formula $b$
 \end_inset
 
 .
@@ -2882,7 +3224,7 @@ Abbiamo ancora un bucket, riempito con
 \end_inset
 
 .
- Il traffico entra nel buffer, il contatore funziona esattmaente come nel
+ Il traffico entra nel buffer, il contatore funziona esattamente come nel
  policer.
  Incrementiamo il contatore ogni 
 \begin_inset Formula $\frac{1}{r}$
@@ -2909,23 +3251,30 @@ Il buffer può essere vuoto
 
 \begin_deeper
 \begin_layout Itemize
-Il sistema verifica il numero di crediti nel counter:
+Il sistema verifica il numero di crediti nel 
+\emph on
+counter
+\emph default
+:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Se ho 0 crediti il pacchetto viene accodato
+Se ho 0 crediti il pacchetto viene accodato nel buffer.
 \end_layout
 
 \begin_layout Itemize
-Se ho 1 o più crediti, il pacchetto attraversa il sistema e il counter viene
- decrementato di 1.
+Se ho 1 o più crediti, il pacchetto attraversa il sistema e il 
+\emph on
+counter
+\emph default
+ viene decrementato di 1.
 \end_layout
 
 \end_deeper
 \end_deeper
 \begin_layout Itemize
-Il buffer può contere già pacchetti
+Il buffer può contenere già pacchetti
 \end_layout
 
 \begin_deeper
@@ -2934,8 +3283,26 @@ Il pacchetto viene accodato sulla coda del buffer.
 \end_layout
 
 \begin_layout Itemize
-Il pacchetto in cima al buffer attraversa il sistema e il counter viene
- decrementato di 1.
+Il pacchetto in cima al buffer attraversa il sistema se ho 1 o più crediti.
+ Il counter viene decrementato di 1.
+\end_layout
+
+\begin_layout Itemize
+Fino a quando ci sono crediti nel contatore possiamo trasmettere, quindi
+ ci possono essere dei 
+\emph on
+burst.
+ 
+\emph default
+In particolare il 
+\emph on
+burst
+\emph default
+ è controllato dal parametro 
+\begin_inset Formula $b$
+\end_inset
+
+ del sistema.
 \end_layout
 
 \end_deeper
@@ -2963,11 +3330,74 @@ Constraint functions
 \end_layout
 
 \begin_layout Standard
-Questi dispositivi costruiti realizzano una constraint function 
-\begin_inset Formula $b+rt$
+Sia il 
+\emph on
+policer
+\emph default
+ che lo 
+\emph on
+shaper
+\emph default
+ implementano delle 
+\emph on
+constraint functions
+\emph default
+ di tipo 
+\begin_inset Formula 
+\[
+CT\left(t\right)=b+rt
+\]
+
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $CT\left(t\right)$
+\end_inset
+
+ significa 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+il traffico cumulativo in funzione del tempo
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-010.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All'intervallo di durata 
+\begin_inset Formula $t$
+\end_inset
+
+, il massimo traffico che lascia passare il regolatore è 
+\begin_inset Formula $b+rt$
+\end_inset
+
+ , il traffico che eccede è il traffico fuori profilo.
+\end_layout
+
+\begin_layout Standard
+Il traffico fuori profilo viene trattato in modo diverso a seconda che abbiamo
+ un policer o shaper.
 \end_layout
 
 \begin_layout Standard
@@ -2987,38 +3417,4372 @@ Velocità media
 \end_layout
 
 \begin_layout Standard
-Un token bucket non può determinare la velocità di picco.
+Vediamo alcune caratteristiche di policer e shaper rispetto al traffico:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Token Bucket policers
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Droppa il traffico fuori profilo.
+ In questo modo solo il traffico in profilo entra nella rete.
+\end_layout
+
+\begin_layout Itemize
+Nella figura seguente è mostrato il traffico cumulativo in ingresso alla
+ rete, che per rispettare i vincoli dovrebbe essere lineare.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-011.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il traffico profilato in blu nella figura è il traffico che esce effettivamente
+ dal policer.
+ È un 
+\emph on
+linearly bounded arrival process
+\emph default
+ (LBAP)
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+token bucket policer 
+\emph default
+ci assicura che il traffico offerto alla rete è 
+\emph on
+linearly bounded
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Token Bucket shapers
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il traffico di uscita è rallentato e trasmesso quando è possibile soddisfare
+ il limite LBAP.
+ Si elimina la perdita di pacchetti ma si aumenta il delay
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-012.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Token Bucket Marker
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Funziona esattamente come il policer, con la differenza che al posto di
+ droppare il traffico, lo marca e lo inoltra nella rete.
+ Nel momento di congestione, i pacchetti marcati vengono droppati.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-010.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsection*
+Single Rate Three-Color marker (srTCM)
+\end_layout
+
+\begin_layout Standard
+Può essere utilizzato come componente in un Diffserv 
+\emph on
+traffic conditioner
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+L'srTCM si occupa di misurare il traffico e marcare i pacchetti in base
+ a tre parametri di traffico:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Committed Information Rate
+\series default
+\emph default
+ (CIR): traffico 
+\series bold
+green 
+\series default
+(È il traffico che non supera la CBS)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Committed Burst Size
+\series default
+\emph default
+ (CBS): traffico 
+\series bold
+yellow 
+\series default
+(È il traffico che supera la CBS ma non la EBS)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Excess burst size
+\series default
+\emph default
+ (EBS): traffico 
+\series bold
+red 
+\series default
+(Tutto il resto del traffico)
+\end_layout
+
+\begin_layout Standard
+Il 
+\emph on
+meter
+\emph default
+ può operare in due modalità:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Color-blind mode
+\series default
+: Il 
+\emph on
+meter
+\emph default
+ assume che lo stream di pacchetti in ingresso non è colorato.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Color-aware mode
+\series default
+: Il 
+\emph on
+meter
+\emph default
+ assume che qualche entità precedente abbia già pre-colorato i pacchetti
+ in ingresso, di modo che siano green,yellow o red.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In questo caso il marker 
+\series bold
+ri-colora
+\series default
+ i pacchetti in base al risultato del 
+\emph on
+meter
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il colore viene encodato all'interno del campo 
+\series bold
+DS
+\series default
+ dell'header IP, in modalità PHB (
+\emph on
+Per-Hop Behaviour
+\emph default
+).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quando viene modificato il campo DS dell'header IP significa che utilizzando
+ una politica PHB, il traffico green, yellow o red viene trattato in modo
+ diverso all'interno della rete.
+\end_layout
+
+\begin_layout Itemize
+Il modo specifico in cui il pacchetto viene trattato all'interno della rete
+ verrà descritto nel seguito.
+\end_layout
+
+\begin_layout Standard
+Alcune note sul 
+\emph on
+meter
+\emph default
+:
+\end_layout
+
+\begin_layout Itemize
+Il CIR viene misurato in 
+\series bold
+bytes del pacchetto IP per secondo
+\series default
+, header compreso ma escludendo headers datalink.
+\end_layout
+
+\begin_layout Itemize
+CBS e EBS sono misurati in bytes e devono essere configurati in modo che
+ almeno uno di essi sia maggiore di 0.
+ È inoltre raccomandato che uno dei due valori sia maggiore o uguale alla
+ dimensione massima di un pacchetto IP di uno stream.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-013.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'srTCM è composto da due buffer 
+\series bold
+C
+\series default
+ ed 
+\series bold
+E
+\series default
+, che condividono lo stesso rate di riempimento CIR.
+ La massima dimensione del buffer C è CBS e la massima dimensione del buffer
+ E è EBS.
+\end_layout
+
+\begin_layout Itemize
+Inizialmente i due buffer 
+\series bold
+C
+\series default
+ ed 
+\series bold
+E
+\series default
+ sono pieni: 
+\begin_inset Formula $T_{C}\left(0\right)=CBS$
+\end_inset
+
+ e 
+\begin_inset Formula $T_{E}\left(0\right)=EBS$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+In seguito il conteggio dei 
+\emph on
+token
+\emph default
+ viene aggiornato come segue:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $T_{C}\left(t\right)<CBS$
+\end_inset
+
+ allora 
+\begin_inset Formula $T_{C}\left(t+1\right)=T_{C}\left(t\right)+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $T_{E}\left(t\right)<EBS$
+\end_inset
+
+ allora 
+\begin_inset Formula $T_{E}\left(t+1\right)=T_{E}\left(t\right)+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Altrimenti nessuno dei due viene incrementato
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni volta che arriva un pacchetto di dimensione 
+\begin_inset Formula $B$
+\end_inset
+
+ in ingresso al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $T_{C}\left(t\right)-B\,\geq0$
+\end_inset
+
+, allora il pacchetto è 
+\emph on
+green
+\emph default
+ e 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ viene decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al valore minimo 
+\begin_inset Formula $0$
+\end_inset
+
+ (non può andare sottozero ovviamente!).
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $T_{E}\left(t\right)-B\,\geq0$
+\end_inset
+
+, allora il pacchetto è 
+\emph on
+yellow
+\emph default
+ e 
+\begin_inset Formula $T_{E}$
+\end_inset
+
+ viene decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al valore minimo 
+\begin_inset Formula $0$
+\end_inset
+
+ (non può andare sottozero ovviamente!)
+\end_layout
+
+\begin_layout Itemize
+Altrimenti il pacchetto è 
+\emph on
+red
+\emph default
+ e nè 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ nè 
+\begin_inset Formula $T_{E}$
+\end_inset
+
+ vengono decrementati
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Come abbiamo detto c'è anche 
+\series bold
+la versione 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+color-aware
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ di srTCM:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-014.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso, ogni volta che arriva un pacchetto di dimensione 
+\begin_inset Formula $B$
+\end_inset
+
+ in ingresso al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se il pacchetto è stato 
+\bar under
+pre-colorato 
+\emph on
+green
+\bar default
+ 
+\emph default
+e 
+\begin_inset Formula $T_{C}\left(t\right)-B\,\geq0$
+\end_inset
+
+, allora il pacchetto è 
+\emph on
+green
+\emph default
+ e 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ viene decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al valore minimo 
+\begin_inset Formula $0$
+\end_inset
+
+ (non può andare sottozero ovviamente!).
+\end_layout
+
+\begin_layout Itemize
+Se il pacchetto è stato 
+\bar under
+pre-colorato 
+\emph on
+green 
+\emph default
+o 
+\emph on
+yellow
+\bar default
+ 
+\emph default
+e 
+\begin_inset Formula $T_{E}\left(t\right)-B\,\geq0$
+\end_inset
+
+, allora il pacchetto è 
+\emph on
+yellow
+\emph default
+ e 
+\begin_inset Formula $T_{E}$
+\end_inset
+
+ viene decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al valore minimo 
+\begin_inset Formula $0$
+\end_inset
+
+ (non può andare sottozero ovviamente!)
+\end_layout
+
+\begin_layout Itemize
+Altrimenti il pacchetto è 
+\emph on
+red
+\emph default
+ e nè 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ nè 
+\begin_inset Formula $T_{E}$
+\end_inset
+
+ vengono decrementati.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Il marker srTCM può essere utilizzato per marcare lo stream di pacchetti
+ di un servizio, dove si vogliono dare garanzie diverse a pacchetti di vario
+ tipo.
+ Per esempio si potrebbe:
+\end_layout
+
+\begin_layout Itemize
+Scartare tutti i pacchetti 
+\emph on
+red
+\emph default
+ poiché superano sia le soglie di 
+\emph on
+committed
+\emph default
+ e 
+\emph on
+excess
+\emph default
+ 
+\emph on
+burst size
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Inoltrare i pacchetti 
+\emph on
+yellow
+\emph default
+ come 
+\emph on
+best effort
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Inoltrare i pacchetti 
+\emph on
+green
+\emph default
+ con una bassa probabilità di drop.
 \end_layout
 
 \begin_layout Subsection*
-Token bucket marker (SRTCM)
+Two-rate Three-Color Marker (trTCM)
 \end_layout
 
 \begin_layout Standard
-Funziona come il token bucket policer, ma al posto di droppare i pacchetti
- li marca e li forwarda.
+Il 
+\emph on
+meter
+\emph default
+ di tipo trTCM misura un stream di pacchetti IP e li marca in base a due
+ misure:
 \end_layout
 
 \begin_layout Itemize
-Committed information rate (CIR): traffico 
+
 \series bold
-green
+\emph on
+Peak Information Rate
+\series default
+ 
+\emph default
+(PIR) 
 \end_layout
 
 \begin_layout Itemize
-Committed burst size (CBS): traffico 
+
 \series bold
+\emph on
+Committed Information Rate
+\series default
+\emph default
+ (CIR)
+\end_layout
+
+\begin_layout Standard
+E le 
+\emph on
+burst sizes
+\emph default
+ associate possono essere: 
+\emph on
+green, yellow e red
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Un pacchetto è marcato 
+\emph on
+red
+\emph default
+ se supera il PIR, altrimenti è marcato 
+\emph on
 yellow
+\emph default
+ o 
+\emph on
+green 
+\emph default
+a seconda che superi o meno il CIR.
 \end_layout
 
 \begin_layout Itemize
-Excess burst size (EBS): traffico 
+Il trTCM viene configurando specificando se deve essere 
+\emph on
+color-aware o no
+\emph default
+ e impostando i 4 parametri:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Peak Information Rate
+\emph default
+ (PIR)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Peak Burst Size
+\emph default
+ (PBS)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Committed Information Rate
+\emph default
+ (CIR)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Committed Burst Size
+\emph default
+ (CBS)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il comportamento del 
+\emph on
+meter
+\emph default
+ dipende da: tipo di flusso in ingresso (colorato o no), 
+\begin_inset Formula $P$
+\end_inset
+
+ e 
+\begin_inset Formula $C$
+\end_inset
+
+ e i valori di 
+\begin_inset Formula $PIR$
+\end_inset
+
+ e 
+\begin_inset Formula $CIR$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il CIR viene misurato in 
 \series bold
+bytes del pacchetto IP per secondo
+\series default
+, header compreso ma escludendo headers datalink.
+\end_layout
+
+\begin_layout Itemize
+Dobbiamo avere 
+\begin_inset Formula $PIR\geq CIR$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $PBS$
+\end_inset
+
+ e 
+\begin_inset Formula $CBS$
+\end_inset
+
+ sono misurati in 
+\series bold
+bytes
+\series default
+ e devono essere entrambi maggiori di 0.
+ È raccomandato che siano impostati ad essere maggiori o uguali alla dimensione
+ del pacchetto IP più grande possibile dello stream.
+\end_layout
+
+\begin_layout Itemize
+Abbiamo due 
+\series bold
+\emph on
+token buckets
+\series default
+\emph default
+: 
+\begin_inset Formula $P$
+\end_inset
+
+ e 
+\begin_inset Formula $C$
+\end_inset
+
+, rispettivamente riempiti a rate 
+\begin_inset Formula $PIR$
+\end_inset
+
+ e 
+\begin_inset Formula $CIR$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La dimensione massima del 
+\emph on
+bucket
+\emph default
+ 
+\begin_inset Formula $P$
+\end_inset
+
+ è 
+\begin_inset Formula $PBS$
+\end_inset
+
+, quella del 
+\emph on
+bucket
+\emph default
+ 
+\begin_inset Formula $C$
+\end_inset
+
+ è 
+\begin_inset Formula $CBS$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Al tempo 
+\begin_inset Formula $0$
+\end_inset
+
+ abbiamo 
+\begin_inset Formula $T_{P}\left(0\right)=PBS$
+\end_inset
+
+ e 
+\begin_inset Formula $T_{C}\left(0\right)=CBS$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dopo il tempo 
+\begin_inset Formula $0$
+\end_inset
+
+, il valore di 
+\begin_inset Formula $T_{P}$
+\end_inset
+
+ viene incrementato di 
+\begin_inset Formula $PIR$
+\end_inset
+
+ ogni secondo, fino a 
+\begin_inset Formula $PBS$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dopo il tempo 
+\begin_inset Formula $0$
+\end_inset
+
+, il valore di 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ viene incrementato di 
+\begin_inset Formula $CIR$
+\end_inset
+
+ ogni secondo, fino a 
+\begin_inset Formula $CBS$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-015.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quando un pacchetto di dimensione 
+\begin_inset Formula $B$
+\end_inset
+
+ entra al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+ , se trTCM è configurato per operare in modalità 
+\series bold
+\emph on
+color-blind
+\series default
+\emph default
+ abbiamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se 
+\begin_inset Formula $T_{P}\left(t\right)-B\,<\,0$
+\end_inset
+
+ allora il pacchetto è 
+\emph on
 red
 \end_layout
 
+\begin_layout Itemize
+Altrimenti se 
+\begin_inset Formula $T_{C}\left(t\right)-B\,<\,0$
+\end_inset
+
+ allora il pacchetto è 
+\emph on
+yellow
+\emph default
+ e 
+\begin_inset Formula $T_{P}$
+\end_inset
+
+ viene decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al minimo di 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Altrimenti il pacchetto è 
+\emph on
+green
+\emph default
+ e sia 
+\begin_inset Formula $T_{P}$
+\end_inset
+
+ che 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ sono decrementati di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al minimo di 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-[omissis]
+\begin_inset Graphics
+	filename net-017.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se abbiamo un trTCM configurato per operare in modalità 
+\series bold
+\emph on
+color-aware
+\series default
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-016.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso quando un pacchetto di dimensione 
+\begin_inset Formula $B$
+\end_inset
+
+ entra al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+ , abbiamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se il pacchetto è stato 
+\bar under
+pre-colorato 
+\emph on
+red
+\emph default
+ 
+\bar default
+oppure se 
+\begin_inset Formula $T_{P}\left(t\right)-B\,<\,0$
+\end_inset
+
+, il pacchetto è 
+\emph on
+red
+\emph default
+, altrimenti
+\end_layout
+
+\begin_layout Itemize
+Se il pacchetto è stato 
+\bar under
+pre-colorato 
+\emph on
+yellow
+\emph default
+\bar default
+ oppure se 
+\begin_inset Formula $T_{C}\left(t\right)-B\,<\,0$
+\end_inset
+
+, il pacchetto è 
+\emph on
+yellow
+\emph default
+ e 
+\begin_inset Formula $T_{P}$
+\end_inset
+
+ è decrementato di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al minimo di 
+\begin_inset Formula $0$
+\end_inset
+
+, altrimenti
+\end_layout
+
+\begin_layout Itemize
+Il pacchetto è 
+\emph on
+green
+\emph default
+ e sia 
+\begin_inset Formula $T_{P}$
+\end_inset
+
+ che 
+\begin_inset Formula $T_{C}$
+\end_inset
+
+ sono decrementati di 
+\begin_inset Formula $B$
+\end_inset
+
+ fino al minimo di 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Scheduling
+\end_layout
+
+\begin_layout Subsection*
+Contratto sul traffico
+\end_layout
+
+\begin_layout Standard
+Un contratto sul traffico stipulato tra un cliente e un service provider
+ include una TCA e SLA.
+\end_layout
+
+\begin_layout Standard
+La TCA specifica il profilo di traffico 
+\begin_inset Formula $\left(A,P,B\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La SLA specifica i requisiti per la qualità del servizio 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+ (QoS):
+\end_layout
+
+\begin_layout Itemize
+Una 
+\series bold
+soglia di ritardo massimo
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+massima frazione di pacchetti
+\series default
+ che possono superare la soglia di ritardo massimo
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se la frazione è 
+\begin_inset Formula $0$
+\end_inset
+
+, il servizio è 
+\series bold
+garantito
+\end_layout
+
+\begin_layout Itemize
+Se la frazione è 
+\begin_inset Formula $>0$
+\end_inset
+
+, il servizio è 
+\series bold
+statistico
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La 
+\series bold
+massima frazione di pacchetti persi
+\series default
+.
+\end_layout
+
+\begin_layout Subsection*
+Garantire la QoS
+\end_layout
+
+\begin_layout Standard
+Quando un utente lo richiede, viene stabilito un contratto con TCA e SLA.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+admission control
+\series default
+\emph default
+ verifica che questo contratto possa essere soddisfatto senza modificare
+ la SLA dei contratti già stabiliti.
+ In caso affermativo vengono allocate delle risorse sulla rete per questo
+ contratto.
+\end_layout
+
+\begin_layout Itemize
+Le connessioni si attivano e il controllo 
+\emph on
+real-time
+\emph default
+ del traffico inizia:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene fatto 
+\emph on
+scheduling 
+\emph default
+in ogni nodo della rete
+\end_layout
+
+\begin_layout Itemize
+Si effettua 
+\emph on
+regulation
+\emph default
+ del traffico in ingresso alla rete
+\end_layout
+
+\begin_layout Itemize
+Si utilizzano tecniche di 
+\series bold
+\emph on
+active queue management
+\series default
+\emph default
+ nei nodi della rete
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-018.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Admission Control
+\end_layout
+
+\begin_layout Standard
+Nella parte di 
+\emph on
+admission control
+\emph default
+ decidiamo se accettare o rifiutare delle richieste del cliente.
+\end_layout
+
+\begin_layout Standard
+Accettiamo una richiesta solo se è possibile soddisfarla senza degradare
+ la SLA di altri contratti già stabiliti.
+\end_layout
+
+\begin_layout Standard
+Per esempio possiamo accettare flussi VoIP solo se il delay può essere garantito.
+ Del resto è nella natura del sistema telefonico di bloccare delle richieste
+ se non ci sono risorse.
+\end_layout
+
+\begin_layout Standard
+La parte di 
+\emph on
+admission control
+\emph default
+ è strettamente legata al 
+\emph on
+real-time management
+\emph default
+ del traffico (
+\series bold
+\emph on
+scheduling
+\series default
+\emph default
+).
+ Infatti è possibile stabiliare se possiamo soddisfare la SLA solo conoscendo
+ le politiche di scheduling implementate nei nodi della rete da attraversare,
+ così come la quantità di risorse di ciascun nodo e link.
+\end_layout
+
+\begin_layout Subsection*
+Scheduling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-019.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In un nodo della rete, ogni collegamento in uscita è gestito da uno 
+\series bold
+\emph on
+scheduler
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Lo scheduler organizza la trasmissione dei pacchetti, scegliendo per ogni
+ pacchetto, il tipo di 
+\emph on
+service class
+\emph default
+ che deve essere fornita.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In particolare, appena termina la trasmissione di un pacchetto, lo scheduler
+ utilizza un algoritmo per scegliere quale 
+\emph on
+service class
+\emph default
+ deve essere servita successivamente.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In alcune architetture lo 
+\emph on
+scheduling 
+\emph default
+è basato sulle 
+\emph on
+service classes
+\emph default
+ , ad esempio flussi di traffico sono aggregati in categorie di servizio
+ e, nello scheduler, tutti i pacchetti appartenenti alla stessa categoria
+ di servizio vengono salvati nello stesso buffer.
+\end_layout
+
+\begin_layout Itemize
+In altre architetture, buffering e categorie di servizio sono divise per
+ flusso.
+ Cioè c'è un buffer per ogni singolo flusso e il servizio di ogni flusso
+ è differenziato.
+ In questo modo è possibile ottenere una differenziazione del servizio molto
+ fine.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tuttavia questo presenta dei problemi di scalabilità poiché gli 
+\emph on
+schedulers
+\emph default
+ di un nodo 
+\emph on
+core
+\emph default
+ della rete potrebbe dover gestire migliaia di flussi contemporaneamente.
+\end_layout
+
+\begin_layout Itemize
+C'è un limite superiore sui flussi che possono essere gestiti su una architettur
+a differenziando il servizio dei flussi individuali.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gestire delle classi di servizio invece dei flussi risolve il problema della
+ scalabilità.
+ Il numero delle classi di servizio è molto più piccolo del numero di flussi
+ che uno scheduler deve sostentere.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per esempio 
+\begin_inset Formula $10000$
+\end_inset
+
+ flussi VoIP potrebbero rientrare nella stessa classe di servizio di uno
+ scheduler basato su classi.
+\end_layout
+
+\begin_layout Itemize
+Al contrario in uno scheduler 
+\emph on
+per-flusso
+\emph default
+ dovremmo istanziare 
+\begin_inset Formula $10000$
+\end_inset
+
+ buffers e selezionare tra 
+\begin_inset Formula $10000$
+\end_inset
+
+ flussi per la trasmissione di ogni pacchetto.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Lo scheduling può essere una funzione molto complicata da svolgere.
+ La quantità di risorse necessarie per soddisfare la SLA di tutte le classi
+ di servizio che condividono lo stesso link dipende da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'insieme delle TCA di ogni classe di servizio
+\end_layout
+
+\begin_layout Itemize
+La SLA di ogni classe di servizio
+\end_layout
+
+\begin_layout Itemize
+La politica di scheduling (l'algoritmo di scheduling)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La 
+\emph on
+connection admission control 
+\emph default
+può essere fatta solo se conosciamo tutti gli elementi sopra elencati.
+\end_layout
+
+\begin_layout Itemize
+Dato il TCA composto di una classe di servizio sullo scheduler di un link
+ come 
+\begin_inset Formula $TCAi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dato lo SLA di una classe di servizio come 
+\begin_inset Formula $SLAi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La capacità totale del link: 
+\begin_inset Formula $C$
+\end_inset
+
+ consumata dalle service classes che condividino quel link, è una funzione
+ delle TCA, SLA e politica di scheduling: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=f\left(\left(TCA1,SLA1\right),\,\left(TCA2,SLA2\right),\,...,\, policy\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+FIFO Scheduler
+\end_layout
+
+\begin_layout Standard
+Lo scheduler di tipo FIFO (
+\emph on
+First-In First-Out
+\emph default
+, il primo che entra è il primo ad essere servito) è lo scheduler più semplice
+ che possiamo realizzare.
+ È sostanzialmente una coda semplice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-020.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pur essendo semplice, è il meno utile a fornire servizi QoS differenziati.
+\end_layout
+
+\begin_layout Itemize
+Tutti i pacchetti, indipendentemente dalla loro classe di servizio, vengono
+ salvati nello stesso buffer e sono serviti nello stesso ordine con cui
+ sono arrivati nel buffer.
+\end_layout
+
+\begin_layout Itemize
+Chiaramente solo una SLA può essere offerta a tutti i flussi.
+\end_layout
+
+\begin_layout Itemize
+In questo caso per soddisfare tutte le SLA con un sistema di questo tipo,
+ bisogna garantire la SLA più stringente tra quelle da soddisfare.
+\end_layout
+
+\begin_layout Itemize
+È un sistema chiaramente inefficiente, infatti lo scheduler FIFO viene utilizzat
+o solo per reti 
+\emph on
+Best-Effort
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Strict Priority Scheduler (SP)
+\end_layout
+
+\begin_layout Standard
+È uno scheduler semplice ma efficacie.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-021.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È composto da 
+\begin_inset Formula $N$
+\end_inset
+
+ buffers di tipo FIFO ordinati per priorità.
+\end_layout
+
+\begin_layout Itemize
+Lo scheduler SP, quando deve trasmettere un pacchetto, esamina per prima
+ la coda con priorità più elevata (in figura 
+\emph on
+Priority 1
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Se la coda contiene almeno un pacchetto, viene estratto dalla coda e servito
+ in uscita.
+\end_layout
+
+\begin_layout Itemize
+Se la coda di priorità superiore è vuota, lo scheduler passa a controllare
+ la coda successiva.
+ Se è presente un pacchetto, esso viene trasmesso 
+\end_layout
+
+\begin_layout Itemize
+La coda di priorità successiva (nell'esempio è 
+\emph on
+Priority 3
+\emph default
+) viene servita solo se le code precedenti sono vuote.
+\end_layout
+
+\begin_layout Standard
+Alcune considerazioni su questo scheduler:
+\end_layout
+
+\begin_layout Itemize
+Possiamo ad esempio assegnare il traffico con requisiti QoS stringenti al
+ buffer di priorità più alta.
+ Possiamo assegnare il traffico 
+\emph on
+best effort
+\emph default
+ alla categoria di priorità più bassa e QoS intermedi nelle altre categorie.
+\end_layout
+
+\begin_layout Itemize
+È un sistema che ha senso se 
+\begin_inset Formula $N$
+\end_inset
+
+ è piccolo, dato che è un algoritmo con complessità temporale 
+\begin_inset Formula $O\left(N\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+General Processor Sharing scheduler (GPS scheduler)
+\end_layout
+
+\begin_layout Standard
+In questo tipo di scheduler, simile allo scheduler SP, ad ogni classe di
+ servizio è assegnato un peso che varia da 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ La somma dei pesi è: 
+\begin_inset Formula 
+\[
+w_{1}+w_{2}+w_{3}+...=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-022.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'
+\emph on
+i-esima
+\emph default
+ classe di servizio riceve una capacità di trasmissione 
+\begin_inset Formula $w_{i}C$
+\end_inset
+
+, dove 
+\begin_inset Formula $C$
+\end_inset
+
+ è la capacità del link di uscita.
+ Gli scheduler GPS sono anche noti come 
+\series bold
+\emph on
+rate-based schedulers
+\series default
+\emph default
+ perchè dividono la banda esplicitamente ad ogni servizio.
+\end_layout
+
+\begin_layout Itemize
+Il problema è che se per una delle classi di servizio non trasmette niente,
+ non stiamo utilizzando parte della banda a disposizione.
+ È possibile risolvere in parte il problema ridistribuendo temporaneamente
+ la parte di banda dedicata a quella classe di servizio.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per esempio amettiamo che 
+\begin_inset Formula $w_{1}=0.3$
+\end_inset
+
+, 
+\begin_inset Formula $w_{2}=0.5$
+\end_inset
+
+ e 
+\begin_inset Formula $w_{3}=0.2$
+\end_inset
+
+.
+ Supponiamo inoltre che il flusso 
+\begin_inset Formula $3$
+\end_inset
+
+ è in silenzio per un po' di tempo e decidiamo di riallocare le risorse.
+ Possiamo farlo facendo: 
+\begin_inset Formula 
+\[
+w_{1}=w_{1}+\frac{w_{3}\cdot w_{1}}{\left(w_{1}+w_{2}\right)}=0.3+\frac{0.2\cdot0.3}{\left(0.3+0.5\right)}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+w_{2}=w_{2}+\frac{w_{3}\cdot w_{2}}{\left(w_{1}+w_{2}\right)}=0.5+\frac{0.2\cdot0.5}{\left(0.3+0.5\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quando la classe 
+\begin_inset Formula $3$
+\end_inset
+
+ torna attiva si ripristina lo stato precedente.
+\end_layout
+
+\begin_layout Itemize
+Quindi risolviamo il problema con una media pesata che ridistribuisce un
+ modo pesato la banda sulle varie classi.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+problema
+\series default
+ è che questo è uno scheduler teorico.
+ Nella realtà non possiamo trasmettere metà pacchetto! 
+\series bold
+Non possiamo mai fermarci dopo aver iniziato la trasmissione di un pacchetto
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Quindi lo scheduler GPS è una approssimazione degli scheduler reali.
+\end_layout
+
+\begin_layout Itemize
+Gli scheduler WFQ: 
+\emph on
+Weighted Fair Queueing schedulers
+\emph default
+ sono un esempio di applicazione reale di GPS.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Earliest Deadline First Schedulers (EDF scheduler)
+\end_layout
+
+\begin_layout Standard
+In questo tipo di scheduler, la classe di servizio 
+\emph on
+i-esima
+\emph default
+ è caratterizzata da una 
+\series bold
+\emph on
+service deadline
+\series default
+\emph default
+ di 
+\begin_inset Formula $d_{i}\,\left[seconds\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-023.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Alla fine della trasmissione di ogni pacchetto, lo scheduler prende tra
+ i pacchetti in attesa di essere trasmessi, quello con il tempo rimanente
+ più basso.
+ Questo può essere fatto perché ogni pacchetto che arriva nel sistema viene
+ marcato con il suo 
+\emph on
+timestamp
+\emph default
+ di arrivo 
+\begin_inset Formula $t_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+, il tempo rimanente di un pacchetto all'interno della classe di servizio
+ 
+\begin_inset Formula $i$
+\end_inset
+
+, è calcolato come: 
+\begin_inset Formula 
+\[
+Residual\, time\,=\, t_{k}+d_{i}-t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Che rappresenta la quantità di tempo rimasta prima che la deadline della
+ classe vada in scadenza.
+\end_layout
+
+\begin_layout Itemize
+Notiamo che questa quantità può essere negativa, indicando che il pacchetto
+ è 
+\begin_inset Quotes eld
+\end_inset
+
+in ritardo
+\begin_inset Quotes erd
+\end_inset
+
+ e la deadline è già scaduta.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tempo rimanente più basso significa priorità più alta.
+\end_layout
+
+\begin_layout Standard
+Dobbiamo sempre ricordare comunque che per quanto complessi, gli schedulers
+ non sanno cosa sia QoS e SLA, siamo noi a dover fare delle valutazioni
+ se ci permettono di soddisfare i nostri requisiti.
+\end_layout
+
+\begin_layout Subsection*
+Tornando all'Admission Control
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-024.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo in figura un semplice esempio di scenario da 
+\emph on
+admission control 
+\emph default
+con un singolo link servito con uno scheduler FIFO come mostrato in figura.
+\end_layout
+
+\begin_layout Itemize
+Abbiamo 
+\begin_inset Formula $N$
+\end_inset
+
+ flussi statisticamente identici che condividono il link.
+\end_layout
+
+\begin_layout Itemize
+La SLA statistica è definita con i soliti due parametri 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il ritardo però aumenta man mano che si aggiungono flussi.
+ Esiste un 
+\series bold
+massimo 
+\series default
+numero di flussi accettabili 
+\begin_inset Formula $N_{max}$
+\end_inset
+
+ , oltre il quale la SLA non può essere garantita.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $N>N_{max}$
+\end_inset
+
+ la SLA è violata.
+\end_layout
+
+\begin_layout Standard
+Quindi, per uno scheduler a singola classe, il valore di 
+\begin_inset Formula $N_{max}$
+\end_inset
+
+ definisce la 
+\series bold
+\emph on
+admission region
+\series default
+\emph default
+ (regione di ammissione) dello scheduler.
+ Nel caso di uno scheduler a singola classe la regione di ammissione è uni-dimen
+sionale e definisce un intervallo di valori 
+\begin_inset Formula $\left[0,N_{max}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-025.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basandosi su queste assunzioni, le richieste mandate in ingresso alla rete
+ che porterebbero il sistema fuori dalla regione di ammissione dello scheduler
+ vanno rifiutate, altrimenti ci potrano a violare la SLA! L'ampiezza della
+ regione di ammissione dipende dalla 
+\bar under
+capacità del link di uscita
+\bar default
+ e dalle 
+\bar under
+proprietà statistiche del traffico
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Pensiamo ora ad uno 
+\series bold
+scheduler a due classi
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-026.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso la regione di ammissione è chiaramente bidimensionale.
+\end_layout
+
+\begin_layout Itemize
+La regione di ammissione è l'insieme di tutte le coppie 
+\begin_inset Formula $\left(N_{1},\, N_{2}\right)$
+\end_inset
+
+ tali che la SLA 
+\begin_inset Formula $\left(d_{1},p_{1}\right)$
+\end_inset
+
+ della classe 1 e la SLA 
+\begin_inset Formula $\left(d_{2},p_{2}\right)$
+\end_inset
+
+ della classe 2 siano soddisfatte.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In una SLA di questo tipo dobbiamo avere: 
+\begin_inset Formula $P_{r}\left(D_{1}>d_{1}\right)<p_{1}\;\wedge\; P_{r}\left(D_{2}>d_{1}\right)<p_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+admission line
+\series default
+\emph default
+ (linea di ammissione) è la curva che rappresenta il massimo numero 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ di flussi per la classe 2 che possono essere accettati, dati 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ flussi della classe 1 già accettati.
+\end_layout
+
+\begin_layout Standard
+Proseguendo così abbiamo anche il caso con uno 
+\series bold
+\emph on
+scheduler a 3 classi
+\series default
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-027.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso la regione di ammissione è tridimensionale.
+\end_layout
+
+\begin_layout Standard
+Ci sono 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ flussi nella classe 1, 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ flussi nella classe 2, 
+\begin_inset Formula $N_{3}$
+\end_inset
+
+ flussi nella classe 3.
+\end_layout
+
+\begin_layout Itemize
+Gli SLA delle tre classi sono: 
+\begin_inset Formula $\left(d_{1},p_{1}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $\left(d_{2},p_{2}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $\left(d_{3},p_{3}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+La regione di ammissione è l'insieme 
+\begin_inset Formula $\left(N_{1},N_{2},N_{3}\right)$
+\end_inset
+
+ tale che le tre SLA sono soddisfatte contemporaneamente.
+\end_layout
+
+\begin_layout Itemize
+L'estensione a più di 3 classi è intuitiva.
+ I calcoli per determinare la regione di accettazione sono conseguentemente
+ complicati.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{1}>d_{1}\right)<p_{1}\;\wedge\; P_{r}\left(D_{2}>d_{1}\right)<p_{2}\;...\wedge\; P_{r}\left(D_{n}>d_{n}\right)<p_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Packet Classification
+\end_layout
+
+\begin_layout Standard
+Nelle architetture di rete che forniscono QoS differenziate, la 
+\emph on
+packet classification
+\emph default
+ è uno step 
+\series bold
+fondamentale
+\series default
+ per fornire diversi SLA.
+\end_layout
+
+\begin_layout Itemize
+Nella IP 
+\emph on
+Differentiated Services Architecture
+\emph default
+ , questi diversi livelli di servizio sono chiamati 
+\emph on
+Per-Hop-Behaviour
+\emph default
+ (PHB).
+\end_layout
+
+\begin_layout Itemize
+I nodi trattano in modo diverso i pacchetti a seconda del loro PHB.
+ Chiaramente i nodi devono essere in grado di stabilire qual'è il PHB a
+ cui un pacchetto appartiene, altrimenti non è possibile applicare la SLA
+ associata.
+\end_layout
+
+\begin_layout Itemize
+Quindi i pacchetti trasportano l'informazione sul loro PHB in un codice
+ al loro interno.
+ Questo codice deve essere scritto da un nodo della rete, subito al bordo
+ della rete.
+ Questa operazione è chiamata 
+\series bold
+\emph on
+classification
+\series default
+\emph default
+ (classificazione).
+ 
+\end_layout
+
+\begin_layout Standard
+La classificazione si basa su chiavi e regole:
+\end_layout
+
+\begin_layout Itemize
+La chiave di classificazione di solito è un insieme di 
+\begin_inset Formula $N$
+\end_inset
+
+ bits nel packet header, concentrati in un campo o suddivisi in vari campi.
+ Utilizzando una chiave di 
+\begin_inset Formula $N$
+\end_inset
+
+ bit possiamo definire fino a 
+\begin_inset Formula $2^{N}$
+\end_inset
+
+ classi di servizio diverse.
+\end_layout
+
+\begin_layout Itemize
+Il risultato della classificazione è quello di applicare un trattamento
+ diverso ad ogni pacchetto.
+\end_layout
+
+\begin_layout Standard
+Tipi di classificazioni:
+\end_layout
+
+\begin_layout Itemize
+Il metodo più semplice è chiamato schema 
+\series bold
+\emph on
+single-field
+\series default
+\emph default
+: utilizzamo un unico campo del pacchetto come chiave per fare classificazione
+\end_layout
+
+\begin_layout Itemize
+La classificazione 
+\series bold
+\emph on
+multi-field
+\series default
+\emph default
+ considera campi multipli dell'header del pacchetto.
+ È più complicato perché dobbiamo lavorare a 
+\emph on
+wire-speed
+\emph default
+ e non possiamo impiegare troppo tempo per fare classificazione.
+\end_layout
+
+\begin_layout Itemize
+Tuttavia la classificazione 
+\emph on
+multi-field
+\emph default
+ è migliore perché fornisce delle informazioni più contestuali al router
+ che deve classificare.
+\end_layout
+
+\begin_layout Standard
+Tipicamente le classificazioni 
+\series bold
+\emph on
+single-field
+\series default
+\emph default
+ utilizzano il campo 
+\emph on
+Type of Service
+\emph default
+ all'interno del pacchetto IPv4.
+ Questo campo è stato modificato nel tempo numerose volte cambiandone la
+ semantica tante volte.
+ Ad oggi questo campo è diventato il 
+\series bold
+\emph on
+Differentiated Services field
+\series default
+\emph default
+.
+ È sempre un campo da 1 Byte nella stessa posizione, ma cambia il significato.
+ Sono 6 bit che rappresentano la classe di servizio a cui appartiene il
+ pacchetto e 2 bit riservati (in realtà sono ad oggi utilizzati da ECN).
+\end_layout
+
+\begin_layout Standard
+Tuttavia è sempre possibile fare classificazione ulteriore considerando
+ il protocollo trasportato e sue eventuali porte.
+\end_layout
+
+\begin_layout Subsubsection*
+Problemi nella classificazione
+\end_layout
+
+\begin_layout Standard
+Il problema ad utilizzare classificazione 
+\series bold
+\emph on
+multi-field
+\series default
+\emph default
+ è che alcuni campi sono lunghi!
+\end_layout
+
+\begin_layout Itemize
+Su IPv4 ad esempio:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un flusso è identificato da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Source Address (4 Byte)
+\end_layout
+
+\begin_layout Itemize
+Destination Address (4 Byte)
+\end_layout
+
+\begin_layout Itemize
+Source Port (2 Byte, assumendo TCP o UDP)
+\end_layout
+
+\begin_layout Itemize
+Destination Port (2 Byte, assumendo TCP o UDP)
+\end_layout
+
+\begin_layout Itemize
+Protocol (1 Byte)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo in totale 104 bits! È un numero relativamente grosso considerando
+ di doverlo utilizzare come match su 
+\series bold
+ogni singolo pacchetto
+\series default
+ in transito! Abbiamo bisogno una quantità di calcolo non indifferente per
+ controllare tutti questi campi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Con IPv6:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il problema paradossalmente è ancora più difficile perché abbiamo 128 bit
+ da analizzare per gli indirizzi, quindi in totale dobbiamo analizzare 288
+ bits!
+\end_layout
+
+\begin_layout Itemize
+Inoltre con IPv6 gli headers sono agganciati come esensioni successive ed
+ è quindi necessario un po' di lavoro di parsing per trovare i numeri di
+ porta e altre informazioni!
+\end_layout
+
+\begin_layout Itemize
+Tuttavia il 
+\series bold
+\emph on
+flow label field
+\series default
+\emph default
+ (20 bits) può essere sfruttato per evitare di guardare altri dettagli del
+ pacchetto e fare classificazione più semplice.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Regole di classificazione
+\end_layout
+
+\begin_layout Standard
+Un classificatore 
+\emph on
+multi-field
+\emph default
+ ha inoltre il problema di dover affrontare regole di match multiple per
+ lo stesso pacchetto.
+\end_layout
+
+\begin_layout Standard
+Il matching può essere:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Esatto
+\series default
+: Un campo deve corrispondere, ad esempio l'indirizzo sorgente deve essere
+ 192.0.2.1
+\end_layout
+
+\begin_layout Itemize
+A 
+\series bold
+\emph on
+range
+\series default
+\emph default
+: L'indirizzo può essere all'interno di un intervallo o no.
+ Ad esempio tra 192.0.2.1 e 192.0.2.254.
+\end_layout
+
+\begin_layout Standard
+Inoltre le regole possono essere composte da 
+\bar under
+operatori logici
+\bar default
+:
+\end_layout
+
+\begin_layout Itemize
+Ad esempio l'indirizzo IP deve essere nel range ...
+ 
+\series bold
+e
+\series default
+ il protocollo deve essere TCP 
+\series bold
+e
+\series default
+ la porta di destinazione deve essere ...
+\end_layout
+
+\begin_layout Standard
+Ogni regola logica può essere istanziata però le regole complesse consumano
+ una quantità enorme di risorse di calcolo, specialmente considerando che
+ vorremmo lavorare a 
+\emph on
+wire-speed
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+L'output del processo di classificazione è la classe a cui appartiene il
+ pacchetto.
+\end_layout
+
+\begin_layout Itemize
+Di solito la classe del pacchetto viene scritta all'interno del campo 
+\emph on
+DiffServ
+\emph default
+ dell'header IP.
+\end_layout
+
+\begin_layout Itemize
+Per esempio una classe tradizionale è quella del traffico 
+\emph on
+best effort
+\emph default
+.
+ Questa classe di traffico, in base alla semantica del campo 
+\emph on
+DiffServ
+\emph default
+, ha codice 
+\begin_inset Formula $000000$
+\end_inset
+
+.
+ Un amministratore di rete potrebbe decidere ad esempio di assegnare tutto
+ il traffico HTTP al servizio 
+\emph on
+best effort
+\emph default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In questo caso la regola sarebbe qualcosa del tipo: 
+\series bold
+IF 
+\series default
+SA in [192.0.2.10, 192.0.2.254] 
+\series bold
+AND
+\series default
+ protocol=TCP 
+\series bold
+AND
+\series default
+ DP=80 
+\series bold
+THEN 
+\series default
+class=Best-Effort
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Line Rate Processing
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-028.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ogni linea di ingresso di un nodo ha un classifier che esamina i pacchetti
+ in ingresso.
+ Se un pacchetto arriva mentre un altro è in corso di classificazione, viene
+ messo all'interno di una coda FIFO.
+ I pacchetti quindi 
+\series bold
+accumulano ritardo
+\series default
+ mentre vengono classificati.
+ Per pacchetti che necessitano una SLA stringente questo ritardo può essere
+ un grosso problema.
+ Inoltre non è possibile dare la precedenza a questi pacchetti proprio perché
+ ancora non sono classificati.
+ Per questo motivo si tenta di scalare il sistema parallelizzando più CPU
+ per fare classificazione in parallelo pensando al caso pessimo.
+\end_layout
+
+\begin_layout Standard
+Qual'è il caso pessimo? È uno stream di pacchetti consecutivi corti, con
+ regole 
+\emph on
+multi-field
+\emph default
+ e campi lunghi.
+ La regola di classificazione è una regola complessa.
+\end_layout
+
+\begin_layout Standard
+Dopo aver classificato di solito c'è un marker a cui viene comunicata la
+ TCA e si occupa di marcare il pacchetto prima di proseguire nella rete.
+\end_layout
+
+\begin_layout Section*
+Active Queue Management (AQM)
+\end_layout
+
+\begin_layout Standard
+È una funzionalità che può essere aggiunta ad un buffer per gestire in modo
+ più efficiente il processo di 
+\emph on
+packet dropping
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Infatti le code hanno necessariamente una capacità di storage finita ed
+ in caso di congestione potrebbero droppare pacchetti.
+\end_layout
+
+\begin_layout Standard
+In una coda senza AQM, i pacchetti passano in 
+\series bold
+\emph on
+taildrop
+\series default
+\emph default
+, cioè quando la coda è piena, appena arrivano pacchetti in coda vengono
+ scartati senza entrare.
+\end_layout
+
+\begin_layout Standard
+Questo metodo ha funzionato su Internet per anni ma ha due importanti problemi:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lock-out
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Full queues
+\end_layout
+
+\begin_layout Subsection*
+Lock-out
+\end_layout
+
+\begin_layout Standard
+In alcune situazioni, specialmente con TCP, una politica di taildrop permette
+ ad una singola connessione o a poche connessioni fortunate di 
+\begin_inset Quotes eld
+\end_inset
+
+prendere il controllo
+\begin_inset Quotes erd
+\end_inset
+
+ di un buffer, monopolizzando lo spazio della coda, senza permettere ad
+ altre connessioni di utilizzare il buffer.
+\end_layout
+
+\begin_layout Standard
+Questo problema di 
+\emph on
+lock-out
+\emph default
+ è spesso dovuto alla 
+\begin_inset Quotes eld
+\end_inset
+
+sincronia
+\begin_inset Quotes erd
+\end_inset
+
+ di TCP.
+\end_layout
+
+\begin_layout Standard
+Ecco perché alle volte quando tentiamo di caricare una pagina web ci mettiamo
+ moltissimo tempo, poi magari con una operazione di refresh la carichiamo
+ subito: al secondo tentativo siamo passati nel flusso 
+\begin_inset Quotes eld
+\end_inset
+
+fortunato
+\begin_inset Quotes erd
+\end_inset
+
+ e abbiamo preso il controllo di un buffer per un momento.
+\end_layout
+
+\begin_layout Standard
+È un problema serio che degrada in modo pessimo anche le prestazioni di
+ servizi 
+\emph on
+best effort
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Basti pensare come reagisce TCP ad una perdita di pacchetti per capire che
+ la banda del servizio inizia a cambiare in modo molto instabile.
+\end_layout
+
+\begin_layout Standard
+Active Queue Management è un modo per risolvere questo problema.
+\end_layout
+
+\begin_layout Subsection*
+Full Queue
+\end_layout
+
+\begin_layout Standard
+È l'altro problema menzionato.
+\end_layout
+
+\begin_layout Standard
+La disciplina 
+\emph on
+taildrop
+\emph default
+ tende a mantenere le code sempre piene (o quasi piene) per molto tempo,
+ poiché segnala la congestione solo quando inizia a perdere pacchetti (cioè
+ è passata in 
+\emph on
+taildrop
+\emph default
+).
+\end_layout
+
+\begin_layout Standard
+È vero che TCP utilizza una finestra di ricezione, però i pacchetti vengono
+ spesso inviati in bursts.
+ Se la coda è piena o quasi, tende a droppare tutti i pacchetti del burst
+ che arrivano.
+\end_layout
+
+\begin_layout Standard
+Può andare a finire che si sincronizzano questi tentativi di trasmissione,
+ alternando momenti di buffer abbastanza vuoto, con momenti in cui tanti
+ flussi mandano burst nello stesso momento.
+\end_layout
+
+\begin_layout Subsection*
+Le soluzioni di AQM
+\end_layout
+
+\begin_layout Standard
+La soluzione al problema delle code piene è che i routers inizino a droppare
+ i pacchetti 
+\series bold
+prima
+\series default
+ che le code si riempiano, di modo che i nodi possono rispondere al problema
+ della congestione prima che i buffer vadano in overflow.
+\end_layout
+
+\begin_layout Standard
+Questo approccio di tipo 
+\series bold
+\emph on
+proactive
+\series default
+\emph default
+ è chiamato Active Queue Management.
+ Non gestiamo più il buffer in modo passivo ma in modo attivo.
+\end_layout
+
+\begin_layout Standard
+Il fatto di poter droppare pacchetti quando il buffer non è pieno, permette
+ ai routers di controllare 
+\series bold
+quando
+\series default
+ e 
+\series bold
+quanti
+\series default
+ pacchetti devono essere droppati, senza doversi preoccupare dell'overflow.
+\end_layout
+
+\begin_layout Standard
+Un semplice meccanismo di AQM è RED.
+\end_layout
+
+\begin_layout Subsection*
+Random Early Detection (RED)
+\end_layout
+
+\begin_layout Standard
+È un meccanismo di AQM.
+ Si occupa di droppare i pacchetti in arrivo in modo probabilistico.
+\end_layout
+
+\begin_layout Standard
+La probabilità di drop cresce man mano che la stima del valore medio della
+ coda aumenta.
+ Quindi RED lavora su una coda in modo 
+\series bold
+non istantaneo
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Se la coda è stata vuota recentemente , RED non tende a droppare pacchetti
+ (a meno di overflow instantaneo ovviamente)
+\end_layout
+
+\begin_layout Itemize
+Se la coda è stata relativamente piena recentemente, indicando congestione
+ persistente, i nuovi pacchetti in arrivo hanno più probabilità di essere
+ droppati.
+\end_layout
+
+\begin_layout Standard
+L'algoritmo RED è composto principalmente da due parti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+La stima della dimensione media della coda
+\series default
+: RED stima la dimensione media della coda utilizzando una semplice media
+ mobile esponenziale.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+La decisione sul drop o meno di un pacchetto
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'algoritmo di RED tenta di premiare i flussi che di dimostrano più 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+responsive
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Il processo decisionale di RED è basato su due parametri: 
+\begin_inset Formula $minth$
+\end_inset
+
+ (soglia minima) e 
+\begin_inset Formula $maxth$
+\end_inset
+
+ (soglia massima).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\begin_inset Formula $minth$
+\end_inset
+
+ 
+\series default
+specifica il valore medio della coda sotto il quale i pacchetti non vengono
+ droppati
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $maxth$
+\end_inset
+
+ specifica il valore medio della coda sopra il quale tutti i pacchetti sono
+ droppati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Poichè il valore medio della coda si sposta da 
+\emph on
+
+\begin_inset Formula $minth$
+\end_inset
+
+ a 
+\begin_inset Formula $maxth$
+\end_inset
+
+, 
+\emph default
+i pacchetti saranno droppati con una probabilità che varia linearmente da
+ 0 a 
+\begin_inset Formula $maxp$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Il calcolo del valore medio della coda è fatto come segue:
+\end_layout
+
+\begin_layout Standard
+All'arrivo di un pacchetto al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+Q_{ave}=\left(1-w\right)\cdot Q_{ave}+w\cdot Q\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q_{ave}$
+\end_inset
+
+ è lo stimatore dell'occupazione media della coda,
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q\left(t\right)$
+\end_inset
+
+ è l'occupazione istantanea della coda al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w$
+\end_inset
+
+ è un peso in 
+\begin_inset Formula $0<w<1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-029.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quando un pacchetto arriva, il valore attuale di 
+\begin_inset Formula $Q_{ave}$
+\end_inset
+
+ viene utilizzato per determinare la probabilità di drop del pacchetto,
+ in base alla curva di seguito rappresentata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-030.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+RED for In and Out (RIO)
+\end_layout
+
+\begin_layout Standard
+Quando i pacchetti hanno diverse priorità di dropping, il meccanismo di
+ RED non è sufficiente perché non differenzia il dropping.
+\end_layout
+
+\begin_layout Standard
+Quindi, un meccanismo più avanzato è richiesto poiché nella architettura
+ 
+\emph on
+DiffServ
+\emph default
+ di IP sono richiesti diversi livelli di packet dropping.
+ RIO è in grado di differenziare 
+\series bold
+due
+\series default
+ priorità di dropping.
+ Questi due livelli sono convenzionalmente indicati come 
+\series bold
+IN
+\series default
+ e 
+\series bold
+OUT
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Il traffico 
+\series bold
+IN
+\series default
+ ha probabilità più bassa di essere droppato rispetto all'
+\series bold
+OUT
+\series default
+ traffic, a parità di condizioni.
+\end_layout
+
+\begin_layout Standard
+RIO utilizza due stimatori: 
+\begin_inset Formula $Q_{ave,IN}$
+\end_inset
+
+ e 
+\begin_inset Formula $Q_{ave,OUT}$
+\end_inset
+
+.
+ In particolare:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Q_{ave,IN}=\left(1-w_{IN}\right)\cdot Q_{ave,IN}+w_{IN}\cdot Q_{IN}\left(t\right)
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+Q_{ave,OUT}=\left(1-w_{OUT}\right)\cdot Q_{ave,OUT}+w_{OUT}\cdot Q_{OUT}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo stimatore 
+\begin_inset Formula $Q_{ave,IN}$
+\end_inset
+
+ tiene conto solo della coda dei pacchetti IN, mentre lo stimatore 
+\begin_inset Formula $Q_{ave,OUT}$
+\end_inset
+
+ tiene conto sia dei pacchetti IN che dei pacchetti OUT.
+ In questo modo 
+\begin_inset Formula $Q_{ave,IN}\geq Q_{ave,OUT}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi ci sono due soglie, una per il traffico IN e una per il traffico
+ OUT.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-031.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Queste soglie sono impostate in modo che la curva di drop del traffico OUT
+ è sempre superiore alla curva di drop del traffico IN.
+\end_layout
+
+\begin_layout Standard
+In questo modo la probabilità di drop è differenziata tra due classi.
+\end_layout
+
+\begin_layout Standard
+Questo può essere esteso ad un numero arbitrario di classi.
+ Di solito l'architettura 
+\emph on
+DiffServ
+\emph default
+ di IP ha un massimo di 3 comportamenti di drop dentro un gruppo PHB.
+\end_layout
+
+\begin_layout Section*
+IP Differentiated Services
+\end_layout
+
+\begin_layout Standard
+Offrire servizi differenziati su reti IP può essere un problema, a causa
+ dei problemi presenti per il grosso numero di flussi e il problema di mantenere
+ stati per-flusso.
+\end_layout
+
+\begin_layout Standard
+Inoltre gli operatori devono essere in grado di applicare 
+\series bold
+\emph on
+traffic engineering
+\series default
+\emph default
+ per poter dirigere dei flussi verso percorsi specifici.
+\end_layout
+
+\begin_layout Standard
+L'architettura 
+\series bold
+IP Differentiated Services
+\series default
+ (IP 
+\emph on
+DiffServ
+\emph default
+) è un modo per ottenere reti IP scalabili con granzie QoS.
+\end_layout
+
+\begin_layout Subsection*
+Concetti base
+\end_layout
+
+\begin_layout Itemize
+L'architettura IP 
+\emph on
+DiffServ
+\emph default
+ definisce una sorta di framework con cui operatori e ISP possono fornire
+ servizi differenziati 
+\emph on
+end-to-end
+\emph default
+ in modo 
+\series bold
+coordinato
+\series default
+ e 
+\series bold
+affidabile
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Con questo tipo di architettura, un ISP può fare dei contratti standard
+ per gestire servizi in modo differenziato.
+\end_layout
+
+\begin_layout Itemize
+Supportare servizi differenziali è un obbiettivo strategico per un ISP,
+ che può garantire banda prioritaria per servizi 
+\begin_inset Quotes eld
+\end_inset
+
+mission critical
+\begin_inset Quotes erd
+\end_inset
+
+ per gli utenti che desiderano pagare un costo aggiuntivo.
+\end_layout
+
+\begin_layout Itemize
+I clienti specificano questi dettagli nel loro SLA, questo agreement può
+ anche specificare il volume di traffico, come viene gestito il traffico
+ e la politica di pagamento.
+\end_layout
+
+\begin_layout Itemize
+Un componente importante dell'architettura 
+\emph on
+DiffServ
+\emph default
+ è l'avvento del 
+\emph on
+traffic engineering
+\emph default
+: la possibilità di spostare percorsi selezionati da IGP (RIP, OSPF...) su
+ un path diverso.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo permette all'ISP di spostare il traffico da alcuni punti di congestione
+ facendo uso più efficiente della banda.
+\end_layout
+
+\begin_layout Itemize
+A sua volta questo rende l'ISP più competitivo sul mercato, permettendo
+ di fornire servizi migliori.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Classi di traffico
+\end_layout
+
+\begin_layout Standard
+Il traffico più finire all'interno di una di tante classi diverse.
+\end_layout
+
+\begin_layout Itemize
+Al fine di garantire che le procedure dell'ISP funzionino correttamente
+ è molto importante che i pacchetti siano classificati correttamente prima
+ di entrare nella rete dell'ISP e che sia molto semplice per un dispositivo
+ dell'ISP determinare la classe di traffico per un particolare pacchetto.
+\end_layout
+
+\begin_layout Itemize
+La classe di traffico dei pacchetti MPLS può essere scritta all'interno
+ del campo CoS dell'header MPLS, inoltre le classi di traffico per i pacchetti
+ IPv4 possono essere identificate tramite il campo 
+\series bold
+DSCP
+\series default
+ (
+\emph on
+Differentiated Services Code Point
+\emph default
+).
+\end_layout
+
+\begin_layout Itemize
+La classificazione dei pacchetti ai bordi della rete permette di fare il
+ trattamento differenziato all'interno della rete dell'ISP.
+\end_layout
+
+\begin_layout Itemize
+Tecniche sofisticate di classificazione, marking, shaping, policing, devono
+ essere implementate solo ai bordi della rete.
+\end_layout
+
+\begin_layout Itemize
+Le risorse di rete vengono allocate a stream di traffico in base a previsioni
+ su come il traffico è trattato e inoltrato all'interno della rete.
+\end_layout
+
+\begin_layout Subsection*
+Caratteristiche dell'architettura DiffServ
+\end_layout
+
+\begin_layout Standard
+È una architettura composta da una serie di elementi:
+\end_layout
+
+\begin_layout Itemize
+Un piccolo insieme di PHBs
+\end_layout
+
+\begin_layout Itemize
+Funzioni per la classificazione dei pacchetti
+\end_layout
+
+\begin_layout Itemize
+Funzioni di 
+\series bold
+\emph on
+traffic conditioning
+\series default
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Metering
+\end_layout
+
+\begin_layout Itemize
+Marking
+\end_layout
+
+\begin_layout Itemize
+Shaping
+\end_layout
+
+\begin_layout Itemize
+Policing
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Questa architettura ha scalabilità perché implementa funzioni di classificazione
+ e conditioning complesse solo ai bordi della rete.
+ Applica invece PHBs al traffico già marcato utilizzando il campo DSCP.
+\end_layout
+
+\begin_layout Standard
+I PHBs vengono definiti per permettere ai nodi intermedi di gestire le risorse
+ in modo corretto.
+\end_layout
+
+\begin_layout Standard
+Viene mantenuta 
+\series bold
+distinzione tra
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Il servizio fornito come traffico aggregato
+\end_layout
+
+\begin_layout Itemize
+Le funzioni di conditioning e PHBs per realizzare i servizi
+\end_layout
+
+\begin_layout Itemize
+Il campo DSCP utilizzato per marcare e distinguere le varie classi di PHBs.
+\end_layout
+
+\begin_layout Itemize
+Le particolari implementazioni sui nodi per realizzare i vari PHBs.
+\end_layout
+
+\begin_layout Standard
+Un 
+\series bold
+DS Domain
+\series default
+ è un insieme di nodi contigui caratterizzati dalla fornitura dello stesso
+ servizio e gruppo di PHBs implementati su ogni nodo.
+\end_layout
+
+\begin_layout Itemize
+Ha dei bordi ben definiti nella rete, che classificano e fanno 
+\emph on
+conditioning
+\emph default
+ del traffico in ingresso per garantire che i pacchetti in transito nel
+ dominio siano propriamente marcati per selezionare un PHB da uno dei gruppi
+ di PHB supportati nel dominio.
+\end_layout
+
+\begin_layout Itemize
+I nodi del DS Domain scelgono i comportamenti di inoltro dei pacchetti in
+ base al loro campo DSCP, mappando quel valore ad uno dei PHBs supportati,
+ utilizzando l'associazione DCSP→PHB raccomandata o una custom.
+\end_layout
+
+\begin_layout Itemize
+Un DS Domain solitamente consiste in un insieme di reti sotto la stessa
+ amministrazione.
+ Per esempio una intranet di una azienda o un ISP.
+ L'amministrazione del dominio si deve assicurare di avere risorse adeguate
+ e supportare la SLA.
+\end_layout
+
+\begin_layout Itemize
+I nodi interni alla rete potrebbero essere in grado di fare 
+\emph on
+conditioning
+\emph default
+ come ad esempio il 
+\emph on
+re-marking
+\emph default
+ del campo DSCP.
+\end_layout
+
+\begin_layout Itemize
+I nodi di bordo di un DS Domain agiscono sia come DS ingress node che come
+ DS egress node per le diverse direzioni del traffico.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un DS Ingress Node deve occuparsi di verificare che il traffico in ingresso
+ sia conforme alla TCA
+\end_layout
+
+\begin_layout Itemize
+Un DS Egress Node potrebbe fare operazioni di 
+\emph on
+traffic conditioning
+\emph default
+ sul traffico inoltrato
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Una 
+\series bold
+DS Region
+\series default
+ è un insieme di uno o più 
+\series bold
+DS Domains
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Le DS Regions possono supportare servizi differenziati su percorsi attorno
+ ai domini della regione
+\end_layout
+
+\begin_layout Itemize
+I DS Domains di una DS Region possono supportare diversi gruppi di PHB e
+ diverse associazioni tra DSCP e PHB.
+\end_layout
+
+\begin_layout Itemize
+Per permettere i servizi attraverso i vari domini, devono stabilire delle
+ SLA e TCA tra di loro 
+\end_layout
+
+\begin_layout Standard
+I servizi differenziati sono estesi tra i bordi dei vari DS Domains stabilendo:
+\end_layout
+
+\begin_layout Itemize
+Lo SLA che può specificare la 
+\emph on
+packet classification
+\emph default
+, le regole di 
+\emph on
+re-marking 
+\emph default
+e possono anche specificare i profili di traffico e azioni per gli stream
+ di traffico in-profilo o fuori-profilo.
+\end_layout
+
+\begin_layout Itemize
+Il TCA tra i domini è derivato (esplicitamente o implicitamente) da questo
+ SLA
+\end_layout
+
+\begin_layout Itemize
+Il traffic conditioning deve fare 
+\emph on
+metering
+\emph default
+, shaping, policing e/o re-marking per assicurarsi che il traffico in ingresso
+ al DS Domain è conforme alle regole specificate nel TCA.
+\end_layout
+
+\begin_layout Subsection*
+Classification
+\end_layout
+
+\begin_layout Standard
+I packet classifiers selezionano i pacchetti in uno stream in base al contenuto
+ di alcune porzioni del 
+\emph on
+packet header
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Ci sono due tipi di classificatori:
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+Behaviour Aggregate
+\emph default
+ 
+\emph on
+Classifier 
+\emph default
+(
+\series bold
+BA
+\series default
+): Classifica i pacchetti solo in base al campo DSCP.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+Multi-Field Classifier
+\emph default
+ (
+\series bold
+MF
+\series default
+): Classifica i pacchetti in base ad un insieme di campi come già visto
+\end_layout
+
+\begin_layout Standard
+In seguito i pacchetti vanno nel conditioner
+\end_layout
+
+\begin_layout Subsection*
+Traffic Profile
+\end_layout
+
+\begin_layout Standard
+Il profilo di traffico specifica le proprietà statistiche dello stream di
+ traffico classificato.
+ Fornisce delle regole per stabilire se un pacchetto è in profilo o fuori
+ profilo.
+\end_layout
+
+\begin_layout Standard
+Per esempio un profilo basato su un 
+\emph on
+token bucket
+\emph default
+ può apparire come: 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+se codepoint=X allora usa token bucket r,b
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questo esempio indica che tutti i pacchetti marcati con il DSCP X devono
+ essere misurati con il token bucket di parametri 
+\begin_inset Formula $r$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Differenti azioni di conditioning possono essere applicate.
+\end_layout
+
+\begin_layout Itemize
+I pacchetti in-profile possono essere inoltrati semplicemente o il campo
+ DSCP può essere modificato.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il campo DSCP viene modificato di solito quando si passa in un DS Domain
+ dove si utilizzano associazioni diverse tra DSCP e PHB, quindi è necessario
+ aggiustare il campo per mantere la stessa politica.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I pacchetti out-profile possono essere accodati fino a quando non sono in
+ profilo (
+\emph on
+shaping
+\emph default
+), scartati (
+\emph on
+drop
+\emph default
+), marcati con un nuovo codepoint (
+\emph on
+re-marked
+\emph default
+), ...
+\end_layout
+
+\begin_layout Subsection*
+Per-Hop Behaviours
+\end_layout
+
+\begin_layout Standard
+È una descrizione del comportamento di inoltro di un DS node applicato ad
+ un certo aggregato DS.
+ Più sorgenti possono competere per buffer e banda del DS node.
+\end_layout
+
+\begin_layout Itemize
+Gli schedulers giocano un ruolo chiave nell'implementazione pratica delle
+ PHB.
+\end_layout
+
+\begin_layout Itemize
+Per esempio le PHB potrebbero garantire una allocazione minima di banda
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ su un certo link.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'implementazione di un PHB di questo tipo necessita ovviamente di uno scheduler
+ di tipo 
+\emph on
+rate-based
+\emph default
+ come abbiamo visto.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il PHB può anche essere definito in termini di priorità rispetto ad altri
+ PHB, o in termini delle loro caratteristiche relative di traffico
+\end_layout
+
+\begin_layout Itemize
+I PHB sono il componente chiave per allocare risorse e devono essere definiti
+ in un gruppo (PHB group) per consistenza.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I gruppi di PHB condividono dei vincoli applicando ogni PHB nel gruppo,
+ ad esempio in termini di scheduling dei pacchetti o politiche per la gestione
+ dei buffers.
+\end_layout
+
+\begin_layout Itemize
+La relazione tra i vari PHB in un gruppo è solitamente in termini di priorità
+ assoluta o relativa.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I PHB vengono implementati nei vari nodi con qualche politica di gestione
+ dei buffers e scheduling dei pacchetti.
+\end_layout
+
+\begin_layout Itemize
+I PHB vengono definiti in termini di 
+\series bold
+comportamento 
+\series default
+e 
+\series bold
+non di implementazione
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Infatti una varietà di meccanismi implementativi potrebbero essere possibili
+ per lo stesso PHB group
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Per selezionare il PHB da applicare ad un nodo, si legge il campo DSCP del
+ pacchetto IPv4 e si guarda una tabella di associazioni per sapere a quale
+ PHB corrisponde.
+\end_layout
+
+\begin_layout Standard
+Esiste una tabella standard, tuttavia il numero di PHB standard è minore
+ di quello di PHB possibili con questo mapping, quindi è possibile definire
+ dei PHB custom a seconda delle necessità.
+\end_layout
+
+\begin_layout Subsection*
+SLA e TCA nella architettura IP DiffServ
+\end_layout
+
+\begin_layout Standard
+L'architettura DiffServ utilizza il termine SLA per descrive un contratto
+ di servizio che specifica il servizio di 
+\emph on
+forwarding
+\emph default
+ che un cliente deve ricevere.
+ La SLA può includere regole per il 
+\emph on
+traffic conditioning
+\emph default
+ che costituiscono una TCA.
+\end_layout
+
+\begin_layout Standard
+Una TCA è 
+\begin_inset Quotes eld
+\end_inset
+
+un contratto che specifica regole di classificazione e ogni corrispondente
+ profilo di traffico, metering, marking, dropping e/o shaping che si devono
+ applicare...
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci potrebbero ovviamente essere altre considerazioni tecniche, che non vengono
+ considerate nel contratto pensato da 
+\emph on
+DiffServ
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Vengono definite inoltre:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Service Level Specification
+\series default
+\emph default
+ (
+\series bold
+SLS
+\series default
+): È un insieme di parametri e valori che insieme definiscono il servizio
+ offerto ad uno stream da parte di un DS Domain
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Traffic Conditioning Specification
+\series default
+\emph default
+ (
+\series bold
+TCS
+\series default
+): È un insieme di parametri e valori che insieme definiscono le regole
+ di classificazione e profilo di traffico
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+TCS è un elemento di SLS.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Service Provisioning Policy
+\series default
+\emph default
+: È una politica che specifica come sono configurati i 
+\emph on
+traffic conditioners
+\emph default
+ su un DS Boundary node e come gli streams di traffico sono mappati ad un
+ DS behaviour per supportare una serie di servizi.
+\end_layout
+
+\begin_layout Standard
+In base a quanto stabilito dalla RFC3198, una politica (policy) è: 
+\begin_inset Quotes eld
+\end_inset
+
+un insieme di regole per amministrare, controllare e gestire l'accesso alle
+ risorse di rete
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Expedited Forwarding PHB (EF PHB)
+\end_layout
+
+\begin_layout Standard
+È una parte fondamentare dell'architettura IP DiffServ.
+\end_layout
+
+\begin_layout Standard
+EF vuole fornire un componente fondamentale per: basso delay, basso jitter
+ e basse perdite .
+ Si assicura inoltre che EF aggregate sia fornito ad una certo rate.
+\end_layout
+
+\begin_layout Standard
+Per esempio servizi di emulazione di circuito possono essere trasportati
+ con EF PHB.
+\end_layout
+
+\begin_layout Itemize
+La causa dominante del delay nelle reti a pacchetto sono i tempi di propagazione
+ e ritardi di accodamento negli switch e routers.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Poiché il delay è una proprietà fissa sulla topologia, il ritardo e jitter
+ vengono minimizzati quando i ritardi di propagazione vengono minimizzati.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per i nostri scopi 
+\series bold
+definiamo il 
+\emph on
+jitter
+\emph default
+ come 
+\series default
+la variazione tra il ritardo massimo e il ritardo minimo.
+\end_layout
+
+\begin_layout Itemize
+Lo scopo della EF PHB è quello di fornire una PHB nella quale i pacchetti
+ marcati incontrano di solito delle code corte o vuote.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Inoltre, la coda rimane relativamente corta rispetto allo spazio disponibile
+ nel buffer e la perdita dei pacchetti è anche tenuta al minimo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per assicurarci che le code incontrate dai pacchetti EF siano corte o vuote,
+ è necessario assicurarsi che il service rate degli EF packets su una data
+ interfaccia di output superi il rate di arrivo sulla stessa interfaccia
+ su intervalli di tempo brevi e lunghi, indipendentemente del carico di
+ altro traffico non-EF.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In questo caso il traffico EF devono essere garantiti ad ottenere un servizio
+ sopra un rate configurato
+\end_layout
+
+\begin_layout Itemize
+Inoltre ci serve un modo per quantificare l'accuratezza con cui questo rate
+ di servizio è consegnato su qualunque intervallo di tempo.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Per poter fare alcune valutazioni sulle performance dobbiamo prima introdurre
+ due concetti: 
+\series bold
+\emph on
+curva di traffico
+\series default
+\emph default
+ e 
+\series bold
+\emph on
+curva di servizio
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Curva di traffico
+\end_layout
+
+\begin_layout Standard
+Consideriamo una interfaccia di rete specifica e assumiamo che sia in grado
+ di contare il numero di bits 
+\begin_inset Formula $X\left(t_{1},t_{2}\right)$
+\end_inset
+
+ che attraversano l'interfaccia nell'intervallo di tempo 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X\left(t_{1},t_{2}\right)$
+\end_inset
+
+ è la curva di traffico dell'interfaccia di riferimento.
+ Se per convenzione 
+\begin_inset Formula $t_{1}=0$
+\end_inset
+
+, la curva è indicata come 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-032.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questa curva ovviamente è sempre crescente, non abbiamo i bit negativi!
+\end_layout
+
+\begin_layout Itemize
+Poiché il traffico è suddiviso in pacchetti, la forma reale della curva
+ è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-033.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quando un pacchetto attraversa l'interfaccia di riferimento, la curva cresce
+ linearmente con pendenza 
+\begin_inset Formula $C\:\left[\frac{bits}{s}\right]$
+\end_inset
+
+, che è la capacità del link.
+\end_layout
+
+\begin_layout Itemize
+Quando non ci sono pacchetti in trasmissione, la curva è costante piatta.
+\end_layout
+
+\begin_layout Subsection*
+Curva potenziale di servizio
+\end_layout
+
+\begin_layout Standard
+Dato uno scheduler (in questo esempio uno scheduler FIFO), la curva potenziale
+ di servizio 
+\begin_inset Formula $S\left(t\right)$
+\end_inset
+
+ è
+\series bold
+ il numero massimo di bits che lo scheduler può servire in un intervallo
+ di tempo di durata 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Dato uno scheduler FIFO che comprende un link di uscita con capacità uguale
+ a 
+\begin_inset Formula $C$
+\end_inset
+
+, la curva potenziale di servizio è uguale a 
+\begin_inset Formula $C_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-034.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-035.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S\left(t\right)=C\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Curva reale di traffico
+\end_layout
+
+\begin_layout Standard
+Dato un scheduler (anche qua come esempio FIFO), la curva reale di traffico
+ è la curva all'uscita dello scheduler, dato un traffico di input con curva
+ 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-036.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Caratteristiche di EF PHB
+\end_layout
+
+\begin_layout Itemize
+Di solito un nuovo flusso EF è caratterizzato da un processo periodico di
+ arrivo di pacchetti di lunghezza uguale.
+\end_layout
+
+\begin_layout Itemize
+Tutti i pacchetti hanno lunghezza 
+\begin_inset Formula $L\;\left[bit\right]$
+\end_inset
+
+ e il rate di arrivo è 
+\begin_inset Formula $\frac{1}{T}\:\left[\frac{packet}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-037.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+r\left(t\right)=\sum_{k}L\cdot\delta\left(t-kT\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La curva di traffico (a scalini in questo caso) è invece:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=\int_{0}^{t}r\left(x\right)dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Che nel caso dell'esempio in questione diventa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=\int_{0}^{t}r\left(x\right)dx=\int_{0}^{t}\left(\sum_{k}\left(L\cdot\delta\left(x-kT\right)\right)\right)dx=\sum_{k}L\cdot u\left(t-kT\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-038.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consideriamo invece il caso di un buffer FIFO con in ingresso 3 flussi identici.
+ Lo scenario pessimo è quello in cui le fasi dei tre flussi coincidono.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-039.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-040.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consideriamo invece il caso in cui i flussi sono diversi tra loro:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{1}\left(t\right)=100\,\frac{kbit}{s}\,1\:\text{pacchetto ogni\,}10ms
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+X_{2}\left(t\right)=200\,\frac{kbit}{s}\,1\:\text{pacchetto ogni\,}5ms
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{3}\left(t\right)=250\,\frac{kbit}{s}\,1\:\text{pacchetto ogni\,}4ms
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-041.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E la relativa curva di traffico reale è la seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-042.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E la curva di traffico totale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-043.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ora invece assumiamo che la capacità della linea sia uguale a 
+\begin_inset Formula $1Mbps$
+\end_inset
+
+.
+ In questo modo il tempo di servizio per un pacchetto è 
+\begin_inset Formula $1ms$
+\end_inset
+
+.
+ Il servizio di un pacchetto viene concluso quando il suo ultimo bit è trasmesso.
+ Quindi il primo bit di un pacchetto è trasmesso a tempo 
+\begin_inset Formula $t$
+\end_inset
+
+ e l'ultimo bit a tempo 
+\begin_inset Formula $t+1ms$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+massimo ritardo
+\series default
+ è calcolato come la massima differenza orizzontale tra la curva di traffico
+ e la curva di traffico reale.
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+massimo accodamento
+\series default
+ è calcolato come la massima differenza verticale tra la curva di traffico
+ e la curva di traffico reale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-044.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Caso multi-hop
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-045.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ora consideriamo un caso multi-hop dove l'output del primo scheduler viene
+ inoltrato ad un secondo scheduler, che riceve un flusso addizionale 
+\begin_inset Formula $X_{4}\left(t\right)$
+\end_inset
+
+.
+ 
+\begin_inset Formula $X_{4}\left(t\right)$
+\end_inset
+
+ha le stesse caratteristiche statistiche di 
+\begin_inset Formula $X_{3}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vogliamo calcolare il 
+\series bold
+delay massimo end-to-end
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-046.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-047.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi il ritardo massimo end-to-end è 
+\begin_inset Formula $5ms$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Multi-class scheduler
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-048.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ora consideriamo un 
+\emph on
+multi-class scheduler
+\emph default
+ (in particolare uno scheduler SP), dove un flusso EF (
+\begin_inset Formula $X_{1}\left(t\right)$
+\end_inset
+
+) ha priorità superiore ad un flusso non-EF (
+\begin_inset Formula $X_{2}\left(t\right)$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X_{2}\left(t\right)$
+\end_inset
+
+ potrebbe essere ad esempio un flusso 
+\emph on
+best effort
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In questo caso il ritardo 
+\emph on
+end-to-end
+\emph default
+ massimo è calcolato assumendo che quando un pacchetto EF è offerto allo
+ scheduler, un pacchetto non-EF è appena passato in trasmissione.
+ Quindi il pacchetto EF deve attendere la fine del pacchetto non-EF prima
+ di poter trasmettere.
+\end_layout
+
+\begin_layout Standard
+Assumiamo in questo esempio che 
+\begin_inset Formula $X_{1}\left(t\right)$
+\end_inset
+
+ abbia le stesse caratteristiche di 
+\begin_inset Formula $X_{3}\left(t\right)$
+\end_inset
+
+ del precedente esempio.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-049.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esiste ovviamente un rate massimo per il traffico EF che può essere allocato
+ sulla linea di uscita di un nodo.
+ Questo perché tutti i pacchetti EF potrebbero trovare al loro arrivo, un
+ altro pacchetto non-EF di dimensione massima, che dimezza il rate sostenibile
+ per il rate EF.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-050.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In generale, dato un flusso EF con lunghezza del pacchetto 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+ che interferisce con un flusso non-EF con lunghezza del pacchetto 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+, con velocità della linea 
+\begin_inset Formula $C$
+\end_inset
+
+; il rate massimo configurabile del traffico EF è ottenuto considerando
+ questa figura sopra, dove per ogni pacchetto EF, un pacchetto non-EF causa
+ ritardo.
+\end_layout
+
+\begin_layout Standard
+Il rate massimo di traffico EF sarà: 
+\begin_inset Formula 
+\[
+C_{EF}=\frac{L_{1}}{L_{1}+L_{2}}\cdot C
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Codepoint di EF PHB
+\end_layout
+
+\begin_layout Standard
+Nella RFC3246 è stato definito che per il sistema DiffServ, il codepoint
+ 101110 è assegnato all'EF PHB.
 \end_layout
 
 \begin_layout Subsection*
