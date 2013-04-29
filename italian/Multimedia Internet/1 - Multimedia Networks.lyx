@@ -7777,7 +7777,7 @@ C_{EF}=\frac{L_{1}}{L_{1}+L_{2}}\cdot C
 \end_layout
 
 \begin_layout Subsubsection*
-Codepoint di EF PHB
+Nota: Codepoint di EF PHB
 \end_layout
 
 \begin_layout Standard
@@ -8076,6 +8076,879 @@ PHBs:
 
 \begin_layout Standard
 CS e BE coincidono in codice, quindi in pratica abbiamo 21 PHBs.
+\end_layout
+
+\begin_layout Section*
+Design di reti IP con QoS
+\end_layout
+
+\begin_layout Standard
+Per fare analisi del traffico utilizzeremo dei modelli stocastici.
+\end_layout
+
+\begin_layout Itemize
+Riguardo la traffico, utilizzeremo una 
+\series bold
+\emph on
+two-moment description
+\series default
+\emph default
+ del traffico cumulativo.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se osserviamo un link nella rete, possiamo definire una variabile 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+ che rappresenta il numero di bits che attraversano il link (punto di osservazio
+ne) in un intervallo di tempo 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ È la 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+traffic curve
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ che abbiamo già visto.
+\end_layout
+
+\begin_layout Itemize
+Però possiamo considerare il valore medio di 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+,cioè 
+\begin_inset Formula $E\left(X\left(t\right)\right)$
+\end_inset
+
+, che rappresenta il 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+primo-momento
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Allo stesso modo possiamo considerare anche la varianza di 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+, cioè 
+\begin_inset Formula $Var\left(X\left(t\right)\right)$
+\end_inset
+
+, che è il 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+secondo-momento
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Prendiamo una curva reale di traffico e calcoliamo questi due momenti per
+ capire cosa rappresentano.
+\end_layout
+
+\begin_layout Itemize
+Dato un tempo di riferimento 
+\begin_inset Formula $t^{*}$
+\end_inset
+
+diciamo che 
+\begin_inset Formula $X\left(t^{*}\right)$
+\end_inset
+
+ è una variabile stocastica.
+ Ognuno dei valori di questa variabile ha una densità di probabilità 
+\begin_inset Formula $f_{X\left(t^{*}\right)}\left(x\right)$
+\end_inset
+
+.
+ Questa densità ha un valore medio 
+\begin_inset Formula $E\left(X\left(t^{*}\right)\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+La curva 
+\begin_inset Formula $E\left(x\left(t\right)\right)$
+\end_inset
+
+ è una curva lineare, pari a 
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=m\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $m$
+\end_inset
+
+ è il rate istantaneo del traffico (
+\begin_inset Formula $r$
+\end_inset
+
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+E la 
+\begin_inset Formula $Var\left(X\left(t\right)\right)$
+\end_inset
+
+? Ad un dato istante di tempo, la quantità di traffico cumulativa è un valore
+ casuale che ha una media e ovviamente anche una varianza.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se disegnamo il grafico di 
+\begin_inset Formula $Var\left(X\left(t\right)\right)$
+\end_inset
+
+ cosa otteniamo?
+\end_layout
+
+\begin_layout Itemize
+È una curva che non è solitamente non-lineare.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+L'unico 
+\series default
+caso in cui la varianza è lineare è il caso in cui il traffico è completamente
+ di tipo 
+\emph on
+poisson
+\emph default
+.
+ Tuttavia è piuttosto raro.
+\end_layout
+
+\begin_layout Itemize
+La curva della varianza può avere qualitativamente tanti tipi diversi di
+ forme.
+\end_layout
+
+\begin_layout Itemize
+Nel caso in figura [omissis] vediamo che è asintoticamente lineare.
+ Non è lineare per valori piccoli di 
+\begin_inset Formula $t$
+\end_inset
+
+, ma diventa sempre più lineare man mano che passa il tempo.
+ È il caso di traffico 
+\emph on
+short-range dependent
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Però potremmo anche avere una varianza di tipo parabolico, di tipo 
+\begin_inset Formula $k\cdot t^{\gamma}$
+\end_inset
+
+ con 
+\begin_inset Formula $0<\gamma<1$
+\end_inset
+
+.
+ Questo è il caso di traffico 
+\emph on
+long-range dependent
+\emph default
+.
+ È anche chiamato 
+\series bold
+\emph on
+fractal traffic
+\series default
+\emph default
+.
+ È anche chiamato 
+\series bold
+\emph on
+self-similar traffic
+\series default
+\emph default
+.
+ È il caso più frequente su Internet.
+ Purtroppo è anche il più difficile da trattare.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Esempio VoIP
+\end_layout
+
+\begin_layout Standard
+Vediamo un esempio di una sorgente di traffico SRD (short-range dependent):
+ un codec VoIP (in particolare un coder di tipo VBR: Variable Bit Rate.
+\end_layout
+
+\begin_layout Standard
+[disegno dei due stati ON, OFF]
+\end_layout
+
+\begin_layout Standard
+Quando siamo nello stato ON trasmettiamo 
+\begin_inset Formula $P\,\left[\frac{bits}{s}\right]$
+\end_inset
+
+, quando siamo in OFF trasmettiamo 
+\begin_inset Formula $0\,\left[\frac{bits}{s}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Quando siamo nello stato ON assumiamo che 
+\begin_inset Formula $P=\gamma\cdot L$
+\end_inset
+
+ dove 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ è il numero di pacchetti al secondo e 
+\begin_inset Formula $L$
+\end_inset
+
+ è il numero di bits per ogni pacchetto.
+\end_layout
+
+\begin_layout Standard
+Nei pacchetti VoIP 
+\begin_inset Formula $L$
+\end_inset
+
+ è la lunghezza media dei pacchetti in bit.
+ Però è un valore variaible, quindi ha anche la sua varianza 
+\begin_inset Formula $\sigma^{2}\:\left[bit^{2}\right]$
+\end_inset
+
+.
+ Tuttavia solitamente 
+\begin_inset Formula $\sigma=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Questa è una 
+\emph on
+short-range dependent traffic source.
+\end_layout
+
+\begin_layout Standard
+Qual'è il valore medio di 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+ per questo tipo di sorgente (dimostrazione saltata): 
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=\gamma\cdot L\cdot\frac{\lambda}{\lambda+\mu}\cdot t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)\simeq\frac{\mu}{\lambda+\mu}\cdot\gamma\cdot\left(L^{2}+\sigma^{2}\right)\cdot t-2\cdot\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{3}}\cdot\gamma^{2}\cdot L^{2}\cdot e^{-\left(\lambda+\mu\right)\cdot t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questa espressionedella varianza è in realtà una approssimazione del risultato
+ reale (molto più lungo).
+\end_layout
+
+\begin_layout Standard
+Come vediamo la varianza è composta da una prima parte lineare ed una seconda
+ parte non lineare.
+ Tuttavia questa parte non lineare tende a 0 man mano che 
+\begin_inset Formula $t$
+\end_inset
+
+ aumenta.
+ Quindi la parte non-lineare dopo un po' di tempo tende a svanire.
+ Ecco perché prima abbiamo disegnato un grafico che tende asintoticamente
+ ad essere lineare.
+ È traffico con poca memoria.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var_{LE}\left(x\left(t\right)\right)=\frac{\mu}{\lambda+\mu}\cdot\gamma\cdot\left(L^{2}+\sigma^{2}\right)\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var_{LE}\left(x\left(t\right)\right)\,\geq\, Var\left(x\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Var_{LE}\left(x\left(t\right)\right)$
+\end_inset
+
+ è il linear envelope of variance.
+\end_layout
+
+\begin_layout Standard
+Ci interessa sempre calcolare 
+\begin_inset Formula $E\left(x\left(t\right)\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $Var\left(x\left(t\right)\right)$
+\end_inset
+
+ per evitare di lavorare con i processi stocastici 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+.
+ Con media e varianza invece lavoriamo con semplici funzioni.
+\end_layout
+
+\begin_layout Standard
+Se ad esempio abbiamo uno scheduler FIFO con uscita 
+\begin_inset Formula $C$
+\end_inset
+
+ e dobbiamo fare analisi sul traffico, ci basta sapere 
+\begin_inset Formula $E\left(x\left(t\right)\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $Var\left(x\left(t\right)\right)$
+\end_inset
+
+ del traffico in ingresso e calcoliamo tutto ciò che ci serve (ritardo,
+ ...).
+\end_layout
+
+\begin_layout Standard
+Però nella realtà non abbiamo un singolo flusso che entra in uno scheduler.
+ Cosa facciamo in questo caso? In questo caso avremo 
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+, ..., 
+\begin_inset Formula $x_{n}\left(t\right)$
+\end_inset
+
+.
+ Quindi 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ in ingresso allo scheduler sarà 
+\begin_inset Formula $x\left(t\right)=x_{1}\left(t\right)+x_{2}\left(t\right)+....+x_{n}\left(t\right)$
+\end_inset
+
+, quindi: 
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=E\left(x_{1}\left(t\right)+x_{2}\left(t\right)+....+x_{n}\left(t\right)\right)=E\left[x_{1}\left(t\right)\right]+E\left[x_{2}\left(t\right)\right]+...+E\left[x_{n}\left(t\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=Var\left(x_{1}\left(t\right)+x_{2}\left(t\right)+....+x_{n}\left(t\right)\right)=Var\left(x_{1}\left(t\right)\right)+Var\left(x_{2}\left(t\right)\right)+...+Var\left(x_{n}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso del valore medio possiamo anche andare oltre:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=m_{1}\cdot t+m_{2}\cdot t+...+m_{n}\cdot t=t\cdot\sum_{i=1}^{N}m_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-----------------------------------------------------------
+\end_layout
+
+\begin_layout Standard
+Prendiamo il traffico 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ generato dal rate istantaneo 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+, tipo serie di impulsi di traffico (
+\begin_inset Formula $r\left(t\right)=\sum_{i}L_{i}\cdot\delta\left(t-t_{i}\right)$
+\end_inset
+
+, dove 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ è il tempo di arrivo dell'
+\emph on
+i-esimo 
+\emph default
+pacchetto).
+\end_layout
+
+\begin_layout Standard
+Sappiamo che: 
+\begin_inset Formula 
+\[
+x\left(t\right)=\int_{0}^{t}r\left(x\right)dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+r\left(t\right)=\frac{d}{dt}x\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sappiamo poi che per l'ipotesi stazionaria:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=E\left(\int_{0}^{t}r\left(x\right)dx\right)=\int_{0}^{t}E\left(r\left(t\right)\right)dt=m\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La varianza è più complicata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=2\cdot\int_{0}^{t}\left(R_{r}\left(x\right)-m^{2}\right)\left(t-x\right)dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $R_{r}\left(x\right)$
+\end_inset
+
+ è la funzione di autocorrelazione di 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Possiamo anche scriverla come:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=2\int_{0}^{t}C_{r}\left(x\right)\cdot\left(t-x\right)dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $C_{r}\left(t\right)$
+\end_inset
+
+ è l'auto-covarianza di 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+ (cioè 
+\begin_inset Formula $C_{r}\left(t\right)=R_{r}\left(t\right)-m^{2}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Abbiamo due casi per questa varianza:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{r}\left(t\right)\sim e^{-t}$
+\end_inset
+
+ , è il caso dello 
+\emph on
+short-range traffic
+\emph default
+, così come le sorgenti VoIP che abbiamo visto.
+ Questa porta ad una varianza asintoticamente lineare: 
+\begin_inset Formula $Var\left(x\left(t\right)\right)\sim k\cdot t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{r}\left(t\right)\sim t^{-\beta}$
+\end_inset
+
+, dove se 
+\begin_inset Formula $\beta>0$
+\end_inset
+
+ abbiamo il caso del 
+\series bold
+\emph on
+long-range dependent traffic
+\series default
+\emph default
+ (LRD).
+ Questo porta ad una varianza parabolica:
+\begin_inset Formula $Var\left(x\left(t\right)\right)\sim k\cdot t^{2-\beta}$
+\end_inset
+
+.
+ Questo è il caso della maggior parte del traffico di Internet.
+\end_layout
+
+\begin_layout Standard
+A volte il traffico 
+\series bold
+\emph on
+long-range dependent
+\series default
+\emph default
+ è anche chiamato 
+\emph on
+self-similar traffic
+\emph default
+ o 
+\emph on
+fractal traffic
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Self-similar o factal traffic
+\emph default
+ (sono sinonimi tra loro):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)\,\overset{d}{=}\, a^{-H}\cdot x\left(at\right)\quad\forall a>0,\, t\geq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $H$
+\end_inset
+
+ è il parametro di Hurst del traffico.
+\end_layout
+
+\begin_layout Standard
+Cosa siginifca 
+\begin_inset Formula $\overset{d}{=}$
+\end_inset
+
+significa che tutte le distribuzioni di probabilità sono uguali per i due
+ processi.
+ 
+\series bold
+I due processi sono uguali se tutte le loro densità di probabilità sono
+ uguali tra loro
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Però 
+\emph on
+Self-similar o factal traffic
+\emph default
+ non è sinonimo di 
+\emph on
+long-range dependent
+\emph default
+, però quasi tutti i processi 
+\emph on
+fractal processes
+\emph default
+ sono 
+\emph on
+long-range
+\emph default
+ e viceversa.
+ Non è vero matematicamente ma nella pratica sì.
+\end_layout
+
+\begin_layout Standard
+Dopo questa lunga discussione tiriamo fuori due modelli di traffico:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SRD
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=r\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=r\cdot b\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+LRD
+\series default
+ (o 
+\emph on
+fractional gaussian traffic
+\emph default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=r\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=r\cdot b\cdot t^{2H}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{2}\leq H<1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Ci accorgiamo che SRD è un caso particolare di LRD nel caso 
+\begin_inset Formula $H=\frac{1}{2}$
+\end_inset
+
+.
+ L'aumento di 
+\begin_inset Formula $H$
+\end_inset
+
+ significa l'aumento di memoria.
+\end_layout
+
+\begin_layout Standard
+Nelle slides ci sono alcuni esempi del rate istantaneo del traffico.
+ Ce ne sono 3.
+ Il primo è senza memoria, il secondo è con 
+\begin_inset Formula $H=0.7$
+\end_inset
+
+ e poi un ultimo con tanta memoria e 
+\begin_inset Formula $H=0.9$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+E cosa ce ne facciamo adesso?
+\end_layout
+
+\begin_layout Standard
+Immaginiamo di avere uno scheduler a più classi, quindi 
+\begin_inset Formula $n$
+\end_inset
+
+ buffers con 
+\begin_inset Formula $n$
+\end_inset
+
+ flussi in ingresso (possono essere multipli ma li riassumiamo come uno
+ unico come abbiamo visto prima usando media e varianza).
+\end_layout
+
+\begin_layout Standard
+Ora come facciamo a correlare le informazioni che abbiamo sul traffico,
+ con il 
+\series bold
+ritardo
+\series default
+ che il traffico prende nello scheduler? È una parte teorica che affronteremo
+ adesso.
+ È un percorso teorico complesso con però risultati molto semplici.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
