@@ -8676,7 +8676,950 @@ Percentuale di frames ricevuti nel tempo come funzione del tempo di rejoin
 
 \end_layout
 
+\begin_layout Standard
+---------------------------------------------
+\end_layout
+
+\begin_layout Section*
+Lezione 30-4-13
+\end_layout
+
+\begin_layout Standard
+Facciamo un confronto tra topologia mesh e topologia ad albero.
+\end_layout
+
+\begin_layout Standard
+P4P - Proactive Network provider participation for P2P.
+ C'è cooperazione con ISP per ottenere informazioni per ottimizzare.
+\end_layout
+
+\begin_layout Standard
+Qual'è il problema con P2P classico? Il problema è che il collegamento tra
+ i nodi non ha conoscenza dei collegamenti sottostanti, potremmo avere anche
+ due nodi collegati tra di loro in un albero che passano tra stati lontani
+ tra loro.
+\end_layout
+
+\begin_layout Standard
+Quindi p4p è un insieme di tecniche e architetture per sfruttare la conoscenza
+ della rete..
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+C'è un gruppo di lavoro IETF chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+ALTO
+\begin_inset Quotes erd
+\end_inset
+
+ (Application Layer Traffic Optimization).
+ I sistemi supportati sono:
+\end_layout
+
+\begin_layout Itemize
+Bittorrent (ma mica non era standard?)
+\end_layout
+
+\begin_layout Itemize
+Trackerless bittorrent
+\end_layout
+
+\begin_layout Itemize
+CDN
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout Standard
+C'è un progetto chiamato ono project che ha fatto delle misure usando un
+ plugin nel client bittorrent vuze.
+\end_layout
+
+\begin_layout Standard
+Funzione obiettivo per valutare la qualità di un peer:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+V_{i,j}=\alpha\cdot\frac{\text{Downloaded byte}_{i,j}}{max_{k\in N}\left(\text{Downloaded Byte}_{i,k}\right)}+\beta\cdot\frac{max\left(1,NHOP_{max}-NHop_{i,j}\right)}{\left(NHop_{max}-1\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha+\beta=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se accettiamo di usare hop distanti abbiamo più banda, se usiamo peer vicini
+ occupiamo meno risorse nella rete ma abbiamo meno banda (???).
+\end_layout
+
+\begin_layout Standard
+...[big omissis]...
+\end_layout
+
+\begin_layout Part*
+IP Telephone service
+\end_layout
+
+\begin_layout Standard
+Partiremo a vedere dal punto di vista dell'utente finale e poi passeremo
+ a vedere dei sistemi di signaling: H.323 e SIP.
+ Infine vedremo il discorso correlato all'interworking.
+\end_layout
+
 \begin_layout Subsection*
+Codecs
+\end_layout
+
+\begin_layout Standard
+Abbiamo principalmente 3 tipi di codecs:
+\end_layout
+
+\begin_layout Itemize
+Waveform (alta qualità, alta banda utilizzata)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+G.711
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Semplicemente campionano i dati che arrivano dal segnale audio.
+ 
+\end_layout
+
+\begin_layout Itemize
+Il valore di campionamento minimo è 8KHz, poiché il segnale audio ha una
+ banda minima di 4KHz.
+\end_layout
+
+\begin_layout Itemize
+Solitamente i campioni sono salvati con una risoluzione di 8 bit per ogni
+ campione, quindi occupiamo 64 Kbit/s.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Differential Coders
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si tiene conto solo della differenza tra i vari campioni
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Hybrid
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un tradeoff tra qualità e banda.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Vocoder (bassa qualità, bassa banda utilizzata)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Implementano un filtro digitale
+\end_layout
+
+\begin_layout Itemize
+Il coder identifica i parametri del segnale e la 
+\emph on
+excitation mode
+\emph default
+ del segnale.
+\end_layout
+
+\begin_layout Itemize
+Si tentata di identificare il tipo di suono e in base ad esso eccitare il
+ filtro in modo diverso, ad esempio suddividendo i segnali in :
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+vowel sounds
+\emph default
+: onde sinusoidali
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+pulsive sounds
+\emph default
+: impulsi
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Infine viene trasmesso un pacchetto con una lista di parametri e eccitazioni
+ tenendo conto che anche il ricevitore ha una reference per capire a quali
+ suoni corrispondono i dati inviati.
+\end_layout
+
+\begin_layout Itemize
+Con questo tipo di coders possiamo anche utilizzare pochissima banda (anche
+ solo 5Kbit/s), dove avremo però un po' di suoni 
+\begin_inset Quotes eld
+\end_inset
+
+artificiali
+\begin_inset Quotes erd
+\end_inset
+
+ tipo voci 
+\begin_inset Quotes eld
+\end_inset
+
+robotiche
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Abbiamo un grafico per illustrare il tradeoff tra qualità e banda:
+\end_layout
+
+\begin_layout Standard
+...
+\end_layout
+
+\begin_layout Standard
+Vediamo alcuni schemi di coding:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ADPCM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.726
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.37
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.726
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.52
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.726
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.711
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+~4.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+← Sempre supportato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hybrid
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.728
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.
+ 729
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GSM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+06 10 Full Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+60 Enanched Full Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.2 Kbit/s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+C'è sempre il problema di scegliere quale codec usare, quindi è necessaria
+ una parte di signaling per comunicare tra i due endpoints e decidere quale
+ codec utilizzare.
+ Di solito almeno G.711 è sempre supportato da entrambi gli endpoints.
+\end_layout
+
+\begin_layout Standard
+La qualità è molto importante in una telefonata audio e/o video.
+ Abbiamo metodi per migliorare la qualità delle telefonate IP dato un certo
+ coder utilizzato.
+ 
+\end_layout
+
+\begin_layout Standard
+Abbiamo una serie di tecniche, ad esempio:
+\end_layout
+
+\begin_layout Subsubsection*
+Packet Loss Concealment
+\end_layout
+
+\begin_layout Standard
+È utile quando abbiamo ad esempio links wireless tra i due nodi.
+\end_layout
+
+\begin_layout Standard
+In realtà è una tecnica di 
+\emph on
+interleaving
+\emph default
+.
+ Cosa significa? Immaginiamo di avere una serie di pacchetti numerati che
+ trasportano il traffico audio: 1,2,3,4,5...
+\end_layout
+
+\begin_layout Standard
+I pacchetti che inviamo non contengono i vari pezzi in ordine, ma sono distribui
+ti all'interno di pacchetti diversi (vedi figura).
+\end_layout
+
+\begin_layout Standard
+In sostanza mescoliamo l'ordine.
+ Perché? Se perdo un pacchetto comunque ho una perdita di informazione,
+ però 
+\series bold
+le perdite di pacchetti sono solitamente correlate
+\series default
+, se perdo un pacchetto è molto probabile che perderò anche il successivo.
+ Questo ha un effetto molto negativo nella qualità percepita dall'utente.
+ Mescolando un po' invece perdiamo pacchetti ma sono separati nel tempo,
+ quindi l'effetto non è così grave.
+ Non abbiamo un momento di selezio ma solo dei brevi istanti.
+ Il nostro cervello è in grado di interpolare approssimativamente cosa c'è
+ in un brevissimo istante di silenzio.
+\end_layout
+
+\begin_layout Standard
+Il problema di questa tecnica è che dobbiamo accumulare pacchetti per farla,
+ quindi 
+\series bold
+delay
+\series default
+!
+\end_layout
+
+\begin_layout Subsubsection*
+Parity Encoding
+\end_layout
+
+\begin_layout Standard
+Si utilizzano spesso anche tecniche FEC (Forward Error Correction) per corregger
+e errori nei pacchetti.
+ Però richiedono ritardo e sono complessi, quindi si preferisce evitarli.
+\end_layout
+
+\begin_layout Standard
+Si preferisce il 
+\emph on
+parity encoding
+\emph default
+: si prende un gruppo di 
+\begin_inset Formula $n$
+\end_inset
+
+ pacchetti e si aggiunge in coda un altro pacchetto 
+\begin_inset Formula $n+1$
+\end_inset
+
+ chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+parity packet
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Questo pacchetto contiene dei bits che sono il risultato dello XOR dei
+ bit di ogni pacchetto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+b_{i}^{n+1}=b_{i}^{1}\oplus b_{i}^{2}\oplus...\oplus b_{i}^{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Però con questo metodo possiamo correggere l'errore solo per un pacchetto.
+\end_layout
+
+\begin_layout Standard
+Anche qua aumentiamo banda però non risolviamo del tutto il problema.
+ Anche in questo caso c'è un tradeoff su cosa utilizzare.
+\end_layout
+
+\begin_layout Subsubsection*
+PiggyBackFEC
+\end_layout
+
+\begin_layout Standard
+È una tecnica per risparmiare banda: al posto di trasmettere due pacchetti
+ con i due relativi header, li trasmetto in un pacchetto unico risparmiando
+ l'overhead dell'header.
+\end_layout
+
+\begin_layout Subsubsection*
+Redundant Data Transmission
+\end_layout
+
+\begin_layout Standard
+Per risolvere gli errori ritrasmetto i dati più volte.
+ Ad esempio:
+\end_layout
+
+\begin_layout Itemize
+Pacchetto 1: header e dati 1 e 2
+\end_layout
+
+\begin_layout Itemize
+Pacchetto 2: header e dati 2 e 3
+\end_layout
+
+\begin_layout Itemize
+Pacchetto 3: header e dati 3 e 4
+\end_layout
+
+\begin_layout Standard
+Se perdiamo ad esempio il pacchetto 2 non abbiamo problemi di perdita informazio
+ne! 
+\end_layout
+
+\begin_layout Standard
+Il problema è che duplichiamo la banda!
+\end_layout
+
+\begin_layout Subsubsection*
+Duplicate Packets
+\end_layout
+
+\begin_layout Standard
+È il metodo più stupido: trasmetto i pacchetti due volte.
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+Ci sono tanti metodi, il problema è riuscire a combinarli in modo efficiente!
+\end_layout
+
+\begin_layout Standard
+Ad esempio:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Codec
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+% perdita
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Qualità MOS
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.729 (Plaw)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+~3.3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G.729+pFEC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5%
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+~3.65
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Signaling
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
