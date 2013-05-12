@@ -8124,6 +8124,16 @@ traffic curve
  che abbiamo già visto.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-051.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 Però possiamo considerare il valore medio di 
 \begin_inset Formula $X\left(t\right)$
@@ -8226,6 +8236,16 @@ Dove
 ) 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-052.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 E la 
@@ -8269,7 +8289,7 @@ La curva della varianza può avere qualitativamente tanti tipi diversi di
 \end_layout
 
 \begin_layout Itemize
-Nel caso in figura [omissis] vediamo che è asintoticamente lineare.
+Nel caso in figura di seguito vediamo che è asintoticamente lineare.
  Non è lineare per valori piccoli di 
 \begin_inset Formula $t$
 \end_inset
@@ -8280,6 +8300,16 @@ Nel caso in figura [omissis] vediamo che è asintoticamente lineare.
 short-range dependent
 \emph default
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-053.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -8315,6 +8345,16 @@ self-similar traffic
  Purtroppo è anche il più difficile da trattare.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-054.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Subsection*
 Esempio VoIP
@@ -8326,7 +8366,13 @@ Vediamo un esempio di una sorgente di traffico SRD (short-range dependent):
 \end_layout
 
 \begin_layout Standard
-[disegno dei due stati ON, OFF]
+\begin_inset Graphics
+	filename net-055.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8406,7 +8452,7 @@ Var\left(x\left(t\right)\right)\simeq\frac{\mu}{\lambda+\mu}\cdot\gamma\cdot\lef
 \end_layout
 
 \begin_layout Standard
-Questa espressionedella varianza è in realtà una approssimazione del risultato
+Questa espressione della varianza è in realtà una approssimazione del risultato
  reale (molto più lungo).
 \end_layout
 
@@ -8489,7 +8535,21 @@ Se ad esempio abbiamo uno scheduler FIFO con uscita
 
 \begin_layout Standard
 Però nella realtà non abbiamo un singolo flusso che entra in uno scheduler.
- Cosa facciamo in questo caso? In questo caso avremo 
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-056.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cosa facciamo in questo caso? In questo caso avremo 
 \begin_inset Formula $x_{1}\left(t\right)$
 \end_inset
 
@@ -8907,8 +8967,21 @@ Ci accorgiamo che SRD è un caso particolare di LRD nel caso
 
 \begin_layout Standard
 Nelle slides ci sono alcuni esempi del rate istantaneo del traffico.
- Ce ne sono 3.
- Il primo è senza memoria, il secondo è con 
+ Ce ne sono 3:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-057.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il primo è senza memoria, il secondo è con 
 \begin_inset Formula $H=0.7$
 \end_inset
 
@@ -8945,10 +9018,6 @@ ritardo
  che il traffico prende nello scheduler? È una parte teorica che affronteremo
  adesso.
  È un percorso teorico complesso con però risultati molto semplici.
-\end_layout
-
-\begin_layout Standard
-
 \end_layout
 
 \end_body

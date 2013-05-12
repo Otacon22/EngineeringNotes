@@ -8785,10 +8785,14 @@ IP Telephone service
 \begin_layout Standard
 Partiremo a vedere dal punto di vista dell'utente finale e poi passeremo
  a vedere dei sistemi di signaling: H.323 e SIP.
- Infine vedremo il discorso correlato all'interworking.
+ Infine vedremo il discorso correlato all'
+\emph on
+interworking
+\emph default
+.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Codecs
 \end_layout
 
@@ -8797,10 +8801,21 @@ Abbiamo principalmente 3 tipi di codecs:
 \end_layout
 
 \begin_layout Itemize
-Waveform (alta qualità, alta banda utilizzata)
+
+\series bold
+\emph on
+Waveform
+\series default
+\emph default
+ (alta qualità, alta banda utilizzata)
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Sono codecs molto semplici e di alta qualità, che però utilizzano molta
+ banda!
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -8840,22 +8855,19 @@ Si tiene conto solo della differenza tra i vari campioni
 \end_deeper
 \end_deeper
 \begin_layout Itemize
-Hybrid
+
+\series bold
+\emph on
+Vocoder
+\series default
+\emph default
+ (bassa qualità, bassa banda utilizzata)
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-È un tradeoff tra qualità e banda.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Vocoder (bassa qualità, bassa banda utilizzata)
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Implementano un filtro digitale
+Implementano un filtro digitale per campionare e riprodurre suoni con le
+ caratteristiche della voce umana.
 \end_layout
 
 \begin_layout Itemize
@@ -8891,13 +8903,20 @@ pulsive sounds
 \end_deeper
 \begin_layout Itemize
 Infine viene trasmesso un pacchetto con una lista di parametri e eccitazioni
- tenendo conto che anche il ricevitore ha una reference per capire a quali
- suoni corrispondono i dati inviati.
+ tenendo conto che anche il ricevitore ha una 
+\emph on
+reference
+\emph default
+ per capire a quali suoni corrispondono i dati inviati.
 \end_layout
 
 \begin_layout Itemize
-Con questo tipo di coders possiamo anche utilizzare pochissima banda (anche
- solo 5Kbit/s), dove avremo però un po' di suoni 
+Con questo tipo di 
+\emph on
+coders
+\emph default
+ possiamo anche utilizzare pochissima banda (anche solo 5Kbit/s), dove avremo
+ però un po' di suoni 
 \begin_inset Quotes eld
 \end_inset
 
@@ -8913,7 +8932,20 @@ robotiche
 \begin_inset Quotes erd
 \end_inset
 
-.
+, quindi scapito alla qualità.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Hybrid
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un tradeoff tra qualità e banda.
 \end_layout
 
 \end_deeper
@@ -8922,13 +8954,59 @@ Abbiamo un grafico per illustrare il tradeoff tra qualità e banda:
 \end_layout
 
 \begin_layout Standard
-...
+\begin_inset Graphics
+	filename 044.png
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-Vediamo alcuni schemi di coding:
+\begin_layout Itemize
+La metrica solitamente utilizzata per specificare la qualità del suono è
+ 
+\series bold
+MOS
+\series default
+ (Mean Opinion Score), una metrica 
+\series bold
+soggettiva
+\series default
+ da 1 a 5:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Eccellente: 5
+\end_layout
+
+\begin_layout Itemize
+Buono: 4
+\end_layout
+
+\begin_layout Itemize
+Medio: 3
+\end_layout
+
+\begin_layout Itemize
+Basso: 2
+\end_layout
+
+\begin_layout Itemize
+Pessimo: 1
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Vediamo alcuni schemi di 
+\emph on
+coding
+\emph default
+:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="5">
@@ -8939,7 +9017,7 @@ Vediamo alcuni schemi di coding:
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <row>
-<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9093,6 +9171,8 @@ G.726
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 G.711
 \end_layout
 
@@ -9102,6 +9182,8 @@ G.711
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 64 Kbit/s
 \end_layout
 
@@ -9111,6 +9193,8 @@ G.711
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 ~4.4
 \end_layout
 
@@ -9120,6 +9204,8 @@ G.711
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 ← Sempre supportato
 \end_layout
 
@@ -9127,7 +9213,7 @@ G.711
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9174,7 +9260,7 @@ G.728
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9222,7 +9308,7 @@ G.
 </cell>
 </row>
 <row>
-<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -9322,11 +9408,28 @@ GSM
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
+Ricordiamo che nel caso della comunicazione via rete, i valori di MOS sopra
+ espressi si riferiscono ad un trasporto di rete senza perdite.
+ Quindi in realtà il MOS, nel caso di rete con perdite di pacchetti, è inferiore
+ a quanto sopra scritto.
+\end_layout
+
+\begin_layout Itemize
 C'è sempre il problema di scegliere quale codec usare, quindi è necessaria
- una parte di signaling per comunicare tra i due endpoints e decidere quale
- codec utilizzare.
- Di solito almeno G.711 è sempre supportato da entrambi gli endpoints.
+ una parte di 
+\series bold
+\emph on
+signaling
+\series default
+\emph default
+ per comunicare tra i due endpoints e decidere quale codec utilizzare.
+ Di solito almeno 
+\series bold
+G.711
+\series default
+ è sempre supportato da entrambi gli endpoints.
 \end_layout
 
 \begin_layout Standard
@@ -9345,13 +9448,15 @@ Packet Loss Concealment
 \end_layout
 
 \begin_layout Standard
-È utile quando abbiamo ad esempio links wireless tra i due nodi.
+È utile quando abbiamo ad esempio link wireless tra i due nodi.
 \end_layout
 
 \begin_layout Standard
 In realtà è una tecnica di 
+\series bold
 \emph on
 interleaving
+\series default
 \emph default
 .
  Cosa significa? Immaginiamo di avere una serie di pacchetti numerati che
@@ -9364,6 +9469,16 @@ ti all'interno di pacchetti diversi (vedi figura).
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename 045.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 In sostanza mescoliamo l'ordine.
  Perché? Se perdo un pacchetto comunque ho una perdita di informazione,
  però 
@@ -9371,10 +9486,11 @@ In sostanza mescoliamo l'ordine.
 le perdite di pacchetti sono solitamente correlate
 \series default
 , se perdo un pacchetto è molto probabile che perderò anche il successivo.
- Questo ha un effetto molto negativo nella qualità percepita dall'utente.
+ Se i pacchetti sono ordinati, questo ha un effetto molto negativo nella
+ qualità percepita dall'utente che sente un lungo silenzio.
  Mescolando un po' invece perdiamo pacchetti ma sono separati nel tempo,
  quindi l'effetto non è così grave.
- Non abbiamo un momento di selezio ma solo dei brevi istanti.
+ Non abbiamo un momento di silenzio ma solo dei brevi istanti.
  Il nostro cervello è in grado di interpolare approssimativamente cosa c'è
  in un brevissimo istante di silenzio.
 \end_layout
@@ -9393,8 +9509,11 @@ Parity Encoding
 \end_layout
 
 \begin_layout Standard
-Si utilizzano spesso anche tecniche FEC (Forward Error Correction) per corregger
-e errori nei pacchetti.
+Si utilizzano spesso anche tecniche 
+\series bold
+FEC
+\series default
+ (Forward Error Correction) per correggere errori nei pacchetti.
  Però richiedono ritardo e sono complessi, quindi si preferisce evitarli.
 \end_layout
 
@@ -9455,11 +9574,16 @@ PiggyBackFEC
 \begin_layout Standard
 È una tecnica per risparmiare banda: al posto di trasmettere due pacchetti
  con i due relativi header, li trasmetto in un pacchetto unico risparmiando
- l'overhead dell'header.
+ l'overhead dell'header, quindi il pacchetto FEC viene trasportato insieme
+ all'
+\emph on
+n-esimo
+\emph default
+ pacchetto.
 \end_layout
 
 \begin_layout Subsubsection*
-Redundant Data Transmission
+Redundant Data Transmission (RDT)
 \end_layout
 
 \begin_layout Standard
@@ -9615,6 +9739,16 @@ G.729+pFEC
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename 046.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 Signaling
 \end_layout
@@ -9695,11 +9829,25 @@ gatekeeper
 
 \begin_deeper
 \begin_layout Itemize
-Controlla gli accessi alla rete
+Controlla gli accessi alla rete e gestisce i permessi.
 \end_layout
 
 \begin_layout Itemize
-Si occupa di far scalare la rete gestendo una sottozona.
+Si occupa di far scalare la rete gestendo una sotto-zona.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 048.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Può anche fare controllo della banda utilizzata e qualità del servizio.
 \end_layout
 
 \end_deeper
@@ -9711,8 +9859,14 @@ H.323 MCU -
 Multipoint Controller Unit
 \series default
 \emph default
-: Dispositivi utilizzate per fare setup di connessioni multipunto, ad esempio
+: Dispositivi utilizzate per fare setup di connessioni multi-punto, ad esempio
  conferenze multimediali.
+ Stabilisce quale formato deve essere utilizzato tra i vari partecipanti.
+ Trasmette ai partecipanti un 
+\emph on
+capability set
+\emph default
+, che può anche essere modificato dinamicamente durante la conferenza.
 \end_layout
 
 \begin_layout Itemize
@@ -9745,7 +9899,11 @@ PSTN -
 \emph on
 Public Switch Telephone Network
 \emph default
- (utilizzano il sistema di signaling SS7)
+ (utilizzano il sistema di signaling 
+\series bold
+SS7
+\series default
+)
 \end_layout
 
 \begin_layout Itemize
@@ -9766,6 +9924,16 @@ L'interworking non lavora solo sulle operazioni di signaling, ma anche sui
  un canale di collegamento che fa da collo di bottiglia.
  Può quindi succedere che nel punto di interconnessione bisogna rifare l'operazi
 one di coding.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 047.png
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -10124,11 +10292,16 @@ IP
 
 \begin_layout Standard
 Come vediamo non c'è nessun protocollo H.323 nella parte di User Plane.
- Questo perché H.323 è un protocollo di signaling!
+ Questo perché H.323 è un protocollo di signaling! Non si occupa effettivamente
+ di scambiare i dati tra i due endpoints!
 \end_layout
 
 \begin_layout Itemize
-RAS sta per 
+
+\series bold
+RAS
+\series default
+ sta per 
 \series bold
 \emph on
 Registration Admission Status
@@ -10139,11 +10312,14 @@ Registration Admission Status
 \end_layout
 
 \begin_layout Itemize
-Call Signaling è la parte di signaling svolta principalmente dagli endpoint
- della connessione.
+
+\series bold
+Call Signaling
+\series default
+ è la parte di signaling svolta principalmente dagli endpoint della connessione.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 RAS (
 \series bold
 \emph on
@@ -10162,7 +10338,11 @@ Quali sono le funzioni offerte dal RAS signaling? Vediamo le principali:
 \series bold
 Gatekeeper discovery
 \series default
-: Come fa un dispositivo a trovare il proprio gatekeeper.
+: Come fa un dispositivo a trovare il proprio 
+\emph on
+gatekeeper
+\emph default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -10174,8 +10354,11 @@ Registration
 \series bold
 Unregistration
 \series default
-: Un dispositivo prima di fare qualunque cosa deve registrarsi al gatekeeper,
- per annunciare la propria esistenza.
+: Un dispositivo prima di fare qualunque cosa deve registrarsi al 
+\emph on
+gatekeeper
+\emph default
+, per annunciare la propria esistenza.
 \end_layout
 
 \begin_layout Itemize
@@ -10185,7 +10368,11 @@ Admission
 \series default
 : Una volta che un dispositivo è registrato, non può fare tutto quello che
  vuole.
- Quando vuole fare un setup di una connessione deve chiedere al gatekeeper.
+ Quando vuole fare un setup di una connessione deve chiedere al 
+\emph on
+gatekeeper
+\emph default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -10193,7 +10380,11 @@ Admission
 \series bold
 Bandwidth Change
 \series default
-: Un gatekeeper può richiedere ad un dispositivo di ridurre la banda occupata
+: Un 
+\emph on
+gatekeeper
+\emph default
+ può richiedere ad un dispositivo di ridurre la banda occupata
 \end_layout
 
 \begin_layout Itemize
@@ -10201,7 +10392,11 @@ Bandwidth Change
 \series bold
 Disengage
 \series default
-: Un device che chiede al gatekeeper di interrompere una connessione
+: Un device che chiede al 
+\emph on
+gatekeeper
+\emph default
+ di interrompere una connessione
 \end_layout
 
 \begin_layout Itemize
@@ -10209,7 +10404,11 @@ Disengage
 \series bold
 Resource Availability
 \series default
-: Un device chiede al gatekeeper la quantità di risorse disponibili.
+: Un device chiede al 
+\emph on
+gatekeeper
+\emph default
+ la quantità di risorse disponibili.
 \end_layout
 
 \begin_layout Itemize
@@ -10237,13 +10436,21 @@ C'è un messaggio chiamato
 
 
 \series bold
-gatekeeper request message (GRQ)
+gatekeeper request message
 \series default
 
 \begin_inset Quotes erd
 \end_inset
 
- che può essere inviato:
+
+\series bold
+ 
+\series default
+(
+\series bold
+GRQ
+\series default
+) che può essere inviato:
 \end_layout
 
 \begin_deeper
@@ -10252,7 +10459,11 @@ Ad una lista di indirizzi preconfigurati, oppure
 \end_layout
 
 \begin_layout Itemize
-Ad un gruppo IP di multicast 
+Ad un gruppo IP di 
+\emph on
+multicast
+\emph default
+ 
 \series bold
 224.0.1.41:1718 
 \series default
@@ -10296,6 +10507,16 @@ Gatekeeper Confirmation
 
 \end_deeper
 \end_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename 049.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Subsubsection*
 Endpoint registration
@@ -10392,6 +10613,16 @@ Notiamo che il gatekeeper può de-registrare un device terminale anche se
  questo non lo ha richiesto!
 \end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename 050.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Subsubsection*
 Admission
@@ -10483,6 +10714,517 @@ ARJ
 Admission ReJect
 \emph default
 )
+\end_layout
+
+\begin_layout Subsubsection*
+Direct call signaling
+\end_layout
+
+\begin_layout Standard
+Questo è un tipo di segnalazione diretta, che non passa per il gatekeeper.
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo di avere già fatto signaling RAS da un nodo A per collegarci
+ ad un nodo B come visto sopra.
+\end_layout
+
+\begin_layout Itemize
+Se abbiamo il permesso di comunicare, possiamo collegarci direttamente a
+ B inviando un messaggio di 
+\series bold
+setup
+\series default
+.
+ B dovrà a sua volta interpellare il suo gatekeeper per sapere se ha il
+ permesso di comunicare con me.
+\end_layout
+
+\begin_layout Itemize
+Se tutto va bene, B risponderà con un messaggio 
+\series bold
+connect
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+A questo punto del signaling anche i codecs sono già stati negoziati, quindi
+ la comunicazione può cominciare.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 051.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Gatekeeper routed signaling
+\end_layout
+
+\begin_layout Itemize
+A manda il messaggio di connect al gatekeeper, che lo inoltra a B.
+\end_layout
+
+\begin_layout Itemize
+B verifica se può comunicare con A chiedendo al proprio gatekeeper.
+\end_layout
+
+\begin_layout Itemize
+Se B può comunicare, B invia connect al gatekeeper che inoltra ad A.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 052.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Disengage
+\end_layout
+
+\begin_layout Standard
+Come si interrompe la connessione?
+\end_layout
+
+\begin_layout Itemize
+Il terminale avvisa il gatekeeper che sta per interrompere una connessione
+ con una 
+\emph on
+Disengage Request
+\emph default
+ (
+\series bold
+DRQ
+\series default
+).
+ 
+\end_layout
+
+\begin_layout Itemize
+Il gatekeeper può rispondere:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Disengage Confirm
+\emph default
+: 
+\series bold
+DCF
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Disengage Reject
+\emph default
+: 
+\series bold
+DRJ
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+
+\series bold
+Resource Availability
+\end_layout
+
+\begin_layout Standard
+È la funzione utilizzata da una entità per avvisare il gatekeeper di alcune
+ informazioni di stato.
+\end_layout
+
+\begin_layout Itemize
+Vengono utilizzati dei messaggi 
+\series bold
+RAI
+\series default
+ (
+\emph on
+Resource Availability Information
+\emph default
+).
+\end_layout
+
+\begin_layout Itemize
+Ad esempio il gateway può comunicare con il gatekeeper per comunicare le
+ risorse disponibili.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il gatekeeper conferma con 
+\series bold
+RAC
+\series default
+ (
+\emph on
+Resource Availability Confirmation
+\emph default
+).
+\end_layout
+
+\begin_layout Itemize
+Non c'è bisogno di un messaggio di reject in questo caso.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Call signaling
+\end_layout
+
+\begin_layout Standard
+Abbiamo messaggi di:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Alterting
+\series default
+: Viene utilizzato dall'entità ricevente, per informare che la chiamata
+ ha raggiunto la destinazione e che la destinazione chiamata sta squillando.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Call proceeding
+\series default
+: 
+\emph on
+\bar under
+Provisional response
+\emph default
+\bar default
+, è una informazione che avvisa di aver ricevuto una richiesta.
+ Ha lo scopo di cambiare un timeout che rischierebbe di far cadere la connession
+e prima che venga stabilita.
+ Questo succederebbe a causa di grossi ritardi, packet loss o servers carichi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Connect
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Progress
+\series default
+: È un'altra provisional response
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Setup
+\series default
+: Lo abbiamo già visto, è un segnale che va da endpoint ad endpoint, a meno
+ di essere veicolato tramite gatekeeper.
+ È una richiesta per stabilire una connessione con la destinazione.
+ Che tipo di parametri può contenere questa richiesta?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Identificativi dei 
+\series bold
+\emph on
+partners
+\series default
+\emph default
+ della chiamata (possono essere più di uno)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Parametri
+\series default
+ che descrivono la connessione (one-to-one, one-to-many, ...)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\bar under
+Descrizione dei canali logici
+\series default
+\bar default
+ da utilizzare per negoziare il coding dei contenuti multimediali.
+ In questa fase 
+\series bold
+non
+\series default
+ vengono negoziati i codecs.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+SetupACK
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ReleaseComplete
+\series default
+: Un'entità avvisa un'altra entità che sta per rilasciare la chiamata, cioè
+ che farà un disengage RAS
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In protocolli di signaling vecchi come SS7 c'era sia release che releasecomplete.
+ Invece qua c'è un messaggio unico.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Information
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Notify
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Status
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+StatusInquiry
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Facility
+\series default
+: Utilizzato per modificare o redirigere una telefonata.
+ È una procedura complessa, vedremo come funziona in un esempio.
+\end_layout
+
+\begin_layout Subsection*
+Control Signaling
+\end_layout
+
+\begin_layout Standard
+La funzione principale svolta da questo signaling è la 
+\series bold
+negoziazione dei formati per tutti i contenuti multimediali 
+\series default
+presenti nella connessione.
+\end_layout
+
+\begin_layout Standard
+Il control signaling inizia mentre il call signaling è in corso! Infatti
+ il control signaling può agire da dopo che è stato inviato il setup message
+ nel 
+\emph on
+call signaling
+\emph default
+.
+ Può anche essere dopo il 
+\emph on
+connect
+\emph default
+ message.
+\end_layout
+
+\begin_layout Standard
+Ricordiamoci che il control signaling è sempre tra i due endpoint direttamente.
+ In realtà qua stiamo vedendo il caso di una comunicazione tra due dispositivi
+ nella stessa rete o tra due zone diverse della stessa rete.
+ Nel caso di device su reti diverse, il control signaling non sarà più punto-pun
+to.
+\end_layout
+
+\begin_layout Standard
+Riassumendo:
+\end_layout
+
+\begin_layout Itemize
+A invia 
+\series bold
+SETUP
+\series default
+ a B
+\end_layout
+
+\begin_layout Itemize
+B invia 
+\series bold
+CALL PROCEEDING
+\series default
+ ad A
+\end_layout
+
+\begin_layout Itemize
+B invia 
+\series bold
+ALERTING
+\series default
+ ad A
+\end_layout
+
+\begin_layout Itemize
+B 
+\begin_inset Quotes eld
+\end_inset
+
+risponde
+\begin_inset Quotes erd
+\end_inset
+
+ e invia la 
+\series bold
+CONNECT
+\series default
+ ad A
+\end_layout
+
+\begin_layout Itemize
+Utilizzando la tecnica descritta nel messaggio di SETUP, si inizia la fase
+ di control signaling aprendo un altro socket per scambiare le informazioni
+ sui contenuti multimediali.
+\end_layout
+
+\begin_layout Subsubsection*
+Chiamata senza gatekeeper
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 053.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Chiamata con gatekeeper e call signaling diretto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 054.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Chiamata con gatekeeper e call signaling routed
+\end_layout
+
+\begin_layout Standard
+L'assunzione qua è che uno dei due gatekeeper fa routing del call signaling
+ e l'altro no
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 055.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Chiamata con gatekeeper e call signaling routed forzato
+\end_layout
+
+\begin_layout Standard
+GK2 rifiuta l'ARQ da EP2 perché vuole un routed call signaling.
+ Quindi EP2 invia un messaggio FACILITY a GK1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 056.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Logical channels
+\end_layout
+
+\begin_layout Standard
+Tramite il control signaling vengono stabiliti dei canali logici per scambiare
+ i contenuti multimediali.
+\end_layout
+
+\begin_layout Standard
+Per stabilire un canale logico vengono utilizzati i messaggi di:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Open Logical Channel Message
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Open Logical Channel Ack
+\end_layout
+
+\begin_layout Standard
+Poi c'è anche una procedura di 
+\series bold
+Capabilities Exchange 
+\series default
+, tramite la quale i due terminali scambiano informazioni riguardo ai codecs
+ supportati e quali devono essere utilizzati.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 057.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \end_body
