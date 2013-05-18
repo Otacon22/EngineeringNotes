@@ -9020,5 +9020,1371 @@ ritardo
  È un percorso teorico complesso con però risultati molto semplici.
 \end_layout
 
+\begin_layout Section*
+SP e GPS schedulers (Lezione 13-5-13)
+\end_layout
+
+\begin_layout Standard
+Fino adesso abbiamo visto il caso dei FIFO schedulers con un certo numero
+ di flussi in ingresso e una uscita caratterizzata da un processo stocastico.
+\end_layout
+
+\begin_layout Standard
+L'input lo abbiamo caratterizzato con: 
+\begin_inset Formula 
+\[
+x\left(t\right)=\sum_{i=1}^{n}x_{i}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=E\left(\sum_{i=1}^{n}x_{i}\left(t\right)\right)=\sum_{i=1}^{n}E\left(x_{i}\left(t\right)\right)=t\sum_{i=1}^{n}r_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=Var\left(\sum_{i=1}^{n}x_{i}\left(t\right)\right)=\sum_{i=1}^{n}Var\left(x_{i}\left(t\right)\right)=\sum_{i=1}^{n}r_{i}b_{i}t^{2H_{i}}\;\overset{\text{SRD}}{=}\;\sum_{i=1}^{n}r_{i}b_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)\;\overset{LRD}{=}\; t^{2H}\sum_{i=1}^{n}r_{i}b_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo poi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{E\left(x\left(t\right)\right)-E\left(C\left(t+d\right)\right)}{\sqrt{Var\left(x\left(t\right)\right)+Var\left(C\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove sappiamo che: 
+\begin_inset Formula 
+\[
+Var\left(C\left(t+d\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È 
+\begin_inset Formula $0$
+\end_inset
+
+ se la capacità è costante, mentre è 
+\begin_inset Formula $\neq0$
+\end_inset
+
+ se è un canale tempo variante.
+\end_layout
+
+\begin_layout Standard
+Oggi invece analizzeremo il caso di un multi-class scheduler!
+\end_layout
+
+\begin_layout Subsection*
+Strict Prioririty scheduler
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-021.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Abbiamo 
+\begin_inset Formula $n$
+\end_inset
+
+ code con vari input (
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+, 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+, ...) e capacità di uscita 
+\begin_inset Formula $C$
+\end_inset
+
+ costante.
+\end_layout
+
+\begin_layout Itemize
+Abbiamo dei delay diversi per ogni classe, quindi non avremo una singola
+ funzione 
+\begin_inset Formula $\alpha\left(t\right)$
+\end_inset
+
+, ma ne avremo una per ogni classe.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-E\left(S_{i}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(S_{i}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+ è il servizio disponibile per la classe 
+\begin_inset Formula $i$
+\end_inset
+
+ e dipende dalla policy di scheduling.
+\end_layout
+
+\begin_layout Standard
+Analizziamo lo scheduler.
+ Partiamo ad analizzare la classe di servizio 1.
+\end_layout
+
+\begin_layout Itemize
+Se c'è un pacchetto pronto per essere servito nella prima classe, viene
+ preso e trasmesso.
+ Quindi per la prima classe abbiamo 
+\begin_inset Formula $S_{1}\left(t\right)=C\cdot t$
+\end_inset
+
+, cioè agisce come se fosse un FIFO scheduler.
+ In realtà non è esattamente un FIFO scheduler.
+ Qui stiamo lavorando sotto l'ipotesi che il traffico sia infinitamente
+ divisibile.
+ Questo significa che stiamo assumendo di poter trasmettere un solo bit
+ o anche frazioni di bit.
+ Sappiamo che questo non è reale, quando si inizia a servire un pacchetto,
+ dobbiamo finire la trasmissione.
+\end_layout
+
+\begin_layout Standard
+Riguardo alla classe 2?
+\end_layout
+
+\begin_layout Itemize
+Viene servita solo se non abbiamo dati da trasmettere nella classe 1: 
+\begin_inset Formula $S_{2}\left(t\right)=Ct-x_{1}\left(t\right)$
+\end_inset
+
+ .
+ Sottraiamo alla capacità totale quella già usata per la classe 1.
+\end_layout
+
+\begin_layout Standard
+La classe 3?
+\end_layout
+
+\begin_layout Itemize
+Viene servita solo se sia 1 che 2 sono vuote: 
+\begin_inset Formula $S_{3}\left(t\right)=Ct-x_{1}\left(t\right)-x_{2}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La classe i-esima?
+\end_layout
+
+\begin_layout Itemize
+Viene servita solo se tutte le classi prima sono vuote: 
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)=C\cdot t-\sum_{i=1}^{i-1}x_{i}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tornando al calcolo di 
+\begin_inset Formula $\alpha_{i}\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-E\left(C\left(t+d\right)-\sum_{j=1}^{i-1}x_{j}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(C\left(t+d\right)-\sum_{j=1}^{i-1}x_{j}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nota: ricordiamoci che se 
+\begin_inset Formula $z=x+y$
+\end_inset
+
+ abbiamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $Var\left(z\right)=Var\left(x\right)+Var\left(y\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ma se 
+\begin_inset Formula $z=x-y$
+\end_inset
+
+ allora abbiamo sempre 
+\begin_inset Formula $Var\left(z\right)=Var\left(x\right)+Var\left(y\right)$
+\end_inset
+
+ !
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-E\left(C\left(t+d\right)-\sum_{j=1}^{i-1}x_{j}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(C\left(t+d\right)\right)+Var\left(\sum_{j=1}^{i-1}x_{j}\left(t+d\right)\right)}}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{r_{i}\cdot t-C\left(t+d\right)+\sum_{j=1}^{i-1}E\left(x_{j}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(\sum_{j=1}^{i-1}x_{j}\left(t+d\right)\right)}}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nota: 
+\begin_inset Formula $Var\left(C\left(t+d\right)\right)=0$
+\end_inset
+
+ perché è costante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{r_{i}\cdot t-C\left(t+d\right)+\sum_{j=1}^{i-1}r_{j}\left(t+d\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j=1}^{i-1}Var\left(x_{j}\left(t+d\right)\right)}}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=\frac{\left(C-\sum_{j=1}^{i}r_{j}\right)+\left(C-\sum_{j=1}^{i-1}r_{j}\right)d}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j=1}^{i-1}Var\left(x_{j}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quest'ultima è la forma più generale di 
+\begin_inset Formula $\alpha_{i}\left(t\right)$
+\end_inset
+
+ per il nostro scheduler SP.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Assumiamo
+\series default
+ invece ora 
+\series bold
+che
+\series default
+ 
+\begin_inset Formula $x_{i}\left(t\right)$
+\end_inset
+
+, il flusso in ingresso generico, è fatto di 
+\begin_inset Formula $N_{i}$
+\end_inset
+
+ diversi flussi, tutti statisticamente identici.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Definiamo inoltre 
+\begin_inset Formula $\rho_{i}=\text{Valore medio di uno degli }N_{i}\text{ flussi nella classe }i$
+\end_inset
+
+.
+ Quindi abbiamo 
+\begin_inset Formula $r_{i}=N_{i}\cdot\rho_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi, per 
+\series bold
+\bar under
+questo caso specifico
+\series default
+\bar default
+:
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=\frac{\left(C-\sum_{j=1}^{i}N_{j}\cdot\rho_{j}\right)\cdot t+\left(C-\sum_{j=1}^{i-1}N_{j}\cdot\rho_{j}\right)\cdot d}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j=1}^{i-1}Var\left(x_{j}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proviamo con un'altra assunzione, e cioè che tutti i 
+\emph on
+microflussi
+\emph default
+ visti sopra siano di tipo 
+\emph on
+short-range-dependent:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=\frac{\left(C-\sum_{j=1}^{i}N_{j}\cdot\rho_{j}\right)+\left(C-\sum_{j=1}^{i-1}N_{j}\cdot\rho_{j}\right)}{\sqrt{N_{i}\rho_{i}\beta_{i}t+\sum_{j=1}^{i-1}N_{j}\rho_{j}\beta_{j}\left(t+d\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infatti, in base all'assunzione che abbiamo visto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(\sum_{j=1}^{N_{i}}x_{i,j}\left(t\right)\right)=\sum_{j=1}^{N_{i}}Var\left(x_{i,j}\left(t\right)\right)=\sum_{j=1}^{N_{i}}\rho_{i}\beta_{i}t=N_{i}\rho_{i}\beta_{i}t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ora, detto tutto questo, come scopriamo qual'è la probabilità che il ritardo
+ della classe 
+\emph on
+i-esima
+\emph default
+ sia superiore a un certo valore 
+\begin_inset Formula $d$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{min}=2\sqrt{\frac{\left(C-A_{i}\right)\cdot\left(\left(C-A_{i-1}\right)\cdot B_{i}-\left(C-A_{i}\right)\cdot B_{i-1}\right)}{B_{i}^{2}}\cdot d_{i}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dove: 
+\begin_inset Formula 
+\[
+A_{i}=\sum_{j=1}^{i}N_{j}r_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{i}=\sum_{j=1}^{i}N_{j}r_{j}b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d\right)=exp\left(-2\cdot\frac{C-A_{i}}{B_{i}^{2}}\cdot\left(\left(C-A_{i-1}\right)\cdot B_{i}-\left(C-A_{i}\right)\cdot B_{i-1}\right)d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi il ritardo è nella forma 
+\begin_inset Formula $e^{-kd}$
+\end_inset
+
+, infatti quando il traffico è di tipo SRD, questa probabilità è sempre
+ esponenziale!
+\end_layout
+
+\begin_layout Itemize
+Abbiamo inoltre che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(D_{i}\right)=\frac{B_{i}^{2}}{2\cdot\left(C-A_{i}\right)\cdot\left(\left(C-A_{i-1}\right)\cdot B_{i}-\left(C-A_{i}\right)\cdot B_{i-1}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Capacity Allocation Problem
+\end_layout
+
+\begin_layout Standard
+Abbiamo quest'altro problema, vediamone le caratteristiche:
+\end_layout
+
+\begin_layout Itemize
+Assumiamo di avere uno scheduler SP con capacità 
+\begin_inset Formula $C$
+\end_inset
+
+ costante
+\end_layout
+
+\begin_layout Itemize
+Abbiamo 
+\begin_inset Formula $N$
+\end_inset
+
+ classi di servizio
+\end_layout
+
+\begin_layout Itemize
+La classe di servizio 
+\emph on
+i-esima
+\emph default
+ riceve 
+\begin_inset Formula $N_{i}$
+\end_inset
+
+ flussi, statisticamente identici
+\end_layout
+
+\begin_layout Itemize
+Tutto i flussi sono 
+\emph on
+short-range-dependent
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+La classe di servizio 
+\emph on
+i-esima
+\emph default
+ ha SLA 
+\begin_inset Formula $\left(d_{i},p_{i}\right).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La domanda è: trovare 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ Qual'è la 
+\begin_inset Formula $C$
+\end_inset
+
+ necessaria per riuscire a soddisfare tutti gli SLA di tutte le classi,
+ dato questo scheduler?
+\end_layout
+
+\begin_layout Standard
+Partiamo dalla probabilità di ritardo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d_{i}\right)=exp\left(-2\cdot\frac{C-A_{i}}{B_{i}^{2}}\left(\left(C-A_{i-1}\right)\cdot B_{i}-\left(C-A_{i}\right)\cdot B_{i-1}\right)\cdot d_{i}\right)\leq p_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dobbiamo mettere questa disequazione a sistema per ognuna delle classi e
+ risolvere...
+\end_layout
+
+\begin_layout Standard
+Alla fine avremo 
+\begin_inset Formula $N$
+\end_inset
+
+ risultati di tipo condizionali 
+\begin_inset Formula $C\geq C_{i}$
+\end_inset
+
+, uno da ciascuna classe.
+ Quindi poi possiamo fare il passo finale di: 
+\begin_inset Formula 
+\[
+C=max\left(C_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema è che dobbiamo risolvere queste disequazioni sopra in funzione
+ di 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ Non è complesso ma sicuramente lungo.
+\end_layout
+
+\begin_layout Standard
+Quello che otteniamo, per brevità qua riportato senza passaggi:
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula 
+\[
+C_{i}=\frac{\left(2\cdot A_{i}\cdot B_{i-1}-A_{i-1}\cdot B_{i}-A_{i}\cdot B_{i}\right)d_{i}-\sqrt{A_{i-1}^{2}\cdot B_{i}^{2}\cdot d_{i}^{2}-2\cdot A_{i-1}\cdot A_{i}\cdot B_{i}^{2}\cdot d_{i}^{2}+A_{i}^{2}\cdot B_{i}^{2}\cdot d_{i}^{2}+2\cdot B_{i-1}\cdot B_{i}^{2}\cdot d_{i}\cdot ln\left(p_{i}\right)-2\cdot B_{i}^{3}\cdot d_{i}\cdot ln\left(p_{i}\right)}}{2\cdot\left(B_{i-1}-B_{i}\right)\cdot d_{i}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+Assumiamo uno scheduler SP con due classi di servizio e:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\rho_{1}=200\: kbit/s$
+\end_inset
+
+ , 
+\begin_inset Formula $\beta_{1}=9600\: bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\rho_{2}=200\: kbit/s$
+\end_inset
+
+ , 
+\begin_inset Formula $\beta_{2}=4600\: bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N_{1}=30$
+\end_inset
+
+ , 
+\begin_inset Formula $N_{2}=10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C=1\cdot10^{7}\: bit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sappiamo che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d\right)=exp\left(-2\cdot\frac{C-A_{i}}{B_{i}^{2}}\cdot\left(\left(C-A_{i-1}\right)\cdot B_{i}-\left(C-A_{i}\right)\cdot B_{i-1}\right)\cdot d_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{i}=\sum_{j=1}^{i}N_{j}\cdot\rho_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{i}=\sum_{j=1}^{i}N_{j}\rho_{j}b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Calcoliamo quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{1}=6\cdot10^{6}\:\left[\frac{bit}{s}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{2}=8\cdot10^{6}\:\left[\frac{bit}{s}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{1}=57.6\cdot10^{9}=5.76\cdot10^{10}\:\left[\frac{bit}{s}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{2}=6.68\cdot10^{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{1}>d\right)=exp\left(.........\right)=exp\left(-2\cdot\frac{4\cdot10^{6}}{33.1776\cdot10^{20}}\cdot1\cdot10^{7}\cdot5.76\cdot10^{10}\cdot d\right)=exp\left(...crazy\: stuff...\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{1}>d\right)=e^{-1.38\cdot10^{3}\cdot d}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Esercizio
+\end_layout
+
+\begin_layout Itemize
+Assumiamo di avere uno scheduler SP con due classi.
+ 
+\end_layout
+
+\begin_layout Itemize
+Nella classe 1 entrano 
+\begin_inset Formula $N_{1}=30$
+\end_inset
+
+ flussi di tipo SRD 
+\begin_inset Formula $\left(r_{1},b_{1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nella classe 2 entrano 
+\begin_inset Formula $N_{2}=10$
+\end_inset
+
+ flussi di tipo SRD 
+\begin_inset Formula $\left(r_{2},b_{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La capacità di uscita è 
+\begin_inset Formula $C=10^{7}\;\left[\frac{bit}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{1}=200\,\frac{kbit}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{1}=9600\: bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{2}=200\:\frac{kbit}{s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{2}=4600\, bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prima avviamo calcolato 
+\begin_inset Formula $P_{r}\left(D_{1}>d\right)=e^{-1.39\cdot10^{3}\cdot d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo ora:
+\begin_inset Formula $P_{r}\left(D_{2}>d\right)=e^{-136\cdot d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 064.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assumiamo di non conoscere 
+\begin_inset Formula $C$
+\end_inset
+
+ e consideriamo che abbiamo i vari SLA:
+\end_layout
+
+\begin_layout Itemize
+SLA1: 
+\begin_inset Formula $\left(50\, ms,\:10^{-3}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+SLA2: 
+\begin_inset Formula $\left(70\, ms,\:2\cdot10^{-3}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{i}=\digamma\left(N_{1},r_{1},b_{1},N_{2},r_{2},b_{2},d_{1},p_{1},d_{2},p_{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(non riscriviamo anche qua il mega-formulozzo)
+\end_layout
+
+\begin_layout Standard
+Otteniamo:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{1}\geq66\cdot10^{6}\;\left[\frac{bit}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{2}\geq9.35\cdot10^{6}\;\left[\frac{bit}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi 
+\begin_inset Formula $C\geq C_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Abbiamo poi il problema della 
+\series bold
+admission control
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Teniamo i parametri del problema iniziale con 
+\begin_inset Formula $C=10\cdot10^{6}\,\left[\frac{bit}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vogliamo trovare la regione di accettazione, la regione nel piano 
+\begin_inset Formula $\left(N_{1},N_{2}\right)$
+\end_inset
+
+ dove entrambe le SLA possono essere soddisfatte.
+\end_layout
+
+\begin_layout Standard
+La formula arriva dall'inversione della formula della probabilità che abbiamo
+ già usato.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset Formula 
+\[
+\begin{cases}
+N_{i}\leq\frac{\left(\left(\frac{B_{i-1}}{b_{i}}\right)^{2}-\left(2C-2A_{i-1}+\frac{B_{i-1}}{b_{i}}\right)^{2}-4B_{i-1}\cdot\frac{ln\left(p_{i}\right)}{d_{i}}\right)-4\left(C-A_{i-1}+\frac{B_{i-1}}{b_{i}}\right)\cdot\sqrt{\left(C-A_{i-1}\right)^{2}+2B_{i-1}\cdot\frac{ln\left(p_{i}\right)}{d_{i}}}}{-4r_{i}\left(2\cdot\left(C-A_{i-1}+\frac{B_{i-1}}{b_{i}}\right)-\frac{b_{i}\cdot ln\left(p_{i}\right)}{d_{i}}\right)} & \text{per }0\leq N_{i-k}\leq min\left(N_{i-k}^{*},\, N_{i-k,max}\right)\,\text{e}\, i>k=1,2,...,n\\
+N_{i}=0 & \text{per }N_{i-k}^{*}\leq N_{i-k}\leq N_{i-k,max}\,\text{e}\, i>k=1,2,...n
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{i-k}^{*}=\frac{\left(Cd_{i}-b_{i-k}\cdot ln\left(p_{i}\right)-d_{i}A_{i-1-k}\right)-\sqrt{-ln\left(p_{i}\right)\cdot\left(-b_{i-k}^{2}\cdot ln\left(p_{i}\right)+2d_{i}b_{i-k}\cdot\left(C-A_{i-1-k}\right)+2d_{i}B_{i-1-k}\right)}}{r_{i-k}\cdot d_{i}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N_{i-k,max}=\frac{2d_{i-k}C^{2}}{2d_{i-k}r_{i-k}C-r_{i-k}b_{i-k}ln\left(p_{i-k}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 065.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possiamo accettare fino a 34 connessioni di tipo 1, ma poi possiamo accettare
+ solo quelle, non possiamo più accettare connessioni di tipo 2.
+ Dobbiamo tentare di lavorare verso il centro della curva.
+\end_layout
+
+\begin_layout Standard
+In ogni caso comunque 
+\bar under
+gli ISP preferiscono mantenere attive le connessioni già accettate invece
+ di dropparle e accettarne altre nuove
+\bar default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Se modificassimo lo SLA della classe 2 e lo impostassimo a 
+\begin_inset Formula $\left(0.8s,\,1\cdot10^{-1}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 066.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo alleggerito la SLA, quindi possiamo accettare pià connessioni.
+\end_layout
+
+\begin_layout Subsection*
+Scheduler GPS
+\end_layout
+
+\begin_layout Standard
+Abbiamo uno scheduler GPS con 
+\begin_inset Formula $n$
+\end_inset
+
+ classi e capacità 
+\begin_inset Formula $C$
+\end_inset
+
+ di uscita.
+ Ogni classe ha un peso 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Lo scheduler GPS però è intelligente, se una classe è in silenzio ridistribuisce
+ il peso alle altre classi.
+\end_layout
+
+\begin_layout Standard
+Abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-E\left(S_{i}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(S_{i}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Però non conosciamo 
+\begin_inset Formula $S_{i}$
+\end_inset
+
+!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)=w_{i}Ct+\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot max\left(0,w_{i}Ct-X_{j}\left(t\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il fattore 
+\begin_inset Formula $max\left(...\right)$
+\end_inset
+
+ è la capacità non utilizzata di una specifica classe 
+\begin_inset Formula $j$
+\end_inset
+
+ che stiamo considerando.
+ Però non va tutta alla classe 
+\begin_inset Formula $i$
+\end_inset
+
+, quindi c'è un fattore di pesatura prima.
+\end_layout
+
+\begin_layout Standard
+Nel seguito assumeremo una approssimazione conservativa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)\approx w_{i}Ct+\sum_{j\neq i}\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot\left(w_{j}Ct-X_{j}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x\left(t\right)\right)-w_{i}C\left(t+d\right)-\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}}\cdot\left(w_{j}C\left(t+d\right)-E\left(x_{j}\left(t+d\right)\right)\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot Var\left(x_{j}\left(t+d\right)\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assumiamo adesso che tutto il traffico sia di tipo SRD e ogni classe è formata
+ da 
+\begin_inset Formula $N_{i}$
+\end_inset
+
+ microflussi con caratteristiche 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ e 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{N_{i}r_{i}t-w_{i}C\left(t+d\right)-\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot\left(w_{j}\cdot C\cdot\left(t+d\right)-N_{j}r_{j}\left(t+d\right)\right)\right)}{\sqrt{N_{i}r_{i}b_{i}t+\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot N_{j}r_{j}b_{j}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otteniamo quindi (finalmente) che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d\right)=exp\left(-2\frac{N_{i}r_{i}\left(w_{i}b_{i}C+b_{i}A_{i}+B_{i}\right)\left(w_{i}C+A_{i}-N_{i}r_{i}\right)}{\left(N_{i}r_{i}b_{i}+B_{i}\right)^{2}}d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{i}=\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot\left(w_{j}C-N_{j}r_{j}\right)\right)
+\]
+
+\end_inset
+
+(Nota: perché nella formula sopra non c'è max() ?)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{i}=\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot N_{j}r_{j}b_{j}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Esempio:
+\end_layout
+
+\begin_layout Standard
+Assumiamo uno scheduler SP di tipo GPS con due classi con 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ microflussi in ingresso rispettivamente.
+\end_layout
+
+\begin_layout Standard
+Capacità di uscita dello scheduler pari a 
+\begin_inset Formula $C=45Mbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+SLA1: 
+\begin_inset Formula $\left(0.01s,10^{-6}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+SLA2: 
+\begin_inset Formula $\left(0.05s,\,10^{-6}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{1}=0.6\cdot10^{-6}\: bit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{1}=40000\, bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{2}=0.8\cdot10^{-6}\, bit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{2}=100000\, bit$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo dalla figura che anche nel punto in cui cola a picco abbiamo una
+ capacità garantita per ogni classe, che non avevamo con lo scheduler SP.
+\end_layout
+
+\begin_layout Standard
+Nell figura vediamo proprio la differenza.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 067.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

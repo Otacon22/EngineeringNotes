@@ -8676,8 +8676,1270 @@ Percentuale di frames ricevuti nel tempo come funzione del tempo di rejoin
 
 \end_layout
 
+\begin_layout Part*
+Analisi delle performance e tecniche di ottimizzazione nei sistemi di video
+ streaming P2P
+\end_layout
+
 \begin_layout Standard
----------------------------------------------
+Come abbiamo visto, le reti P2P sono una buona soluzione per distribuire
+ un certo contenuto multimediale ad un grosso numero di utenti.
+ Non sono inoltre necessari investimenti da parte dei gestori di rete per
+ realizzarlo.
+ La distribuzione del contenuto si basa sull'utilizzo di risorse di tanti
+ utenti.
+\end_layout
+
+\begin_layout Standard
+La distribuzione di un video stream in 
+\emph on
+real-time
+\emph default
+ impone comunque dei requisiti di performance piuttosto stringenti:
+\end_layout
+
+\begin_layout Itemize
+Bassi ritardi di playback
+\end_layout
+
+\begin_layout Itemize
+Pochi frame persi
+\end_layout
+
+\begin_layout Standard
+Abbiamo visto che ci sono diverse topologie: albero, foresta, mesh.
+\end_layout
+
+\begin_layout Standard
+L'analisi delle performance dei sistemi P2P si concentra su 3 caratteristiche:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+trace analysis
+\emph default
+ 
+\series default
+dei sistemi funzionanti oppure sviluppo e studio di prototipi in specifici
+ 
+\emph on
+test beds
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+analytical studies 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+simulation
+\end_layout
+
+\begin_layout Standard
+La maggior parte degli studi presenti sono focalizzati sulla 
+\bar under
+analisi di sistemi completi, così come sono,
+\bar default
+ senza investigare sull'impatti delle performance nella modifica dei loro
+ parametri operativi.
+\end_layout
+
+\begin_layout Itemize
+In questo studio ci focalizzeremo su sistemi di P2P video streaming con
+ 
+\bar under
+topologia ad albero o foresta
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+Analizziamo l'impatto di due tecniche di ottimizzazione che hanno lo scopo
+ di ridurre gli effetti negativi sugli utenti
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+nearly-permanent nodes
+\series default
+\emph default
+: dei peer speciali che hanno una frequenza di abbandono della rete più
+ bassa rispetto agli altri.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+rewarding
+\series default
+\emph default
+: posizionare dei peers con alta disponibilità di banda nei livelli più
+ alti degli alberi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+L'analisi delle performance utilizza un modello simulativo a 
+\begin_inset Quotes eld
+\end_inset
+
+grana fine
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il modello utilizzato è ispirato a VidTorrent, un sistema di video P2P ad
+ albero sviluppato al MIT.
+ Tuttavia questo modello è più generale e ha diverse caratteristiche:
+\end_layout
+
+\begin_layout Itemize
+C'è 
+\series bold
+un solo generatore
+\series default
+ dei contenuti da distribuire
+\end_layout
+
+\begin_layout Itemize
+La struttura della distribuzione è ad 
+\series bold
+albero o foresta
+\end_layout
+
+\begin_layout Itemize
+A livello applicativo, nella rete di overlay p2p, il contenuto è organizzato
+ in 
+\series bold
+\emph on
+chunks
+\series default
+\emph default
+ dei frame video che chiamiamo 
+\series bold
+\emph on
+segments
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Un singolo 
+\emph on
+frame
+\emph default
+ può essere suddiviso in un numero fisso (
+\begin_inset Formula $\geq1$
+\end_inset
+
+) di 
+\emph on
+sub-frames
+\emph default
+ di lunghezza variabile.
+\end_layout
+
+\begin_layout Itemize
+Gli utenti possono fare 
+\emph on
+join
+\emph default
+ e 
+\emph on
+leave
+\emph default
+ del sistema in modo dinamico, anche durante la distribuzione di un video.
+\end_layout
+
+\begin_layout Standard
+Quindi le caratteristiche dello stream sono:
+\end_layout
+
+\begin_layout Itemize
+Il video stream è una sequenza di 
+\begin_inset Formula $m$
+\end_inset
+
+ frames ordinati 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ con 
+\begin_inset Formula $i=1,2,...,m$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Per ogni frame:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tempo di inizio: 
+\begin_inset Formula $f_{i}.start$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di fine: 
+\begin_inset Formula $f_{i}.end$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni frame è suddiviso in 
+\begin_inset Formula $n$
+\end_inset
+
+ 
+\emph on
+sub-frames
+\emph default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un sub-frame rappresenta una parte dell'intero frame.
+ Per esempio solo una singola descrizione in un 
+\emph on
+Multiple Description Coding
+\emph default
+ (
+\series bold
+MDC
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Subframe 
+\begin_inset Formula $sf_{ij}\rightarrow\text{frame numero }i\:\text{sub-frame offset }j=1,2,...,n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lunghezza: 
+\begin_inset Formula $sf_{ij}.length\quad\left[byte\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 058.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A livello applicativo, i 
+\emph on
+chunks
+\emph default
+ di 
+\emph on
+k
+\emph default
+ 
+\emph on
+sub-frames
+\emph default
+ sono organizzati in segmenti.
+\end_layout
+
+\begin_layout Itemize
+Un segmento 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ è assemblato raggruppando i 
+\emph on
+sub-frames
+\emph default
+ che hanno lo stesso 
+\emph on
+offset 
+\emph default
+in frames consecutivi.
+\end_layout
+
+\begin_layout Itemize
+Il contenuto video è distribuito a tutti i peers tramite un insieme di 
+\begin_inset Formula $q$
+\end_inset
+
+ alberi indipendenti.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+La sorgente
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Fornisce lo stream video 
+\end_layout
+
+\begin_layout Itemize
+È posizionata alla radice di ogni albero 
+\end_layout
+
+\begin_layout Itemize
+Invia sequenzialmente i segmenti ai propri figli con un intervallo di tempo
+ determinato dai tempi di inizio e fine dei frames.
+\end_layout
+
+\begin_layout Itemize
+Ha una quantità limitata di banda 
+\begin_inset Formula $S_{up}\,\left[\frac{bits}{s}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solo i segmenti composti da 
+\emph on
+sub-frames
+\emph default
+ con lo stesso 
+\emph on
+j-esimo
+\emph default
+ 
+\emph on
+sub-frame
+\emph default
+ offset vengono inoltrati allo stesso albero.
+\end_layout
+
+\begin_layout Section*
+Ruolo dei peers
+\end_layout
+
+\begin_layout Standard
+Ogni client della rete P2P è chiamato 
+\series bold
+\emph on
+peer
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Per poter ricevere il contenuto video, un peer 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ deve essere nodo di un albero che trasporta il contenuto.
+\end_layout
+
+\begin_layout Itemize
+Un peer non deve essere parte di tutti gli alberi
+\end_layout
+
+\begin_layout Itemize
+Tutti i peer, per ogni albero, ricevono segmenti dai genitori e li inviano
+ ai figli.
+\end_layout
+
+\begin_layout Itemize
+Un peer può essere posizionato in diverse posizioni in diversi alberi e
+ i diversi alberi possono avere diverse topologie.
+\end_layout
+
+\begin_layout Section*
+Operazioni dei peers
+\end_layout
+
+\begin_layout Standard
+Ci riferiamo alla banda di accesso del peer 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ con 
+\begin_inset Formula $p_{i}.CUp$
+\end_inset
+
+ e 
+\begin_inset Formula $p_{i}.CDown$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ogni peer è dotato di un buffer di ricezione e di un buffer di trasmissione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 059.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ogni peer fa una serie di 
+\series bold
+azioni
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+La coda di download è scaricata ad un rate regolare determinato da 
+\begin_inset Formula $p_{i}.Cdown$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tutti i 
+\emph on
+sub-frames
+\emph default
+ ricevuti dalla coda di download vengono memorizzati nel buffer di 
+\emph on
+playout
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Appena tutti i 
+\emph on
+sub-frames
+\emph default
+ che formano un unico segmento vengono ricevuti, il segmento è inviato ad
+ ognuno dei figli.
+ Questi pacchetti vengono inviati tramite il link di upload
+\end_layout
+
+\begin_layout Itemize
+I 
+\emph on
+frame
+\emph default
+ memorizzati nel buffer di playout sono poi estratti dal player dell'utente
+ a rate costante per il video stream.
+\end_layout
+
+\begin_layout Section*
+Buffer di playout
+\end_layout
+
+\begin_layout Standard
+È responsabile del riassemblamento dello stream video (i segmenti sono trasporta
+ti suddivisi in vari pacchetti come abbiamo visto).
+\end_layout
+
+\begin_layout Itemize
+Il playout buffer è di 
+\bar under
+lunghezza finita
+\bar default
+ 
+\begin_inset Formula $PBLength$
+\end_inset
+
+ misurata in 
+\emph on
+segments
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Quando un 
+\emph on
+sub-frame
+\emph default
+ viene ricevuto, viene posizionato nella corretta posizione del playout
+ buffer.
+\end_layout
+
+\begin_layout Itemize
+Quando tutti i frames di un segmento sono stati letti dal player, viene
+ liberata una posizione dal buffer di playback
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+peer
+\emph default
+ inizia a riprodurre lo stream video appena la 
+\series bold
+\emph on
+playback treshold
+\series default
+\emph default
+ 
+\begin_inset Formula $PBTh$
+\end_inset
+
+, misurata in secondi, viene raggiunta.
+\end_layout
+
+\begin_layout Section*
+Dinamicità dei peers
+\end_layout
+
+\begin_layout Itemize
+I peers possono entrare e lasciare la rete in modo dinamico.
+\end_layout
+
+\begin_layout Itemize
+Il sistema, in uno stato pronto, ha un numero 
+\begin_inset Formula $N$
+\end_inset
+
+ di 
+\emph on
+peers
+\emph default
+ attivi simultaneamente.
+\end_layout
+
+\begin_layout Itemize
+Il tempo speso da un 
+\emph on
+peer
+\emph default
+ nel sistema è distribuito in modo esponenziale con media 
+\begin_inset Formula $\frac{1}{\mu}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Le operazioni di 
+\emph on
+join
+\emph default
+ sono eventi 
+\emph on
+poisson
+\emph default
+ indipendenti con un rate totale medio di 
+\emph on
+joins
+\emph default
+ pari a 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+, di modo che 
+\begin_inset Formula $N=\frac{\Lambda}{\mu}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Standard join
+\end_layout
+
+\begin_layout Standard
+Quando un peer vuole unirsi alla rete, deve diventare parte di uno degli
+ alberi di distribuzione.
+\end_layout
+
+\begin_layout Standard
+In particolare, il 
+\emph on
+peer
+\emph default
+ 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+A seconda della sua banda di download libera viene calcolato il numero massimo
+ di 
+\emph on
+sub-frames
+\emph default
+ per ogni frame da ricevere
+\end_layout
+
+\begin_layout Itemize
+I 
+\emph on
+sub-frame
+\emph default
+ 
+\emph on
+offsets
+\emph default
+ vengono scelti casualmente.
+ Per ognuno di essi il 
+\emph on
+peer
+\emph default
+ seleziona un genitore nell'albero di quell'
+\emph on
+offset
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Per ogni albero, il genitore viene scelto casualmente tra i peers di livello
+ più alto nell'albero (vicino alla sorgente) con banda di upload libera
+ sufficiente.
+\end_layout
+
+\begin_layout Itemize
+Dopo un intervallo di tempo 
+\begin_inset Formula $t_{Join}$
+\end_inset
+
+, il nuovo nodo inizia a ricevere i 
+\emph on
+sub-streams
+\emph default
+ dai suoi nuovi genitori.
+ Questo intervallo di tempo modella il tempo necessario ad identificare
+ e selezionare un nuovo 
+\emph on
+peer
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 060.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Join ottimizzata
+\end_layout
+
+\begin_layout Standard
+I nuovi peers vengono posizionati nelle posizioni più alte degli alberi,
+ facendo in modo che nessun peer con banda di upload bassa sia nei livelli
+ più alti.
+\end_layout
+
+\begin_layout Standard
+Il nuovo peer può sostituire uno esistente con banda di upload minore.
+\end_layout
+
+\begin_layout Standard
+I nodi iniziano a ricevere il 
+\emph on
+sub-stream
+\emph default
+ dai loro nuovi parenti dopo un intervallo di tempo 
+\begin_inset Formula $t_{rejoin\_rew}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 061.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Leave standard
+\end_layout
+
+\begin_layout Standard
+Un 
+\emph on
+peer
+\emph default
+ può abbandonare la rete in modo inaspettato e senza avvertimento.
+ Nel caso in cui ciò accada, i figli e tutti discendenti dello stesso albero,
+ cessano di ricevere lo stream.
+\end_layout
+
+\begin_layout Itemize
+Dopo un intervallo di tempo 
+\begin_inset Formula $t_{Rejoin}$
+\end_inset
+
+, i 
+\emph on
+peers
+\emph default
+ orfani iniziano la procedura di join per ogni 
+\emph on
+sub-stream 
+\emph default
+che non ricevono più.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo intervallo di tempo può rappresentare, per esempio, il tempo richiesto
+ da un meccanismo di 
+\emph on
+keep-alive
+\emph default
+ 
+\emph on
+detection
+\emph default
+ per l'identificazione della 
+\emph on
+leave
+\emph default
+ di un genitore.
+\end_layout
+
+\begin_layout Itemize
+Solo i figli diretti di un genitore morto tentano il 
+\emph on
+rejoin
+\emph default
+ in nuove posizioni, mentre tutti gli altri membri di alberi che si sono
+ divisi seguono il primo genitore.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 062.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Leave ottimizzata
+\end_layout
+
+\begin_layout Standard
+In aggiunta alle attività già descritte per la 
+\emph on
+standard leave
+\emph default
+, ci occupiamo 
+\series bold
+prima
+\series default
+ di identificare un 
+\emph on
+peer
+\emph default
+ già esistente per rimpiazzare il 
+\emph on
+peer
+\emph default
+ che ha lasciato il sistema.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 063.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection*
+Peers nearly-permanent
+\end_layout
+
+\begin_layout Standard
+Nel nostro sistema possiamo inserire dei 
+\emph on
+peers
+\emph default
+ 
+\emph on
+nearly-permanent
+\emph default
+ caratterizzati dalle caratteristiche seguenti:
+\end_layout
+
+\begin_layout Itemize
+Sono 
+\emph on
+peers
+\emph default
+ che hanno un 
+\series bold
+tempo medio di permanenza
+\series default
+ pari a 
+\begin_inset Formula $\frac{1}{\mu}$
+\end_inset
+
+, che è un ordine di grandezza maggiore rispetto alla durata dello stream
+ video.
+\end_layout
+
+\begin_layout Itemize
+Dal nostro punto di vista deve essere superiore al nostro tempo di osservazione
+ della simulazione
+\end_layout
+
+\begin_layout Standard
+Parametri addizionali:
+\end_layout
+
+\begin_layout Itemize
+Il numero di 
+\emph on
+peers
+\emph default
+ 
+\emph on
+nearly-permanent
+\emph default
+: 
+\begin_inset Formula $N^{PERM}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il numero di 
+\emph on
+peers
+\emph default
+ 
+\emph on
+standard: 
+\begin_inset Formula $N-N^{PERM}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel nostro scenario vengono analizzate due situazioni:
+\end_layout
+
+\begin_layout Enumerate
+I 
+\emph on
+peers
+\emph default
+ 
+\emph on
+nearly-permanent 
+\emph default
+vengono scelti casualmente all'interno del sistema
+\end_layout
+
+\begin_layout Enumerate
+I 
+\emph on
+peers nearly-permanent
+\emph default
+ sono scelti tra quelli con capacità di upload maggiore.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Quindi tutti i 
+\emph on
+nearly-permanent peers
+\emph default
+ vanno nelle posizioni più alte dell'albero.
+\end_layout
+
+\begin_layout Enumerate
+Questo stato può essere benefico perché tende alla formazione di alberi
+ corti e stabili.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Analisi di parametri e indici
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+numero medio di 
+\emph on
+peers
+\series default
+\emph default
+: 
+\begin_inset Formula $N$
+\end_inset
+
+, sono i peers attualmente nella rete
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+numero di 
+\emph on
+nearly-permanent
+\emph default
+ 
+\emph on
+peers
+\series default
+\emph default
+: 
+\begin_inset Formula $N^{PERM}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+tempo medio di permanenza dei 
+\emph on
+peers
+\series default
+\emph default
+: 
+\begin_inset Formula $\frac{1}{\mu}$
+\end_inset
+
+, misurato dalla prima join del 
+\emph on
+peer
+\emph default
+ fino alla sua 
+\emph on
+leave
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Misuriamo le performance con gli indici seguenti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Playback delay
+\series default
+\emph default
+: È definito come il tempo passato tra il momento in cui la sorgente fornisce
+ il contenuto e il momento in cui il client lo legge dal buffer di playout
+ del 
+\emph on
+peer
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Rapporto tra frame ricevuti e 
+\emph on
+sub-frame
+\series default
+ 
+\emph default
+Viene calcolato per ogni peer considerando la presenza o assenza di 
+\emph on
+sub-frames
+\emph default
+ nel buffer di playout al loro tempo di 
+\emph on
+playback
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Parametri della simulazione
+\end_layout
+
+\begin_layout Itemize
+È stata utilizzata una traccia reale di una partita di calcio della durata
+ di 36 minuti, encodata con un 
+\emph on
+Multiple Division Coding
+\emph default
+ con 
+\series bold
+9 
+\emph on
+descriptions
+\series default
+\emph default
+ per ogni frame (
+\begin_inset Formula $n=9$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Banda media dello stream video: 
+\begin_inset Formula $943\: kbps$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Durata del frame: 
+\begin_inset Formula $33.3\: ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ogni 
+\series bold
+segmento
+\series default
+ comprende 
+\begin_inset Formula $k=20\:$
+\end_inset
+
+
+\emph on
+sub-frames
+\end_layout
+
+\begin_layout Itemize
+Un numero totale di 
+\begin_inset Formula $q=9$
+\end_inset
+
+ 
+\series bold
+alberi
+\series default
+/
+\series bold
+\emph on
+sub-streams
+\series default
+\emph default
+ vengono utilizzati.
+\end_layout
+
+\begin_layout Itemize
+La banda della sorgente 
+\begin_inset Formula $S_{Up}$
+\end_inset
+
+ è scelta in modo che si possano fornire fino a 
+\begin_inset Formula $20$
+\end_inset
+
+ 
+\emph on
+sub-streams 
+\emph default
+contemporaneamente.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+lunghezza del buffer di playout
+\series default
+ è stata impostata pari a 
+\begin_inset Formula $133\, s$
+\end_inset
+
+ (
+\begin_inset Formula $PBLength=1800$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Tempo di Join: 
+\begin_inset Formula $500\, ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo totale di rejoin: 
+\begin_inset Formula $100\, s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Soglia di playback: 
+\begin_inset Formula $3.33\, s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tempo di rejoin: 
+\begin_inset Formula $500\, ms$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Numero di 
+\series bold
+peers
+\series default
+: 
+\begin_inset Formula $50$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Numero di 
+\emph on
+nearly-permanent peers
+\emph default
+: 
+\begin_inset Formula $10$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Tempo medio di permanenza dei 
+\emph on
+peers
+\emph default
+: 
+\begin_inset Formula $15\: minuti$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La banda di accesso di upload e download per i peers che joinano, è stata
+ impostata in base alla seguente distribuzione di probabilità:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $50\%-C_{DOWN}=7\, Mbps$
+\end_inset
+
+, 
+\begin_inset Formula $C_{UP}=1Mbps$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $30\%-C_{DOWN}=20\, Mbps$
+\end_inset
+
+, 
+\begin_inset Formula $C_{UP}=1Mbps$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $10\%-C_{DOWN}=8\, Mbps$
+\end_inset
+
+, 
+\begin_inset Formula $C_{UP}=1Mbps$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $10\%-C_{DOWN}=10\, Mbps$
+\end_inset
+
+, 
+\begin_inset Formula $C_{UP}=10Mbps$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
@@ -11220,6 +12482,222 @@ Capabilities Exchange
 \begin_layout Standard
 \begin_inset Graphics
 	filename 057.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+SIP
+\end_layout
+
+\begin_layout Section*
+Infrastruttura
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Clients
+\series default
+: User Agent Client, girano sui terminali degli utenti.
+ Il loro scopo principale è quello di fare richieste.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Servers
+\series default
+: È una applicazione che gira su qualunque dispositivo.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Proxy Server
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Redirect Server 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Registrar Server
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+User Agent Server
+\end_layout
+
+\begin_layout Itemize
+Solitamente i primi 3 servers elencati sono processi del server (chiamato
+ ancora 
+\emph on
+Proxy Server
+\emph default
+), mentre l'ultimo gira sull'host dell'utente.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Proxy (redirect) server
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 068.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo esempio vediamo come un host (marco@work.com) contatta un proxy
+ server per contattare luca e il proxy server invia una richiesta a luca
+ e reinoltra la risposta a marco.
+\end_layout
+
+\begin_layout Standard
+Questo è uno dei modi in cui i 
+\emph on
+proxy server
+\emph default
+ funzionano.
+\end_layout
+
+\begin_layout Standard
+Di seguito vediamo un altro esempio:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 069.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo esempio vediamo come il 
+\emph on
+proxy server
+\emph default
+ avvisa il chiamante che è necessario contattare direttamente il dispositivo
+ terminale ad un certo indirizzo (senza passare ancora per il proxy).
+\end_layout
+
+\begin_layout Standard
+Come vediamo rispetto a H.323, il protocollo è molto più 
+\begin_inset Quotes eld
+\end_inset
+
+libero
+\begin_inset Quotes erd
+\end_inset
+
+, senza troppi approcci burocratici...
+\end_layout
+
+\begin_layout Subsection*
+Applicazioni SIP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Find-me-follow-me
+\series default
+\emph default
+: Quello che abbiamo visto prima è un tipo di protocollo 
+\emph on
+find-me-follow-me
+\emph default
+, cioè avvisa dove trovare un certo terminale (che può 
+\begin_inset Quotes eld
+\end_inset
+
+spostarsi
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È infatti anche possibile specificare su questi 
+\emph on
+proxy server
+\emph default
+ degli orari in base al quale dare delle risposte separate.
+ Ad esempio durante gli orari lavorativi della settimana il destinatario
+ potrebbe essere ad un certo indirizzo (lavorativo), mentre la sera e nel
+ weekend potrebbe essere ad un altro indirizzo (di casa).
+\end_layout
+
+\begin_layout Itemize
+Il vantaggio è che spesso questi servizi sono configurabili da interfacce
+ web.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\emph on
+Interactive Voice Response
+\series default
+\emph default
+ (
+\series bold
+IVR
+\series default
+): Segreteria telefonica
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Click-to-dial
+\series default
+\emph default
+: È una pagina web da cui è possibile chiamare direttamente l'utente cliccando
+ semplicemente su un link che contiene il suo indirizzo
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Contact-Manager
+\series default
+\emph default
+: È un servizio di rubrica centralizzata
+\end_layout
+
+\begin_layout Standard
+[omissis]
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 070.png
 	scale 50
 
 \end_inset
