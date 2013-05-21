@@ -7794,6 +7794,60 @@ Assured forwarding
 \end_layout
 
 \begin_layout Standard
+Una tipica applicazione che utilizza la PHB AF è quella di una compagnia
+ che utilizza Internet per intercollegare diversi siti geograficamente distribui
+ti e vuole assicurarsi che i pacchetti IP nelle sue Intranets siano inoltrati
+ con alta probabilità fin tanto che il traffico aggregato di un sito non
+ supera il 
+\emph on
+subscribed information rate
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Inoltre:
+\end_layout
+
+\begin_layout Itemize
+È desiderabile che un sito possa superare il profilo sottoscritto comprendendo
+ che il traffico non sarà inoltrato con alta probabilità come il traffico
+ all'interno del profilo.
+\end_layout
+
+\begin_layout Itemize
+È anche importante che 
+\bar under
+la rete non riordini i pacchetti
+\bar default
+ che appartengono allo stesso microflusso.
+\end_layout
+
+\begin_layout Standard
+Vengono definite 4 classi AF, dove ogni classe alloca in ogni nodo DS una
+ certa quantità di risorse per l'inoltro.
+\end_layout
+
+\begin_layout Itemize
+I pacchetti IP che vogliono utilizzare i servizi forniti dal gruppo AF PHB
+ vengono assegnati dal cliente ad una o più di queste classi AF in base
+ ai servizi a cui l'utente ha sottoscritto.
+\end_layout
+
+\begin_layout Itemize
+In ogni classe AF, i pacchetti IP vengono marcati con una di tre precedenze
+ di drop.
+ In caso di congestione, la precedenza di drop determina l'importanza relativa
+ del pacchetto nella classe AF.
+\end_layout
+
+\begin_layout Itemize
+Un nodo DS congestionato tenta di proteggere pacchetti con probabilità di
+ drop minore dall'essere persi, eventualmente droppando pacchetti con probabilit
+à di drop superiore.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
@@ -10380,6 +10434,1886 @@ Nell figura vediamo proprio la differenza.
 \begin_inset Graphics
 	filename 067.png
 	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+Scheduler EDF
+\end_layout
+
+\begin_layout Standard
+Abbiamo una serie di classi, ciascuna con:
+\end_layout
+
+\begin_layout Itemize
+Un flusso in ingresso 
+\begin_inset Formula $x_{i}\left(t\right)$
+\end_inset
+
+ (
+\begin_inset Formula $x_{1}\left(t\right),x_{2}\left(t\right),...,x_{n}\left(t\right)$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Una deadline 
+\begin_inset Formula $\delta_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E poi una capacità di uscita totale 
+\begin_inset Formula $C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-E\left(S_{i}\left(t+d\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+Var\left(S_{i}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo caso sappiamo che 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+ è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)=max\left(0,C\cdot t-\sum_{n\neq i}x_{n}\left(t-max\left(0,\,\delta_{n}-\delta_{i}\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nella formula sopra:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\delta_{n}-\delta_{i}$
+\end_inset
+
+ tiene conto della differenza tra le varie deadlines.
+ Infatti se 
+\begin_inset Formula $\delta_{n}-\delta_{i}$
+\end_inset
+
+ è negativo, il massimo diventa 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Possiamo approssimare:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)\approx C\cdot t-\sum_{n\neq i}x_{n}\left(t-max\left(0,\delta_{n}-\delta_{i}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Torniamo alla definizione di 
+\begin_inset Formula $\alpha_{i}\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(x_{i}\left(t\right)\right)-C\left(t+d\right)+\sum_{n\neq i}E\left[x_{n}\left(t-max\left(\delta_{n}-\delta_{i}\right)+d\right)\right]}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{n\neq i}Var\left(x_{n}\left(t+d-max\left(0,\delta_{n}-\delta_{i}\right)\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo cosa succede nel caso di traffico 
+\emph on
+short-dependent.
+\end_layout
+
+\begin_layout Standard
+Sappiamo che nel caso in cui il traffico sia short-dependent abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{i}\left(t\right)\right)=r_{i}t\\
+Var\left(x_{i}\left(t\right)\right)=r_{i}b_{i}t
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E nel caso dei microflussi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{i}\left(t\right)\right)=N_{i}r_{i}t\\
+Var\left(x_{i}\left(t\right)\right)=N_{i}r_{i}b_{i}t
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definiamo quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{i}=\sum_{n\neq i}N_{n}r_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E_{i}=\sum_{n\neq i}N_{n}r_{n}max\left(0,\delta_{n}-\delta_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{i}=\sum_{n\neq i}N_{n}r_{n}b_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+F_{i}=\sum_{n\neq i}N_{n}r_{n}b_{n}max\left(0,\delta_{n}-\delta_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La probabilità di ritardo è quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d\right)=exp\left(-2\left(N_{i}r_{i}d_{i}\left(b_{i}\left(C-A_{i}\right)+B_{i}\right)+E_{i}\left(B_{i}+N_{i}r_{i}b_{i}\right)+F_{i}\left(C-N_{i}r_{i}-A_{i}\right)\right)\frac{\left(C-N_{i}r_{i}-A_{i}\right)}{\left(B_{i}+N_{i}r_{i}b_{i}\right)^{2}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Non vedremo altro su queste formule.
+\end_layout
+
+\begin_layout Subsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+Assumiamo di avere due classi con rispettivamente 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ microflussi in ingresso, di tipo 
+\emph on
+short-dependent.
+ 
+\end_layout
+
+\begin_layout Standard
+I parmetri sono:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{1}=600kbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r_{2}=800kbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{1}=40kbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b_{2}=100kbit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d_{1}=0.012$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $d_{2}=0.051$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{1}=0.01$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{2}=0.02$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Confrontiamo EDF,GPS e SP, sapendo che i parametri sono:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta_{1}=0.1\,\left[s\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta_{2}=0.05\,\left[s\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{1}=0.8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{2}=0.2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-058.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ad alto carico, i tre scheduler tendono a lavorare in modo diverso, mentre
+ a basso carico sono quasi identici.
+\end_layout
+
+\begin_layout Standard
+Ricordiamoci sempre che stiamo analizzando il caso del 
+\emph on
+short-dependent 
+\emph default
+traffic.
+\end_layout
+
+\begin_layout Standard
+Ma cosa succede nel caso generale? Se il traffico non è 
+\emph on
+short-dependent
+\emph default
+ non abbiamo delle formule analitiche ma possiamo comunque fare dei calcoli
+ numerici.
+\end_layout
+
+\begin_layout Part*
+Multihop case
+\end_layout
+
+\begin_layout Standard
+Fino ad adesso abbiamo analizzato traffico 
+\begin_inset Quotes eld
+\end_inset
+
+nuovo
+\begin_inset Quotes erd
+\end_inset
+
+ in ingresso: 
+\series bold
+\emph on
+fresh traffic
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x\left(t\right)\right)=rt\\
+Var\left(x\left(t\right)\right)=rbt^{2H}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per 
+\begin_inset Quotes eld
+\end_inset
+
+nuovo
+\begin_inset Quotes erd
+\end_inset
+
+ intendiamo prodotto da una sorgente di traffico e non già passato in rete.
+\end_layout
+
+\begin_layout Standard
+Sappiamo che c'è una bella differenza tra:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $H=\frac{1}{2}$
+\end_inset
+
+ (short-range dependent, tipico di VoIP)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\frac{1}{2}<H<1$
+\end_inset
+
+ (long-range dependent, tipico di video streaming)
+\end_layout
+
+\begin_layout Standard
+Però nel caso reale è diverso.
+\end_layout
+
+\begin_layout Standard
+Assumiamo di avere uno scheduler SP con due ingressi 
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+ e capacità di uscita 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ In uscita dallo scheduler avremo due flussi di traffico: 
+\begin_inset Formula $x_{1,out}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{2,out}\left(t\right)$
+\end_inset
+
+.
+ Qual'è la caratterizzazione del traffico di uscita?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{1,out}\left(t\right)\right)=?\\
+Var\left(x_{1,out}\left(t\right)\right)=?
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{2,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{2,out}\left(t\right)\right)=?\\
+Var\left(x_{2,out}\left(t\right)\right)=?
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso SP siamo fortunati, conosciamo già 
+\begin_inset Formula $x_{1,out}\left(t\right)$
+\end_inset
+
+.
+ Infatti viene sempre servito per primo, quindi in teoria non viene modificato!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{1,out}\left(t\right)\right)=r_{1}t\\
+Var\left(x_{1,out}\left(t\right)\right)\overset{SP}{=}Var\left(x_{1}\left(t\right)\right)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{2,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{2,out}\left(t\right)\right)=r_{2}t\\
+Var\left(x_{2,out}\left(t\right)\right)=???
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per la media è facile: 
+\series bold
+se lo scheduler lavora in condizioni stabili perché 
+\begin_inset Formula $r_{1}+r_{2}<C$
+\end_inset
+
+, allora sappiamo che la media in ingresso è uguale alla media in uscita
+ 
+\series default
+(stiamo anche assumendo che connection admission control sta funzionando
+ correttamente).
+\end_layout
+
+\begin_layout Standard
+Sfortunatamente invece, la varianza varia.
+ Quindi anche se abbiamo il traffico in ingresso che rispecchia la nostra
+ teoria sul 
+\emph on
+fresh traffic
+\emph default
+, la varianza cambierà.
+\end_layout
+
+\begin_layout Standard
+Come detto prima, in questo caso siamo fortunati perché in SP la prima classe
+ non viene toccata, quindi solo in questo caso specifico non cambia.
+\end_layout
+
+\begin_layout Standard
+Come calcoliamo la varianza per 
+\begin_inset Formula $x_{2,out}\left(t\right)$
+\end_inset
+
+? 
+\end_layout
+
+\begin_layout Standard
+Abbiamo due flussi, uno in ingresso e uno in uscita: 
+\begin_inset Formula $x_{i,in}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{i,out}\left(t\right)$
+\end_inset
+
+.
+ Sappiamo inoltre la caratteristica di servizio dello scheduler da 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{i,out}\left(t\right)=min\left(x_{i,in}\left(t\right),S_{i}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+ è maggiore di 
+\begin_inset Formula $x_{i,in}\left(t\right)$
+\end_inset
+
+ otteniamo 
+\begin_inset Formula $x_{i,in}\left(t\right)$
+\end_inset
+
+.
+ Perché? Se lo scheduler può servire 
+\begin_inset Formula $0.5Mbps$
+\end_inset
+
+ e fornisco in ingresso 
+\begin_inset Formula $1Mbps$
+\end_inset
+
+, in uscita avrò ovviamente 
+\begin_inset Formula $0.5Mbps$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ma come otteniamo la varianza? Abbiamo una relazione che dice che se abbiamo
+ due variabili casuali 
+\begin_inset Formula $x,y$
+\end_inset
+
+ distribute in modo gaussiano (caso comune perché abbiamo tanti flussi di
+ traffico individuali che sommati formano il flusso di traffico globale
+ (teorema del limite centrale)).
+\end_layout
+
+\begin_layout Standard
+Abbiamo una 
+\series bold
+relazione statistica fondamentale
+\series default
+ per noi che ci dice che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z=min\left(x,y\right)\Rightarrow Var\left(z\right)\leq max\left(Var\left(x\right),Var\left(y\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x_{i,out}\left(t\right)\right)\leq max\left(Var\left(x_{i,in}\left(t\right)\right),Var\left(S_{i}\left(t\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Proseguiamo prendendo un altro esempio:
+\end_layout
+
+\begin_layout Itemize
+Due classi con 
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+ con un qualche tipo di scheduler
+\end_layout
+
+\begin_layout Itemize
+In cascata abbiamo un altro scheduler (di qualche tipo non noto) con altre
+ due classi di servizio.
+\end_layout
+
+\begin_layout Standard
+Assumiamo che il flusso che entra da 
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+ nel primo scheduler poi esca a metà, mentre entra un altro flusso dal mezzo
+ verso la prima classe del secondo scheduler (
+\begin_inset Formula $y_{1}\left(t\right)$
+\end_inset
+
+).
+ Il flusso che entra invece in 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+ esce dal primo scheduler chiamato 
+\begin_inset Formula $y_{2}\left(t\right)$
+\end_inset
+
+ e va nella seconda classe del secondo scheduler.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{1}\left(t\right)\right)=r_{1}t\\
+Var\left(x_{1}\left(t\right)\right)=r_{1}b_{1}t^{2H_{1}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{2}\left(t\right)\right)=r_{2}t\\
+Var\left(x_{2}\left(t\right)\right)=r_{2}b_{2}t^{2H_{2}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(y_{1}\left(t\right)\right)=r_{3}t\\
+Var\left(y_{1}\left(t\right)\right)=r_{3}b_{3}t^{2H_{3}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assumiamo adesso di voler calcolare il ritardo massimo end-to-end.
+ Ora possiamo farlo!
+\end_layout
+
+\begin_layout Standard
+Però prima c'è un problema: non sappiamo niente su 
+\begin_inset Formula $y_{2}\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(y_{2}\left(t\right)\right)=r_{2}t\\
+Var\left(y_{2}\left(t\right)\right)=max\left(Var\left(x_{2}\left(t\right)\right),Var\left(S_{2}\left(t\right)\right)\right)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Infatti sappiamo l'espressione di 
+\begin_inset Formula $S_{2}\left(t\right)$
+\end_inset
+
+, se sappiamo il tipo di scheduler.
+ Utilizziamo 
+\begin_inset Formula $=$
+\end_inset
+
+ invece di 
+\begin_inset Formula $\leq$
+\end_inset
+
+per metterci nel caso pessimo e mantenere una analisi conservativa.
+\end_layout
+
+\begin_layout Standard
+Ora sappiamo cosa c'è (in termini di media e varianza) all'input del secondo
+ scheduler, quindi possiamo proseguire la nostra analisi riutilizzando i
+ dati che abbiamo ottenuto nel primo step.
+\end_layout
+
+\begin_layout Standard
+Possiamo quindi calcolare:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{2,1}>d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $D_{2,1}$
+\end_inset
+
+ significa il delay del flusso 2 nello scheduler 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{2,1}\left(t\right)=-\frac{E\left(x_{2}\left(t\right)\right)-E\left(S_{2}\left(t+d\right)\right)}{\sqrt{Var\left(x_{2}\left(t\right)\right)+Var\left(S_{2}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi sapendo 
+\begin_inset Formula $\alpha_{2,1}\left(t\right)$
+\end_inset
+
+ posso calcolare 
+\begin_inset Formula $P_{r}\left(D_{2,1}>d\right)$
+\end_inset
+
+ perché l'unica incognita in 
+\begin_inset Formula $\alpha_{2,1}\left(t\right)$
+\end_inset
+
+ è 
+\begin_inset Formula $d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per il secondo scheduler:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{2,2}>d\right)=?
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{1,2}\left(t\right)=-\frac{E\left(y_{2}\left(t\right)\right)-E\left(G_{2}\left(t+d\right)\right)}{\sqrt{max\left(Var\left(x_{2}\left(t\right)\right),Var\left(S_{2}\left(t\right)\right)\right)+Var\left(G_{2}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E anche qua l'incognita è solo 
+\begin_inset Formula $d$
+\end_inset
+
+, quindi possiamo ricavare l'espressione analitica.
+\end_layout
+
+\begin_layout Standard
+Poi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{2,end-to-end}=D_{2,1}+D_{2,2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E quindi possiamo trovare la nostra probabilità.
+\end_layout
+
+\begin_layout Subsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+Abbiamo 
+\begin_inset Formula $H$
+\end_inset
+
+ schedulers di tipo SP.
+\end_layout
+
+\begin_layout Standard
+Abbiamo dei 
+\emph on
+cross flows
+\emph default
+ che entrano ed escono da ognuno dei vari schedulers, mentre poi cisono
+ dei 
+\emph on
+through flows
+\emph default
+ che attraversano tutti gli schedulers.
+\end_layout
+
+\begin_layout Standard
+Lavoriamo in un caso 
+\emph on
+short-range dependent
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-059.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ogni 
+\emph on
+cross flow
+\emph default
+ ha caratteristiche 
+\begin_inset Formula $N_{1},r_{1},b_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+through flow
+\emph default
+ ha caratteristiche 
+\begin_inset Formula $N_{2},r_{2},b_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vogliamo vedere il ritardo end-to-end dei through flows.
+ Iniziamo a guardare quello che succede al through flow dopo il primo scheduler.
+ In ingresso abbiamo: 
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{1}\left(t\right)\right)=N_{1}r_{1}t\\
+Var\left(x_{1}\left(t\right)\right)=N_{1}R_{1}b_{1}t
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{2}\left(t\right)\right)=N_{2}r_{2}t\\
+Var\left(x_{2}\left(t\right)\right)=N_{2}R_{2}b_{2}t
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In uscita dal primo scheduler abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+E\left(x_{2,out}\left(t\right)\right)=N_{2}r_{2}t\\
+Var\left(x_{2,out}\left(t\right)\right)=max\left(Var\left(x_{2}\left(t\right)\right),Var\left(S_{2}\left(t\right)\right)\right)=max\left(N_{2}r_{2}b_{2}t,Var\left(Ct-x_{1}\left(t\right)\right)\right)=max\left(N_{2}r_{2}b_{2}t,\, N_{1}r_{1}b_{1}t\right)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Nota: la varianza di 
+\begin_inset Formula $Ct$
+\end_inset
+
+ è 
+\begin_inset Formula $0$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Per semplicità assumiamo che: 
+\begin_inset Formula 
+\[
+N_{2}r_{2}b_{2}t\geq N_{1}r_{1}b_{1}t=N_{2}r_{2}b_{2}t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per le assunzioni e il tipo di rete che abbiamo, ci basta fare il conto
+ per uno degli scheduler e poi replicarlo per tutti i seguenti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{2}>t\right)=exp\left(-2\frac{C-A_{2}}{B_{2}^{2}}\left(\left(C-A_{1}\right)B_{2}-\left(C-A_{2}\right)B_{1}\right)t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{1}=N_{1}r_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A_{2}=N_{1}r_{1}+N_{2}r_{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}=N_{1}r_{1}b_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B_{2}=N_{1}r_{1}b_{1}+N_{2}r_{2}b_{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Prendiamo una parte delle espressione esponenziale come parametro:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k=2\frac{C-A_{2}}{B_{2}^{2}}\left(\left(C-A_{1}\right)B_{2}-\left(C-A_{2}\right)B_{1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Scheduler:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{2}>t\right)=e^{-kt}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+D_{i}\sim f_{D_{2}}\left(t\right)=ke^{-kt}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{2,end-to-end}=D_{1}+D_{2}+D_{3}+....+D_{H}\sim f_{D_{1}}\left(t\right)*f_{D_{2}}\left(t\right)*...*f_{D_{H}}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questa è una distribuzione erlang
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{D_{2,end-to-end}}\left(t\right)=\frac{k^{H}t^{H-1}}{\left(H-1\right)!}e^{-kt}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Anche se questo è stato un esercizio abbastanza artificiale.
+\end_layout
+
+\begin_layout Subsection*
+Esempio (set slides numero 23)
+\end_layout
+
+\begin_layout Standard
+Abbiamo uno scheduler FIFO con in ingresso 3 flussi 
+\begin_inset Quotes eld
+\end_inset
+
+fresh
+\begin_inset Quotes erd
+\end_inset
+
+ di tipo video.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+r_{1}=146.64\, kbit/s\\
+b_{1}=174.577\, kbit\\
+H_{1}=0.9134
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+r_{2}=156.48\, kbit/s\\
+b_{2}=55.214\, kbit\\
+H_{2}=0.8988
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $x_{3}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\begin{cases}
+r_{3}=440.16\, kbit/s\\
+b_{3}=218.102\, kbit\\
+H_{3}=0.8968
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo due casi su 
+\begin_inset Formula $C$
+\end_inset
+
+ di uscita:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $C=1\cdot10^{6}\, bit/s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C=2\cdot10^{6}bit/s$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Vogliamo calcolare il delay 
+\begin_inset Formula $D$
+\end_inset
+
+ per i vari flussi
+\end_layout
+
+\begin_layout Standard
+Sappiamo che per gli scheduler FIFO:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{E\left(x\left(t\right)\right)-C\left(t+d\right)}{\sqrt{Var\left(x\left(t\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=x_{1}\left(t\right)+x_{2}\left(t\right)+x_{3}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo un caso in cui 
+\begin_inset Formula 
+\[
+d=150\, ms
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo bisogno media e varianza di 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=E\left(x_{1}\left(t\right)\right)+E\left(x_{2}\left(t\right)\right)+E\left(x_{3}\left(t\right)\right)=\left(r_{1}+r_{2}+r_{3}\right)t=0.7437\cdot10^{6}\cdot t\:\left[bit\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=r_{1}b_{1}t^{2H_{1}}+r_{2}b_{2}t^{2H_{2}}+r_{3}b_{3}t^{2H_{3}}=...
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Downarrow
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{0.7437\cdot10^{6}-C\cdot\left(t+0.15\right)}{\sqrt{0.0256\cdot10^{12}\cdot t^{1.8268}+0.00864\cdot10^{12}\cdot t^{1.7976}+0.09596\cdot10^{12}\cdot t^{1.7976}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Downarrow
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t^{*}:\;\alpha\left(t\right)\,\text{is the absolute minimum of }\alpha\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Potremmo farlo con 
+\begin_inset Formula 
+\[
+\frac{d\alpha\left(t\right)}{dt}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ma funziona solo nel caso 
+\emph on
+short-range dependent
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+La cosa migliore che possiamo fare è un grafico approssimato di 
+\begin_inset Formula $\alpha\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nel caso in cui 
+\begin_inset Formula 
+\[
+C=10^{6}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo il grafico seguente calcolato numericamente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-060.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{min}\approx0.93
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D>0.15\right)=e^{-\frac{\alpha_{min}^{2}}{2}}\approx0.64
+\]
+
+\end_inset
+
+ (probabilità di superare la soglia 60%!)
+\end_layout
+
+\begin_layout Standard
+Il carico del sistema è dell'
+\series bold
+80%
+\series default
+ circa (confrontando la capacità in ingresso con quella di uscita).
+\end_layout
+
+\begin_layout Standard
+Invece, nel caso:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=2\cdot10^{6}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo il grafico:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-061.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il carico è del 
+\begin_inset Formula $\sim40\%$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha\approx4.1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D>0.15\, ms\right)=e^{-\frac{\alpha_{min}^{2}}{2}}\approx1.6\cdot10^{-4}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(probabilità di superare la soglia molto più bassa)
+\end_layout
+
+\begin_layout Subsection*
+Esercizio scenario multihop
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-062.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Per qualche motivo, nella tabella dei parametri, per 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+ c'è 
+\begin_inset Formula $m$
+\end_inset
+
+ e 
+\begin_inset Formula $a$
+\end_inset
+
+ invece di 
+\begin_inset Formula $r$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+, probabilmente per distinguere il traffico di tipo 
+\emph on
+long-range dependent
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Il traffico di 
+\begin_inset Formula $x_{1}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{2}\left(t\right)$
+\end_inset
+
+ è di tipo 
+\emph on
+short-range dependent
+\emph default
+, quindi non scriviamo il valore del parametro 
+\begin_inset Formula $H_{i}$
+\end_inset
+
+ perché sappiamo già essere 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vogliamo calcolare 
+\begin_inset Formula $P_{r}\left(D_{x_{2,out}}>90\, ms\right)$
+\end_inset
+
+, cioè la probabilità che il flusso 
+\begin_inset Formula $x_{2,out}$
+\end_inset
+
+ superi il ritardo di 
+\begin_inset Formula $90ms$
+\end_inset
+
+ nello scheduler 3.
+\end_layout
+
+\begin_layout Standard
+Assumiamo la capacità di uscita degli scheduler in ingresso sia sufficiente
+ per gestire il traffico in ingresso in modo stabile (ignoriamo i valori
+ specifici).
+\end_layout
+
+\begin_layout Standard
+Per risolvere il problema abbiamo bisogno la 
+\emph on
+two-moment description 
+\emph default
+di 
+\begin_inset Formula $x_{1,out}\left(t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{2,out}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z_{1}\left(t\right)\rightarrow\begin{cases}
+E\left(z_{1}\left(t\right)\right)=r_{z_{1}}\cdot t=2\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(z_{1}\left(t\right)\right)=r_{z_{1}}\cdot b_{z_{1}}\cdot t=2\cdot10^{6}\cdot0.15\cdot10^{6}\cdot t=0.3\cdot10^{6}\cdot t\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{1}\left(t\right)\rightarrow\begin{cases}
+E\left(y_{1}\left(t\right)\right)=r_{y_{1}}\cdot t=32\cdot10^{5}\cdot t\:\left[bit\right]\\
+Var\left(y_{1}\left(t\right)\right)=r_{y_{1}}\cdot b_{y_{1}}\cdot t=16\cdot10^{12}\cdot t^{1.98}\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{1}\left(t\right)\right)=r_{x_{1}}\cdot t=3\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(x_{1}\left(t\right)\right)=r_{x_{1}}\cdot b_{x_{1}}\cdot t=0.3\cdot10^{12}\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{1,out}\left(t\right)\right)=E\left(x_{1}\left(t\right)\right)=3\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(x_{1,out}\left(t\right)\right)=max\left(Var\left(x_{1}\left(t\right)\right),\, Var\left(S_{x_{1}}\left(t\right)\right)\right)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x_{1}}\left(t\right)=\text{dipende dalla policy dello scheduler}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x_{1}}\left(t\right)=Ct-z_{1}\left(t\right)-y_{1}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(S_{x_{1}}\left(t\right)\right)=Var\left(Ct\right)+Var\left(z_{1}\left(t\right)\right)+Var\left(y_{1}\left(t\right)\right)=0+0.3\cdot10^{6}+16\cdot10^{12}\cdot t^{1.98}\;\left[bit^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(
+\series bold
+Nota
+\series default
+: Ricordarsi sempre che quando lavoriamo con le varianze, tutto diventa
+ 
+\series bold
+sommato
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+Tornando al calcolo della varianza per 
+\begin_inset Formula $x_{1,out}\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x_{1,out}\left(t\right)\right)=max\left(Var\left(x_{1}\left(t\right)\right),\, Var\left(S_{x_{1}}\left(t\right)\right)\right)=0.3\cdot10^{12}\cdot t+16\cdot10^{12}\cdot t^{1.98}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ora dobbiamo rifare lo stesso conto per 
+\begin_inset Formula $x_{2,out}\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z_{2}\left(t\right)\rightarrow\begin{cases}
+E\left(z_{2}\left(t\right)\right)=r_{z_{2}}\cdot t=1\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(z_{2}\left(t\right)\right)=r_{z_{2}}\cdot b_{z_{2}}\cdot t=0.05\cdot10^{12}\cdot t\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{2}\left(t\right)\rightarrow\begin{cases}
+E\left(y_{2}\left(t\right)\right)=m_{y_{2}}\cdot t=2.5\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(y_{2}\left(t\right)\right)=m_{y_{2}}\cdot a_{y_{2}}\cdot t^{2H_{y_{2}}}=12.5\cdot10^{12}\cdot t^{1.7}\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{2}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{2}\left(t\right)\right)=r_{x_{2}}\cdot t=4\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(x_{2}\left(t\right)\right)=r_{x_{2}}\cdot b_{x_{2}}\cdot t=4\cdot10^{6}\cdot0.0125\cdot10^{6}t=0.05\cdot10^{12}\;\left[bit^{2}\right]
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{2,out}\left(t\right)\rightarrow\begin{cases}
+E\left(x_{2,out}\left(t\right)\right)=E\left(x_{2}\left(t\right)\right)=4\cdot10^{6}\cdot t\:\left[bit\right]\\
+Var\left(x_{2,out}\left(t\right)\right)=max\left(Var\left(x_{2}\left(t\right)\right),\, Var\left(S_{x_{2}}\left(t\right)\right)\right)
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sappiamo che nello scheduler EDF:
+\begin_inset Formula 
+\[
+S_{i}\left(t\right)=Ct-\sum_{n\neq i}x_{n}\left(t-max\left(0,\delta_{n}-\delta_{i}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Downarrow
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(S_{x_{2}}\left(t\right)\right)=0+\sum_{n\neq x_{2}}Var\left(x_{n}\left(t-max\left(0,\delta_{n}-\delta_{x_{2}}\right)\right)\right)=Var\left(z_{2}\left(t-max\left(0,\delta_{z_{2}}-\delta_{x_{2}}\right)\right)\right)+Var\left(y_{2}\left(t-max\left(0,\delta_{y_{2}}-\delta_{x_{2}}\right)\right)\right)
+\]
 
 \end_inset
 
