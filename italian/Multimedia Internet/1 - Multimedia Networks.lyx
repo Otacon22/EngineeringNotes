@@ -12320,5 +12320,566 @@ Var\left(S_{x_{2}}\left(t\right)\right)=0+\sum_{n\neq x_{2}}Var\left(x_{n}\left(
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(S_{x_{2}}\left(t\right)\right)=0.05\cdot10^{12}\left(t-0.09\right)+12.5\cdot10^{12}\cdot\left(t-0.04\right)^{1.7}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(x_{2,out}\left(t\right)\right)=max\left(0.05\cdot10^{12}\cdot t,\,0.05\cdot10^{12}\cdot\left(t-0.09\right)+12.5\cdot10^{12}\cdot\left(t-0.04\right)^{1.7}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Arrivati a questo punto conosciamo la 
+\emph on
+two-moment description
+\emph default
+ dei flussi in ingresso all'ultimo scheduler.
+ Vogliamo calcolare la probabilità che il ritardo di 
+\begin_inset Formula $x_{2,out}\left(t\right)$
+\end_inset
+
+ sia maggiore di 
+\begin_inset Formula $90ms$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{x_{2,out}}\left(t\right)=-\frac{E\left(x_{2,out}\left(t\right)\right)-E\left(S_{x_{2,out}}\left(t+d\right)\right)}{\sqrt{Var\left(x_{2,out}\left(t\right)\right)+Var\left(S_{x_{2,out}}\left(t+d\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci manca ancora 
+\begin_inset Formula $S_{x_{2,out}}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x_{2,out}}\left(t\right)=Ct-x_{1,out}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(S_{x_{2,out}}\left(t\right)\right)=Ct-E\left(x_{1,out}\left(t\right)\right)=25\cdot10^{6}\cdot t-3\cdot10^{6}\cdot t=22\cdot10^{6}\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Var\left(S_{x_{2,out}}\left(t\right)\right)=0+Var\left(x_{1,out}\left(t\right)\right)=0+0.3\cdot10^{12}\cdot t+16\cdot10^{12}\cdot t^{1.98}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{x_{2,out}}\left(t\right)=-\frac{4\cdot10^{6}\cdot t-22\cdot10^{6}\cdot\left(t+d\right)}{\sqrt{max\left(0.05\cdot10^{12}\cdot t,\,0.05\cdot10^{12}\cdot\left(t-0.09\right)+12.5\cdot10^{12}\cdot\left(t-0.04\right)^{1.7}\right)+0.3\cdot10^{12}\cdot\left(t+d\right)+16\cdot10^{12}\cdot\left(t+d\right)^{1.98}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sostituiamo 
+\begin_inset Formula $d=0.09\:\left[s\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha_{x_{2,out}}\left(t\right)=\text{espressione analitica in fnzione di }t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vediamo il grafico logaritmo della funzione 
+\begin_inset Formula $\alpha_{x_{2,out}}\left(t\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-063.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il minimo di questa funzione è 
+\begin_inset Formula $\alpha\approx3.5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{r}\left(D_{x_{2,out}}>0.09\right)\approx10^{-4}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Esercizio (blocco slides 18 examples)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-064.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1}\left(t\right),x_{2}\left(t\right),y_{1}\left(t\right),z_{1}\left(t\right)\sim\begin{cases}
+E\left(..\right)=rt\\
+Var\left(..\right)=rbt
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per il primo scheduler:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x_{2}}\left(t\right)=Ct-x_{1}\left(t\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(S_{x_{2}}\left(t\right)\right)=E\left(Ct-x_{1}\left(t\right)\right)=Ct-rt=\left(C-r\right)t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(S_{x_{2}}\left(t\right)\right)=max\left(Var\left(Ct\right),Var\left(x_{1}\left(t\right)\right)\right)=Var\left(x_{1}\left(t\right)\right)=rbt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{x_{2}}\left(t\right)=-\frac{E\left(x_{2}\left(t\right)\right)-E\left(S_{x_{2}}\left(t\right)\right)}{\sqrt{Var\left(x_{2}\left(t\right)\right)+Var\left(S_{x_{2}}\left(t+d\right)\right)}}=\frac{C\left(t+d\right)-r\left(2t+d\right)}{\sqrt{2b\left(2t+d\right)}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{r}\left(D_{1}>d\right)=e^{-\frac{C\left(C-2t\right)}{2rb}d}=e^{-k_{1}d}\qquad;\: k_{1}=\frac{C\left(C-2r\right)}{2rb}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f_{D_{1}}\left(t\right)=k_{1}e^{-k_{1}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il 
+\series bold
+secondo scheduler
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(y_{2}\left(t\right)\right)=E\left(x_{2}\left(t\right)\right)=rt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(x_{2}\left(t\right)\right)=max\left(Var\left(x_{2}\left(t\right)\right),Var\left(S_{x_{2}}\left(t\right)\right)\right)=max\left(rbt,rbt\right)=rbt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(S_{y_{2}}\left(t\right)\right)=Ct-E\left(y_{1}\left(t-max\left(0,\delta_{1}-\delta_{2}\right)\right)\right)=Ct-r\left(t-max\left(0,\delta_{1}-\delta_{2}\right)\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(S_{y_{2}}\left(t\right)\right)=Var\left(y_{1}\left(t-max\left(0,\delta_{1}-\delta_{2}\right)\right)\right)=rb\left(t-max\left(0,\delta_{1}-\delta_{2}\right)\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{EDF}\left(t\right)=-\frac{E\left(y_{2}\left(t\right)\right)-E\left(S_{y_{2}}\left(t+d\right)\right)}{\sqrt{Var\left(y_{2}\left(t\right)\right)+Var\left(S_{y_{2}}\left(t+d\right)\right)}}=\frac{-rt+C\left(t+d\right)-r\left(t+d-max\left(0,\delta_{1}-\delta_{2}\right)\right)}{\sqrt{rbt+rb\left(t+d-max\left(0,\delta_{1}-\delta_{2}\right)\right)}}
+\]
+
+\end_inset
+
+;
+\begin_inset Formula 
+\[
+P_{r}\left(D_{2}>t\right)=exp\left(-\frac{C\left(C-2r\right)t}{2rb}\right)\cdot exp\left(-\frac{C\left(C-2r\right)\cdot max\left(0,\delta_{1}-\delta_{2}\right)}{2rb}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f_{D_{2}}\left(t\right)=\left(1-a\right)\delta\left(t\right)+ak_{1}e^{-k_{1}t}\quad;\: a=e^{-\frac{C\left(C-2r\right)max\left(0,\delta_{1}-\delta_{2}\right)}{2rb}}\;;\; k_{1}=\frac{C\left(C-2r\right)}{2rb}
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il 
+\series bold
+terzo scheduler
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left(z_{2}\left(t\right)\right)=E\left(y_{2}\left(t\right)\right)=rt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(z_{2}\left(t\right)\right)=max\left(Var\left(y_{2}\left(t\right)\right),Var\left(S_{y_{2}}\left(t\right)\right)\right)=max\left(rbt,rb\left(t-max\left(0,\delta_{1}-\delta_{2}\right)\right)\right)=rbt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{sappiamo che:}\quad S_{z_{2}}\left(t\right)=w_{2}Ct+\sum_{i\neq2}\left(\left(\frac{w_{2}}{\sum_{j\neq i}w_{j}}\right)\cdot\left(w_{i}\left(t-x_{i}\left(t\right)\right)\right)\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(S_{z_{2}}\left(t\right)\right)=w_{2}Ct+w_{1}Ct-E\left(z_{1}\left(t\right)\right)=Ct-rt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(S_{z_{2}}\left(t\right)\right)=Var\left(z_{1}\left(t\right)\right)=rbt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{GPS}\left(t\right)=-\frac{E\left(z_{2}\left(t\right)\right)-E\left(S_{z_{2}}\left(t+d\right)\right)}{\sqrt{Var\left(z_{2}\left(t\right)\right)+Var\left(S_{z_{2}}\left(t+d\right)\right)}}=\frac{C\left(t+d\right)-r\left(2t+d\right)}{\sqrt{rb\left(2t+d\right)}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{r}\left(D_{3}>d\right)=e^{-k_{1}d}\, k_{1}=...
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f_{D_{3}}\left(t\right)=k_{1}e^{-k_{1}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+End-to-end delay
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{e2e}=D_{1}+D_{2}+D_{3}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f_{D_{e2e}}\left(t\right)=f_{D_{1}}\left(t\right)*f_{D_{2}}\left(t\right)*f_{D_{3}}\left(t\right)=k_{1}e^{-k_{1}t}*\left(\left(1-a\right)\cdot\delta\left(t\right)+ak_{1}e^{-k_{1}t}\right)*k_{1}e^{-k_{1}t}=..........
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+....=k_{1}e^{-k_{1}t}*k_{1}e^{-k_{1}t}*\left(1-a\right)\delta\left(t\right)+ak_{1}e^{-k_{1}t}*k_{1}e^{-k_{1}t}*k_{1}e^{-k_{1}t}=.....
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Ci concentriamo sul caso del traffico 
+\emph on
+short-range dependent
+\emph default
+, altrimenti non è possibile clacolarlo in forma analitica.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D=\sum_{i=1}^{N}D_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso più semplice:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{D_{i}}=k_{i}e^{-k_{i}t}\:\text{ abbiamo due casi: }\:\begin{cases}
+k_{i}=k_{j} & \:\forall i\neq j\\
+k_{i}\neq k_{j} & \:\forall i\neq j
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In entrambi i casi:
+\begin_inset Formula 
+\[
+f_{D}\left(t\right)=f_{D_{1}}\left(t\right)*f_{D_{2}}\left(t\right)*...*f_{D_{N}}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel 
+\series bold
+\bar under
+secondo caso
+\series default
+\bar default
+ abbiamo un 
+\emph on
+hyper-exponential
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{D}\left(t\right)=\sum_{i=1}^{N}K_{i}e^{-k_{i}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+K_{i}=\left\{ \left[\prod_{j=1}^{n}\frac{k_{j}}{k_{j}+s}\right]\left(s+k_{i}\right)\right\} _{s=-k_{i}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel 
+\series bold
+\bar under
+primo caso
+\series default
+\bar default
+ abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{D}\left(t\right)=\frac{k^{n}t^{n-1}}{\left(n-1\right)!}e^{-kt}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se torniamo alla 
+\begin_inset Formula $f_{D_{e2e}}\left(t\right)$
+\end_inset
+
+ che stavamo calcolando:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{D_{e2e}}\left(t\right)=\left(1-a\right)\cdot\left(k_{1}\cdot e^{-k_{1}\left(t\right)}*k_{1}e^{-k_{1}t}\right)+a\left(k_{1}e^{-k_{1}t}*k_{1}e^{-k_{1}t}*k_{1}e^{-k_{1}t}\right)=\left(1-a\right)k_{1}^{2}te^{-k_{1}t}+\frac{ak_{1}^{3}t^{2}}{2}e^{-k_{1}t}=\frac{ak_{1}^{3}t^{2}}{2}e^{-k_{1}t}+\left(1-a\right)k_{1}^{2}te^{-k_{1}t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
 \end_body
 \end_document
