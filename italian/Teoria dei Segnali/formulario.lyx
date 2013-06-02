@@ -1,0 +1,4188 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1.5cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Formulario di Teoria dei Segnali
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Seno e coseno in forma esponenziale complessa:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+cos\left(2\pi ft\right)=\frac{1}{2}\cdot\left(e^{j2\pi ft}+e^{-j2\pi ft}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+sin\left(2\pi ft\right)=\frac{1}{2j}\cdot\left(e^{j2\pi ft}-e^{-j2\pi ft}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Energia di un segnale:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{x\left(t\right)}=\int_{-\infty}^{+\infty}\left|x\left(t\right)\right|^{2}dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Caso 
+\series bold
+discreto
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E=\sum_{n=-\infty}^{\infty}\left|x_{n}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per un segnale periodico, l'energia è sempre infinita.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Potenza di un segnale
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{x\left(t\right)}=lim_{t\rightarrow\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{+\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Caso 
+\series bold
+discreto
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P=lim_{N\rightarrow+\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\left|x_{n}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per un segnale periodico la potenza è finita solo se è finita su un periodo
+ 
+\begin_inset Formula $T_{o}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Nel caso di un segnale 
+\series bold
+periodico
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P=\frac{1}{T_{0}}\int_{-\frac{T_{0}}{2}}^{\frac{T_{o}}{2}}\left|x\left(t\right)\right|^{2}dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nel caso di un segnale 
+\series bold
+periodico discreto
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P=\frac{1}{N_{0}}\sum_{n=0}^{N_{0}-1}\left|x_{n}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Potenza del seno:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=Asin\left(\alpha t+\varphi\right)\qquad\rightarrow\qquad P_{x\left(t\right)}=\frac{A^{2}}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Traslazione e moltiplicazione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Traslare nei tempi
+\series default
+ = Moltiplicare per un esponenziale complesso nelle frequenze
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moltiplicare per un impulso nei tempi
+\series default
+ = Calcolare il valore del segnale nel punto dell'impulso
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Segnali basilari discreti
+\end_layout
+
+\begin_layout Itemize
+Scalino discreto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{n}=\begin{cases}
+1 & n\geq0\\
+0 & n<0
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Impulso discreto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\delta_{n}=\begin{cases}
+0 & n\neq0\\
+1 & n=0
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proprietà di impulso e scalino discreti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\delta_{n}=u_{n}-u_{n-1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+u_{n}=\sum_{m=-\infty}^{n}\delta_{m}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+x_{n}=\sum_{k=-\infty}^{+\infty}x_{k}\delta_{n-k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Segnali basilari continui
+\end_layout
+
+\begin_layout Itemize
+Scalino continuo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u\left(t\right)=\begin{cases}
+0 & t<0\\
+\frac{1}{2} & t=0\\
+1 & t>0
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Rettangolo continuo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+rett\left(t\right)=u\left(t+\frac{1}{2}\right)-u\left(t-\frac{1}{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+rett\left(\frac{t}{T}\right)=\text{Rettangolo di base }T\:\left(\text{da }-\frac{T}{2}\text{ a}+\frac{T}{2}\right)\text{  e altezza }1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Impulso continuo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\delta\left(t\right)=\frac{du\left(t\right)}{dt}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proprietà di impulso e scalino:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u\left(t\right)=\int_{-\infty}^{t}\delta\left(\tau\right)\, d\tau
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\int_{-\infty}^{+\infty}x\left(t\right)\delta\left(t-\tau\right)dt=x\left(\tau\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Convoluzione (discreta)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{n}=x_{n}*h_{n}=\sum_{k=-\infty}^{+\infty}x_{k}h_{n-k}=\sum_{k=-\infty}^{+\infty}h_{k}x_{n-k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proprietà
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}*h_{n}=h_{n}*x_{n}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(x_{1n}*x_{2n}\right)*x_{3n}=x_{1n}*\left(x_{2n}*x_{3n}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(x_{1n}*x_{2n}\right)*h_{n}=\left(x_{1n}*h_{n}\right)+\left(x_{2n}*h_{n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dato 
+\begin_inset Formula $y_{n}=x_{n}*h_{n}$
+\end_inset
+
+ , abbiamo 
+\begin_inset Formula $y_{n-1}=x_{n-1}*h_{n}=x_{n}*h_{n-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se il primo segnale è lungo 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni ed il secondo è lungo 
+\begin_inset Formula $M$
+\end_inset
+
+ campioni, la convoluzione sarà lunga 
+\begin_inset Formula $N+M-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Convoluzione per un impulso
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Impulso in zero: 
+\begin_inset Formula $\delta_{n}*h_{n}=h_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Convoluzione segnale-impulso = tralsazione
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}*\delta_{n-n_{o}}=x_{n-n_{0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Prodotto segnale-impulso
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}\delta_{n-n_{0}}=x_{n_{0}}\delta_{n_{0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Convoluzione continua
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(t\right)=x\left(t\right)*h\left(t\right)=\int_{-\infty}^{+\infty}x\left(\tau\right)\cdot h\left(t-\tau\right)d\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A\cdot rect\left(\frac{t}{T}\right)*B\cdot cos\left(\frac{2\pi t}{T}\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=\text{triangolo base }\left(-T,+T\right)\text{ e altezza }T
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\end_layout
+
+\begin_layout Itemize
+Proprietà di 
+\series bold
+derivazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dy\left(t\right)}{dt}=\frac{dx\left(t\right)}{dt}*h\left(t\right)=x\left(t\right)*\frac{dh\left(t\right)}{dt}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Convoluzione per un impulso continuo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Convoluzione segnale-impulso=traslazione
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s\left(t\right)*\delta\left(t-t_{0}\right)=s\left(t-t_{0}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Prodotto segnale-impulso
+\series default
+=
+\series bold
+valore
+\series default
+ del segnale nella posizione dell'impulso:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+s\left(t\right)\cdot\delta\left(t-t_{0}\right)=s\left(t_{0}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(t\right)=rect\left(t\right)*rect\left(\frac{t}{T}\right)=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=T\cdot tri\left(\frac{t}{T}\right)\quad\left(\text{triangolo base }\left(-T,+T\right)\text{ e altezza }T\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Risposta all'impulso di un circuito RC
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h\left(t\right)=e^{-at}\cdot u\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(t\right)=u\left(t\right)*h\left(t\right)=\frac{1}{a}\cdot\left[1-e^{-at}\right]\cdot u\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso specifico in cui 
+\begin_inset Formula $x\left(t\right)=u\left(t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dy\left(t\right)}{dt}=h\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Trasformata di Fourier:
+\end_layout
+
+\begin_layout Itemize
+Trasformata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(f\right)=\int_{-\infty}^{+\infty}x\left(t\right)\cdot e^{-j2\pi ft}\, dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Anti-trasformata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=\int_{-\infty}^{+\infty}X\left(f\right)\cdot e^{j2\pi ft}\, df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ è un segnale reale: 
+\begin_inset Formula $X\left(f\right)=X*\left(-f\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proprietà di 
+\series bold
+dualità
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Detta 
+\begin_inset Formula $\mathcal{F }$
+\end_inset
+
+ la 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+Trasformata di Fourier
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang italian
+ e 
+\begin_inset Formula $\mathcal{F}^{-1}$
+\end_inset
+
+ la sua inversa
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\[
+\xymatrix{x\left(t\right)\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)\ar@(d,d)[l]^{F^{-1}}}
+\qquad\qquad\xymatrix{X\left(t\right)\ar@(u,u)[r]^{\mathcal{F}} & x\left(f\right)\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Alcune trasformate continue
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=1\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\delta\left(f\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{X\left(f\right)=1\,\ar@(u,u)[r]^{\mathcal{F}^{-1}} & x\left(t\right)=\delta\left(t\right)\,\ar@(d,d)[l]^{\mathcal{F}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=A\cdot rect\left(\frac{t}{T}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=A\frac{sin\left(\pi fT\right)}{\pi f}=TA\cdot sinc\left(fT\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=A\cdot\frac{sin\left(\pi Tt\right)}{\pi Tt}=A\cdot sinc\left(T\cdot t\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{A}{\left|T\right|}rect\left(\frac{f}{T}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=cos\left(2\pi f_{0}t\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{1}{2}\delta\left(f+f_{0}\right)+\frac{1}{2}\delta\left(f-f_{0}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=sin\left(2\pi f_{0}t\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{j}{2}\delta\left(f+f_{0}\right)-\frac{j}{2}\delta\left(f-f_{0}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=e^{jat}\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\delta\left(f-\frac{a}{2\pi}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=\delta\left(t-a\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=e^{j2\pi af}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(at\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{1}{\left|a\right|}X\left(\frac{f}{a}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=e^{-\pi t^{2}}\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=e^{-\pi f^{2}}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{\frac{-t^{2}}{2\sigma^{2}}}\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=e^{-2\pi^{2}\sigma^{2}f^{2}}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=A\cdot tri\left(\frac{t}{T}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=A\cdot T\cdot\left(\frac{sin\left(\pi fT\right)}{\pi fT}\right)^{2}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(infatti sappiamo che il triangolo può essere rappresentanto come convoluzione
+ di rettangoli)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=T\cdot tri\left(\frac{t}{T}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Proprietà di convoluzione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(t\right)=x\left(t\right)*h\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(f\right)\cdot H\left(f\right)=Y\left(f\right)\overset{\mathcal{F}^{-1}}{\rightarrow}y\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Proprietà di modulazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y\left(t\right)=x\left(t\right)\cdot h\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(f\right)*H\left(f\right)=Y\left(f\right)\overset{\mathcal{F}^{-1}}{\rightarrow}y\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modulazione AM:
+\end_layout
+
+\begin_layout Itemize
+Modulazione (in due possibili modi: utilizzando il seno o il coseno; l'utilizzo
+ di entrambi è la modulazione QAM)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{1}\left(t\right)=x\left(t\right)\cdot cos\left(2\pi f_{0}t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{2}\left(t\right)=x\left(t\right)\cdot sin\left(2\pi f_{0}t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Demodulazione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z_{1}\left(t\right)=2\cdot y_{1}\left(t\right)\cdot cos\left(2\pi f_{0}t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z_{2}\left(t\right)=2\cdot y_{2}\left(t\right)\cdot sin\left(2\pi f_{0}t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Proprietà di derivazione delle trasformate
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\frac{dx\left(t\right)}{dt}\overset{\mathcal{F}}{\Rightarrow}j2\pi f\cdot X\left(f\right)}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\frac{dX\left(f\right)}{df}\overset{\mathcal{F}^{-1}}{\Rightarrow}-j2\pi t\cdot x\left(t\right)}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Proprietà di integrazione delle trasformate
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ \int_{-\infty}^{+\infty}x\left(\tau\right)d\tau\right\} =\frac{X\left(f\right)}{j2\pi f}+\frac{1}{2}X\left(0\right)\cdot\delta\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ \frac{-x\left(t\right)}{j2\pi t}+\frac{1}{2}x\left(0\right)\delta\left(t\right)\right\} =\int_{-\infty}^{f}X\left(\eta\right)d\eta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Relazione di Perseval
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\int_{-\infty}^{+\infty}x\left(t\right)y\left(t\right)dt=\int_{-\infty}^{+\infty}X\left(f\right)\cdot Y$
+\end_inset
+
+
+\begin_inset Formula $\left(-f\right)df$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\int_{-\infty}^{+\infty}x\left(t\right)\cdot y^{*}\left(t\right)dt=\int_{-\infty}^{+\infty}X\left(f\right)\cdot Y^{*}\left(f\right)df$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\int_{-\infty}^{+\infty}\left|x\left(t\right)\right|^{2}dt=\int_{-\infty}^{+\infty}\left|X\left(f\right)\right|^{2}df$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Cross-correlazione tra i segnali 
+\begin_inset Formula $x$
+\end_inset
+
+ e 
+\begin_inset Formula $y$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{xy}\left(\tau\right)=x\left(\tau\right)*y^{*}\left(-\tau\right)=\int_{-\infty}^{+\infty}x\left(t+\tau\right)\cdot y^{*}\left(t\right)dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ R_{xy}\left(\tau\right)\right\} =X\left(f\right)\cdot Y\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Autocorrelazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=\int_{-\infty}^{+\infty}\left|X\left(f\right)\right|^{2}\cdot e^{j2\pi f\tau}df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Si può dimostrare che 
+\begin_inset Formula $R_{x}\left(0\right)\geq\left|R_{x}\left(\tau\right)\right|\quad\text{per }\tau\neq0$
+\end_inset
+
+ , cioè che 
+\series bold
+il massimo di 
+\series default
+
+\begin_inset Formula $R_{x}\left(\tau\right)$
+\end_inset
+
+ è in 
+\begin_inset Formula $\tau=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se vogliamo sapere il ritardo tra due segnali, possiamo calcolare la loro
+ cross-correlazione e cercarne il massimo.
+ Il massimo sarà in 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+, che è il ritardo del segnale.
+\end_layout
+
+\begin_layout Subsubsection*
+Trasformata di Fourier di segnali discreti
+\end_layout
+
+\begin_layout Standard
+Abbiamo 
+\begin_inset Formula $x_{n}=x\left(nT\right)$
+\end_inset
+
+, un segnale continuo campionato a frequenza 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Trasformata
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(f\right)=\sum_{n=-\infty}^{+\infty}x_{n}\cdot e^{-j2\pi fnT}\qquad\text{ periodica con periodicità }\frac{1}{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Anti-trasformata
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}=T\cdot\int_{-\frac{1}{2T}}^{\frac{1}{2T}}X\left(f\right)e^{j2\pi fnT}\, df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota bene
+\series default
+: 
+\begin_inset Formula $X\left(f\right)$
+\end_inset
+
+, la trasformata, è 
+\series bold
+continua
+\series default
+.
+ Invece 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ è discreta.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Trasformata normalizzata
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(f\right)=\sum_{n=-\infty}^{+\infty}x_{n}\cdot e^{-j2\pi\phi nT}\qquad\text{in funzione di }\phi=fT\text{ e con periodicità }1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Anti-trasformata normalizzata
+\series default
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}=\int_{-\frac{T}{2}}^{\frac{T}{2}}X\left(\phi\right)e^{j2\pi\phi n}d\phi
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nota: Se non ci sono informazioni sull'intervallo di campionamento, si assume
+ 
+\begin_inset Formula $T=1$
+\end_inset
+
+ e 
+\begin_inset Formula $f=\phi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nota: 
+\series bold
+Non c'è dualità
+\series default
+ nel discreto.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Passaggio 
+\begin_inset Formula $\phi\longleftrightarrow f$
+\end_inset
+
+
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per passare da una relazione della trasformata 
+\begin_inset Formula $X\left(f\right)$
+\end_inset
+
+ all'equivalente relazione della trasformata normalizzata 
+\begin_inset Formula $X\left(\phi\right)$
+\end_inset
+
+, è sufficiente porre 
+\begin_inset Formula $T=1$
+\end_inset
+
+ e sostituire 
+\begin_inset Formula $f$
+\end_inset
+
+ con 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+ Viceversa, per passare da 
+\begin_inset Formula $X\left(\phi\right)$
+\end_inset
+
+ a 
+\begin_inset Formula $X\left(f\right)$
+\end_inset
+
+, occorre sostituire 
+\begin_inset Formula $X\left(\phi\right)$
+\end_inset
+
+ e porre 
+\begin_inset Formula $\phi=fT$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nota: a seconda del tipo di campionamento possiamo assumere 
+\begin_inset Formula $\phi=\frac{k}{N}=fT$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size small
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n-n_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)e^{-j2\pi\phi n_{0}}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}\cdot e^{j2\pi\phi_{0}n}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi-\phi_{0}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n-n_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(f\right)e^{-j2\pi fn_{0}T}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}\cdot e^{j2\pi nTf_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(f-f_{0}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+[disegno]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{\left(u_{n}-u_{n-N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=e^{-j\pi\phi\left(N-1\right)}\cdot\frac{sin\left(\pi\phi N\right)}{sin\left(\pi\phi\right)}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{\left(u_{n}-u_{n-N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(f\right)=e^{-j\pi fT\left(N-1\right)}\cdot\frac{sin\left(\pi fTN\right)}{sin\left(\pi fT\right)}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+ periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno] rettangolo discreto da -N a N
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{\left(u_{n+N+1}-u_{n-N+1}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\frac{sin\left(\pi\phi\left(2N+1\right)\right)}{sin\left(\pi\phi\right)}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{\left(u_{n+N+1}-u_{n-N+1}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\frac{sin\left(\pi fT\left(2N+1\right)\right)}{sin\left(\pi fT\right)}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno] seno cardinale discreto
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=\frac{sin\left(\pi\phi_{c}n\right)}{\pi n}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=rect\left(\frac{\phi}{\frac{\phi_{c}}{2}}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno rect?]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno impulso discreto]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=\delta_{n}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=1\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=\delta_{n}\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(f\right)=1\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno costante x_n=1]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=1\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\delta_{n}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+[disegno impulsi periodici]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Proprietà della trasformata di una sequenza
+\end_layout
+
+\begin_layout Itemize
+La somma dei campioni è uguale alla trasformata in zero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\left(0\right)=\sum_{n=-\infty}^{+\infty}x_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simmetria hermitiana: 
+\begin_inset Formula $X\left(-f\right)=X^{*}\left(f\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Trasformata della convoluzione
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ x_{n}*h_{n}\right\} =X\left(\phi\right)\cdot H\left(\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Attenzione, non vale il viceversa!
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Convoluzione circolare
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{Z}\left(\phi\right)=\widetilde{X}\left(\phi\right)*\widetilde{Y}\left(\phi\right)=\int_{-\frac{1}{2}}^{\frac{1}{2}}\widetilde{X}\left(\theta\right)\cdot\widetilde{Y}\left(\phi-\theta\right)d\theta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{Z}\left(f\right)=T\cdot\int_{-\frac{1}{2T}}^{\frac{1}{2T}}\widetilde{X}\left(\theta\right)\cdot\widetilde{Y}\left(f-\theta\right)d\theta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ x_{n}\cdot y_{n}\right\} =\widetilde{X}\left(\phi\right)\circledast\widetilde{Y}\left(\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Perseval
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{n=-\infty}^{+\infty}x_{n}y_{n}^{*}=T\int_{-\frac{1}{2T}}^{\frac{1}{2T}}X\left(f\right)\cdot Y^{*}\left(f\right)\, df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{cases}
+\sum_{n=-\infty}^{+\infty}\left|x_{n}\right|^{2}=T\cdot\int_{-\frac{1}{2T}}^{\frac{1}{2T}}\left|X\left(f\right)\right|^{2}df\\
+\sum_{n=-\infty}^{+\infty}\left|x_{n}\right|^{2}=\int_{-\frac{1}{2}}^{\frac{1}{2}}\left|X\left(\phi\right)\right|^{2}d\phi
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Cross-correlazione
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{xy}\left[k\right]=\sum_{n=-\infty}^{+\infty}y_{n}^{*}\cdot x_{n+k}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Autocorrelazione
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[k\right]=\sum_{n=-\infty}^{+\infty}x_{n}^{*}\cdot x_{n+k}=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Importante proprietà della cross-correlazione discreta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{F}\left\{ R_{xy}\left[k\right]\right\} =X\left(f\right)\cdot Y^{*}\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Trasformate discrete del seno e coseno:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=cos\left(2\pi\frac{n}{N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\frac{1}{2}\delta\left(\phi-\frac{1}{N}\right)+\frac{1}{2}\delta\left(\phi+\frac{1}{N}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=cos\left(2\pi f_{0}nT\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(f\right)=\frac{1}{2T}\delta\left(f-f_{0}\right)+\frac{1}{2T}\delta\left(f+f_{0}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=sin\left(2\pi\frac{n}{N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\frac{-j}{2}\delta\left(\phi-\frac{1}{N}\right)+\frac{j}{2}\delta\left(\phi+\frac{1}{N}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=sin\left(2\pi f_{0}nT\right)\,\ar@(u,u)[r]^{\mathcal{F}} & \widetilde{X}\left(\phi\right)=\frac{-j}{2T}\delta\left(f-f_{0}\right)+\frac{j}{2T}\delta\left(f+f_{0}\right)\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Teorema del campionamento
+\end_layout
+
+\begin_layout Itemize
+Campioamento ideale: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{c}=x\left(t\right)\cdot\sum_{-\infty}^{+\infty}\delta\left(t-nT\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{c}\left(f\right)=\frac{1}{T}\sum_{-\infty}^{+\infty}X\left(f-\frac{k}{T}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[disegni]
+\end_layout
+
+\begin_layout Itemize
+Posto 
+\begin_inset Formula $f_{s}=\frac{1}{T}$
+\end_inset
+
+ come frequenza di campionamento nota e 
+\begin_inset Formula $f_{max}$
+\end_inset
+
+ la frequenza massima assunta dal segnale da campionare
+\end_layout
+
+\begin_layout Standard
+Il teorema del campioanmento afferma che per non sovrapporre le repliche
+ spettrali e poter ricostruire il segnale campionato, è necessario che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{s}>2f_{max}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il filtro che applichiamo deve moltiplicare di un fattore 
+\begin_inset Formula $T$
+\end_inset
+
+, poiché il campionamento abbassa l'ampiezza della trasformata con un fattore
+ 
+\begin_inset Formula $\frac{1}{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+L'ideale è l'utilizzo di un filtro che sia in frequenza come un rettangolo
+ 
+\begin_inset Formula $T\cdot rett\left(\frac{t}{f_{s}}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per alcuni segnali particolari, riesco a non perdere informazione anche
+ se non rispetto il teorema del campionamento, posto che i filtri siano
+ fatti in un certo modo (vedi esempio coseno).
+\end_layout
+
+\begin_layout Standard
+In generale, come filtro si utilizza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h\left(t\right)=\frac{sin\left(\pi\frac{t}{T}\right)}{\pi\frac{t}{T}}\qquad\qquad H\left(f\right)=T\cdot rect\left(fT\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(t\right)=x_{c}\left(t\right)*h\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Energia di un segnale continuo e la sua copia discreta
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{x\left(t\right)}=E_{x_{n}}\cdot T
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{x_{n}}=\frac{1}{T}\cdot\int_{-\infty}^{+\infty}\left|X\left(f\right)\right|^{2}df
+\]
+
+\end_inset
+
+ (si suppone di aver rispettato il teorema del campionamento)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Energia
+\series default
+ nel caso in cui 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ è periodico di periodo 
+\begin_inset Formula $T_{0}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{x\left(t\right)}=\frac{E_{x_{n}}}{N}=P_{x_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Campionamento della trasformata
+\series default
+: Non perdiamo informazione sul segnale se non si sovrappongono le repliche
+ temporali.
+ La condizione affinché ciò non accada è: 
+\begin_inset Formula 
+\[
+\frac{1}{\Delta f}>T_{0}
+\]
+
+\end_inset
+
+ Dove 
+\begin_inset Formula $T_{0}$
+\end_inset
+
+ è la durata del segnale 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ trasformato.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non c'è il 
+\begin_inset Formula $2$
+\end_inset
+
+ nella relazione perché il segnale nel tempo lo considero da 0 a 
+\begin_inset Formula $T_{0}$
+\end_inset
+
+ invece che da 
+\begin_inset Formula $-\frac{T_{0}}{2}$
+\end_inset
+
+ a 
+\begin_inset Formula $\frac{T_{0}}{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Sottocampionamento
+\end_layout
+
+\begin_layout Standard
+La violazione del teorema del campionamento può essere utilizzata per portare
+ in banda base un segnale modulato.
+\end_layout
+
+\begin_layout Standard
+Prendiamo 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ con 
+\begin_inset Formula $X\left(f\right)=rett\left(\frac{t}{f_{max}}\right)$
+\end_inset
+
+ e moduliamo con 
+\begin_inset Formula $y\left(t\right)=x\left(t\right)\cdot cos\left(2\pi f_{0}t\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $f_{0}\gg f_{max}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[disegno]
+\end_layout
+
+\begin_layout Itemize
+Possiamo campionare con frequenza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{s}=\frac{f_{0}}{N}>2f_{max}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E portare 
+\begin_inset Formula $y\left(t\right)$
+\end_inset
+
+ in banda base
+\end_layout
+
+\begin_layout Subsubsection*
+La trasformata discreta di Fourier (attenzione, questa non è la trasformata
+ continua di segnali discreti!)
+\end_layout
+
+\begin_layout Standard
+[disegno]
+\end_layout
+
+\begin_layout Itemize
+Abbiamo un segnale nel tempo, che dura 
+\begin_inset Formula $T_{0}$
+\end_inset
+
+.
+ Lo campioniamo 
+\begin_inset Formula $x_{n}=x\left(nT\right)$
+\end_inset
+
+.
+ Otteniamo 
+\begin_inset Formula $N=\frac{T_{0}}{T}$
+\end_inset
+
+ campioni.
+\end_layout
+
+\begin_layout Itemize
+Trasformiamo il segnale e campioniamo la trasformata con 
+\begin_inset Formula $\Delta f=\frac{1}{T_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otteniamo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+DFT (trasformata discreta di fourier)
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{k}=\sum_{n=0}^{N-1}x_{n}\cdot e^{-j2\pi\frac{nk}{N}}\quad\text{periodica }\quad\Rightarrow\:\widetilde{X}\left(f\right)|_{f=\frac{k}{NT}}=\widetilde{X}\left(\phi\right)|_{\phi=\frac{k}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IDFT (trasformata inversa di fourier)
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}=\frac{1}{N}\cdot\sum_{k=0}^{N-1}X_{k}\cdot e^{j2\pi\frac{nk}{N}}\quad\text{dove }f=\frac{k}{NT}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In questo caso sia 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ che 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ sono discrete.
+\end_layout
+
+\begin_layout Itemize
+La DFT quanti campioni ha? Infiniti.
+ Posso leggere i campioni che voglio, basta che ne leggo 
+\begin_inset Formula $N$
+\end_inset
+
+, tanto sono periodici.
+\end_layout
+
+\begin_layout Itemize
+La scelta convenzionale è leggere i campioni della normalizzata da 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $N-1$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Itemize
+Se trasliamo il segnale 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ non dobbiamo dimenticare la sua periodicità!
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n-n_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}\cdot e^{-j2\pi\frac{n_{0}k}{N}}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=\delta_{n}\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}=1\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Nota: l'impulso è preso su una sequenza di 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=1\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}=N\cdot\delta_{k}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=e^{j2\pi\phi_{0}n}=e^{j2\pi\frac{k_{0}}{N}n}\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}=N\cdot\delta_{k+k_{0}}=N\cdot\delta_{k+k_{0}-N}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+periodica 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attenzione: se 
+\begin_inset Formula $\phi$
+\end_inset
+
+non è un multiplo intero di 
+\begin_inset Formula $\frac{1}{N}$
+\end_inset
+
+, non posso scriverlo nella forma che abbiamo visto ora!
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=cos\left(2\pi n\frac{k_{0}}{N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}=\frac{N}{2}\delta_{k-k_{0}}+\frac{N}{2}\delta_{k+k_{0}}=\frac{N}{2}\delta_{k-k_{0}}+\frac{N}{2}\delta_{k+k_{0}-N}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n}=sin\left(2\pi n\frac{k_{0}}{N}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}=\frac{-jN}{2}\delta_{k-k_{0}}+\frac{jN}{2}\delta_{k+k_{0}}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z_{k}=X_{k}\cdot Y_{k}\:\overset{IDFT}{\Rightarrow}\: z_{n}=x_{n}\circledast y_{n}=\sum_{m=0}^{N-1}x_{m}\cdot y_{n-m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nota: se aggiungo 
+\begin_inset Formula $\left(N-1\right)$
+\end_inset
+
+ zeri prima e dopo a 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ e 
+\begin_inset Formula $Y_{k}$
+\end_inset
+
+ (in modo da avere lunghezza risultante 
+\begin_inset Formula $2N-1$
+\end_inset
+
+), ottengo la convoluzione circolare uguale alla convoluzione lineare.
+\end_layout
+
+\begin_layout Subsubsection*
+Ripasso di probabilità:
+\end_layout
+
+\begin_layout Standard
+Frequenza di un evento A: 
+\begin_inset Formula $f_{A}=\frac{N_{A}}{N}\approx P\left(A\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+0\leq P\left(A\right)\leq1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Funzione di ripartizione / funzione di distribuzione: 
+\begin_inset Formula 
+\[
+F_{x}\left(a\right)=P\left(x\leq a\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Densità di probabilità (d.d.p.):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{x}\left(a\right)=\frac{dF_{x}\left(a\right)}{da}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Media e varianza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{x}=E\left[x\right]=\int_{-\infty}^{+\infty}p_{x}\left(a\right)da
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[\left|x\right|^{2}\right]=\int_{-\infty}^{+\infty}\left|a\right|^{2}\cdot p_{x}\left(a\right)da
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\sigma_{x}^{2}=E\left[\left|x-m_{x}\right|^{2}\right]=E\left[x^{2}\right]-\left|E\left[x\right]\right|^{2}=E\left[x^{2}\right]-\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+d.d.p.
+ gaussiana:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{x\left(t\right)}\left(a\right)=\frac{1}{\sqrt{2\pi\sigma_{x}^{2}}}e^{-\frac{\left(a-m_{x}\right)^{2}}{2\sigma_{x}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+d.d.p.
+ congiunta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{x,y}\left(k,b\right)=p_{y/x=k}\left(b\right)\cdot p_{x}\left(k\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $p_{y/x=k}\left(b\right)$
+\end_inset
+
+ è 
+\begin_inset Formula $P\left(y\leq b\right)$
+\end_inset
+
+ data 
+\begin_inset Formula $x=k$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Se e solo se x e y sono indipendenti, allora
+\series default
+: 
+\begin_inset Formula $p_{xy}\left(a,b\right)=p_{x}\left(a\right)\cdot p_{y}\left(b\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+d.d.p.
+ uniforme: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ha una densità costante tra 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $L$
+\end_inset
+
+, con altezza 
+\begin_inset Formula $\frac{1}{L}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m_{x}=\frac{L}{2}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{x}^{2}=\frac{L^{2}}{12}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Densità di probabilità marginali:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{z}\left(b\right)=\int_{-\infty}^{+\infty}p_{xz}\left(a,b\right)da
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Un processo casuale è l'insieme di tutti i segnali deterministici (detti
+ 
+\begin_inset Quotes eld
+\end_inset
+
+realizzazioni del processo
+\begin_inset Quotes erd
+\end_inset
+
+), generati da altrettanti sorgenti uguali, ma indipendenti tra di loro.
+\end_layout
+
+\begin_layout Standard
+La densità di probabilità del processo casuale non è sufficiente a descriverne
+ completamente il processo stesso.
+ Infatti è necessario descrivere la relazione di indipendenza tra le variabili
+ casuali costituite dai valori assunti dal processo casuale a tempi diversi.
+\end_layout
+
+\begin_layout Subsubsection*
+Auto-correlazione
+\end_layout
+
+\begin_layout Standard
+Serve a quantificare il grado d'indipendenza che esiste tra i campionidel
+ processo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(t_{1},t_{2}\right)=E\left[x^{*}\left(t_{1}\right)\cdot x\left(t_{2}\right)\right]=\int\int_{-\infty}^{+\infty}a^{*}\cdot b\cdot P_{x\left(t_{1}\right),x\left(t_{2}\right)}\left(a,b\right)\, da\, db
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(P_{x\left(t_{1}\right),x\left(t_{2}\right)}\left(a,b\right)=P_{x\left(t_{2}\right)/x\left(t_{1}\right)=a}\left(b\right)\cdot P_{x\left(t_{1}\right)}\left(a\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Se e solo se 
+\begin_inset Formula $x\left(t_{1}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x\left(t_{2}\right)$
+\end_inset
+
+ sono indipendenti
+\series default
+, allora:
+\begin_inset Formula 
+\[
+P_{x\left(t_{1}\right),x\left(t_{2}\right)}\left(a,b\right)=P_{x\left(t_{2}\right)}\left(b\right)\cdot P_{x\left(t_{1}\right)}\left(a\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(t_{1},t_{2}\right)=m_{x\left(t_{1}\right)}^{*}\cdot m_{x\left(t_{2}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Autocovarianza
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{x}\left(t_{1},t_{2}\right)=R_{x}\left(t_{1},t_{2}\right)-m_{x\left(t_{1}\right)}^{*}\cdot m_{x\left(t_{2}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota bene
+\series default
+: 
+\begin_inset Formula $t_{1}\neq t_{2}$
+\end_inset
+
+, perché 
+\begin_inset Formula $C_{x}\left(t_{1},t_{1}\right)=0$
+\end_inset
+
+ 
+\series bold
+sempre
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $x\left(t_{1}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x\left(t_{2}\right)$
+\end_inset
+
+ sono indipendenti, allora 
+\begin_inset Formula $C_{x}\left(t_{1},t_{2}\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Attenzione! Non vale il viceversa
+\series default
+.
+ Se 
+\begin_inset Formula $C_{x}\left(t_{1},t_{2}\right)=0$
+\end_inset
+
+ , non posso affermare che 
+\begin_inset Formula $x\left(t_{1}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x\left(t_{2}\right)$
+\end_inset
+
+ sono indipendenti.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula 
+\[
+\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t_{1}\right)\text{ e }x\left(t_{2}\right)\text{ sono indipendenti}\,\ar@(u,u)[r]^{allora} & C_{x}\left(t_{1},t_{2}\right)=0\,\ar@(d,d)[l]|-X}
+}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $C_{x}\left(t_{1},t_{2}\right)=$
+\end_inset
+
+0, posso invece dire che 
+\begin_inset Formula $x\left(t_{1}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x\left(t_{2}\right)$
+\end_inset
+
+ sono 
+\series bold
+incorrelati
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Coefficiente di correlazione
+\end_layout
+
+\begin_layout Standard
+Quantifica il grado di correlazione (e quindi predicibilità) tra due campioni
+ del processo casuale
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho_{x}\left(t_{1},t_{2}\right)=\frac{C_{x}\left(t_{1},t_{2}\right)}{\sqrt{\sigma_{x\left(t_{1}\right)}^{2}\cdot\sigma_{x\left(t_{2}\right)}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota
+\series default
+: 
+\begin_inset Formula $-1<\rho_{x}\left(t_{1},t_{2}\right)<1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\rho_{x}\left(t_{1},t_{2}\right)=0$
+\end_inset
+
+ significa che 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ è impredicibile da 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left|\rho_{x}\left(t_{1},t_{2}\right)\right|=1$
+\end_inset
+
+ significa che 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+e 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ sono deterministicamente ricavabili l'uno dall'altro
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $x\left(t_{1}\right)$
+\end_inset
+
+ e 
+\begin_inset Formula $x\left(t_{2}\right)$
+\end_inset
+
+ incorrelati o indipendenti allora: 
+\begin_inset Formula $\rho_{x}\left(t_{1},t_{2}\right)=0$
+\end_inset
+
+ ( poiché 
+\begin_inset Formula $C_{x}\left(t_{1},t_{2}\right)=0$
+\end_inset
+
+ )
+\end_layout
+
+\begin_layout Subsubsection*
+Processi casuali stazionari
+\end_layout
+
+\begin_layout Standard
+mantengono inalterate le proprie caratteristiche statistiche nel tempo.
+\end_layout
+
+\begin_layout Itemize
+Un processo è stazionario se:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $m_{x}$
+\end_inset
+
+ non dipende dal tempo 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{xy}\left(\tau\right)$
+\end_inset
+
+ dove 
+\begin_inset Formula $\tau=t_{2}-t_{1}$
+\end_inset
+
+, quindi nondipende dai tempi 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+ e 
+\begin_inset Formula $t_{2}$
+\end_inset
+
+ ma solo dall'intervallo tra i due.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(t_{1},\tau\right)=E\left[x^{*}\left(t_{1}\right)\cdot x\left(t_{1}+\tau\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In un processo stazionario, l'autocorrelazione dipende solo da 
+\begin_inset Formula $t$
+\end_inset
+
+ o da 
+\begin_inset Formula $\tau$
+\end_inset
+
+, non da entrambi.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{x}\left(t_{1},\tau\right)=R_{x}\left(t_{1},\tau\right)-m_{x\left(t_{1}\right)}^{*}\cdot m_{x\left(t_{1}+\tau\right)}=R_{x}\left(\tau\right)-\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma_{x}^{2}=C_{x}\left(0\right)=R_{x}\left(0\right)-\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rho_{x}\left(\tau\right)=\frac{C_{x}\left(\tau\right)}{\sigma_{x}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tempo di decorrelazione del processo
+\series default
+: 
+\begin_inset Formula $t_{0}\rightarrow\rho_{x}\left(t_{0}\right)=\frac{C_{x}\left(t_{0}\right)}{\sigma_{x}^{2}}\approx0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{x}\left(\tau\right)=R^{*}\left(-\tau\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $R_{x}\left(\tau\right)$
+\end_inset
+
+ ha sempre il massimo in 
+\begin_inset Formula $\tau=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Predizione lineare
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n+m}=kx_{n}+w_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $x_{n+m}$
+\end_inset
+
+ è stazionario con 
+\begin_inset Formula $m_{x}=0$
+\end_inset
+
+ e 
+\begin_inset Formula $w_{n}$
+\end_inset
+
+ casuale 
+\begin_inset Formula $m_{w}=0$
+\end_inset
+
+ , 
+\begin_inset Formula $\sigma_{w}^{2}=E\left[w_{n}^{2}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma_{w}^{2}=\sigma_{x}^{2}\left(1-k^{2}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\rho_{x}\left(t\right)=k
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\hat{x}_{n+m}=rx_{n}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{minimizziamo l'errore quadratico: }E\left[\varepsilon^{2}\right]=E\left[\left(\hat{x}_{n+m}-x_{n+m}\right)^{2}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{dE\left[\varepsilon^{2}\right]}{dr}=0\;\Rightarrow\; r=\rho_{x}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La miglior stima lineare di 
+\begin_inset Formula $x_{n+m}$
+\end_inset
+
+, noto 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+, è: 
+\begin_inset Formula $\hat{x}_{n+m}=\rho_{x}\left(m\right)\cdot x_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Più 
+\begin_inset Formula $\left|\rho_{x}\left(t\right)\right|$
+\end_inset
+
+ è prossimo ad 1 , più la varianza dell'errore è piccola
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Processi casuali gaussiani
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+Se i campioni di un processo gaussiano sono incorrelati, allora sono anche
+ indipedenti
+\series default
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Quindi nel caso di un processo gaussiano:
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula 
+\[
+\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t_{1}\right)\text{ e }x\left(t_{2}\right)\text{ sono indipendenti}\,\ar@(u,u)[r]^{allora} & C_{x}\left(t_{1},t_{2}\right)=0\,\ar@(d,d)[l]^{allora}}
+}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset Formula 
+\[
+p_{x}\left(a\right)=\frac{1}{\sqrt{2\pi\sigma_{x}^{2}}}\cdot e^{-\frac{\left(a-\mu_{x}\right)^{2}}{2\sigma_{x}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+d.d.p.
+ di due campioni di un processo gaussiano, distanti 
+\begin_inset Formula $m$
+\end_inset
+
+ tra di loro:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{x_{n},x_{n+m}}\left(a,b\right)=\frac{1}{2\pi\sigma_{x}^{2}\sqrt{\left(1-\rho_{x}^{2}\left(m\right)\right)}}\cdot e^{-\frac{a^{2}-2\rho_{x}\left(m\right)\cdot ab+b^{2}}{2\sigma_{x}^{2}\left(1-\rho_{x}^{2}\left(m\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+se 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{n+m}$
+\end_inset
+
+ sono incorrelati, allora 
+\begin_inset Formula $\rho_{x}\left(m\right)=0$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Nei processi guassiani, la miglior predizione del futuro cincide con la
+ predizione lineare, cioè: 
+\begin_inset Formula 
+\[
+\hat{x}_{n+m}=\rho_{x}\left(m\right)\cdot x_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Due processi casuali 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ e 
+\begin_inset Formula $y_{n}$
+\end_inset
+
+ si dicono 
+\series bold
+congiuntamente stazionari
+\series default
+ se la loro funzione di cross-correlazione e di covarianza (definite dalle
+ formule di seguito), dipendono solo dalla distanza 
+\begin_inset Formula $m$
+\end_inset
+
+ tra due campioni dei processi.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{xy}\left(m\right)=E\left[x_{n+m}y_{n}^{*}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{xy}\left(m\right)=R_{xy}\left(m\right)-m_{x}m_{y}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $R_{xy}\left(m\right)=R_{yx}^{*}\left(-m\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+
+\series bold
+Processi casuali continui campionati
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Assumiamo di avere un processo stazionario con noti: 
+\begin_inset Formula $m_{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma_{x}^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $R_{x}\left(\tau\right)$
+\end_inset
+
+, 
+\begin_inset Formula $C_{x}\left(\tau\right)$
+\end_inset
+
+, 
+\begin_inset Formula $\rho_{x}\left(\tau\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Discretizzo campionando a tempo 
+\begin_inset Formula $T$
+\end_inset
+
+: 
+\begin_inset Formula $x_{n}=x\left(nT\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{x}=E\left[x\left(nT\right)\right]=E\left[x_{n}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[m\right]=R_{x}\left(mT\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Processi casuali ergodici:
+\end_layout
+
+\begin_layout Itemize
+Processo 
+\series bold
+ergodico per la media
+\series default
+: È possibile determinare il valor medio del processo da un'unica sua realizzazi
+one
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Valor medio temporale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{x}=lim_{T\rightarrow+\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{\frac{T}{2}}x_{T}\left(t\right)dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Valor medio:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{x}=E\left[x\left(t\right)\right]=\int_{-\infty}^{+\infty}aP_{x}\left(a\right)da
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $m_{x}=\mu_{x}$
+\end_inset
+
+ allora il processo è 
+\series bold
+ergodico per la media
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Condizione sufficiente per l'ergodicità in media è che
+\series default
+ 
+\begin_inset Formula $C_{x}\left(\tau\right)\rightarrow0$
+\end_inset
+
+ per 
+\begin_inset Formula $\tau\rightarrow+\infty$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Processo 
+\series bold
+ergodico per l'autocorrelazione
+\series default
+: È possibile determinare l'autocorrelazione del processo da un'unica sua
+ realizzazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Autocorrelazione temporale:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{R}_{x}\left(\tau\right)=lim_{T\rightarrow+\infty}\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}x_{T}\left(t+\tau\right)\cdot x_{T}^{*}\left(t\right)\, dt
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Autocorrelazione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[\tau\right]=E\left[x\left(t+\tau\right)\cdot x^{*}\left(t\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se 
+\begin_inset Formula $\mathcal{R}_{x}\left(\tau\right)=R_{x}\left[\tau\right]$
+\end_inset
+
+ allora il processo è 
+\series bold
+ergodico per la autocorrelazione
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Resta comunque sempre vero per segnali stazionari, che il valore atteso
+ della media di una relalizzazione è uguale alla media d'insieme e che il
+ valore atteso dell'autocorrelazione di una realizzazione è uguale all'autocorre
+lazione del processo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[\mu_{x\left(t\right)}\right]=m_{x}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left[\mathcal{R}_{x\left(t\right)}\left(\tau\right)\right]=R_{x}\left(\tau\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Caso discreto:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{x}=lim_{N\rightarrow+\infty}\frac{1}{N}\sum_{n=0}^{N-1}x_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{R}_{x}\left(\tau\right)=lim_{N\rightarrow+\infty}\frac{1}{N}\sum_{n=0}^{N-1}n_{n+m}x_{n}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Densità spettrale di potenza
+\end_layout
+
+\begin_layout Itemize
+È definita come la trasformata di 
+\begin_inset Formula $R_{x}\left(\tau\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x}\left(f\right)=\int_{-\infty}^{+\infty}R_{x}\left(\tau\right)e^{-j2\pi f\tau}d\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Anti-trasformata di 
+\begin_inset Formula $S_{x}\left(f\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=\int_{-\infty}^{+\infty}S_{x}\left(f\right)\cdot e^{j2\pi f\tau}df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S_{x}\left(f\right)$
+\end_inset
+
+ ci dice come vine distribuita la potenza nelle varie bande spettrali.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=\mathcal{F}^{-1}\left\{ S_{x}\left(f\right)\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso discreto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x}\left(\phi\right)=\sum_{m=-\infty}^{+\infty}R_{x}\left[m\right]\cdot e^{-j2\pi\phi m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+La potenza
+\series default
+:
+\begin_inset Formula 
+\[
+P=lim_{T\rightarrow+\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nel caso di una singola realizzazione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{x\left(t\right)}=\mathcal{R}_{x}\left(0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In generale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(0\right)=E\left[\mathcal{R}_{x}\left(0\right)\right]=E\left[P_{x\left(t\right)}\right]=P_{x}=\int_{-\infty}^{+\infty}S_{x}\left(f\right)df=Potenza_{x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\end_layout
+
+\end_body
+\end_document
