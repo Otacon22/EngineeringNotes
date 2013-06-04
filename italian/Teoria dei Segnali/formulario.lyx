@@ -326,7 +326,7 @@ Potenza
 \begin_layout Plain Layout
 
 \size small
-\begin_inset Formula $\mbox{\ensuremath{P_{x\left(t\right)}=lim_{t\rightarrow\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{+\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt}}$
+\begin_inset Formula $\mbox{\ensuremath{P_{x\left(t\right)}=lim_{T\rightarrow\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{+\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt}}$
 \end_inset
 
 
@@ -536,7 +536,7 @@ u_{n}=\sum_{m=-\infty}^{n}\delta_{m}
 
 \begin_inset Formula 
 \[
-x_{n}=\sum_{k=-\infty}^{+\infty}x_{k}\delta_{n-k}
+x_{n}=\sum_{k=-\infty}^{+\infty}x_{k}\delta_{k-n}
 \]
 
 \end_inset
@@ -781,7 +781,7 @@ y\left(t\right)=x\left(t\right)*h\left(t\right)=\int_{-\infty}^{+\infty}x\left(\
 \begin_layout Standard
 \begin_inset Formula 
 \[
-A\cdot rect\left(\frac{t}{T}\right)*B\cdot cos\left(\frac{2\pi t}{T}\right)=0
+A\cdot rect\left(\frac{t}{T}\right)*B\cdot cos\left(\frac{2\pi t}{T}\right)=0\quad\quad\leftarrow\text{perché integro il coseno su un intero periodo}
 \]
 
 \end_inset
@@ -979,7 +979,7 @@ Se
 \end_inset
 
  è un segnale reale: 
-\begin_inset Formula $X\left(f\right)=X*\left(-f\right)$
+\begin_inset Formula $X\left(-f\right)=X*\left(f\right)$
 \end_inset
 
 
@@ -1567,7 +1567,7 @@ Proprietà di integrazione delle trasformate
 \end_layout
 
 \begin_layout Subsubsection*
-Relazione di Perseval
+Relazione di Parseval
 \end_layout
 
 \begin_layout Standard
@@ -1795,7 +1795,7 @@ Trasformata normalizzata
 \begin_layout Standard
 \begin_inset Formula 
 \[
-X\left(f\right)=\sum_{n=-\infty}^{+\infty}x_{n}\cdot e^{-j2\pi\phi nT}\qquad\text{in funzione di }\phi=fT\text{ e con periodicità }1
+X\left(\phi\right)=\sum_{n=-\infty}^{+\infty}x_{n}\cdot e^{-j2\pi\phi n}\qquad\text{in funzione di }\phi=fT\text{ e con periodicità }1
 \]
 
 \end_inset
@@ -1816,7 +1816,7 @@ Anti-trasformata normalizzata
 \begin_layout Standard
 \begin_inset Formula 
 \[
-x_{n}=\int_{-\frac{T}{2}}^{\frac{T}{2}}X\left(\phi\right)e^{j2\pi\phi n}d\phi
+x_{n}=\int_{-\frac{1}{2}}^{\frac{1}{2}}X\left(\phi\right)e^{j2\pi\phi n}d\phi
 \]
 
 \end_inset
@@ -2363,7 +2363,7 @@ Convoluzione circolare
 \begin_layout Itemize
 
 \series bold
-Perseval
+Parseval
 \end_layout
 
 \begin_layout Standard
@@ -2534,7 +2534,7 @@ Teorema del campionamento
 \end_layout
 
 \begin_layout Itemize
-Campioamento ideale: 
+Campionamento ideale: 
 \end_layout
 
 \begin_layout Standard
@@ -2576,7 +2576,7 @@ Posto
 \end_layout
 
 \begin_layout Standard
-Il teorema del campioanmento afferma che per non sovrapporre le repliche
+Il teorema del campionamento afferma che per non sovrapporre le repliche
  spettrali e poter ricostruire il segnale campionato, è necessario che:
 \end_layout
 
