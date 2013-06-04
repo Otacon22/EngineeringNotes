@@ -80,164 +80,362 @@ Formulario di Teoria dei Segnali
 Seno e coseno in forma esponenziale complessa:
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-\begin_inset Formula 
-\[
-cos\left(2\pi ft\right)=\frac{1}{2}\cdot\left(e^{j2\pi ft}+e^{-j2\pi ft}\right)
-\]
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\mbox{\qquad cos\ensuremath{\left(2\pi ft\right)}=\ensuremath{\frac{1}{2}\cdot\left(e^{j2\pi ft}+e^{-j2\pi ft}\right)}\qquad} }}}$
 \end_inset
 
 
-\begin_inset Formula 
-\[
-sin\left(2\pi ft\right)=\frac{1}{2j}\cdot\left(e^{j2\pi ft}-e^{-j2\pi ft}\right)
-\]
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\qquad sin\left(2\pi ft\right)=\frac{1}{2j}\cdot\left(e^{j2\pi ft}-e^{-j2\pi ft}\right)\qquad}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 
 \series bold
 Energia di un segnale:
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-\begin_inset Formula 
-\[
-E_{x\left(t\right)}=\int_{-\infty}^{+\infty}\left|x\left(t\right)\right|^{2}dt
-\]
+\align center
+
+\size small
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
-
-\end_layout
-
-\begin_layout Itemize
-Caso 
-\series bold
-discreto
-\series default
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-E=\sum_{n=-\infty}^{\infty}\left|x_{n}\right|^{2}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Per un segnale periodico, l'energia è sempre infinita.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
+\begin_layout Plain Layout
 
 \series bold
-Potenza di un segnale
-\series default
-:
+\size small
+Continuo
 \end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-P_{x\left(t\right)}=lim_{t\rightarrow\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{+\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt
-\]
 
 \end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Itemize
-Caso 
 \series bold
-discreto
-\series default
-:
+\size small
+Continuo periodico
 \end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-P=lim_{N\rightarrow+\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\left|x_{n}\right|^{2}
-\]
 
 \end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Per un segnale periodico la potenza è finita solo se è finita su un periodo
- 
-\begin_inset Formula $T_{o}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-Nel caso di un segnale 
 \series bold
-periodico
-\series default
-:
+\size small
+Discreto
 \end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-P=\frac{1}{T_{0}}\int_{-\frac{T_{0}}{2}}^{\frac{T_{o}}{2}}\left|x\left(t\right)\right|^{2}dt
-\]
 
 \end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Nel caso di un segnale 
 \series bold
-periodico discreto
-\series default
-:
+\size small
+Discreto periodico
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-\begin_inset Formula 
-\[
-P=\frac{1}{N_{0}}\sum_{n=0}^{N_{0}-1}\left|x_{n}\right|^{2}
-\]
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Energia
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{E_{x\left(t\right)}=\int_{-\infty}^{+\infty}\left|x\left(t\right)\right|^{2}dt}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{+\infty}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{E=\sum_{n=-\infty}^{\infty}\left|x_{n}\right|^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{+\infty}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Potenza
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{P_{x\left(t\right)}=lim_{t\rightarrow\infty}\frac{1}{T}\cdot\int_{-\frac{T}{2}}^{+\frac{T}{2}}\left|x\left(t\right)\right|^{2}dt}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{P=\frac{1}{T_{0}}\int_{-\frac{T_{0}}{2}}^{\frac{T_{o}}{2}}\left|x\left(t\right)\right|^{2}dt}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{P=lim_{N\rightarrow+\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}\left|x_{n}\right|^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{P=\frac{1}{N_{0}}\sum_{n=0}^{N_{0}-1}\left|x_{n}\right|^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\mbox{\ensuremath{P}}$
+\end_inset
+
+ finita se finita su periodo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
 
 \end_layout
 
-\end_deeper
-\end_deeper
 \begin_layout Itemize
 Potenza del seno:
 \end_layout
@@ -387,7 +585,7 @@ rett\left(t\right)=u\left(t+\frac{1}{2}\right)-u\left(t-\frac{1}{2}\right)
 \begin_layout Standard
 \begin_inset Formula 
 \[
-rett\left(\frac{t}{T}\right)=\text{Rettangolo di base }T\:\left(\text{da }-\frac{T}{2}\text{ a}+\frac{T}{2}\right)\text{  e altezza }1
+rett\left(\frac{t}{T}\right)=\text{Rettangolo di base }T\:\left(\text{da }-\frac{T}{2}\text{ a}+\frac{T}{2}\right)\text{ e altezza }1
 \]
 
 \end_inset
@@ -798,7 +996,7 @@ dualità
 \begin_deeper
 \begin_layout Itemize
 Detta 
-\begin_inset Formula $\mathcal{F }$
+\begin_inset Formula $\mathcal{F}$
 \end_inset
 
  la 
@@ -1146,7 +1344,7 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
-(infatti sappiamo che il triangolo può essere rappresentanto come convoluzione
+(infatti sappiamo che il triangolo può essere rappresentato come convoluzione
  di rettangoli)
 \end_layout
 
@@ -4180,9 +4378,5 @@ R_{x}\left(0\right)=E\left[\mathcal{R}_{x}\left(0\right)\right]=E\left[P_{x\left
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-
-\end_layout
-
 \end_body
 \end_document

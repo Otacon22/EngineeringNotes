@@ -23820,6 +23820,160 @@ Architettura di rete
 
 \end_layout
 
+\begin_layout Part*
+Multiple Access
+\end_layout
+
+\begin_layout Section*
+Packet Access
+\end_layout
+
+\begin_layout Itemize
+A livello logico, l'accesso multiplo al canale può essere gestito in modo
+ 
+\series bold
+dinamico
+\series default
+ e 
+\series bold
+distribuito
+\series default
+ utilizzando una serie di protocolli ad accesso multiplo
+\end_layout
+
+\begin_layout Itemize
+I primi protocolli ad accesso multiplo sono stati progettati per le LAN
+\end_layout
+
+\begin_layout Itemize
+Al giorno d'oggi i protocolli ad accesso multiplo sono principalmente utilizzati
+ sulle reti wireless (nelle reti LAN cablate non si utilizza più il mezzo
+ condiviso per problemi di performance).
+\end_layout
+
+\begin_layout Standard
+Abbiamo due tipi di accesso multiplo a livello di pacchetto:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Scheduled Access
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le trasmissioni sul canale sono 
+\bar under
+sequenziali
+\bar default
+ senza conflitti
+\end_layout
+
+\begin_layout Itemize
+Schemi di 
+\series bold
+polling
+\end_layout
+
+\begin_layout Itemize
+Schemi di scheduling centralizzato
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Random Access
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le trasmissioni sono parzialmente 
+\series bold
+non coordinate
+\series default
+ e possono sovrapporsi (
+\series bold
+collisione
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+I conflitti vengono risolti utilizzando procedure distribuite basate su
+ un 
+\series bold
+\bar under
+ritardo di ritrasmissione casuale
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Code locali e globali
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ma01.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso di multiplexing (una singola stazione), abbiamo un'unica coda che
+ viene gestita in base ad un algoritmo di 
+\emph on
+scheduling
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Nel caso di 
+\emph on
+multiple access
+\emph default
+ con 
+\begin_inset Formula $M$
+\end_inset
+
+ stazioni, ciascuna con una coda locale, abbiamo ancora l'opportunità di
+ utilizzare una singola coda 
+\begin_inset Quotes eld
+\end_inset
+
+virtuale
+\begin_inset Quotes erd
+\end_inset
+
+ in un punto di decisione centrale che schedula l'accesso al canale.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename ma02.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Tuttavia, per informare lo scheduler dello stato delle code locali e fornire
+ permessi di accesso, dobbiamo utilizzare il canale (
+\emph on
+coordination signaling
+\emph default
+).
+\end_layout
+
 \begin_layout Subsection*
 Aloha
 \end_layout
@@ -23844,6 +23998,31 @@ Collision Resolution Algorithms.
 \begin_layout Standard
 Pagina 55: come fanno le stazioni a sapere quando è il loro turno per trasmetter
 e?
+\end_layout
+
+\begin_layout Standard
+P.63: se le stazioni si vedono tutte tra di loro,l'unica collisione possibile
+ è su RTS, una volta fatta quella è uguale a CSMA/CD.
+\end_layout
+
+\begin_layout Standard
+P.64: assumiamo il pacchetto dati di durata costante pari ad 1 (valore normalizza
+to a 
+\begin_inset Formula $T$
+\end_inset
+
+).
+ Non consideriamo il pacchetto ACK nelle formule.
+ 
+\begin_inset Formula $Z$
+\end_inset
+
+ l'abbiamo già usata a rappresenta la sovrapposizione tra diverse trasmissioni.
+\end_layout
+
+\begin_layout Standard
+P.67, consideriamo il fair queuing simile ad un round robin.
+ Siamo fair in base ad un certo peso assegnato.
 \end_layout
 
 \end_body
