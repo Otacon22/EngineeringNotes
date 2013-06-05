@@ -790,10 +790,32 @@ A\cdot rect\left(\frac{t}{T}\right)*B\cdot cos\left(\frac{2\pi t}{T}\right)=0\qu
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 01.png
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
-rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=\text{triangolo base }\left(-T,+T\right)\text{ e altezza }T
+rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=T\cdot tri\left(\frac{t}{T}\right)\text{\,\ (triangolo base }\left(-T,+T\right)\text{ e altezza }T\text{)}
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 02.png
+	scale 90
 
 \end_inset
 
@@ -870,10 +892,14 @@ s\left(t\right)\cdot\delta\left(t-t_{0}\right)=s\left(t_{0}\right)
 \end_layout
 
 \end_deeper
+\begin_layout Subsubsection*
+Convoluzione rettangoli di base diversa
+\end_layout
+
 \begin_layout Standard
 \begin_inset Formula 
 \[
-y\left(t\right)=rect\left(t\right)*rect\left(\frac{t}{T}\right)=
+y\left(t\right)=rect\left(\frac{t}{T_{1}}\right)*rect\left(\frac{t}{T_{2}}\right)=
 \]
 
 \end_inset
@@ -882,10 +908,10 @@ y\left(t\right)=rect\left(t\right)*rect\left(\frac{t}{T}\right)=
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\[
-rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=T\cdot tri\left(\frac{t}{T}\right)\quad\left(\text{triangolo base }\left(-T,+T\right)\text{ e altezza }T\right)
-\]
+\align center
+\begin_inset Graphics
+	filename 03.png
+	scale 90
 
 \end_inset
 
@@ -1053,7 +1079,7 @@ Alcune trasformate continue
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="8" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -1090,7 +1116,13 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno]
+\begin_inset Graphics
+	filename 04.png
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1100,6 +1132,56 @@ Alcune trasformate continue
 
 \begin_layout Plain Layout
 [disegno]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=\delta\left(t\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=1\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename 05.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1134,7 +1216,13 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno]
+\begin_inset Graphics
+	filename 06.png
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1178,7 +1266,13 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno]
+\begin_inset Graphics
+	filename 07.png
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1321,7 +1415,7 @@ Alcune trasformate continue
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="1">
+<lyxtabular version="3" rows="3" columns="1">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <row>
@@ -1352,7 +1446,7 @@ Alcune trasformate continue
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1360,17 +1454,6 @@ Alcune trasformate continue
 \end_inset
 
 
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-[disegno]
 \end_layout
 
 \end_inset
@@ -1987,13 +2070,20 @@ periodica
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
+<cell multirow="3" alignment="left" valignment="middle" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \size small
-[disegno]
+\begin_inset Graphics
+	filename 08.png
+	lyxscale 40
+	scale 65
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2019,7 +2109,7 @@ periodica
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2049,11 +2139,20 @@ periodica
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno] rettangolo discreto da -N a N
+
+\size small
+\begin_inset Graphics
+	filename 09.png
+	lyxscale 40
+	scale 65
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2079,7 +2178,7 @@ periodica
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2120,14 +2219,23 @@ periodica
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
+<column alignment="left" valignment="top" width="40page%">
 <column alignment="center" valignment="top" width="0">
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno] seno cardinale discreto
+
+\size small
+\begin_inset Graphics
+	filename 10.png
+	lyxscale 40
+	scale 65
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2147,7 +2255,7 @@ periodica 1
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2160,18 +2268,27 @@ periodica 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno rect?]
+
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
+<cell multirow="3" alignment="left" valignment="middle" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno impulso discreto]
+
+\size small
+\begin_inset Graphics
+	filename 11.png
+	lyxscale 40
+	scale 65
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2191,7 +2308,7 @@ periodica 1
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell multirow="4" alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2219,11 +2336,20 @@ periodica
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno costante x_n=1]
+
+\size small
+\begin_inset Graphics
+	filename 12.png
+	lyxscale 30
+	scale 45
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2243,7 +2369,7 @@ periodica 1
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2256,7 +2382,7 @@ periodica 1
 \begin_inset Text
 
 \begin_layout Plain Layout
-[disegno impulsi periodici]
+
 \end_layout
 
 \end_inset
@@ -2560,7 +2686,14 @@ X_{c}\left(f\right)=\frac{1}{T}\sum_{-\infty}^{+\infty}X\left(f-\frac{k}{T}\righ
 \end_layout
 
 \begin_layout Standard
-[disegni]
+\align center
+\begin_inset Graphics
+	filename 13.png
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2807,12 +2940,19 @@ E portare
 \end_layout
 
 \begin_layout Subsubsection*
-La trasformata discreta di Fourier (attenzione, questa non è la trasformata
- continua di segnali discreti!)
+La trasformata discreta di Fourier - DFT (attenzione, questa non è la trasformat
+a continua di segnali discreti!)
 \end_layout
 
 \begin_layout Standard
-[disegno]
+\align center
+\begin_inset Graphics
+	filename 14.png
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2836,6 +2976,17 @@ Abbiamo un segnale nel tempo, che dura
 \begin_layout Itemize
 Trasformiamo il segnale e campioniamo la trasformata con 
 \begin_inset Formula $\Delta f=\frac{1}{T_{0}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 15.png
+	scale 70
+
 \end_inset
 
 
