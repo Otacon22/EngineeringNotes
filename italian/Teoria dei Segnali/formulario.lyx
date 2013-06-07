@@ -1064,12 +1064,19 @@ Trasformata di Fourier
 \begin_inset Formula 
 \[
 \xymatrix{x\left(t\right)\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)\ar@(d,d)[l]^{F^{-1}}}
-\qquad\qquad\xymatrix{X\left(t\right)\ar@(u,u)[r]^{\mathcal{F}} & x\left(f\right)\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+\qquad\qquad\xymatrix{X\left(t\right)\ar@(u,u)[r]^{\mathcal{F}} & x\left(-f\right)\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\bar under
+Attenzione ai segni quando si applica il principio di dualità!
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1350,7 +1357,7 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=\delta\left(t-a\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=e^{j2\pi af}\,\ar@(d,d)[l]^{F^{-1}}}
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=\delta\left(t-a\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=e^{-j2\pi af}\,\ar@(d,d)[l]^{F^{-1}}}
 }}}}$
 \end_inset
 
@@ -1451,6 +1458,55 @@ Alcune trasformate continue
 
 \begin_layout Plain Layout
 \begin_inset Formula $rect\left(\frac{t}{T}\right)*rect\left(\frac{t}{T}\right)=T\cdot tri\left(\frac{t}{T}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Ritardo nelle frequenze e nei tempi:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t-\tau\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=X\left(f\right)\cdot e^{-j2\pi f\tau}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{X\left(f-f_{0}\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=x\left(t\right)\cdot e^{+j2\pi f_{0}t}\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
 \end_inset
 
 
