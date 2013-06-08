@@ -1125,6 +1125,7 @@ Alcune trasformate continue
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename 04.png
+	lyxscale 50
 	scale 70
 
 \end_inset
@@ -1175,6 +1176,7 @@ Alcune trasformate continue
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename 05.png
+	lyxscale 50
 	scale 70
 
 \end_inset
@@ -1225,6 +1227,7 @@ Alcune trasformate continue
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename 06.png
+	lyxscale 50
 	scale 70
 
 \end_inset
@@ -1275,6 +1278,7 @@ Alcune trasformate continue
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename 07.png
+	lyxscale 50
 	scale 70
 
 \end_inset
@@ -2745,6 +2749,7 @@ X_{c}\left(f\right)=\frac{1}{T}\sum_{-\infty}^{+\infty}X\left(f-\frac{k}{T}\righ
 \align center
 \begin_inset Graphics
 	filename 13.png
+	lyxscale 50
 	scale 70
 
 \end_inset
