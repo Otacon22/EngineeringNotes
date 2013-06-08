@@ -4590,5 +4590,145 @@ R_{x}\left(0\right)=E\left[\mathcal{R}_{x}\left(0\right)\right]=E\left[P_{x\left
 \end_layout
 
 \end_deeper
+\begin_layout Section*
+Trigonometria e Analisi
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos^{2}\alpha+\sin^{2}\alpha=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Werner
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\sin\alpha\cos\beta=\frac{1}{2}\left[\sin(\alpha+\beta)+\sin(\alpha-\beta)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos\alpha\cos\beta=\frac{1}{2}[\cos(\alpha+\beta)+\cos(\alpha-\beta)]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sin\alpha\sin\beta=\frac{1}{2}[\cos(\alpha-\beta)-\cos(\alpha+\beta)]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sin^{2}(\alpha)=\frac{1}{2}\left[1-\cos(2\alpha)\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos^{2}(\alpha)=\frac{1}{2}\left[1+\cos(2\alpha)\right]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Prostaferesi
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\sin p+\sin q=2\sin\left(\frac{p+q}{2}\right)\cos\left(\frac{p-q}{2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathrm{\sin}\,\alpha-\mathrm{\sin}\,\beta=2\cos\frac{\alpha+\beta}{2}\,\mathrm{\sin}\frac{\alpha-\beta}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos\alpha+\cos\beta=2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos\alpha-\cos\beta=-2\,\mathrm{\sin}\frac{\alpha+\beta}{2}\,\mathrm{\sin}\frac{\alpha-\beta}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Somme/sottrazioni di angoli
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\sin(x\pm y)=\mathrm{\sin}(x)\cos(y)\pm\cos(x)\sin(y)\,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos(x\pm y)=\cos(x)\cos(y)\mp\mathrm{\sin}(x)\sin(y)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Duplicazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{\mathrm{\sin}}(2\alpha)=2\mathrm{\sin}\,\alpha\,\cos\alpha$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{\mathrm{\cos}}(2\alpha)=\cos^{2}\alpha-\mathrm{\sin}^{2}\alpha=1-2\mathrm{\sin}^{2}\alpha=2\cos^{2}\alpha-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\cos^{2}\alpha=\frac{1+\cos(2\alpha)}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sin^{2}\alpha=\frac{1-\cos(2\alpha)}{2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
