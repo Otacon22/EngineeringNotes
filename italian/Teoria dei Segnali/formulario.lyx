@@ -3828,6 +3828,217 @@ Estendiamo
 
 \end_layout
 
+\begin_layout Subsubsection*
+Interpolazione in frequenza con zero-padding nel tempo
+\end_layout
+
+\begin_layout Standard
+Sappiamo che la DFT di una sequenza è legata alla trasformata dalla relazione:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{k}=X\left(f\right)|_{f=\frac{k}{NT}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+I valori in frequenza sono tanto più fitti, quanto più elevata è la durata
+ della sequenza.
+\end_layout
+
+\begin_layout Standard
+Fissato l'intervallo di campionamento temporale 
+\begin_inset Formula $T$
+\end_inset
+
+, 
+\series bold
+possiamo aumentare la durata della sequenza quanto vogliamo aggiungendo
+ 
+\begin_inset Formula $P$
+\end_inset
+
+ campioni nulli a destra o a sinistra della sequenza originale 
+\series default
+
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ (operazione di 
+\series bold
+zero-padding 
+\series default
+nel tempo).
+\end_layout
+
+\begin_layout Standard
+Per esempio per dimezzare l'intervallo di campionamento 
+\begin_inset Formula $T$
+\end_inset
+
+ nei tempi è sufficiente bordare la sequenza 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ con 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni nulli, in modo da raddoppiare la durata della sequenza.
+\end_layout
+
+\begin_layout Subsubsection*
+Interpolazione nel tempo con zero-padding in frequenza
+\end_layout
+
+\begin_layout Standard
+In modo duale, sappiamo che la nostra sequenza discreta è in relazione con
+ la sua sua copia ideale continua:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{n}=x\left(t\right)|_{t=\frac{nT_{0}}{N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Gli istanti di tempo corrispondenti ai campioni di 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ sono tanto più fitti quanto più larga è la banda (bilatera) di frequenze
+ 
+\begin_inset Formula $B$
+\end_inset
+
+ occupata dalla DFT 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In questo caso se si inseriscono 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni nulli a cavallo della frequenza di Nyquist, cioè a cavallo del
+ campione 
+\begin_inset Formula $k=\frac{N}{2}$
+\end_inset
+
+ (cioè 
+\begin_inset Quotes eld
+\end_inset
+
+in mezzo
+\begin_inset Quotes erd
+\end_inset
+
+ alla DFT), otterremo una frequenza di campionamento doppia nei tempi.
+\end_layout
+
+\begin_layout Standard
+Si noti che la sequenza ottenuta sarà moltiplicata per un fattore moltiplicativo
+ 
+\begin_inset Formula $\frac{N}{\left(N+P\right)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+DFT di alcuni segnali noti
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{y_{n}=\delta_{n}\,\ar@(u,u)[r]^{DFT} & 1\,\ar@(d,d)[l]^{IDFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{y_{n}=\delta_{n-p}=\delta_{n-p+N}\,\ar@(u,u)[r]^{DFT} & e^{-j2\pi\frac{pk}{N}}\,\ar@(d,d)[l]^{IDFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{y_{n}=1\,\ar@(u,u)[r]^{DFT} & N\delta_{k}\,\ar@(d,d)[l]^{IDFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{y_{n}=e^{j2\pi\phi n}\,\ar@(u,u)[r]^{DFT} & \sum_{n=0}^{N-1}e^{-\frac{j2\pi n\left(k-N\phi\right)}{N}}\,\ar@(d,d)[l]^{IDFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection*
 Ripasso di probabilità:
 \end_layout
@@ -4921,7 +5132,7 @@ ergodico per la autocorrelazione
 \end_deeper
 \begin_layout Itemize
 Resta comunque sempre vero per segnali stazionari, che il valore atteso
- della media di una relalizzazione è uguale alla media d'insieme e che il
+ della media di una realizzazione è uguale alla media d'insieme e che il
  valore atteso dell'autocorrelazione di una realizzazione è uguale all'autocorre
 lazione del processo:
 \end_layout
