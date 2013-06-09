@@ -1005,7 +1005,7 @@ Se
 \end_inset
 
  è un segnale reale: 
-\begin_inset Formula $X\left(-f\right)=X*\left(f\right)$
+\begin_inset Formula $X\left(-f\right)=X^{*}\left(f\right)$
 \end_inset
 
 
@@ -1308,7 +1308,7 @@ Alcune trasformate continue
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="1">
+<lyxtabular version="3" rows="8" columns="1">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <row>
@@ -1373,6 +1373,19 @@ Alcune trasformate continue
 </row>
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Proprietà di scalatura della trasformata:
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1842,8 +1855,8 @@ il massimo di
 \end_layout
 
 \begin_layout Standard
-Se vogliamo sapere il ritardo tra due segnali, possiamo calcolare la loro
- cross-correlazione e cercarne il massimo.
+Se vogliamo sapere il ritardo tra due segnali uguali, possiamo calcolare
+ la loro cross-correlazione e cercarne il massimo.
  Il massimo sarà in 
 \begin_inset Formula $t_{0}$
 \end_inset
@@ -2044,14 +2057,6 @@ Per passare da una relazione della trasformata
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-Nota: a seconda del tipo di campionamento possiamo assumere 
-\begin_inset Formula $\phi=\frac{k}{N}=fT$
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \align center
 
@@ -2449,6 +2454,32 @@ periodica 1
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Importante proprietà sugli esponenziali complessi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{n=-\infty}^{+\infty}e^{-j2\pi\phi n}=\sum_{k=-\infty}^{+\infty}\delta\left(\phi-k\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{n=-\infty}^{+\infty}e^{-j2\pi fnT}=\sum_{k=-\infty}^{+\infty}\delta\left(f-\frac{k}{T}\right)
+\]
 
 \end_inset
 
@@ -2945,6 +2976,106 @@ Non c'è il
 
 \end_deeper
 \begin_layout Subsubsection*
+Sample and hold
+\end_layout
+
+\begin_layout Standard
+Nel caso in cui il campionamento non è ideale, non abbiamo degli impulsi
+ ma dei rettangoli.
+ Quindi il segnale diventa:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{H}\left(t\right)=\sum_{n=-\infty}^{+\infty}x_{n}\cdot rect\left(\frac{t-nT}{T}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi avremo come trasformata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{H}\left(f\right)=X_{c}\left(f\right)\cdot\frac{sin\left(\pi fT\right)}{\pi f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso il filtro di ricostruzione non deve solo tagliare alla frequenza
+ scelta, ma deve anche sistemare la modifica alla trasformata 
+\begin_inset Formula $X_{C}\left(f\right)$
+\end_inset
+
+ effettuatadalla moltiplicazione per il seno cardinale.
+ Quindi, posto che 
+\begin_inset Formula $f_{s}>2f_{max}$
+\end_inset
+
+, utilizzeremo un filtro con risposta:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H\left(f\right)=\frac{\pi f}{sin\left(\pi\frac{f}{f_{s}}\right)}\cdot rect\left(\frac{f}{f_{s}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il problema è che questo filtro non è facilmente realizzabile.
+\end_layout
+
+\begin_layout Subsubsection*
+Sovracampionamento
+\end_layout
+
+\begin_layout Standard
+Se utilizzano frequenze di campionamento molto elevate, l'effetto della
+ distorsione del seno cardinale viste sopra diventano trascurabili, quindi
+ possiamo tornare ad utilizzare un filtro più semplice di tipo rettangolare
+ nelle frequenze.
+\end_layout
+
+\begin_layout Standard
+In realtà il sovracampionamento viene effettuato in modo numerico interpolando
+ i campioni presi alla minima frequenza di campionamento.
+\end_layout
+
+\begin_layout Standard
+Nel caso di un 
+\series bold
+sovracampionamento M:1
+\series default
+ abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x\left(n\frac{T}{M}\right)=\sum_{k=-\infty}^{+\infty}x\left(kT\right)\cdot\frac{sin\left(\pi\left(\frac{n}{M}-k\right)\right)}{\pi\cdot\left(\frac{n}{M}-k\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
 Sottocampionamento
 \end_layout
 
@@ -2971,10 +3102,6 @@ Prendiamo
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-[disegno]
 \end_layout
 
 \begin_layout Itemize
@@ -3141,6 +3268,121 @@ Se trasliamo il segnale
  non dobbiamo dimenticare la sua periodicità!
 \end_layout
 
+\begin_layout Itemize
+Possiamo vedere artificialmente la 
+\emph on
+trasformata di una sequenza 
+\emph default
+(e non la DFT) aggiungendo campioni 0 nei tempi, aumentando il quindi il
+ livello di dettaglio della trasformata.
+\end_layout
+
+\begin_layout Itemize
+L'anti-trasformata è periodica, ma io la leggo da 0 a 
+\begin_inset Formula $N-1$
+\end_inset
+
+ nella sommatoria
+\end_layout
+
+\begin_layout Itemize
+Il segnale 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ e la sua DFT 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ hanno 
+\series bold
+lo stesso numero di campioni 
+\series default
+
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Solitamente, quando calcoliamo 
+\begin_inset Formula $\widetilde{X}\left(\phi\right)$
+\end_inset
+
+, vediamo un periodo da 
+\begin_inset Formula $-\frac{1}{2}$
+\end_inset
+
+ a 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+.
+ Invece nella DFT vediamo convenzionalmente un periodo da 
+\begin_inset Formula $\phi=0$
+\end_inset
+
+ a 
+\begin_inset Formula $\phi=1-\frac{1}{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Si noti che se 
+\begin_inset Formula $N$
+\end_inset
+
+ è pari, 
+\begin_inset Formula $\frac{N}{2}$
+\end_inset
+
+ è il campione sulla DFT che corrisponde alla frequenza di Nyquist.
+ Se 
+\begin_inset Formula $N$
+\end_inset
+
+ è dispari non c'è un campione che corrisponde esattamente.
+\end_layout
+
+\begin_layout Itemize
+Se cerco la 
+\begin_inset Formula $\tilde{X}\left(\phi\right)$
+\end_inset
+
+di 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+, posso trovare la DFT 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ ponendo 
+\begin_inset Formula $\phi=\frac{k}{N}$
+\end_inset
+
+ e sistemare il periodo da 
+\begin_inset Formula $-\frac{1}{2}$
+\end_inset
+
+ a 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+ portandolo invece da 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
+\begin_inset Formula $N-1$
+\end_inset
+
+.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \align center
@@ -3153,7 +3395,7 @@ Se trasliamo il segnale
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x_{n-n_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}\cdot e^{-j2\pi\frac{n_{0}k}{N}}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{\widetilde{x}_{n-n_{0}}\,\ar@(u,u)[r]^{\mathcal{F}} & X_{k}\cdot e^{-j2\pi\frac{n_{0}k}{N}}\,\ar@(d,d)[l]^{\mathcal{F}^{-1}}}
 }}}} }$
 \end_inset
 
@@ -3306,12 +3548,271 @@ Z_{k}=X_{k}\cdot Y_{k}\:\overset{IDFT}{\Rightarrow}\: z_{n}=x_{n}\circledast y_{
 
 \end_layout
 
+\begin_layout Subsection*
+Proprietà della DFT
+\end_layout
+
 \begin_layout Standard
-Nota: se aggiungo 
-\begin_inset Formula $\left(N-1\right)$
+\begin_inset Formula 
+\[
+\widetilde{X}_{-k}=\widetilde{X}_{k}^{*}
+\]
+
 \end_inset
 
- zeri prima e dopo a 
+
+\end_layout
+
+\begin_layout Standard
+E considerando l'intervallo in cui viene rappresentata solitamente, abbiamo
+ che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{N-k}=X_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il valore in zero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X_{0}=\sum_{n=0}^{N-1}x_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Traslazione circolare
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{y_{n}=\widetilde{x}_{n-m}\,\ar@(u,u)[r]^{DFT} & X_{k}\cdot e^{-j2\pi m\frac{k}{N}}\,\ar@(d,d)[l]^{IDFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{Y_{k}=\widetilde{X}_{k-p}\,\ar@(u,u)[r]^{IDFT} & x_{n}\cdot e^{+j2\pi n\frac{p}{N}}\,\ar@(d,d)[l]^{DFT}}
+}}}} }$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modulazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+DFT\left\{ x_{n}\cdot y_{n}\right\} =\frac{1}{N}\, X_{k}\circledast Y_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Convoluzione circolare
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+DFT\left\{ x_{n}\circledast y_{n}\right\} =X_{k}\cdot Y_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La convoluzione circolare è uguale a quella lineare ripetuta a passo 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Relazione di Parseval
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E_{n}=\sum_{n=0}^{N-1}\left|x_{n}\right|^{2}=\frac{1}{N}\sum_{k=0}^{N-1}\left|X_{k}\right|^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{n}=\frac{1}{N}\sum_{n=0}^{N-1}\left|x_{n}\right|^{2}=\frac{1}{N^{2}}\sum_{k=0}^{N-1}\left|X_{k}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Autocorrelazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[m\right]=\frac{1}{N}\cdot\sum_{k=0}^{N-1}\left|X_{k}\right|^{2}\cdot e^{j2\pi m\frac{k}{N}}=\sum_{r=0}^{N-1}\widetilde{x}_{r+m}\cdot x_{r}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Cross-correlazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{xy}\left[m\right]=\frac{1}{N}\cdot\sum_{k=0}^{N-1}X_{k}\cdot Y_{k}^{*}\cdot e^{j2\pi m\frac{k}{N}}=\sum_{r=0}^{N-1}\widetilde{x}_{r+m}\cdot y_{r}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Traslazione di un numero non intero di campioni (interpolazione)
+\end_layout
+
+\begin_layout Standard
+Vogliamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{n}=x\left(t\right)|_{t=nT-\tau}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y_{k}=\begin{cases}
+X_{k}\cdot e^{-j2\pi\frac{k}{N}\cdot\frac{\tau}{T}} & \text{ per }0\leq k\leq\frac{N}{2}\\
+X_{k}\cdot e^{-j2\pi\left(\frac{k}{N}-1\right)\cdot\frac{\tau}{T}} & \text{ per }\frac{N}{2}+1\leq k\leq N-1
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Convoluzione lineare utilizzando la DFT
+\end_layout
+
+\begin_layout Standard
+Possiamo calcolare la convoluzione utilizzando la DFT per avere performance
+ molto migliori.
+\end_layout
+
+\begin_layout Standard
+Vogliamo fare 
+\begin_inset Formula $x_{n}*y_{n}$
+\end_inset
+
+ e sappiamo che 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ ha 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni e 
+\begin_inset Formula $y_{n}$
+\end_inset
+
+ ha 
+\begin_inset Formula $M$
+\end_inset
+
+ campioni.
+\end_layout
+
+\begin_layout Standard
+Estendiamo 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ e 
+\begin_inset Formula $y_{n}$
+\end_inset
+
+ aggiungendo degli zeri nei campioni prima e dopo la sequenza, per arrivare
+ ad un numero di campioni pari a 
+\begin_inset Formula $N+M-1$
+\end_inset
+
+.
+ Poi facciamo le due DFT: 
 \begin_inset Formula $X_{k}$
 \end_inset
 
@@ -3319,14 +3820,15 @@ Nota: se aggiungo
 \begin_inset Formula $Y_{k}$
 \end_inset
 
- (in modo da avere lunghezza risultante 
-\begin_inset Formula $2N-1$
+.
+ Le moltiplichiamo tra di loro e antitrasformiamo: 
+\begin_inset Formula $x_{n}*y_{n}=IDFT\left\{ X_{k}\cdot Y_{k}\right\} $
 \end_inset
 
-), ottengo la convoluzione circolare uguale alla convoluzione lineare.
+
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Ripasso di probabilità:
 \end_layout
 
@@ -3820,7 +4322,7 @@ Se
  )
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Processi casuali stazionari
 \end_layout
 
@@ -3883,10 +4385,14 @@ In un processo stazionario, l'autocorrelazione dipende solo da
 , non da entrambi.
 \end_layout
 
+\begin_layout Subsubsection*
+Relazioni molto importanti per i processi stazionari:
+\end_layout
+
 \begin_layout Standard
 \begin_inset Formula 
 \[
-C_{x}\left(t_{1},\tau\right)=R_{x}\left(t_{1},\tau\right)-m_{x\left(t_{1}\right)}^{*}\cdot m_{x\left(t_{1}+\tau\right)}=R_{x}\left(\tau\right)-\left|m_{x}\right|^{2}
+C_{x}\left(\tau\right)=R_{x}\left(\tau\right)-\left|m_{x}\right|^{2}
 \]
 
 \end_inset
@@ -4602,6 +5108,8 @@ Trigonometria e Analisi
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 Werner
 \end_layout
 
@@ -4643,6 +5151,8 @@ Werner
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 Prostaferesi
 \end_layout
 
@@ -4677,6 +5187,8 @@ Prostaferesi
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 Somme/sottrazioni di angoli
 \end_layout
 
@@ -4697,6 +5209,8 @@ Somme/sottrazioni di angoli
 
 \end_deeper
 \begin_layout Itemize
+
+\series bold
 Duplicazione
 \end_layout
 
