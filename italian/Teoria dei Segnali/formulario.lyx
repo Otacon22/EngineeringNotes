@@ -5307,6 +5307,444 @@ R_{x}\left(0\right)=E\left[\mathcal{R}_{x}\left(0\right)\right]=E\left[P_{x\left
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+
+\series bold
+Caso discreto
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x}\left(\phi\right)=\sum_{m=-\infty}^{+\infty}R_{x}\left[m\right]\cdot e^{-j2\pi\phi m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[m\right]=\int_{0}^{1}S_{x}\left(\phi\right)\cdot e^{j2\pi\phi m}d\phi
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Riassunto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pot=R_{x}\left(0\right)=\sigma_{x}^{2}+\left|m_{x}\right|^{2}=C_{x}\left(0\right)+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Caso continuo
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pot=\int_{-\infty}^{+\infty}S_{x}\left(f\right)df
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Caso discreto
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pot=\int_{-\frac{1}{2}}^{\frac{1}{2}}S_{x}\left(\phi\right)d\phi
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pot=\int_{-\frac{1}{2T}}^{\frac{1}{2T}}\widetilde{S}_{x}\left(f\right)df
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Processi bianchi
+\end_layout
+
+\begin_layout Standard
+Sono dei processi stazionari con autocovarianza impulsiva.
+\end_layout
+
+\begin_layout Standard
+Queste formule non sono valide per lavorare sulla potenza, che in generale
+ è infinita, a meno di limitare l'analisi su una banda
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{x}\left(\tau\right)=k\delta\left(\tau\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=k\cdot\delta\left(\tau\right)+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+S_{x}\left(f\right)=k+\left|m_{x}\right|^{2}\delta\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Processo bianco a tempo discreto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{x}\left[m\right]=k\cdot\delta_{m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left[m\right]=k\delta_{m}+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+S_{x}\left(\phi\right)=k+\left|m_{x}\right|^{2}\delta\left(\phi\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P=R_{x}\left[0\right]=k+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Rumore termico
+\end_layout
+
+\begin_layout Standard
+(si ricorda che il rumore termico è un caso particolare del tipo di rumore
+ bianco 
+\series bold
+continuo
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{x}\left(f\right)=k\cdot rect\left(\frac{f}{W}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=k\cdot\frac{sin\left(\pi W\tau\right)}{\pi\tau}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p_{x}\left(a\right)=\frac{1}{\sqrt{2\pi\sigma_{x}^{2}}}\cdot e^{-\frac{a^{2}}{2\sigma_{x}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+K=N_{0}=K\cdot T
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Dove K è la costante di Boltzmann e 
+\begin_inset Formula $T$
+\end_inset
+
+ è la temperatura in gradi kelvin)
+\end_layout
+
+\begin_layout Subsection*
+Note su varianza e autocovarianza
+\end_layout
+
+\begin_layout Itemize
+La varianza della somma di due campioni consecutivi di un processo casuale
+ discreto bianco è 
+\begin_inset Formula $2\cdot\sigma_{x}^{2}$
+\end_inset
+
+ perché i campioni di un processo bianco sono indipendenti
+\end_layout
+
+\begin_layout Itemize
+L'autocovarianza di un processo casuale bianco discreto è impulsiva sul
+ campione stesso.
+\end_layout
+
+\begin_layout Subsection*
+Sistemi LTI discreti
+\end_layout
+
+\begin_layout Standard
+Posto 
+\begin_inset Formula $y_{n}=x_{n}*h_{n}$
+\end_inset
+
+ con 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+ risposta all'impulso del sistema, abbiamo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Valor medio dell'uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{y}=m_{x}\cdot\sum_{k=-\infty}^{+\infty}h_{k}=m_{x}\cdot H\left(0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Autocorrelazione dell'uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{y}\left[m\right]=R_{x}\left[m\right]*h_{m}*h_{-m}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Cross-correlazione uscita-ingresso
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{yx}\left[m\right]=R_{x}\left[m\right]*h_{m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Densità spettrale di potenza dell'uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{y}\left(\phi\right)=S_{x}\left(\phi\right)\cdot\left|H\left(\phi\right)\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+\bar under
+Se e solo se
+\bar default
+,
+\series default
+ il segnale in ingresso è formato da campioni indipendenti (ad esempio un
+ processo bianco):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma_{y}^{2}=\sigma_{x}^{2}\cdot\sum_{n=-\infty}^{+\infty}\left|h_{n}\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Sistemi LTI continui
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Valor medio uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{y}=m_{x}\cdot\int_{-\infty}^{+\infty}h\left(t\right)dt=m_{x}\cdot H\left(0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Autocorrelazione dell'uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{y}\left(\tau\right)=R_{x}\left(\tau\right)*h\left(\tau\right)*h^{*}\left(\tau\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Densità spettrale di potenza dell'uscita
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{y}\left(f\right)=S_{x}\left(f\right)\cdot\left|H\left(f\right)\right|^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Section*
 Trigonometria e Analisi
 \end_layout
