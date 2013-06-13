@@ -5746,7 +5746,7 @@ S_{y}\left(f\right)=S_{x}\left(f\right)\cdot\left|H\left(f\right)\right|^{2}
 
 \end_deeper
 \begin_layout Section*
-Trigonometria e Analisi
+Trigonometria
 \end_layout
 
 \begin_layout Itemize
@@ -5878,20 +5878,166 @@ Duplicazione
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $\cos^{2}\alpha=\frac{1+\cos(2\alpha)}{2}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $\sin^{2}\alpha=\frac{1-\cos(2\alpha)}{2}$
-\end_inset
-
-
-\end_layout
-
 \end_deeper
+\begin_layout Section*
+Quantizzazione di segnali numerici
+\end_layout
+
+\begin_layout Standard
+Errore introdotto dalla quantizzazione: 
+\begin_inset Formula 
+\[
+\epsilon{}_{q}=X{}_{nq}-X_{n}
+\]
+
+\end_inset
+
+ tende ad uniforme.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+m_{\epsilon_{q}}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\sigma_{\epsilon_{qm}}^{2}=P_{\epsilon_{qm}}=\frac{\Delta^{2}}{12}=\frac{V^{2}}{3M^{2}}
+\]
+
+\end_inset
+
+(
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+ultima uguaglianza valida s
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang italian
+se intervalli uguali)
+\end_layout
+
+\begin_layout Standard
+..
+ 
+\begin_inset Formula 
+\[
+\frac{P_{s}}{P_{\epsilon_{q}}}=SNR_{q}=M^{2}(se-uniforme-e-uguale)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+M=n°intervalli di quantizzazione , 2V=intervallo delle ampezze da quantizzare
+ NB: (-V,V), ampiezze distribuite uniformemente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P_{s}=\frac{V^{2}}{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Codifica naturale
+\end_layout
+
+\begin_layout Standard
+con k= n°di bit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(SNR_{dB})=10log_{10}(SNR_{q})=10log_{10}(4^{k})\cong6k
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Codifica di Huffman - se non la sai sparati.
+ Formule utili:
+\end_layout
+
+\begin_layout Standard
+N° medio di bit per livello di quantizzazione (k sono le parole codificate):
+\begin_inset Formula $\sum_{k}(n-bit)_{k}\cdot p_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Entropia
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H=-\sum_{i=1}^{M}p_{i}\cdot log_{2}(p_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+M=numero livelli, 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+=probabilità del livello i-esimo.
+\end_layout
+
+\begin_layout Standard
+per codifica naturale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+H=log_{2}M
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
