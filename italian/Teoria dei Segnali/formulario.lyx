@@ -5717,7 +5717,7 @@ Autocorrelazione dell'uscita
 \begin_layout Standard
 \begin_inset Formula 
 \[
-R_{y}\left(\tau\right)=R_{x}\left(\tau\right)*h\left(\tau\right)*h^{*}\left(\tau\right)
+R_{y}\left(\tau\right)=R_{x}\left(\tau\right)*h\left(\tau\right)*h^{*}\left(-\tau\right)
 \]
 
 \end_inset
