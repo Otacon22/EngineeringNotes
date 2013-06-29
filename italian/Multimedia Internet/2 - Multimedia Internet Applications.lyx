@@ -12490,28 +12490,96 @@ Capabilities Exchange
 \end_layout
 
 \begin_layout Part*
-SIP
+SIP (Session Initiation Protocol)
+\end_layout
+
+\begin_layout Standard
+È un protocollo di signaling standardizzato dalla IETF.
+ Viene utilizzato insieme ad altri protocolli come ad esempio:
+\end_layout
+
+\begin_layout Itemize
+Session Description Protocol (
+\series bold
+SDP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Real Time Streaming Protocol (
+\series bold
+RTSP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Session Announcement Protocol (
+\series bold
+SAP
+\series default
+)
+\end_layout
+
+\begin_layout Standard
+SIP si occupa del 
+\series bold
+setup
+\series default
+, 
+\series bold
+tear down
+\series default
+ e 
+\series bold
+management
+\series default
+ delle sessioni IP multimediali.
+\end_layout
+
+\begin_layout Standard
+SIP utilizza solitamente RTP come protocollo (livello 4) di trasporto per
+ gli streams multimediali.
+\end_layout
+
+\begin_layout Standard
+Per la parte di signaling di SIP viene utilizzato un canale di comunicazione
+ logico separato, diverso dai canali logici utilizzati per il trasporto
+ dei contenuti multimediali.
 \end_layout
 
 \begin_layout Section*
 Infrastruttura
 \end_layout
 
-\begin_layout Itemize
-
-\series bold
-Clients
-\series default
-: User Agent Client, girano sui terminali degli utenti.
- Il loro scopo principale è quello di fare richieste.
+\begin_layout Standard
+SIP ha due tipi di entità:
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Servers
+Client
+\series default
+: chiamato anche 
+\series bold
+\emph on
+User Agent Client
+\series default
+\emph default
+, girano sui terminali degli utenti.
+ È una applicazione il cui scopo principale è quello di fare richieste SIP.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Server
 \series default
 : È una applicazione che gira su qualunque dispositivo.
+ Si occupa di stabilire connessioni e rispondere alle richieste dei clients.
+ Ci sono svariati tipi di server:
 \end_layout
 
 \begin_deeper
@@ -12549,6 +12617,18 @@ Proxy Server
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+In un sistema SIP devono essere presenti almeno due entità: 
+\series bold
+user agent client
+\series default
+ e un 
+\series bold
+user agent server
+\series default
+.
+\end_layout
+
 \begin_layout Subsection*
 Proxy (redirect) server
 \end_layout
@@ -12565,8 +12645,8 @@ Proxy (redirect) server
 
 \begin_layout Standard
 In questo esempio vediamo come un host (marco@work.com) contatta un proxy
- server per contattare luca e il proxy server invia una richiesta a luca
- e reinoltra la risposta a marco.
+ server per contattare Luca e il proxy server invia una richiesta a Luca
+ e re-inoltra la risposta a marco.
 \end_layout
 
 \begin_layout Standard
@@ -12574,10 +12654,16 @@ Questo è uno dei modi in cui i
 \emph on
 proxy server
 \emph default
- funzionano.
+ funzionano, implementando un 
+\series bold
+\emph on
+redirect server
+\series default
+\emph default
+.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Di seguito vediamo un altro esempio:
 \end_layout
 
@@ -12597,7 +12683,8 @@ In questo esempio vediamo come il
 proxy server
 \emph default
  avvisa il chiamante che è necessario contattare direttamente il dispositivo
- terminale ad un certo indirizzo (senza passare ancora per il proxy).
+ terminale ad un certo indirizzo (senza passare ancora per il proxy), invece
+ di fare il redirect in modo trasparente.
 \end_layout
 
 \begin_layout Standard
@@ -12613,7 +12700,7 @@ libero
 \end_layout
 
 \begin_layout Subsection*
-Applicazioni SIP
+Applicazioni SIP (esempi)
 \end_layout
 
 \begin_layout Itemize
@@ -12655,6 +12742,11 @@ Il vantaggio è che spesso questi servizi sono configurabili da interfacce
  web.
 \end_layout
 
+\begin_layout Itemize
+C'è la possibilità di configurare il sistema in modo da far suonare contemporane
+amente diversi terminali, o ottenere una lista di terminali.
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 
@@ -12688,11 +12780,37 @@ Click-to-dial
 Contact-Manager
 \series default
 \emph default
-: È un servizio di rubrica centralizzata
+: È un servizio di rubrica centralizzata, permette di localizzare un utente
+ in modo indipendente dalla posizione geografica.
+\end_layout
+
+\begin_layout Subsection*
+User Agent Server
 \end_layout
 
 \begin_layout Standard
-[omissis]
+È il server che è solitamente presente sui terminali utente, che contengono
+ comunque anche lo 
+\emph on
+user agent client
+\emph default
+.
+ Vengono utilizzati per inviare richieste di signaling e riceverne da altri
+ host.
+\end_layout
+
+\begin_layout Subsection*
+Registrar Server
+\end_layout
+
+\begin_layout Standard
+Questo server si occupa di gestire le richieste REGISTER che sono utilizzate
+ dai device SIP per registrarsi nella rete SIP.
+ Dopo che un device SIP si è registrato, diventa operativo.
+\end_layout
+
+\begin_layout Subsection*
+Struttura base di una chiamata SIP
 \end_layout
 
 \begin_layout Standard
@@ -12703,6 +12821,424 @@ Contact-Manager
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Il messaggio 
+\series bold
+INVITE
+\series default
+ viene utilizzato per avviare la chiamata.
+ In questo esempio si assume che il messaggio possa essere inviato direttamente
+ dallo user agent client del primo host allo 
+\emph on
+user agent server
+\emph default
+ del secondo host.
+\end_layout
+
+\begin_layout Itemize
+L'host che riceve il messaggio 
+\series bold
+INVITE
+\series default
+ risponde inviando un messaggio 
+\series bold
+RINGING
+\series default
+ al chiamante, di modo da fargli sapere che il telefono del chiamato ha
+ iniziato a squillare.
+\end_layout
+
+\begin_layout Itemize
+Quando il chiamato risponde, viene inviato il messaggio 
+\series bold
+OK 
+\series default
+per avvisare il chiamante che il chiamato ha risposto e inizia la comunicazione
+\end_layout
+
+\begin_layout Itemize
+Il chiamato risponde con un 
+\series bold
+ACK
+\series default
+ per confermare di aver ricevuto il messaggio 
+\series bold
+OK
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Quando uno dei due host desidera terminare la chiamata, viene inviato il
+ messaggio 
+\series bold
+BYE
+\series default
+ , a cui segue la risposta 
+\series bold
+OK
+\series default
+.
+\end_layout
+
+\begin_layout Subsection*
+Caratteristiche di SIP
+\end_layout
+
+\begin_layout Itemize
+SIP è un protocollo di signaling semplice e flessibile
+\end_layout
+
+\begin_layout Itemize
+I parametri per la negoziazione dei contenuti multimediali sono trasportati
+ nel corpo dei messaggi SIP.
+\end_layout
+
+\begin_layout Itemize
+Nella figura di seguito vediamo un esempio di chiamata che viene schedulata
+ ad un certo orario, considerando che il chiamato è occupato fino ad una
+ certa ora.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 071.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+I messaggi SIP
+\end_layout
+
+\begin_layout Standard
+Possono essere 
+\series bold
+\bar under
+richieste
+\series default
+\bar default
+ o 
+\series bold
+\bar under
+risposte
+\series default
+\bar default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Sono strutturati in un formato testuale ASCII simile a HTTP.
+ In questo modo è più semplice analizzare il comportamento del signaling
+ semplicemente osservando il contenuto dei pacchetti.
+ Questo non potevamo farlo per H.323 perché il formato dei messaggi era binario.
+ Lo svantaggio è che occupiamo più banda, ma essendo il signaling una operazione
+ breve all'interno di uno scambio multimediale, non è un problema.
+\end_layout
+
+\begin_layout Subsubsection*
+Sintassi dei messaggi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+message = start-line
+\end_layout
+
+\begin_layout Plain Layout
+
+          *message header
+\end_layout
+
+\begin_layout Plain Layout
+
+          CLLF
+\end_layout
+
+\begin_layout Plain Layout
+
+          [messsage body]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+start-line = request-line || status-line
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La riga di richiesta (
+\emph on
+request-line
+\emph default
+) specifica il 
+\series bold
+tipo
+\series default
+ 
+\series bold
+di richiesta
+\series default
+ e i suoi parametri
+\end_layout
+
+\begin_layout Itemize
+La riga di stato (
+\emph on
+status-line
+\emph default
+) invece specifica il 
+\series bold
+tipo di risposta
+\series default
+ e i suoi parametri.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+message header
+\emph default
+ contiene altre informazioni, come ad esempio gli identificatori del sorgente
+ e destinazione.
+\end_layout
+
+\begin_layout Itemize
+CL, LF sta ad indicare il solito 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+
+\backslash
+r
+\backslash
+n
+\series default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il 
+\emph on
+message body
+\emph default
+ contiene invece informazioni tipo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tipo di sessione
+\end_layout
+
+\begin_layout Itemize
+Formato dei contenuti multimediali
+\end_layout
+
+\begin_layout Itemize
+Altro
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+SIP non standardizza il corpo del messaggio.
+ Nel caso di informazioni sul tipo di contenuti multimediali e altro, la
+ struttura del messaggio è costituita in base al 
+\emph on
+Session Description Protocol
+\emph default
+ (
+\series bold
+SDP
+\series default
+).
+\end_layout
+
+\begin_layout Standard
+Il body del messaggio può anche contenere messaggi di altri sistemi di signaling
+, che è utile per riuscire a realizzare l'interworking.
+\end_layout
+
+\begin_layout Itemize
+Le richieste SIP iniziano con la 
+\emph on
+request-line
+\emph default
+, che consiste di alcuni token di separati da spazi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+metodo
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tipo di richiesta
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+uri
+\series default
+ della richiesta
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Indirizzo destinazione della richiesta
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Versione SIP
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+request-line = method SP Request-URI SP SIP-Version CRLF
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+(SP sta per 
+\series bold
+SPACE
+\series default
+ !)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I metodi base sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+INVITE
+\series default
+: Per stabilire una chiamata, specifica gli utenti coinvolti (possono essere
+ più di uno nel caso di una teleconferenza) e il formato multimediale.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ACK
+\series default
+: I messaggi ricevuti sono solitamente confermati con un ACK che si riferisce
+ esplicitamente al messaggio ricevuto.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+BYE
+\series default
+: Termina una chiamata.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CANCEL
+\series default
+: Termina una transazione in corso
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+REGISTER
+\series default
+: Viene utilizzato per 
+\begin_inset Quotes eld
+\end_inset
+
+registrare
+\begin_inset Quotes erd
+\end_inset
+
+ un dispositivo presso un certo registrar proxy server
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+OPTIONS
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Esempio: un numero, device multipli
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 077.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In questo esempio Luca è registrato con indirizzi SIP multipli presso il
+ registrar.
+\end_layout
+
+\begin_layout Itemize
+Anna chiama Luca inviando un INVITE.
+ Il proxy SIP inoltra il messaggio INVITE ad entrambi i dispositivi registrati
+ da Luca.
+ Uno dei due dispositivi accetterà la chiamata inviando OK al proxy SIP
+ che lo inoltra al chiamante (Anna).
+\end_layout
+
+\begin_layout Itemize
+Il proxy SIP annulla la chiamata verso l'altro dispositivo
 \end_layout
 
 \end_body

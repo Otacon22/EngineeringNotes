@@ -163,6 +163,70 @@ Seno e coseno in forma esponenziale complessa:
 \begin_layout Itemize
 
 \series bold
+Proprietà dei numeri complessi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z=a+jb
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left|z\right|=\rho=\sqrt{a^{2}+b^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\varphi=\begin{cases}
+arctg\left(\frac{b}{a}\right) & \:\text{per }a>0\\
+arctg\left(\frac{b}{a}\right)+\pi & \:\text{per }a<0
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z^{*}=a-jb
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+z\cdot z^{*}=\left|z\right|^{2}=\rho^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-1=e^{j\pi}=e^{-j\pi}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
 Energia di un segnale:
 \end_layout
 
@@ -669,7 +733,7 @@ x_{n}*h_{n}=h_{n}*x_{n}
 
 \begin_inset Formula 
 \[
-\left(x_{1n}*x_{2n}\right)*h_{n}=\left(x_{1n}*h_{n}\right)+\left(x_{2n}*h_{n}\right)
+\left(x_{1n}+x_{2n}\right)*h_{n}=\left(x_{1n}*h_{n}\right)+\left(x_{2n}*h_{n}\right)
 \]
 
 \end_inset
@@ -1214,7 +1278,11 @@ Alcune trasformate continue
 \begin_inset Text
 
 \begin_layout Plain Layout
+Il seno cardinale ha altezza 
+\begin_inset Formula $T\cdot A$
+\end_inset
 
+ e ha zeri in:
 \end_layout
 
 \end_inset
@@ -1237,10 +1305,21 @@ Alcune trasformate continue
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $f=\frac{2n}{T}$
+\end_inset
+
+ per 
+\begin_inset Formula $n\neq0$
+\end_inset
+
+, 
+\begin_inset Formula $f=\frac{\left(2n+1\right)}{T}$
+\end_inset
+
 
 \end_layout
 
@@ -1308,7 +1387,7 @@ Alcune trasformate continue
 \begin_layout Standard
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="1">
+<lyxtabular version="3" rows="9" columns="1">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top" width="0">
 <row>
@@ -1332,6 +1411,21 @@ Alcune trasformate continue
 
 \begin_layout Plain Layout
 \begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=sin\left(2\pi f_{0}t\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{j}{2}\delta\left(f+f_{0}\right)-\frac{j}{2}\delta\left(f-f_{0}\right)\,\ar@(d,d)[l]^{F^{-1}}}
+}}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mbox{\ensuremath{\mbox{\ensuremath{\xymatrix{x\left(t\right)=cos\left(2\pi f_{0}t+\varphi\right)\,\ar@(u,u)[r]^{\mathcal{F}} & X\left(f\right)=\frac{e^{j\varphi}}{2}\delta\left(f+f_{0}\right)+\frac{e^{-j\varphi}}{2}\delta\left(f-f_{0}\right)\,\ar@(d,d)[l]^{F^{-1}}}
 }}}}$
 \end_inset
 
@@ -3383,6 +3477,40 @@ di
 .
 \end_layout
 
+\begin_layout Itemize
+Di solito la DFT si rappresenta tra 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $N-1$
+\end_inset
+
+.
+ Se ho parte del segnale in 
+\begin_inset Formula $k<0$
+\end_inset
+
+, devo portarla positiva (tanto 
+\begin_inset Formula $X_{k}$
+\end_inset
+
+ è periodica).
+ Ad esempio se ho un impulso in 
+\begin_inset Formula $k=-10$
+\end_inset
+
+ e 
+\begin_inset Formula $N=30$
+\end_inset
+
+ , l'impulso va in 
+\begin_inset Formula $N-10=20$
+\end_inset
+
+.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \align center
@@ -4642,7 +4770,7 @@ Tempo di decorrelazione del processo
 \begin_inset Formula $t_{0}\rightarrow\rho_{x}\left(t_{0}\right)=\frac{C_{x}\left(t_{0}\right)}{\sigma_{x}^{2}}\approx0$
 \end_inset
 
-
+, al limite possiamo accettare 0,1 come approssimazione di 0.
 \end_layout
 
 \begin_layout Itemize
@@ -5236,6 +5364,17 @@ R_{x}\left(\tau\right)=\int_{-\infty}^{+\infty}S_{x}\left(f\right)\cdot e^{j2\pi
 \begin_layout Standard
 \begin_inset Formula 
 \[
+\mathcal{F}\left\{ R_{x}\left(\tau\right)\right\} =S_{x}\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
 R_{x}\left(\tau\right)=\mathcal{F}^{-1}\left\{ S_{x}\left(f\right)\right\} 
 \]
 
@@ -5437,6 +5576,45 @@ R_{x}\left(\tau\right)=k\cdot\delta\left(\tau\right)+\left|m_{x}\right|^{2}
 \begin_inset Formula 
 \[
 S_{x}\left(f\right)=k+\left|m_{x}\right|^{2}\delta\left(f\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso in cui si tratti di processi bianchi a banda limitata:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+R_{x}\left(\tau\right)=k\frac{sin\left(\pi W\tau\right)}{\pi\tau}+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P=R_{x}\left(0\right)=kW+\left|m_{x}\right|^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\sigma_{x}^{2}=kW
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+S_{x}\left(f\right)=k\cdot rect\left(\frac{f}{W}\right)+\left|m_{x}\right|^{2}\cdot\delta\left(f\right)
 \]
 
 \end_inset
@@ -5684,6 +5862,12 @@ Se e solo se
 
 \end_layout
 
+\begin_layout Standard
+Quando la risposta all'impulso del sistema LTI è molto più lunga del tempo
+ di decorrelazione del processo d'ingresso, la densità di probabilità dell'uscit
+a è gaussiana
+\end_layout
+
 \begin_layout Subsection*
 Sistemi LTI continui
 \end_layout
@@ -5906,40 +6090,39 @@ m_{\epsilon_{q}}=0
 
 \begin_inset Formula 
 \[
-\sigma_{\epsilon_{qm}}^{2}=P_{\epsilon_{qm}}=\frac{\Delta^{2}}{12}=\frac{V^{2}}{3M^{2}}
+\sigma_{\epsilon_{qm}}^{2}=P_{\epsilon_{qm}}=\frac{\Delta^{2}}{12}
 \]
 
 \end_inset
 
-(
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-ultima uguaglianza valida s
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang italian
-se intervalli uguali)
+
 \end_layout
 
+\begin_layout Standard
+Dove 
+\begin_inset Formula $\Delta$
+\end_inset
+
+è l'ampiezza dell'intervallo di quantizzazione.
+\end_layout
+
+\begin_layout Itemize
+Se e solo se gli intervalli di quantizzazione sono uguali, allora:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma_{\epsilon_{qm}}^{2}=\frac{V^{2}}{3M^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 ..
  
