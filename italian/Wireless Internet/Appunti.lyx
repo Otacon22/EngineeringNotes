@@ -23824,13 +23824,8 @@ Architettura di rete
 Multiple Access
 \end_layout
 
-\begin_layout Section*
-Packet Access
-\end_layout
-
 \begin_layout Itemize
-A livello logico, l'accesso multiplo al canale può essere gestito in modo
- 
+A livello logico, possiamo gestire il multiple access in modo 
 \series bold
 dinamico
 \series default
@@ -23838,17 +23833,41 @@ dinamico
 \series bold
 distribuito
 \series default
- utilizzando una serie di protocolli ad accesso multiplo
+ utilizzando dei 
+\series bold
+\emph on
+multiple access protocols
+\series default
+\emph default
+.
 \end_layout
 
 \begin_layout Itemize
-I primi protocolli ad accesso multiplo sono stati progettati per le LAN
+I primi protocolli per il 
+\emph on
+multiple access
+\emph default
+ furono progettati per le reti locali LAN.
+ Al giorno d'oggi invece le reti LAN non li utilizzano più (vedi Ethernet
+ utilizza protocollo ad accesso multiplo solo in casi molto particolari),
+ mentre invece ne fanno un uso massiccio le reti wireless.
+ Si evita l'utilizzo di protocolli multiple access nelle LAN per evitare
+ porblemidi performance.
 \end_layout
 
 \begin_layout Itemize
-Al giorno d'oggi i protocolli ad accesso multiplo sono principalmente utilizzati
- sulle reti wireless (nelle reti LAN cablate non si utilizza più il mezzo
- condiviso per problemi di performance).
+Le reti wireless sono obbligate ad utilizzare i protocolli ad accesso multiplo
+ a causa del tipo di mezzo che utilizzano per trasmettere, che è intrinsecamente
+ ad accesso multiplo a livello fisico.
+\end_layout
+
+\begin_layout Section*
+Packet Access
+\end_layout
+
+\begin_layout Standard
+Consideriamo delle reti basate sulla trasmissione di pacchetti, che è il
+ caso che ci interessa.
 \end_layout
 
 \begin_layout Standard
@@ -23871,13 +23890,16 @@ sequenziali
 \end_layout
 
 \begin_layout Itemize
-Schemi di 
+Vengono utilizzati schemi di 
 \series bold
-polling
+polling 
+\series default
+per prevenire le collisioni
 \end_layout
 
 \begin_layout Itemize
-Schemi di scheduling centralizzato
+Schemi di scheduling centralizzati.
+ Una unica entità gestisce il traffico.
 \end_layout
 
 \end_deeper
@@ -23901,11 +23923,21 @@ collisione
 \end_layout
 
 \begin_layout Itemize
-I conflitti vengono risolti utilizzando procedure distribuite basate su
- un 
+I conflitti vengono risolti utilizzando procedure 
+\bar under
+distribuite
+\bar default
+ basate su un 
 \series bold
 \bar under
 ritardo di ritrasmissione casuale
+\series default
+\bar default
+ (
+\emph on
+backoff
+\emph default
+).
 \end_layout
 
 \end_deeper
@@ -23971,11 +24003,1252 @@ Tuttavia, per informare lo scheduler dello stato delle code locali e fornire
 \emph on
 coordination signaling
 \emph default
-).
+), quindi il problema non è così facile da risolvere.
+\end_layout
+
+\begin_layout Subsection*
+Assunzioni e notazioni
+\end_layout
+
+\begin_layout Itemize
+Nel seguito trascuriamo la possibilità di controllo centralizzato e ci concentri
+amo invece a vedere i 
+\series bold
+meccanismi distribuiti
+\end_layout
+
+\begin_layout Itemize
+Abbiamo 
+\begin_inset Formula $M$
+\end_inset
+
+ stazioni che trasmettono
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che i tempi di arrivo dei pacchetti nelle 
+\begin_inset Formula $M$
+\end_inset
+
+ code delle varie stazioni possano essere descritti da un processo di 
+\emph on
+Poisson
+\emph default
+ con frequenza 
+\begin_inset Formula $\frac{\lambda}{M}$
+\end_inset
+
+ (
+\begin_inset Formula $\lambda$
+\end_inset
+
+ è la frequenza generale)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Ricordiamo
+\series default
+ che le variabili aleatorie di 
+\emph on
+Poisson 
+\emph default
+sono descritte come segue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P\left(X=i\right)=\frac{\lambda^{i}}{i!}\cdot e^{-\lambda}\quad\quad i=0,1,2,...
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Questa distribuzione è caratterizzata da 
+\begin_inset Formula $E\left[X\right]=\lambda$
+\end_inset
+
+ e 
+\begin_inset Formula $Var\left(X\right)=\lambda$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Indicheremo lo 
+\series bold
+stato del sistema
+\series default
+ utilizzando un vettore che contiene il numero dei pacchetti nelle varie
+ code:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+n=\left(n_{1},n_{2},...n_{M}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ è il numero di pacchetti nella coda 
+\emph on
+i-esima
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+L'evoluzione del sistema è descritta dal processo 
+\begin_inset Formula $N\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Polling
+\end_layout
+
+\begin_layout Standard
+Gli schemi di polling sono schemi ad accesso schedulato dove 
+\series bold
+le stazioni accedono al canale in base ad un ordine ciclico
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Viene utilizzato un messaggio di polling, un 
+\series bold
+token
+\series default
+, che permette l'accesso al canale.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+token
+\series default
+ può essere distribuito:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Da una stazione centrale (
+\emph on
+roll-call polling
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+Passato da una stazione all'altra (
+\emph on
+hub-polling
+\emph default
+)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Assumiamo che il 
+\series bold
+tempo di trasmissione di un pacchetto
+\series default
+ sia 
+\begin_inset Formula $T$
+\end_inset
+
+ e che il tempo per passare un token sia 
+\begin_inset Formula $h$
+\end_inset
+
+, entrambi valori costanti.
+\end_layout
+
+\begin_layout Standard
+I vari schemi di polling si distinguono tra di loro in base alla 
+\series bold
+service policy
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Exhaustive
+\end_layout
+
+\begin_layout Itemize
+Gated
+\end_layout
+
+\begin_layout Itemize
+Limited
+\end_layout
+
+\begin_layout Subsection*
+Exhaustive polling
+\end_layout
+
+\begin_layout Standard
+Quando una stazione riceve il token, trasmette 
+\series bold
+tutti i pacchetti nella coda 
+\series default
+e poi dopo rilascia il token.
+\end_layout
+
+\begin_layout Standard
+Vediamo il comportamento di un sistema che applica un tipo di polling come
+ questo.
+\end_layout
+
+\begin_layout Itemize
+La probabilità che ci sia un 
+\bar under
+pacchetto in trasmissione sul canale
+\bar default
+ in un dato istante di tempo è 
+\begin_inset Formula 
+\[
+\rho=\lambda T
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il 
+\bar under
+tempo di attesa medio
+\bar default
+ nella coda può essere calcolato considerando tre componenti:
+\begin_inset Formula 
+\[
+E\left[W\right]=W_{1}+W_{2}+W_{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename ma03.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W_{1}$
+\end_inset
+
+ è il tempo di attesa a causa di pacchetti trasmessi, 
+\begin_inset Formula $W_{2}$
+\end_inset
+
+ è il tempo di attesa a causa di pacchetti di cui è già iniziata la trasmissione
+ e 
+\begin_inset Formula $W_{3}$
+\end_inset
+
+ è il tempo di attesa a causa del fatto che non è presente abbastanza tempo
+ tra la trasmissione precedente e la successiva per poter fare la propria
+ trasmissione.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W_{1}=E\left[N_{c}\right]T$
+\end_inset
+
+, dove 
+\begin_inset Formula $E\left[N_{c}\right]$
+\end_inset
+
+ è il numero medio di pacchetti trasmessi prima del proprio pacchetto.
+ Possiamo riscriverlo utilizzando alcune proprietà (Little) come: 
+\begin_inset Formula $E\left[N_{c}\right]=\lambda E\left[W\right]$
+\end_inset
+
+, quindi:
+\begin_inset Formula 
+\[
+W_{1}=\lambda\cdot T\cdot E\left[W\right]=\rho\cdot E\left[W\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+W_{2}=\rho\cdot\frac{T}{2}+\left(1-\rho\right)\cdot\frac{h}{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+W_{3}=\frac{M-1}{2}\cdot h
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La media totale del tempo di attesa è quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[W\right]=\frac{\rho}{2\left(1-\rho\right)}\cdot T+\frac{M-\rho}{2\left(1-\rho\right)}\cdot h
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Notiamo che il primo addendo è il tempo di attesa in una singola coda (M/D/1)
+\end_layout
+
+\begin_layout Itemize
+Il secondo addendo è il tempo di attesa addizionale a causa del passaggio
+ di token
+\end_layout
+
+\begin_layout Itemize
+Notiamo che 
+\begin_inset Formula $\rho_{max}=1$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Possiamo anche dire che il 
+\series bold
+tempo medio di ciclo di un token è 
+\series default
+
+\begin_inset Formula 
+\[
+E\left[C\right]=\frac{Mh}{1-\rho}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Gated polling
+\end_layout
+
+\begin_layout Standard
+Le stazioni che ricevono il token possono 
+\series bold
+trasmettere tutti i pacchetti che 
+\bar under
+erano nella coda al momento di arrivo del token
+\series default
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+L'espressione del tempo di attesa è simile alla precedente, con un termine
+ addizionale 
+\begin_inset Formula $W_{4}$
+\end_inset
+
+.
+ Questo termine addizionale rappresenta il tempo aggiuntivo che un pacchetto
+ deve aspettare quando il pacchetto arriva e il token è già nella stazione
+ (quindi deve aspettare il giro dopo).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+W_{4}=\frac{\rho}{M}\cdot Mh=h\cdot\rho
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi otteniamo in totale:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[W\right]=\frac{\rho}{2\left(1-\rho\right)}\cdot T+\frac{M+\rho}{2\left(1-\rho\right)}\cdot h
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E ricordiamo ancora 
+\begin_inset Formula $\rho_{max}=1$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection*
+Limited Polling
+\end_layout
+
+\begin_layout Standard
+Quando una stazione riceve il token, 
+\series bold
+può trasmettere solo 
+\begin_inset Formula $k$
+\end_inset
+
+ pacchetti al massimo
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Il caso speciale con 
+\begin_inset Formula $k=1$
+\end_inset
+
+ è chiamato 
+\emph on
+Round-Robin
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In questo caso aggiungiamo un altro termine addizionale 
+\begin_inset Formula $W_{5}$
+\end_inset
+
+ che rappresenta il tempo aggiuntivo che il pacchetto deve attendere per
+ ogni pacchetto che c'è già nella coda.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+W_{5}=\frac{E\left[N_{c}\right]}{M}Mh=\lambda\cdot E\left[W\right]\cdot h
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi otteniamo 
+\begin_inset Formula 
+\[
+E\left[W\right]=\frac{\rho}{2\left(1-\rho\frac{h+T}{T}\right)}\cdot T+\frac{M+\rho}{2\left(1-\rho\frac{h+T}{T}\right)}\cdot h
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo quindi: 
+\begin_inset Formula 
+\[
+\rho_{max}=\frac{T}{T+h}
+\]
+
+\end_inset
+
+ in questo caso.
+\end_layout
+
+\begin_layout Subsection*
+Polling nelle reti reali
+\end_layout
+
+\begin_layout Standard
+Ci sono vari 
+\series bold
+esempi di utilizzo del polling
+\series default
+ per regolare l'accesso ad un canale nel caso delle reti wireless.
+ Pensiamo nel caso del 
+\series bold
+WiFi
+\series default
+ a 
+\series bold
+PCF
+\series default
+ (Point Coordination Function) oppure HCF (Hybrid Coordination Function).
+ Oppure 
+\series bold
+Bluetooth
+\series default
+ anche!
+\end_layout
+
+\begin_layout Standard
+La 
+\series bold
+principale differenza
+\series default
+ rispetto agli schemi che abbiamo appena visto è che la sequenza delle stazioni
+ viene modificata dinamicamente (per svariati motivi).
+\end_layout
+
+\begin_layout Subsubsection*
+Polling in bluetooth
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ma04.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alcune caratteristiche di bluetooth non ci rendono in grado di fare la diretta
+ applicazione delle formule che abbiamo visto prima:
+\end_layout
+
+\begin_layout Itemize
+Le code non vengono visitate in ordine sequenziale (ci si alterna sempre
+ con una visita al master)
+\end_layout
+
+\begin_layout Itemize
+Il tempo per passare un token è sempre uno slot, però lo slot può essere
+ utilizzato anche per trasmissione dati se la coda non è vuota.
+\end_layout
+
+\begin_layout Itemize
+Possono essere utilizzati pacchetti di dimensioni non fisse (1,3 o 5 slots).
+\end_layout
+
+\begin_layout Standard
+Deriviamo le espressioni del tempo di attesa in due casi particolari:
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che il master ha una coda separata per ogni slave e che tutte
+ le code vengono visitate in base ad una sequenza fissa.
+\end_layout
+
+\begin_layout Itemize
+I tempi di arrivo nelle code sono dei processi di Poisson indipendenti
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $m$
+\end_inset
+
+: numero di device bluetooth
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m-1$
+\end_inset
+
+: numero di slaves
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\gamma$
+\end_inset
+
+: rate di arrivo in ogni coda
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\lambda$
+\end_inset
+
+: rate di arrivo totale
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $T$
+\end_inset
+
+: durata dello slot
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Primo caso
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Limited service stile 
+\emph on
+round robin
+\emph default
+ (arriva il token e posso trasmettere un solo pacchetto al massimo)
+\end_layout
+
+\begin_layout Itemize
+Ci sono solo slot da un pacchetto
+\end_layout
+
+\begin_layout Itemize
+Lunghezza del ciclo è fissa ad è pari a 
+\begin_inset Formula $2\left(m-1\right)$
+\end_inset
+
+ slots
+\end_layout
+
+\begin_layout Itemize
+Il sistema è equivalente a un TDMA con 
+\begin_inset Formula $2\left(m-1\right)$
+\end_inset
+
+ slots per frame
+\end_layout
+
+\begin_layout Itemize
+Ci sono diversi modi equivalenti per calcolare il tempo di attesa
+\end_layout
+
+\begin_layout Itemize
+Utilizziamo l'approccio già adottato per gli schemi di polling generali:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+W_{1}=\gamma T\cdot E\lfloor W\rfloor\qquad W_{2}=\frac{2\left(m-1\right)T}{2}=\left(m-1\right)\cdot T\qquad W_{3}=0\qquad W_{4}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+W_{5}=\gamma T\cdot E\left[W\right]\cdot\left[2\left(m-1\right)-1\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left[W\right]=\frac{\left(m-1\right)T}{1-\gamma T-2\left(m-1\right)\gamma T+\gamma T}=\frac{\left(m-1\right)T}{1-2\left(m-1\right)\gamma T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Secondo caso
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Limited service stile 
+\emph on
+round robin
+\emph default
+ (arriva il token e posso trasmettere un solo pacchetto al massimo)
+\end_layout
+
+\begin_layout Itemize
+Slots da 1,3 e 5 pacchetti
+\end_layout
+
+\begin_layout Itemize
+Osserviamo che il sistema è equivalente ad un sistema a polling con tempo
+ di passaggio di token uguale ad 1 slot e service time uguale alla lunghezza
+ del pacchetto meno 1 slot
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{i}$
+\end_inset
+
+: probabilità di un pacchetto da 
+\begin_inset Formula $i$
+\end_inset
+
+ slots
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L$
+\end_inset
+
+: lunghezza del pacchetto
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\overline{L}=p_{1}+3p_{3}+5p_{5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X$
+\end_inset
+
+: durata del servizio nel sistema equivalente
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\overline{X}=2p_{3}+4p_{5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\overline{X}^{2}=4p_{3}+16p_{5}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $E\left[z\right]=\frac{\overline{X}^{2}}{2\overline{X}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E\left[W\right]=\frac{\left(m-1\right)\gamma}{1-2\left(m-1\right)\gamma L}\overline{X}^{2}+\frac{\left(m-1\right)+\left(m-1\right)\gamma\left(L-1\right)T}{1-2\left(m-1\right)\gamma LT}T=
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Polling in WiFi
+\end_layout
+
+\begin_layout Standard
+Ne abbiamo già parlato per 802.11e 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ma06.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Random access
+\end_layout
+
+\begin_layout Standard
+Con random access sono possibili 
+\series bold
+collisioni sul canale
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+I conflitti vengono risolti mediante un qualche tipo di 
+\emph on
+feedback
+\emph default
+ da parte del canale e qualche procedura per selezionare un tempo di attesa
+ casuale.
+\end_layout
+
+\begin_layout Itemize
+Come feedback 
+\begin_inset Quotes eld
+\end_inset
+
+minimo
+\begin_inset Quotes erd
+\end_inset
+
+ da parte del canale, la stazione deve almeno essere in grado di sapere
+ se la trasmissione ha avuto successo o no.
+\end_layout
+
+\begin_layout Itemize
+Il primo e più semplice meccanismo di accesso casuale al canale è stato
+ 
+\series bold
+Aloha
+\series default
+.
+ Aloha fa proprio uso di questo tipo di 
+\emph on
+feedback
+\emph default
+ dal canale.
 \end_layout
 
 \begin_layout Subsection*
 Aloha
+\end_layout
+
+\begin_layout Standard
+Fu la prima rete wireless a pacchetti, creata presso l'università delle
+ Hawaii nel 1970.
+\end_layout
+
+\begin_layout Standard
+Funziona nel modo seguente:
+\end_layout
+
+\begin_layout Itemize
+Quando c'è un pacchetto da trasmettere si trasmette e basta.
+\end_layout
+
+\begin_layout Itemize
+Se la trasmissione fallisce () si aspetta un tempo di attesa casuale e poi
+ si ritenta
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma07.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che i tempi di inizio di trasmissione sul canale siano dei processi
+ di Poisson con rate 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ Consideriamo il rate normalizzato 
+\begin_inset Formula 
+\[
+G=\lambda T
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+La probabilità di successo della trasmissione è data dalla probabilità che
+ non ci sia nessuna altra trasmissione in un intervallo 
+\begin_inset Formula $2T$
+\end_inset
+
+ (vedi figura sopra):
+\begin_inset Formula 
+\[
+P_{success}=P_{s}=e^{-2G}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il throughput normalizzato è dato quindi da: 
+\begin_inset Formula 
+\[
+S=Ge^{-2G}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se le trasmissioni sono 
+\bar under
+sincronizzate
+\bar default
+ in qualche modo (S-ALOHA: 
+\emph on
+Slotted Aloha
+\emph default
+), allora il periodo di vulnerabilità si riduce a 
+\begin_inset Formula $T$
+\end_inset
+
+ e quindi: 
+\begin_inset Formula 
+\[
+S=G\cdot e^{-G}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma08.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Aloha a buffer singolo
+\end_layout
+
+\begin_layout Standard
+Sfortunatamente il traffico sul canale è una combinazione di 
+\series bold
+nuove trasmissioni
+\series default
+ , ma anche di 
+\series bold
+ritrasmissioni
+\series default
+ e può aumentare se il throughput si riduce.
+\end_layout
+
+\begin_layout Standard
+Per valutare il comportamento dinamico di Aloha dobbiamo considerare un
+ modello più complesso:
+\end_layout
+
+\begin_layout Itemize
+Assumiamo di avere 
+\begin_inset Formula $M$
+\end_inset
+
+ stazioni, ciascuna con un unico buffer di trasmissione che può contenere
+ al massimo 1 pacchetto
+\end_layout
+
+\begin_layout Itemize
+Il canale di trasmissione è suddiviso in slot, 
+\emph on
+slotted aloha
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se il buffer di trasmissione è vuoto, allora arriva un pacchetto e viene
+ immediatamente trasmesso nello slot con probabilità 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Se il buffer è pieno, il pacchetto viene ritrasmesso con probabilità 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Lo stato del sistema è dato da 
+\begin_inset Formula $n\left(t\right)$
+\end_inset
+
+, il numero di buffers pieni al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n\left(t\right)$
+\end_inset
+
+ è una catena di Markov discreta.
+\end_layout
+
+\begin_layout Standard
+La probabilità che in uno slot ci siano 
+\begin_inset Formula $i$
+\end_inset
+
+ arrivi, dato che 
+\begin_inset Formula $n$
+\end_inset
+
+ buffers sono pieni, è data da: 
+\begin_inset Formula 
+\[
+a\left(i,n\right)=\binom{M-n}{i}\cdot\alpha^{i}\cdot\left(1-\alpha\right)^{M-n-i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mentre la probabilità che ci siano 
+\begin_inset Formula $i$
+\end_inset
+
+ ritrasmissioni è:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+b\left(i,n\right)=\binom{n}{i}\cdot\beta^{i}\cdot\left(1-\beta\right)^{n-i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma09.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possiamo risolvere numericamente la catena e ottenere la probabilità di
+ stato stazionario 
+\begin_inset Formula $\pi_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Il throughput è dato da: 
+\begin_inset Formula 
+\[
+S=E\left[s\left(n\right)\right]=\sum_{n=0}^{M}\pi_{n}s\left(n\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+s\left(n\right)=a\left(1,n\right)\cdot b\left(0,n\right)+a\left(0,n\right)\cdot b\left(1,n\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il traffico sul canale è: 
+\begin_inset Formula 
+\[
+g\left(n\right)=\left(M-n\right)\alpha+n\beta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E i nuovi arrivi sono:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a\left(n\right)=\left(M-n\right)\cdot\alpha
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possiamo esprimere 
+\begin_inset Formula $n$
+\end_inset
+
+ come funzione di 
+\begin_inset Formula $g$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+n=\frac{g-M\alpha}{\beta-\alpha}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+E calcoliamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a\left(g\right)=M\alpha-\left(g-M\alpha\right)\cdot\frac{\alpha}{\beta-\alpha}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In modo simile possiamo anche ottenere 
+\begin_inset Formula $s\left(g\right)$
+\end_inset
+
+ utilizzando probabilità stazionarie (la curva è molto vicina a quella dell'infi
+nite population model).
+\end_layout
+
+\begin_layout Standard
+Possiamo considerare punti dove 
+\begin_inset Formula $s\left(g\right)=a\left(g\right)$
+\end_inset
+
+ come punti di equilibrio del processo.
+ Dobbiamo ricordare che i punti di equilibrio possono essere stabili o instabili.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma10.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma11.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma12.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+....
+\end_layout
+
+\begin_layout Standard
+....
 \end_layout
 
 \begin_layout Standard
