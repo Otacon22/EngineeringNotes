@@ -25240,47 +25240,843 @@ Possiamo considerare punti dove
 \end_layout
 
 \begin_layout Standard
+Se esiste più di un punto di equilibrio, non possiamo garantire che il sistema
+ abbia un throughput stabile.
+\end_layout
+
+\begin_layout Standard
+Per 
+\series bold
+stabilizzare aloha
+\series default
+, l'unico modo è limitare il traffico sul canale.
+ 
+\end_layout
+
+\begin_layout Standard
+Però considerato il feedback minimo che abbiamo, stabilizzare il sistema
+ non è facile.
+\end_layout
+
+\begin_layout Subsection*
+Aloha stabilizzato
+\end_layout
+
+\begin_layout Standard
+Assumiamo di poter avere un feedback più ricco dal canale.
+\end_layout
+
+\begin_layout Standard
+Le stazioni, alla fine di ogni intervallo di trasmissione, sanno se:
+\end_layout
+
+\begin_layout Itemize
+L'intervallo era 
+\series bold
+vuoto
+\series default
+ (E)
+\end_layout
+
+\begin_layout Itemize
+Se c'è stata una trasmissione con 
+\series bold
+successo
+\series default
+ (S)
+\end_layout
+
+\begin_layout Itemize
+Se c'è stata una 
+\series bold
+collisione
+\series default
+ (C)
+\end_layout
+
+\begin_layout Standard
+Assumiamo di avere anche buffer singolo e 
+\emph on
+slotted Aloha
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Assumiamo la stessa probabilità 
+\begin_inset Formula $\beta$
+\end_inset
+
+ sia per le 
+\series bold
+nuove trasmissioni
+\series default
+ che per le 
+\series bold
+ritrasmissioni
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Il traffico sul canale è dato da:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+G=n\beta
+\]
+
+\end_inset
+
 
 \end_layout
 
 \begin_layout Standard
-....
+Assumendo che sappiamo il numero 
+\begin_inset Formula $n$
+\end_inset
+
+ di buffers occupati, la strategia migliore per limitare il traffico è quella
+ di impostare dinamicamente 
+\begin_inset Formula 
+\[
+\beta=\frac{1}{n}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-....
+Di modo che 
+\begin_inset Formula $G=1$
+\end_inset
+
+ e massimizziamo quindi il throughput.
 \end_layout
 
 \begin_layout Standard
-Assumiamo che il tempo di trasmissione sia 1 per ogni pacchetto (sono tutti
- pacchetti di lunghezza fissa, vedi paper borgonovo per lunghezza variabile).
+Il problema di questa tecnica è che il numero di buffers occupati 
+\begin_inset Formula $n$
+\end_inset
+
+ non può essere noto a tutti e deve essere quindi 
+\series bold
+stimato
+\series default
+ in ogni slot 
+\begin_inset Formula $k$
+\end_inset
+
+ da parte di ogni stazione.
+\end_layout
+
+\begin_layout Itemize
+Diciamo che 
+\begin_inset Formula $\hat{n}_{k}$
+\end_inset
+
+ è il valore stimato di 
+\begin_inset Formula $n$
+\end_inset
+
+ durante lo slot 
+\begin_inset Formula $k$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{k}=\frac{1}{\hat{n}_{k}}$
+\end_inset
+
+ è la probabilità durante lo slot 
+\begin_inset Formula $k$
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Standard
-[....Antani...Antani...]
+Assumiamo che il valore stiamo 
+\begin_inset Formula $n_{k}$
+\end_inset
+
+ sia distribuito come una 
+\emph on
+Poisson
+\emph default
+ con valore medio 
+\begin_inset Formula $\hat{n}_{k}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+P\left(n_{k}=i\right)=\frac{\hat{n}_{k}}{i!}\cdot e^{-\hat{n}_{k}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Questa è una distribuzione 
+\begin_inset Quotes eld
+\end_inset
+
+a priori
+\begin_inset Quotes erd
+\end_inset
+
+ di 
+\begin_inset Formula $n_{k}$
+\end_inset
+
+, a causa del feedback del canale la distribuzione 
+\begin_inset Quotes eld
+\end_inset
+
+a posteriori
+\begin_inset Quotes erd
+\end_inset
+
+ viene modificata.
+ Questo dipende ovviamente dal tipo di feedback del canale.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se osserviamo una trasmissione che ha 
+\series bold
+successo
+\series default
+ (
+\series bold
+S
+\series default
+), la regola di aggiornamento è:
+\begin_inset Formula 
+\[
+\hat{n}_{k+1}=\hat{n}_{k}-1+S
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Poiché 1 pacchetto ha lasciato il sistema e (in media) 
+\begin_inset Formula $S$
+\end_inset
+
+ nuovi arrivi incrementano il numero di buffers occupati.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se osserviamo uno 
+\series bold
+slot vuoto
+\series default
+ (
+\series bold
+E
+\series default
+):
+\begin_inset Formula 
+\[
+P\left(n_{k}=\frac{i}{E}\right)=\frac{P\left(n_{k}=i;\, E\right)}{P\left(E\right)}=\frac{\left(1-\beta\right)^{i}\cdot\frac{\hat{n}_{k}}{i!}\cdot e^{-\hat{n}_{k}}}{e^{-G}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Poiché questo meccanismo mantiene 
+\begin_inset Formula $G=1$
+\end_inset
+
+ e 
+\begin_inset Formula $\beta=\frac{1}{\hat{n}_{k}}$
+\end_inset
+
+, allora 
+\begin_inset Formula 
+\[
+P\left(n_{k}=\frac{i}{E}\right)=\frac{\left(\hat{n}_{k}-1\right)^{i}}{i!}\cdot e^{-\left(\hat{n}_{k}-1\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Che è uguale alla distribuzione 
+\begin_inset Quotes eld
+\end_inset
+
+a priori
+\begin_inset Quotes erd
+\end_inset
+
+ con valore medio di 
+\begin_inset Formula $\hat{n}_{k}-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi la regola di aggiornamento è ancora:
 \end_layout
 
 \begin_layout Standard
-[....Stabilized antani...]
+\begin_inset Formula 
+\[
+\hat{n}_{k+1}=\hat{n}_{k}-1+S
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Poiché la regola di aggiornamento è la stessa, possiamo considerare questi
+ primi due casi come un 
+\series bold
+evento unico
+\series default
+ che possiamo chiamare 
+\series bold
+\emph on
+No-Collision
+\series default
+\emph default
+ (
+\series bold
+NC
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Quindi in realtà dal canale abbiamo un feedback binario: 
+\bar under
+collisione
+\bar default
+ o 
+\bar under
+non collisione
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se abbiamo una 
+\series bold
+collisione
+\series default
+ (
+\series bold
+C
+\series default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Possiamo calcolare una distribuzione 
+\begin_inset Quotes eld
+\end_inset
+
+a posteriori
+\begin_inset Quotes erd
+\end_inset
+
+ come nel caso precedente.
+ Tuttavia dato che il sistema deve essere in equilibrio possiamo semplicemente
+ scrivere che: 
+\begin_inset Formula 
+\[
+P\left(E\right)x_{e}+P\left(S\right)x_{s}+P\left(C\right)x_{c}=-\frac{1}{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $x$
+\end_inset
+
+ sono le variazioni nell'
+\begin_inset Formula $n_{k}$
+\end_inset
+
+ stimato, senza includere i nuovi arrivi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $x_{e}=x_{s}=-1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(E\right)=e^{-G}|_{G=1}=e^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(S\right)=G\cdot e^{-G}|_{G=1}=e^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(C\right)=1-e^{-G}-G\cdot e^{-G}|_{G=1}=1-2\cdot e^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi: 
+\begin_inset Formula $x_{c}=\frac{1}{e-2}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La regola di aggiornamento: 
+\begin_inset Formula 
+\[
+\hat{n}_{k+1}=\hat{n}_{k}+\frac{1}{e-2}+S
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il sistema è stabile il valore più conveniente per 
+\begin_inset Formula $S$
+\end_inset
+
+ è 
+\begin_inset Formula $S=e^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section*
+Algoritmi per la soluzione delle collisioni
 \end_layout
 
 \begin_layout Standard
-Collision Resolution Algorithms.
+Un altro modo molto popolare per risolvere il problema delle collisioni
+ in Aloha ottenendo performance migliori delle precedenti è l'utilizzo di
+ uno 
+\series bold
+\emph on
+stack algorithm
+\series default
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
-Pagina 55: come fanno le stazioni a sapere quando è il loro turno per trasmetter
-e?
+L'idea è di risolvere il problema delle collisioni 
+\bar under
+prima
+\bar default
+ di spostarsi sul meccanismo di accesso.
+ Il meccanismo più semplice di 
+\emph on
+stack algorithm
+\emph default
+ è basato sull'uso di alberi binari.
 \end_layout
 
 \begin_layout Standard
-P.63: se le stazioni si vedono tutte tra di loro,l'unica collisione possibile
- è su RTS, una volta fatta quella è uguale a CSMA/CD.
+Dopo una collisione le stazioni vengono suddivise in 
+\series bold
+due gruppi
+\series default
+ casualmente.
+ Il primo gruppo ritrasmette, mentre l'altro resta in attesa fino a quando
+ 
+\series bold
+tutti 
+\series default
+i pacchetti del primo gruppo non sono trasmessi, si procede così in modo
+ 
+\begin_inset Quotes eld
+\end_inset
+
+ricorsivo
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-P.64: assumiamo il pacchetto dati di durata costante pari ad 1 (valore normalizza
-to a 
+\align center
+\begin_inset Graphics
+	filename ma14.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(vedi esempio in figura).
+\end_layout
+
+\begin_layout Subsection*
+CSMA (Carrier Sense Multiple Access)
+\end_layout
+
+\begin_layout Standard
+Ci sono varie tecnologie in cui Aloha è tutt'oggi utilizzato:
+\end_layout
+
+\begin_layout Itemize
+Il canale di signaling per i sistemi cellulari (GSM)
+\end_layout
+
+\begin_layout Itemize
+Il canale di 
+\emph on
+reservation 
+\emph default
+di WiMax
+\end_layout
+
+\begin_layout Itemize
+RFID
+\end_layout
+
+\begin_layout Standard
+Però possiamo ottenere prestazioni migliori se abbiamo un feedback più dettaglia
+to dal canale trasmissivo.
+\end_layout
+
+\begin_layout Itemize
+Se il tempo di propagazione è corto rispetto al tempo di trasmissione, possiamo
+ controllare lo stato del canale.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CSMA
+\series default
+ è come Aloha ma 
+\series bold
+trasmette solo quando vede che il canale è libero
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma15.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sul canale abbiamo un'alternanza di cicli di:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Busy
+\series default
+: 
+\bar under
+almeno una
+\bar default
+ stazione vede il canale come occupato.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Idle
+\series default
+: 
+\bar under
+Tutte
+\bar default
+ le stazioni vedono il canale libero.
+\end_layout
+
+\begin_layout Standard
+Il throughput è dato da:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S=\frac{\alpha}{B+I}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $B$
+\end_inset
+
+ e 
+\begin_inset Formula $I$
+\end_inset
+
+ sono i periodi medi di 
+\emph on
+busy
+\emph default
+ e 
+\emph on
+idle
+\emph default
+, mentre 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ è la probabilità che ci sia una trasmissione con successo in un periodo
+ 
+\emph on
+busy
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se facciamo le stesse assunzioni fatte nel caso di Aloha abbiamo che 
+\begin_inset Formula 
+\[
+\alpha=e^{-aG}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I=\frac{1}{G}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B=e^{-aG}\left(1+a\right)+\left(1-e^{-aG}\right)\cdot\left(1+a+Z\right)
+\]
+
+\end_inset
+
+ Dove 
+\begin_inset Formula $Z$
+\end_inset
+
+ è il tempo quando delle trasmissioni che collidono vanno in 
+\emph on
+overlap
+\emph default
+ parziale.
+\end_layout
+
+\begin_layout Standard
+È possibile mostrare che :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z=a+\frac{a\cdot e^{-aG}}{1-e^{-aG}}-\frac{1}{G}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S=\frac{Ge^{-aG}}{G\left(1+2a\right)+e^{-aG}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma16.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ethernet è basata su una variante di CSMA, ovvero CSMA/CD.
+ 
+\end_layout
+
+\begin_layout Standard
+WiFi utilizza CSMA/CA 
+\series bold
+
+\begin_inset Quotes eld
+\end_inset
+
+simulando
+\begin_inset Quotes erd
+\end_inset
+
+ il carrier sensing
+\series default
+ utilizzando i pacchetti 
+\series bold
+RTS/CTS
+\series default
+/
+\series bold
+ACK
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ma17.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nel caso del WiFi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\alpha=e^{-aG}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $a$
+\end_inset
+
+ è l'interframe spacing,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+I=\frac{1}{G}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B=e^{-aG}\left(1+3a+2b\right)+\left(1-e^{-aG}\right)\left(b+a+Z\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $b$
+\end_inset
+
+ è la durata di RTS/CTS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S=\frac{Ge^{-aG}}{G\left(1+2a\right)+e^{-aG}-G\left(1-b\right)\left(1-e^{-aG}\right)+\left(2a+2b\right)Ge^{-aG}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assumiamo il pacchetto dati di durata costante pari ad 1 (valore normalizzato
+ a 
 \begin_inset Formula $T$
 \end_inset
 
@@ -25290,12 +26086,2069 @@ to a
 \begin_inset Formula $Z$
 \end_inset
 
- l'abbiamo già usata a rappresenta la sovrapposizione tra diverse trasmissioni.
+ l'abbiamo già usata e rappresenta la sovrapposizione tra diverse trasmissioni.
+\end_layout
+
+\begin_layout Section*
+Centralized Scheduled Access
 \end_layout
 
 \begin_layout Standard
-P.67, consideriamo il fair queuing simile ad un round robin.
- Siamo fair in base ad un certo peso assegnato.
+Nel caso in cui abbiamo un sistema con una stazione centrale che gestisce
+ la trasmissione delle altre stazioni, lo schema a singola coda virtuale
+ può essere utilizzato.
+\end_layout
+
+\begin_layout Standard
+Dobbiamo fare signaling per:
+\end_layout
+
+\begin_layout Itemize
+Informare la stazione centrale sullo stato delle code da ogni stazione
+\end_layout
+
+\begin_layout Itemize
+Dare i permessi di trasmissione alle stazioni
+\end_layout
+
+\begin_layout Itemize
+Altre informazioni tipo richieste/permessi di banda in 802.16
+\end_layout
+
+\begin_layout Standard
+In base alle informazioni che otteniamo nel punto di controllo centrale,
+ possiamo sviluppare diverse tecniche.
+\end_layout
+
+\begin_layout Standard
+Ci sono però alcuni problemi che rendono l'implementazione di questi metodi
+ sulle reti wireless diverso dalla loro implementazione nelle reti cablate.
+ Questo è dovuto principalmente al problema della 
+\series bold
+inaffidabilità del canale radio
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Nel caso di accodamento equo (
+\series bold
+\emph on
+fair queuing
+\series default
+\emph default
+ scheme): le risorse disponibili vengono assegnate equamente a tutte le
+ stazioni
+\end_layout
+
+\begin_layout Itemize
+Nel caso di accodamento pesato (
+\series bold
+\emph on
+weighed fair queuing
+\series default
+\emph default
+ scheme): le risorse disponibili vengono assegnate in base a una serie di
+ pesi 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+L'assegnamento di risorse è equo se in ogni intervallo di tempo 
+\begin_inset Formula $\left(t_{1},t_{2}\right)$
+\end_inset
+
+, la banda (frazione dell'utilizzo del canale) 
+\begin_inset Formula $B\left(t_{1},t_{2}\right)$
+\end_inset
+
+ è tale che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left|\frac{B_{i}\left(t_{1},t_{2}\right)}{w_{i}}-\frac{B_{i}\left(t_{1},t_{2}\right)}{w_{j}}\right|\simeq0\qquad\forall i,j
+\]
+
+\end_inset
+
+Dove 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ sono i flussi 
+\series bold
+\emph on
+backlogged
+\series default
+\emph default
+ (con pacchetti in attesa di essere trasmessi nella coda).
+ Tuttavia a causa dello stato del canale, le risorse assegnate potrebbero
+ non essere utilizzate per trasmissioni corrette e la vera distribuzione
+ delle risorse potrebbe essere diversa.
+\end_layout
+
+\begin_layout Itemize
+Consideriamo un esempio con 3 flussi backlogged.
+ Nell'intervallo 
+\begin_inset Formula $\left(0,1\right)$
+\end_inset
+
+, il canale della stazione 3 è cattivo e le trasmissioni non hanno successo,
+ mentre quelle della stazione 1 e 2 hanno successo.
+\end_layout
+
+\begin_layout Itemize
+Nell'intervallo 
+\begin_inset Formula $\left(1,2\right)$
+\end_inset
+
+ tutti i canali sono buoni.
+\end_layout
+
+\begin_layout Itemize
+Se prendiamo queste informazioni sopra possiamo calcolare l'utilizzo di
+ risorse come segue:
+\begin_inset Formula 
+\[
+B_{1}\left(0,1\right)=B_{2}\left(0,1\right)=\frac{1}{3}\qquad B_{3}\left(0,1\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(1,2\right)=B_{2}\left(1,2\right)=B_{3}\left(1,2\right)=\frac{1}{3}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(0,2\right)=B_{2}\left(0,2\right)=\frac{2}{3}\qquad\qquad B_{3}\left(0,2\right)=\frac{1}{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se possiamo conoscere lo stato del canale in anticipo possiamo evitare lo
+ spreco di risorse con questo assegnamento:
+\begin_inset Formula 
+\[
+B_{1}\left(0,1\right)=B_{2}\left(0,1\right)=\frac{1}{2}\qquad B_{3}\left(0,1\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(1,2\right)=B_{2}\left(1,2\right)=B_{3}\left(1,2\right)=\frac{1}{3}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(0,2\right)=B_{2}\left(0,2\right)=\frac{5}{6}\qquad\qquad B_{3}\left(0,2\right)=\frac{1}{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Che non è equo ma almeno non spreca risorse
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Un'altra possibilità è quella di compensare l'assegnamento mancante quando
+ il canale è cattivo, nel momento in cui il canale torna il buono stato:
+\begin_inset Formula 
+\[
+B_{1}\left(0,1\right)=B_{2}\left(0,1\right)=\frac{1}{2}\qquad B_{3}\left(0,1\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(1,2\right)=B_{2}\left(1,2\right)=\frac{1}{6}\qquad B_{3}\left(1,2\right)=\frac{2}{3}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+B_{1}\left(0,2\right)=B_{2}\left(0,2\right)=\left(0,2\right)=\frac{2}{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È equo sul lungo periodo, almeno per compensare l'effetto del canale
+\end_layout
+
+\begin_layout Itemize
+Ci sono una serie di schemi di compensazione che possono essere adottati.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se il canale non è nè buono nè cattivo ma abbiamo una modulazione adattiva
+ e schemi di coding che permettono una lieve degradazione, le cose sono
+ più complicate.
+ La stessa definizione della capacità del canale non è semplice, perché
+ dipende dallo scheduling scheme:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Schedula solo stazioni con il rate massimo
+\end_layout
+
+\begin_layout Itemize
+Schedula trasmissioni in modo che sul lungo periodo il rate è uguale per
+ tutti
+\end_layout
+
+\begin_layout Itemize
+Schedula le trasmissioni di modo che il rate medio è proporzionale al rate
+ medio del canale.
+\end_layout
+
+\end_deeper
+\begin_layout Part*
+IP Mobility
+\end_layout
+
+\begin_layout Standard
+Il 
+\emph on
+mobility management
+\emph default
+ permette ad un terminale di cambiare il suo punto di accesso alla rete:
+\end_layout
+
+\begin_layout Itemize
+Senza cambiare il suo identificatore/indirizzo
+\end_layout
+
+\begin_layout Itemize
+Mantenendo le sessioni attive (a livello applicativo)
+\end_layout
+
+\begin_layout Standard
+Non è sempre necessario! I client delle applicazioni non hanno sempre bisogno
+ di essere raggiunte con lo stesso indirizzo (pensiamo al web ad esempio,
+ HTTP & co).
+ In molti casi anche se cambia indirizzo non è un problema.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility00.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In quali casi abbiamo quindi bisogno della 
+\emph on
+mobility
+\emph default
+?
+\end_layout
+
+\begin_layout Itemize
+Quando utilizziamo applicazioni server
+\end_layout
+
+\begin_layout Itemize
+Quando utilizziamo applicazioni real time (VoIP ad esempio) e non vogliamo
+ vedere le nostre connessioni cadere.
+\end_layout
+
+\begin_layout Standard
+Abbiamo bisogno di gestire questo problema a livello di rete sapendo che
+ un host, a livello di stack protocollare, è identificato a livello datalink
+ e rete (2 e 3) mediante degli indirizzi, mentre a livello di trasporto
+ e applicativo mediante degli identificatori.
+\end_layout
+
+\begin_layout Standard
+Quello che vogliamo fare è 
+\series bold
+cambiare indirizzo e mantenere gli stessi identificatori a livello applicativo
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Possiamo gestire le sessioni cambiando gli identificativi quando cambia
+ l'indirizzo.
+\end_layout
+
+\begin_layout Standard
+Vediamo due esempio di applicazioni che integrano il supporto per la mobility:
+ SIP e Dynamic DNS.
+\end_layout
+
+\begin_layout Subsection*
+Dynamic DNS
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility01.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+È un normale nome all'interno di un server DNS, con però un TTL molto basso.
+ Quando dobbiamo dare il nostro indirizzo ad un client esterno, gli diamo
+ il nostro Dynamic DNS.
+ Ogni volta che il client remoto risolve il DNS, otterrà un indirizzo aggiornato.
+\end_layout
+
+\begin_layout Subsection*
+SIP Mobility
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility02.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso la mobility viene garantita sia prima della chiamata (inoltrandol
+a se l'utente chiamato non si trova nella rete del suo gateway), sia durante
+ la chiamata, senza interromperla.
+\end_layout
+
+\begin_layout Subsection*
+Mobility a livello datalink
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility03.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbiamo già visto che nel caso del WiFi, Se vari access points sono collegati
+ in switching tra di loro, quando un client si sposta da un access point
+ all'altro vengono aggiornate le tabelle di bridging, quindi la mobility
+ è 
+\begin_inset Quotes eld
+\end_inset
+
+automatica
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Questo accade perché c'è una tabella di switching che viene aggiornata.
+ Questo tipo di approccio è fattibile per le reti LAN ma non scala su reti
+ grosse, dove dovremmo tenere delle tabelle di routing troppo grosse perdendo
+ performance per consultarle.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility04.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility05.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo risolvere il problema con delle 
+\series bold
+regole di routing 
+\emph on
+per-host
+\series default
+\emph default
+?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Otteniamo delle tabelle di routing molto grosse, potenzialmente anche una
+ entry per ogni host!
+\end_layout
+
+\begin_layout Itemize
+Gli update delle varie tabelle devono essere propagati su tutti i routers
+ della rete!
+\end_layout
+
+\begin_layout Itemize
+Anche per un piccolo numero di host questa cosa sarebbe molto complicata
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Mobile IP
+\end_layout
+
+\begin_layout Standard
+È stato sviluppato per risolvere i problemi degli utenti mobili nelle reti
+ in modo trasparente.
+\end_layout
+
+\begin_layout Itemize
+Permette agli host di restare collegati ad Internet indipendentemente dalla
+ loro posizione 
+\end_layout
+
+\begin_layout Itemize
+Permette agli host di essere tracciati senza bisogno di cambiare il proprio
+ indirizzo IP
+\end_layout
+
+\begin_layout Itemize
+Non richiede modifiche al software degli host e router non-mobili
+\end_layout
+
+\begin_layout Itemize
+Richiede l'aggiunta di una parte di infrastruttura nella rete
+\end_layout
+
+\begin_layout Itemize
+Non ha limiti geografici
+\end_layout
+
+\begin_layout Itemize
+Non richiede modifiche agli IP o al loro formato
+\end_layout
+
+\begin_layout Itemize
+Supporta la sicurezza
+\end_layout
+
+\begin_layout Standard
+Mobile IP è stato sviluppato dalla Internet Engineering Task Force (IETF).
+ Per IPv4 si chiama 
+\series bold
+MIPv4
+\series default
+ ed è stato descritto in RFC 3344 e RFC 4721.
+\end_layout
+
+\begin_layout Subsection*
+Concetti base
+\end_layout
+
+\begin_layout Itemize
+Ogni host si sposta senza modificare il suo 
+\series bold
+\emph on
+Permanent IP address
+\series default
+\emph default
+ (
+\series bold
+PIP
+\series default
+)
+\end_layout
+
+\begin_layout Itemize
+Ogni host ha un 
+\series bold
+home agent
+\series default
+ (
+\series bold
+HA
+\series default
+) sulla sua 
+\series bold
+home network
+\series default
+ (
+\series bold
+HN
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+L'host mobile stabilisce un 
+\series bold
+care-of-address
+\series default
+ (
+\series bold
+COA
+\series default
+) quando è lontano da casa.
+\end_layout
+
+\begin_layout Standard
+Un 
+\series bold
+correspondent host
+\series default
+ è un host che vuole inviare pacchetti all'host mobile.
+\end_layout
+
+\begin_layout Itemize
+Invia pacchetti all'indirizzo PIP dell'host da contattare
+\end_layout
+
+\begin_layout Itemize
+I pacchetti arrivano nella rete di casa dell'host da contattare.
+\end_layout
+
+\begin_layout Itemize
+L'home agent redirige i pacchetti al COA attuale dell'host.
+\end_layout
+
+\begin_layout Itemize
+L'host da contattare risponderà utilizzando il suo indirizzo PIP come sorgente
+ (di fatto spoofando l'indirizzo IP sorgente).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility06.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Care of address
+\end_layout
+
+\begin_layout Standard
+L'host mobile ha due possibilità per quanto riguarda il COA:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Foreign agent care-of address
+\series default
+: Sulla rete remota c'è un altro agent che stabilisce un tunnel con l'home
+ agent e inoltra i pacchetti all'host mobile.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility07.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Co-located care-of address
+\series default
+: COA può essere un indirizzo IP temporaneo ottenuto tramite DHCP nella
+ rete remota.
+ In questo caso l'home agent stabilisce il tunnel direttamente con l'host
+ mobile.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility08.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+In qualunque caso il COA 
+\bar under
+deve
+\bar default
+ essere registrato con l'home agent.
+\end_layout
+
+\begin_layout Subsubsection*
+Tunneling
+\end_layout
+
+\begin_layout Standard
+Il tunneling viene fatto con il protocollo IP-in-IP che semplicemente incapsula
+ il pacchetto IP da consegnare in un altro pacchetto IP.
+\end_layout
+
+\begin_layout Subsubsection*
+Tabelle
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mobility Binding Table
+\series default
+: Viene mantenuta nell'home agent e mappa ogni indirizzo locale di ogni
+ mobile host, con il suo corrispettivo COA.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Visitor List
+\series default
+: Mantenuta sul Foreign Agent che serve un mobile host.
+ Associa l'indirizzo home di un mobile host con il suo mac address e indirizzo
+ IP locale (sulla rete ospitante).
+\end_layout
+
+\begin_layout Subsubsection*
+Funzionalità principali di MIPv4
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Agent discovery
+\series default
+: Home agent e Foreign Agent annunciano la propria disponibilità nella rete
+ e il mobile host può anche cercarli se non li trova.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Registration
+\series default
+: Il mobile host si registra presso un home agent e un foreign agent, di
+ modo da essere aggiunto nelle loro tabelle.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tunneling
+\end_layout
+
+\begin_layout Subsubsection*
+Vantaggi
+\end_layout
+
+\begin_layout Standard
+Lascia tutti i router senza nessuna modifica nuova.
+ È un sistema semplice e non necessità al chiamante di sapere di questo
+ sistema.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility09.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mobility10.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Problemi
+\end_layout
+
+\begin_layout Itemize
+Non abbiamo un buon routing e aumentiamo la latenza della connessione.
+ Una soluzione sarebbe che l'home agent avvisasse subito il chiamante di
+ contattare direttamente al COA senza passare per lui.
+ Però questo richiede supporto da parte del chiamante.
+\end_layout
+
+\begin_layout Itemize
+Un altro problema è lo spoofing IP che viene di fatto effettuato dall'host
+ mobile quando si trova nella rete remota.
+\end_layout
+
+\begin_layout Itemize
+Problemi di sicurezza se non c'è autenticazione sicura sull'home agent.
+\end_layout
+
+\begin_layout Itemize
+La registrazione all'home agent deve essere fatta ogni volta che l'host
+ mobile si sposta in una nuova rete, quindi deve accorgersene.
+\end_layout
+
+\begin_layout Part*
+TCP over Wireless
+\end_layout
+
+\begin_layout Standard
+TCP è un protocollo di trasporto pensato per poter lavorare su svariatissimi
+ tipi di reti ed adattarsi.
+ In particolare è in grado di:
+\end_layout
+
+\begin_layout Itemize
+Utilizzare la banda in modo efficiente
+\end_layout
+
+\begin_layout Itemize
+Condividere le risorse con altre connessioni TCP in modo efficiente.
+\end_layout
+
+\begin_layout Standard
+Sulle reti wireless però esiste un problema non trascurabile che impatta
+ sulle performance di TCP:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+TCP 
+\series default
+(ai fini del controllo di congestione)
+\series bold
+ interpreta la perdita di un pacchetto come indice di congestione della
+ rete
+\series default
+.
+ Se c'è una perdita di pacchetti viene dimezzata la finestra di trasmissione
+ e ridotto quindi il throughput.
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+problema
+\series default
+ è che nelle reti wireless (a differenza di quelle cablate), la 
+\series bold
+perdita di un pacchetto è frequente
+\series default
+ e non è correlata con la congestione.
+ È semplicemente un fenomeno che avviene per la natura del mezzo radio.
+\end_layout
+
+\begin_layout Standard
+Infatti, nelle reti wireless abbiamo:
+\end_layout
+
+\begin_layout Itemize
+Perdita random di segmenti
+\end_layout
+
+\begin_layout Itemize
+Ritardi elevati e variabili
+\end_layout
+
+\begin_layout Itemize
+Poca capacità (il collegamento WiFi è spesso il collo di bottiglia della
+ rete)
+\end_layout
+
+\begin_layout Itemize
+Canali asimmetrici
+\end_layout
+
+\begin_layout Itemize
+Disconnessioni frequenti
+\end_layout
+
+\begin_layout Standard
+Tutte caratteristiche che non vanno in accordo con TCP.
+\end_layout
+
+\begin_layout Subsection*
+Perdita casuale di pacchetti
+\end_layout
+
+\begin_layout Standard
+Le reti wireless hanno solitamente alta probabilità di perdere pacchetti
+ a causa di:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Co-channel interference
+\end_layout
+
+\begin_layout Itemize
+Mobilità utente
+\end_layout
+
+\begin_layout Itemize
+Multipath fading
+\end_layout
+
+\begin_layout Itemize
+Connessioni discontinue a causa di limitazioni della copertura radio
+\end_layout
+
+\begin_layout Standard
+La percentuale di perdita può essere nell'ordine dell' 
+\series bold
+1-10%
+\series default
+.
+ Questo può peggiorare molto le performance di TCP che dimezza la finestra
+ di invio ad ogni perdita.
+\end_layout
+
+\begin_layout Standard
+Vedremo nel seguito alcuni modelli per determinare la degradazione di performanc
+e.
+\end_layout
+
+\begin_layout Subsection*
+Ritardo variabile e bassa capacità del link
+\end_layout
+
+\begin_layout Itemize
+Alcuni collegamenti radio hanno una bassa capacità e di conseguenza un alto
+ 
+\begin_inset Formula $RTT$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le performance di TCP sono grossomodo inversamente proporzionali all'
+\begin_inset Formula $RTT$
+\end_inset
+
+ misurato.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+È stato mostrato con esempi pratici che nelle reti wireless i ritardi di
+ TCP possono variare in modo molto visibile.
+\end_layout
+
+\begin_layout Itemize
+Tutto questo influenza parecchio TCP perché l'RTO (Retrasmissione TimeOut)
+ viene impostato stimando l'RTT.
+\end_layout
+
+\begin_layout Subsection*
+Canali asimmetrici
+\end_layout
+
+\begin_layout Itemize
+Le connessioni TCP sono 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+ACK clocked
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, perché se uno degli ACK viene rallentato, il mittente non può proseguire
+ ad inviare pacchetti.
+ Infatti il rate di trasmissione dipende dal tempo di arrivo degli ACK.
+\end_layout
+
+\begin_layout Itemize
+Questo può avere dei forti impatti quando ad esempio ci sono delle stazioni
+ che 
+\begin_inset Quotes eld
+\end_inset
+
+catturano
+\begin_inset Quotes erd
+\end_inset
+
+ l'utilizzo del canale radio e non permettono ad altre stazioni di ricevere
+ i loro ACK.
+\end_layout
+
+\begin_layout Itemize
+Gli effetti su TCP sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Degradazione di performance del TCP trasmittente
+\end_layout
+
+\begin_layout Itemize
+Trasmissioni TCP che procedono in 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+bursts
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ piuttosto che in modo continuo
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Disconnessioni
+\end_layout
+
+\begin_layout Standard
+A causa della mobilità dell'utente è possibile sperimentare delle disconnessioni
+ a causa di: 
+\end_layout
+
+\begin_layout Itemize
+Handovers tra base-stations
+\end_layout
+
+\begin_layout Itemize
+Bassa copertura (shadowing, mirror, indoor poor signal)
+\end_layout
+
+\begin_layout Itemize
+Deep fading due to multipath
+\end_layout
+
+\begin_layout Standard
+In questi casi TCP può sperimentare svariate ritrasmissioni consecutive
+ a causa di scadenza di time-out.
+\end_layout
+
+\begin_layout Standard
+Quando il periodo di 
+\begin_inset Quotes eld
+\end_inset
+
+blackout
+\begin_inset Quotes erd
+\end_inset
+
+ termina, TCP riparte trasmettendo 1 segmento nello slow start.
+ Come conseguenza questo può peggiorare di molto le performance di TCP.
+\end_layout
+
+\begin_layout Section*
+Soluzioni
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename tcp01.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Soluzioni a livello datalink
+\end_layout
+
+\begin_layout Standard
+Si tenta di nascondere le caratteristiche del mezzo radio utilizzando tecniche
+ di livello 2.
+\end_layout
+
+\begin_layout Standard
+Queste funzioni sono trasparenti rispetto al protocollo TCP.
+ Sfruttiamo la conoscenza di TCP per migliorarne le performance a livello
+ 2.
+\end_layout
+
+\begin_layout Standard
+L'
+\series bold
+approccio tipico 
+\series default
+(chiamato anche 
+\emph on
+snooping
+\emph default
+) è quello di fare buffering dei pacchetti nei nodi della rete wireless
+ (ad esempio gli access points) e poi ritrasmettere se ci sono problemi
+ sul canale.
+\end_layout
+
+\begin_layout Standard
+In questo modo TCP vede perdite solo nel caso di congestione.
+\end_layout
+
+\begin_layout Standard
+Il problema è che questo non può 
+\series bold
+sempre essere fatto
+\series default
+, infatti abbiamo il problema dei ritardi variabili a causa delle ritrasmissioni.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename tcp02.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Caratteristiche degli approcci datalink:
+\end_layout
+
+\begin_layout Itemize
+Nascondono le caratteristiche del link a TCP
+\end_layout
+
+\begin_layout Itemize
+Sono trasparenti a TCP e non richiedono modifiche allo stack protocollare
+ o a livelli superiori
+\end_layout
+
+\begin_layout Itemize
+In alcuni casi possono tenere traccia dello stato di TCP e modificare le
+ funzioni a livello link per migliorare lo stato di TCP
+\end_layout
+
+\begin_layout Itemize
+Richiedono 
+\begin_inset Quotes eld
+\end_inset
+
+intelligenza
+\begin_inset Quotes erd
+\end_inset
+
+ addizionale sui nodi wireless (access points) per tenere traccia di tutte
+ queste informazioni.
+\end_layout
+
+\begin_layout Itemize
+Non viene modificata la semantica 
+\emph on
+end-to-end
+\emph default
+ di TCP.
+\end_layout
+
+\begin_layout Subsection*
+TCP indiretto
+\end_layout
+
+\begin_layout Standard
+Viene 
+\begin_inset Quotes eld
+\end_inset
+
+spezzato
+\begin_inset Quotes erd
+\end_inset
+
+ TCP a livello di access point.
+ Vengono quindi create due connessioni TCP separate: 
+\end_layout
+
+\begin_layout Itemize
+Una dall'access point all'host mobile
+\end_layout
+
+\begin_layout Itemize
+Una dal server all'access-point
+\end_layout
+
+\begin_layout Standard
+La connessione verso l'host mobile può essere modificata per utilizzare
+ un protocollo 
+\begin_inset Quotes eld
+\end_inset
+
+ad hoc
+\begin_inset Quotes erd
+\end_inset
+
+ per risolvere i problemi derivate dal mezzo radio.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename tcp03.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Caratteristiche di questo approccio:
+\end_layout
+
+\begin_layout Itemize
+Le connessioni end-to-end vengono 
+\begin_inset Quotes eld
+\end_inset
+
+spezzate
+\begin_inset Quotes erd
+\end_inset
+
+ in due, quindi la semantica end-to-end non viene mantenuta.
+\end_layout
+
+\begin_layout Itemize
+Dei protocolli speciali di trasporto vengono utilizzati per la parte di
+ connessione che passa sullo spettro radio.
+\end_layout
+
+\begin_layout Itemize
+Dobbiamo aumentare la complessità della 
+\emph on
+base station
+\emph default
+ e anche dell'
+\emph on
+access point
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Approcci 
+\emph on
+end-to-end
+\end_layout
+
+\begin_layout Standard
+Mantengono invariata la semantica del protocollo TCP.
+\end_layout
+
+\begin_layout Standard
+Tuttavia richiedono modifiche che possono essere localizzate a:
+\end_layout
+
+\begin_layout Itemize
+Lato trasmettitore
+\end_layout
+
+\begin_layout Itemize
+Lato ricevitore
+\end_layout
+
+\begin_layout Itemize
+Entrambi i lati
+\end_layout
+
+\begin_layout Standard
+Le modifiche 
+\emph on
+server-side
+\emph default
+ sono le più fattibili in generale, rispetto a quelle 
+\emph on
+client-side
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Quindi abbiamo le seguenti caratteristiche:
+\end_layout
+
+\begin_layout Itemize
+Semantica 
+\emph on
+end-to-end
+\emph default
+ invariata
+\end_layout
+
+\begin_layout Itemize
+Utilizzo di algoritmi sofisticati per controllo di congestione e error recovery
+\end_layout
+
+\begin_layout Itemize
+Possono essere implementate e adottate su Internet (nel caso di modifiche
+ server-side)
+\end_layout
+
+\begin_layout Standard
+Alcuni 
+\series bold
+esempi
+\series default
+ sono:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+TCP Tibet
+\series default
+ e 
+\series bold
+TCP Westwood
+\series default
+: Tentano di rendere TCP più robusto rispetto alle perdite sul canale.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Loss Differentiation Algorithms
+\series default
+: Si adottano comportamenti diversi a seconda della causa di perdita, che
+ viene stimata osservando una serie di variabili (RTT,CWND,SSTRESH,EST.RATE)
+ (TCP NewReno - LDA).
+\end_layout
+
+\begin_layout Subsection*
+Modello per 
+\bar under
+TCP Long Lived Connections
+\bar default
+:
+\end_layout
+
+\begin_layout Standard
+Assumiamo che:
+\end_layout
+
+\begin_layout Itemize
+Stiamo trasferendo un grosso file, ad esempio con una connessione FTP 
+\begin_inset Quotes eld
+\end_inset
+
+long-lived
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La connessione è sempre in stato di 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+congestion avoidance
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, mai di 
+\begin_inset Quotes eld
+\end_inset
+
+slow start
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Tutte le perdite sono identificate con 3 ACK duplicati, non ci sono timeouts.
+\end_layout
+
+\begin_layout Itemize
+L'RTT è costante
+\end_layout
+
+\begin_layout Itemize
+Il collegamento wireless ha una probabilità di perdita 
+\begin_inset Formula $p$
+\end_inset
+
+ e quindi in media avremo 
+\begin_inset Formula $\frac{1}{p}$
+\end_inset
+
+ trasmissioni corrette e poi 1 perdita.
+\end_layout
+
+\begin_layout Standard
+Con queste assunzioni la finestra di congestione CWND è periodica:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename tcp04.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W$
+\end_inset
+
+ è il valore massimo quando abbiamo una perdita, al punto di equilibrio
+ quindi la finestra minima è 
+\begin_inset Formula $\frac{W}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Se il ricevente manda un acknowledgment per ogni segmento, abbiamo bisogno
+ esattamente 
+\begin_inset Formula $\frac{W}{2}$
+\end_inset
+
+ Round-Trip-Times per poter tornare al valore massimo di 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Quindi la durata di ogni 
+\begin_inset Quotes eld
+\end_inset
+
+ciclo
+\begin_inset Quotes erd
+\end_inset
+
+ è 
+\begin_inset Formula $\frac{W}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il numero di segmenti trasmessi in un ciclo è pari all'area sottesa alla
+ curva della figura, quindi 
+\begin_inset Formula $\frac{3}{8}W^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Però abbiamo anche detto che data la probabilità di perdita 
+\begin_inset Formula $p$
+\end_inset
+
+, in ogni segmento abbiamo 
+\begin_inset Formula $\frac{1}{p}$
+\end_inset
+
+ segmenti trasmessi, quindi: 
+\begin_inset Formula 
+\[
+\frac{3}{8}W^{2}=\frac{1}{p}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+W=\sqrt{\frac{8}{3p}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi il 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+goodput
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ della connessione è: 
+\begin_inset Formula 
+\[
+Goodput=\frac{\text{dati trasmessi in un ciclo}}{\text{durata del ciclo}}=\frac{MSS\cdot\frac{3}{8}W^{2}}{RTT\cdot\frac{W}{2}}=\frac{\frac{MSS}{p}}{RTT\cdot\sqrt{\frac{2}{3p}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se definiamo la costante 
+\begin_inset Formula 
+\[
+C=\sqrt{\frac{3}{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Goodput=\frac{MSS}{RTT}\cdot\frac{C}{\sqrt{p}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui abbiamo la 
+\series bold
+\emph on
+delayed ACK policy
+\series default
+\emph default
+, un ACK viene inviato ogni due segmenti e avremo quindi:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=\sqrt{\frac{3}{4}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ci ricordiamo che il rate di uscita per una connessione TCP è data da:
+\begin_inset Formula 
+\[
+R=\frac{W\cdot MSS}{RTT}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Il modello 
+\begin_inset Quotes eld
+\end_inset
+
+vero
+\begin_inset Quotes erd
+\end_inset
+
+, che considera anche i timeout:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Goodput=\frac{MSS}{RTT\cdot\sqrt{\frac{2bp}{3}}+T_{0}\cdot min\left(1,3\cdot\sqrt{\frac{3bp}{8}}\right)\cdot p\cdot\left(1+32p^{2}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+con 
+\series bold
+
+\begin_inset Formula $b=2$
+\end_inset
+
+ 
+\series default
+se delayed ACK, 
+\begin_inset Formula $b=1$
+\end_inset
+
+ altrimenti, 
+\begin_inset Formula $T_{0}$
+\end_inset
+
+ timeout iniziale.
+
+\series bold
+ 
+\end_layout
+
+\begin_layout Subsection*
+Modello per 
+\bar under
+TCP Short Lived Connections
+\bar default
+:
+\end_layout
+
+\begin_layout Standard
+Se le connessioni sono brevi, 
+\series bold
+restano per la maggior parte del tempo nello stato di 
+\emph on
+slow start
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Se abbiamo perdita di pacchetti in questo caso, sperimentiamo fasi di slow
+ start multiple.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename tcp05.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modello senza considerare errori
+\end_layout
+
+\begin_layout Standard
+Sappiamo che nello slow start incrementiamo il valore della 
+\emph on
+congestion window
+\emph default
+ ogni volta che torna indietro un acknowledgment:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+cwnd_{i+1}=cwnd_{i}+ack_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+cwnd_{i+1}=cwnd_{i}+\frac{cwnd_{i}}{b}=\left(1+\frac{1}{b}\right)\cdot cwnd_{i}=\left(1+\frac{1}{b}\right)^{i}\cdot w_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b=1$
+\end_inset
+
+ sta per 
+\series bold
+1 ACK per ogni pacchetto
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b=2$
+\end_inset
+
+ sta per 
+\series bold
+1 ACK ogni 2 pacchetti
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{0}$
+\end_inset
+
+ è il valore iniziale della 
+\begin_inset Formula $cwnd$
+\end_inset
+
+ all'inizio dello 
+\emph on
+slow start
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Possiamo poi risolvere la serie geometrica assumendo 
+\begin_inset Formula 
+\[
+r=1+\frac{1}{b}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cerchiamo il 
+\series bold
+numero di segmenti dati trasmessi
+\series default
+ ad una certa iterazione 
+\begin_inset Formula $i$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+data_{i}=\sum_{k=0}^{i}\left(r^{i-1}\cdot w_{0}\right)=w_{0}\cdot\frac{r^{i}-1}{r-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se vogliamo calcolare 
+\begin_inset Formula $i$
+\end_inset
+
+, il numero di passi di 
+\emph on
+slow start
+\emph default
+ necessari per trasferire un numero di segmenti 
+\begin_inset Formula $data$
+\end_inset
+
+, abbiamo che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+i=log_{r}\left(\frac{data\cdot\left(r-1\right)}{w_{0}}+1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se al posto di esprimere in base al numero di segmenti preferiamo esprimere
+ in base al numero di bit 
+\begin_inset Formula $d$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+i=log_{r}\left(\frac{d\cdot\left(r-1\right)}{MSS\cdot w_{0}}+1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il 
+\series bold
+tempo totale
+\series default
+ per trasferire 
+\series bold
+
+\begin_inset Formula $d$
+\end_inset
+
+ bit
+\series default
+ all'interno di uno slow start, tenendo conto anche del tempo per l'
+\emph on
+handshake
+\emph default
+ e 
+\emph on
+delayed ack
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t_{TOT}=RTT\cdot log_{r}\left(\frac{d\cdot\left(r-1\right)}{MSS\cdot w_{0}}+1\right)+RTT+t_{ACK}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spesso ci può servire anche capire 
+\series bold
+in che condizione restiamo nella fase di 
+\emph on
+slow start
+\series default
+\emph default
+.
+ In questo caso ci basta porre l'uguaglianza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{CWND\cdot MSS}{RTT}=C_{link}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Modello con perdite 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $l$
+\end_inset
+
+ : Numero di segmenti persi
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p$
+\end_inset
+
+ : Probabilità di perdita di un segmento
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p=\frac{l}{l+data}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+l=\frac{data\cdot p}{1-p}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove 
+\begin_inset Formula $data$
+\end_inset
+
+ è sempre il 
+\series bold
+numero di segmenti dati
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+probabilità
+\series default
+ che 
+\series bold
+una perdita porta ad una ritrasmissione
+\series default
+ è: 
+\begin_inset Formula 
+\[
+Q\left(p\right)=min\left(1;\,\frac{3}{\sqrt{\frac{8}{3\cdot b\cdot p}}}\right)
+\]
+
+\end_inset
+
+Dove 
+\begin_inset Formula $b$
+\end_inset
+
+ è definito come sopra.
+\end_layout
+
+\begin_layout Itemize
+Assumiamo 
+\begin_inset Formula $n$
+\end_inset
+
+ il numero di ritrasmissioni:
+\begin_inset Formula 
+\[
+n=l\cdot Q\left(p\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il numero di 
+\series bold
+ritrasmissioni consecutive
+\series default
+: 
+\begin_inset Formula 
+\[
+\frac{1}{1-p}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se chiamiamo 
+\begin_inset Formula $u$
+\end_inset
+
+ il numero di gruppi di ritrasmissioni, abbiamo:
+\begin_inset Formula 
+\[
+u=l\cdot Q\left(p\right)\cdot\left(1-p\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il tempo necessario per 
+\series bold
+una singola ritrasmissione
+\series default
+ è:
+\begin_inset Formula 
+\[
+t_{u}=T_{0}\frac{1+p+2p^{2}+4p^{3}+4p^{4}+16p^{5}+32p^{6}}{1-p}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il tempo necessario per 
+\series bold
+tutte le ritrasmissioni
+\series default
+ sarà dunque: 
+\begin_inset Formula 
+\[
+t_{RTO}=u\cdot t_{u}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il numero di fasi di 
+\emph on
+slow start
+\emph default
+ totale 
+\begin_inset Formula $v$
+\end_inset
+
+, sarà pari alla prima più tutte le ritrasmissioni:
+\begin_inset Formula 
+\[
+v=u+1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se chiamiamo 
+\begin_inset Formula $e$
+\end_inset
+
+ i 
+\series bold
+dati trasferiti in media in una fase di 
+\emph on
+slow start
+\series default
+\emph default
+, abbiamo: 
+\begin_inset Formula 
+\[
+e=\frac{data+l}{v}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il tempo di trasferimento:
+\begin_inset Formula 
+\[
+t_{xfer}=v\cdot log_{r}\left(\frac{e\left(r-1\right)}{w_{0}}+1\right)\cdot RTT
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+t_{TOT}=t_{RTO}+t_{xfer}+RTT+t_{ACK}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body
