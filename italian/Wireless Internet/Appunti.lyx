@@ -90,14 +90,6 @@ Daniele Iamartino
 2013
 \end_layout
 
-\begin_layout Part*
-Introduzione
-\end_layout
-
-\begin_layout Standard
-Orario ricevimento 14:00-15:30
-\end_layout
-
 \begin_layout Section*
 Canale wireless
 \end_layout
@@ -4466,10 +4458,16 @@ Vecchio standard
 \end_layout
 
 \begin_layout Standard
-Il primo standard rilasciato è del 1997 e non è praticamente più utilizzato.
+Il primo standard rilasciato è del 1997 e 
+\series bold
+non è praticamente più utilizzato
+\series default
+.
  È la versione 
+\series bold
 \emph on
 legacy
+\series default
 \emph default
 .
 \end_layout
@@ -5117,12 +5115,6 @@ backoff
  di CSMA
 \end_layout
 
-\begin_layout Itemize
-In realtà 
-\series bold
-mai utilizzata
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 
@@ -5175,6 +5167,14 @@ poll-response
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+In realtà 
+\series bold
+mai utilizzata/implementata
+\series default
+ nei sistemi moderni
 \end_layout
 
 \end_deeper
@@ -5238,10 +5238,10 @@ Nota
 \series bold
  
 \series default
-RTS,CTS e gli altri frame di controllo sono trasmessi in modalità FHSS,
+RTS,CTS e gli altri frame di controllo sono trasmessi in modalità DSSS,
  spread spectrum.
  Questo perché sono più robusti e che la probabilità di avere errori (indipenden
-temente dal fatto di utilizzare FHSS o meno), è più alta se la velocità
+temente dal fatto di utilizzare DSSS o meno), è più alta se la velocità
  è elevata.
 \end_layout
 
@@ -5283,7 +5283,7 @@ vincono
 \begin_inset Quotes erd
 \end_inset
 
- sempre e vengono trasmette priam delle altre.
+ sempre e vengono trasmette prima delle altre.
 \end_layout
 
 \begin_layout Standard
@@ -5708,9 +5708,9 @@ La stazione C in questa figura riceve la trama CTS contenente le informazioni
 \end_layout
 
 \begin_layout Subsubsection*
-Discussione sul Virtual 
-\emph on
-Carrirer Sense
+Il problema del 
+\bar under
+terminale esposto
 \end_layout
 
 \begin_layout Standard
@@ -5723,7 +5723,17 @@ problema del terminale esposto
 \end_layout
 
 \begin_layout Standard
-Il riutilizzo delle risorse è limitato.
+Utilizzando RTS/CTS evitiamo trasmissioni che interferiscono con trasmittente
+ e ricevente, però 
+\bar under
+rischiamo di bloccare anche delle trasmissioni che non interferirebbero
+ con noi
+\bar default
+!
+\end_layout
+
+\begin_layout Standard
+Abbiamo quindi il problema che il riutilizzo delle risorse è limitato.
 \end_layout
 
 \begin_layout Standard
@@ -5800,6 +5810,13 @@ protetta
 \end_inset
 
 )
+\end_layout
+
+\begin_layout Standard
+In questo modo evitiamo di tenere le stazioni vicine bloccate per troppo
+ tempo.
+ Se vogliamo fare una trasmissione molto lunga lo possiamo fare al costo
+ di non avere protezione al problema della stazione nascosta.
 \end_layout
 
 \begin_layout Subsection*
@@ -6066,8 +6083,10 @@ Commenti su PCF
 \end_layout
 
 \begin_layout Standard
-C'è l'altro problema che quando si trasmette un pacchetto di polling, la
+Un altro problema è che quando si trasmette un pacchetto di polling, la
  stazione può rispondere tenendo il canale occupato per poco o tanto tempo.
+ Quindi risolviamo il problema delle collisioni ma rischiamo di avere una
+ grossa degradazione nelle performance.
 \end_layout
 
 \begin_layout Standard
@@ -7550,13 +7569,21 @@ Power management
 \end_layout
 
 \begin_layout Itemize
-Modalità attiva: Sempre attivo e pronto a inviare e ricevere.
+Modalità attiva (
+\emph on
+power save
+\emph default
+ spento): Sempre attivo e pronto a inviare e ricevere.
  Il relativo campo nella trama è di valore 0
 \end_layout
 
 \begin_layout Itemize
-Modalità power save: Il transreciver viene spento, il bit nella trama relativa
- è di valore 1.
+Modalità 
+\emph on
+power save
+\emph default
+: Il transreciver viene spento, il bit nella trama relativa è di valore
+ 1.
  L'access point dovrà occuparsi di salvare in un buffer il traffico per
  quella stazione.
  Solo in questo caso la poll viene inviata dalla station invece dell'access
@@ -7948,7 +7975,7 @@ Un access point con forte traffico e pacchetti dati da 1500 bytes a 11 Mb/s
 \end_layout
 
 \begin_layout Itemize
-Un hacker è in grado di ottenere in relativamente poco tempo dei messaggi
+Un attaccante è in grado di ottenere in relativamente poco tempo dei messaggi
  cifrati con la stessa chiave e IV.
  Sono possibili sia attacchi statistici che attacchi statistici combinati
  ad attacchi 
@@ -8889,7 +8916,7 @@ In realtà in 802.11 ci sono solo 3 canali che non si sovrappongono tra di
 \end_layout
 
 \begin_layout Standard
-Allocazione complessia delle frequenze dei 5 GHz e 2.4 GHz:
+Allocazione complessia delle frequenze dei 5 GHz:
 \end_layout
 
 \begin_layout Standard
@@ -11268,6 +11295,8 @@ Compatibilità
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Tecnologia
 \end_layout
 
@@ -11277,6 +11306,8 @@ Tecnologia
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Rate
 \end_layout
 
@@ -11286,6 +11317,8 @@ Rate
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Distanza
 \end_layout
 
@@ -11295,6 +11328,8 @@ Distanza
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Compatibilità 802.11b
 \end_layout
 
@@ -11304,6 +11339,8 @@ Compatibilità 802.11b
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Capacità
 \end_layout
 
@@ -11313,6 +11350,8 @@ Capacità
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Costo
 \end_layout
 
@@ -12458,7 +12497,7 @@ TXOPlimit[AC]: Durata massima di una trasmissione
 \end_layout
 
 \begin_layout Standard
-In EDCA non solo l'interframe spacing è diverso, ma anche il tmepo di backoff.
+In EDCA non solo l'interframe spacing è diverso, ma anche il tempo di backoff.
  Quindi si ottiene la priorità in modo probabilistico.
 \end_layout
 
@@ -13739,7 +13778,7 @@ Access code
 \emph default
 : Utilizzato per la sincronizzazione e anche l'identificazione (MAC address)
  nella piconet.
- È simile al preambolo del WiFI (però questo contiene anche l'identificazione)
+ È simile al preambolo del WiFi (però questo contiene anche l'identificazione)
 \end_layout
 
 \begin_layout Itemize
@@ -17661,6 +17700,7 @@ Gruppi di lavoro BWA
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="10" columns="4">
 <features tabularvalignment="middle">
@@ -17838,7 +17878,7 @@ IEEE 802.16e
 \begin_layout Plain Layout
 
 \series bold
-Estensione di 802.16d per supportare terminali fissi e mobili
+Estensione di 802.16d per terminali fissi e mobili
 \end_layout
 
 \end_inset
@@ -17952,7 +17992,7 @@ no
 \begin_inset Text
 
 \begin_layout Plain Layout
-Meccanismi per facilitare la coesistenza in frequenze senza licenza
+Meccanismi per coesistenza in frequenze senza licenza
 \end_layout
 
 \end_inset
@@ -21559,6 +21599,8 @@ Interleaving
 
 \end_deeper
 \begin_layout Standard
+
+\size footnotesize
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="6">
 <features tabularvalignment="middle">
@@ -21575,6 +21617,7 @@ Interleaving
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Modulazione
 \end_layout
 
@@ -21586,6 +21629,7 @@ Modulazione
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Blocco
 \series default
  [byte]
@@ -21599,6 +21643,7 @@ Blocco
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Coded Block 
 \series default
 [byte]
@@ -21612,6 +21657,7 @@ Coded Block
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Code Rate 
 \begin_inset Formula $R_{c}$
 \end_inset
@@ -21627,6 +21673,7 @@ Code Rate
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Reed Solomon RS Code
 \end_layout
 
@@ -21638,6 +21685,7 @@ Reed Solomon RS Code
 \begin_layout Plain Layout
 
 \series bold
+\size footnotesize
 Convolutional Code CC Rate
 \end_layout
 
@@ -21649,6 +21697,8 @@ Convolutional Code CC Rate
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 BPSK
 \end_layout
 
@@ -21658,6 +21708,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 12
 \end_layout
 
@@ -21667,6 +21719,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24
 \end_layout
 
@@ -21676,6 +21730,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1/2
 \end_layout
 
@@ -21685,6 +21741,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (12, 12, 0)
 \end_layout
 
@@ -21694,6 +21752,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1/2
 \end_layout
 
@@ -21705,6 +21765,8 @@ BPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 QPSK
 \end_layout
 
@@ -21714,6 +21776,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 24
 \end_layout
 
@@ -21723,6 +21787,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48
 \end_layout
 
@@ -21732,6 +21798,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1/2
 \end_layout
 
@@ -21741,6 +21809,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (32, 24, 4)
 \end_layout
 
@@ -21750,6 +21820,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2/3
 \end_layout
 
@@ -21761,6 +21833,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 QPSK
 \end_layout
 
@@ -21770,6 +21844,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 36
 \end_layout
 
@@ -21779,6 +21855,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48
 \end_layout
 
@@ -21788,6 +21866,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3/4
 \end_layout
 
@@ -21797,6 +21877,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (40, 36, 2)
 \end_layout
 
@@ -21806,6 +21888,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5/6
 \end_layout
 
@@ -21817,6 +21901,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16-QAM
 \end_layout
 
@@ -21826,6 +21912,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 48
 \end_layout
 
@@ -21835,6 +21923,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 96
 \end_layout
 
@@ -21844,6 +21934,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 1/2
 \end_layout
 
@@ -21853,6 +21945,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (64, 48, 8)
 \end_layout
 
@@ -21862,6 +21956,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2/3
 \end_layout
 
@@ -21873,6 +21969,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 16-QAM
 \end_layout
 
@@ -21882,6 +21980,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 72
 \end_layout
 
@@ -21891,6 +21991,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 96
 \end_layout
 
@@ -21900,6 +22002,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3/4
 \end_layout
 
@@ -21909,6 +22013,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (80, 72, 4)
 \end_layout
 
@@ -21918,6 +22024,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5/6
 \end_layout
 
@@ -21929,6 +22037,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 64-QAM
 \end_layout
 
@@ -21938,6 +22048,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 96
 \end_layout
 
@@ -21947,6 +22059,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 144
 \end_layout
 
@@ -21956,6 +22070,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 2/3
 \end_layout
 
@@ -21965,6 +22081,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (108, 96, 6)
 \end_layout
 
@@ -21974,6 +22092,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3/4
 \end_layout
 
@@ -21985,6 +22105,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 64-QAM
 \end_layout
 
@@ -21994,6 +22116,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 108
 \end_layout
 
@@ -22003,6 +22127,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 144
 \end_layout
 
@@ -22012,6 +22138,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 3/4
 \end_layout
 
@@ -22021,6 +22149,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 (120, 108, 6)
 \end_layout
 
@@ -22030,6 +22160,8 @@ QPSK
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size footnotesize
 5/6
 \end_layout
 
@@ -23852,7 +23984,7 @@ multiple access
  utilizza protocollo ad accesso multiplo solo in casi molto particolari),
  mentre invece ne fanno un uso massiccio le reti wireless.
  Si evita l'utilizzo di protocolli multiple access nelle LAN per evitare
- porblemidi performance.
+ problemi di performance.
 \end_layout
 
 \begin_layout Itemize
@@ -23948,7 +24080,7 @@ Code locali e globali
 \begin_layout Standard
 \begin_inset Graphics
 	filename ma01.png
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -27402,7 +27534,17 @@ TCP Long Lived Connections
 \end_layout
 
 \begin_layout Standard
-Assumiamo che:
+Assumiamo che
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Solitamente l'MSS più comune di TCP è 1460, nel caso sia richiesto
+\end_layout
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Itemize
@@ -27723,6 +27865,26 @@ Se abbiamo perdita di pacchetti in questo caso, sperimentiamo fasi di slow
 
 \begin_layout Subsubsection*
 Modello senza considerare errori
+\end_layout
+
+\begin_layout Standard
+Viene utilizzato come riferimento il paper 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Modeling the Performance of Short TCP Connections
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ (
+\emph on
+Neal Cardwell, Stefan Savage, Tom Anderson
+\emph default
+)
 \end_layout
 
 \begin_layout Standard
@@ -28149,6 +28311,19 @@ t_{TOT}=t_{RTO}+t_{xfer}+RTT+t_{ACK}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph*
+Curiosità
+\end_layout
+
+\begin_layout Standard
+Alcuni software, tra cui alcuni browser, preferiscono utilizzare tante connessio
+ni TCP in parallelo piuttosto che poche.
+ Questo perché usando molte connessioni si riesce a sfruttare meglio la
+ fase di slow start che accelera lo scambio di dati inizialmente e in molti
+ casi si riesce a ridurre la latenza e aumentare il throughput in modo significa
+tivo.
 \end_layout
 
 \end_body

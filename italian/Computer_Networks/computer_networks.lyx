@@ -58897,7 +58897,7 @@ MSS
 \begin_inset Formula $CWND=1$
 \end_inset
 
-).
+, cioè in realtà 1 MSS).
  (In alcune implementazioni più recenti di 
 \emph on
 TCP
@@ -58938,20 +58938,158 @@ MSS
 \end_inset
 
  come spieghermo tra breve).
- Abbiamo quindi che, per ogni segmento riscontrato: 
+ Abbiamo quindi che, per ogni segmento riscontrato la 
+\begin_inset Formula $CWND$
+\end_inset
+
+ viene incrementata di 1
+\end_layout
+
+\begin_layout Itemize
+Possiamo scriverlo in modo più formale (non sono le formule così come appaiono
+ nelle implementazioni) come:
 \begin_inset Formula 
 \[
-CWND=CWND+1
+CWND_{i+1}=CWND_{i}+ACK_{i}
 \]
 
 \end_inset
 
- nonostante sia una somma, la 
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui abbiamo 1 ACK per ogni pacchetto inviato avremo: 
+\begin_inset Formula 
+\[
+CWND_{i+1}=CWND_{i}+CWND_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui abbiamo 1 ACK ogni 2 pacchetti: 
+\begin_inset Formula 
+\[
+CWND_{i+1}=CWND_{i}+\frac{1}{2}\cdot CWND_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi in generale:
+\begin_inset Formula 
+\[
+CWND_{i+1}=\left(1+\frac{1}{b}\right)\cdot CWND_{i}=r\cdot CWND_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $b=1$
+\end_inset
+
+ significa 1 ACK ogni pacchetto, 
+\begin_inset Formula $b=2$
+\end_inset
+
+ significa 1 ACK ogni 2 pacchetti.
+ Inoltre 
+\begin_inset Formula $\left(1+\frac{1}{b}\right)=r$
+\end_inset
+
+ per semplicità di scrittura
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Possiamo poi ricavare 
+\begin_inset Formula $CWND_{i}$
+\end_inset
+
+ con un semplice ragionamento deduttivo:
+\begin_inset Formula 
+\[
+CWND_{1}=\text{finestra iniziale}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+CWND_{2}=r\cdot CWND_{1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+CWND_{3}=r\cdot r\cdot CWND_{1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+CWND_{4}=r\cdot r\cdot r\cdot CWND_{1}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+...
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+CWND_{i}=r^{i-1}\cdot CWND_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $CWND_{1}$
+\end_inset
+
+ è la finestra di congestione iniziale.
+ Dipende dall'implementazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nonostante sia una somma, la 
 \begin_inset Formula $CWND$
 \end_inset
 
- aumenta in modo esponenziale, perchè i pacchetti che la vanno ad incrementare
- aumentano sempre di più.
+ 
+\series bold
+aumenta in modo esponenziale
+\series default
+, perché i pacchetti che la vanno ad incrementare aumentano sempre di più.
 \end_layout
 
 \begin_layout Itemize
@@ -58967,7 +59105,11 @@ slow start
 \begin_inset Quotes erd
 \end_inset
 
- trae un po' in inganno, infatti la crescita della 
+ 
+\bar under
+trae un po' in inganno
+\bar default
+, infatti la crescita della 
 \begin_inset Formula $CWND$
 \end_inset
 
@@ -58979,7 +59121,7 @@ lenta
 \begin_inset Quotes erd
 \end_inset
 
-, è esponenziale
+, è esponenziale!
 \begin_inset Foot
 status open
 
@@ -58995,6 +59137,93 @@ Delayed ACK
 \emph default
  (vedi i paragrafi precedenti).
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Volendo, possiamo calcolare il numero di segmenti dati scambiati fino al
+ passo 
+\emph on
+i-esimo
+\emph default
+ dello slow start:
+\begin_inset Formula 
+\[
+data_{i}=\sum_{k=1}^{i}r^{k-1}\cdot CWND_{1}=\frac{r^{i}-1}{r-1}\cdot CWND_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se invece, data la quantità di segmenti scambiati 
+\begin_inset Formula $data$
+\end_inset
+
+, vogliamo sapere a che iterazione dello slow start siamo arrivati:
+\begin_inset Formula 
+\[
+i=log_{r}\left(\frac{\left(r-1\right)\cdot data}{CWND_{1}}+1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se vogliamo lavorare con la quantità di dati 
+\begin_inset Formula $d$
+\end_inset
+
+ espressa in bits possiamo sostituire sapendo che 
+\begin_inset Formula 
+\[
+data=\frac{d}{MSS}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+E quindi
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+i=log_{r}\left(\frac{\left(r-1\right)\cdot d}{MSS\cdot CWND_{1}}+1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo anche calcolare il tempo totale necessario per trasferire 
+\begin_inset Formula $d$
+\end_inset
+
+ dati restando all'interno dello 
+\emph on
+slow start
+\emph default
+ e tenendo conto anche del tempo necessario per l'handshake e l'ACK finale:
+ 
+\begin_inset Formula 
+\[
+t_{tot}=i\cdot RTT+RTT+t_{ACK}
+\]
 
 \end_inset
 
@@ -59061,12 +59290,14 @@ CWND=CWND+1
 
  ma 
 \series bold
+\bar under
 solo
 \series default
  ogni intervallo di tempo 
 \emph on
 RTT
 \emph default
+\bar default
 , non per ogni riscontro.
 \end_layout
 
@@ -59356,6 +59587,127 @@ Riordino
  dei segmenti fuori sequenza.
 \end_layout
 
+\begin_layout Subsection*
+Modello per connessioni TCP Long Lived (approfondimento)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 008.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo di avere una connessione attiva da molto tempo, che è quindi
+ sempre in fase di 
+\emph on
+congestion avoidance
+\emph default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Non
+\series default
+ consideriamo l'effetto dei timeouts per perdita di pacchetti.
+ 
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che tutte le perdite di pacchetti vengano identificate con 3 ACK
+ duplicati.
+\end_layout
+
+\begin_layout Itemize
+Assumiamo l'RTT costante.
+\end_layout
+
+\begin_layout Itemize
+Probabilità di perdere pacchetti sulla linea pari a 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Quindi ogni 
+\begin_inset Formula $\frac{1}{p}$
+\end_inset
+
+ pacchetti trasmessi ne perdiamo 1.
+\end_layout
+
+\begin_layout Itemize
+Quando c'è una perdita di pacchetto, la CWND è pari a 
+\begin_inset Formula $W$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Osserviamo il disegno sopra riportato e ricordiamoci che il numero di segmenti
+ trasmesso in un ciclo è pari all'area sottesa, quindi:
+\begin_inset Formula 
+\[
+\frac{3W^{2}}{8}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Considerando l'assunzione sulla probabilità di perdita abbiamo:
+\begin_inset Formula 
+\[
+\frac{1}{p}=\frac{3}{8}\cdot W^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Otteniamo quindi che il throughput effettivo della connessione è:
+\begin_inset Formula 
+\[
+Goodput=\frac{\text{dati trasmessi in un ciclo}}{\text{tempo di 1 ciclo}}=\frac{MSS}{RTT}\cdot\frac{C}{\sqrt{p}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $C=\sqrt{\frac{3}{2}}$
+\end_inset
+
+ in condizioni normali, mentre 
+\begin_inset Formula $C=\sqrt{\frac{3}{4}}$
+\end_inset
+
+ se utilizziamo la tecnica del 
+\emph on
+delayed ack
+\emph default
+.
+\end_layout
+
+\end_deeper
 \begin_layout Section*
 TCP e UDP su reti wireless (
 \emph on
@@ -64931,6 +65283,10 @@ Argomenti ancora mancanti (TODO)
 \end_layout
 
 \begin_layout Itemize
+Livello fisico
+\end_layout
+
+\begin_layout Itemize
 Livello applicativo
 \end_layout
 
@@ -65040,6 +65396,10 @@ Immagine tcp tear down
 \begin_layout Itemize
 disegni go-back-n vs.
  selective repeat
+\end_layout
+
+\begin_layout Itemize
+Criteri implementativi per decidere gli intervalli di interrogazione ARP.
 \end_layout
 
 \begin_layout Bibliography
