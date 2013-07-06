@@ -5813,10 +5813,9 @@ protetta
 \end_layout
 
 \begin_layout Standard
-In questo modo evitiamo di tenere le stazioni vicine bloccate per troppo
- tempo.
- Se vogliamo fare una trasmissione molto lunga lo possiamo fare al costo
- di non avere protezione al problema della stazione nascosta.
+In questo modo evitiamo di avere un overhead causato da RTS/CTS elevato
+ quando i dati sono corti, in questo caso è più efficiente rischiare le
+ collisioni e ritrasmettere.
 \end_layout
 
 \begin_layout Subsection*
@@ -10722,7 +10721,7 @@ Frame MAC
 \end_layout
 
 \begin_layout Subsubsection*
-Compatibilità di 802.11b
+Compatibilità con 802.11b
 \end_layout
 
 \begin_layout Itemize
@@ -27309,6 +27308,7 @@ sempre essere fatto
 \align center
 \begin_inset Graphics
 	filename tcp02.png
+	scale 40
 
 \end_inset
 
