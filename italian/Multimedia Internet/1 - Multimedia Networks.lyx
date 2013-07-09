@@ -7796,9 +7796,12 @@ Assured forwarding
 \begin_layout Standard
 Una tipica applicazione che utilizza la PHB AF è quella di una compagnia
  che utilizza Internet per intercollegare diversi siti geograficamente distribui
-ti e vuole assicurarsi che i pacchetti IP nelle sue Intranets siano inoltrati
- con alta probabilità fin tanto che il traffico aggregato di un sito non
- supera il 
+ti e vuole assicurarsi che i pacchetti IP nelle sue 
+\emph on
+intranets
+\emph default
+ siano inoltrati con alta probabilità fin tanto che il traffico aggregato
+ di un sito non supera il 
 \emph on
 subscribed information rate
 \emph default
@@ -7824,8 +7827,12 @@ la rete non riordini i pacchetti
 \end_layout
 
 \begin_layout Standard
-Vengono definite 4 classi AF, dove ogni classe alloca in ogni nodo DS una
- certa quantità di risorse per l'inoltro.
+Vengono definite 
+\series bold
+4 classi AF
+\series default
+, dove ogni classe alloca in ogni nodo DS una certa quantità di risorse
+ per l'inoltro.
 \end_layout
 
 \begin_layout Itemize
@@ -7847,6 +7854,54 @@ Un nodo DS congestionato tenta di proteggere pacchetti con probabilità di
 à di drop superiore.
 \end_layout
 
+\begin_layout Itemize
+In un nodo DS, il livello di affidabilità dell'inoltro dipende da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quante risorse di inoltro sono state allocate per la classe AF a cui appartiene
+ il pacchetto
+\end_layout
+
+\begin_layout Itemize
+Qual'è il carico corrente delle classi AF
+\end_layout
+
+\begin_layout Itemize
+In caso di congestione all'interno della classe, dipende dalla precedenza
+ di drop del pacchetto
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Formalmente un pacchetto IP che appartiene alla classe 
+\emph on
+i-esima
+\emph default
+ e ha precedenza di drop 
+\emph on
+j
+\emph default
+, viene marcato con il codepoint AF 
+\begin_inset Formula $ij$
+\end_inset
+
+ dove 
+\begin_inset Formula $1\leq i\leq4$
+\end_inset
+
+ e 
+\begin_inset Formula $1\leq j\leq3$
+\end_inset
+
+ .
+ Una implementazione AF deve tentare di minimizzare la congestione a lungo
+ termine per ogni classe, mentre deve permettere la congestione a breve
+ termine causata dai bursts.
+ Questo richiede una sistema di gestione della coda di tipo AQM tipo RED/RIO.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
@@ -7857,7 +7912,7 @@ Un nodo DS congestionato tenta di proteggere pacchetti con probabilità di
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -7870,6 +7925,8 @@ Un nodo DS congestionato tenta di proteggere pacchetti con probabilità di
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Class 1
 \end_layout
 
@@ -7879,6 +7936,8 @@ Class 1
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Class 2
 \end_layout
 
@@ -7888,6 +7947,8 @@ Class 2
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Class 3
 \end_layout
 
@@ -7897,6 +7958,8 @@ Class 3
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Class 4
 \end_layout
 
@@ -7908,6 +7971,8 @@ Class 4
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Drop precedence 1 (low)
 \end_layout
 
@@ -7917,7 +7982,7 @@ Drop precedence 1 (low)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+001010
 \end_layout
 
 \end_inset
@@ -7926,7 +7991,7 @@ Drop precedence 1 (low)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+010010
 \end_layout
 
 \end_inset
@@ -7935,7 +8000,7 @@ Drop precedence 1 (low)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+011010
 \end_layout
 
 \end_inset
@@ -7944,7 +8009,7 @@ Drop precedence 1 (low)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+100010
 \end_layout
 
 \end_inset
@@ -7955,6 +8020,8 @@ Drop precedence 1 (low)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Drop precedence 2 (medium)
 \end_layout
 
@@ -7964,7 +8031,7 @@ Drop precedence 2 (medium)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+001100
 \end_layout
 
 \end_inset
@@ -7973,7 +8040,7 @@ Drop precedence 2 (medium)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+010100
 \end_layout
 
 \end_inset
@@ -7982,7 +8049,7 @@ Drop precedence 2 (medium)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+011100
 \end_layout
 
 \end_inset
@@ -7991,7 +8058,7 @@ Drop precedence 2 (medium)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+100100
 \end_layout
 
 \end_inset
@@ -8002,6 +8069,8 @@ Drop precedence 2 (medium)
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Drop precedence 3 (high)
 \end_layout
 
@@ -8011,7 +8080,7 @@ Drop precedence 3 (high)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+001110
 \end_layout
 
 \end_inset
@@ -8020,7 +8089,7 @@ Drop precedence 3 (high)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+010110
 \end_layout
 
 \end_inset
@@ -8029,7 +8098,7 @@ Drop precedence 3 (high)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+011110
 \end_layout
 
 \end_inset
@@ -8038,7 +8107,7 @@ Drop precedence 3 (high)
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+100110
 \end_layout
 
 \end_inset
@@ -8061,21 +8130,110 @@ Di solito abbiamo 4 buffers, uno per ogni classe.
  per servire in modo diverso ogni colore.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Vedi figura quaderno blu numero 1.
+Abbiamo quindi 12 tipi di PHB.
+ In tabella vediamo i valori del campo DS per ciascuno dei PHB, così come
+ specificato in RFC 2597.
 \end_layout
 
 \begin_layout Itemize
-Figura 2: Potremmo avere cattive performance a causa dei pacchetti che non
- arrivano in ordine.
+Un DS domain potrebbe decidere di utilizzare solo alcuni dei PHB presenti,
+ non necessariamente tutti.
 \end_layout
 
-\begin_layout Itemize
-Figura 1: questa configurazione preserva la sequenza dei pacchetti.
+\end_deeper
+\begin_layout Subsubsection*
+AF PHB Group : Olympic service
 \end_layout
 
 \begin_layout Standard
-class selector phb group (CS):
+È un tipo classico di servizio implementato quando si ha a disposizione
+ la possibilità di fare QoS.
+\end_layout
+
+\begin_layout Standard
+Vengono definite tre classi di servizio:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+bronze
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+silver
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+gold
+\end_layout
+
+\begin_layout Standard
+È possibile utilizzare uno scheduler di tipo 
+\series bold
+\emph on
+Static Priority
+\series default
+\emph default
+ per implementare questo tipo di relazione tra le varie classi.
+\end_layout
+
+\begin_layout Standard
+Volendo è possibile suddividere anche ogni classe in più probabilità di
+ drop.
+\end_layout
+
+\begin_layout Subsubsection*
+Best-Effort PHB
+\end_layout
+
+\begin_layout Standard
+Nella architettura 
+\emph on
+DiffServ
+\emph default
+ esiste uno specifico PHB pensato per trasportare il classico traffico 
+\emph on
+best-effort
+\emph default
+, ed ha codefield 00000000.
+\end_layout
+
+\begin_layout Itemize
+Questa è la default PHB e significa cioè che se non riesco a determinare
+ la PHB da assegnare ad un flusso, utilizzo la PHB di default.
+\end_layout
+
+\begin_layout Subsubsection*
+Class Selector PHB group (CS):
+\end_layout
+
+\begin_layout Standard
+Ha, tra le altre cose, lo scopo di trasportare il traffico associato a certi
+ flussi multimediali.
+\end_layout
+
+\begin_layout Itemize
+Questo tipo di PHB inoltre fornisce un mezzo per avere 
+\series bold
+\bar under
+parziale
+\series default
+\bar default
+ retrocompatibilità per chi utilizzava il vecchio campo 
+\emph on
+Type Of Service
+\emph default
+.
 \end_layout
 
 \begin_layout Standard
@@ -8108,28 +8266,4053 @@ qualitativo
 Possiamo anche utilizzare schedulers GPS.
 \end_layout
 
+\begin_layout Subsubsection*
+Riassumendo le PHBs:
+\end_layout
+
+\begin_layout Itemize
+1 EF (101110)
+\end_layout
+
+\begin_layout Itemize
+12 AF (vedi tabella sopra)
+\end_layout
+
+\begin_layout Itemize
+8 CS: codice (XXX000+2bit reserved)
+\end_layout
+
+\begin_layout Itemize
+1 Default (Best Effort): codice 000000XX (dove XX sono reserved)
+\end_layout
+
 \begin_layout Standard
-PHBs:
+CS e BE coincidono in codice, quindi in pratica abbiamo un totale di 21
+ PHBs.
 \end_layout
 
-\begin_layout Itemize
-1 EF
-\end_layout
-
-\begin_layout Itemize
-12 AF
-\end_layout
-
-\begin_layout Itemize
-8 CS: codice 000000XX
-\end_layout
-
-\begin_layout Itemize
-1 Default (Best Effort): codice 000000XX
+\begin_layout Section*
+Mappare le applicazioni al loro relativo PHB
 \end_layout
 
 \begin_layout Standard
-CS e BE coincidono in codice, quindi in pratica abbiamo 21 PHBs.
+Le applicazioni di rete possono essere suddivise in tante categorie.
+ Principalmente abbiamo 5 macro-categorie:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Application control
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio le applicazioni che fanno signaling di qualche tipo come ad esempio
+ H.323, SIP o IGMP.
+\end_layout
+
+\begin_layout Itemize
+I requisiti non sono diversi dal traffico di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+low latency data
+\begin_inset Quotes erd
+\end_inset
+
+, però si vuole tentare di tenere i dati e il signaling su due classi di
+ servizio diverse di solito.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Media-oriented
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Telefonia/VoIP service class
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Real-Time Interactive service class
+\series default
+: video live o videoconferenza, interactive gaming
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multimedia conferencing
+\series default
+: videoconferenza che può adattare la velocità di trasmissione in base allo
+ stato della rete.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Broadcast Video
+\series default
+ 
+\series bold
+service class
+\series default
+: broadcast TV (inelastic)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multimedia Streaming service class
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Circuit Emulation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio il servizio 
+\emph on
+pseudowire
+\emph default
+.
+ È un servizio che si occupa di creare circuiti virtuali a bit-rate costante.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Data
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Low latency data
+\series default
+: per le connessioni che richiedono bassa latenza o sono 
+\emph on
+long-lived
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+High-throughput data
+\series default
+: Good-throughput per connessioni long-lived.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Low-priority data
+\series default
+: Per applicazioni o servizi che possono tollerare lunghe o brevi interruzioni
+ del flusso dati.
+ Possiamo vedere questa classe come un 
+\begin_inset Quotes eld
+\end_inset
+
+don't care
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Best-Effort
+\series default
+: classico tipo di servizio senza garanzie.
+ Se un pacchetto è marcato con un valore DSCP sconosciuto allora viene rimappato
+ su 
+\emph on
+best-effort
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection*
+Categorie ITU-T G.1010 del QoS in funzione del delay
+\end_layout
+
+\begin_layout Standard
+Vengono specificate un insieme di categorie di QoS in funzione del delay
+ e del tipo di applicazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename net-066.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Queste categorie sono anche riportate in RFC 4594
+\end_layout
+
+\begin_layout Itemize
+Ci sono 4 categorie principali:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Interactive
+\end_layout
+
+\begin_layout Itemize
+Responsive 
+\end_layout
+
+\begin_layout Itemize
+Timely
+\end_layout
+
+\begin_layout Itemize
+Non-critical
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+IETF user service classes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Categoria
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Service class
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Signaled
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Flow behaviour
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ITU-T G.1010
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Application control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inelastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Responsive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Media oriented
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inelastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interactive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Real-time service
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inelastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interactive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multimedia conferencing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate adaptive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Interactive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcast video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inelastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Responsive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Multimedia streaming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sì
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Timely
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low-latency data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Responsive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High-throughput data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Timely
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low-priority data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Best effort
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Standard
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not specified
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not specified
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non-critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Caratteristiche delle service classes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Service class
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Traffic Characteristic
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Tollerance to
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Loss
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Delay
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size tiny
+Jitter
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+1.Network control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Pkt dimensioni variabili, brevi messaggi inelastici o bursts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+2.OAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Dimensione variabile dei pacchetti, flussi elastici e inelastici
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+3.
+ Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Dimensione variabile dei pacchetti, bitrate costante inelastico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+4.Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Dimensione variabile dei pacchetti, short-lived, bursty
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+5.
+ Multimedia Conferencing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Dimensione variabile dei pacchetti, rate adattivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low/Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+6.
+ Real-Time Interactive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Streams RTP/UDP, inelastic, rate variabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+7.
+ Multimedia streaming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Dimensione variabile dei pacchetti, elastico e rate variabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low/Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+8.
+ Broadcast Video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Rate costante o variabile, non bursty
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Very low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+9.
+ Low-latency data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Rate variabile, bursty, short lived elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low/Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+10.
+ High-Throughput data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Rate variabile, bursty, elastic long lived
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Medium high
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+11.Standard
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Un po' di tutto
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Non specificato
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+12.
+ Low-priority data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Non real-time ed elastic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+High 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Possibile selezione delle PHB (RFC 4594)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="19" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Service class
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+DSCP name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+DSCP value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Application examples
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.
+ Network control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network routing
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.
+ OAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OAM&IP
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+3.Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101110
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IP telephony Barer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4.Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+101000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IP Telephony signaling
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+5.
+ Multimedia conferencing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF41
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+H.323/V2 video
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conferencing (adaptive)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100110
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+6.
+ Real-Time Interactive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Video conferencing
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+7.
+ Multimedia streaming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF31
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+011010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Streaming video/audio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+8.
+ Broadcast video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+011000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Broadcast TV/live events
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+9.
+ Low-latency data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Client/server transaction
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Web
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+010110
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+10.
+ High-Throughput data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001010
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Store and forward
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Application
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001110
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+11.
+ Standard
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DF (CS)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+000000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Indifferenziato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+12.
+ Low-priority data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+001000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No BW assurance
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Possibile conditioning e schemi di scheduling
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="20" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Service class
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+DSCP name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Conditioning at DS Edge
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Queuing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+AQM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.
+ Network control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+2.
+ OAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+3.Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Priority
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+4.Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+5.
+ Multimedia conferencing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF41
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Two rate 3-color marker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(RFC 2698)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF43
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+6.
+ Real-Time Interactive
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+7.
+ Multimedia streaming
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF31
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Two rate 3-color marker
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(RFC 2698)
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+8.
+ Broadcast video
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Police using sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+9.
+ Low-latency data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single rate 3-color marker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(RFC 2697)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+10.
+ High-Throughput data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Two rate 3-color marker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(RFC 2698)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+11.
+ Standard
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DF (CS)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not applicabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+12.
+ Low-priority data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not applicabile
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Note sul conditioning
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+sr+bs
+\begin_inset Quotes erd
+\end_inset
+
+ rappresenta il meccanismo di policying che fornisce controllo della lunghezza
+ del bursts.
+\end_layout
+
+\begin_layout Itemize
+Il single rate 3-color marker (
+\series bold
+srTCM
+\series default
+): RFC 2697
+\end_layout
+
+\begin_layout Itemize
+Il two rate 3-color marker (
+\series bold
+trTCM
+\series default
+): RFC 2698
+\end_layout
+
+\begin_layout Itemize
+La PHB per Real-Time Interactive service class dovrebbe essere configurata
+ per fornire alta banda affidabile
+\end_layout
+
+\begin_layout Itemize
+La PHB per Broadcast video class dovrebbe essere configurata per fornire
+ alta banda affidabile
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Esempio di scenario di applicazione
+\end_layout
+
+\begin_layout Itemize
+Un amministratore di rete determina che ha bisogno di fornire diversi livelli
+ di performance, in particolare:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+VoIP a livello affidabile, equivalente a PSTN
+\end_layout
+
+\begin_layout Itemize
+Un servizio dati a basso delay e servizio dati
+\end_layout
+
+\begin_layout Itemize
+Supporto per i servizi internet attuali
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+L'amministratore di rete implementa le seguenti 6 classi di servizio:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\bar under
+Network control service class
+\bar default
+ per routing e control traffic che è necessario per operatibilità affidabile
+ della rete del provider.
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Standard service class
+\bar default
+ per tutto il traffico che riceverà inoltro standard (indifferenziato).
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Telephony service class
+\bar default
+ per il traffico VoIP
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Signaling service class
+\bar default
+ per il signaling del traffico VoIP
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+Low-Latency data service class
+\bar default
+ per il traffico che necessita banda a basso delay
+\end_layout
+
+\begin_layout Itemize
+
+\bar under
+OAM service class
+\bar default
+ per gestione e operazioni sulla rete
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Service class
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+DSCP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Conditioning
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+PHB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Queuing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+AQM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network control
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+***
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC2474
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Telephony
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC3246
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Priority
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Signaling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CS5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC2474
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low-Latency data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF21
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Single-rate 3-color marker
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF22
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC2597
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF23
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+OAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sr+bs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC2474
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Standard
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+N.A.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RFC2474
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[da pagina 19 in poi omissis]
 \end_layout
 
 \begin_layout Section*
@@ -8138,6 +12321,54 @@ Design di reti IP con QoS
 
 \begin_layout Standard
 Per fare analisi del traffico utilizzeremo dei modelli stocastici.
+\end_layout
+
+\begin_layout Itemize
+Il modelling del traffico è un problema serio, di solito si utilizzano modelli
+ astratti come ad esempio le catene di Markov.
+ Questo tipo di modelli forniscono un tool per dimensionare le reti, ma
+ hanno una serie di problemi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le sorgenti 
+\bar under
+reali
+\bar default
+ di traffico sono difficili da modellare utilizzando le catene di Markov
+\end_layout
+
+\begin_layout Itemize
+Inoltre l'analisi utilizzando le catene di Markov è complessa perché il
+ numero di stati necessario per l'analisi aumenta esponenzialmente man mano
+ che le sorgenti aumentano.
+\end_layout
+
+\begin_layout Itemize
+È necessaria analisi computerizzata
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+L'analisi deterministica delle reti tende a fornire dei valori che portano
+ ad un design molto conservativo nel caso di SLA statistiche.
+\end_layout
+
+\begin_layout Standard
+I modelli statistici risolvono questo problema ma gli approcci classici
+ sono molti conservativi
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\emph on
+Bounded variance network calculus
+\series default
+\emph default
+ è una nuova disciplina che tenta di modellizzare i sistemi reali.
+ Quindi svilupperemo una teoria.
 \end_layout
 
 \begin_layout Itemize
@@ -8152,6 +12383,19 @@ two-moment description
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Quindi vengono utilizzate solo media e varianza.
+ 
+\end_layout
+
+\begin_layout Itemize
+Il traffico è un processo casuale 
+\bar under
+caratterizzato dal rate istantaneo
+\bar default
+.
+\end_layout
+
 \begin_layout Itemize
 Se osserviamo un link nella rete, possiamo definire una variabile 
 \begin_inset Formula $X\left(t\right)$
@@ -8181,7 +12425,7 @@ traffic curve
 \begin_layout Standard
 \begin_inset Graphics
 	filename net-051.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8291,9 +12535,10 @@ Dove
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-052.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8320,7 +12565,7 @@ Se disegnamo il grafico di
 \end_layout
 
 \begin_layout Itemize
-È una curva che non è solitamente non-lineare.
+È una curva che è solitamente non-lineare.
 \end_layout
 
 \begin_layout Itemize
@@ -8339,27 +12584,70 @@ poisson
 
 \begin_layout Itemize
 La curva della varianza può avere qualitativamente tanti tipi diversi di
- forme.
+ forme a seconda del tipo di sorgente del traffico.
 \end_layout
 
 \begin_layout Itemize
-Nel caso in figura di seguito vediamo che è asintoticamente lineare.
+Abbiamo vari tipi di 
+\bar under
+sorgenti di traffico
+\bar default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sorgente 
+\series bold
+deterministica
+\series default
+ (rate istantaneo costante)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Abbiamo già visto come dimensionare il traffico in questo caso quando abbiamo
+ visto la EF PHB, quindi non è lo scopo dello studio che faremo qua di seguito.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Bit rate 
+\emph default
+variabile, 
+\series bold
+\emph on
+short-range-dependent
+\series default
+\emph default
+ (
+\series bold
+SRD
+\series default
+) (ad esempio dati e VoIP)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Asintoticamente lineare
+\series default
+.
  Non è lineare per valori piccoli di 
 \begin_inset Formula $t$
 \end_inset
 
 , ma diventa sempre più lineare man mano che passa il tempo.
- È il caso di traffico 
-\emph on
-short-range dependent
-\emph default
-.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-053.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8367,18 +12655,61 @@ short-range dependent
 \end_layout
 
 \begin_layout Itemize
-Però potremmo anche avere una varianza di tipo parabolico, di tipo 
-\begin_inset Formula $k\cdot t^{\gamma}$
+Se assumiamo una soglia massima lineare come varianza facciamo una stima
+ del traffico che tende ad essere sempre conservativa
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Bit rate 
+\emph default
+variabile, 
+\series bold
+\emph on
+long-range-dependent 
+\series default
+\emph default
+(
+\series bold
+LRD
+\series default
+)
+\series bold
+\emph on
+ 
+\series default
+\emph default
+(Traffico dati misto)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È il caso 
+\series bold
+\bar under
+più comune su Internet
+\series default
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+Ha una varianza di tipo parabolico: 
+\begin_inset Formula $Var\left(X\left(t\right)\right)=k\cdot t^{\gamma}$
 \end_inset
 
  con 
-\begin_inset Formula $0<\gamma<1$
+\begin_inset Formula $\gamma>1$
 \end_inset
 
 .
  Questo è il caso di traffico 
+\series bold
 \emph on
 long-range dependent
+\series default
 \emph default
 .
  È anche chiamato 
@@ -8395,14 +12726,17 @@ self-similar traffic
 \series default
 \emph default
 .
- È il caso più frequente su Internet.
- Purtroppo è anche il più difficile da trattare.
+ Purtroppo, oltre ad essere il caso più frequente, è anche il più difficile
+ da trattare.
 \end_layout
 
+\end_deeper
+\end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-054.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8415,14 +12749,20 @@ Esempio VoIP
 \end_layout
 
 \begin_layout Standard
-Vediamo un esempio di una sorgente di traffico SRD (short-range dependent):
- un codec VoIP (in particolare un coder di tipo VBR: Variable Bit Rate.
+Vediamo un esempio di una sorgente di traffico SRD (
+\series bold
+\emph on
+short-range dependent
+\series default
+\emph default
+): un codec VoIP, in particolare un coder di tipo VBR: Variable Bit Rate.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-055.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8463,7 +12803,7 @@ Nei pacchetti VoIP
 \end_inset
 
  è la lunghezza media dei pacchetti in bit.
- Però è un valore variaible, quindi ha anche la sua varianza 
+ Però è un valore variabile, quindi ha anche la sua varianza 
 \begin_inset Formula $\sigma^{2}\:\left[bit^{2}\right]$
 \end_inset
 
@@ -8521,7 +12861,11 @@ Come vediamo la varianza è composta da una prima parte lineare ed una seconda
  Quindi la parte non-lineare dopo un po' di tempo tende a svanire.
  Ecco perché prima abbiamo disegnato un grafico che tende asintoticamente
  ad essere lineare.
- È traffico con poca memoria.
+ 
+\series bold
+È traffico con poca memoria
+\series default
+.
 \end_layout
 
 \begin_layout Standard
@@ -8551,6 +12895,12 @@ Var_{LE}\left(x\left(t\right)\right)\,\geq\, Var\left(x\left(t\right)\right)
 \end_inset
 
  è il linear envelope of variance.
+ Quindi come vediamo ci resta solo un termine che è una stima lineare per
+ eccesso della varianza.
+\end_layout
+
+\begin_layout Subsection*
+Flussi aggregati
 \end_layout
 
 \begin_layout Standard
@@ -8567,7 +12917,20 @@ Ci interessa sempre calcolare
 \end_inset
 
 .
- Con media e varianza invece lavoriamo con semplici funzioni.
+ Con media e varianza invece lavoriamo sempre con 
+\begin_inset Quotes eld
+\end_inset
+
+semplici
+\begin_inset Quotes erd
+\end_inset
+
+ funzioni.
+\end_layout
+
+\begin_layout Standard
+È fondamentale però che troviamo un modo, data media e varianza di tanti
+ microflussi, di trovare la media e varianza del flusso aggregato.
 \end_layout
 
 \begin_layout Standard
@@ -8588,14 +12951,16 @@ Se ad esempio abbiamo uno scheduler FIFO con uscita
 \end_layout
 
 \begin_layout Standard
-Però nella realtà non abbiamo un singolo flusso che entra in uno scheduler.
+Però nella realtà non abbiamo un singolo flusso che entra in uno scheduler,
+ ma tanti piccoli flussi.
  
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-056.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -8624,7 +12989,13 @@ Cosa facciamo in questo caso? In questo caso avremo
 \begin_inset Formula $x\left(t\right)=x_{1}\left(t\right)+x_{2}\left(t\right)+....+x_{n}\left(t\right)$
 \end_inset
 
-, quindi: 
+.
+ 
+\series bold
+Se facciamo l'assunzione che i flussi siano statisticamente indipendenti
+ tra di loro
+\series default
+: 
 \begin_inset Formula 
 \[
 E\left(x\left(t\right)\right)=E\left(x_{1}\left(t\right)+x_{2}\left(t\right)+....+x_{n}\left(t\right)\right)=E\left[x_{1}\left(t\right)\right]+E\left[x_{2}\left(t\right)\right]+...+E\left[x_{n}\left(t\right)\right]
@@ -8662,44 +13033,10 @@ E\left(x\left(t\right)\right)=m_{1}\cdot t+m_{2}\cdot t+...+m_{n}\cdot t=t\cdot\
 \end_layout
 
 \begin_layout Standard
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
------------------------------------------------------------
-\end_layout
-
-\begin_layout Standard
-Prendiamo il traffico 
-\begin_inset Formula $x\left(t\right)$
-\end_inset
-
- generato dal rate istantaneo 
-\begin_inset Formula $r\left(t\right)$
-\end_inset
-
-, tipo serie di impulsi di traffico (
-\begin_inset Formula $r\left(t\right)=\sum_{i}L_{i}\cdot\delta\left(t-t_{i}\right)$
-\end_inset
-
-, dove 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- è il tempo di arrivo dell'
-\emph on
-i-esimo 
-\emph default
-pacchetto).
-\end_layout
-
-\begin_layout Standard
-Sappiamo che: 
+Mentre per la varianza:
 \begin_inset Formula 
 \[
-x\left(t\right)=\int_{0}^{t}r\left(x\right)dx
+Var\left(X\left(t\right)\right)=\sum_{i=1}^{n}Var\left(X_{i}\left(t\right)\right)
 \]
 
 \end_inset
@@ -8707,137 +13044,261 @@ x\left(t\right)=\int_{0}^{t}r\left(x\right)dx
 
 \end_layout
 
-\begin_layout Standard
-E che:
+\begin_layout Subsection*
+Rappresentare i flussi di traffico
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\[
-r\left(t\right)=\frac{d}{dt}x\left(t\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Sappiamo poi che per l'ipotesi stazionaria:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-E\left(x\left(t\right)\right)=E\left(\int_{0}^{t}r\left(x\right)dx\right)=\int_{0}^{t}E\left(r\left(t\right)\right)dt=m\cdot t
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-La varianza è più complicata:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Var\left(x\left(t\right)\right)=2\cdot\int_{0}^{t}\left(R_{r}\left(x\right)-m^{2}\right)\left(t-x\right)dx
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dove 
-\begin_inset Formula $R_{r}\left(x\right)$
-\end_inset
-
- è la funzione di autocorrelazione di 
-\begin_inset Formula $r\left(t\right)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Possiamo anche scriverla come:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-Var\left(x\left(t\right)\right)=2\int_{0}^{t}C_{r}\left(x\right)\cdot\left(t-x\right)dx
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Dove 
-\begin_inset Formula $C_{r}\left(t\right)$
-\end_inset
-
- è l'auto-covarianza di 
-\begin_inset Formula $r\left(t\right)$
-\end_inset
-
- (cioè 
-\begin_inset Formula $C_{r}\left(t\right)=R_{r}\left(t\right)-m^{2}$
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-Abbiamo due casi per questa varianza:
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $C_{r}\left(t\right)\sim e^{-t}$
-\end_inset
-
- , è il caso dello 
-\emph on
-short-range traffic
-\emph default
-, così come le sorgenti VoIP che abbiamo visto.
- Questa porta ad una varianza asintoticamente lineare: 
-\begin_inset Formula $Var\left(x\left(t\right)\right)\sim k\cdot t$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $C_{r}\left(t\right)\sim t^{-\beta}$
-\end_inset
-
-, dove se 
-\begin_inset Formula $\beta>0$
-\end_inset
-
- abbiamo il caso del 
+Un flusso di traffico può essere rappresentato tramite il suo 
 \series bold
-\emph on
-long-range dependent traffic
+rate istantaneo
 \series default
+ 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+, misurato in 
+\begin_inset Formula $\left[\frac{bit}{s}\right]$
+\end_inset
+
+, definito come 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+il numero di bits trasferiti in un intervallo di tempo istantaneo
 \emph default
- (LRD).
- Questo porta ad una varianza parabolica:
-\begin_inset Formula $Var\left(x\left(t\right)\right)\sim k\cdot t^{2-\beta}$
+
+\begin_inset Quotes erd
 \end_inset
 
 .
- Questo è il caso della maggior parte del traffico di Internet.
 \end_layout
 
+\begin_layout Itemize
+Nel seguito considereremo flussi di traffico 
+\series bold
+stazionari
+\series default
+, dunque 
+\begin_inset Formula $r\left(t\right)$
+\end_inset
+
+ avrà un valore medio stazionario
+\begin_inset Formula 
+\[
+m=E\left[r\left(t\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il 
+\bar under
+traffico cumulativo trasmesso in un intervallo di tempo di durata 
+\begin_inset Formula $t$
+\end_inset
+
+
+\bar default
+ è una importante caratteristica di uno stream di traffico, ci riferiremo
+ ad esso indicandolo con 
+\begin_inset Formula 
+\[
+X\left(t_{0},t_{0}+t\right)
+\]
+
+\end_inset
+
+Dove 
+\begin_inset Formula $t_{0}$
+\end_inset
+
+ è un tempo di riferimento.
+\end_layout
+
+\begin_layout Itemize
+Poiché assumiamo che il traffico sia stazionario, la distribuzione di 
+\begin_inset Formula $X\left(t_{0},\, t_{0}+t\right)$
+\end_inset
+
+ è uguale alla distribuzione di 
+\begin_inset Formula $X\left(t_{1},t_{1}+t\right)$
+\end_inset
+
+ per ogni 
+\begin_inset Formula $t_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Quindi il tempo di riferimento iniziale può essere trascurato e , statisticament
+e, 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+ rappresenta completamente il processo del traffico.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il rate istantaneo e quello cumulativo sono correlati dalle seguenti relazioni:
+\begin_inset Formula 
+\[
+r\left(t\right)=\frac{dX\left(t\right)}{dt}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+X\left(t\right)=\int_{0}^{t}r\left(\tau\right)\, d\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nel caso del 
+\bar under
+traffico cumulativo 
+\bar default
+e ipotesi stazionaria, abbiamo che:
+\begin_inset Formula 
+\[
+E\left(X\left(t\right)\right)=E\left(\int_{0}^{t}r\left(\tau\right)\, d\tau\right)=\int_{0}^{t}E\left(r\left(\tau\right)\right)\, d\tau=mt
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(X\left(t\right)\right)=2\int_{0}^{t}\left(R_{r}\left(\tau\right)-m^{2}\right)\left(t-\tau\right)\, d\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove 
+\begin_inset Formula $R_{r}\left(\tau\right)$
+\end_inset
+
+ è la funzione di autocorrelazione del rate istantaneo.
+\end_layout
+
+\begin_layout Itemize
+L'autocovarianza del rate istantaneo è definita come:
+\begin_inset Formula 
+\[
+C_{r}\left(\tau\right)=R_{r}\left(\tau\right)-m^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La forma della funzione di autocovarianza determina il comportamento di
+ accodamento del traffico
+\end_layout
+
+\begin_layout Itemize
+Il traffico di tipo 
+\bar under
+short-range dependent
+\bar default
+ ha una funzione di autocovarianza che decresce esponenzialmente man mano
+ che passa il tempo, cioè
+\begin_inset Formula 
+\[
+C_{r}\left(t\right)\sim e^{-t}\;\text{per }t\rightarrow\infty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il traffico di tipo 
+\bar under
+long-range dependent
+\bar default
+ ha una funzione di autocovarianza sub-esponenziale
+\begin_inset Formula 
+\[
+C_{r}\left(t\right)\sim t^{-\gamma}\:\text{per }t\rightarrow\infty\,,\,\gamma>0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il profilo di varianza per il traffico cumulativo di un flusso 
+\emph on
+short-range dependent
+\emph default
+ è asintoticamente lineare per il tempo crescente:
+\begin_inset Formula 
+\[
+Var\left(X\left(t\right)\right)\sim kt\:\text{per}\: t\rightarrow\infty,\: k>0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Invece, il profilo di varianza per il traffico cumulativo di un flusso 
+\emph on
+long-range dependent
+\emph default
+ cresce con una legge esponenziale:
+\begin_inset Formula 
+\[
+Var\left(X\left(t\right)\right)\sim kt^{2-\gamma}\:\text{for}\: t\rightarrow\infty,\: k>0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questo è il caso della 
+\series bold
+maggior parte del traffico di Internet
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Viene mostrato che il comporamento di accodamento di un flusso di traffico
+ dipende dal profilo della varianza.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 A volte il traffico 
 \series bold
@@ -8900,13 +13361,17 @@ I due processi sono uguali se tutte le loro densità di probabilità sono
 
 \begin_layout Standard
 Però 
+\series bold
 \emph on
+\bar under
 Self-similar o factal traffic
 \emph default
  non è sinonimo di 
 \emph on
 long-range dependent
+\series default
 \emph default
+\bar default
 , però quasi tutti i processi 
 \emph on
 fractal processes
@@ -8949,6 +13414,28 @@ E\left(x\left(t\right)\right)=r\cdot t
 Var\left(x\left(t\right)\right)=r\cdot b\cdot t
 \]
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r$
+\end_inset
+
+ è il rate istantaneo del traffico (prima l'avevamo chiamato 
+\begin_inset Formula $m$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b$
+\end_inset
+
+ è una costante in 
+\begin_inset Formula $\left[bit\cdot s\right]$
 \end_inset
 
 
@@ -9007,7 +13494,11 @@ Dove:
 
 \end_deeper
 \begin_layout Standard
-Ci accorgiamo che SRD è un caso particolare di LRD nel caso 
+Ci accorgiamo che 
+\series bold
+SRD è un caso particolare di LRD
+\series default
+ nel caso 
 \begin_inset Formula $H=\frac{1}{2}$
 \end_inset
 
@@ -9074,8 +13565,1059 @@ ritardo
  È un percorso teorico complesso con però risultati molto semplici.
 \end_layout
 
+\begin_layout Subsection*
+Bounded-variance network calculus
+\end_layout
+
+\begin_layout Itemize
+Questo metodo funziona con l'analisi dei primi due momenti del traffico,
+ quindi valor medio e varianza.
+\end_layout
+
+\begin_layout Itemize
+Questo modello ha il vantaggio di essere semplice, generale, permette risultati
+ analitici, permette analisi multi-hop, le approssimazioni sono molto buone
+ (specialmente quelle fatte sui microflussi).
+\end_layout
+
+\begin_layout Itemize
+Quando uno stream 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+ è un aggregato di 
+\begin_inset Formula $N$
+\end_inset
+
+ flussi indipendenti 
+\begin_inset Formula $x_{i}\left(t\right)$
+\end_inset
+
+, il suo valor medio e varianza sono calcolati come:
+\begin_inset Formula 
+\[
+E\left(X\left(t\right)\right)=\sum_{i=1}^{m}E\left(x_{i}\left(t\right)\right)=\sum_{i=1}^{m}m_{i}\cdot t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(X\left(t\right)\right)=\sum_{i=1}^{m}Var\left(x_{i}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se i microflussi sono statisticamente identici, cioè 
+\begin_inset Formula $E\left[x_{i}\left(t\right)\right]=m$
+\end_inset
+
+ (i valori medi sono uguali) e 
+\begin_inset Formula $Var\left(x_{i}\left(t\right)\right)=Var\left(x_{j}\left(t\right)\right)$
+\end_inset
+
+ (le varianze sono diverse), allora: 
+\begin_inset Formula 
+\[
+E\left(X\left(t\right)\right)=N\cdot m\cdot t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(X\left(t\right)\right)=N\cdot Var\left(x_{i}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Consideriamo uno scheduler dove nella classe di servizio 
+\emph on
+i-esima
+\emph default
+, il traffico cumulativo 
+\begin_inset Formula $X_{i}\left(t_{1},t_{2}\right)$
+\end_inset
+
+ è offerto alla rete nell'intervallo di tempo 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+.
+ Nello stesso intervallo di tempo il traffico cumulativo 
+\begin_inset Formula $Y_{i}\left(t_{1},t_{2}\right)$
+\end_inset
+
+ viene servito per la classe 
+\begin_inset Formula $i$
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Al tempo 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $Q_{i}\left(t\right)$
+\end_inset
+
+ è la quantità di traffico arretrato nella coda della service class.
+\end_layout
+
+\begin_layout Itemize
+L'intervallo di tempo 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+ è definito come l'intervallo di traffico arretrato per la classe di servizio
+ 
+\begin_inset Formula $i$
+\end_inset
+
+ 
+\series bold
+se
+\series default
+ per ogni 
+\begin_inset Formula $t$
+\end_inset
+
+ in 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+ abbiamo che 
+\begin_inset Formula $Q_{i}\left(t\right)>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X_{i}^{*}\left(t_{1},t_{2}\right)$
+\end_inset
+
+ è la minima quantità di traffico che deve essere fornito alla service class
+ 
+\begin_inset Formula $i$
+\end_inset
+
+ per mantenere la sua coda continuamente in stato di traffico arretrato
+ da processare in 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il servizio disponibile 
+\begin_inset Formula $Y_{i}^{*}\left(t_{1},t_{2}\right)$
+\end_inset
+
+ per la classe 
+\begin_inset Formula $i$
+\end_inset
+
+ in 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+ è il traffico servito per la classe 
+\begin_inset Formula $i$
+\end_inset
+
+ in 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+ quando alla classe viene offerta la sua minima quantità di traffico arretrato
+ di input.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In generale, nell'intervallo di tempo 
+\begin_inset Formula $\left[t_{1},t_{2}\right]$
+\end_inset
+
+, la quantità di traffico servito per la classe 
+\begin_inset Formula $i$
+\end_inset
+
+ è definita da 
+\begin_inset Formula $Y_{i}\left(t_{1},t_{2}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+\emph on
+virtual delay
+\series default
+\emph default
+ della classe 
+\emph on
+i-esima
+\emph default
+ è definito come:
+\begin_inset Formula 
+\[
+D_{i}\left(t\right)=min\left(\Delta t\geq0\,:\, X_{i}\left(t_{0},t\right)\geq Y_{i}\left(t_{0},t+\Delta t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Una 
+\series bold
+SLA
+\series default
+ di tipo 
+\emph on
+delay-oriented
+\emph default
+ viene formalizzata come segue:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}>d_{i}\right)\leq p_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dove abbiamo anche l'identità:
+\begin_inset Formula 
+\[
+\left(D_{i}\left(t\right)\geq d_{i}\right)\equiv\left(X_{i}\left(t_{1},t\right)-Y_{i}\left(t_{1},t+d_{i}\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\left(t\right)\geq d_{i}\right)\equiv P_{r}\left(X_{i}\left(t_{1},t\right)-Y_{i}\left(t_{1},t+d_{i}\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Da cui abbiamo:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\left(t\right)\geq d_{i}\right)\leq P_{r}\left(\underset{t\geq t_{1}}{max}\left(X_{i}\left(t_{1},t\right)-Y_{i}\left(t_{1},t+d_{i}\right)\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Otteniamo:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\left(t\right)\geq d_{i}\right)\leq P_{r}\left(\underset{t\geq t_{1}}{max}\left(X_{i}\left(t_{1},t\right)-Y_{i}^{*}\left(t_{1},t+d_{i}\right)\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Questo che abbiamo visto vale in generale, anche nei casi non stazionari.
+ Se però consideriamo anche l'assunzione che il traffico sia stazionario,
+ abbiamo che:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\left(t\right)\geq d_{i}\right)\leq P_{r}\left(\underset{t>0}{max}\left(X_{i}\left(t_{1},t\right)-Y_{i}^{*}\left(t_{1},t+d_{i}\right)\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infine tentiamo di semplificare la formalizzazione introducendo il concetto
+ di 
+\series bold
+\emph on
+service envelope 
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Per la classe 
+\emph on
+i-esima
+\emph default
+ la 
+\series bold
+\emph on
+service envelope
+\series default
+\emph default
+ 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+ è un processo stocastico tale che: 
+\begin_inset Formula 
+\[
+\forall t\geq0,\;\forall z\geq0\,:\qquad P_{r}\left(Y_{i}^{*}\left(t\right)\geq z\right)\geq P_{r}\left(S_{i}\left(t\right)\geq z\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cioè la 
+\series bold
+\emph on
+service envelope 
+\series default
+\emph default
+è semplicemente un limite inferiore statistico del servizio disponibile.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Possiamo, in base a quanto visto qua sopra, stabilire quindi la seguente
+ disuguaglianza:
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\geq d_{i}\right)\leq P_{r}\left(\underset{t\geq0}{max}\left(X_{i}\left(t\right)-S_{i}\left(t+d_{i}\right)\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il problema di calcolare la probabilità di violare il delay di una SLA statistic
+a viene ridotto al semplice calcolo della disuguaglianza qua sopra.
+\end_layout
+
+\begin_layout Itemize
+Tuttavia abbiamo 
+\series bold
+due problemi
+\series default
+ da affrontare:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dobbiamo scoprire la 
+\begin_inset Formula $S_{i}\left(t\right)$
+\end_inset
+
+ dei vari tipi di schedulers.
+\end_layout
+
+\begin_layout Itemize
+Il calcolo della probabilità qua sopra descritta è molto complicato e dobbiamo
+ trovare un modo semplice per risolverlo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il primo problema è semplice perché la service envelope degli schedulers
+ più importanti è già nota, mentre il secondo problema richiede un po' di
+ analisi.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Scheduler FIFO
+\end_layout
+
+\begin_layout Standard
+Consideriamo il caso di uno scheduler FIFO con capacità di uscita 
+\begin_inset Formula $C$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+La service envelope è in modo elementare 
+\begin_inset Formula 
+\[
+S\left(t\right)=C\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infatti, l'ammontare di servizio disponibile per 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+in un intervallo di tempo di durata 
+\begin_inset Formula $t$
+\end_inset
+
+ è uguale alla capacità della linea moltiplicata per la durata dell'intervallo
+ di servizio
+\end_layout
+
+\begin_layout Itemize
+Il calcolo della SLA diventa quindi:
+\begin_inset Formula 
+\[
+P_{r}\left(D\geq d\right)\leq P_{r}\left(\underset{t\geq0}{max}\left(X\left(t\right)-C\left(t+d\right)\right)>0\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Come detto prima, questo calcolo è piuttosto complicato.
+ Nella pratica dobbiamo calcolare la probabilità che il massimo assoluto
+ del processo 
+\begin_inset Formula $X\left(t\right)-C\left(t+d\right)$
+\end_inset
+
+ sia maggiore di 
+\begin_inset Formula $0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Poiché il calcolo è complesso , tentiamo di introdurre dei metodi per semplifica
+rlo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Choe
+\emph default
+ e 
+\emph on
+Shroff
+\emph default
+ propongono di utilizzare la 
+\series bold
+\emph on
+varianza massima asintotica 
+\series default
+\emph default
+(
+\series bold
+MVA
+\series default
+) come limite superiore per la probabilità di violare il delay della SLA
+ statistica quando il traffico è gaussiano.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La derivazione di questa teoria è abbastanza complessa, noi vedremo solo
+ la teoria principale.
+\end_layout
+
+\begin_layout Itemize
+Se il rate istantaneo medio del traffico di ingresso è 
+\begin_inset Formula $m$
+\end_inset
+
+, il valore medio di 
+\begin_inset Formula $X\left(t\right)$
+\end_inset
+
+ sarà uguale a 
+\begin_inset Formula $E\left[X\left(t\right)\right]=m\cdot t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il processo 
+\begin_inset Formula $X\left(t\right)-C\left(t+d\right)$
+\end_inset
+
+ ha una deriva negativa, poiché il valore medio decresce come 
+\begin_inset Formula $m\cdot t-C\left(t+d\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+La varianza di 
+\begin_inset Formula $X\left(t\right)-C\left(t+d\right)$
+\end_inset
+
+ aumenta con l'aumento del tempo ed è uguale a 
+\begin_inset Formula $Var\left(X\left(t\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'istante di tempo 
+\begin_inset Formula $t^{*}$
+\end_inset
+
+ in cui il processo 
+\begin_inset Formula $X\left(t\right)-C\left(t+d\right)$
+\end_inset
+
+ ha più probabilità di diventare positivo è quando il rapporto tra il suo
+ valore medio e la sua deviazione standard è minimo.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename net-067.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Choe 
+\emph default
+e 
+\emph on
+Shroff
+\emph default
+ hanno provato che se il traffico è gaussiano: 
+\begin_inset Formula 
+\[
+P_{r}\left(X\left(t^{*}-C\left(t^{*}+d\right)\right)\geq0\right)\geq P_{r}\left(D>d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Quindi il problema viene ridotto al calcolo di 
+\begin_inset Formula $t^{*}$
+\end_inset
+
+, l'istante di tempo dove c'è più probabilità che 
+\begin_inset Formula $X\left(t\right)-C\left(t+d\right)$
+\end_inset
+
+ attraversi l'asse dei tempi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La 
+\series bold
+procedura per il calcolo del limite superiore asintotico alla massima varianza
+\series default
+ (
+\series bold
+MVA
+\series default
+) è eseguita come segue:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prima di tutto definiamo: 
+\begin_inset Formula 
+\[
+\alpha_{i}\left(t\right)=-\frac{E\left(X_{i}\left(t\right)-S\left(t+d_{i}\right)\right)}{\sqrt{Var\left(B\left(t\right)\right)+Var\left(S\left(t+d_{i}\right)\right)}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Poi calcoliamo:
+\begin_inset Formula 
+\[
+\alpha_{i,min}=\underset{t\geq0}{min}\left(\alpha_{i}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infine troviamo: 
+\begin_inset Formula 
+\[
+P_{r}\left(D_{i}\geq d\right)\leq e^{-\frac{\alpha_{i,min}^{2}}{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La procedura che abbiamo illustrato produce dei limiti superiori sul traffico
+ di tipo gaussiano.
+\end_layout
+
+\begin_layout Itemize
+Se il traffico 
+\series bold
+non è gaussiano
+\series default
+, allora applicando la stessa procedura otteniamo una approssimazione piuttosto
+ che un limite superiore.
+ La qualità di questa approssimazione cresce man mano che i microflussi
+ in ingresso aumentano (per il teorema del limite centrale)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Two moment analysis applicata ai voice codecs
+\end_layout
+
+\begin_layout Itemize
+Per applicare questa analisi a dei casi pratici è necessario caratterizzare
+ il momento primo e secondo del traffico di interesse.
+\end_layout
+
+\begin_layout Itemize
+Consideriamo allora uno stream di un variable bit rate codec audio che può
+ essere rappresentanto come una catena di Markov, per esempio il codec G.726.
+ Abbiamo descritto prima i parametri di questo tipo di sorgente di traffico
+ e abbiamo visto che era una sorgente di tipo 
+\series bold
+SRD
+\series default
+.
+\begin_inset Formula 
+\[
+E\left(x\left(t\right)\right)=\frac{\lambda}{\lambda+\mu}\cdot P\cdot t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)=2\cdot\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{3}}\cdot P^{2}\cdot t-2\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{4}}\cdot P^{2}\cdot\left(1-e^{-\left(\lambda+\mu\right)\cdot t}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo semplificare la varianza considerandone un limite superiore:
+\begin_inset Formula 
+\[
+Var\left(x\left(t\right)\right)\leq2\cdot\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{3}}\cdot P^{2}\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Sorgenti di Markov
+\end_layout
+
+\begin_layout Standard
+Data una sorgente modellizzabile con una catena di Markov ed un numero arbitrari
+o di stati, può essere complesso calcolarne la varianza.
+\end_layout
+
+\begin_layout Standard
+Un recente teorema di 
+\emph on
+Giacomazzi
+\emph default
+ e 
+\emph on
+Verticale
+\emph default
+ dimostra che tutte le sorgenti di Markov ammettono 
+\series bold
+un limite superiore lineare per la varianza del traffico cumulativo generato
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Questo semplifica molto l'analisi poiché, se uno scheduler è soggetto ad
+ uno stream di traffico che può essere modellato come una sorgente di Markov,
+ la varianza del traffico cumulativo in ingresso sarà lineare.
+\end_layout
+
+\begin_layout Itemize
+Cioè, per il traffico offerto alla classe di servizio 
+\emph on
+i-esima
+\emph default
+:
+\begin_inset Formula 
+\[
+E\left(X_{i}\left(t\right)\right)=r_{i}\cdot t
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Var\left(X_{i}\left(t\right)\right)=r_{i}\cdot b_{i}\cdot t
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dunque, analizzando uno scheduler a cui è offerto un traffico con varianza
+ lineare, quello scheduler sarà studiato in un colpo solo per tutte le possibili
+ combinazioni di ogni insieme di sorgenti di Markov, con transizioni di
+ rate arbitrarie e velocità di trasmissione 
+\emph on
+per-stato
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Rianalisi dello scheduler FIFO
+\end_layout
+
+\begin_layout Itemize
+Capacità di uscita 
+\begin_inset Formula $C$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Assumiamo 
+\begin_inset Formula $N$
+\end_inset
+
+ flussi in ingresso statisticamente identici con copertura di varianza lineare
+ 
+\end_layout
+
+\begin_layout Itemize
+Il rate medio di uno stream di traffico individuale è 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La varianza del traffico cumulativo di ogni stream di traffico individuale
+ è pari a 
+\begin_inset Formula $r\cdot b\cdot t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Applichiamo il modello MVA:
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{N\cdot r\cdot t-C\left(t+d\right)}{\sqrt{N\cdot r\cdot b\cdot t}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{min}\left(t\right)=2\cdot\sqrt{\frac{Cd\left(C-N\cdot r\right)}{N\cdot r\cdot b\cdot t}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{r}\left(D>d\right)\approx e^{-\frac{\alpha_{min}^{2}}{2}}=exp\left(-2\cdot\frac{C\left(C-N\cdot r\right)}{N\cdot r\cdot b}\cdot d\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(D\right)=\frac{N\cdot r\cdot b}{2C\cdot\left(C-N\cdot r\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per il codec G.726 i parametri sono:
+\begin_inset Formula 
+\[
+r=\frac{\lambda}{\lambda+\mu}\cdot P
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+r\cdot b=2\cdot\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{3}}\cdot P^{2}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{r}\left(D>d\right)=exp\left(-2\cdot\frac{C\cdot\left(C-N\frac{\lambda}{\lambda+\mu}\cdot P\right)}{2N\cdot\frac{\lambda\cdot\mu}{\left(\lambda+\mu\right)^{3}}\cdot P^{2}}\cdot d\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dato uno scheduler FIFO che fa multiplexing di 
+\begin_inset Formula $N$
+\end_inset
+
+ flussi, ciascuno con rate medio 
+\begin_inset Formula $r$
+\end_inset
+
+ e varianza del traffico cumulativo 
+\begin_inset Formula $r\cdot b\cdot t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+La procedura per l'allocazione della capacità consiste nel trovare la capacità
+ di linea 
+\begin_inset Formula $C$
+\end_inset
+
+ necessaria per soddisfare lo SLA statistico 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Questo viene fatto calcolando la probabilità di violare la SLA e risolvendo
+ questa equazione in C, il risultato è:
+\begin_inset Formula 
+\[
+C\geq\frac{N\cdot r}{2}+\sqrt{\left(\frac{N\cdot r}{2}\right)^{2}+\frac{N\cdot b\cdot\left(-ln\left(p\right)\right)}{2d}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Admission control dello scheduler
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dato uno scheduler con capacità di linea uguale a 
+\begin_inset Formula $C$
+\end_inset
+
+, a cui vengono offerti dei flussi di traffico statisticamente identici
+ con valor medio 
+\begin_inset Formula $r$
+\end_inset
+
+ e varianza 
+\begin_inset Formula $r\cdot b\cdot t$
+\end_inset
+
+, il calcolo della admission control ci permette di trovare il numero massimo
+ di sorgenti che possono essere accettate in ingresso, allo scopo di soddisfare
+ la SLA statistica 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Questo viene fatto calcolando la probabilità di superare il delay massimo
+ della SLA e risolvendo l'equazione con 
+\begin_inset Formula $N$
+\end_inset
+
+ come incognita.
+ Il risultato è:
+\begin_inset Formula 
+\[
+N\leq\frac{2C^{2}\cdot d}{2C\cdot d\cdot r-b\cdot ln\left(p\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+FIFO scheduler con traffico gaussiano (fractional) in ingresso
+\end_layout
+
+\begin_layout Standard
+Sappiamo che il traffico gaussiano ha un valore medio del traffico cumulativo
+\begin_inset Formula 
+\[
+E\left[X\left(t\right)\right]=a\cdot m\cdot t^{2H}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dato uno scheduler FIFO con capacità di linea 
+\begin_inset Formula $C$
+\end_inset
+
+, calcoliamo la probabilità di violare la SLA statistica 
+\begin_inset Formula $\left(d,p\right)$
+\end_inset
+
+ applicando la MVA vista prima:
+\begin_inset Formula 
+\[
+\alpha\left(t\right)=-\frac{m\cdot t-C\left(t+d\right)}{\sqrt{a\cdot m\cdot t^{2H}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\alpha_{min}=\frac{1}{\sqrt{a\cdot m}}\cdot\frac{1}{H^{H}\left(1-H\right)^{1-H}}\cdot C^{1-H}\cdot\left(C-m\right)^{H}\cdot d^{1-H}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+P_{r}\left(D>d\right)\approx e^{-\frac{\alpha_{min}^{2}}{2}}=exp\left(-\frac{1}{2\cdot a\cdot m}\cdot\frac{1}{H^{2H}\cdot\left(1-H\right)^{2-2H}}\cdot C^{2-2H}\cdot\left(C-m\right)^{2H}\cdot d^{2-2H}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La distribuzione del ritardo di uno scheduler FIFO con traffico gaussiano
+ in ingresso è una Weibull non esponenziale.
+\end_layout
+
+\begin_layout Itemize
+La distribuzione Weibull descresce molto lentamente.
+ Questo significa che alti picchi di ritardo sono possibili.
+\end_layout
+
+\begin_layout Itemize
+Questo non accade invece per il traffico SRD con varianza lineare (in rosso
+ nel grafico)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename net-068.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
-SP e GPS schedulers (Lezione 13-5-13)
+SP e GPS schedulers
 \end_layout
 
 \begin_layout Standard
@@ -9120,7 +14662,7 @@ Var\left(x\left(t\right)\right)=Var\left(\sum_{i=1}^{n}x_{i}\left(t\right)\right
 \begin_layout Standard
 \begin_inset Formula 
 \[
-Var\left(x\left(t\right)\right)\;\overset{LRD}{=}\; t^{2H}\sum_{i=1}^{n}r_{i}b_{i}
+Var\left(x\left(t\right)\right)\;\overset{\text{LRD}}{=}\; t^{2H}\sum_{i=1}^{n}r_{i}b_{i}
 \]
 
 \end_inset
@@ -9147,24 +14689,15 @@ Abbiamo poi:
 Dove sappiamo che: 
 \begin_inset Formula 
 \[
-Var\left(C\left(t+d\right)\right)
+Var\left(C\left(t+d\right)\right)=\begin{cases}
+0 & \text{ se la capacità è costante}\\
+\neq0 & \text{ se è un canale tempo variante}
+\end{cases}
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-È 
-\begin_inset Formula $0$
-\end_inset
-
- se la capacità è costante, mentre è 
-\begin_inset Formula $\neq0$
-\end_inset
-
- se è un canale tempo variante.
 \end_layout
 
 \begin_layout Standard
