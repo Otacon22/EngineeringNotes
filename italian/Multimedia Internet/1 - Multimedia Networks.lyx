@@ -12311,10 +12311,1264 @@ Yes
 
 \end_layout
 
-\begin_layout Standard
-[da pagina 19 in poi omissis]
+\begin_layout Itemize
+La classe di network control viene utilizzata per trasmettere pacchetti
+ tra i dispositivi di rete (ad aesempio le informazioni di routing tra i
+ routers), così come le informazioni per il peering tra diversi autonomous
+ systems.
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Il traffico trasmesso in questa classe di servizio è molto importante poiché
+ mantiene la rete funzionante.
+ Deve essere inoltrato periodicamente.
+\end_layout
+
+\begin_layout Itemize
+Dovrebbe essere utilizzato il PHB CS per questa classe.
+\end_layout
+
+\begin_layout Itemize
+Bisogna assicurarsi che questa classe riceva sempre una banda garantita.
+\end_layout
+
+\begin_layout Itemize
+Una serie di protocolli che potrebbero aver bisogno della 
+\emph on
+Network Control Service Class
+\emph default
+ sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+OSPF, BGP, ISIS, RIP
+\end_layout
+
+\begin_layout Itemize
+LSP setup con CR-LDP o RSVP-TE
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gli utenti non dovrebbero poter transitare sulla classe di network control.
+\end_layout
+
+\begin_layout Itemize
+La classe raccomandata è la CS6.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La policy di conditioning raccomandata ai bordi della rete per il servizio
+ 
+\series bold
+\emph on
+network control
+\emph default
+ 
+\series default
+è:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nei punti di peering tra due reti DiffServ, dove ci sono degli SLA da rispettare
+, i pacchetti marcati CS6 dovrebbero essere trattati con 
+\series bold
+\emph on
+policing
+\series default
+\emph default
+ (ad esempio utilizzando un 
+\emph on
+single rate + burst size
+\emph default
+: 
+\series bold
+sr+bs
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+I pacchetti marcati CS6 che arrivano da sorgenti non fidate (per esempio
+ terminali utente) dovrebbero essere scartati.
+\end_layout
+
+\begin_layout Itemize
+Il servizio fondamentale offerto al servizio di 
+\emph on
+network control
+\emph default
+ è quello di 
+\emph on
+best-effort
+\emph default
+ con alta banda assicurata.
+\end_layout
+
+\begin_layout Itemize
+Poiché questa classe di servizio viene utilizzata per inoltrare sia flussi
+ elastici che inelastici, il servizio dovrebbe essere ingegnerizzato di
+ modo che viene utilizzata 
+\emph on
+Active Queue Management 
+\emph default
+(
+\series bold
+AQM
+\series default
+) ai pacchetti marcati CS6.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La 
+\series bold
+classe di servizio OAM
+\series default
+ (Operations, Administration and Management) viene raccomandata per protocolli
+ come SNMP, TFTP, FTP, Telnet, COPS
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le applicazioni che utilizzano questo servizio richiedono una bassa perdita
+ di pacchetti ma non sono sensibili anche ad alti delay
+\end_layout
+
+\begin_layout Itemize
+La classe OAM dovrebbe essere servita utilizzando 
+\series bold
+CS2
+\series default
+ che fornisce una garanzia di banda minima per una classe di servizio.
+\end_layout
+
+\begin_layout Itemize
+Esempi di applicazioni che dovrebbero utilizzare OAM sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sistemi di controllo e configurazione dei dispositivi di rete (vedi SNMP,
+ Telnet)
+\end_layout
+
+\begin_layout Itemize
+Monitoring delle performance degli elementi di rete
+\end_layout
+
+\begin_layout Itemize
+Sistemi di 
+\begin_inset Quotes eld
+\end_inset
+
+allarme
+\begin_inset Quotes erd
+\end_inset
+
+ su dispositivi di rete
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le applicazioni della classe di servizio OAM sono caratterizzata da un traffico
+ con:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dimensione dei pacchetti variabile
+\end_layout
+
+\begin_layout Itemize
+Flussi di traffico intermittenti
+\end_layout
+
+\begin_layout Itemize
+Traffico con 
+\series bold
+\emph on
+bursts
+\end_layout
+
+\begin_layout Itemize
+Flussi elastici e inelastici 
+\end_layout
+
+\begin_layout Itemize
+Traffico non sensibile ai delay
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Anche qua si utilizza di solito una AQM.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Servizio di telefonia
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È una classe di servizio raccomandata per applicazioni che richiedono traffico
+ 
+\emph on
+\bar under
+real-time
+\emph default
+\bar default
+ a 
+\bar under
+basso ritardo
+\bar default
+ , 
+\bar under
+basso jitter
+\bar default
+ e 
+\bar under
+bassa packet loss
+\bar default
+ per sorgenti a traffico costante.
+\end_layout
+
+\begin_layout Itemize
+Questo tipo di servizio dovrebbe essere utilizzato principalmente per la
+ telefonia over IP.
+\end_layout
+
+\begin_layout Itemize
+Quando inizia una telefonata, il sistema dovrebbe verificare che la rete
+ abbia le capacità per gestirne il traffico rispettando la qualità del servizio
+ (questa verifica viene fatta dal gateway SIP o dal gatekeeper H.323).
+ È ovviamente necessario fare qualche conto per stabilire quante connessioni
+ VoIP si possono accettare.
+\end_layout
+
+\begin_layout Itemize
+Questa classe di servizio dovrebbe utilizzare la 
+\series bold
+PHB EF
+\series default
+ (Expedited Forwarding), ma anche altre PHB possono essere utilizzate (se
+ configurate correttamente.
+\end_layout
+
+\begin_layout Itemize
+La classe dovrebbe essere configurata per utilizzare un sistema di 
+\emph on
+priority quequing
+\end_layout
+
+\begin_layout Itemize
+Le seguenti applicazioni dovrebbero utilizzare il servizio di telefonia:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+VoIP
+\end_layout
+
+\begin_layout Itemize
+Voice-band data over IP (modem,fax)
+\end_layout
+
+\begin_layout Itemize
+Fax over IP
+\end_layout
+
+\begin_layout Itemize
+Emulazione di circuito su IP, virtual wire.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le seguenti sono caratteristiche di traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solitamente pacchetti di dimensione fissa per il VoIP (60,70,120 o 200 bytes)
+\end_layout
+
+\begin_layout Itemize
+Pacchetti emessi a rate costante
+\end_layout
+
+\begin_layout Itemize
+Admission control gestito come sopra descritto
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Classe di servizio per il signaling
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È la classe raccomandata per sistemi di signaling sensibili al ritardo della
+ rete, tipo signaling per VoIP o reti P2P.
+\end_layout
+
+\begin_layout Itemize
+Signaling non è solo tra gli endpoints, ma anche tra gateways e signaling
+ di interworking.
+\end_layout
+
+\begin_layout Itemize
+È la classe utilizzata per il controllo di applicazioni e sessioni.
+\end_layout
+
+\begin_layout Itemize
+Questa classe di servizio deve essere configurata in modo che la probabilità
+ di drop o lungo ritardo a banda di picco sia molto bassa
+\end_layout
+
+\begin_layout Itemize
+È consigliato l'utilizzo della 
+\series bold
+PHB CS5
+\series default
+ come classe di signaling
+\end_layout
+
+\begin_layout Itemize
+Questa classe di servizio dovrebbe essere configurata per fornire una 
+\bar under
+banda minima garantita
+\bar default
+ per i pacchetti marcati CS5
+\end_layout
+
+\begin_layout Itemize
+È consigliato l'utilizzo di un 
+\emph on
+Rate queuing system
+\bar under
+ 
+\emph default
+\bar default
+per questo tipo di classe.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni che dovrebbero utilizzare questa classe di servizio:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+P2P IP telephony
+\end_layout
+
+\begin_layout Itemize
+P2P IP multimedia applications
+\end_layout
+
+\begin_layout Itemize
+P2P real-time control function
+\end_layout
+
+\begin_layout Itemize
+Client-server IP telephony
+\end_layout
+
+\begin_layout Itemize
+Signaling for IPTV control (ad.
+ es: IGMP)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le caratteristiche del traffico sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dimensione variabile dei pacchetti
+\end_layout
+
+\begin_layout Itemize
+Flussi di traffico intermittenti
+\end_layout
+
+\begin_layout Itemize
+Traffico con bursts
+\end_layout
+
+\begin_layout Itemize
+Messaggi di controllo sensibili al delay
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Multimedia conferencing service class
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È raccomandata per applicazioni che richiedono servizio real-time per un
+ flusso con rate adattivo, per esempio sistemi di conferenza H.323 che si
+ adattano dinamicamente al cambiamento di banda.
+\end_layout
+
+\begin_layout Itemize
+Anche qua, come per il VoIP, viene consigliato l'utilizzo di 
+\series bold
+PHB AF
+\series default
+ (Assured Forwarding), configurata per dare una garanzia di banda ai pacchetti
+ marcati AF41,AF42 e AF43.
+\end_layout
+
+\begin_layout Itemize
+Dovrebbe utilizzare un sistema di 
+\emph on
+Rate queuing system
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni che utilizzano questa classe:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Video conferencing con H.323/SIP
+\end_layout
+
+\begin_layout Itemize
+Alcuni tipi di VPN basate su IP
+\end_layout
+
+\begin_layout Itemize
+Applicazioni interattive, time-critical o mission-critical
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche del traffico
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pacchetti di dimensione variabile
+\end_layout
+
+\begin_layout Itemize
+Maggiore è il rate, maggiore diventa la dimensione dei pacchetti.
+\end_layout
+
+\begin_layout Itemize
+Intervallo di emissione dei pacchetti costante
+\end_layout
+
+\begin_layout Itemize
+Rate variabile
+\end_layout
+
+\begin_layout Itemize
+La sorgente è in grado di ridurre il suo rate di trasmissione se si accorge
+ di perdita di pacchetti al ricevitore
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo visto che è consigliato utilizzare AF PHB, in particolare dato un
+ rate 
+\begin_inset Formula $A$
+\end_inset
+
+ ed un rate 
+\begin_inset Formula $B$
+\end_inset
+
+, con 
+\begin_inset Formula $A<B$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AF41: banda fino al rate 
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF42: banda tra 
+\begin_inset Formula $A$
+\end_inset
+
+ e 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF43: banda superiore a 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nel caso in cui utilizziamo apparecchiature H.323, il tipo di marking consigliato
+ è il seguente:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AF41: H.323 audio stream RTP/UDP
+\end_layout
+
+\begin_layout Itemize
+AF41: H.323 video control RTCP/TCP
+\end_layout
+
+\begin_layout Itemize
+AF41: H.323 video stream fino a rate 
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF42: H.323 video stream tra rate 
+\begin_inset Formula $A$
+\end_inset
+
+ e rate 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF43: H.323 video stream oltre il rate 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il conditioning consigliato è: 
+\emph on
+two rate, three color marker
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il servizio offerto al multimedia streaming è sostanzialmente best-effort
+ con rate e ritardo controllati (non fissi ma controllati).
+\end_layout
+
+\begin_layout Itemize
+Solitamente in un sistema di video streaming, anche una perdita dell'1%
+ comporta una diminuizione del rate di trasmissione (cambiando codec magari).
+\end_layout
+
+\begin_layout Itemize
+Quindi solitamente si utilizza un sistema basato su AQM per spingere l'applicazi
+one a modificare il rate di video encoding.
+\end_layout
+
+\begin_layout Itemize
+La probabilità di perdita di AF41 non deve superare quella di AF42, che
+ non deve superare quella di AF43.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Real-time interactive service class
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È raccomandata per applicazioni che richiedono bassa perdita, basso jitter
+ e ritardo molto basso per sorgenti di traffico a rate variabile
+\end_layout
+
+\begin_layout Itemize
+Esempi di applicazioni sono quelle di 
+\emph on
+video conferencing 
+\emph default
+o
+\emph on
+ interactive gaming
+\emph default
+.
+ Sono le applicazioni che non sono in grado di regolare gli encoding rates
+ o di marcare i pacchetti con indicazioni di 
+\begin_inset Quotes eld
+\end_inset
+
+importanza
+\begin_inset Quotes erd
+\end_inset
+
+ diversa.
+\end_layout
+
+\begin_layout Itemize
+La banda e il numero di connessioni 
+\emph on
+real-time
+\emph default
+ sulla rete di backbone deve essere monitorata.
+\end_layout
+
+\begin_layout Itemize
+Viene consigliato l'utilizzo della 
+\series bold
+PHB CS4
+\series default
+, di modo da garantire alta affidabilità di banda per i pacchetti marcati
+ CS4.
+\end_layout
+
+\begin_layout Itemize
+Dovrebbe essere utilizzato 
+\emph on
+Rate Queuing
+\end_layout
+
+\begin_layout Itemize
+Applicazioni tipiche:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Interactive gaming and control
+\end_layout
+
+\begin_layout Itemize
+Video conferencing senza rate adattivo
+\end_layout
+
+\begin_layout Itemize
+Alcuni servizi di IP VPN
+\end_layout
+
+\begin_layout Itemize
+Inelastico, interattivo, time-critical, mission-critical che richiedono
+ delay molto basso
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche del traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pacchetti di lunghezza variabile
+\end_layout
+
+\begin_layout Itemize
+Rate variabile
+\end_layout
+
+\begin_layout Itemize
+I pacchetti persi sono solitamente ignorati dall'applicazione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il servizio classico offerto è una sorta di 
+\emph on
+best-effort
+\emph default
+ 
+\begin_inset Quotes eld
+\end_inset
+
+potenziato
+\begin_inset Quotes erd
+\end_inset
+
+, con rate e delay controllato.
+\end_layout
+
+\begin_layout Itemize
+Poiché questo tipo di traffico non reagisce alle perdite dei pacchetti in
+ modo dinamico, non ha senso l'utilizzo di un sistema AQM.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Multimedia streaming
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Applicazioni che necessitano inoltro dei pacchetti 
+\emph on
+near-real-time
+\emph default
+ da sorgenti a rate elastico
+\end_layout
+
+\begin_layout Itemize
+Il traffico viene bufferizzato alla sorgente o destinazione,quindi è meno
+ sensibile al delay e jitter
+\end_layout
+
+\begin_layout Itemize
+È consigliato l'utilizzo della PHB AF (Assured Forwarding).
+ In particolare AF31, AF32, AF33.
+\end_layout
+
+\begin_layout Itemize
+È consigliato anche l'utilizzo di un 
+\emph on
+rate queuing system.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni tipiche:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Buffered video/audio streaming
+\end_layout
+
+\begin_layout Itemize
+Webcasts
+\end_layout
+
+\begin_layout Itemize
+IP VPN service che specifica due rate diversi ed è meno sensibile al ritardo
+ e jitter.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche del traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+pacchetti di lunghezza variabile
+\end_layout
+
+\begin_layout Itemize
+All'aumento del rate aumenta la dimensione dei pacchetti
+\end_layout
+
+\begin_layout Itemize
+Rate variabile
+\end_layout
+
+\begin_layout Itemize
+Flussi elastici
+\end_layout
+
+\begin_layout Itemize
+Alcuni burst iniziali per alcune applicazioni
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Soglie della PHB AF:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+AF41: fino al rate 
+\begin_inset Formula $A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF42: Tra il rate 
+\begin_inset Formula $A$
+\end_inset
+
+ ed il rate 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+AF43: superiore al rate 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A$
+\end_inset
+
+ approssima la somma dei rate medi, 
+\begin_inset Formula $B$
+\end_inset
+
+ approssima la somma dei valori di picco
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il servizio offerto è 
+\emph on
+best-effort
+\emph default
+ con rate e delay controllati
+\end_layout
+
+\begin_layout Itemize
+Poiché il traffico è elastico e risponde dinamicamente alla perdita di pacchetti
+, AQM dovrebbe essere utilizzato per ridurre il rate di inoltro al valore
+ minimo garantito nei punti di congestione.
+\end_layout
+
+\begin_layout Itemize
+La probabilità di perdita di AF31 non deve superare quella di AF32, che
+ non deve superare quella di AF33.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Broadcast video service class
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È raccomandata per applicazioni che richiedono inoltro dei pacchetti 
+\emph on
+near-real-time
+\emph default
+, perdita dei pacchetti molto bassa.
+\end_layout
+
+\begin_layout Itemize
+Le applicazioni tipiche sono: broadcast TV, streaming live, on-demand applicatio
+ns, videosorveglianza
+\end_layout
+
+\begin_layout Itemize
+In questo caso la 
+\series bold
+PHB CS3
+\series default
+ dovrebbe essere utilizzata.
+\end_layout
+
+\begin_layout Itemize
+Un sistema di 
+\emph on
+Rate Queuing 
+\emph default
+dovrebbe essere adottato.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Videosorveglianza, sicurezza
+\end_layout
+
+\begin_layout Itemize
+TV broadcast (anche HDTV)
+\end_layout
+
+\begin_layout Itemize
+Video on-demand (unicast)
+\end_layout
+
+\begin_layout Itemize
+Streaming di eventi live
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le caratteristiche del traffico sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Grandezza dei pacchetti variabile
+\end_layout
+
+\begin_layout Itemize
+Con rate superiore, maggiore densità di pacchetti grossi
+\end_layout
+
+\begin_layout Itemize
+Misto di rate costante e variabile
+\end_layout
+
+\begin_layout Itemize
+Tempi di emissione fissa di pacchetti.
+\end_layout
+
+\begin_layout Itemize
+Flussi inelastici.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solitamente questo tipo di applicazioni non reagisce alla perdita di pacchetti
+ ,quindi l'utilizzo di AQM è inutile.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Low-latency data service class
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Raccomandato per applicazioni elastiche e responsive (tipicamente client/server)
+, dove il client invia una richiesta breve e il server invia una risposta
+ lunga.
+\end_layout
+
+\begin_layout Itemize
+Un esempio tipico di questo traffico è quello generato dal browsing web
+ di un utente (poche richieste cliccando su dei link, ma lunghe risposte
+ dal server).
+\end_layout
+
+\begin_layout Itemize
+Lo scopo di questa classe è quello di dare una buona risposta ai flussi
+ TCP 
+\emph on
+short-lived
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+PHB AF
+\series default
+ (Assured Forwarding) dovrebbe essere utilizzata (AF21,AF22,AF23)
+\end_layout
+
+\begin_layout Itemize
+Un sistema di 
+\emph on
+rate queuing 
+\emph default
+dovrebbe essere utilizzato.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Client/server
+\end_layout
+
+\begin_layout Itemize
+Web-based
+\end_layout
+
+\begin_layout Itemize
+Transazioni di carte di credito
+\end_layout
+
+\begin_layout Itemize
+Trasferimenti bancari
+\end_layout
+
+\begin_layout Itemize
+Applicazioni ERP (tipo SAP)
+\end_layout
+
+\begin_layout Itemize
+Servizi di VPN che supportano CIR (Committed Information Rate) con fino
+ a due bust sizes
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche del traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dimensione variabile dei pacchetti
+\end_layout
+
+\begin_layout Itemize
+Emissione variabile di pacchetti con bursts della finestra TCP (iniziali)
+\end_layout
+
+\begin_layout Itemize
+Bursts di traffico brevi
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+AQM e rate queuing dovrebbero essere utilizzati.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+High-Throughput data service class
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È raccomandato per applicazioni elastiche che richiedono inoltro dei pacchetti
+ per tempo, sorgenti a rate variabile.
+ In generale si vogliono fornire buone performance a connessioni TCP 
+\emph on
+long-lived 
+\emph default
+(il protocollo FTP è un esempio classico).
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+PHB AF 
+\series default
+(Assured Forwarding) dovrebbe essere utilizzato (AF11, AF12 e AF13)
+\end_layout
+
+\begin_layout Itemize
+AQM e 
+\emph on
+rate queuing
+\emph default
+ dovrebbero essere utilizzati.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Applicazioni 
+\emph on
+store-and-forward
+\end_layout
+
+\begin_layout Itemize
+Applicazioni di 
+\emph on
+file-transfer
+\end_layout
+
+\begin_layout Itemize
+Email
+\end_layout
+
+\begin_layout Itemize
+Servizi VPN che supportano due rate di trasmissione (CIR e 
+\emph on
+peak information rate
+\emph default
+)
+\emph on
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche del traffico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dimensione variabile dei pacchetti
+\end_layout
+
+\begin_layout Itemize
+Rate di emissione dei pacchetti variabile.
+\end_layout
+
+\begin_layout Itemize
+Rate variabile con bursts di pacchetti e aumento della finestra del TCP.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Viene raccomandato l'uso di un conditioning fatto con un 
+\emph on
+two rate three color marker
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Standard service class
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È la classe raccomandata per il traffico non classificato
+\end_layout
+
+\begin_layout Itemize
+È il tipico 
+\emph on
+best-effort
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Questa classe può avere una garanzia di banda minima.
+\end_layout
+
+\begin_layout Itemize
+Dovrebbe essere utilizzato 
+\emph on
+Rate Queuing
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+DSCP di tipo DF (Default Forwarding): 00000000
+\end_layout
+
+\begin_layout Itemize
+Applicazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Servizi di rete, DNS, DHCP
+\end_layout
+
+\begin_layout Itemize
+Qualunque flusso non differenziato trasportato nella rete 
+\emph on
+diffserv
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Caratteristiche: Traffico non deterministico, un misto di tutte le caratteristic
+he viste.
+\end_layout
+
+\begin_layout Itemize
+Non è richiesto conditioning.
+\end_layout
+
+\begin_layout Itemize
+Solitamente si utilizza AQM per garantire un ritardo massimo (piuttosto
+ alto).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Low-priority service class
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Qualunque applicazione con bassa priorità che utilizza TCP e che l'utente
+ accetta di ricevere senza garanzie.
+\end_layout
+
+\begin_layout Itemize
+Diverse applicazioni best-effort possono eventualmente decidere di essere
+ marcate come 
+\emph on
+low-priority
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il traffico è di tipo 
+\emph on
+non-real-time
+\emph default
+ ed elastico.
+\end_layout
+
+\begin_layout Itemize
+Non c'è nessuna richiesta di conditioning.
+\end_layout
+
+\begin_layout Itemize
+Il marking DSCP consigliato è CS1 (Class Selector 1)
+\end_layout
+
+\begin_layout Itemize
+Il servizio fondamentale è uguale al servizio best-effort, senza però nessuna
+ garanzia di banda.
+\end_layout
+
+\begin_layout Itemize
+Si può eventualmente trattare con uno specifico SLA.
+\end_layout
+
+\begin_layout Itemize
+Applicazioni:
+\end_layout
+
+\end_deeper
 \begin_layout Section*
 Design di reti IP con QoS
 \end_layout
@@ -14626,7 +15880,8 @@ Fino adesso abbiamo visto il caso dei FIFO schedulers con un certo numero
 \end_layout
 
 \begin_layout Standard
-L'input lo abbiamo caratterizzato con: 
+Riassumiamo qua di seguito tutte le assunzioni e formule che abbiamo ricavato:
+ 
 \begin_inset Formula 
 \[
 x\left(t\right)=\sum_{i=1}^{n}x_{i}\left(t\right)
@@ -14719,6 +15974,10 @@ Strict Prioririty scheduler
 \end_layout
 
 \begin_layout Itemize
+È uno scheduler molto semplice ed efficiente.
+\end_layout
+
+\begin_layout Itemize
 Abbiamo 
 \begin_inset Formula $n$
 \end_inset
@@ -14786,29 +16045,34 @@ Se c'è un pacchetto pronto per essere servito nella prima classe, viene
  In realtà non è esattamente un FIFO scheduler.
  Qui stiamo lavorando sotto l'ipotesi che il traffico sia infinitamente
  divisibile.
- Questo significa che stiamo assumendo di poter trasmettere un solo bit
- o anche frazioni di bit.
+ 
+\series bold
+Questo significa che stiamo assumendo di poter trasmettere un solo bit o
+ anche frazioni di bit.
  Sappiamo che questo non è reale, quando si inizia a servire un pacchetto,
  dobbiamo finire la trasmissione.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Riguardo alla classe 2?
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 Viene servita solo se non abbiamo dati da trasmettere nella classe 1: 
 \begin_inset Formula $S_{2}\left(t\right)=Ct-x_{1}\left(t\right)$
 \end_inset
 
  .
- Sottraiamo alla capacità totale quella già usata per la classe 1.
+ Quindi sottraiamo alla capacità totale quella già usata per la classe 1.
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 La classe 3?
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 Viene servita solo se sia 1 che 2 sono vuote: 
 \begin_inset Formula $S_{3}\left(t\right)=Ct-x_{1}\left(t\right)-x_{2}\left(t\right)$
@@ -14817,10 +16081,12 @@ Viene servita solo se sia 1 che 2 sono vuote:
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 La classe i-esima?
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 Viene servita solo se tutte le classi prima sono vuote: 
 \begin_inset Formula 
@@ -14833,12 +16099,13 @@ S_{i}\left(t\right)=C\cdot t-\sum_{i=1}^{i-1}x_{i}\left(t\right)
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Itemize
 Tornando al calcolo di 
 \begin_inset Formula $\alpha_{i}\left(t\right)$
 \end_inset
 
-:
+ otteniamo:
 \end_layout
 
 \begin_layout Standard
@@ -14877,11 +16144,17 @@ ma se
 \begin_inset Formula $Var\left(z\right)=Var\left(x\right)+Var\left(y\right)$
 \end_inset
 
- !
+ ! Ricordiamoci di 
+\series bold
+\bar under
+fare attenzione ai segni delle varianze
+\series default
+\bar default
+.
 \end_layout
 
 \end_deeper
-\begin_layout Standard
+\begin_layout Itemize
 Quindi:
 \end_layout
 
@@ -15040,7 +16313,7 @@ Var\left(\sum_{j=1}^{N_{i}}x_{i,j}\left(t\right)\right)=\sum_{j=1}^{N_{i}}Var\le
 
 \end_deeper
 \begin_layout Itemize
-Ora, detto tutto questo, come scopriamo qual'è la probabilità che il ritardo
+Ora, detto tutto questo, scopriamo qual'è la probabilità che il ritardo
  della classe 
 \emph on
 i-esima
@@ -15200,7 +16473,9 @@ La domanda è: trovare
 \end_inset
 
 .
- Qual'è la 
+ 
+\series bold
+Qual'è la 
 \begin_inset Formula $C$
 \end_inset
 
@@ -15241,7 +16516,7 @@ Alla fine avremo
  Quindi poi possiamo fare il passo finale di: 
 \begin_inset Formula 
 \[
-C=max\left(C_{i}\right)
+C=\underset{1\leq i\leq n}{max}\left(C_{i}\right)
 \]
 
 \end_inset
@@ -15276,6 +16551,37 @@ C_{i}=\frac{\left(2\cdot A_{i}\cdot B_{i-1}-A_{i-1}\cdot B_{i}-A_{i}\cdot B_{i}\
 
 \end_layout
 
+\begin_layout Itemize
+La capacità richiesta dipende dal livello di priorità assegnato ad ogni
+ classe di servizio
+\end_layout
+
+\begin_layout Itemize
+Date 
+\begin_inset Formula $n$
+\end_inset
+
+ classi di servizio, ci sono 
+\begin_inset Formula $n!$
+\end_inset
+
+ permutazioni per questo assegnamento.
+ Il problema di trovare la permutazione ottima è NP-completo.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Spesso, la permutazione ottima è quella che assegna il traffico con il valor
+ medio più elevato alla classe di priorità 1, la seconda alla classe di
+ priorità 2 e così via.
+\end_layout
+
+\begin_layout Itemize
+Tuttavia questo non è necessariamente vero nel caso generale, poiché anche
+ la varianza influisce.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection*
 Esempio
 \end_layout
@@ -15435,7 +16741,7 @@ P_{r}\left(D_{1}>d\right)=e^{-1.38\cdot10^{3}\cdot d}
 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Subsubsection*
 Esercizio
 \end_layout
 
@@ -15521,6 +16827,7 @@ Vediamo ora:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename 064.png
 	scale 50
@@ -15595,20 +16902,77 @@ Quindi
 .
 \end_layout
 
-\begin_layout Standard
-Abbiamo poi il problema della 
-\series bold
-admission control
-\series default
-.
+\begin_layout Subsubsection*
+Admission control per lo scheduler SP
 \end_layout
 
-\begin_layout Standard
-Teniamo i parametri del problema iniziale con 
-\begin_inset Formula $C=10\cdot10^{6}\,\left[\frac{bit}{s}\right]$
+\begin_layout Itemize
+Dato uno scheduler SP con 
+\begin_inset Formula $n$
+\end_inset
+
+ classi di servizio, dove il traffico della classe 
+\emph on
+i-esima
+\emph default
+ 
+\begin_inset Formula $X_{i}\left(t\right)$
+\end_inset
+
+ ha valore medio
+\begin_inset Formula 
+\[
+E\left[X_{i}\left(t\right)\right]=r_{i}\cdot t
+\]
+
+\end_inset
+
+E limite superiore della varianza: 
+\begin_inset Formula 
+\[
+Var\left(X_{i}\left(t\right)\right)\leq r_{i}\cdot b_{i}\cdot t
+\]
+
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Dato inoltre lo SLA statistico della classe 
+\emph on
+i-esima
+\emph default
+ pari a 
+\begin_inset Formula $\left(d_{i},p_{i}\right)$
+\end_inset
+
+ e la capacità di uscita 
+\begin_inset Formula $C$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+La regione di ammissione è l'insieme delle tuple 
+\begin_inset Formula $\left(N_{1},N_{2},...,N_{n}\right)$
+\end_inset
+
+ per le quali tutte le 
+\bar under
+SLA sono soddisfatte contemporaneamente
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+La regione di ammissione viene calcolata invertendo la curva del delay
+\end_layout
+
+\begin_layout Itemize
+I calcoli algebrici sono molto complessi, ma è possibile trovare una espressione
+ in forma chiusa per la regione di ammissione.
 \end_layout
 
 \begin_layout Standard
@@ -15666,10 +17030,24 @@ N_{i-k,max}=\frac{2d_{i-k}C^{2}}{2d_{i-k}r_{i-k}C-r_{i-k}b_{i-k}ln\left(p_{i-k}\
 
 \end_layout
 
+\begin_layout Subsubsection*
+Esercizio (parte 2)
+\end_layout
+
 \begin_layout Standard
+Tornando all'esercizio di prima, tenendo i parametri del problema iniziale
+ con 
+\begin_inset Formula $C=10\cdot10^{6}\,\left[\frac{bit}{s}\right]$
+\end_inset
+
+ e applicando le formule che abbiamo appena visto, otteniamo che:
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename 065.png
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -15701,6 +17079,7 @@ Se modificassimo lo SLA della classe 2 e lo impostassimo a
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename 066.png
 	scale 50
@@ -15711,7 +17090,7 @@ Se modificassimo lo SLA della classe 2 e lo impostassimo a
 \end_layout
 
 \begin_layout Standard
-Abbiamo alleggerito la SLA, quindi possiamo accettare pià connessioni.
+Abbiamo alleggerito la SLA, quindi possiamo accettare più connessioni.
 \end_layout
 
 \begin_layout Subsection*
@@ -15741,7 +17120,7 @@ Lo scheduler GPS però è intelligente, se una classe è in silenzio ridistribui
 \end_layout
 
 \begin_layout Standard
-Abbiamo:
+Abbiamo come sempre:
 \end_layout
 
 \begin_layout Standard
@@ -15792,6 +17171,18 @@ Il fattore
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $j$
+\end_inset
+
+ è l'indice che si riferisce alle classi senza traffico arretrato, mentre
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ si riferisce alle classi con traffico arretrato.
+\end_layout
+
+\begin_layout Standard
 Nel seguito assumeremo una approssimazione conservativa:
 \end_layout
 
@@ -15803,7 +17194,7 @@ S_{i}\left(t\right)\approx w_{i}Ct+\sum_{j\neq i}\frac{w_{i}}{\sum_{k\neq j}w_{k
 
 \end_inset
 
-
+ cioè teniamo il valore più alto del massimo.
 \end_layout
 
 \begin_layout Standard
@@ -15818,8 +17209,11 @@ S_{i}\left(t\right)\approx w_{i}Ct+\sum_{j\neq i}\frac{w_{i}}{\sum_{k\neq j}w_{k
 \end_layout
 
 \begin_layout Standard
-Assumiamo adesso che tutto il traffico sia di tipo SRD e ogni classe è formata
- da 
+Assumiamo adesso che 
+\series bold
+tutto il traffico sia di tipo SRD
+\series default
+ e ogni classe è formata da 
 \begin_inset Formula $N_{i}$
 \end_inset
 
@@ -15846,13 +17240,25 @@ Assumiamo adesso che tutto il traffico sia di tipo SRD e ogni classe è formata
 \end_layout
 
 \begin_layout Standard
+E possiamo trovare:
+\begin_inset Formula 
+\[
+\alpha_{i,min}=\sqrt{\frac{4\cdot N_{i}\cdot r_{i}\cdot d_{i}\cdot\left(w_{i}\cdot b_{i}\cdot C+b_{i}\cdot A_{i}+B_{i}\right)\cdot\left(w_{i}\cdot C+A_{i}-N_{i}\cdot r_{i}\right)}{\left(N_{i}\cdot r_{i}\cdot b_{i}+B_{i}\right)^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Otteniamo quindi (finalmente) che:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-P_{r}\left(D_{i}>d\right)=exp\left(-2\frac{N_{i}r_{i}\left(w_{i}b_{i}C+b_{i}A_{i}+B_{i}\right)\left(w_{i}C+A_{i}-N_{i}r_{i}\right)}{\left(N_{i}r_{i}b_{i}+B_{i}\right)^{2}}d\right)
+P_{r}\left(D_{i}>d_{i}\right)=exp\left(-2\frac{N_{i}r_{i}\left(w_{i}b_{i}C+b_{i}A_{i}+B_{i}\right)\left(w_{i}C+A_{i}-N_{i}r_{i}\right)}{\left(N_{i}r_{i}b_{i}+B_{i}\right)^{2}}d_{i}\right)
 \]
 
 \end_inset
@@ -15872,13 +17278,65 @@ A_{i}=\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot\left(w_{j}C-N_{
 
 \end_inset
 
-(Nota: perché nella formula sopra non c'è max() ?)
+(Nota: nella formula sopra non c'è max ancora perché facciamo una stima
+ per il limite superiore)
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
 B_{i}=\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot N_{j}r_{j}b_{j}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Admission control dello scheduler GPS
+\end_layout
+
+\begin_layout Standard
+Definiamo
+\begin_inset Formula 
+\[
+N_{i,min}=\frac{2d_{i}\cdot\left(w_{i}\cdot C\right)^{2}}{r_{i}\cdot\left(2d_{i}\cdot w_{i}\cdot C-b_{i}\cdot ln\left(p_{i}\right)\right)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+N_{i,max}=\frac{d_{i}\cdot\left(w_{i}\cdot C+A_{i}\right)\cdot\left(w_{i}\cdot b_{i}\cdot C+b_{i}\cdot A_{i}+B_{i}\right)+b_{i}\cdot B_{i}\cdot ln\left(p_{i}\right)+\sqrt{d_{i}\cdot\left(w_{i}\cdot b_{i}\cdot C+b_{i}\cdot A_{i}+B_{i}\right)^{2}\cdot\left(d_{i}\cdot\left(w_{i}\cdot C+A_{i}\right)^{2}+2\cdot B_{i}\cdot ln\left(p_{i}\right)\right)}}{r_{i}\left(2d_{i}\left(w_{i}\cdot b_{i}\cdot C+b_{i}\cdot A_{i}+B_{i}\right)-b_{i}^{2}\cdot ln\left(p_{i}\right)\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dove dobbiamo considerare la 
+\series bold
+condizione
+\series default
+ che:
+\begin_inset Formula 
+\[
+\text{se }\left(d_{i}\cdot\left(w_{i}\cdot C+A_{i}\right)^{2}+2B_{i}\cdot ln\left(p_{i}\right)\right)>0\quad\text{allora}\quad N_{i}<max\left(N_{i,min},\, N_{i,max}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{altrimenti }N_{i}\leq N_{i,min}
 \]
 
 \end_inset
@@ -15964,6 +17422,7 @@ Nell figura vediamo proprio la differenza.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename 067.png
 	scale 50
@@ -15978,7 +17437,11 @@ Scheduler EDF
 \end_layout
 
 \begin_layout Standard
-Abbiamo una serie di classi, ciascuna con:
+Abbiamo 
+\begin_inset Formula $n$
+\end_inset
+
+ classi di servizio, ciascuna con:
 \end_layout
 
 \begin_layout Itemize
@@ -16031,7 +17494,7 @@ In questo caso sappiamo che
 \begin_layout Standard
 \begin_inset Formula 
 \[
-S_{i}\left(t\right)=max\left(0,C\cdot t-\sum_{n\neq i}x_{n}\left(t-max\left(0,\,\delta_{n}-\delta_{i}\right)\right)\right)
+S_{i}\left(t\right)=max\left(0,C\cdot t-\sum_{n\neq i}X_{n}\left(t-max\left(0,\,\delta_{n}-\delta_{i}\right)\right)\right)
 \]
 
 \end_inset
@@ -16096,9 +17559,19 @@ Torniamo alla definizione di
 \end_layout
 
 \begin_layout Standard
-Vediamo cosa succede nel caso di traffico 
+Vediamo cosa succede nel 
+\series bold
+caso
+\series default
+ di 
+\series bold
+\bar under
+traffico 
 \emph on
-short-dependent.
+short-dependent
+\series default
+\bar default
+.
 \end_layout
 
 \begin_layout Standard
@@ -16204,8 +17677,49 @@ P_{r}\left(D_{i}>d\right)=exp\left(-2\left(N_{i}r_{i}d_{i}\left(b_{i}\left(C-A_{
 
 \end_layout
 
+\begin_layout Subsubsection*
+Capacity planning con scheduler EDF
+\end_layout
+
 \begin_layout Standard
-Non vedremo altro su queste formule.
+La formula per il capacity planning è 
+\begin_inset Formula 
+\[
+C_{i}\geq\frac{\left(A_{i}\cdot d_{i}-E_{i}+\sqrt{\left(E_{i}+N_{i}\cdot r_{i}\cdot d_{i}\right)^{2}-2\cdot ln\left(p_{i}\right)\cdot\left(F_{i}+N_{i}\cdot r_{i}\cdot b_{i}\cdot d_{i}\right)}\right)}{2\cdot\left(F_{i}+N_{i}\cdot r_{i}\cdot b_{i}\cdot d_{i}\right)}\cdot\left(B_{i}+N_{i}\cdot r_{i}\cdot b_{i}\right)+\frac{1}{2}\cdot\left(A_{i}+N_{i}r_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quindi:
+\end_layout
+
+\begin_layout Subsubsection*
+\begin_inset Formula 
+\[
+C=\underset{1\leq i\leq n}{max}\left(C_{i}\right)
+\]
+
+\end_inset
+
+ Admission control
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size tiny
+\begin_inset Formula 
+\[
+N_{i}\leq\frac{1}{r_{i}\left(2\left(b_{i}\left(Cd_{i}-A_{i}d_{i}+E_{i}\right)+B_{i}d_{i}-F_{i}\right)-b_{i}^{2}ln\left(p_{i}\right)\right)}\cdot\left\{ \left(A_{i}b_{i}+B_{i}-Cb_{i}\right)\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)-2\left(B_{i}d_{i}-F_{i}\right)\left(A_{i}-C\right)+b_{i}B_{i}\cdot ln\left(p_{i}\right)+\sqrt{\left(-A_{i}b_{i}+B_{i}+Cb_{i}\right)^{2}\cdot\left(\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)^{2}+2\left(B_{i}d_{i}-F_{i}\right)ln\left(p_{i}\right)\right)}\right\} 
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -16320,9 +17834,10 @@ Confrontiamo EDF,GPS e SP, sapendo che i parametri sono:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-058.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -16353,6 +17868,47 @@ short-dependent
 
 \begin_layout Part*
 Multihop case
+\end_layout
+
+\begin_layout Standard
+Puntiamo più a fare una approssimazione in questo caso, piuttosto che a
+ trovare un limite superiore.
+ La prima approssimazione è che utilizziamo MVA per prendere un limite superiore
+ e assumiamo che tutto il traffico sia di tipo gaussiano.
+ Sotto specifiche condizioni potremo rifare gli stessi ragionamenti anche
+ senza traffico gaussiano.
+\end_layout
+
+\begin_layout Standard
+In generale vedremo che possiamo ragionare come fatto fino ad ora e procedere
+ in modo iterativo: calcoliamo l'uscita del primo scheduler dato l'ingresso
+ e riutilizziamo i dati in ingresso ad uno scheduler successivo.
+ L'assunzione principale sarà poi che il 
+\series bold
+\emph on
+delay end-to-end
+\series default
+\emph default
+ sarà calcolato come 
+\begin_inset Formula 
+\[
+d_{e2e}=d_{1}+d_{2}+d_{3}+...
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f_{de2e}\left(t\right)=d_{d1}\left(t\right)+f_{d2}\left(t\right)+...
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -16513,7 +18069,11 @@ Var\left(x_{2,out}\left(t\right)\right)=???
 \end_layout
 
 \begin_layout Standard
-Per la media è facile: 
+Invece per la classe 2:
+\end_layout
+
+\begin_layout Itemize
+La media è facile: 
 \series bold
 se lo scheduler lavora in condizioni stabili perché 
 \begin_inset Formula $r_{1}+r_{2}<C$
@@ -16526,7 +18086,14 @@ se lo scheduler lavora in condizioni stabili perché
  correttamente).
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
+In questo caso siamo fortunati perché in SP la prima classe non viene toccata,
+ quindi solo in questo caso specifico non cambia.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
 Sfortunatamente invece, la varianza varia.
  Quindi anche se abbiamo il traffico in ingresso che rispecchia la nostra
  teoria sul 
@@ -16536,12 +18103,7 @@ fresh traffic
 , la varianza cambierà.
 \end_layout
 
-\begin_layout Standard
-Come detto prima, in questo caso siamo fortunati perché in SP la prima classe
- non viene toccata, quindi solo in questo caso specifico non cambia.
-\end_layout
-
-\begin_layout Standard
+\begin_layout Itemize
 Come calcoliamo la varianza per 
 \begin_inset Formula $x_{2,out}\left(t\right)$
 \end_inset
@@ -16549,7 +18111,8 @@ Come calcoliamo la varianza per
 ? 
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 Abbiamo due flussi, uno in ingresso e uno in uscita: 
 \begin_inset Formula $x_{i,in}\left(t\right)$
 \end_inset
@@ -16566,6 +18129,7 @@ Abbiamo due flussi, uno in ingresso e uno in uscita:
 .
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 \begin_inset Formula 
 \[
@@ -16577,7 +18141,7 @@ X_{i,out}\left(t\right)=min\left(x_{i,in}\left(t\right),S_{i}\left(t\right)\righ
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Se 
 \begin_inset Formula $S_{i}\left(t\right)$
 \end_inset
@@ -16606,18 +18170,18 @@ Se
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Ma come otteniamo la varianza? Abbiamo una relazione che dice che se abbiamo
  due variabili casuali 
 \begin_inset Formula $x,y$
 \end_inset
 
- distribute in modo gaussiano (caso comune perché abbiamo tanti flussi di
- traffico individuali che sommati formano il flusso di traffico globale
+ distribuite in modo gaussiano (caso comune perché abbiamo tanti flussi
+ di traffico individuali che sommati formano il flusso di traffico globale
  (teorema del limite centrale)).
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Abbiamo una 
 \series bold
 relazione statistica fondamentale
@@ -16647,6 +18211,311 @@ Var\left(x_{i,out}\left(t\right)\right)\leq max\left(Var\left(x_{i,in}\left(t\ri
 
 \end_layout
 
+\begin_layout Itemize
+Consideriamo un flusso che attraversa una sequenza di 
+\begin_inset Formula $H$
+\end_inset
+
+ schedulers, dove ogni scheduler fornisce servizi differenziati a più classi
+ di servizio, numerate da 
+\begin_inset Formula $1$
+\end_inset
+
+ a 
+\begin_inset Formula $Q_{h}$
+\end_inset
+
+.
+ Nello scheduler 
+\emph on
+h-esimo
+\emph default
+, il flusso viene servito nella classe di servizio 
+\begin_inset Formula $q_{h}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Denotiamo il traffico cumulativo in ingresso e uscita all'
+\emph on
+h-esimo
+\emph default
+ scheduler come:
+\begin_inset Formula 
+\[
+X_{q_{h}}^{in}\left(t\right)\quad,\quad X_{q_{h}}^{out}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per riferirci invece al 
+\emph on
+service envelope
+\emph default
+ del flusso taggato nello scheduler 
+\emph on
+h-esimo
+\emph default
+ come:
+\begin_inset Formula 
+\[
+S_{q_{h}}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo mostrare che il traffico di uscita cumulativo del flusso taggato
+ nello scheduler 
+\emph on
+h-esimo
+\emph default
+ è dato da:
+\begin_inset Formula 
+\[
+X_{q_{h}}^{out}\left(t\right)=min\left(X_{q_{h}}^{in}\left(t\right),S_{q_{h}}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lo scheduler non puoi mandare in output più traffico di quello offerto in
+ ingresso, quindi:
+\begin_inset Formula 
+\[
+X_{q_{h}}^{out}\left(t\right)\leq X_{q_{h}}^{in}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per uno scheduler SP abbiamo che:
+\begin_inset Formula 
+\[
+S_{q_{h}}\left(t\right)=max\left(0,\, Ct-\sum_{j=1}^{q_{h}-1}X_{j}^{in}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cioè il servizio disponibile è:
+\begin_inset Formula 
+\[
+X_{av,q_{h}}^{out}\left(t\right)
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Definiamo la capacità disponibile con:
+\begin_inset Formula 
+\[
+\Xi_{av,q_{h}}^{out}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Questa è la capacità di uscita disponibile per il traffico di riferimento
+\end_layout
+
+\begin_layout Itemize
+La capacità disponibile è diverso dal servizio disponibile.
+ Il servizio disponibile rappresenta un traffico di uscita, mentre la capacità
+ disponibile rappresenta il potenziale volume di traffico che lo scheduler
+ può mandare in output per il flusso di traffico di riferimento.
+\end_layout
+
+\begin_layout Itemize
+È abbastanza intuitivo che per lo scheduler SP abbiamo:
+\begin_inset Formula 
+\[
+\Xi_{av,q_{h}}^{out}\left(t\right)=max\left(0,\, Ct-\sum_{j=1}^{q_{h}-1}X_{j}^{in}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infatti, uno strict priority scheduler, l'ammontare di capacità disponibile
+ per il flusso di riferimento non dipende dal traffico arretrato nella coda
+ corrispondente, poiché dipende solamente dal volume di traffico offerto
+ alla classe di servizio con priorità massima.
+\end_layout
+
+\begin_layout Itemize
+Quindi la capacità disponibile rappresenta la capacità disponibile per il
+ flusso di traffico di riferimento, indipendentemente dal volume di traffico
+ che offre allo scheduler.
+ Cioè il traffico in ingresso nella classe 
+\emph on
+i-esima
+\emph default
+ potrà essere uguale a, maggiore di o minore del minimo traffico arretrato
+ in ingresso e, in tutti questi casi, la capacità sarà data da:
+\begin_inset Formula 
+\[
+\Xi_{av,q_{h}}^{out}\left(t\right)=max\left(0,\, Ct-\sum_{j=1}^{q_{h}-1}X_{j}^{in}\left(t\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lo scheduler non può mandare in output, un traffico maggiore della capacità
+ disponibile, quindi:
+\begin_inset Formula 
+\[
+X_{q_{h}}^{out}\left(t\right)\leq\Xi_{av,q_{h}}^{out}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Dunque:
+\begin_inset Formula 
+\[
+X_{q_{h}}^{out}\left(t\right)\leq S_{q_{h}}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Poiché lo scheduler non può servire più traffico della capacità disponibile
+ per il servizio, quindi in conclusione abbiamo che:
+\begin_inset Formula 
+\[
+Var\left(X^{out}\left(t\right)\right)\leq Var\left(B_{q_{h}}^{out}\left(t\right)\right)\leq max\left(Var\left(B_{q_{h}}^{in}\left(t\right)\right),Var\left(S_{q_{h}}\left(t\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Data una sequenza di 
+\begin_inset Formula $H$
+\end_inset
+
+ nodi attraversati da un flusso di traffico, procediamo iterativamente iniziando
+ dal nodo 
+\begin_inset Formula $1$
+\end_inset
+
+ e, sapendo che:
+\begin_inset Formula 
+\[
+X_{q_{h+1}}^{in}\left(t\right)\approx B_{q_{h}}^{out}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Possiamo allora calcolare la caratterizzazione statistica del traffico di
+ input di ogni nodo.
+\end_layout
+
+\begin_layout Itemize
+Allora possiamo calcolare la densità di probabilità del ritardo 
+\begin_inset Formula $d_{h}$
+\end_inset
+
+ all'
+\emph on
+h-esimo
+\emph default
+ nodo utilizzando la MVA.
+ Sappiamo che il ritardo 
+\emph on
+end-to-end
+\emph default
+ sarà:
+\begin_inset Formula 
+\[
+d_{e2e}=d_{1}+d_{2}+...+d_{h}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Calcoliamo poi la densità di probabilità del ritardo 
+\emph on
+end-to-end
+\emph default
+ come:
+\begin_inset Formula 
+\[
+f_{e2e}\left(t\right)=d_{d1}\left(t\right)+f_{d2}\left(t\right)+...+f_{dH}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infine, la probabilità di violare una soglia di ritardo 
+\emph on
+end-to-end
+\emph default
+ sarà:
+\begin_inset Formula 
+\[
+P_{r}\left(d_{e2e}>d\right)=\int_{d}^{+\infty}f_{d_{e2e}}\left(\tau\right)d\tau
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Considerazioni simili possono essere fatte per gli altri tipi di schedulers.
+\end_layout
+
 \begin_layout Standard
 Proseguiamo prendendo un altro esempio:
 \end_layout
@@ -16668,7 +18537,7 @@ In cascata abbiamo un altro scheduler (di qualche tipo non noto) con altre
  due classi di servizio.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Assumiamo che il flusso che entra da 
 \begin_inset Formula $x_{1}\left(t\right)$
 \end_inset
@@ -18290,7 +20159,7 @@ Ci concentriamo sul caso del traffico
 \emph on
 short-range dependent
 \emph default
-, altrimenti non è possibile clacolarlo in forma analitica.
+, altrimenti non è possibile calcolarlo in forma analitica.
 \end_layout
 
 \begin_layout Standard
