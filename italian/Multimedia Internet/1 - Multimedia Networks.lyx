@@ -43,9 +43,9 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 1cm
+\leftmargin 0.5cm
 \topmargin 1cm
-\rightmargin 1cm
+\rightmargin 0.5cm
 \bottommargin 1.5cm
 \headheight 1cm
 \headsep 1cm
@@ -704,7 +704,7 @@ Al tempo
 \end_layout
 
 \begin_layout Itemize
-Diciamo che
+Diciamo che 
 \begin_inset Formula $1$
 \end_inset
 
@@ -774,7 +774,7 @@ playback delay
 
 \end_deeper
 \begin_layout Itemize
-L'unico problema che può accedere è quando il buffer esaurisce l'ultimo
+L'unico problema che può accadere è quando il buffer esaurisce l'ultimo
  pacchetto e non arriva in tempo un nuovo pacchetto dalla rete.
  Questo problema si chiama 
 \series bold
@@ -787,7 +787,8 @@ buffer underflow
 \begin_layout Itemize
 Però non è che possiamo semplicemente allargare il buffer il più grande
  possibile.
- Perché se prendiamo un buffer troppo grande l'utente dovrà attendere troppo.
+ Perché se prendiamo un buffer troppo grande l'utente dovrà attendere troppo
+ all'inizio.
  Se si tratta di una telefonata l'attesa è un problema e degrada sensibilmente
  la qualità della telefonata.
  C'è un trade-off in cui dobbiamo dimensionare il buffer.
@@ -1201,6 +1202,7 @@ Esempio di requisiti qualitativi
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="9" columns="3">
 <features tabularvalignment="middle">
@@ -1593,7 +1595,8 @@ Uno dei problemi però è il costo.
 \end_layout
 
 \begin_layout Standard
-Quello che succede è invece che con le nuove reti di applica QoS.
+Quello che succede nella pratica è invece che con le nuove reti si applica
+ QoS.
 \end_layout
 
 \begin_layout Subsection*
@@ -1611,6 +1614,7 @@ Olympic service:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
 <features tabularvalignment="middle">
@@ -1908,6 +1912,7 @@ P\left(D>d\right)=\int_{d}^{\infty}f\left(D\right)\, dD
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-001.png
 	scale 30
@@ -2081,6 +2086,7 @@ medio
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-002.png
 	scale 30
@@ -2541,6 +2547,7 @@ traffic regulator
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-003.png
 	scale 50
@@ -2614,6 +2621,7 @@ policer
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-004.png
 	scale 30
@@ -2662,6 +2670,7 @@ shaper
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-005.png
 	scale 30
@@ -2718,6 +2727,7 @@ marker
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-006.png
 	scale 30
@@ -2795,6 +2805,7 @@ dropper
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-007.png
 	scale 50
@@ -3044,6 +3055,7 @@ token bucket
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-008.png
 	scale 50
@@ -3195,6 +3207,7 @@ token bucket
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-009.png
 	scale 50
@@ -3374,6 +3387,7 @@ il traffico cumulativo in funzione del tempo
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-010.png
 	scale 50
@@ -3440,6 +3454,7 @@ Nella figura seguente è mostrato il traffico cumulativo in ingresso alla
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-011.png
 	scale 50
@@ -3489,6 +3504,7 @@ Il traffico di uscita è rallentato e trasmesso quando è possibile soddisfare
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-012.png
 	scale 50
@@ -3516,6 +3532,7 @@ Funziona esattamente come il policer, con la differenza che al posto di
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-010.png
 	scale 50
@@ -3680,6 +3697,7 @@ CBS e EBS sono misurati in bytes e devono essere configurati in modo che
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-013.png
 	scale 40
@@ -3859,6 +3877,7 @@ color-aware
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-014.png
 	scale 40
@@ -4287,6 +4306,7 @@ Dopo il tempo
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-015.png
 	scale 40
@@ -4375,6 +4395,7 @@ green
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-017.png
 	scale 40
@@ -4395,6 +4416,7 @@ color-aware
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-016.png
 	scale 40
@@ -4623,6 +4645,7 @@ active queue management
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-018.png
 	scale 40
@@ -4682,6 +4705,7 @@ Scheduling
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-019.png
 	scale 50
@@ -4881,6 +4905,7 @@ First-In First-Out
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-020.png
 	scale 35
@@ -4927,6 +4952,7 @@ Strict Priority Scheduler (SP)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-021.png
 	scale 40
@@ -5025,6 +5051,7 @@ w_{1}+w_{2}+w_{3}+...=1
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-022.png
 	scale 40
@@ -5166,6 +5193,7 @@ service deadline
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-023.png
 	scale 40
@@ -5247,6 +5275,7 @@ Tornando all'Admission Control
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-024.png
 	scale 40
@@ -5322,6 +5351,7 @@ sionale e definisce un intervallo di valori
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-025.png
 	scale 40
@@ -5355,6 +5385,7 @@ scheduler a due classi
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-026.png
 	scale 40
@@ -5423,6 +5454,7 @@ scheduler a 3 classi
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-027.png
 	scale 40
@@ -5857,6 +5889,7 @@ Line Rate Processing
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-028.png
 	scale 40
@@ -6265,6 +6298,7 @@ Dove:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-029.png
 	scale 40
@@ -6284,6 +6318,7 @@ Quando un pacchetto arriva, il valore attuale di
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-030.png
 	scale 50
@@ -6392,6 +6427,7 @@ Quindi ci sono due soglie, una per il traffico IN e una per il traffico
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-031.png
 	scale 40
@@ -7227,6 +7263,7 @@ Consideriamo una interfaccia di rete specifica e assumiamo che sia in grado
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-032.png
 	scale 40
@@ -7246,6 +7283,7 @@ Poiché il traffico è suddiviso in pacchetti, la forma reale della curva
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-033.png
 	scale 50
@@ -7302,6 +7340,7 @@ Dato uno scheduler FIFO che comprende un link di uscita con capacità uguale
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-034.png
 	scale 40
@@ -7312,6 +7351,7 @@ Dato uno scheduler FIFO che comprende un link di uscita con capacità uguale
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-035.png
 	scale 40
@@ -7347,6 +7387,7 @@ Dato un scheduler (anche qua come esempio FIFO), la curva reale di traffico
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-036.png
 	scale 40
@@ -7378,6 +7419,7 @@ Tutti i pacchetti hanno lunghezza
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-037.png
 	scale 40
@@ -7429,6 +7471,7 @@ x\left(t\right)=\int_{0}^{t}r\left(x\right)dx=\int_{0}^{t}\left(\sum_{k}\left(L\
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-038.png
 	scale 40
@@ -7444,6 +7487,7 @@ Consideriamo invece il caso di un buffer FIFO con in ingresso 3 flussi identici.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-039.png
 	scale 40
@@ -7454,6 +7498,7 @@ Consideriamo invece il caso di un buffer FIFO con in ingresso 3 flussi identici.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-040.png
 	scale 40
@@ -7498,6 +7543,7 @@ X_{3}\left(t\right)=250\,\frac{kbit}{s}\,1\:\text{pacchetto ogni\,}4ms
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-041.png
 	scale 40
@@ -7512,6 +7558,7 @@ E la relativa curva di traffico reale è la seguente:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-042.png
 	scale 40
@@ -7526,6 +7573,7 @@ E la curva di traffico totale:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-043.png
 	scale 40
@@ -7577,6 +7625,7 @@ massimo accodamento
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-044.png
 	scale 40
@@ -7591,6 +7640,7 @@ Caso multi-hop
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-045.png
 	scale 40
@@ -7627,6 +7677,7 @@ delay massimo end-to-end
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-046.png
 	scale 40
@@ -7637,6 +7688,7 @@ delay massimo end-to-end
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-047.png
 	scale 40
@@ -7659,6 +7711,7 @@ Multi-class scheduler
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-048.png
 	scale 40
@@ -7719,6 +7772,7 @@ Assumiamo in questo esempio che
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-049.png
 	scale 40
@@ -7737,6 +7791,7 @@ Esiste ovviamente un rate massimo per il traffico EF che può essere allocato
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-050.png
 	scale 40
@@ -7903,6 +7958,7 @@ j
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="5">
 <features tabularvalignment="middle">
@@ -8143,6 +8199,20 @@ Un DS domain potrebbe decidere di utilizzare solo alcuni dei PHB presenti,
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Esempi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A31 = Classe 3, precedenza di drop 1 → Codepoint 011010
+\end_layout
+
+\begin_layout Itemize
+A42 = Classe 4, precedenza di drop 2 → Codepoint 100100
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection*
 AF PHB Group : Olympic service
 \end_layout
@@ -8205,7 +8275,7 @@ DiffServ
 \emph on
 best-effort
 \emph default
-, ed ha codefield 00000000.
+, ed ha codefield 000000.
 \end_layout
 
 \begin_layout Itemize
@@ -8236,22 +8306,33 @@ Type Of Service
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Ogni PHB ha un nome di un byte, per questo tipo ti classe è: XXX000XX
 \end_layout
 
-\begin_layout Standard
+\begin_deeper
+\begin_layout Itemize
 I primi tre bit sono gli 8 livelli di priorità, esattamente come il vecchio
  TOS faceva.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Gli ultimi due bit sono semplicemente riservati.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-A flow with larger CS should receive a smaller delay than a flow with smaller
- CS.
+Un flusso con CS 
+\series bold
+alto 
+\series default
+→ 
+\series bold
+ritardo minore
+\series default
+, cioè
+\series bold
+ priorità elevata
 \end_layout
 
 \begin_layout Itemize
@@ -8271,7 +8352,7 @@ Riassumendo le PHBs:
 \end_layout
 
 \begin_layout Itemize
-1 EF (101110)
+1 EF (101110+2bit reserved)
 \end_layout
 
 \begin_layout Itemize
@@ -8462,6 +8543,7 @@ Vengono specificate un insieme di categorie di QoS in funzione del delay
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename net-066.png
 	scale 30
@@ -8502,6 +8584,7 @@ IETF user service classes
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="5">
 <features tabularvalignment="middle">
@@ -9049,6 +9132,7 @@ Caratteristiche delle service classes
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="5">
 <features tabularvalignment="middle">
@@ -9869,6 +9953,7 @@ Possibile selezione delle PHB (RFC 4594)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="19" columns="4">
 <features tabularvalignment="middle">
@@ -12326,7 +12411,11 @@ Il traffico trasmesso in questa classe di servizio è molto importante poiché
 \end_layout
 
 \begin_layout Itemize
-Dovrebbe essere utilizzato il PHB CS per questa classe.
+Dovrebbe essere utilizzato il 
+\series bold
+PHB CS
+\series default
+ per questa classe.
 \end_layout
 
 \begin_layout Itemize
@@ -12442,7 +12531,7 @@ Le applicazioni che utilizzano questo servizio richiedono una bassa perdita
 \begin_layout Itemize
 La classe OAM dovrebbe essere servita utilizzando 
 \series bold
-CS2
+PHB CS2
 \series default
  che fornisce una garanzia di banda minima per una classe di servizio.
 \end_layout
@@ -13046,7 +13135,11 @@ Il traffico viene bufferizzato alla sorgente o destinazione,quindi è meno
 \end_layout
 
 \begin_layout Itemize
-È consigliato l'utilizzo della PHB AF (Assured Forwarding).
+È consigliato l'utilizzo della 
+\series bold
+PHB AF
+\series default
+ (Assured Forwarding).
  In particolare AF31, AF32, AF33.
 \end_layout
 
@@ -13482,7 +13575,11 @@ Rate Queuing
 \end_layout
 
 \begin_layout Itemize
-DSCP di tipo DF (Default Forwarding): 00000000
+DSCP di tipo
+\series bold
+ DF
+\series default
+ (Default Forwarding): 00000000
 \end_layout
 
 \begin_layout Itemize
@@ -13552,7 +13649,11 @@ Non c'è nessuna richiesta di conditioning.
 \end_layout
 
 \begin_layout Itemize
-Il marking DSCP consigliato è CS1 (Class Selector 1)
+Il marking DSCP consigliato è 
+\series bold
+CS1
+\series default
+ (Class Selector 1)
 \end_layout
 
 \begin_layout Itemize
@@ -16591,22 +16692,22 @@ Assumiamo uno scheduler SP con due classi di servizio e:
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\rho_{1}=200\: kbit/s$
+\begin_inset Formula $r_{1}=200\: kbit/s$
 \end_inset
 
  , 
-\begin_inset Formula $\beta_{1}=9600\: bit$
+\begin_inset Formula $b_{1}=9600\: bit$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\rho_{2}=200\: kbit/s$
+\begin_inset Formula $r_{2}=200\: kbit/s$
 \end_inset
 
  , 
-\begin_inset Formula $\beta_{2}=4600\: bit$
+\begin_inset Formula $b_{2}=4600\: bit$
 \end_inset
 
 
@@ -16648,7 +16749,7 @@ P_{r}\left(D_{i}>d\right)=exp\left(-2\cdot\frac{C-A_{i}}{B_{i}^{2}}\cdot\left(\l
 \begin_layout Standard
 \begin_inset Formula 
 \[
-A_{i}=\sum_{j=1}^{i}N_{j}\cdot\rho_{j}
+A_{i}=\sum_{j=1}^{i}N_{j}\cdot r_{j}
 \]
 
 \end_inset
@@ -16659,7 +16760,7 @@ A_{i}=\sum_{j=1}^{i}N_{j}\cdot\rho_{j}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-B_{i}=\sum_{j=1}^{i}N_{j}\rho_{j}b_{j}
+B_{i}=\sum_{j=1}^{i}N_{j}r_{j}b_{j}
 \]
 
 \end_inset
@@ -16896,7 +16997,7 @@ Otteniamo:
 
 \begin_layout Standard
 Quindi 
-\begin_inset Formula $C\geq C_{2}$
+\begin_inset Formula $C_{1}\geq C_{2}$
 \end_inset
 
 .
@@ -17145,7 +17246,7 @@ Però non conosciamo
 \begin_layout Standard
 \begin_inset Formula 
 \[
-S_{i}\left(t\right)=w_{i}Ct+\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot max\left(0,w_{i}Ct-X_{j}\left(t\right)\right)\right)
+S_{i}\left(t\right)=w_{i}Ct+\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot max\left(0,w_{j}Ct-X_{j}\left(t\right)\right)\right)
 \]
 
 \end_inset
@@ -17200,7 +17301,7 @@ S_{i}\left(t\right)\approx w_{i}Ct+\sum_{j\neq i}\frac{w_{i}}{\sum_{k\neq j}w_{k
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\alpha_{i}\left(t\right)=-\frac{E\left(x\left(t\right)\right)-w_{i}C\left(t+d\right)-\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}}\cdot\left(w_{j}C\left(t+d\right)-E\left(x_{j}\left(t+d\right)\right)\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot Var\left(x_{j}\left(t+d\right)\right)\right)}}
+\alpha_{i}\left(t\right)=-\frac{E\left(x\left(t\right)\right)-w_{i}C\left(t+d\right)-\sum_{j\neq i}\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\cdot\left(w_{j}C\left(t+d\right)-E\left(x_{j}\left(t+d\right)\right)\right)\right)}{\sqrt{Var\left(x_{i}\left(t\right)\right)+\sum_{j\neq i}\left(\left(\frac{w_{i}}{\sum_{k\neq j}w_{k}}\right)^{2}\cdot Var\left(x_{j}\left(t+d\right)\right)\right)}}
 \]
 
 \end_inset
@@ -17306,6 +17407,8 @@ N_{i,min}=\frac{2d_{i}\cdot\left(w_{i}\cdot C\right)^{2}}{r_{i}\cdot\left(2d_{i}
 
 \end_inset
 
+
+\size scriptsize
 
 \begin_inset Formula 
 \[
@@ -17709,17 +17812,33 @@ C=\underset{1\leq i\leq n}{max}\left(C_{i}\right)
 \end_layout
 
 \begin_layout Standard
-\align center
 
 \size tiny
 \begin_inset Formula 
 \[
-N_{i}\leq\frac{1}{r_{i}\left(2\left(b_{i}\left(Cd_{i}-A_{i}d_{i}+E_{i}\right)+B_{i}d_{i}-F_{i}\right)-b_{i}^{2}ln\left(p_{i}\right)\right)}\cdot\left\{ \left(A_{i}b_{i}+B_{i}-Cb_{i}\right)\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)-2\left(B_{i}d_{i}-F_{i}\right)\left(A_{i}-C\right)+b_{i}B_{i}\cdot ln\left(p_{i}\right)+\sqrt{\left(-A_{i}b_{i}+B_{i}+Cb_{i}\right)^{2}\cdot\left(\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)^{2}+2\left(B_{i}d_{i}-F_{i}\right)ln\left(p_{i}\right)\right)}\right\} 
+N_{i}\leq\frac{1}{r_{i}\left(2\left(b_{i}\left(Cd_{i}-A_{i}d_{i}+E_{i}\right)+B_{i}d_{i}-F_{i}\right)-b_{i}^{2}ln\left(p_{i}\right)\right)}\cdot
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset Formula 
+\[
+\cdot\left\{ \left(A_{i}b_{i}+B_{i}-Cb_{i}\right)\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)-2\left(B_{i}d_{i}-F_{i}\right)\left(A_{i}-C\right)+b_{i}B_{i}\cdot ln\left(p_{i}\right)+\sqrt{\left(-A_{i}b_{i}+B_{i}+Cb_{i}\right)^{2}\cdot\left(\left(A_{i}d_{i}-E_{i}-Cd_{i}\right)^{2}+2\left(B_{i}d_{i}-F_{i}\right)ln\left(p_{i}\right)\right)}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(la formula è stata mandata a capo perché era troppo lunga)
 \end_layout
 
 \begin_layout Subsection*
@@ -18176,9 +18295,12 @@ Ma come otteniamo la varianza? Abbiamo una relazione che dice che se abbiamo
 \begin_inset Formula $x,y$
 \end_inset
 
- distribuite in modo gaussiano (caso comune perché abbiamo tanti flussi
- di traffico individuali che sommati formano il flusso di traffico globale
- (teorema del limite centrale)).
+ distribuite in modo 
+\bar under
+gaussiano
+\bar default
+ (caso comune perché abbiamo tanti flussi di traffico individuali che sommati
+ formano il flusso di traffico globale (teorema del limite centrale)).
 \end_layout
 
 \begin_layout Itemize
@@ -18772,7 +18894,7 @@ Abbiamo dei
 \emph on
 cross flows
 \emph default
- che entrano ed escono da ognuno dei vari schedulers, mentre poi cisono
+ che entrano ed escono da ognuno dei vari schedulers, mentre poi ci sono
  dei 
 \emph on
 through flows
@@ -19402,7 +19524,8 @@ Esercizio scenario multihop
 \begin_layout Standard
 \begin_inset Graphics
 	filename net-062.png
-	scale 50
+	lyxscale 70
+	scale 30
 
 \end_inset
 
@@ -20909,6 +21032,8 @@ Var\left(S_{z_{1}}\left(t\right)\right)=\sum_{j\neq1}\left(\frac{w_{3,1}}{\sum_{
 \end_layout
 
 \begin_layout Standard
+
+\size footnotesize
 \begin_inset Formula 
 \[
 Var\left(m\left(t\right)\right)=max\left(max\left(max\left(r_{x_{3}}b_{x_{3}}t^{2H_{3}},\,\left(\frac{w_{1,3}}{w_{1,2}+w_{1,3}}\right)^{2}r_{x_{1}}b_{x_{1}}t^{2H_{x_{1}}}+\left(\frac{w_{1,3}}{w_{1,1}+w_{1,3}}\right)^{2}r_{x_{2}}b_{x_{2}}t^{2H_{x_{2}}}\right),r_{y_{1}}b_{y_{1}}t^{2H_{y_{1}}}\right),\left(\frac{w_{3,1}}{?????}\right)^{2}r_{z_{2}}b_{z_{2}}t^{2H_{z_{2}}}+\left(\frac{???}{???}\right)^{2}r_{z_{3}}b_{z_{3}}t^{2Hz_{3}}\right)
@@ -20936,6 +21061,212 @@ Var\left(m\left(t\right)\right)=max\left(max\left(max\left(r_{x_{3}}b_{x_{3}}t^{
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection*
+Esercizio su traffico EF e BF
+\end_layout
+
+\begin_layout Standard
+Ammettiamo di avere uno scheduler SP con due classi di servizio.
+ La prima gestisce un flusso di traffico EF con 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ flussi con rate 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ e pacchetti di lunghezza massima 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+.
+ Nella seconda classe invece arriva traffico di tipo 
+\emph on
+best-effort
+\emph default
+ con 
+\begin_inset Formula $N_{2}$
+\end_inset
+
+ flussi con pacchetti di lunghezza massima 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+.
+ Il traffico 
+\emph on
+best-effort
+\emph default
+ è di tipo 
+\emph on
+short-range-dependent
+\emph default
+ con parametri 
+\begin_inset Formula $r_{2}$
+\end_inset
+
+ e 
+\begin_inset Formula $b_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Calcolare il ritardo massimo dei pacchetti 
+\begin_inset Formula $EF$
+\end_inset
+
+ e la probabilità che il delay dei pacchetti best-effort sia maggiore di
+ 
+\begin_inset Formula $d_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Per calcolare il ritardo massimo dei pacchetti 
+\begin_inset Formula $EF$
+\end_inset
+
+ facciamo un semplice ragionamento:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I pacchetti EF sono nella prima classe quindi vengono sempre serviti per
+ primi appena arrivano
+\end_layout
+
+\begin_layout Itemize
+L'unico caso in cui può esserci un ritardo è quando arriva un pacchetto
+ EF esattamente nel momento in cui è iniziata la trasmissione di un pacchetto
+ BE.
+ Quindi il pacchetto dovrà aspettare la fine della trasmissione del pacchetto
+ BE e poi dovrà spendere tempo per trasmettere se stesso.
+ Considerando il caso pessimo dobbiamo pensare che il pacchetto EF che ci
+ interessa trasmettere sia l'ultimo degli 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ flussi EF, quindi deve aspettare anche la trasmissione degli 
+\begin_inset Formula $N_{1}-1$
+\end_inset
+
+ pacchetti prima di lui.
+ Avremo dunque:
+\begin_inset Formula 
+\[
+d_{max_{EF}}=\frac{N_{1}\cdot L_{2}}{C}+\frac{L_{1}}{C}=\frac{L_{1}+\left(N_{1}\cdot L_{2}\right)}{C}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per la seconda domanda facciamo alcune considerazioni:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Considerato che non possiamo ignorare la lunghezza dei pacchetti in questo
+ caso, sappiamo che la capacità 
+\begin_inset Quotes eld
+\end_inset
+
+apparente
+\begin_inset Quotes erd
+\end_inset
+
+ dei pacchetti EF, posta la presenza di pacchetti BE sarà
+\begin_inset Formula 
+\[
+C_{EF}=\frac{L_{EF}}{L_{BE}+L_{BE}}\cdot C_{TOT}=\frac{L_{1}}{L_{1}+L_{2}}\cdot C_{TOT}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+E quindi la capacità per i pacchetti BE sarà:
+\begin_inset Formula 
+\[
+C_{BE}=C_{TOT}-C_{EF}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A questo punto possiamo dimenticare lo scheduler SP e considerare la classe
+ dove arrivano i pacchetti BE come se fosse uno scheduler FIFO con capacità
+ di uscita 
+\begin_inset Formula $C_{BE}$
+\end_inset
+
+.
+ Quindi applichiamo la formula per gli scheduler FIFO con traffico SRD:
+\begin_inset Formula 
+\[
+P\left(D>d\right)=e^{-2\frac{C\left(C-nr\right)}{nrb}\cdot d}
+\]
+
+\end_inset
+
+Dove 
+\begin_inset Formula $n$
+\end_inset
+
+ è il numero di flussi in ingresso (
+\begin_inset Formula $N_{2}$
+\end_inset
+
+) e tutti gli altri parametri ci sono già noti.
+\end_layout
+
+\end_deeper
+\begin_layout Part*
+Riferimenti
+\end_layout
+
+\begin_layout Standard
+L'intero materiale qui presentato è basato su appunti e 
+\emph on
+slides
+\emph default
+ del corso 089043 
+\begin_inset Quotes eld
+\end_inset
+
+Multimedia Internet
+\begin_inset Quotes erd
+\end_inset
+
+ (A.A 2012/2013) tenuto presso il 
+\emph on
+Politecnico di Milano
+\emph default
+ dal prof.
+ 
+\emph on
+Paolo Giacomazzi (
+\begin_inset CommandInset href
+LatexCommand href
+target "http://home.deib.polimi.it/giacomaz/"
+
+\end_inset
+
+)
 \end_layout
 
 \end_body

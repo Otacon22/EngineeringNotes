@@ -13241,5 +13241,39 @@ Anna chiama Luca inviando un INVITE.
 Il proxy SIP annulla la chiamata verso l'altro dispositivo
 \end_layout
 
+\begin_layout Part*
+Riferimenti
+\end_layout
+
+\begin_layout Standard
+L'intero materiale qui presentato è basato su appunti e 
+\emph on
+slides
+\emph default
+ del corso 089043 
+\begin_inset Quotes eld
+\end_inset
+
+Multimedia Internet
+\begin_inset Quotes erd
+\end_inset
+
+ (A.A 2012/2013) tenuto presso il 
+\emph on
+Politecnico di Milano
+\emph default
+ dal prof.
+ 
+\emph on
+Paolo Giacomazzi (
+\begin_inset CommandInset href
+LatexCommand href
+target "http://home.deib.polimi.it/giacomaz/"
+
+\end_inset
+
+)
+\end_layout
+
 \end_body
 \end_document
