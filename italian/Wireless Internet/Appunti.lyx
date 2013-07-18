@@ -5782,7 +5782,7 @@ RTS_Threshold
 
 \begin_layout Itemize
 Se 
-\begin_inset Formula $D<RTSThreshold$
+\begin_inset Formula $D<RTS\_Threshold$
 \end_inset
 
 , il NAV non è utilizzato (la trasmissione non è 
@@ -5798,10 +5798,10 @@ protetta
 
 \begin_layout Itemize
 Se 
-\begin_inset Formula $D>RTSThreshold$
+\begin_inset Formula $D>RTS\_Threshold$
 \end_inset
 
-, il NAV non è utilizzato (la trasmissione non è 
+, il NAV è utilizzato (la trasmissione è 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5816,6 +5816,17 @@ protetta
 In questo modo evitiamo di avere un overhead causato da RTS/CTS elevato
  quando i dati sono corti, in questo caso è più efficiente rischiare le
  collisioni e ritrasmettere.
+\end_layout
+
+\begin_layout Subsubsection*
+Trasmissioni broadcast
+\end_layout
+
+\begin_layout Standard
+Notiamo che nel caso di trasmissioni broadcast non viene utilizzato RTS/CTS
+ e neanche ACK.
+ Nel caso di trasmissioni broadcast abbiamo un canale di trasmissione che
+ è modellabile come un CSMA puro.
 \end_layout
 
 \begin_layout Subsection*
@@ -12330,8 +12341,11 @@ transmission opportunities
 \series bold
 TXOP
 \series default
-): Ad ogni trasmissione, un tempo massimo è assegnato per il completamento
- della trasmissione.
+): Ad ogni trasmissione, un 
+\bar under
+tempo massimo
+\bar default
+ è assegnato per il completamento della trasmissione.
 \end_layout
 
 \begin_layout Itemize
@@ -12340,7 +12354,19 @@ La
 trasmissione diretta tra due stazioni
 \series default
  è possibile anche durante un collegamento a infrastruttura BSS (vedi WiFi
- Direct).
+ Direct o 
+\series bold
+
+\begin_inset Quotes eld
+\end_inset
+
+DLP
+\series default
+
+\begin_inset Quotes erd
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Itemize
@@ -12421,12 +12447,26 @@ HCF Controlled Channel Access
 EDCA - Contention based access
 \end_layout
 
+\begin_layout Standard
+È una forma 
+\begin_inset Quotes eld
+\end_inset
+
+migliorata
+\begin_inset Quotes erd
+\end_inset
+
+ di DCF che tiene conto della qualità del servizio e della priorità di alcuni
+ tipi di traffico.
+\end_layout
+
 \begin_layout Itemize
 EDCA definisce 4 categorie di accesso (
 \emph on
 Access Categories - AC
 \emph default
-) che corrispondono a 4 tipi diversi di traffico:
+) che corrispondono a 4 tipi diversi di traffico (elencati in ordine di
+ priorità):
 \end_layout
 
 \begin_deeper
@@ -12485,6 +12525,18 @@ TXOPlimit[AC]: Durata massima di una trasmissione
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Quindi una classe ad alta priorità, come ad esempio AC_VO potrà essere trasmessa
+ prima di altre classi, però a causa del tempo di backoff casuale, non abbiamo
+ la certezza che verrà sempre servita per prima
+\end_layout
+
+\begin_layout Itemize
+Nel caso in cui una classe inizi a trasmettere prima di altre, le altre
+ si comporteranno come se ci fosse stata una collisione.
+ Quindi le varie classi si comportano come se fossero delle stazioni separate.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Graphics
 	filename wlan57.png
@@ -12509,9 +12561,31 @@ Esempio di EDCA
 \end_layout
 
 \begin_layout Standard
+Possiamo notare inoltre che le finestre di trasmissione delle varie classi
+ sono parzialmente sovrapposte.
+ Anche questo ci dice che le priorità che otteniamo non sono deterministiche,
+ ma sono statistiche.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Graphics
 	filename wlan58.png
 	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per poter ottenere delle priorità deterministiche dovremo avere:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+AIFS\left[lower\right]>AIFS\left[higher\right]+CWmax\left[higher\right]
+\]
 
 \end_inset
 
@@ -12567,6 +12641,12 @@ ibrida
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Dato che in questo caso abbiamo un periodo del beacon frame fisso, possiamo
+ assicurarci che le stazioni non trasmettano quando è previsto l'arrivo
+ del beacon frame, di modo da evitare collisioni.
+\end_layout
+
 \begin_layout Subsubsection*
 Esempio di HCCA
 \end_layout
@@ -12582,7 +12662,11 @@ Esempio di HCCA
 \end_layout
 
 \begin_layout Standard
-L'HC può inviare un Poll a una stazione anche durante il periodo di contenimento.
+L'HC può inviare un Poll a una stazione 
+\bar under
+anche durante il periodo di contenimento
+\bar default
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -12635,7 +12719,23 @@ infrastructure
 
 \begin_deeper
 \begin_layout Itemize
-Si aumenta la capacità di trasferimento
+Due stazioni utilizzano il collegamento tramite un access point per fare
+ 
+\emph on
+signaling
+\emph default
+ tra di loro.
+ Quando si sono scambiate i dati necessari, stabiliscono un collegamento
+ diretto in modalità 
+\emph on
+Ad-Hoc
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Si aumenta la capacità di trasferimento riducendo il carico di traffico
+ e collisioni sull'access point.
 \end_layout
 
 \begin_layout Itemize
@@ -26302,7 +26402,7 @@ L'assegnamento di risorse è equo se in ogni intervallo di tempo
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left|\frac{B_{i}\left(t_{1},t_{2}\right)}{w_{i}}-\frac{B_{i}\left(t_{1},t_{2}\right)}{w_{j}}\right|\simeq0\qquad\forall i,j
+\left|\frac{B_{i}\left(t_{1},t_{2}\right)}{w_{i}}-\frac{B_{j}\left(t_{1},t_{2}\right)}{w_{j}}\right|\simeq0\qquad\forall i,j
 \]
 
 \end_inset
@@ -28226,7 +28326,7 @@ una singola ritrasmissione
  è:
 \begin_inset Formula 
 \[
-t_{u}=T_{0}\frac{1+p+2p^{2}+4p^{3}+4p^{4}+16p^{5}+32p^{6}}{1-p}
+t_{u}=T_{0}\frac{1+p+2p^{2}+4p^{3}+8p^{4}+16p^{5}+32p^{6}}{1-p}
 \]
 
 \end_inset

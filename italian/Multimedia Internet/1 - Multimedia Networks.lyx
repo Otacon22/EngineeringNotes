@@ -7855,12 +7855,25 @@ ti e vuole assicurarsi che i pacchetti IP nelle sue
 \emph on
 intranets
 \emph default
- siano inoltrati con alta probabilità fin tanto che il traffico aggregato
- di un sito non supera il 
+ siano inoltrati con 
+\series bold
+alta probabilità
+\series default
+ fin tanto che il traffico aggregato di un sito non supera il 
 \emph on
 subscribed information rate
 \emph default
 .
+ Come suggerisce il nome, è un tipo di PHB per avere un trasporto con inoltro
+ 
+\begin_inset Quotes eld
+\end_inset
+
+affidabile
+\begin_inset Quotes erd
+\end_inset
+
+, vogliamo ridurre al minimo il packet loss.
 \end_layout
 
 \begin_layout Standard
@@ -8312,8 +8325,16 @@ Ogni PHB ha un nome di un byte, per questo tipo ti classe è: XXX000XX
 
 \begin_deeper
 \begin_layout Itemize
-I primi tre bit sono gli 8 livelli di priorità, esattamente come il vecchio
+I primi tre bit sono i 7 livelli di priorità, esattamente come il vecchio
  TOS faceva.
+\end_layout
+
+\begin_layout Itemize
+Diciamo 7 perché il codepoint 000000XX è già assegnato a 
+\emph on
+best-effort
+\emph default
+ come vedremo.
 \end_layout
 
 \begin_layout Itemize
@@ -8360,7 +8381,7 @@ Riassumendo le PHBs:
 \end_layout
 
 \begin_layout Itemize
-8 CS: codice (XXX000+2bit reserved)
+7 CS: codice (XXX000+2bit reserved)
 \end_layout
 
 \begin_layout Itemize
