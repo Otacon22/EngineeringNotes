@@ -201,6 +201,7 @@ Dove
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename spettro.png
 	scale 50
@@ -211,6 +212,7 @@ Dove
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="11" columns="3">
 <features tabularvalignment="middle">
@@ -756,6 +758,7 @@ Antenna isotropica
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna1.png
 	scale 50
@@ -897,6 +900,7 @@ Di solito si utilizzano antenne di tipo direzionali, cioè antenne che hanno
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna21.png
 	scale 50
@@ -1180,6 +1184,7 @@ Questo modello è valido se non ci sono percorsi riflessi per passare da
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna2.png
 	scale 50
@@ -1288,6 +1293,7 @@ Riflessione
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna3.png
 	scale 50
@@ -1311,6 +1317,7 @@ Shadowing
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna4.png
 	scale 50
@@ -1339,6 +1346,7 @@ tutte le direzioni
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna6.png
 	scale 50
@@ -1363,6 +1371,7 @@ Diffrazione
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna5.png
 	scale 50
@@ -1383,6 +1392,7 @@ Consideriamo uno scenario in cui abbiamo una trasmissione diretta ed una
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna7.png
 	scale 50
@@ -1428,6 +1438,7 @@ d_{reflected}=\sqrt{d^{2}+\left(h_{T}+h_{R}\right)^{2}}=d\cdot\left[1+\left(\fra
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna8.png
 	scale 50
@@ -1993,6 +2004,7 @@ Esempio numerico del modello Okumura-Hata
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna9.png
 	scale 50
@@ -2019,6 +2031,7 @@ Ci accorgiamo che quando impostiamo certi specifici parametri otteniamo
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna10.png
 	scale 50
@@ -2130,6 +2143,7 @@ multi-path
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna11.png
 	scale 50
@@ -2154,6 +2168,7 @@ se la frequenza è bassa
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna12.png
 	scale 50
@@ -2241,6 +2256,7 @@ Vediamo ad esempio i due grafici del caso
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna13.png
 	scale 50
@@ -2259,6 +2275,7 @@ variano durante il tempo
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna14.png
 	scale 50
@@ -2376,6 +2393,7 @@ f_{R}\left(x\right)=\frac{x}{\sigma^{2}}\cdot e^{-\frac{x^{2}}{2\sigma^{2}}}\qqu
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna15.png
 	scale 50
@@ -2458,7 +2476,8 @@ Quindi la potenza media è
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna16.png
 	scale 50
@@ -2646,6 +2665,7 @@ Con
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna17.png
 	scale 50
@@ -2666,6 +2686,7 @@ Quando gli ostacoli non solo riflettono ma assorbono parte dell'energia,
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna18.png
 	scale 50
@@ -2750,6 +2771,7 @@ g=\frac{P_{dB}-\gamma}{\sqrt{2}\sigma_{dB}}
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna19.png
 	scale 50
@@ -2846,6 +2868,7 @@ Probabilità di outage:
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna20.png
 	scale 50
@@ -3245,6 +3268,7 @@ canali
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna22.png
 	scale 40
@@ -3298,6 +3322,7 @@ sottocanale
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna23.png
 	scale 40
@@ -3320,6 +3345,7 @@ guard time
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna24.png
 	scale 30
@@ -3337,6 +3363,7 @@ Timing advance
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna25.png
 	scale 30
@@ -3398,6 +3425,7 @@ codice
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna26.png
 	scale 30
@@ -3435,6 +3463,7 @@ ortogonali
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna27.png
 	scale 40
@@ -3468,6 +3497,7 @@ espande
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna28.png
 	scale 30
@@ -3499,6 +3529,7 @@ Quindi più segnali radio utilizzano la stessa banda con codici diversi.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna29.png
 	scale 35
@@ -3518,6 +3549,7 @@ de-spreading
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna30.png
 	scale 30
@@ -3542,6 +3574,7 @@ de-spreading
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna31.png
 	scale 30
@@ -3567,6 +3600,7 @@ Riassunto
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename antenna32.png
 	scale 30
@@ -3671,6 +3705,7 @@ Industrial Scientific Medical
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan0.png
 	scale 50
@@ -4147,6 +4182,7 @@ Il gruppo di IEEE che si occupa di creare gli standard per le reti locali
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan2.png
 	scale 50
@@ -4177,6 +4213,7 @@ Nella figura seguente vediamo lo sviluppo degli standard nel tempo:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan3.png
 	scale 50
@@ -4363,10 +4400,15 @@ Aggiornamenti recenti:
 
 \end_deeper
 \begin_layout Standard
-Vediamo la timeline:
+Vediamo la 
+\emph on
+timeline
+\emph default
+:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan4.png
 	scale 30
@@ -4438,8 +4480,12 @@ Requisiti
 \end_layout
 
 \begin_layout Itemize
-Un singolo sottostrato MAC deve essere in grado di supportare più tipi di
- layer fisici
+Un singolo sotto-strato MAC deve essere in grado di supportare più tipi
+ di 
+\emph on
+layer
+\emph default
+ fisici
 \end_layout
 
 \begin_layout Itemize
@@ -4659,6 +4705,7 @@ Infrastructure BSS
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan5.png
 	scale 50
@@ -4673,6 +4720,7 @@ Indipendent Basic Service Set (IBSS)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan6.png
 	scale 30
@@ -4716,6 +4764,7 @@ Extended Service Set (ESS)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan7.png
 	scale 30
@@ -4736,6 +4785,7 @@ Infatti spesso per realizzare il distribution system si può utilizzare sempre
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan8.png
 	scale 30
@@ -4987,6 +5037,7 @@ Procedura di associazione
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan9.png
 	scale 30
@@ -5019,6 +5070,7 @@ Dobbiamo pensare all'AP come ad un bridge/switch dove però le porte sono
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan10.png
 	scale 30
@@ -5250,6 +5302,7 @@ Interframe spacing
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan12.png
 	scale 30
@@ -5405,6 +5458,7 @@ Il tempo di attesa è misurato in slots (time tick)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan13.png
 	scale 30
@@ -5442,6 +5496,7 @@ Se due o più frame consecutivi devono essere trasmessi, il backoff è utilizzat
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan14.png
 	scale 30
@@ -5497,6 +5552,7 @@ Dopo una trasmissione corretta
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan15.png
 	scale 30
@@ -5557,6 +5613,7 @@ Long Retry Counter
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan16.png
 	scale 30
@@ -5591,6 +5648,7 @@ Problema della stazione nascosta
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan17.png
 	scale 30
@@ -5668,17 +5726,32 @@ Il NAV indica la durata della trasmissione che si sta per effettuare sul
 \end_layout
 
 \begin_layout Standard
-Le stazioni che ricevono un frame contenente NAV, evitano di trasmettere
- per la quantità di tempo notificata dal NAV.
+Le stazioni che ricevono un frame contenente 
+\series bold
+NAV
+\series default
+, evitano di trasmettere per la quantità di tempo notificata dal NAV.
  Evitano di trasmettere anche se a livello fisico il canale risulta libero.
 \end_layout
 
 \begin_layout Standard
-Quindi per realizzare questo meccanismo si utilizza NAV, CTS (Clear To Send),
- RTS (Request To Send).
+Quindi per realizzare questo meccanismo si utilizza 
+\series bold
+NAV
+\series default
+, 
+\series bold
+CTS
+\series default
+ (Clear To Send), 
+\series bold
+RTS
+\series default
+ (Request To Send).
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan18.png
 	scale 30
@@ -5693,6 +5766,7 @@ Il problema della stazione nascosta è risolto:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan19.png
 	scale 30
@@ -5913,6 +5987,7 @@ contenimento
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan20.png
 	scale 30
@@ -5941,6 +6016,7 @@ Procedura di accesso PCF
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan21.png
 	scale 30
@@ -6006,6 +6082,7 @@ piggybacking
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan22.png
 	scale 30
@@ -7522,6 +7599,7 @@ Lo standard 802.11 non permette associazioni multiple
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan27.png
 	scale 30
@@ -7721,6 +7799,7 @@ More Data
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan28.png
 	scale 30
@@ -7841,6 +7920,7 @@ Open System Authentication
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan29.png
 	scale 30
@@ -7897,6 +7977,7 @@ WEP
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan30.svg
 	scale 60
@@ -7938,6 +8019,7 @@ WEP - Wired Equivalent Privacy
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan31.png
 	scale 30
@@ -8252,6 +8334,7 @@ Authentication Server
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan32.png
 	scale 30
@@ -8267,6 +8350,7 @@ Funzionamento del protocollo EAP
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan33.png
 	scale 30
@@ -8295,6 +8379,7 @@ Scambio delle chiavi
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan34.png
 	scale 30
@@ -8309,6 +8394,7 @@ Programmi di certificazione WPA
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="3">
 <features tabularvalignment="middle">
@@ -8591,6 +8677,7 @@ Struttura del layer fisico
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan35.png
 	scale 30
@@ -8692,6 +8779,7 @@ DSSS
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan36.png
 	scale 30
@@ -8716,6 +8804,7 @@ spread spectrum
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan37.png
 	scale 30
@@ -8748,6 +8837,7 @@ Non tutti i canali sono disponibili in tutti i paesi al mondo.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
@@ -8885,12 +8975,14 @@ Giappone
 \end_layout
 
 \begin_layout Standard
+\align center
 Per ogni canale, la maggior parte dell'energia del segnale è racchiusa in
  una banda di 22MHz.
  
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan38.png
 	scale 30
@@ -8901,11 +8993,13 @@ Per ogni canale, la maggior parte dell'energia del segnale è racchiusa in
 \end_layout
 
 \begin_layout Standard
+\align center
 In realtà in 802.11 ci sono solo 3 canali che non si sovrappongono tra di
  loro in frequenza: 1,6 e 11.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan39.png
 	scale 30
@@ -8916,6 +9010,7 @@ In realtà in 802.11 ci sono solo 3 canali che non si sovrappongono tra di
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan40.png
 	scale 30
@@ -8926,10 +9021,12 @@ In realtà in 802.11 ci sono solo 3 canali che non si sovrappongono tra di
 \end_layout
 
 \begin_layout Standard
+\align center
 Allocazione complessia delle frequenze dei 5 GHz:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan41.png
 	scale 45
@@ -9064,6 +9161,7 @@ CRC
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan42.png
 	scale 40
@@ -9266,6 +9364,7 @@ Evoluzione dei Layer fisici del gruppo 802.11
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan43.png
 	scale 40
@@ -9364,6 +9463,7 @@ Ci sono due data rate definiti:
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan44.png
 	scale 40
@@ -9382,6 +9482,7 @@ Modifiche a PLCP
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan45.png
 	scale 45
@@ -9396,6 +9497,7 @@ Velocità reale di 802.11b
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan46.png
 	scale 40
@@ -9524,10 +9626,12 @@ Spettro
 \end_layout
 
 \begin_layout Standard
+\align center
 La trasmissione di un singolo simbolo si presenta come di seguito:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan47.png
 	scale 40
@@ -9538,10 +9642,12 @@ La trasmissione di un singolo simbolo si presenta come di seguito:
 \end_layout
 
 \begin_layout Standard
+\align center
 Nel caso della trasmissione di più simboli invece:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan48.png
 	scale 40
@@ -9552,6 +9658,7 @@ Nel caso della trasmissione di più simboli invece:
 \end_layout
 
 \begin_layout Standard
+\align center
 È un sistema più efficiente rispetto a una semplice FDM, si riesce a sfruttare
  meglio lo spettro.
 \end_layout
@@ -9589,6 +9696,7 @@ Inter Symbol Interference
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan49.png
 	scale 40
@@ -9599,6 +9707,7 @@ Inter Symbol Interference
 \end_layout
 
 \begin_layout Standard
+\align center
 Sono necessari di simboli 
 \begin_inset Quotes eld
 \end_inset
@@ -9615,6 +9724,7 @@ Tempo di guardia
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan50.png
 	scale 40
@@ -9664,6 +9774,7 @@ Ogni canale è diviso in 52 sotto-portanti spaziate 0.3125 MHz
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan51.png
 	scale 40
@@ -9719,6 +9830,7 @@ Trasmettitore 802.11a
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan52.png
 	scale 30
@@ -9733,6 +9845,7 @@ Ricevitore
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan53.png
 	scale 30
@@ -9747,6 +9860,7 @@ Multipli Modi/Data Rate
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="9" columns="6">
 <features tabularvalignment="middle">
@@ -10296,6 +10410,7 @@ PLCP di 802.11a
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan54.png
 	scale 45
@@ -10306,6 +10421,9 @@ PLCP di 802.11a
 \end_layout
 
 \begin_layout Standard
+\align center
+
+\bar under
 Diverso rispetto al PLCP di 802.11 e 802.11b
 \end_layout
 
@@ -10786,6 +10904,7 @@ Broadcom
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="6">
 <features tabularvalignment="middle">
@@ -10868,7 +10987,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-3m
+3 m
 \end_layout
 
 \end_inset
@@ -10924,7 +11043,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-15m
+15 m
 \end_layout
 
 \end_inset
@@ -10980,7 +11099,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-30m
+30 m
 \end_layout
 
 \end_inset
@@ -11036,7 +11155,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-45m
+45 m
 \end_layout
 
 \end_inset
@@ -11092,7 +11211,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-60m
+60 m
 \end_layout
 
 \end_inset
@@ -11148,7 +11267,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-75m
+75 m
 \end_layout
 
 \end_inset
@@ -11204,7 +11323,7 @@ Solo 802.11g
 \begin_inset Text
 
 \begin_layout Plain Layout
-90m
+90 m
 \end_layout
 
 \end_inset
@@ -11291,6 +11410,7 @@ Compatibilità
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="6">
 <features tabularvalignment="middle">
@@ -11584,6 +11704,7 @@ Sappiamo che il data rate è calcolato come segue:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan55.png
 	scale 40
@@ -11623,6 +11744,7 @@ Parametri
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="14" columns="4">
 <features tabularvalignment="middle">
@@ -12274,6 +12396,7 @@ Coding ottimizzato per MIMO (space multiplexing)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan56.png
 	scale 60
@@ -12538,6 +12661,7 @@ Nel caso in cui una classe inizi a trasmettere prima di altre, le altre
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan57.png
 	scale 45
@@ -12568,6 +12692,7 @@ Possiamo notare inoltre che le finestre di trasmissione delle varie classi
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan58.png
 	scale 45
@@ -12652,6 +12777,7 @@ Esempio di HCCA
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan59.png
 	scale 50
@@ -12857,6 +12983,7 @@ Service Period
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan60.png
 	scale 45
@@ -12903,6 +13030,7 @@ SST e SI sono definiti per ogni categoria di accesso per cui viene attivato
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan61.png
 	scale 40
@@ -12974,6 +13102,7 @@ centralizzata
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan62.png
 	scale 45
@@ -13115,6 +13244,7 @@ Hybrid Wireless Mesh Protocol
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wlan63.png
 	scale 30
@@ -13241,6 +13371,7 @@ Creando questo gruppo di lavoro, la IEEE ha spinto il mondo dell'industria
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan1.png
 	scale 30
@@ -13255,6 +13386,7 @@ La famiglia 802.15
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan12.png
 	scale 30
@@ -13521,6 +13653,7 @@ Master e slave si alternano in continuazione durante la trasmissione:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan9.png
 	scale 30
@@ -13548,6 +13681,7 @@ lunghezza fissa
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan14.png
 	scale 30
@@ -13558,6 +13692,7 @@ lunghezza fissa
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan8.png
 	scale 30
@@ -13669,6 +13804,7 @@ Parked
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan2.png
 	scale 30
@@ -13824,6 +13960,7 @@ permesso
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan23.png
 	scale 30
@@ -13843,6 +13980,7 @@ L'architettura originaria non era compatibile con lo standard IEEE.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan16.png
 	scale 30
@@ -13859,6 +13997,7 @@ Formato dei pacchetti
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan4.png
 	scale 30
@@ -13910,6 +14049,7 @@ Access code
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan15.png
 	scale 30
@@ -13991,6 +14131,7 @@ Header
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan6.png
 	scale 30
@@ -14095,6 +14236,7 @@ Abbiamo diversi formati pacchetti a seconda dell'utilizzo.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan21.png
 	scale 30
@@ -14109,6 +14251,7 @@ Ritrasmissione
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan7.png
 	scale 30
@@ -14204,6 +14347,7 @@ page
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan13.png
 	scale 30
@@ -14309,6 +14453,7 @@ DAC
 
 \end_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan19.png
 	scale 30
@@ -14589,6 +14734,7 @@ Sicurezza
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan22.png
 	scale 30
@@ -14599,6 +14745,7 @@ Sicurezza
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan0.png
 	scale 30
@@ -14609,6 +14756,7 @@ Sicurezza
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan3.png
 	scale 30
@@ -14634,6 +14782,7 @@ Fornisce le funzioni di segmentazione, riassemblamento e multiplexing.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan24.png
 	scale 50
@@ -14759,6 +14908,7 @@ Scatternet
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan25.png
 	scale 30
@@ -14800,6 +14950,7 @@ sniff
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan26.png
 	scale 30
@@ -15011,6 +15162,7 @@ LR-WPAN
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan27.png
 	scale 30
@@ -15098,6 +15250,7 @@ ZigBee
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan28.png
 	scale 30
@@ -15108,6 +15261,7 @@ ZigBee
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan29.png
 	scale 30
@@ -15311,6 +15465,7 @@ America
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan30.png
 	scale 30
@@ -15561,6 +15716,7 @@ Rete a stella
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan31.png
 	scale 30
@@ -15587,6 +15743,7 @@ Rete a maglia (mesh)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan32.png
 	scale 30
@@ -15601,6 +15758,7 @@ Clustered stars: rete a stella con grappoli
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan33.png
 	scale 30
@@ -15919,6 +16077,7 @@ Beacon Enabled
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan34.png
 	scale 30
@@ -16043,6 +16202,7 @@ beacon frame
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan35.png
 	scale 45
@@ -16068,6 +16228,7 @@ Classimo meccanismo di accesso al canale CSMA/CA utilizzando ACK.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan36.png
 	scale 50
@@ -16123,6 +16284,8 @@ Formato trama MAC
 \end_layout
 
 \begin_layout Standard
+
+\size small
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="9">
 <features tabularvalignment="middle">
@@ -16140,6 +16303,8 @@ Formato trama MAC
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Bytes:
 \end_layout
 
@@ -16149,6 +16314,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 2
 \end_layout
 
@@ -16158,6 +16325,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 1
 \end_layout
 
@@ -16167,6 +16336,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0/2
 \end_layout
 
@@ -16176,6 +16347,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0/2/8
 \end_layout
 
@@ -16185,6 +16358,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0/2
 \end_layout
 
@@ -16194,6 +16369,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 0/2/8
 \end_layout
 
@@ -16203,6 +16380,8 @@ Bytes:
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Variabile
 \end_layout
 
@@ -16212,6 +16391,8 @@ Variabile
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 2
 \end_layout
 
@@ -16232,6 +16413,8 @@ Variabile
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Frame Control
 \end_layout
 
@@ -16241,6 +16424,8 @@ Frame Control
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Sequence Number
 \end_layout
 
@@ -16250,6 +16435,8 @@ Sequence Number
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Dest.
  PAN ID
 \end_layout
@@ -16260,6 +16447,8 @@ Dest.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Dest.
  Addr
 \end_layout
@@ -16270,6 +16459,8 @@ Dest.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Src.
  PAN ID
 \end_layout
@@ -16280,6 +16471,8 @@ Src.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Src.
  Addr.
 \end_layout
@@ -16290,6 +16483,8 @@ Src.
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 Frame Payload
 \end_layout
 
@@ -16299,6 +16494,8 @@ Frame Payload
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 FCS
 \end_layout
 
@@ -16338,6 +16535,7 @@ FCS
 
 \begin_layout Plain Layout
 
+\size small
 \emph on
 Campi di indirizzamento
 \end_layout
@@ -16395,6 +16593,8 @@ Campi di indirizzamento
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 MAC Header
 \end_layout
 
@@ -16458,6 +16658,8 @@ MAC Header
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 MAC Payload
 \end_layout
 
@@ -16467,6 +16669,8 @@ MAC Payload
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\size small
 CRC
 \end_layout
 
@@ -16687,6 +16891,7 @@ Associazione
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan42.png
 	scale 45
@@ -17154,6 +17359,7 @@ Gli indirizzi sono assegnati in modo gerarchico e distribuito.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wpan43.png
 	scale 40
@@ -17605,6 +17811,7 @@ WMAN - Wireless Metropolitan Area Networks
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman01.png
 	scale 50
@@ -18589,6 +18796,7 @@ Orthogonal Frequency division Multiplexing (OFDM)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman03.png
 	scale 35
@@ -18599,6 +18807,7 @@ Orthogonal Frequency division Multiplexing (OFDM)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman04.png
 	scale 35
@@ -18656,6 +18865,7 @@ FDD
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman05.png
 	scale 30
@@ -18678,6 +18888,7 @@ TDD
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman06.png
 	scale 30
@@ -18701,6 +18912,7 @@ connection-oriented
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman07.png
 	scale 35
@@ -18711,6 +18923,7 @@ connection-oriented
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman08.png
 	scale 40
@@ -20645,6 +20858,7 @@ CRC (opz.)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman09.png
 	scale 30
@@ -20737,6 +20951,7 @@ Mesh SS
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman10.png
 	scale 50
@@ -20747,6 +20962,7 @@ Mesh SS
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="10" columns="5">
 <features tabularvalignment="middle">
@@ -21241,6 +21457,7 @@ Sì
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman11.png
 	scale 40
@@ -21670,6 +21887,7 @@ Trasmettitore
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman12.png
 	scale 50
@@ -21698,6 +21916,7 @@ Interleaving
 
 \end_deeper
 \begin_layout Standard
+\align center
 
 \size footnotesize
 \begin_inset Tabular
@@ -22279,6 +22498,7 @@ Downlink Sub-frame (FDD)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman13.png
 	scale 50
@@ -22293,6 +22513,7 @@ Downlink sub-frame (TDD)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman14.png
 	scale 50
@@ -22307,6 +22528,7 @@ Uplink sub-frame (FDD+TDD)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman15.png
 	scale 50
@@ -22375,6 +22597,7 @@ Ranging
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman16.png
 	scale 50
@@ -22389,6 +22612,7 @@ Negoziazione della banda
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman17.png
 	scale 50
@@ -22403,6 +22627,7 @@ Meccanismo ad accesso multiplo
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman18.png
 	scale 50
@@ -22413,6 +22638,7 @@ Meccanismo ad accesso multiplo
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman19.png
 	scale 50
@@ -22887,6 +23113,7 @@ Ci sono due fasi per la certificazione dello strato fisico:
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="4">
 <features tabularvalignment="middle">
@@ -23138,6 +23365,7 @@ TDD
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="4">
 <features tabularvalignment="middle">
@@ -23355,6 +23583,7 @@ Esempio: profilo dei 3.5 GHz
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
@@ -23523,6 +23752,7 @@ Data sub-carriers (
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="8" columns="3">
 <features tabularvalignment="middle">
@@ -23796,6 +24026,7 @@ MultiPoint-to-MultiPoint (Mesh)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman22.png
 	scale 50
@@ -23810,6 +24041,7 @@ Topologie
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman23.png
 	scale 50
@@ -23824,6 +24056,7 @@ Mesh frame TDD
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman24.png
 	scale 50
@@ -23838,6 +24071,7 @@ Centralized Mesh
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman25.png
 	scale 50
@@ -23852,6 +24086,7 @@ Distributed Mesh
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman26.png
 	scale 50
@@ -23875,6 +24110,7 @@ Point-to-MultiPoint (PMP)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman27.png
 	scale 50
@@ -23952,6 +24188,7 @@ Struttura del frame (TDD+FDD)
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename wman28.png
 	scale 50
@@ -24177,6 +24414,7 @@ Code locali e globali
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename ma01.png
 	scale 40
@@ -24218,6 +24456,7 @@ virtuale
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename ma02.png
 	scale 50
@@ -24486,6 +24725,7 @@ E\left[W\right]=W_{1}+W_{2}+W_{3}
 
 \begin_deeper
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename ma03.png
 	scale 50
@@ -24776,6 +25016,7 @@ Polling in bluetooth
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename ma04.png
 	scale 40
@@ -25028,6 +25269,7 @@ Ne abbiamo già parlato per 802.11e
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename ma06.png
 	scale 50
@@ -28422,8 +28664,11 @@ Alcuni software, tra cui alcuni browser, preferiscono utilizzare tante connessio
 ni TCP in parallelo piuttosto che poche.
  Questo perché usando molte connessioni si riesce a sfruttare meglio la
  fase di slow start che accelera lo scambio di dati inizialmente e in molti
- casi si riesce a ridurre la latenza e aumentare il throughput in modo significa
-tivo.
+ casi si riesce a ridurre la latenza e aumentare il 
+\emph on
+throughput
+\emph default
+ in modo significativo.
 \end_layout
 
 \end_body
