@@ -1,0 +1,2969 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Architetture avanzate dei calcolatori
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
+ stesso modo 2.5 Italia License.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Daniele Iamartino
+\end_layout
+
+\begin_layout Section*
+Introduzione
+\end_layout
+
+\begin_layout Standard
+In questo corso vedremo alcuni dei problemi 
+\begin_inset Quotes eld
+\end_inset
+
+avanzati
+\begin_inset Quotes erd
+\end_inset
+
+ nelle architetture dei calcolatori:
+\end_layout
+
+\begin_layout Itemize
+Come possiamo aumentare le performance riducendo il costo finale del design
+ architetturale?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+RISC
+\end_layout
+
+\begin_layout Itemize
+Pipeline
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Possiamo guadagnare ancora di più?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Branch prediction 
+\end_layout
+
+\begin_layout Itemize
+Instruction level parallelism
+\end_layout
+
+\begin_layout Itemize
+Multithreading
+\end_layout
+
+\begin_layout Itemize
+Multiprocessors
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Soluzioni ancora più avanzate
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Memory hearchy
+\end_layout
+
+\begin_layout Itemize
+Cache organization
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Riferimenti
+\end_layout
+
+\begin_layout Itemize
+"
+\emph on
+Computer Architecture, A Quantitative Approach
+\emph default
+", John Hennessy, David Patterson, Morgan Kaufmann, Fourth Edition
+\end_layout
+
+\begin_layout Part*
+Concetti base sulla Pipeline
+\end_layout
+
+\begin_layout Section*
+Caratteristiche della architettura MIPS
+\end_layout
+
+\begin_layout Itemize
+MIPS è una architettura 
+\series bold
+RISC
+\series default
+ (Reduced Instruction Set Computer), è basata quindi sul concetto di eseguire
+ solo semplici istruzioni.
+\end_layout
+
+\begin_layout Itemize
+Utilizza una architettura 
+\series bold
+LOAD
+\series default
+/
+\series bold
+STORE
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\bar under
+Tutti
+\bar default
+ gli operandi delle operazioni vengono spostati in registri 
+\emph on
+general purpose
+\emph default
+ della CPU e 
+\series bold
+non
+\series default
+ possono arrivare direttamente dalla memoria.
+\end_layout
+
+\begin_layout Itemize
+Quindi, si utilizza la 
+\series bold
+LOAD
+\series default
+ per spostare dati dalla memoria ai registri e la 
+\series bold
+STORE
+\series default
+ per spostare dati dai registri alla memoria
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+MIPS è basato su una 
+\series bold
+architettura a pipeline
+\series default
+ che è una tecnica di ottimizzazione che si basa sulla sovrapposizione dell'esec
+uzione di istruzioni multiple derivate da un flusso di esecuzione sequenziale
+\end_layout
+
+\begin_layout Itemize
+MIPS utilizza 32 registri
+\end_layout
+
+\begin_layout Subsection*
+Instruction Set Architecture (base) del processore MIPS
+\end_layout
+
+\begin_layout Itemize
+Istruzioni di 
+\series bold
+ALU
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+add $s1, $s2, $s3         # $s1 ← $s2 + $s3
+\end_layout
+
+\begin_layout LyX-Code
+addi $s1, $s2, 4          # $s1 ← $s2 + 4
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Istruzioni 
+\series bold
+load
+\series default
+/
+\series bold
+store
+\series default
+ (di 
+\series bold
+\emph on
+w
+\series default
+ord
+\emph default
+) da 
+\series bold
+M
+\series default
+emoria (
+\bar under
+attenzione all'ordine degli operandi
+\bar default
+):
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+lw $s1, offset ($s2)      # $s1 ← M[$s2+offset]
+\end_layout
+
+\begin_layout LyX-Code
+sw $s1, offset ($s2)      # M[$s2+offset] ← $s1
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Istruzioni di 
+\series bold
+branch condizionali
+\series default
+ (controllo di flusso):
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+beq $s1, $s2, L1          # go to L1 if ($s1 == $s2)
+\end_layout
+
+\begin_layout LyX-Code
+bne $s1, $s2, L1          # go to L1 if ($s1 != $s2)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Istruzioni di 
+\series bold
+branch incondizionali
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+j L1                      # jump to L1
+\end_layout
+
+\begin_layout LyX-Code
+jr $s1                    # jump to address contained in $s1
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Formato delle istruzioni MIPS a 32 bit
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Tipo R
+\series default
+ (Register):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Istruzioni ALU
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Tipo I 
+\series default
+(Immediate):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Istruzioni immediate
+\end_layout
+
+\begin_layout Itemize
+Istruzioni load/store
+\end_layout
+
+\begin_layout Itemize
+Branch condizionali
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Tipo J 
+\series default
+(Jump):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Istruzioni di jump incondizionato
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Formato R per istruzioni ALU Register-Register 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opcode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rd
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+shamt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+funct
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opcode
+\series default
+: Identifica il tipo di istruzione ALU
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rs
+\series default
+: Primo operando 
+\series bold
+sorgente
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rt
+\series default
+: Secondo operando 
+\series bold
+sorgente
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rd
+\series default
+: Registro di destinazione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+shamt
+\series default
+: Quantità di shift
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+funct
+\series default
+: Identifica diversi tipi di istruzioni ALU
+\end_layout
+
+\begin_layout Subsubsection*
+Formato I per istruzioni LOAD/STORE
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opcode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rt
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+offset
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opcode
+\series default
+: Identifica il tipo di istruzione ALU
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rs
+\series default
+: Registro base
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rt
+\series default
+: Registro destinazione o sorgente per i dati caricati o salvati in memoria
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+offset
+\series default
+: Viene utilizzato (estendendolo in segno) sommato con l'indirizzo del base
+ register
+\end_layout
+
+\begin_layout Subsubsection*
+Formato I per istruzioni immediate ALU
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opcode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rt
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+immediate
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opcode
+\series default
+: Identifica il tipo di istruzione ALU
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rs
+\series default
+: Registro sorgente
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rt
+\series default
+: Registro destinazione
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+immediate
+\series default
+: Contiene il valore dell'operando immediato (nel range 
+\begin_inset Formula $-2^{15}$
+\end_inset
+
+ e 
+\begin_inset Formula $2^{15}-1$
+\end_inset
+
+ a causa del primo bit di segno)
+\end_layout
+
+\begin_layout Subsubsection*
+Formato I per istruzioni di branch condizionale
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opcode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+rt
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+address
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opcode
+\series default
+: Identifica il tipo di istruzione branch
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rs
+\series default
+: Primo registro da comparare
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rt
+\series default
+: Secondo registro da comparare
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+address
+\series default
+: Indica l'offset di parole relative alla posizione del program counter
+ (PC-relative word address)
+\end_layout
+
+\begin_layout Subsubsection*
+Formato J per i Jump incondizionati
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Opcode
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+address
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26 bit
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opcode
+\series default
+: Identifica il tipo di istruzione Jump
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+address
+\series default
+: Contiene i 26 bit più significativi dei 32 dell'indirizzo assoluto della
+ parola di memoria
+\end_layout
+
+\begin_layout Subsection*
+Esecuzione delle istruzioni MIPS
+\end_layout
+
+\begin_layout Standard
+Ogni istruzione del subset MIPS può essere implementata in 
+\series bold
+\bar under
+al massimo 5 cicli di clock
+\series default
+\emph on
+ 
+\emph default
+\bar default
+come segue:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Instruction Fetch Cycle
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Invia i contenuti del 
+\series bold
+program counter
+\series default
+ register alla 
+\series bold
+instruction memory
+\series default
+ e leggi l'istruzione corrente.
+\end_layout
+
+\begin_layout Enumerate
+Aggiorna il program counter aggiungendo 4 all'indirizzo corrente (ogni istruzion
+e sono 4 Bytes / 32 bits)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Instruction Decode and Register Read Cycle
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Decodifica l'istruzione corrente e legge i vari registri specificati nell'istruz
+ione
+\end_layout
+
+\begin_layout Enumerate
+L'estensione del segno nel campo dell'offset dell'istruzione viene fatta
+ in questo punto
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Execution Cycle
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+La 
+\series bold
+ALU opera sugli operandi
+\series default
+ preparati nei cicli precedenti a seconda del tipo di istruzione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Register-Register ALU Instructions
+\series default
+: L'ALU esegue le operazioni specificate dagli operandi
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Register-Immediate ALU Instructions
+\series default
+: L'ALU esegue l'operazione sul primo operando
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Memory Reference
+\series default
+: L'ALU aggiunge il registro base e l'offset per calcolare l'indirizzo effettivo
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Conditional branches
+\series default
+: Vengono comparati due registri letti e computate possibili indirizzi 
+\series bold
+branch target address
+\series default
+ aggiungendo l'estensione di segno al PC.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Memory Access (ME):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Le istruzioni di LOAD richiedono un accesso in lettura alla Data Memory
+ utilizzando l'indirizzo effettivo
+\end_layout
+
+\begin_layout Enumerate
+Le istruzioni di STORE richiedono un accesso in scrittura alla Data Memory
+ utilizzando l'indirizzo effettivo per scrivere i dati dall'indirizzo sorgente
+\end_layout
+
+\begin_layout Enumerate
+I branch condizionali possono aggiornare il contenuto del Program Counter
+ con i branch target address, se il risultato è 
+\emph on
+true
+\end_layout
+
+\begin_layout Standard
+Questa fase di memory access non è presente in tutte le istruzioni! Alcune
+ non hanno bisogno di questa fase.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Write-Back Cycle
+\series default
+ 
+\series bold
+(WB)
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Le istruzioni di LOAD scrivono i dati letti dalla memoria nel registro di
+ destinazione
+\end_layout
+
+\begin_layout Enumerate
+Le istruzioni ALU scrivono i risultati della ALU nel registro di destinazione
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Latenza delle istruzioni
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tipo di istruzione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Instruct.
+ Mem.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Register read
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ALU op.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Data Memory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Write Back
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Total Latency
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ALU Instr.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 ns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Load
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 ns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Store
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7 ns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cond.Branch
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 ns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Jump
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 ns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione base del data path MIPS
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 001.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+instruction memory
+\series default
+ (read-only memory) è separata dalla 
+\series bold
+data memory
+\end_layout
+
+\begin_layout Itemize
+I 32 registri 
+\emph on
+general-purpose
+\emph default
+ sono organizzati in un 
+\series bold
+register file
+\series default
+ (
+\series bold
+RF
+\series default
+) con due porte in lettura e una porta in scrittura
+\end_layout
+
+\begin_layout Subsection*
+Implementazione della fase di Instruction Fetch
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 002.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione delle istruzioni ALU
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 003.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione dell'ALU e istruzioni LOAD/STORE
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 004.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione dei branch condizionali
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 005.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione del data path MIPS
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 006.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione del data path MIPS con unità di controllo
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 007.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione multi-cycle
+\end_layout
+
+\begin_layout Itemize
+Abbiamo detto che l'esecuzione di una istruzione viene distribuita su più
+ cicli (5 per MIPS)
+\end_layout
+
+\begin_layout Itemize
+Il ciclo base è lungo 
+\begin_inset Formula $5\, ns$
+\end_inset
+
+, quindi la durata massima di una istruzione è 
+\begin_inset Formula $10\, ns$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Implementazione di una CPU multi-cycle:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ogni fase della esecuzione di una istruzione richiede un ciclo di clock
+\end_layout
+
+\begin_layout Itemize
+Ogni modulo può essere utilizzato più di una volta per ogni istruzione in
+ diversi cicli di clock.
+ 
+\series bold
+Quindi
+\series default
+ è possibile 
+\series bold
+condividere dei moduli
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Abbiamo bisogno di registri interni per salvare i valori da utilizzare nei
+ cicli di clock seguenti.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Pipelining
+\end_layout
+
+\begin_layout Standard
+È una tecnica per l'ottimizzazione delle performance, basata sulla sovrapposizio
+ne dell'esecuzione di istruzioni multiple derivanti da un flusso di esecuzione
+ sequenziale.
+\end_layout
+
+\begin_layout Standard
+Il pipelining 
+\bar under
+utilizza il parallelismo tra le istruzioni in uno stream sequenziale
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Idea base:
+\series default
+ L'esecuzione di una istruzione viene divisa in più fasi (pipelines stages)
+ che richiedono una frazione del tempo necessario per completare l'istruzione.
+\end_layout
+
+\begin_layout Itemize
+Gli stages sonocollegati tra di loro dalla pipeline: l'istruzione entra
+ nella pipeline da una parte, passa per vari stages e esce dall'altra parte,
+ come su una catena d'assemblaggio.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vantaggio
+\series default
+: È una tecnica di 
+\begin_inset Quotes eld
+\end_inset
+
+parallelismo
+\begin_inset Quotes erd
+\end_inset
+
+ trasparente al programmatore.
+\end_layout
+
+\begin_layout Itemize
+Come su una catena d'assemblaggio di automobili, in un ciclo entra una automobil
+e e ne esce una nuova, non modifichiamo il tempo necessario per completare
+ una automobile, ma aumentiamo il numero di automobili prodotte simultaneamente
+ e la frequenza per completarle.
+\end_layout
+
+\begin_layout Subsubsection*
+Esecuzione sequenziale vs.
+ pipelining
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+IF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+EX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ME
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+WB
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instruction Fetch
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instruction Decode
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Execution
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Memory Access
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Write Back
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 008.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I vari stage della pipeline 
+\bar under
+devono
+\bar default
+ essere 
+\series bold
+sincronizzati
+\series default
+: la durata di un ciclo di clock è definita dal tempo necessario allo stage
+ più lento della pipeline.
+\end_layout
+
+\begin_layout Itemize
+Se gli stages sono perfettamente bilanciati, lo 
+\series bold
+speedup ideale
+\series default
+ che otteniamo ad utilizzare la pipeline invece dell'esecuzione sequenziale
+ è pari al numero di stage da attraversare (in questo caso 5, quindi x5).
+\end_layout
+
+\begin_layout Itemize
+Se consideriamo una CPU senza pipelining, con ciclo di clock di 8 ns e la
+ CPU2 con 5 stages da 2ns:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La 
+\series bold
+latenza
+\series default
+ di ogni istruzione peggiora (da 8 a 10 ns)
+\end_layout
+
+\begin_layout Itemize
+Però il 
+\series bold
+throughput
+\series default
+ (numero di istruzioni completate nell'unità di tempo) aumenta di 4 volte
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Se consideriamo una CPU senza pipelining, con 5 cicli di clock di 2 ns e
+ la CPU2 con 5 stages da 2ns:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La 
+\series bold
+latenza
+\series default
+ di ogni istruzione 
+\bar under
+resta invariata
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+throughput
+\series default
+ (numero di istruzioni completate nell'unità di tempo) aumenta di 5 volte
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Le varie fasi della pipeline riviste per i vari tipi di istruzione
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 009.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Implementazione della pipeline MIPS
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 010.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Risorse utilizzate nella pipeline
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 011.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+IM = Instruction Memory
+\end_layout
+
+\begin_layout Itemize
+REG = Register File
+\end_layout
+
+\begin_layout Itemize
+DM = Data Memory
+\end_layout
+
+\begin_layout Subsection*
+Il problema degli 
+\begin_inset Quotes eld
+\end_inset
+
+hazards
+\begin_inset Quotes erd
+\end_inset
+
+ (pericoli)
+\end_layout
+
+\begin_layout Itemize
+Un 
+\emph on
+hazard
+\emph default
+ viene creato quando c'è una dipendenza tra istruzioni, le istruzioni sono
+ vicine e quindi la pipeline cambia l'ordine di accesso agli operandi coinvolti
+ nella dipendenza (compromettendo il risultato)
+\end_layout
+
+\begin_layout Itemize
+L'
+\emph on
+hazard
+\emph default
+ impedice alla prossima istruzione della pipeline di essere eseguita nel
+ suo ciclo di clock previsto
+\end_layout
+
+\begin_layout Itemize
+Gli 
+\emph on
+hazards
+\emph default
+ 
+\series bold
+riducono le performance
+\series default
+ dello speedup ideale guadagnato dalla pipeline.
+\end_layout
+
+\begin_layout Subsection*
+Tipi di hazards
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Structural Hazards
+\series default
+: Tentativo di utilizzare la stessa risorsa da diverse istruzioni simultaneament
+e
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio: memoria singola per istruzioni e dati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Data Hazards
+\series default
+: Tentativo di utilizzare un risultato prima che sia pronto
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio: istruzione dipendente dal risultato di una precedente istruzione
+ ancora in pipeline
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Control Hazards
+\series default
+: Tentativo di fare una decisone riguardo alla prossima istruzione da eseguire,
+ prima che la condizione sia valutata
+\end_layout
+
+\begin_layout Subsubsection*
+Structural Hazards
+\end_layout
+
+\begin_layout Standard
+Non ce ne sono nella architettura MIPS:
+\end_layout
+
+\begin_layout Itemize
+La 
+\emph on
+instruction memory
+\emph default
+ è separata dalla 
+\emph on
+data memory
+\end_layout
+
+\begin_layout Itemize
+Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
+ da una istruzione e accesso in lettura da parte di un'altra istruzione
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 012.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Data Hazards
+\end_layout
+
+\begin_layout Standard
+Se le istruzioni eseguite nella pipeline sono 
+\series bold
+dipendenti
+\series default
+, ci possono essere data hazards se le istruzioni sono troppo vicine.
+\end_layout
+
+\begin_layout Standard
+Esempio:
+\end_layout
+
+\begin_layout LyX-Code
+sub $2, $1, $3      # Reg.
+ $2 scritto da sub
+\end_layout
+
+\begin_layout LyX-Code
+and $12, $2, $5     # 1° operando ($2) dipende da un sub
+\end_layout
+
+\begin_layout LyX-Code
+or $13, $6, $2      # 2° operando ($2) dipende da un sub
+\end_layout
+
+\begin_layout LyX-Code
+add $14, $2, $2     # 1° ($2) & 2° ($2) dipende da un sub
+\end_layout
+
+\begin_layout LyX-Code
+sw $15, 100($2)     # Registro base ($2) dipende da un sub
+\end_layout
+
+\begin_layout Standard
+La situazione risulta abbastanza chiara dalla figura seguente:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 013.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Data Hazards: Possibili soluzioni
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Compilation Techniques 
+\series default
+(in fase di compilazione):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Inserire delle istruzioni 
+\series bold
+nop
+\series default
+ (no operation)
+\end_layout
+
+\begin_layout Itemize
+Fare scheduling dele istruzioni (scambiare l'ordine etc...) per evitare che
+ istruzioni correlate siano troppo vicine
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il compilatore tenta di inserire istruzioni indipendenti tra quelle correlate
+\end_layout
+
+\begin_layout Itemize
+Quando il compilatore non trova istruzioni indipendenti, inserisce 
+\series bold
+nop
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Hardware Techniques
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Inserimento di 
+\begin_inset Quotes eld
+\end_inset
+
+bubbles
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\emph on
+stalls 
+\emph default
+(stalli) nella pipeline.
+\end_layout
+
+\begin_layout Itemize
+Data 
+\emph on
+forwarding
+\emph default
+ o 
+\emph on
+bypassing
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Inserimento di nops
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 014.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Scheduling
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 015.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Inserimento di 
+\emph on
+stalls
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 016.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Forwarding
+\end_layout
+
+\begin_layout Standard
+Il data forwarding utilizza risultati temporanei memorizzati nei registri
+ della pipeline invece di aspettare il write back dei risultati nel register
+ file.
+\end_layout
+
+\begin_layout Standard
+Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
+ dai registri della pipeline per evitare l'inserimento di stalli.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 017.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 018.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ci sono tre forwarding paths:
+\end_layout
+
+\begin_layout Itemize
+EX/EX path
+\end_layout
+
+\begin_layout Itemize
+MEM/EX path
+\end_layout
+
+\begin_layout Itemize
+MEM/ID path
+\end_layout
+
+\begin_layout Subsubsection*
+Implementazione di MIPS con la forwarding unit
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 019.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Data Hazards: Load/Use hazard
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 020.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Facendo forwarding utilizzando il percorso MEM/EX è 
+\series bold
+necessario 1 stallo
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 021.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 022.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con un forwarding su MEM/MEM path si risolve:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 023.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Forwarding paths
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 024.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I percorsi di forwarding sono:
+\end_layout
+
+\begin_layout Itemize
+EX/EX
+\end_layout
+
+\begin_layout Itemize
+MEM/EX
+\end_layout
+
+\begin_layout Itemize
+MEM/ID
+\end_layout
+
+\begin_layout Itemize
+MEM/MEM (per LOAD/STORE)
+\end_layout
+
+\begin_layout Subsubsection*
+Pipeline ottimizzata
+\end_layout
+
+\begin_layout Itemize
+Il register file viene utilizzato in due stages: Accesso in read durante
+ fase ID e accesso in write durante la fase WB
+\end_layout
+
+\begin_layout Itemize
+Cosa succede se read e write si riferiscono allo stesso register nello 
+\series bold
+stesso
+\series default
+ ciclo di clock? È necessario 
+\series bold
+inserire una stall
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Pipeline ottimizzata: assumiamo che le read del register file accadono nella
+ seconda metà del ciclo di clock e che le write del register file accadono
+ nella prima metà del ciclo di clock.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Potremmo aver bisogno di un clock a frequenza doppia di quello normale della
+ pipeline
+\end_layout
+
+\begin_layout Itemize
+Evitiamo così di dover inserire delle stall.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 025.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+IM = Instruction Memory
+\end_layout
+
+\begin_layout Itemize
+REG = Register File
+\end_layout
+
+\begin_layout Itemize
+DM = Data Memory
+\end_layout
+
+\begin_layout Subsubsection*
+Data Hazards nella pipeline ottimizzata
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 026.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In questo caso è necessario inserire 
+\series bold
+due
+\series default
+ stalls, oppure usare i forwarding paths
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 027.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I forwarding paths sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+EX/EX path
+\end_layout
+
+\begin_layout Itemize
+MEM/EX path
+\end_layout
+
+\begin_layout Itemize
+MEM/MEM path (for LOAD/STOREs)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Data Hazards
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAW (READ AFTER WRITE) hazards
+\series default
+: Istruzione n+1 tenta di leggere un registro sorgente scritto prima che
+ l'istruzione 
+\emph on
+n
+\emph default
+ lo abbia scritto nel register file.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Esempio:
+\end_layout
+
+\begin_layout LyX-Code
+add $r1, $r2, $r3
+\end_layout
+
+\begin_layout LyX-Code
+sub $r4, $r1, $r5
+\end_layout
+
+\begin_layout Itemize
+Utilizzando il forwarding è sempre possibile questo conflitto senza introdurre
+ stalls, eccetto per i load/use hazards 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Ci sono anche altri tipi di data hazards nella pipeline:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WAW (WRITE AFTER WRITE)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WAR (WRITE AFTER READ)
+\end_layout
+
+\begin_layout Subsubsection*
+WAW - Write After Write
+\end_layout
+
+\end_body
+\end_document
