@@ -1839,7 +1839,7 @@ Implementazione base del data path MIPS
 \align center
 \begin_inset Graphics
 	filename 001.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1880,7 +1880,7 @@ Implementazione della fase di Instruction Fetch
 \align center
 \begin_inset Graphics
 	filename 002.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1895,7 +1895,7 @@ Implementazione delle istruzioni ALU
 \align center
 \begin_inset Graphics
 	filename 003.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1925,7 +1925,7 @@ Implementazione dei branch condizionali
 \align center
 \begin_inset Graphics
 	filename 005.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1940,7 +1940,7 @@ Implementazione del data path MIPS
 \align center
 \begin_inset Graphics
 	filename 006.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -1955,7 +1955,7 @@ Implementazione del data path MIPS con unità di controllo
 \align center
 \begin_inset Graphics
 	filename 007.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2205,7 +2205,7 @@ Write Back
 \align center
 \begin_inset Graphics
 	filename 008.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2290,7 +2290,7 @@ Le varie fasi della pipeline riviste per i vari tipi di istruzione
 \align center
 \begin_inset Graphics
 	filename 009.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2305,7 +2305,7 @@ Implementazione della pipeline MIPS
 \align center
 \begin_inset Graphics
 	filename 010.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2320,7 +2320,7 @@ Risorse utilizzate nella pipeline
 \align center
 \begin_inset Graphics
 	filename 011.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2452,7 +2452,7 @@ Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
 \align center
 \begin_inset Graphics
 	filename 012.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2504,7 +2504,7 @@ La situazione risulta abbastanza chiara dalla figura seguente:
 \align center
 \begin_inset Graphics
 	filename 013.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2596,7 +2596,7 @@ Inserimento di nops
 \align center
 \begin_inset Graphics
 	filename 014.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2611,7 +2611,7 @@ Scheduling
 \align center
 \begin_inset Graphics
 	filename 015.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2628,7 +2628,7 @@ stalls
 \align center
 \begin_inset Graphics
 	filename 016.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2654,7 +2654,7 @@ Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
 \align center
 \begin_inset Graphics
 	filename 017.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2665,7 +2665,7 @@ Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
 \align center
 \begin_inset Graphics
 	filename 018.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2696,7 +2696,7 @@ Implementazione di MIPS con la forwarding unit
 \align center
 \begin_inset Graphics
 	filename 019.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2711,7 +2711,7 @@ Data Hazards: Load/Use hazard
 \align center
 \begin_inset Graphics
 	filename 020.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2728,7 +2728,7 @@ necessario 1 stallo
 \align center
 \begin_inset Graphics
 	filename 021.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2739,7 +2739,7 @@ necessario 1 stallo
 \align center
 \begin_inset Graphics
 	filename 022.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2754,7 +2754,7 @@ Con un forwarding su MEM/MEM path si risolve:
 \align center
 \begin_inset Graphics
 	filename 023.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2769,7 +2769,7 @@ Forwarding paths
 \align center
 \begin_inset Graphics
 	filename 024.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2838,7 +2838,7 @@ Evitiamo così di dover inserire delle stall.
 \align center
 \begin_inset Graphics
 	filename 025.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2865,7 +2865,7 @@ Data Hazards nella pipeline ottimizzata
 \align center
 \begin_inset Graphics
 	filename 026.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2884,7 +2884,7 @@ due
 \align center
 \begin_inset Graphics
 	filename 027.png
-	scale 30
+	scale 40
 
 \end_inset
 
@@ -2963,6 +2963,185 @@ WAR (WRITE AFTER READ)
 
 \begin_layout Subsubsection*
 WAW - Write After Write
+\end_layout
+
+\begin_layout Standard
+L'istruzione 
+\begin_inset Formula $n+1$
+\end_inset
+
+ tenta di scrivere un operando di destinazione prima che sia stato scritto
+ dall'istruzione precedente 
+\begin_inset Formula $n$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+Quindi le operazioni di write vengono eseguite nell'ordine sbagliato
+\end_layout
+
+\begin_layout Itemize
+Questo tipo di hazard può presentarsi sula pipeline MIPS quando si estendono
+ operazioni multi-ciclo per eseguire o accedere alla memoria dati.
+\end_layout
+
+\begin_layout Standard
+Ad esempio, se assumiamo che la scrittura su registro delle istruzioni ALU
+ avvenga nel quarto stage e che le istruzioni di LOAD richiedano 2 stages
+ (MEM1 e MEM2) per accedere alla memoria dati, possiamo avere:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 028.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se assumiamo che le operazioni ALU floating point richiedano una esecuzione
+ multi-ciclo, abbiamo:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 029.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+WAR - Write After Read
+\end_layout
+
+\begin_layout Standard
+L'istruzione 
+\begin_inset Formula $n+1$
+\end_inset
+
+ tenta di scrivere un operando di destinazione prima che venga letto dall'istruz
+ione precedente 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Quindi l'istruzione 
+\begin_inset Formula $n$
+\end_inset
+
+ legge il valore sbagliato.
+\end_layout
+
+\begin_layout Itemize
+Esempio:
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+sw $y, 0($x)         # sw deve leggere $x
+\end_layout
+
+\begin_layout LyX-Code
+addi $x, $x, 4       # addi scrive $x
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Gli hazards di tipo WAR non possono accadere nella pipeline MIPS perché
+ le operazioni di read avvengono sempre nello stage ID, mentre le operazioni
+ di write avvengono sempre nello stage WB
+\end_layout
+
+\begin_layout Itemize
+Come prima, se assumiamo che la scrittura di registri delle istruzioni ALU
+ avviene nel quarto stage e che abbiamo bisogno due stages per accedere
+ alla memoria dati, alcune operazioni possono leggere gli operandi troppo
+ tardi nella pipeline.
+\end_layout
+
+\begin_layout Subsection*
+Problemi di performance nella Pipeline
+\end_layout
+
+\begin_layout Standard
+Come abbiamo visto la Pipeline aumenta il throughput ma non la latenza delle
+ istruzioni.
+ 
+\end_layout
+
+\begin_layout Standard
+In realtà il pipelineing aumenta leggermente la latenza di tutte le istruzioni
+ a causa di overhead e sbilanciamento tra le latenze delle istruzioni.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Metriche di Performance
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+IC=\text{Instruction Count}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\#Clock\, Cycles=IC\,+\,\#Stall\, Cycles\,+\,4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI\,=\, Clock\, Per\, Instruction\,=\,\frac{\#Clock\, Cycles}{IC}=\frac{\left(IC+\#Stall\, Cycles+4\right)}{IC}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MIPS=\frac{f_{clock}}{\left(CPI\cdot10^{6}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
