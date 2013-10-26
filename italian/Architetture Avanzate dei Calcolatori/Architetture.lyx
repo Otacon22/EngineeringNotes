@@ -3141,6 +3141,279 @@ Esempio
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula 
+\[
+IC=\text{Instruction Count}=5
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\#Clock\, Cycles=12
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI\,=\,2.4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MIPS=208.3
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 030.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Metriche di performance (2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+IC_{\text{per iterazione}}=m
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\#Clock\, Cycles_{\text{per iterazione}}=IC_{\text{per iterazione}}+\#Stall\, Cycles_{\text{per iterazione}}+4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI_{\text{per iterazione}}=\frac{\left(IC_{\text{per iterazione}}+\#Stall\, Cycles_{\text{per iterazione}}+4\right)}{IC_{\text{per iterazione}}}=\frac{\left(m+k+4\right)}{m}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+MIPS_{\text{per iterazione}}=\frac{f_{clock}}{CPI_{\text{per iterazione}}\cdot10^{6}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Metriche di performance asintotiche
+\end_layout
+
+\begin_layout Standard
+Consideriamo 
+\begin_inset Formula $n$
+\end_inset
+
+ iterazioni di un ciclo composto da 
+\begin_inset Formula $m$
+\end_inset
+
+ istruzioni per iterazione che richiedono 
+\begin_inset Formula $k$
+\end_inset
+
+ stalli per iterazione (nel segutio 
+\begin_inset Formula $AS$
+\end_inset
+
+ starà per 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+asintotico
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+IC_{AS}=Instruction\, Count_{AS}=m\cdot n
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\#Clock\, Cycles=IC_{AS}+\#Stall\, Cycles_{AS}+4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI_{AS}=lim_{n\rightarrow\infty}\frac{\left(IC_{AS}+\#Stall\, Cycles_{AS}+4\right)}{IC_{AS}}=\frac{\left(m+k\right)}{m}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+MIPS_{AS}=\frac{f_{clock}}{CPI_{AS}\cdot10^{6}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il CPI ideale per un processore con pipeline sarebbe 1, ma gli stalli fanno
+ degradare le performance, quindi abbiamo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI_{medio}PIPE\,=\, CPI\, Ideal+Pipe\, Stall\, Cycles_{\text{per istruzione}}=1+Pipe\, Stall\, Cycles_{\text{per istruzione}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I cicli di stallo per iterazione sono dovuti a structural hazards, data
+ harzards, control hazards e memory stalls
+\end_layout
+
+\begin_layout Subsubsection*
+Speedup della pipeline
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pipeline\, speedup\,=\frac{Avarage\, execution\, time_{\text{senza pipeline}}}{Avarage\, execution\, time_{\text{con pipeline}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Pipeline\, speedup\,=\frac{Avarage\, CPI_{\text{senza pipeline}}}{Avarage\, CPI_{\text{con pipeline}}}\cdot\frac{Clock\, Cycle_{\text{senza pipeline}}}{Clock\, Cycle_{\text{con pipeline}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se ignoriamo l'overhead sul tempo di clock a causa del pipelining e assumiamo
+ che i vari stage sono perfettamente bilanciati, il tempo di clock di due
+ processori può essere uguale, quindi:
+\begin_inset Formula 
+\[
+Pipeline\, speedup\,=\,\frac{Avarage\, CPI_{\text{senza pipeline}}}{1+Pipe\, Stalls\, per\, instruction}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Caso semplice
+\series default
+: Tutte le istruzioni prendono lo stesso numero di cicli, che deve essere
+ uguale al numero di stadi della pipeline (chiamata 
+\emph on
+profondità della pipeline
+\emph default
+):
+\begin_inset Formula 
+\[
+Pipeline\, speedup\,=\,\frac{Pipeline\, depth}{1+Pipeline\, Stalls\, per\, instruction}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se non ci sono stalli nella pipeline (caso ideale), questo ci porta al risultato
+ intuitivo che il pipelining può aumentare le performance man mano che aumenta
+ la profondità della pipeline.
+\end_layout
+
+\begin_layout Standard
+Qual'è l'impatto di performance dei branch condizionali?
+\begin_inset Formula 
+\[
+Pipeline\, speedup\,=\,\frac{Pipeline\, depth}{1+Pipe\, Stall\, Cycles\, per\, instruction\, due\, to\, branches}=\frac{Pipeline\, depth}{1+Branch\, Frequency\cdot Branch\, Penality}
+\]
+
+\end_inset
+
 
 \end_layout
 
