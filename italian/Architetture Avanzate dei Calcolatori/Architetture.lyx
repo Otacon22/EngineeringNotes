@@ -4903,11 +4903,19 @@ Tecniche di predizione dinamica dei branch
 \series bold
 Idea base
 \series default
-: utilizzare i comportamenti precedenti dei branch per prevedere il futuro.
+: utilizzare i 
+\bar under
+comportamenti dei branch precedenti
+\bar default
+ per 
+\bar under
+prevedere il futuro
+\bar default
+.
 \end_layout
 
 \begin_layout Standard
-Utilizziamo hardware per predirre dinamicamente il risultato di un branch.
+Utilizziamo hardware per prevedere dinamicamente il risultato di un branch.
  La predizione dipenderà sul comportamento del branch a run time e cambierà
  se la branch cambia il suo comportamento durante l'esecuzione.
 \end_layout
@@ -4918,7 +4926,11 @@ Partiamo con uno schema di predizione di branch semplice e poi esaminiamo
 \end_layout
 
 \begin_layout Standard
-I meccanismi principali di predizione sono due:
+I 
+\bar under
+meccanismi principali
+\bar default
+ di predizione sono due:
 \end_layout
 
 \begin_layout Itemize
@@ -4926,7 +4938,7 @@ I meccanismi principali di predizione sono due:
 \series bold
 Branch outcome predictor
 \series default
-: per predirre la direzione di un branch (taken o not taken)
+: per prevedere la direzione di un branch (taken o not taken)
 \end_layout
 
 \begin_layout Itemize
@@ -4934,11 +4946,2140 @@ Branch outcome predictor
 \series bold
 Branch target predictor
 \series default
- o 
+ (BTP) o 
 \series bold
 branch target buffer
 \series default
-: per predirre il branch target address in caso di branch taken
+ : per prevedere il branch target address in caso di branch taken
+\end_layout
+
+\begin_layout Standard
+Questi moduli sono utilizzati dall'unità di 
+\emph on
+instruction fetch
+\emph default
+ per prevedere la prossima istruzione da leggere nella cache delle istruzioni
+ (I-cache)
+\end_layout
+
+\begin_layout Itemize
+Se il branch è not taken → PC viene incrementato
+\end_layout
+
+\begin_layout Itemize
+Se il branch è taken → BTP (il predittore) dà l'indirizzo di destinazione
+\end_layout
+
+\begin_layout Subsection*
+Branch History Table - BHT (o Branch Prediction Buffer)
+\end_layout
+
+\begin_layout Standard
+È una tabella che contiene 1 bit per ogni entry che dice se la branch è
+ stata 
+\series bold
+taken
+\series default
+ recentemente o no.
+ Questa tabella è indicizzata dalla parte meno significativa dell'indirizzo
+ dell'istruzione di branch
+\end_layout
+
+\begin_layout Itemize
+Predizione: abbiamo un indizio che si assume essere corretto e iniziamo
+ a fare il fetch nella direzione prevista.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se scopriamo che la predizione era sbagliata, il bit di predizione viene
+ invertito e risalvato.
+ La pipeline viene ripulita e la sequenza corretta viene eseguita.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La tabella non ha tags (ogni accesso è un 
+\begin_inset Quotes eld
+\end_inset
+
+hit
+\begin_inset Quotes erd
+\end_inset
+
+) e il bit di predizione può essere messo da un'altra branch con lo stesso
+ indirizzo meno significativo, ma non importa.
+ Questo tipo di predizione 
+\series bold
+fornisce solo un indizio.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 045.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Accuratezza della Branch History Table
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Abbiamo una predizione errata quando: la predizione è sbagliata per quel
+ branch oppure se lo stesso indice è stato utilizzato per due branch diversi.
+ Per risolvere il secondo problema è succificente aumentare il numero di
+ righe nella tabella o utilizzare una buona funzione di hash.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Altri problemi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In una branch che fa parte di un loop, poiché utilizziamo un solo bit per
+ la tabella, abbiamo una predizione errata due volte quando il loop termina
+ (invece di una volta sola).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nell'ultimo ciclo del loop, poichè la predizione dice 
+\begin_inset Quotes eld
+\end_inset
+
+taken
+\begin_inset Quotes erd
+\end_inset
+
+ mentre noi dobbiamo uscire dal loop
+\end_layout
+
+\begin_layout Itemize
+Quando ri-entriamo di nuovo nello stesso loop, sbagliamo di nuovo a prevedere
+ il branch perché avevamo cambiato il bit quando eravamo usciti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Sembra un problema trascurabile, ma se consideriamo che abbiamo 2 predizioni
+ scorrette e 8 corrette significa che l'accuratezza della predizione è solo
+ dell'80%!
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Modifica utilizzando 2 bit
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se utilizziamo due bit invece di uno possiamo fare che per modificare la
+ predizione sono necessari due 
+\begin_inset Quotes eld
+\end_inset
+
+errori
+\begin_inset Quotes erd
+\end_inset
+
+ invece di uno solo.
+ 
+\end_layout
+
+\begin_layout Itemize
+In questo modo nel caso precedente del loop sbagliamo solo 1 volta la predizione
+ → 90% di accuratezza
+\end_layout
+
+\begin_layout Itemize
+I due bit vengono utilizzati per memorizzare uno dei 4 stati di una macchina
+ a stati finiti.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 046.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Branch History Table a n-bit
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I valori vanno da 0 a 
+\begin_inset Formula $2^{n}-1$
+\end_inset
+
+.
+ Quando il contatore rappresentato dagli 
+\begin_inset Formula $n$
+\end_inset
+
+ bit è superiore o uguale a 
+\begin_inset Formula $2^{n}-1$
+\end_inset
+
+, il branch viene previsto come 
+\series bold
+taken
+\series default
+, altrimenti 
+\series bold
+untaken
+\end_layout
+
+\begin_layout Itemize
+Il contatore viene incrementato quando il branch è taken e decrementato
+ quando il branch è untaken.
+\end_layout
+
+\begin_layout Itemize
+Diversi studi su predittori a 
+\emph on
+n-bit
+\emph default
+ mostrano come il caso a 2-bit sia comunque sufficiente e abbastanza performante.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Correlare i predittori dei branch
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Idea:
+\series default
+ i comportamenti dei branch sono correlati, cioè c'è correlazione tra le
+ varie branch oltre che tra la stessa branch.
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 047.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il branch 
+\series bold
+bb3 
+\series default
+è correlato ai branch precedenti 
+\series bold
+bb1 
+\series default
+e
+\series bold
+ bb2
+\series default
+.
+ Se i branch precedenti sono entrmabi 
+\emph on
+not taken
+\emph default
+, allora 
+\series bold
+bb3
+\series default
+ sarà taken (a!=b).
+\end_layout
+
+\begin_layout Itemize
+Questo tipo di predittori sono chiamati 
+\series bold
+\emph on
+correlating branch predictors
+\series default
+\emph default
+ o 
+\series bold
+\emph on
+2-level predictors
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Per esempio un 
+\emph on
+correlating predictor 
+\emph default
+(1,1) significa un predittore ad 1 bit con 1 bit di correlazione.
+ Il comportamento dell'ultimo branche è utilizzato per scegliere
+\end_layout
+
+\begin_layout Itemize
+Esempio:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 048.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Registro se gli ultimi 
+\begin_inset Formula $k$
+\end_inset
+
+ branch sono stati taken o not taken.
+\end_layout
+
+\begin_layout Itemize
+Il branch viene previsto in base a quello che è successo nel branch precedente
+ selezionando appropriamente un bit dalla tabella:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Una predizione viene utilizzata se l'ultima branch eseguita (non necessariamente
+ la stessa branch) era taken
+\end_layout
+
+\begin_layout Itemize
+L'altra predizione viene utilizzata se l'ultima branch eseguita (non necessariam
+ente la stessa branch) era not taken
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Più in generale, un 
+\emph on
+correlating branch predictor
+\emph default
+ 
+\series bold
+(m, n)
+\series default
+ registra le ultime 
+\begin_inset Formula $m$
+\end_inset
+
+ branch in 
+\begin_inset Formula $2^{m}$
+\end_inset
+
+Branch History Tables, ognuna delle quali è un predittore a 
+\begin_inset Formula $n$
+\end_inset
+
+ bit.
+ Il buffer di predizione dei branch può essere indirizzato utilizzando una
+ concatenazione di bits meno significativi del branch address insieme con
+ 
+\begin_inset Formula $m$
+\end_inset
+
+ bit della history globale (quindi delle ultime 
+\begin_inset Formula $m$
+\end_inset
+
+ branch).
+\end_layout
+
+\begin_layout Itemize
+Esempio: Correlating Branch Predictor (2,2): Abbiamo 4 Branch History Tables
+ da 2 bit ciascuna.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 049.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+64 entries, indice di 6 bit composto da 2 bit di history globale e 4 bit
+ per la parte meno significativa dell'indirizzo della branch.
+\end_layout
+
+\begin_layout Itemize
+Ogni BHT è composta da 16 entries di 2 bit ciascuna.
+ Il branch address di 4 bit viene utilizzato per scegliere 4 entries (una
+ riga).
+\end_layout
+
+\begin_layout Itemize
+I 2 bit di history globale vengono utilizzati per scegliere una di 4 entries
+ in una riga (una delle 4 BHTs).
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+
+\series bold
+Accuratezza dei correlating predictors
+\end_layout
+
+\begin_layout Itemize
+Un predittore a 2 bit senza global history lo possiamo vedere come un predittore
+ (0,2).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 050.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Two-level Adaptive Branch Predictors
+\end_layout
+
+\begin_layout Itemize
+Il primo livello della history è registrato in uno o più registri da 
+\begin_inset Formula $k$
+\end_inset
+
+ bit, chiamati 
+\series bold
+Branch History Register (BHR)
+\series default
+, che registra i risultati delle ultime 
+\begin_inset Formula $k$
+\end_inset
+
+ branch.
+\end_layout
+
+\begin_layout Itemize
+Il secondo livello di history è registrato in uno (o più) tabelle chiamate
+ 
+\series bold
+Pattern History Table (PHT)
+\series default
+, di contatori a 2 bit
+\end_layout
+
+\begin_layout Itemize
+La BHR viene utilizzata per indirizzare il PHT per selezionare quale contatore
+ a 2 bit utilizzare.
+\end_layout
+
+\begin_layout Itemize
+Una volta che il contatore a 2 bit viene selezionato, la predizione viene
+ fatta con lo stesso metodo come nello schema del contatore a 2 bit.
+\end_layout
+
+\begin_layout Subsection*
+GA Predictor
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+BHT
+\series default
+: Predittore locale
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Indirizzato dai bit meno significativi del PC (branch address)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+GAs
+\series default
+: Predittore locale e globale
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Predittore a 2 livelli: PHT indirizzata dal contenuto di BHR (history globale)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 051.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+GShare
+\series default
+: Local XOR Global information
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È indirizzato dallo XOR tra i bit meno significativi del PC (branch address)
+ e il contenuto di BHR (history globale)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 052.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsection*
+Branch Target Buffer
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+BTB - 
+\series default
+Branch Target Buffer (Branch Target Predictor) è una cache che memorizza
+ il target address previsto per la prossima istruzione dopo la branch.
+\end_layout
+
+\begin_layout Itemize
+Possiamo accedere al BTB nello stadio IF utilizzando l'indirizzo istruzione
+ dell'istruzione detchata (una possibile branch) come indice per questa
+ cache.
+\end_layout
+
+\begin_layout Itemize
+la tipica entry del BTB è:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Exact Address of a Branch
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Predicted Target Address
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+predicted target address è espresso relativamente al PC.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Struttura del Branch Target Buffer
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 053.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nella BTB dobbiamo memorizzare il target address previsto solo per le branch
+ taken.
+\end_layout
+
+\begin_layout Itemize
+La entry della BTB è: 
+\series bold
+tag + Target address previsto
+\series default
+ (PC-relative) + 
+\series bold
+Bits per lo stato di predizione
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 054.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Commenti sulla branch prediction
+\end_layout
+
+\begin_layout Standard
+Senza la branch prediction, la quantità di 
+\begin_inset Quotes eld
+\end_inset
+
+parallelismo
+\begin_inset Quotes erd
+\end_inset
+
+ è abbastanza limitata poiché è limitata ad una singolo 
+\series bold
+basic block
+\series default
+, cioè un pezzo di codice privo di branches.
+\end_layout
+
+\begin_layout Standard
+Le tecniche di predizione di branch ci aiutano a migliorare il parallelismo.
+ 
+\end_layout
+
+\begin_layout Standard
+Nei metodi di predizione che abbiamo mostrato, facciamo fatch, issue e execute
+ di istruzione come se le predizioni fossero sempre corrette, mostrando
+ però sempre un metodo per risolvere le situazioni in cui non lo sono.
+\end_layout
+
+\begin_layout Standard
+Queste operazioni possono essere supportate dal 
+\series bold
+compilatore
+\series default
+ o 
+\series bold
+dall'hardware
+\series default
+.
+\end_layout
+
+\begin_layout Section*
+Instruction Level Parallelism
+\end_layout
+
+\begin_layout Standard
+In una macchina dotata di pipeline, il CPI viene derivato come: 
+\begin_inset Formula 
+\[
+CPI_{pipeline}=CPI_{ideale}+\text{Structural Stalls}+\text{Data Hazards Stalls}+\text{Control Stalls}+\text{Memory Stalls}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La riduzione di qualunque termine a destra ci permette di rendere 
+\begin_inset Formula $CPI_{pipeline}$
+\end_inset
+
+ sempre più vicino a 
+\begin_inset Formula $CPI_{ideale}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Aumentiamo le istruzioni per clock: 
+\begin_inset Formula $IPC=\frac{1}{CPI}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Caso migliore:
+\series default
+ il throughput massimo dovrebbe essere di una istruzione per clock: 
+\begin_inset Formula $IPC_{ideal}=1$
+\end_inset
+
+ e 
+\begin_inset Formula $CPI_{ideal}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 055.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Riassunto sulla pipeline
+\end_layout
+
+\begin_layout Itemize
+Gli Hazards limitano le performance
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Hazards strutturali
+\series default
+: abbiamo bisogno più 
+\bar under
+risorse hardware
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hazards dati
+\series default
+: abbiamo bisogno il 
+\bar under
+forwarding
+\bar default
+ e 
+\bar under
+compiler scheduling
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hazards controllo
+\series default
+: 
+\bar under
+early evaluation
+\bar default
+, 
+\bar under
+branch delay slot
+\bar default
+, 
+\bar under
+static branch prediction
+\bar default
+, 
+\bar under
+dynamic branch prediction
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aumentare la lunghezza della pipeline aumenta l'impatto degli hazards
+\end_layout
+
+\begin_layout Itemize
+La pipeline ci aiuta ad 
+\series bold
+aumentare il throughput, 
+\bar under
+non la latenza
+\series default
+\bar default
+.
+\end_layout
+
+\begin_layout Subsection*
+Riassunto tipi di Data hazards
+\end_layout
+
+\begin_layout Standard
+Data una sequenza di istruzioni
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 056.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Complex pipelining
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 057.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Unità floating-point con alta latenza o 
+\begin_inset Quotes eld
+\end_inset
+
+parzialmente pipelined
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Diverse funzioni e unità di memoria
+\end_layout
+
+\begin_layout Itemize
+Sistemi di memoria con tempo di accesso variabile
+\end_layout
+
+\begin_layout Subsection*
+Complex In-order Pipeline
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 058.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Delay writeback
+\series default
+ di modo che tutte le operazioni abbiano la stessa latenza nello stage 
+\series bold
+W
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le porte di write non sono mai affollate (una istanza in e una istanza out
+ per ogni ciclo)
+\end_layout
+
+\begin_layout Itemize
+Le istruzioni vengono inviate in ordine (di modo da gestire le eccezioni
+ in modo preciso)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Altri concetti base e definizioni
+\end_layout
+
+\begin_layout Itemize
+Per raggiungere le performance più elevate (per una data tecnologia), il
+ maggior parallelismo deve essere estratto dal programma.
+ In altre parole: 
+\series bold
+\bar under
+multiple-issue
+\end_layout
+
+\begin_layout Itemize
+Le dipendenze devono essere individuate e risolte e le istruzioni devono
+ essere re-ordinate (
+\series bold
+scheduled
+\series default
+) in modo da ottenere il parallelismo più elevato di istruzioni eseguibili
+ con le risorse a disposizione.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ILP - Instruction Level Parallelism = Sfrutta potenziali overlap di esecuzione
+ tra istruzioni non correlate tra loro
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'overlapping è possibile quando:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non ci sono hazards strutturali
+\end_layout
+
+\begin_layout Itemize
+Non ci sono hazards RAW, WAR o WAW.
+\end_layout
+
+\begin_layout Itemize
+Non ci sono Control hazards.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 059.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+2-issue MIPS Pipeline architecture
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 060.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Due istruzioni inviate per clock:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+1 istruzione ALU o BR
+\end_layout
+
+\begin_layout Itemize
+1 istruzione LOAD/STORE
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+In una pipeline multiple-issue, il CPI ideale dovrebbe essere 
+\begin_inset Formula $CPI_{ideal}<1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Se consideriamo per esempio un processore a 2 issue, nel caso migliore il
+ throughput massimo sarebbe quello di completare due istruzioni per ciclo
+ di clock:
+\begin_inset Formula 
+\[
+IPC_{ideal}=2
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+CPI_{ideale}=0.5
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Dipendenze
+\end_layout
+
+\begin_layout Itemize
+Determinare le dipendenze tra le istruzione è critico per riuscire a definire
+ la quantità di parallelismo esistente in un programma
+\end_layout
+
+\begin_layout Itemize
+Se due istruzioni sono dipendenti, non possono essere eseguite in parallelo:
+ devono essere seguite in modo da essere solo partialmente sovrapposte.
+\end_layout
+
+\begin_layout Itemize
+Ci sono 
+\series bold
+tre diversi tipi di dipendenze
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Name dependences
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data dependences (or True Data Depencences)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Control Dependences
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Name dependences
+\end_layout
+
+\begin_layout Standard
+Sono quelle dipendenze che si presentano quando due istruzioni utilizzano
+ lo stesso registro o locazione di memoria (da cui il termine 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\bar under
+name
+\series default
+\bar default
+
+\begin_inset Quotes erd
+\end_inset
+
+), ma non c'è un flusso di dati tra le istruzioni associate a quel nome.
+\end_layout
+
+\begin_layout Itemize
+Due tipi di name dependences tra una istruzione 
+\begin_inset Formula $i$
+\end_inset
+
+ che precede una istruzione 
+\begin_inset Formula $j$
+\end_inset
+
+ nell'ordine del programma sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Antidependence
+\series default
+: Quando 
+\begin_inset Formula $j$
+\end_inset
+
+ scrive un registro o locazione di memoria che l'istruzione 
+\begin_inset Formula $i$
+\end_inset
+
+ legge (può generare un WAR).
+ L'ordine delle istruzioni originale deve essere preservato per assicurarsi
+ che 
+\begin_inset Formula $i$
+\end_inset
+
+ legga il valore corretto.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Output Dependence
+\series default
+: Quando 
+\begin_inset Formula $i$
+\end_inset
+
+ e 
+\begin_inset Formula $j$
+\end_inset
+
+ scrivono lo stesso registro o locazione di memoria (può generare un WAW).
+ L'ordine originale delle istruzioni deve essere preservato per assicurarsi
+ che il valore scritto alla fine corrisponda a quello di 
+\begin_inset Formula $j$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le name dependeces non sono delle vere data dependeces poiché non c'è nessun
+ valore (data flow) che viene trasmesso tra le istruzioni.
+\end_layout
+
+\begin_layout Itemize
+Se il name può essere cambiato in base alla semantica del programma, le
+ istruzioni non vanno in conflitto
+\end_layout
+
+\begin_layout Itemize
+Le dipendenze in locazioni di memoria sono più difficili da individuare
+ (problema della 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+memory disambiguation
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+) perché due indirizzi possono riferirsi alla stessa locazione ma possono
+ apparire diversi (ad esempio uno puntamento diretto, un altro per offset).
+ I conflitti sui registri invece sono più semplici da individuare.
+\end_layout
+
+\begin_layout Itemize
+Il 
+\series bold
+renaming
+\series default
+ può essere fatto dal compilatore dinamicamente o dall'hardware.
+\end_layout
+
+\begin_layout Subsubsection*
+Data dependences e Hazards
+\end_layout
+
+\begin_layout Standard
+Una dipendenza dati o name può generare un data hazard (RAW, WAW, WAR),
+ ma l'hazard e il numero di stalli per eliminare gli hazards sono una proprietà
+ della pipeline.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAW
+\series default
+ hazards corrispondono a true data dependences.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WAW
+\series default
+ hazards corrispondono a dipendenze di output.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WAR
+\series default
+ hazards corrispondono a anti-dipendenze.
+\end_layout
+
+\begin_layout Standard
+Le dipendenze sono una proprietà del programma, mentre gli hazards sono
+ una proprietà della pipeline.
+\end_layout
+
+\begin_layout Subsubsection*
+Control dependences
+\end_layout
+
+\begin_layout Standard
+Le dipendenze di controllo determinano l'ordinamento delle istruzioni.
+ L'ordinamento viene preservato con due proprietà:
+\end_layout
+
+\begin_layout Itemize
+Assicurarsi che nel flusso di istruzioni, le istruzioni che si presentano
+ prima di una branche vengano eseguite effettivamente prima della branch
+\end_layout
+
+\begin_layout Itemize
+Individuare i conrol hazard per assicurarsi che una istruzione (che è dipendente
+ da una branch) 
+\bar under
+non sia eseguita fino a quando la direzione della branch non è nota
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Garantendo la control dependence possiamo preservare l'ordine del programma,
+ però la 
+\series bold
+control dependence non è la proprietà critica
+\series default
+ che deve essere preservata.
+\end_layout
+
+\begin_layout Subsubsection*
+Program Properties
+\end_layout
+
+\begin_layout Standard
+Ci sono 
+\series bold
+due proprietà
+\series default
+ che sono critiche per la correttezza di un programma (e sono normalmente
+ preservate mantenendo le dipendenze di controllo e dati):
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Data flow
+\series default
+: Il flusso corretto di dati tra le varie istruzioni, che produce il risultato
+ corretto
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Exception behavior
+\series default
+: Preservare il comportamento delle eccezioni significa che qualunque modifica
+ nell'ordine di esecuzione delle istruzioni non deve modificare il modo
+ in cui le eccezioni vengono sollevate nel programma.
+\end_layout
+
+\begin_layout Subsection*
+Instruction Level Parallelism
+\end_layout
+
+\begin_layout Standard
+Ci sono due strategie per supportare ILP:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dynamic Scheduling
+\series default
+: L'hardware si occupa di identificare il parallelismo
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Static Scheduling
+\series default
+: Il software si occupa di identificare il parallelismo
+\end_layout
+
+\begin_layout Standard
+Gli approcci 
+\begin_inset Quotes eld
+\end_inset
+
+hardware intensive
+\begin_inset Quotes erd
+\end_inset
+
+ dominano il mercato desktop e server.
+\end_layout
+
+\begin_layout Subsubsection*
+Assunzioni
+\end_layout
+
+\begin_layout Itemize
+Consideriamo dei processori 
+\series bold
+\emph on
+single-issue
+\end_layout
+
+\begin_layout Itemize
+Lo stadio di 
+\series bold
+\emph on
+instruction fetch
+\series default
+\emph default
+ precede lo stadio di 
+\series bold
+\emph on
+issue
+\series default
+\emph default
+ e può fare fatch in un 
+\series bold
+\emph on
+instruction register
+\emph default
+ 
+\series default
+o direttamente in una coda di istruzioni da eseguire.
+\end_layout
+
+\begin_layout Itemize
+Le istruzioni sono poi inviate dall'
+\series bold
+\emph on
+instruction register
+\series default
+\emph default
+ o dalla coda
+\end_layout
+
+\begin_layout Itemize
+Lo stadio di esecuzione può richiede più di un ciclo, a seconda del tipo
+ di operazione
+\end_layout
+
+\begin_layout Subsubsection*
+Dynamic Scheduling
+\end_layout
+
+\begin_layout Standard
+Il problema sono le dipendenze dati che non possono essere nascoste con
+ un bypass o forwarding a causa degli stalli della pipeline.
+\end_layout
+
+\begin_layout Standard
+La 
+\series bold
+soluzione
+\series default
+ è quella di permette alle 
+\series bold
+istruzioni dietro uno stallo di procedere
+\series default
+.
+ L'hardware ri-arrangia dinamicamente l'esecuzione delle istruzioni per
+ ridurre gli stalli
+\end_layout
+
+\begin_layout Itemize
+Viene aggiunta la possibilità della 
+\series bold
+esecuzione out-of-order
+\series default
+ e 
+\series bold
+completion
+\series default
+ (
+\series bold
+commit
+\series default
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Esempio di Dynamic Scheduling
+\end_layout
+
+\begin_layout LyX-Code
+DIVD F0, F2, F4
+\end_layout
+
+\begin_layout LyX-Code
+ADDD F10, F0, F8    #RAW F0
+\end_layout
+
+\begin_layout LyX-Code
+SUBD F12, F8, F14
+\end_layout
+
+\begin_layout Itemize
+RAW Hazard: ADDD va in stallo per F0 (aspettando che DIVD vada in commit)
+\end_layout
+
+\begin_layout Itemize
+SUBD dovrebbe andare in stallo anche se non c'è nessuna dipendenza dati
+ o altro sulla pipeline (se non ci fosse il dynamic scheduling!)
+\end_layout
+
+\begin_layout Standard
+Ergo la nostra 
+\series bold
+idea è quella di permette a SUBD di procedere
+\series default
+ (
+\emph on
+out-of-order execution
+\emph default
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Dynamic Scheduling
+\end_layout
+
+\begin_layout Itemize
+L'hardware ri-ordina l'esecuzione delle istruzioni per ridurre gli stalli
+ nella pipeline, mantenendo però il flusso dati e il comportamento corretto
+ delle eccezioni.
+\end_layout
+
+\begin_layout Itemize
+I 
+\series bold
+vantaggi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Permette di gestire alcuni casi dove le dipendenze sono sconosciute a 
+\emph on
+compile time
+\end_layout
+
+\begin_layout Itemize
+Permette di semplificare i compilatori
+\end_layout
+
+\begin_layout Itemize
+Permette al codice compilato di girare efficientemente su una pipeline diversa
+ (portabilità).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gli 
+\series bold
+svantaggi
+\series default
+ (costi):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dobbiamo aumentare parecchio la complessità dell'hardware
+\end_layout
+
+\begin_layout Itemize
+Aumenta il consumo energetico del processore
+\end_layout
+
+\begin_layout Itemize
+Abbiamo il rischio di generare eccezioni 
+\begin_inset Quotes eld
+\end_inset
+
+imprecise
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Riassumendo: nella pipeline semplice abbiamo hazards a causa delle dipendenze
+ dati che non possono essere nascosti con forwarding nella pipeline.
+ Con il Dynamic scheduling invece l'hardwasre riordina l'esecuzione delle
+ istruzioni di modo da ridurre gli stalli, mantenere il flusso dati e il
+ comportamento delle eccezioni.
+ L'esempio tipico è il 
+\series bold
+\emph on
+superscalar processor.
+\end_layout
+
+\begin_layout Itemize
+Le istruzioni vengono fetchate ed inviate nell'ordine del programma (
+\emph on
+in-order-issue
+\emph default
+)
+\end_layout
+
+\begin_layout Itemize
+L'esecuzione inizia appena gli operandi sono disponibili, altrimenti 
+\emph on
+out-of-order execution
+\emph default
+ 
+\end_layout
+
+\begin_layout Itemize
+L'esecuzione 
+\emph on
+out-of-order 
+\emph default
+introduce la possibilità di data hazards di tipo 
+\series bold
+WAR
+\series default
+ o 
+\series bold
+WAW
+\end_layout
+
+\begin_layout Itemize
+L'esecuzione 
+\emph on
+out-of-order
+\emph default
+ significa anche che il completamento sarà 
+\emph on
+out-of-order
+\emph default
+, a meno di un buffer che riordina per ottenere il risultato in ordine.
+\end_layout
+
+\begin_layout Subsubsection*
+Static Scheduling
+\end_layout
+
+\begin_layout Standard
+I compilatori utilizzano algoritmi sofisticati per lo scheduling del codice,
+ per ottenere l'
+\emph on
+instruction level parallelism
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+La dimensione di un 
+\series bold
+\emph on
+basic block
+\series default
+\emph default
+ (una sequenza di codice senza branch, eccetto per l'inizio e la fine) è
+ solitamente 
+\series bold
+piccolo
+\series default
+ e la quantità disponibile di parallelismo di un basic block è comunque
+ poca.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad esempio per un tipico programma MIPS la frequenza media di branche è
+ da 15% e 25%, che significa che ci sono tra 4 e 7 istruzioni da eseguire
+ tra due branch.
+\end_layout
+
+\begin_layout Itemize
+Le 
+\series bold
+dipendenze dati
+\series default
+ possono limitare ancora di più la quantità di parallelismo che possiamo
+ ottenere da un basic block ancora meno di quanto abbiamo visto.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Quindi
+\series default
+, per ottenere dei miglioramenti di performance sostanziali, dobbiamo sfruttare
+ il 
+\series bold
+\bar under
+parallelismo tra diversi basic blocks.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il compilatore si occupa quindi di riordinare le istruzioni in una sequenza
+ priva di dipendenze, senza cambiare la semantica.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'esempio tipico sono i processori 
+\series bold
+VLIW
+\series default
+ (
+\series bold
+Very Long Instruction Word
+\series default
+) che si aspettano un codice privo di dipendenze dal compilatore.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Abbiamo anche 
+\series bold
+alcuni limiti
+\series default
+ dell'utilizzo dello scheduling dinamico:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I branch non sono prevedibili
+\end_layout
+
+\begin_layout Itemize
+Latenza della memoria variabile (non possiamo prevedere i miss nella cache)
+\end_layout
+
+\begin_layout Itemize
+Può aumentare la dimensione del segmento codice
+\end_layout
+
+\begin_layout Itemize
+Aumenta la complessità del compilatore
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+I vari passi per ottenere più parallelismo delle istruzioni
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 061.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Esecuzione superscalare
+\end_layout
+
+\begin_layout Standard
+È quello che fanno tutti i processori di fascia alta oggi (PowerPC, Pentium,
+ Sparc,...)
+\end_layout
+
+\begin_layout Itemize
+L'
+\series bold
+idea
+\series default
+ è: 
+\series bold
+perché non iniziare l'esecuzione 
+\series default
+(issue)
+\series bold
+ di più di una istruzione per ciclo?
+\series default
+ 
+\end_layout
+
+\begin_layout Itemize
+I 
+\series bold
+requisiti per farlo sono
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Fare il 
+\bar under
+fetch di più di una istruzione per ciclo
+\bar default
+: Non è difficile dato che la cache istruzioni può sostenere la banda
+\end_layout
+
+\begin_layout Itemize
+Decidere riguardo alla 
+\bar under
+dipendenza dati e controllo
+\bar default
+: Lo scheduling dinamico si prende già cura di questo
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 062.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Struttura dello scheduler dinamico
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 063.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 064.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ad ogni ciclo, il processore deve decidere quali istruzioni possono iniziare
+ l'esecuzione.
+\end_layout
+
+\begin_layout Itemize
+È necessario controllare tutte le istruzioni entrate in fetch con tutte
+ le istruzioni 
+\begin_inset Quotes eld
+\end_inset
+
+in volo
+\begin_inset Quotes erd
+\end_inset
+
+, per capire quali sono indipendenti, prima di iniziare l'esecuzione.
+\end_layout
+
+\begin_layout Itemize
+C'è un 
+\series bold
+limite
+\series default
+ su quante istruzioni possono essere verificate durante un ciclo di clock.
+\end_layout
+
+\begin_layout Subsubsection*
+Lo scheduling dinamico costa!
+\end_layout
+
+\begin_layout Itemize
+Abbiamo una quantità enorme di logica e un costo di area elevato.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nel PowerPC 750 l'instruction sequencer è circa il 70% dell'area di tutte
+ le unità di esecuzione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il tempo di ciclo è limitato dalla logica di scheduling (dispatcher e la
+ logica di controllo associata)
+\end_layout
+
+\begin_layout Itemize
+La verifica del design è molto complicata e la logica è complessa e irregolare.
+\end_layout
+
+\begin_layout Subsubsection*
+Il numero di issue parallele è limitato nella pratica
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+issue width
+\series default
+\emph default
+ è il numero di istruzioni che possono essere messe in esecuzione in un
+ singolo ciclo da un processore 
+\emph on
+multiple-issue
+\emph default
+ (chiamato anche ILP)
+\end_layout
+
+\begin_layout Itemize
+Quando l'architettura superscalare fu inventata, furono inventati processori
+ a 2 e 4 issue
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 065.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il massimo (raro) numero di issue parallelle è 6
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+2-issue: UltraSPARC-T2/T3, Cortex-A8, Cortex-A9, Atom, Bobcat
+\end_layout
+
+\begin_layout Itemize
+3-issue: Pentium-Pro/II/III/M, Athlon, Pentium-4, Athlon 64/Phenom, Cortex-A15
+\end_layout
+
+\begin_layout Itemize
+4-issue: UltraSPARC-III/IV, PowerPC G4e, Core 2, Core i, Core i2, Bulldozer
+\end_layout
+
+\begin_layout Itemize
+5-issue: PowerPC G5
+\end_layout
+
+\begin_layout Itemize
+6-issue: Itanium (ma è un processore VLIW)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Questo perché è troppo difficile decidere tra 8 o 16 istruzioni da eseguire
+ in ogni ciclo (sono troppe!)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Richiede troppo tempo la computazione (non riesce a restare in un ciclo
+ di clock)
+\end_layout
+
+\begin_layout Itemize
+È necessario ridurre la frequenza del processore (guadagnando quindi in
+ parallelismo ma perdendo in latenza e valocità)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Riassunto di processori superscalari e scheduling dinamico
+\end_layout
+
+\begin_layout Standard
+In ogni caso abbiamo il vantaggio principale che il CPI ideale viene ridotto:
+\begin_inset Formula 
+\[
+CPI_{ideal}=\frac{1}{\text{issue width}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Svantaggi
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È molto costosa la logica per decidere le dipendenze
+\end_layout
+
+\begin_layout Itemize
+Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
+ di dover rallentare il clock)
+\end_layout
+
+\end_deeper
+\begin_layout Section*
+Very Long Instruction Word (VLIW)
+\end_layout
+
+\begin_layout Standard
+È un modo alternativo per ottenere l'
+\emph on
+instruction level parallelism
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 066.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 067.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Ogni unità fa in un ciclo quello che è già stato deciso a compile time dal
+ compilatore.
+ Spostiamo dunque il problema.
+\end_layout
+
+\begin_layout Itemize
+In questo modo semplifichiamo l'hardware (non c'è il dynamic scheduler)
+ e riduciamo l'area del chip
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Compilatore
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il compilatore deve trovare molto paralleismo per mantenere le unità funzionali
+ del processore occupate
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Incompatibilità binaria
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Come conseguenza perdiamo la 
+\begin_inset Quotes eld
+\end_inset
+
+portabilità
+\begin_inset Quotes erd
+\end_inset
+
+ perché il processore è costretto a fare molte scelte relative alla micro-archit
+ettura.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Scheduling Software vs.
+ Scheduling Hardware
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Scheduling Software
+\series default
+ (statico, fatto dal compilatore)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Codice sorgente disponibile
+\end_layout
+
+\begin_layout Itemize
+Analisi 
+\begin_inset Quotes eld
+\end_inset
+
+globali
+\begin_inset Quotes erd
+\end_inset
+
+ possibili 
+\end_layout
+
+\begin_layout Itemize
+C'è più tempo disponibile perché non siamo dentro un ciclo di clock della
+ CPU
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Scheduling Hardware
+\series default
+ (dinamico, fatto dall'instruction scheduler)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Abbiamo informazioni a runtime (i dati attuali, indirizzi, puntatori, ...)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+Processori superscalari e VLIW
+\end_layout
+
+\begin_layout Itemize
+I processori superscalari sono lo 
+\begin_inset Quotes eld
+\end_inset
+
+stato dell'arte
+\begin_inset Quotes erd
+\end_inset
+
+ commerciale per scopi generali (Intel Core i, Alpha, PowerPC, MIPS e Sparc
+ sono superscalari)
+\end_layout
+
+\begin_layout Itemize
+I processori VLIW hanno successo per dispositivi embedded (TriMedia media
+ processors, C600 DSP, STMicroelectronics ST200 family, SHARC DSP, Itanium
+ 2)
 \end_layout
 
 \end_body
