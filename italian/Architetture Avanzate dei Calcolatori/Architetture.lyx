@@ -7082,5 +7082,723 @@ I processori VLIW hanno successo per dispositivi embedded (TriMedia media
  2)
 \end_layout
 
+\begin_layout Section*
+Funzionamento del Dynamic scheduling
+\end_layout
+
+\begin_layout Standard
+Per realizzare la funzionalità hardware di dynamic scheduling utilizziamo
+ un algoritmo chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\series bold
+\emph on
+scoreboard dynamic scheduling algorithm
+\series default
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'esecuzione 
+\emph on
+out-of-order
+\emph default
+ suddivide lo stadio 
+\series bold
+ID
+\series default
+ in:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Issue
+\series default
+: Decodifica le istruzioni, controlla gli hazards strutturali
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Read Operands (RR)
+\series default
+: Aspetta fino a quando non ci sono data hazards, poi leggi gli operandi
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
+ e non ci sono hazards
+\end_layout
+
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+scoreboard
+\series default
+\emph default
+ (tabella dei punteggi), permette alle istruzioni di essere eseguite se
+ ci sono 1 o 2 fermate, senza aspettare per altre istruzioni.
+\end_layout
+
+\begin_layout Subsection*
+Schema generale della scoreboard
+\end_layout
+
+\begin_layout Itemize
+Una istruzione è 
+\series bold
+in esecuzione
+\series default
+ nell'intervallo di tempo tra quando inizia l'esecuzione e quando la completa.
+\end_layout
+
+\begin_layout Itemize
+Assumiamo che la pipeline permetta l'esecuzione di più istruzioni allo stesso
+ tempo.
+ Abbiamo bisogno quindi di 
+\series bold
+unità funzionali multiple
+\series default
+ o 
+\series bold
+unità funzionali in pipeline
+\series default
+ (o entrambe).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nel processore CDC 6600 (il primo ad avere la tecnica di 
+\emph on
+dynamic scheduling
+\emph default
+) la issue è 
+\emph on
+in-oder
+\emph default
+, l'esecuzione è 
+\emph on
+out-of-order
+\emph default
+ e anche il completamento è 
+\emph on
+out-of-order
+\emph default
+.
+ Non c'è forwarding e abbiamo un modello impreciso per interrupt e eccezioni.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 068.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La scoreboard rimpiazza gli stadi ID;EX,WB con 4 stadi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Lo stadio ID viene diviso in due parti: 
+\series bold
+Issue
+\series default
+ e 
+\series bold
+Read Operands
+\series default
+ (come già visto sopra)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+La scoreboard permette alla istruzioni 
+\bar under
+senza dipendenze
+\bar default
+ di essere eseguite
+\end_layout
+
+\begin_layout Itemize
+Anche se l'issue è 
+\emph on
+in-order, se 
+\emph default
+abbiamo una lettura 
+\emph on
+out-of-order
+\emph default
+ degli operandi, avremo una esecuzione e completamento 
+\emph on
+out-of-order
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tutte le istruzioni passano 
+\emph on
+in-order 
+\emph default
+attraverso lo stage 
+\series bold
+\emph on
+issue
+\series default
+\emph default
+ , ma possono andare in stallo o by-passarsi a vicenda nello stadio 
+\series bold
+\emph on
+read operands
+\series default
+\emph default
+ e quindi iniziare l'esecuzione 
+\emph on
+out-of-order
+\emph default
+ e (avendo latenze diverse), arrivare a completamento in modo 
+\emph on
+out-of-order
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se il completamento può essere 
+\emph on
+out-of-order
+\emph default
+, questo significa che gli 
+\series bold
+hazards di tipo WAR e WAW possono presentarsi
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Per gli hazards 
+\series bold
+WAR
+\series default
+ possiamo risolvere in due modi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Generare uno 
+\series bold
+stallo sulla 
+\emph on
+write back
+\series default
+\emph default
+ fino a quando i registri non sono stati letti
+\end_layout
+
+\begin_layout Itemize
+Leggere i registri solo durante la fase 
+\series bold
+\emph on
+read operands
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Per gli hazards 
+\series bold
+WAW
+\series default
+ possiamo risolvere mettendo in stallo la issue di nuove istruzioni fino
+ a quando l'altra istruzione non ha completato.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Non facciamo renaming dei registri
+\end_layout
+
+\begin_layout Itemize
+La 
+\emph on
+scoreboard
+\emph default
+ tiene traccia delle 
+\bar under
+dipendenze
+\bar default
+ e dello 
+\bar under
+stato delle operazioni
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hazard detection 
+\series default
+e 
+\series bold
+resolution
+\series default
+ viene centralizzata nella scoreboard:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ogni istruzione passa per la scoreboard, dove viene costruito un record
+ che tiene traccia delle dipendenze di quella istruzione
+\end_layout
+
+\begin_layout Itemize
+La scoreboard determina se l'istruzione può leggere gli operandi e iniziare
+ l'esecuzione
+\end_layout
+
+\begin_layout Itemize
+Se la scoreboard decide che l'istruzione non può andare in esecuzione subito,
+ controlla ogni modifica e decide quando l'istruzione p
+\bar under
+uò partire in esecuzione
+\end_layout
+
+\begin_layout Itemize
+La scoreboard controlla quando l'istruzione può 
+\bar under
+scrivere il suo risultato nel registro di destinazione
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Gestione delle eccezioni
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il problema del completamento 
+\emph on
+out-of-order 
+\emph default
+è che dobbiamo preservare il comportamento delle eccezioni così come se
+ fosse stato tutto 
+\emph on
+in-order
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+La soluzione è quella di assicurarsi che non ci siano istruzioni che possono
+ generare eccezione, fino a quando il processore sa che l'istruzione che
+ lancia l'eccezione viene lanciata.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Eccezioni 
+\begin_inset Quotes eld
+\end_inset
+
+imprecise
+\begin_inset Quotes erd
+\end_inset
+
+
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Una eccezione si dice 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+imprecise
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ se, quando viene sollevata l'eccezione, lo stato del processore non appare
+ esattamente come quello di quando le istruzioni vengono eseguite 
+\emph on
+in-order
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Possibili cause sono:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La pipeline ha 
+\bar under
+già completato
+\bar default
+ istruzioni che sono 
+\series bold
+dopo
+\series default
+ l'istruzione che causa l'eccezione nell'ordine corretto del programma 
+\end_layout
+
+\begin_layout Itemize
+La pipeline 
+\bar under
+non ha ancora completato
+\bar default
+ istruzioni che sono 
+\series bold
+prima
+\series default
+ l'istruzione che causa l'eccezione nell'ordine corretto del programma.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Le eccezioni 
+\begin_inset Quotes eld
+\end_inset
+
+imprecise
+\begin_inset Quotes erd
+\end_inset
+
+ rendono difficile riavviare l'esecuzione dopo aver sollevato l'eccezione
+ (perché ci si trova in uno stato non previsto).
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+I 4 stadi di controllo della scoreboard
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Issue
+\series default
+: Decodifica l'istruzione e controlla per hazards strutturali e WAW hazards
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le istruzioni vengono inviate nell'ordine del programma (per controllare
+ gli hazards)
+\end_layout
+
+\begin_layout Itemize
+Se una unità funzionale per l'istruzione è libera e non ci sono altre istruzioni
+ con lo stesso registro destinazione (quindi no WAW hazard), la scoreboard
+ fa issue delle istruzione all'unità funzionale e aggiorna la sua struttura
+ interna.
+\end_layout
+
+\begin_layout Itemize
+Se un hazard strutturale o un hazards WAW esiste, allora l'issue va in stallo
+ e non si fa issue di nessuna istruzione fino a quando l'hazard non è risolto
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Notiamo che quando lo stage di issue va in stall, il buffer tra lo stadio
+ IF e Issue si riempie.
+ Se il buffer ha una singola entry va in stall tutto lo stadio IF, se il
+ buffer è una coda allora lo stadio IF va in stallo quando la coda si riempie.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Read Operands
+\series default
+: Attendi fino a quando non ci sono più hazard dati, poi leggi gli operandi
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Un operando sorgente è disponibile se:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non c'erano istruzioni attive mandate in issue a scrivere quell'operando
+\end_layout
+
+\begin_layout Itemize
+Oppure una unità funzionale sta scrivendo il suo lavore in un registro
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quando l'operando sorgente è disponibile, la scoreboard dice all'unità funzional
+e di procedere a leggere gli operandi dai registri e iniziare l'esecuzione.
+\end_layout
+
+\begin_layout Itemize
+Gli hazard 
+\series bold
+RAW
+\series default
+ vengono 
+\series bold
+risolti dinamicamente
+\series default
+ in questo stadio.
+ Le istruzioni possono essere inviate in esecuzione 
+\emph on
+out-of-order
+\series bold
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Non c'è forwarding dei dati in questo modello.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Execution
+\series default
+: L'unità funzionale inizia l'esecuzione quando riceve gli operandi.
+ Quando il risultato è pronto notifica la scoreboard che ha completato l'esecuzi
+one.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le unità funzionali sono caratterizzate da:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Latenza variabile
+\series default
+ (il tempo effettivo utilizzato per completare una operazione
+\end_layout
+
+\begin_layout Itemize
+Intervallo di inizializzazione (il numero di cicli che devono passare tra
+ l'issuing di due operazioni alla stessa unità funzionale).
+\end_layout
+
+\begin_layout Itemize
+La latenza delle operazioni di load/store dipende dall'HIT o MISS sulla
+ data cache.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Write result
+\series default
+: Controllare per hazards di tipo 
+\series bold
+WAR
+\series default
+ e completare l'esecuzione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Una volta che la scoreboard sà che l'unità funzionale ha completato l'esecuzione
+, la scoreboard 
+\series bold
+controlla per la presenza di hazards di tipo WAR
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Se non ce ne sono, scrive direttamente il risultato
+\end_layout
+
+\begin_layout Itemize
+Se c'è un WAR, allora va in stallo prima di completare l'istruzione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Esempio:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 069.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+La scoreboard deve:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Andare in stallo su SUBD nello stadio WB, aspettando che ADDD legga F0 e
+ F8
+\end_layout
+
+\begin_layout Itemize
+Inoltre deve andare in stallo su MULD nello stage di issue, fino a quando
+ ADDD scrive F6
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Può eventualmente risolvere utilizzando il 
+\series bold
+\emph on
+register renaming
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsection*
+Struttura della scoreboard
+\end_layout
+
+\begin_layout Enumerate
+Instruction status
+\end_layout
+
+\begin_layout Enumerate
+Function Unit status
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Indica lo stato dell'unità funzionale (FU):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Busy: L'unità è occupata o no
+\end_layout
+
+\begin_layout Itemize
+Op: Indica l'operazione da effettuare con l'unità (+,-,...)
+\end_layout
+
+\begin_layout Itemize
+Fi: Indica il registro di destinazione
+\end_layout
+
+\begin_layout Itemize
+Fj,Fk: Registri sorgente
+\end_layout
+
+\begin_layout Itemize
+Qj, Qk: Unità funzionali che producono i registri sorgente Fj, Fk
+\end_layout
+
+\begin_layout Itemize
+Rj, Rk: Flags che indicano quando Fj e Fk sono pronti.
+ I Flags sono impostati su 
+\begin_inset Quotes eld
+\end_inset
+
+no
+\begin_inset Quotes erd
+\end_inset
+
+ dopo che gli operandi vengono letti
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Register result status: Indica quale unità funzionale scriverà quale registro.
+ Non conterrà nulla se non ci sono istruzioni in coda che scriveranno quel
+ registro
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 070.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Esempio di funzionamento della scoreboard
+\end_layout
+
+\begin_layout Standard
+Struttura generale:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 071.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+Mancano le slides dalla 26 alla 55.
+\end_layout
+
 \end_body
 \end_document
