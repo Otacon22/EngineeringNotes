@@ -26,7 +26,19 @@
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_title "Architetture Avanzate dei Calcolatori"
+\pdf_author "Daniele Iamartino"
+\pdf_subject "Riassunto del corso di Architetture Avanzate dei Calcolatori c/o Politecnico di Milano, a.a. 2013-14, prof.ssa Cristina Silvano"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry true
 \use_amsmath 1
