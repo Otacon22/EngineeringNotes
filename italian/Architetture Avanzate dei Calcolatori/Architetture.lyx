@@ -166,7 +166,7 @@ Computer Architecture, A Quantitative Approach
 \end_layout
 
 \begin_layout Part*
-Concetti base sulla Pipeline
+Pipeline
 \end_layout
 
 \begin_layout Section*
@@ -3589,7 +3589,7 @@ Istruzioni di branch condizionali
 \end_layout
 
 \begin_layout Standard
-La branch viene presa soltanto se una certa 
+Il branch viene preso soltanto se una certa 
 \series bold
 condizione 
 \series default
@@ -3605,7 +3605,7 @@ L'
 \series bold
 indirizzo di destinazione
 \series default
- della 
+ del 
 \emph on
 branch
 \emph default
@@ -3664,7 +3664,7 @@ Lettura dei registri dal register file
 \series bold
 ALU operation
 \series default
-: per confrontare i registri e derivare la 
+: per confrontare i registri e derivare il 
 \series bold
 \bar under
 Branch Outcome
@@ -3762,7 +3762,7 @@ branch target address
 \end_layout
 
 \begin_layout Standard
-Le branch condizionali vengono completate quando il PC è stato riscritto,
+I branch condizionali vengono completati quando il PC è stato riscritto,
  nello stage 4.
 \end_layout
 
@@ -3818,7 +3818,7 @@ control hazard
 \emph default
 \bar default
  è un tentativo di prendere una decisione sulla prossima istruzione da leggere
- prima che la condizione della branch venga valutata.
+ prima che la condizione del branch venga valutata.
 \end_layout
 
 \begin_layout Itemize
@@ -3877,13 +3877,13 @@ conditional branch hazard
 \end_layout
 
 \begin_layout Standard
-Se la branch decide di cambiare il valore di PC si dice 
+Se il branch decide di cambiare il valore di PC si dice 
 \series bold
 \emph on
 branch taken
 \series default
 \emph default
-, altrimenti è una 
+, altrimenti è un 
 \series bold
 \emph on
 untaken
@@ -3908,12 +3908,12 @@ Esempio
 \end_layout
 
 \begin_layout Itemize
-Nel momento in cui la branch decide se deve cambiare o non cambiare PC,
+Nel momento in cui il branch decide se deve cambiare o non cambiare PC,
  ci sono già le 3 istruzioni seguenti caricate nella pipeline.
 \end_layout
 
 \begin_layout Itemize
-Se la branch è 
+Se il branch è 
 \series bold
 not taken
 \series default
@@ -3992,7 +3992,7 @@ Senza forwarding: in 2 cicli di clock
 \end_deeper
 \end_deeper
 \begin_layout Itemize
-Se però la branch era 
+Se però il branch era 
 \series bold
 untaken
 \series default
@@ -4007,7 +4007,7 @@ Possiamo
 assumere
 \series default
 \bar default
- che la branch sia 
+ che il branch sia 
 \series bold
 untaken
 \series default
@@ -4140,8 +4140,8 @@ load
 branch
 \series default
  che testa il risultato della add: dobbiamo introdurre uno stallo prima
- dello stadio ID della branch per permettere il forwarding del risultato
- dallo stadio EX della istruzione precedente.
+ dello stadio ID del branch per permettere il forwarding del risultato dallo
+ stadio EX della istruzione precedente.
 \end_layout
 
 \begin_layout Itemize
@@ -4197,7 +4197,7 @@ una
 \end_deeper
 \begin_layout Itemize
 Il ritardo di un ciclo per ogni branch comporta comunque una perdita dal
- 10% al 30% a seconda della frequenza della branch
+ 10% al 30% a seconda della frequenza del branch
 \end_layout
 
 \begin_layout Standard
@@ -4258,7 +4258,7 @@ istruzioni inutili
 \begin_layout Itemize
 Dobbiamo anche considerare la 
 \series bold
-frequenza delle branch
+frequenza dei branch
 \series default
  all'interno del flusso di codice da eseguire.
  Ovviamente se ci sono poche branch per istruzione avremo poca perdita di
@@ -4272,7 +4272,7 @@ Ci sono fondamentalmente
 due metodi di predizione
 \series default
 \bar default
- delle branch:
+ dei branch:
 \end_layout
 
 \begin_layout Itemize
@@ -4290,7 +4290,7 @@ statica
 \begin_deeper
 \begin_layout Itemize
 Questo tipo di predizione viene utilizzata nei processori dove si riesce
- a prevedere l'esito delle branch a compile time
+ a prevedere l'esito dei branch a compile time
 \end_layout
 
 \end_deeper
@@ -4302,7 +4302,7 @@ Tecniche di predizione
 dinamica
 \series default
 \bar default
-: A run time prendiamo decisioni sulle predizioni delle branch, che possono
+: A run time prendiamo decisioni sulle predizioni dei branch, che possono
  cambiare durante l'esecuzione del programma.
 \end_layout
 
@@ -4312,7 +4312,7 @@ In entrambi i casi è necessario fare molta attenzione e tenersi pronti ad
  una misprediction (predizione errata).
 \end_layout
 
-\begin_layout Section*
+\begin_layout Subsubsection*
 Tecniche di predizione statica
 \end_layout
 
@@ -4364,7 +4364,7 @@ Profile-Driven Prediction
 Delayed Branch
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Branch always (not) taken
 \end_layout
 
@@ -4451,7 +4451,7 @@ taken
  e iniziamo a fare fetch e esecuzione del branch target.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subparagraph*
 Note
 \end_layout
 
@@ -4485,7 +4485,7 @@ branch outcome
  Quindi per MIPS questa tecnica non è utilizzabile.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Backward Taken Forward Not Taken (BTFNT)
 \end_layout
 
@@ -4556,7 +4556,7 @@ si ricorda che nella maggior parte dei casi anche i cicli con controllo
  il loop.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Profile-driven prediction
 \end_layout
 
@@ -4580,7 +4580,7 @@ consigli
  del compilatore.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Delayed Branch Technique
 \end_layout
 
@@ -4676,7 +4676,7 @@ From after
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subparagraph*
 Delayed branch technique: from before
 \end_layout
 
@@ -4707,7 +4707,7 @@ Esempio:
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subparagraph*
 Delayed branch technique: from target
 \end_layout
 
@@ -4728,13 +4728,13 @@ In questo caso non possiamo spostare l'istruzione di
 add
 \series default
  dopo l'if perché il risultato ($1) viene utilizzato per prendere decisioni
- sulla branch.
+ sul branch.
  Però in questo caso possiamo mettere nel branch delay slot l'istruzione
  da eseguire in caso di branch taken se il branch target address è backward
  (come nel caso dei loop).
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subparagraph*
 Delayed branch technique: from fall-through
 \end_layout
 
@@ -4770,7 +4770,7 @@ Anche in questo caso non possiamo spostare l'istruzione di
 \series bold
 add
 \series default
- perché la branch utilizza $1 che è già presente nella add.
+ perché il branch utilizza $1 che è già presente nella add.
 \end_layout
 
 \begin_layout Standard
@@ -4863,7 +4863,7 @@ Restrizioni sulle istruzioni che possiamo inserire nel branch delay slot
 \end_layout
 
 \begin_layout Itemize
-L'abilità del compilatore di predirre staticamente il risultato dei branch
+L'abilità del compilatore di predire staticamente il risultato dei branch
 \end_layout
 
 \end_deeper
@@ -4893,18 +4893,18 @@ nullifying branch
 
 .
  In questo tipo speciale di branch l'istruzione include al suo interno anche
- un bit che indica la direzione in cui è previsto che la branch vada.
+ un bit che indica la direzione in cui è previsto che il branch vada.
  Così facendo abbiamo che:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Quando la branch agisce come previsto: l'istruzione nel branch delay slot
+Quando il branch agisce come previsto: l'istruzione nel branch delay slot
  è eseguita normalmente
 \end_layout
 
 \begin_layout Itemize
-Quando la branch non agisce come previsto: l'istruzione nel branch delay
+Quando il branch non agisce come previsto: l'istruzione nel branch delay
  slot viene trasformata in una NOP
 \end_layout
 
@@ -4930,7 +4930,7 @@ L'istruzione nel branch delay slot viene eseguita se il branch è taken.
 
 \begin_layout Itemize
 L'istruzione nel branch delay slot non viene eseguita (viene trasformata
- in nop) se la branch è untaken
+ in nop) se il branch è untaken
 \end_layout
 
 \begin_layout Itemize
@@ -4939,7 +4939,7 @@ L'istruzione nel branch delay slot non viene eseguita (viene trasformata
 \end_layout
 
 \end_deeper
-\begin_layout Section*
+\begin_layout Subsubsection*
 Tecniche di predizione dinamica dei branch
 \end_layout
 
@@ -4962,7 +4962,7 @@ prevedere il futuro
 \begin_layout Standard
 Utilizziamo hardware per prevedere dinamicamente il risultato di un branch.
  La predizione dipenderà sul comportamento del branch a run time e cambierà
- se la branch cambia il suo comportamento durante l'esecuzione.
+ se il branch cambia il suo comportamento durante l'esecuzione.
 \end_layout
 
 \begin_layout Standard
@@ -5015,13 +5015,13 @@ Se il branch è not taken → PC viene incrementato
 Se il branch è taken → BTP (il predittore) dà l'indirizzo di destinazione
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Branch History Table - BHT (o Branch Prediction Buffer)
 \end_layout
 
 \begin_layout Standard
-È una tabella che contiene 1 bit per ogni entry che dice se la branch è
- stata 
+È una tabella che contiene 1 bit per ogni entry che dice se il branch è
+ stato 
 \series bold
 taken
 \series default
@@ -5215,7 +5215,7 @@ n-bit
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Correlare i predittori dei branch
 \end_layout
 
@@ -5228,7 +5228,7 @@ Idea:
  varie branch oltre che tra la stessa branch.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Paragraph*
 Esempio
 \end_layout
 
@@ -5389,7 +5389,7 @@ Esempio: Correlating Branch Predictor (2,2): Abbiamo 4 Branch History Tables
 
 \begin_layout Itemize
 64 entries, indice di 6 bit composto da 2 bit di history globale e 4 bit
- per la parte meno significativa dell'indirizzo della branch.
+ per la parte meno significativa dell'indirizzo del branch.
 \end_layout
 
 \begin_layout Itemize
@@ -5404,7 +5404,7 @@ I 2 bit di history globale vengono utilizzati per scegliere una di 4 entries
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Paragraph*
 
 \series bold
 Accuratezza dei correlating predictors
@@ -5426,7 +5426,7 @@ Un predittore a 2 bit senza global history lo possiamo vedere come un predittore
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Two-level Adaptive Branch Predictors
 \end_layout
 
@@ -5465,7 +5465,7 @@ Una volta che il contatore a 2 bit viene selezionato, la predizione viene
  fatta con lo stesso metodo come nello schema del contatore a 2 bit.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 GA Predictor
 \end_layout
 
@@ -5536,7 +5536,7 @@ GShare
 
 \end_deeper
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Branch Target Buffer
 \end_layout
 
@@ -5546,13 +5546,12 @@ Branch Target Buffer
 BTB - 
 \series default
 Branch Target Buffer (Branch Target Predictor) è una cache che memorizza
- il target address previsto per la prossima istruzione dopo la branch.
+ il target address previsto per la prossima istruzione dopo il branch.
 \end_layout
 
 \begin_layout Itemize
 Possiamo accedere al BTB nello stadio IF utilizzando l'indirizzo istruzione
- dell'istruzione detchata (una possibile branch) come indice per questa
- cache.
+ dell'istruzione detchata (un possibile branch) come indice per questa cache.
 \end_layout
 
 \begin_layout Itemize
@@ -5624,7 +5623,7 @@ Struttura del Branch Target Buffer
 
 \end_deeper
 \begin_layout Itemize
-Nella BTB dobbiamo memorizzare il target address previsto solo per le branch
+Nella BTB dobbiamo memorizzare il target address previsto solo per i branch
  taken.
 \end_layout
 
@@ -5651,7 +5650,7 @@ Bits per lo stato di predizione
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Commenti sulla branch prediction
 \end_layout
 
@@ -5955,7 +5954,7 @@ Le dipendenze devono essere individuate e risolte e le istruzioni devono
 \series bold
 scheduled
 \series default
-) in modo da ottenere il parallelismo più elevato di istruzioni eseguibili
+) in modo da ottenere il parallelismo di istruzioni eseguibili più elevato
  con le risorse a disposizione.
 \end_layout
 
@@ -6270,14 +6269,14 @@ Le dipendenze di controllo determinano l'ordinamento delle istruzioni.
 
 \begin_layout Itemize
 Assicurarsi che nel flusso di istruzioni, le istruzioni che si presentano
- prima di una branche vengano eseguite effettivamente prima della branch
+ prima di un branch vengano eseguite effettivamente prima del branch
 \end_layout
 
 \begin_layout Itemize
 Individuare i conrol hazard per assicurarsi che una istruzione (che è dipendente
- da una branch) 
+ da un branch) 
 \bar under
-non sia eseguita fino a quando la direzione della branch non è nota
+non sia eseguita fino a quando la direzione del branch non è nota
 \bar default
 .
 \end_layout
