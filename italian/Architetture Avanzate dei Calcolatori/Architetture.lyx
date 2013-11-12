@@ -4283,7 +4283,8 @@ Tecniche di predizione
 statica
 \series default
 \bar default
-: A compile time decidiamo le operazioni da fare per ogni branch
+: A compile time decidiamo quale politica attuare in corrispondenza di cascun
+ branch
 \end_layout
 
 \begin_deeper
@@ -4306,14 +4307,9 @@ dinamica
 \end_layout
 
 \begin_layout Standard
-In entrambi i casi è necessario fare molta attenzione a non modificare lo
- stato del processore fino a quando non è chiaramente noto l'esito della
- branch.
-\end_layout
-
-\begin_layout Standard
-Le tecniche di predizione statica vengono comunque spesso utilizzate anche
- all'interno delle tecniche di predizione statica.
+In entrambi i casi è necessario fare molta attenzione e tenersi pronti ad
+ attuare una procedura di recovery quando l'esito effettivo del branch rivela
+ una misprediction (predizione errata).
 \end_layout
 
 \begin_layout Section*
@@ -4369,7 +4365,7 @@ Delayed Branch
 \end_layout
 
 \begin_layout Subsection*
-Branch always not taken
+Branch always (not) taken
 \end_layout
 
 \begin_layout Standard
@@ -4413,6 +4409,17 @@ branch target address
 penalità di un ciclo
 \series default
 .
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ATTENZIONE: possibile 2-cycles penalty.
+ Il Branch Target Address dovrebbe esser pronto al termine della EX.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4426,20 +4433,17 @@ penalità di un ciclo
 
 \end_layout
 
-\begin_layout Subsection*
-Branch Always taken
-\end_layout
-
 \begin_layout Standard
 Uno schema alternativo è quello di considerare ogni branch come 
 \series bold
 taken
 \series default
 .
+ 
 \end_layout
 
 \begin_layout Standard
-Non appena il branch target address viene computato, assumiamo la branch
+Non appena il branch target address viene computato, assumiamo il branch
  come 
 \series bold
 taken
@@ -4447,12 +4451,20 @@ taken
  e iniziamo a fare fetch e esecuzione del branch target.
 \end_layout
 
-\begin_layout Standard
-Questo tipo di predizione ha senso per pipelines dove il branch target address
- è noto prima di conoscere il risultato della branch.
+\begin_layout Paragraph*
+Note
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
+Questo tipo di predizione 
+\bar under
+ha senso per pipelines dove il branch target address è noto prima di conoscere
+ il risultato
+\bar default
+ del branch.
+\end_layout
+
+\begin_layout Itemize
 Nella pipeline MIPS 
 \series bold
 non conosciamo 
@@ -4521,10 +4533,27 @@ not-taken
 \begin_layout Standard
 L'idea alla base è che quando abbiamo dei branch che puntano 
 \emph on
+forward
+\emph default
+ stiamo eseguendo degli if e quindi stiamo valutando eccezioni nel codice
+ che si presume vengano effettivamente valutate meno di frequente; in presenza
+ di branch che puntano 
+\emph on
 backward
 \emph default
-, significa che siamo all'interno di un loop, e quindi (nella maggior parte
- dei casi), il branch sarà taken per proseguire il loop.
+ significa che siamo all'interno di un loop
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+si ricorda che nella maggior parte dei casi anche i cicli con controllo
+ in testa (while, for) vengono tradotti con cicli a controllo in coda
+\end_layout
+
+\end_inset
+
+, e quindi (nella maggior parte dei casi), il branch sarà taken per proseguire
+ il loop.
 \end_layout
 
 \begin_layout Subsection*
@@ -4532,9 +4561,15 @@ Profile-driven prediction
 \end_layout
 
 \begin_layout Standard
-La predizione del branch in questo caso, viene presa in base ad analisi
- di esecuzioni precedenti.
- Questo metodo può anche basarsi su 
+La tecnica profile-drivien consiste nel raccogliere statistiche sul numero
+ di volte che ciascun branch viene preso e non preso.
+ A valle di questo profiling svolto su un sufficiente numero di simulazioni
+ (o esecuzioni) del software ogni branch viene marcato con il valore di
+ predizione più probabile.
+\end_layout
+
+\begin_layout Standard
+Questo metodo può anche integrarsi con 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4550,7 +4585,8 @@ Delayed Branch Technique
 \end_layout
 
 \begin_layout Standard
-Il compilatore inserisce staticamente nello slot di 
+Il compilatore riordina il codice e inserisce staticamente negli slot di
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4558,19 +4594,28 @@ delay
 \begin_inset Quotes erd
 \end_inset
 
- del branch una istruzione indipendente da esso, che viene eseguita sia
- che il branch sia taken, sia che sia untaken.
+ dei branch istruzioni indipendenti dal branch stesso, le quali vengono
+ eseguite sia che il branch risulti taken, sia che risulti untaken.
 \end_layout
 
 \begin_layout Itemize
-Se assumiamo che il branch delay sia 1 ciclo (come nel caso di MIPS), abbiamo
- solo 1 slot di delay.
+Se assumiamo che il branch delay sia 1 ciclo (
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+NON (vedi nota precedente)
+\end_layout
+
+\end_inset
+
+come nel caso di MIPS), abbiamo solo 1 slot di delay.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-In realtà è possibile avere processori con pipile che utilizzano degli slot
- di delay più lunghi.
+In realtà è possibile avere processori con pipiline che utilizzano degli
+ slot di delay più lunghi.
 \end_layout
 
 \begin_layout Itemize
@@ -4610,11 +4655,7 @@ Ci sono
 \series bold
 4 modi
 \series default
- in cui il branch delay slot può essere schedulato dal 
-\series bold
-compilatore
-\series default
-:
+ in cui il branch delay slot può essere schedulato dal compilatore:
 \end_layout
 
 \begin_deeper
@@ -4765,17 +4806,17 @@ fall-though
 \begin_inset Quotes erd
 \end_inset
 
-, deve essere permesso eseguire l'istruzione spostata quando la branch va
- nella direzione opposta a quella prevista.
+, deve essere consentito eseguire l'istruzione spostata quando il branch
+ va nella direzione opposta a quella prevista.
  Per 
 \begin_inset Quotes eld
 \end_inset
 
-permesso
+consentito
 \begin_inset Quotes erd
 \end_inset
 
- intendiamo che l'istruzione inserita nel branch delay slot viene eseguita
+ intendiamo che l'istruzione inserita nel branch delay slot può essere eseguita
  ma il 
 \begin_inset Quotes eld
 \end_inset
@@ -4784,16 +4825,17 @@ lavoro
 \begin_inset Quotes erd
 \end_inset
 
- è stato sprecato e il programma continua ad eseguire correttamente anche
- dopo aver eseguito quella istruzione inutile.
+ viene soltanto sprecato e il programma può continuare correttamente anche
+ dopo aver eseguito quella istruzione inutile, ovvero l'istruzione nel delay
+ slot non ha sporcato lo stato dell'esecuzione.
  Per esempio va bene se il registro destinazione è un registro utilizzato
- temporaneamente quando la branch va nella direzione errata.
+ solo nel ramo errato del flusso di esecuzione.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 In generale, i compilatori sono in grado di riempire circa il 50% dei delayed
- brach slots con istruzioni valide e utile.
+ brach slots con istruzioni valide e utili.
  Gli slot rimanenti sono riempiti con operazioni 
 \series bold
 nop
@@ -4803,13 +4845,16 @@ nop
 
 \begin_layout Itemize
 Nelle pipelines più profonde il delayed branch è più lungo di un ciclo,
- quindi è necessario trovare altre istruzioni, quindi è ancora più difficile
- trovare istruzioni da inserire.
+ quindi è necessario trovare altre istruzioni ed è ancora più difficile.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Le principali limitazioni del delayed branch scheduling nascono da:
+Le principali 
+\series bold
+limitazioni
+\series default
+ del delayed branch scheduling nascono da:
 \end_layout
 
 \begin_deeper
@@ -4818,7 +4863,7 @@ Restrizioni sulle istruzioni che possiamo inserire nel branch delay slot
 \end_layout
 
 \begin_layout Itemize
-L'abilità del compilare di predirre staticamente il risultato delle branch
+L'abilità del compilatore di predirre staticamente il risultato dei branch
 \end_layout
 
 \end_deeper
@@ -4869,7 +4914,7 @@ L'architettura MIPS ha l'istruzione
 \series bold
 branch-likely
 \series default
- che si comporta come una branche 
+ che si comporta come una branch 
 \series bold
 \emph on
 cancel-if-not-taken
@@ -4890,7 +4935,7 @@ L'istruzione nel branch delay slot non viene eseguita (viene trasformata
 
 \begin_layout Itemize
 È un approccio utile per backward branches (come i branch utilizzati per
- costruire i loop)
+ nei loop)
 \end_layout
 
 \end_deeper
