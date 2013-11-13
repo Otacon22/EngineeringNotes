@@ -4421,17 +4421,9 @@ branch target address
 penalità di un ciclo
 \series default
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-ATTENZIONE: possibile 2-cycles penalty.
- Il Branch Target Address dovrebbe esser pronto al termine della EX.
-\end_layout
-
-\end_inset
-
-
+ Si ricorda che l'architettura MIPS implementa l'ottimizzazione Early Evaluation
+ del PC.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4611,17 +4603,8 @@ delay
 \end_layout
 
 \begin_layout Itemize
-Se assumiamo che il branch delay sia 1 ciclo (
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-NON (vedi nota precedente)
-\end_layout
-
-\end_inset
-
-come nel caso di MIPS), abbiamo solo 1 slot di delay.
+Se assumiamo che il branch delay sia 1 ciclo (come nel caso di MIPS ottimizzato)
+, abbiamo solo 1 slot di delay.
 \end_layout
 
 \begin_deeper
