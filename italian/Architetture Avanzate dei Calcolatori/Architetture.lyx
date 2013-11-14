@@ -2601,12 +2601,13 @@ instruction memory
 \emph default
  è separata dalla 
 \emph on
-data memory
+data memory.
 \end_layout
 
 \begin_layout Itemize
 Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
- da una istruzione e accesso in lettura da parte di un'altra istruzione
+ da parte di una istruzione e accesso in scrittura da parte di un'altra
+ istruzione.
 \end_layout
 
 \begin_layout Standard
@@ -2629,7 +2630,8 @@ Se le istruzioni eseguite nella pipeline sono
 \series bold
 dipendenti
 \series default
-, ci possono essere data hazards se le istruzioni sono troppo vicine.
+, ci possono essere data hazards nel caso in cui siano troppo vicine fra
+ loro.
 \end_layout
 
 \begin_layout Standard
@@ -2848,15 +2850,15 @@ Ci sono tre forwarding paths:
 \end_layout
 
 \begin_layout Itemize
-EX/EX path
+EX / EX path
 \end_layout
 
 \begin_layout Itemize
-MEM/EX path
+MEM / EX path
 \end_layout
 
 \begin_layout Itemize
-MEM/ID path
+MEM / ID path
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2890,7 +2892,7 @@ Data Hazards: Load/Use hazard
 \end_layout
 
 \begin_layout Standard
-Facendo forwarding utilizzando il percorso MEM/EX è 
+Facendo forwarding utilizzando il percorso MEM / EX è 
 \series bold
 necessario 1 stallo
 \end_layout
@@ -2918,7 +2920,7 @@ necessario 1 stallo
 \end_layout
 
 \begin_layout Standard
-Con un forwarding su MEM/MEM path si risolve:
+Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Standard
@@ -2952,19 +2954,19 @@ I percorsi di forwarding sono:
 \end_layout
 
 \begin_layout Itemize
-EX/EX
+EX / EX
 \end_layout
 
 \begin_layout Itemize
-MEM/EX
+MEM / EX
 \end_layout
 
 \begin_layout Itemize
-MEM/ID
+MEM / ID
 \end_layout
 
 \begin_layout Itemize
-MEM/MEM (per LOAD/STORE)
+MEM / MEM (per LOAD/STORE)
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3068,15 +3070,15 @@ I forwarding paths sono:
 
 \begin_deeper
 \begin_layout Itemize
-EX/EX path
+EX / EX path
 \end_layout
 
 \begin_layout Itemize
-MEM/EX path
+MEM / EX path
 \end_layout
 
 \begin_layout Itemize
-MEM/MEM path (for LOAD/STOREs)
+MEM / MEM path (for LOAD/STOREs)
 \end_layout
 
 \end_deeper
