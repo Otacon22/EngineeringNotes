@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="765.875"
+   height="459.70074"
+   id="svg8345"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 23">
+  <defs
+     id="defs8347">
+    <clipPath
+       id="clipPath8941"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8943"
+         d="m 148.5,596.871 40.62,0 0,118.62 -40.62,0 0,-118.62 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8923"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8925"
+         d="m 148.5,471.711 40.62,0 0,135.48 -40.62,0 0,-135.48 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8905"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8907"
+         d="m 148.5,359.511 40.62,0 0,123.48 -40.62,0 0,-123.48 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8887"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8889"
+         d="m 148.5,126.171 40.62,0 0,118.08 -40.62,0 0,-118.08 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8869"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8871"
+         d="m 148.5,233.271 40.62,0 0,137.46 -40.62,0 0,-137.46 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8857"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8859"
+         d="m 458.76,596.991 46.74,0 0,124.92 -46.74,0 0,-124.92 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8837"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8839"
+         d="m 459.6,477.051 45.9,0 0,130.02 -45.9,0 0,-130.02 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8807"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8809"
+         d="m 459.6,357.711 45.9,0 0,130.02 -45.9,0 0,-130.02 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8787"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8789"
+         d="m 459.6,125.211 45.9,0 0,124.5 -45.9,0 0,-124.5 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8755"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8757"
+         d="m 459.6,238.611 45.9,0 0,130.08 -45.9,0 0,-130.08 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8741"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8743"
+         d="m 387.6,596.631 50.64,0 0,125.28 -50.64,0 0,-125.28 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8693"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8695"
+         d="m 387.84,125.211 50.64,0 0,124.5 -50.64,0 0,-124.5 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8637"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8639"
+         d="m 236.76,595.731 50.64,0 0,126.18 -50.64,0 0,-126.18 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8597"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8599"
+         d="m 237,125.211 50.64,0 0,124.5 -50.64,0 0,-124.5 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8551"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8553"
+         d="m 313.56,596.631 50.58,0 0,125.28 -50.58,0 0,-125.28 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8503"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8505"
+         d="m 313.56,125.211 50.58,0 0,124.5 -50.58,0 0,-124.5 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8475"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8477"
+         d="m 295.26,408.171 16.32,0 0,5.82 -16.32,0 0,-5.82 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8463"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8465"
+         d="m 295.86,259.791 15.72,0 0,148.44 -15.72,0 0,-148.44 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8447"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8449"
+         d="m 295.86,259.791 15.72,0 0,148.44 -15.72,0 0,-148.44 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8431"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8433"
+         d="m 295.86,259.791 15.72,0 0,148.44 -15.72,0 0,-148.44 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8399"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8401"
+         d="m 218.94,127.311 17.76,0 0,130.26 -17.76,0 0,-130.26 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8373"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8375"
+         d="m 0,841.98 595.2,0 L 595.2,0 0,0 0,841.98 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath8367"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path8369"
+         clip-rule="evenodd"
+         d="m 588.84,0.11053 -582.84,0 0,841.86 582.84,0 0,-841.86 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="311.5149"
+     inkscape:cy="262.91594"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:window-width="954"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata8350">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(51.21548,-348.33249)">
+    <g
+       id="g8395"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8397"
+         clip-path="url(#clipPath8399)">
+        <text
+           transform="matrix(0,1,1,0,232.56,127.3105)"
+           id="text8403">
+          <tspan
+             style="font-size:15.83409977px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+             x="0"
+             y="0"
+             id="tspan8405">A</tspan>
+        </text>
+      </g>
+    </g>
+    <text
+       id="text8407"
+       x="-25.166105"
+       y="457.00146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+         x="-25.166105 -12.142558 3.355068 8.4556284 16.629984 27.87417 36.434479 42.894794 50.024097 61.343506 70.87365 77.40918 83.103508 93.753929 105.13468 113.61978 119.01526"
+         y="457.00146"
+         sodipodi:role="line"
+         id="tspan8409">LU Instructions:</tspan>
+    </text>
+    <text
+       id="text8411"
+       x="124.15936"
+       y="457.22711"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="124.15936 136.52579 148.89223 161.26459 173.63103 185.99745 198.36389 210.73032 223.09676 235.46318 247.82962"
+         y="457.22711"
+         sodipodi:role="line"
+         id="tspan8413">op $x,$y,$z</tspan>
+    </text>
+    <text
+       id="text8415"
+       x="-38.589466"
+       y="736.00031"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+         x="-38.589466 -24.643585 -13.993173 -2.7489829 8.5704184 14.26476 20.800282 26.494623 37.145035 48.464432 58.28949 63.760178 68.860733 82.731407 89.86071 99.760979 111.00517 120.61053 131.92995 141.46008 150.0204 155.41586"
+         y="736.00031"
+         sodipodi:role="line"
+         id="tspan8417">Conditional Branches:</tspan>
+    </text>
+    <text
+       id="text8419"
+       x="160.53622"
+       y="736.22595"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="160.53622 172.90463 185.27304 197.64145 209.93861 222.30702 234.67543 247.04384 259.41226 271.78067 284.14908 296.51749 308.88589 321.2543 333.62274 345.99115"
+         y="736.22595"
+         sodipodi:role="line"
+         id="tspan8421">beq $x,$y,offset</tspan>
+    </text>
+    <text
+       id="text8423"
+       x="-38.589466"
+       y="552.39996"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+         x="-38.589466 -25.668842 -15.004575 -5.1715994 6.1062384 11.206799 19.396988 30.674826 39.159924 45.620232 52.781212 64.059052 73.694099 80.154411 85.84874 96.574371 107.85221 116.33731 121.8357"
+         y="552.39996"
+         sodipodi:role="line"
+         id="tspan8425">Load Instructions:</tspan>
+    </text>
+    <g
+       id="g8427"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8429"
+         clip-path="url(#clipPath8431)">
+        <text
+           transform="matrix(0,1,1,0,309.06,259.7905)"
+           id="text8435">
+          <tspan
+             style="font-size:15.83409977px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+             x="0"
+             y="0"
+             id="tspan8437">l</tspan>
+        </text>
+      </g>
+    </g>
+    <text
+       id="text8439"
+       x="139.30888"
+       y="552.62646"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="139.30888 151.68126 164.05363 176.42599"
+         y="552.62646"
+         sodipodi:role="line"
+         id="tspan8441">w $x</tspan>
+    </text>
+    <g
+       id="g8443"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8445"
+         clip-path="url(#clipPath8447)">
+        <text
+           transform="matrix(0,1,1,0,309.06,309.2305)"
+           id="text8451">
+          <tspan
+             style="font-size:15.83409977px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+             x="0"
+             y="0"
+             id="tspan8453">,</tspan>
+        </text>
+      </g>
+    </g>
+    <text
+       id="text8455"
+       x="201.18388"
+       y="552.62646"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="201.18388 213.54636 225.90883 238.27132 250.63379 262.99625 275.35873 287.72119"
+         y="552.62646"
+         sodipodi:role="line"
+         id="tspan8457">offset($</tspan>
+    </text>
+    <g
+       id="g8459"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8461"
+         clip-path="url(#clipPath8463)">
+        <text
+           transform="matrix(0,1,1,0,309.06,398.2705)"
+           id="text8467">
+          <tspan
+             style="font-size:15.83409977px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+             x="0"
+             y="0"
+             id="tspan8469">y</tspan>
+        </text>
+      </g>
+    </g>
+    <g
+       id="g8471"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8473"
+         clip-path="url(#clipPath8475)">
+        <text
+           transform="matrix(0,1,1,0,308.88,408.1705)"
+           id="text8479">
+          <tspan
+             style="font-size:15.83409977px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+             x="0"
+             y="0"
+             id="tspan8481">)</tspan>
+        </text>
+      </g>
+    </g>
+    <g
+       id="g8483"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 356.018,325.261 -116.557,0 0,40.505 116.557,0 0,-40.505 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8485" />
+    </g>
+    <text
+       id="text8487"
+       x="135.48389"
+       y="583.07648"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="135.48389 146.72144 154.33733 161.7617 170.82278 175.29585 184.53105 190.51024 194.98332 206.16341 213.58429 220.18857 227.77139"
+         y="583.07648"
+         sodipodi:role="line"
+         id="tspan8489">Read of Base</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="154.60896 165.93356 173.51637 181.54494 185.60013"
+         y="602.72736"
+         sodipodi:role="line"
+         id="tspan8491">Reg.</tspan>
+    </text>
+    <text
+       id="text8493"
+       x="190.0089"
+       y="602.80145"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="190.0089 199.30693"
+         y="602.80145"
+         sodipodi:role="line"
+         id="tspan8495">$y</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m -41.21548,565.00147 0,49.65 148.575,0 0,-49.65 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8497" />
+    <g
+       id="g8499"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8501"
+         clip-path="url(#clipPath8503)">
+        <g
+           id="g8507"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 239.342,325.261 -116.557,0 0,40.505 116.557,0 0,-40.505 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8509" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8511"
+       x="-7.9911051"
+       y="583.07648"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-7.9911051 -1.6340753 7.5871878 14.266335 19.524683 25.516066 29.522511 34.021706 44.230217 51.813034 57.090534 64.673355 73.96949"
+         y="583.07648"
+         sodipodi:role="line"
+         id="tspan8513">Instr. Fetch</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-16.315662 -3.1906855 1.3085107 11.419514 22.784163 27.28336 33.657803 42.879066 50.447948 56.554256 64.123138 77.998558 82.119919"
+         y="602.72736"
+         sodipodi:role="line"
+         id="tspan8515">&amp; PC Increm.</tspan>
+    </text>
+    <g
+       id="g8517"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 472.752,325.261 -116.499,0 0,40.505 116.499,0 0,-40.505 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8519" />
+    </g>
+    <text
+       id="text8521"
+       x="296.88388"
+       y="583.07648"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="296.88388 309.12262 319.55051 332.32898 336.78989 350.83942 360.17038 364.14896"
+         y="583.07648"
+         sodipodi:role="line"
+         id="tspan8523">ALU Op.</tspan>
+    </text>
+    <text
+       id="text8525"
+       x="281.88388"
+       y="600.55145"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="281.88388 291.15961 300.43533 309.71103 318.98676 328.26248 337.53818 346.8139 356.08963 365.36536"
+         y="600.55145"
+         sodipodi:role="line"
+         id="tspan8527">($y+offset</tspan>
+    </text>
+    <text
+       id="text8529"
+       x="374.58301"
+       y="600.55145"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="374.58301"
+         y="600.55145"
+         id="tspan8531">)</tspan>
+    </text>
+    <g
+       id="g8533"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 589.78,325.261 -116.499,0 0,40.505 116.499,0 0,-40.505 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8535" />
+    </g>
+    <text
+       id="text8537"
+       x="439.53391"
+       y="583.07648"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="439.53391 450.85849 458.44305 465.86395 474.93893 479.43814 494.57941 502.1622 516.03766 520.09283"
+         y="583.07648"
+         sodipodi:role="line"
+         id="tspan8539">Read Mem.</tspan>
+    </text>
+    <text
+       id="text8541"
+       x="424.23389"
+       y="599.65149"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="424.23389 433.50513 442.7764 452.04764 461.31891 470.59015 479.86139 489.13266 498.4039 507.67517 516.94641 526.21765"
+         y="599.65149"
+         sodipodi:role="line"
+         id="tspan8543">M($y+offset)</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 555.03452,565.00147 0,49.65 148.575,0 0,-49.65 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8545" />
+    <g
+       id="g8547"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8549"
+         clip-path="url(#clipPath8551)">
+        <g
+           id="g8555"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 707.102,325.261 -116.557,0 0,40.505 116.557,0 0,-40.505 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8557" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8559"
+       x="590.13391"
+       y="583.07648"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="590.13391 606.17883 612.17023 616.36993 621.62823 629.21283 633.71204 644.81726 652.2381 659.82092 668.37531"
+         y="583.07648"
+         sodipodi:role="line"
+         id="tspan8561">Write Back</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="568.15851 582.10883 589.69336 596.29767 601.55597 605.75574 615.05182 622.47272 627.73108 631.70966 636.20886 647.45862 655.04315 663.14661 667.12518"
+         y="602.72736"
+         sodipodi:role="line"
+         id="tspan8563">Destinat. Reg.</tspan>
+    </text>
+    <text
+       id="text8565"
+       x="671.58386"
+       y="602.80145"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="671.58386 680.88196"
+         y="602.80145"
+         sodipodi:role="line"
+         id="tspan8567">$x</tspan>
+    </text>
+    <g
+       id="g8569"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 356.018,247.188 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8571" />
+    </g>
+    <text
+       id="text8573"
+       x="127.90889"
+       y="487.30148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="127.90889 139.14644 146.76233 154.18671 163.24777 167.70866 176.94386 182.92305 187.38394 196.07938 205.31456 214.09357 220.08496 227.70085 235.31676"
+         y="487.30148"
+         sodipodi:role="line"
+         id="tspan8575">Read of Source</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="124.68423 135.91133 143.51678 151.54533 158.22449 162.27968"
+         y="506.87576"
+         sodipodi:role="line"
+         id="tspan8577">Regs.</tspan>
+    </text>
+    <text
+       id="text8579"
+       x="166.6839"
+       y="506.95148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="166.6839 175.98193"
+         y="506.95148"
+         sodipodi:role="line"
+         id="tspan8581">$y</tspan>
+    </text>
+    <text
+       id="text8583"
+       x="189.70822"
+       y="506.87646"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="189.70822 197.16219 206.42699 215.57686"
+         y="506.87646"
+         sodipodi:role="line"
+         id="tspan8585">and</tspan>
+    </text>
+    <text
+       id="text8587"
+       x="220.0089"
+       y="506.95148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="220.0089 229.30693"
+         y="506.95148"
+         sodipodi:role="line"
+         id="tspan8589">$z</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m -41.21548,469.30147 0,49.725 148.575,0 0,-49.725 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8591" />
+    <g
+       id="g8593"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8595"
+         clip-path="url(#clipPath8597)">
+        <g
+           id="g8601"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 239.342,247.188 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8603" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8605"
+       x="-7.9911051"
+       y="487.30148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-7.9911051 -1.6340753 7.5871878 14.266335 19.524683 25.516066 29.522511 34.021706 44.230217 51.813034 57.090534 64.673355 73.96949"
+         y="487.30148"
+         sodipodi:role="line"
+         id="tspan8607">Instr. Fetch</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-16.315662 -3.1906855 1.3085107 11.419514 22.784163 27.28336 33.657803 42.879066 50.447948 56.554256 64.123138 77.998558 82.119919"
+         y="506.87576"
+         sodipodi:role="line"
+         id="tspan8609">&amp; PC Increm.</tspan>
+    </text>
+    <g
+       id="g8611"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 472.752,247.188 -116.499,0 0,40.566 116.499,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8613" />
+    </g>
+    <text
+       id="text8615"
+       x="296.88388"
+       y="487.30148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="296.88388 309.12262 319.55051 332.32898 336.75333 350.80286 360.13382 364.1124"
+         y="487.30148"
+         sodipodi:role="line"
+         id="tspan8617">ALU Op.</tspan>
+    </text>
+    <text
+       id="text8619"
+       x="288.85889"
+       y="504.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="288.85889 298.14801 307.43713 316.72623 325.94986 335.23898 344.52808 353.75171 363.04083"
+         y="504.70148"
+         sodipodi:role="line"
+         id="tspan8621">($y op $z</tspan>
+    </text>
+    <text
+       id="text8623"
+       x="372.33438"
+       y="504.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="372.33438"
+         y="504.70148"
+         id="tspan8625">)</tspan>
+    </text>
+    <g
+       id="g8627"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 589.78,247.188 -116.499,0 0,40.566 116.499,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8629" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 553.90827,469.00147 0,49.725 148.575,0 0,-49.725 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8631" />
+    <g
+       id="g8633"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8635"
+         clip-path="url(#clipPath8637)">
+        <g
+           id="g8641"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 706.22,246.944 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8643" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8645"
+       x="589.15887"
+       y="487.15146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="589.15887 605.27869 611.27008 615.46979 620.72815 628.32837 632.82758 643.87531 651.284 658.88422 667.38989"
+         y="487.15146"
+         sodipodi:role="line"
+         id="tspan8647">Write Back</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="567.25836 581.09204 588.67487 595.354 600.61237 604.81207 614.03333 621.45422 626.71252 630.76776 635.26697 646.55847 654.1413 662.16986 666.22504"
+         y="506.72577"
+         sodipodi:role="line"
+         id="tspan8649">Destinat. Reg.</tspan>
+    </text>
+    <text
+       id="text8651"
+       x="670.6839"
+       y="506.80148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="670.6839 679.90753"
+         y="506.80148"
+         sodipodi:role="line"
+         id="tspan8653">$x</tspan>
+    </text>
+    <text
+       id="text8655"
+       x="-38.591106"
+       y="648.40149"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+         x="-38.591106 -28.152475 -21.612991 -10.956642 -3.8035884 5.823544 10.924104 19.106377 30.376295 38.974213 45.434525 52.587578 63.857502 73.387657 79.923172 85.617516 96.267921 107.53784 116.02294 121.41841"
+         y="648.40149"
+         sodipodi:role="line"
+         id="tspan8657">Store Instructions:</tspan>
+    </text>
+    <text
+       id="text8659"
+       x="126.48335"
+       y="648.62714"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="126.48335 138.84978 151.21622 163.58858 175.95502 188.32144 200.68788 213.05431 225.42075 237.78717 250.15361 262.52005 274.88647 287.2529 299.61932"
+         y="648.62714"
+         sodipodi:role="line"
+         id="tspan8661">sw $x,offset($y</tspan>
+    </text>
+    <text
+       id="text8663"
+       x="312.03326"
+       y="648.40149"
+       style="font-size:15px">
+      <tspan
+         style="font-size:19.79262543px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond-Bold"
+         x="312.03326 319.30905"
+         y="648.40149"
+         sodipodi:role="line"
+         id="tspan8665">)</tspan>
+    </text>
+    <g
+       id="g8667"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 356.018,401.008 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8669" />
+    </g>
+    <text
+       id="text8671"
+       x="115.5339"
+       y="676.00146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="115.5339 126.78363 134.36646 141.78734 150.93721 155.41725 164.63852 170.56721 175.04726 186.15248 193.57336 200.2525 207.83533 216.79541 228.12001 235.70284 243.66522"
+         y="676.00146"
+         sodipodi:role="line"
+         id="tspan8673">Read of Base Reg.</tspan>
+    </text>
+    <text
+       id="text8675"
+       x="129.93388"
+       y="694.60144"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="129.93388 139.15752"
+         y="694.60144"
+         sodipodi:role="line"
+         id="tspan8677">$y</tspan>
+    </text>
+    <text
+       id="text8679"
+       x="152.35902"
+       y="694.45117"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Times New Roman;-inkscape-font-specification:TimesNewRomanPSMT"
+         x="152.35902 164.20479 168.10527 176.64732 184.356 192.06468 197.16461 204.03993 210.91524"
+         y="694.45117"
+         sodipodi:role="line"
+         id="tspan8681">&amp; Source</tspan>
+    </text>
+    <text
+       id="text8683"
+       x="214.75916"
+       y="694.60144"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="214.75916 224.05721"
+         y="694.60144"
+         sodipodi:role="line"
+         id="tspan8685">$x</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m -41.21548,657.85147 0,49.725 148.575,0 0,-49.725 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8687" />
+    <g
+       id="g8689"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8691"
+         clip-path="url(#clipPath8693)">
+        <g
+           id="g8697"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 239.342,401.008 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8699" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8701"
+       x="-7.9911051"
+       y="676.00146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-7.9911051 -1.6340753 7.5871878 14.266335 19.524683 25.516066 29.522511 34.021706 44.230217 51.813034 57.090534 64.673355 73.96949"
+         y="676.00146"
+         sodipodi:role="line"
+         id="tspan8703">Instr. Fetch</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-16.315662 -3.1906855 1.3085107 11.419514 22.784163 27.28336 33.657803 42.879066 50.447948 56.554256 64.123138 77.998558 82.119919"
+         y="695.57574"
+         sodipodi:role="line"
+         id="tspan8705">&amp; PC Increm.</tspan>
+    </text>
+    <g
+       id="g8707"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 472.752,401.008 -116.499,0 0,40.566 116.499,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8709" />
+    </g>
+    <text
+       id="text8711"
+       x="296.88388"
+       y="676.00146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="296.88388 309.12262 319.55051 332.32898 336.78989 350.83942 360.17038 364.14896"
+         y="676.00146"
+         sodipodi:role="line"
+         id="tspan8713">ALU Op.</tspan>
+    </text>
+    <text
+       id="text8715"
+       x="281.88388"
+       y="693.40149"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="281.88388 291.15961 300.43533 309.71103 318.98676 328.26248 337.53818 346.8139 356.08963 365.36536"
+         y="693.40149"
+         sodipodi:role="line"
+         id="tspan8717">($y+offset</tspan>
+    </text>
+    <text
+       id="text8719"
+       x="374.58301"
+       y="693.40149"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="374.58301"
+         y="693.40149"
+         id="tspan8721">)</tspan>
+    </text>
+    <g
+       id="g8723"
+       transform="matrix(1.27475,0,0,1.2257875,-197.72923,166.30147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 589.78,401.008 -116.499,0 0,40.566 116.499,0 0,-40.566 z"
+         style="fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         id="path8725" />
+    </g>
+    <text
+       id="text8727"
+       x="437.65891"
+       y="676.00146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="437.65891 453.74213 459.73352 463.93323 469.19156 476.77438 481.27359 496.45142 504.03595 517.91138 521.96655"
+         y="676.00146"
+         sodipodi:role="line"
+         id="tspan8729">Write Mem.</tspan>
+    </text>
+    <text
+       id="text8731"
+       x="424.23389"
+       y="692.50146"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="424.23389 433.50513 442.7764 452.04764 461.31891 470.59015 479.86139 489.13266 498.4039 507.67517 516.94641 526.21765"
+         y="692.50146"
+         sodipodi:role="line"
+         id="tspan8733">M($y+offset)</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 555.03452,657.55147 0,49.725 148.575,0 0,-49.725 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8735" />
+    <g
+       id="g8737"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8739"
+         clip-path="url(#clipPath8741)">
+        <g
+           id="g8745"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 707.102,400.763 -116.557,0 0,40.566 116.557,0 0,-40.566 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8747" />
+        </g>
+      </g>
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 107.50952,747.55147 0,49.875 148.575,0 0,-49.875 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8749" />
+    <g
+       id="g8751"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8753"
+         clip-path="url(#clipPath8755)">
+        <g
+           id="g8759"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 356.018,474.186 -116.557,0 0,40.688 116.557,0 0,-40.688 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8761" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8763"
+       x="127.90889"
+       y="765.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="127.90889 139.14644 146.76233 154.18671 163.24777 167.72086 176.95605 182.93524 187.40833 196.10374 205.33894 214.11795 220.10933 227.72523 235.34113"
+         y="765.70148"
+         sodipodi:role="line"
+         id="tspan8765">Read of Source</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="124.68423 135.91133 143.51678 151.54533 158.22449 162.27968"
+         y="785.35065"
+         sodipodi:role="line"
+         id="tspan8767">Regs.</tspan>
+    </text>
+    <text
+       id="text8769"
+       x="166.6839"
+       y="785.42645"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="166.6839 175.98193"
+         y="785.42645"
+         sodipodi:role="line"
+         id="tspan8771">$x</tspan>
+    </text>
+    <text
+       id="text8773"
+       x="189.70822"
+       y="785.35144"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="189.70822 197.16219 206.42699 215.57686"
+         y="785.35144"
+         sodipodi:role="line"
+         id="tspan8775">and</tspan>
+    </text>
+    <text
+       id="text8777"
+       x="220.0089"
+       y="785.42645"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="220.0089 229.30693"
+         y="785.42645"
+         sodipodi:role="line"
+         id="tspan8779">$y</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m -41.21548,747.55147 0,49.875 148.575,0 0,-49.875 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8781" />
+    <g
+       id="g8783"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8785"
+         clip-path="url(#clipPath8787)">
+        <g
+           id="g8791"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 239.342,474.186 -116.557,0 0,40.688 116.557,0 0,-40.688 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8793" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8795"
+       x="-7.9911051"
+       y="765.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-7.9911051 -1.6340753 7.5871878 14.266335 19.524683 25.516066 29.522511 34.021706 44.230217 51.813034 57.090534 64.673355 73.96949"
+         y="765.70148"
+         sodipodi:role="line"
+         id="tspan8797">Instr. Fetch</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="-16.315662 -3.1906855 1.3085107 11.419514 22.784163 27.28336 33.657803 42.879066 50.447948 56.554256 64.123138 77.998558 82.119919"
+         y="785.35065"
+         sodipodi:role="line"
+         id="tspan8799">&amp; PC Increm.</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 256.38452,747.55147 0,49.875 148.5,0 0,-49.875 -148.5,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8801" />
+    <g
+       id="g8803"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8805"
+         clip-path="url(#clipPath8807)">
+        <g
+           id="g8811"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 472.752,474.186 -116.499,0 0,40.688 116.499,0 0,-40.688 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8813" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8815"
+       x="264.25891"
+       y="765.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="264.25891 276.48544 286.90115 299.66745 304.16663 318.20398 327.52274 331.50134 336.00052"
+         y="765.70148"
+         sodipodi:role="line"
+         id="tspan8817">ALU Op. (</tspan>
+    </text>
+    <text
+       id="text8819"
+       x="341.20889"
+       y="765.77649"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="341.20889 350.49503 359.78116 369.06729 378.35342 387.63956"
+         y="765.77649"
+         sodipodi:role="line"
+         id="tspan8821">$x-$y)</tspan>
+    </text>
+    <text
+       id="text8823"
+       x="265.00903"
+       y="783.17609"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="265.00903 276.33392 280.15851"
+         y="783.17609"
+         sodipodi:role="line"
+         id="tspan8825">&amp; (</tspan>
+    </text>
+    <text
+       id="text8827"
+       x="284.65872"
+       y="783.17609"
+       style="font-size:15px">
+      <tspan
+         style="font-size:14.88162518px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="284.65872 293.92996 303.20123 312.47247 321.74371 331.01498 340.28622 349.5575 358.82874 368.09998 377.37125 386.64249"
+         y="783.17609"
+         sodipodi:role="line"
+         id="tspan8829">PC+4+offset)</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 405.55952,747.55147 0,49.875 148.5,0 0,-49.875 -148.5,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8831" />
+    <g
+       id="g8833"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8835"
+         clip-path="url(#clipPath8837)">
+        <g
+           id="g8841"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 589.78,474.186 -116.499,0 0,40.688 116.499,0 0,-40.688 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8843" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8845"
+       x="460.23389"
+       y="765.70148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="460.23389 476.3537 482.34506 486.54477 491.80313 499.38596"
+         y="765.70148"
+         sodipodi:role="line"
+         id="tspan8847">Write</tspan>
+      <tspan
+         style="font-size:17.41175079px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Garamond;-inkscape-font-specification:Garamond"
+         x="469.08429 479.2597 490.68878"
+         y="785.35065"
+         sodipodi:role="line"
+         id="tspan8849">PC</tspan>
+    </text>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 555.48327,746.50147 0,49.875 148.575,0 0,-49.875 -148.575,0 z"
+       style="fill:#c0c0c0;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path8851" />
+    <g
+       id="g8853"
+       transform="matrix(0,1.25,1.25,0,-197.72923,166.30147)">
+      <g
+         id="g8855"
+         clip-path="url(#clipPath8857)">
+        <g
+           id="g8861"
+           transform="matrix(0,1.0198,0.98063,0,0,0)">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 707.455,473.329 -116.557,0 0,40.688 116.557,0 0,-40.688 z"
+             style="fill:none;stroke:#000000;stroke-width:0.96899998;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+             id="path8863" />
+        </g>
+      </g>
+    </g>
+    <text
+       id="text8877"
+       x="172.3839"
+       y="369.10147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="172.3839 176.51204 187.00992"
+         y="369.10147"
+         sodipodi:role="line"
+         id="tspan8879">ID</tspan>
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="113.65867 117.71159 126.63885 134.73717 139.61151 145.30876 154.23602 162.33434 167.20868 171.33682 180.18886 189.11461 193.24275 203.74063 211.83894 219.93727 228.86302 237.78877 245.8871"
+         y="386.80103"
+         sodipodi:role="line"
+         id="tspan8881">Instruction Decode</tspan>
+    </text>
+    <text
+       id="text8895"
+       x="23.883896"
+       y="369.10147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="23.883896 27.936815 36.864075"
+         y="369.10147"
+         sodipodi:role="line"
+         id="tspan8897">IF</tspan>
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="-28.841686 -24.788767 -15.861509 -7.7616844 -2.8121266 2.8851309 11.737167 19.836992 24.786551 28.839472 37.766727 46.693989 50.746906 59.674168 67.773987 72.648331 80.746643 89.673904"
+         y="386.80103"
+         sodipodi:role="line"
+         id="tspan8899">Instruction Fetch</tspan>
+    </text>
+    <text
+       id="text8913"
+       x="319.00888"
+       y="369.10147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="319.00888 328.72147 338.43402"
+         y="369.10147"
+         sodipodi:role="line"
+         id="tspan8915">EX</tspan>
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="293.88348 303.63968 311.72598 319.81226 327.89853 336.81226 341.68658 345.81473 354.72845 363.64218"
+         y="386.80103"
+         sodipodi:role="line"
+         id="tspan8917">Execution</tspan>
+    </text>
+    <text
+       id="text8931"
+       x="465.48389"
+       y="369.10147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="465.48389 477.71939 487.45752"
+         y="369.10147"
+         sodipodi:role="line"
+         id="tspan8933">ME</tspan>
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="421.00858 433.15829 441.25662 454.34814 463.25735 468.95459 476.90247 481.03061 491.5285 499.61026 507.69205 515.7738 523.85559 531.93738"
+         y="386.80103"
+         sodipodi:role="line"
+         id="tspan8935">Memory Access</tspan>
+    </text>
+    <text
+       id="text8949"
+       x="613.23389"
+       y="369.10147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="613.23389 627.05353 637.53339"
+         y="369.10147"
+         sodipodi:role="line"
+         id="tspan8951">WB</tspan>
+      <tspan
+         style="font-size:15.04425049px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial-BoldMT"
+         x="587.58344 601.38501 607.08228 611.21045 616.08478 624.18311 628.31122 638.80914 646.90741 655.00574 663.10406"
+         y="386.80103"
+         sodipodi:role="line"
+         id="tspan8953">Write Back</tspan>
+    </text>
+  </g>
+</svg>
