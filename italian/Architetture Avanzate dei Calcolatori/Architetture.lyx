@@ -31,7 +31,7 @@
 \pdf_author "Daniele Iamartino"
 \pdf_subject "Riassunto del corso di Architetture Avanzate dei Calcolatori c/o Politecnico di Milano, a.a. 2013-14, prof.ssa Cristina Silvano"
 \pdf_bookmarks true
-\pdf_bookmarksnumbered false
+\pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks true
@@ -80,7 +80,7 @@
 \begin_body
 
 \begin_layout Title
-Architetture avanzate dei calcolatori
+Architetture Avanzate dei Calcolatori
 \begin_inset Foot
 status open
 
@@ -94,11 +94,48 @@ Quest'opera è sotto licenza Creative Commons Attribuzione - Condividi allo
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
 \begin_layout Author
 Daniele Iamartino
 \end_layout
 
-\begin_layout Section*
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Introduzione
 \end_layout
 
@@ -165,7 +202,7 @@ Cache organization
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Riferimenti
 \end_layout
 
@@ -177,11 +214,11 @@ Computer Architecture, A Quantitative Approach
 ", John Hennessy, David Patterson, Morgan Kaufmann, Fourth Edition
 \end_layout
 
-\begin_layout Part*
+\begin_layout Part
 Pipeline
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Caratteristiche della architettura MIPS
 \end_layout
 
@@ -247,7 +284,7 @@ uzione di istruzioni multiple derivate da un flusso di esecuzione sequenziale
 MIPS utilizza 32 registri
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Instruction Set Architecture (base) del processore MIPS
 \end_layout
 
@@ -342,7 +379,7 @@ jr $s1                    # jump to address contained in $s1
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Formato delle istruzioni MIPS a 32 bit
 \end_layout
 
@@ -396,7 +433,7 @@ Istruzioni di jump incondizionato
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Formato R per istruzioni ALU Register-Register 
 \end_layout
 
@@ -581,7 +618,7 @@ funct
 : Identifica diversi tipi di istruzioni ALU
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Formato I per istruzioni LOAD/STORE
 \end_layout
 
@@ -747,7 +784,7 @@ offset
  register
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Formato I per istruzioni immediate ALU
 \end_layout
 
@@ -920,7 +957,7 @@ immediate
  a causa del primo bit di segno)
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Formato I per istruzioni di branch condizionale
 \end_layout
 
@@ -1086,7 +1123,7 @@ address
  (PC-relative word address)
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Formato J per i Jump incondizionati
 \end_layout
 
@@ -1236,7 +1273,7 @@ address
  parola di memoria
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Esecuzione delle istruzioni MIPS
 \end_layout
 
@@ -1432,7 +1469,7 @@ Le istruzioni ALU scrivono i risultati della ALU nel registro di destinazione
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Latenza delle istruzioni
 \end_layout
 
@@ -1870,7 +1907,7 @@ Jump
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Operazioni MIPS fase per fase
 \end_layout
 
@@ -1992,7 +2029,11 @@ WB:
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
+Schema delle implementazioni
+\end_layout
+
+\begin_layout Subsubsection
 Implementazione base del data path MIPS
 \end_layout
 
@@ -2033,7 +2074,7 @@ RF
 ) con due porte in lettura e una porta in scrittura
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
 Implementazione della fase di Instruction Fetch
 \end_layout
 
@@ -2048,7 +2089,7 @@ Implementazione della fase di Instruction Fetch
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
 Implementazione delle istruzioni ALU
 \end_layout
 
@@ -2063,8 +2104,8 @@ Implementazione delle istruzioni ALU
 
 \end_layout
 
-\begin_layout Subsection*
-Implementazione dell'ALU e istruzioni LOAD/STORE
+\begin_layout Subsubsection
+Implementazione delle istruzioni LOAD/STORE
 \end_layout
 
 \begin_layout Standard
@@ -2078,7 +2119,7 @@ Implementazione dell'ALU e istruzioni LOAD/STORE
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
 Implementazione dei branch condizionali
 \end_layout
 
@@ -2093,7 +2134,7 @@ Implementazione dei branch condizionali
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
 Implementazione del data path MIPS
 \end_layout
 
@@ -2108,7 +2149,7 @@ Implementazione del data path MIPS
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsubsection
 Implementazione del data path MIPS con unità di controllo
 \end_layout
 
@@ -2123,7 +2164,7 @@ Implementazione del data path MIPS con unità di controllo
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Implementazione multi-cycle
 \end_layout
 
@@ -2173,7 +2214,7 @@ Abbiamo bisogno di registri interni per salvare i valori da utilizzare nei
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Pipelining
 \end_layout
 
@@ -2229,7 +2270,7 @@ e e ne esce una nuova, non modifichiamo il tempo necessario per completare
  e la frequenza per completarle.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Esecuzione sequenziale vs.
  pipelining
 \end_layout
@@ -2443,7 +2484,7 @@ throughput
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Le varie fasi della pipeline riviste per i vari tipi di istruzione
 \end_layout
 
@@ -2458,7 +2499,7 @@ Le varie fasi della pipeline riviste per i vari tipi di istruzione
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Implementazione della pipeline MIPS
 \end_layout
 
@@ -2473,7 +2514,7 @@ Implementazione della pipeline MIPS
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Risorse utilizzate nella pipeline
 \end_layout
 
@@ -2500,7 +2541,7 @@ REG = Register File
 DM = Data Memory
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Il problema degli 
 \begin_inset Quotes eld
 \end_inset
@@ -2543,7 +2584,7 @@ riducono le performance
  dello speedup ideale guadagnato dalla pipeline.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Tipi di hazards
 \end_layout
 
@@ -2586,7 +2627,7 @@ Control Hazards
  prima che la condizione sia valutata
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Structural Hazards
 \end_layout
 
@@ -2621,7 +2662,7 @@ Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Data Hazards
 \end_layout
 
@@ -2674,7 +2715,7 @@ La situazione risulta abbastanza chiara dalla figura seguente:
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Data Hazards: Possibili soluzioni
 \end_layout
 
@@ -2751,7 +2792,7 @@ bypassing
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Inserimento di nops
 \end_layout
 
@@ -2766,7 +2807,7 @@ Inserimento di nops
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Scheduling
 \end_layout
 
@@ -2781,7 +2822,7 @@ Scheduling
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Inserimento di 
 \emph on
 stalls
@@ -2798,7 +2839,7 @@ stalls
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Forwarding
 \end_layout
 
@@ -2861,7 +2902,7 @@ MEM / EX path
 MEM / ID path
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Implementazione di MIPS con la forwarding unit
 \end_layout
 
@@ -2876,7 +2917,7 @@ Implementazione di MIPS con la forwarding unit
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Data Hazards: Load/Use hazard
 \end_layout
 
@@ -2934,7 +2975,7 @@ Con un forwarding su MEM / MEM path si risolve:
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Forwarding paths
 \end_layout
 
@@ -2969,7 +3010,7 @@ MEM / ID
 MEM / MEM (per LOAD/STORE)
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Pipeline ottimizzata
 \end_layout
 
@@ -3030,7 +3071,7 @@ REG = Register File
 DM = Data Memory
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Data Hazards nella pipeline ottimizzata
 \end_layout
 
@@ -3082,7 +3123,7 @@ MEM / MEM path (for LOAD/STOREs)
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Data Hazards
 \end_layout
 
@@ -3134,7 +3175,7 @@ WAW (WRITE AFTER WRITE)
 WAR (WRITE AFTER READ)
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 WAW - Write After Write
 \end_layout
 
@@ -3193,7 +3234,7 @@ Se assumiamo che le operazioni ALU floating point richiedano una esecuzione
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 WAR - Write After Read
 \end_layout
 
@@ -3245,7 +3286,7 @@ Come prima, se assumiamo che la scrittura di registri delle istruzioni ALU
  tardi nella pipeline.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Problemi di performance nella Pipeline
 \end_layout
 
@@ -3261,7 +3302,7 @@ In realtà il pipelineing aumenta leggermente la latenza di tutte le istruzioni
  
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Metriche di Performance
 \end_layout
 
@@ -3309,7 +3350,7 @@ MIPS=\frac{f_{clock}}{\left(CPI\cdot10^{6}\right)}
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Esempio
 \end_layout
 
@@ -3368,7 +3409,7 @@ MIPS=208.3
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Metriche di performance (2)
 \end_layout
 
@@ -3416,7 +3457,7 @@ MIPS_{\text{per iterazione}}=\frac{f_{clock}}{CPI_{\text{per iterazione}}\cdot10
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Metriche di performance asintotiche
 \end_layout
 
@@ -3511,7 +3552,7 @@ I cicli di stallo per iterazione sono dovuti a structural hazards, data
  harzards, control hazards e memory stalls
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Speedup della pipeline
 \end_layout
 
@@ -3594,11 +3635,11 @@ Pipeline\, speedup\,=\,\frac{Pipeline\, depth}{1+Pipe\, Stall\, Cycles\, per\, i
 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Tecniche di predizione dei branch
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Istruzioni di branch condizionali
 \end_layout
 
@@ -3818,7 +3859,7 @@ Implementazione della pipeline a 5 stage MIPS
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Il problema dei control hazards
 \end_layout
 
@@ -3950,7 +3991,7 @@ flush
  delle successive 3 istruzioni 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Soluzioni al problema del control hazard
 \end_layout
 
@@ -4038,7 +4079,7 @@ taken
 .
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Early evaluation del PC
 \end_layout
 
@@ -4230,7 +4271,7 @@ Esamineremo alcune tecniche per affrontare questa perdita di performance
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Tecniche di predizione dei branch
 \end_layout
 
@@ -4326,7 +4367,7 @@ In entrambi i casi è necessario fare molta attenzione e tenersi pronti ad
  una misprediction (predizione errata).
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Tecniche di predizione statica
 \end_layout
 
@@ -4378,7 +4419,7 @@ Profile-Driven Prediction
 Delayed Branch
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Branch always (not) taken
 \end_layout
 
@@ -4491,7 +4532,7 @@ branch outcome
  Quindi per MIPS questa tecnica non è utilizzabile.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Backward Taken Forward Not Taken (BTFNT)
 \end_layout
 
@@ -4562,7 +4603,7 @@ si ricorda che nella maggior parte dei casi anche i cicli con controllo
  il loop.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Profile-driven prediction
 \end_layout
 
@@ -4586,7 +4627,7 @@ consigli
  del compilatore.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Delayed Branch Technique
 \end_layout
 
@@ -4673,7 +4714,7 @@ From after
 \end_layout
 
 \end_deeper
-\begin_layout Subparagraph*
+\begin_layout Subparagraph
 Delayed branch technique: from before
 \end_layout
 
@@ -4704,7 +4745,7 @@ Esempio:
 \end_layout
 
 \end_deeper
-\begin_layout Subparagraph*
+\begin_layout Subparagraph
 Delayed branch technique: from target
 \end_layout
 
@@ -4731,7 +4772,7 @@ add
  (come nel caso dei loop).
 \end_layout
 
-\begin_layout Subparagraph*
+\begin_layout Subparagraph
 Delayed branch technique: from fall-through
 \end_layout
 
@@ -4936,7 +4977,7 @@ L'istruzione nel branch delay slot non viene eseguita (viene trasformata
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Tecniche di predizione dinamica dei branch
 \end_layout
 
@@ -5012,7 +5053,7 @@ Se il branch è not taken → PC viene incrementato
 Se il branch è taken → BTP (il predittore) dà l'indirizzo di destinazione
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Branch History Table - BHT (o Branch Prediction Buffer)
 \end_layout
 
@@ -5212,7 +5253,7 @@ n-bit
 \end_layout
 
 \end_deeper
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Correlare i predittori dei branch
 \end_layout
 
@@ -5225,7 +5266,7 @@ Idea:
  varie branch oltre che tra la stessa branch.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Esempio
 \end_layout
 
@@ -5401,7 +5442,7 @@ I 2 bit di history globale vengono utilizzati per scegliere una di 4 entries
 \end_layout
 
 \end_deeper
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \series bold
 Accuratezza dei correlating predictors
@@ -5423,7 +5464,7 @@ Un predittore a 2 bit senza global history lo possiamo vedere come un predittore
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Two-level Adaptive Branch Predictors
 \end_layout
 
@@ -5462,7 +5503,7 @@ Una volta che il contatore a 2 bit viene selezionato, la predizione viene
  fatta con lo stesso metodo come nello schema del contatore a 2 bit.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 GA Predictor
 \end_layout
 
@@ -5533,7 +5574,7 @@ GShare
 
 \end_deeper
 \end_deeper
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Branch Target Buffer
 \end_layout
 
@@ -5647,7 +5688,7 @@ Bits per lo stato di predizione
 \end_layout
 
 \end_deeper
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Commenti sulla branch prediction
 \end_layout
 
@@ -5690,7 +5731,7 @@ dall'hardware
 .
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Instruction Level Parallelism
 \end_layout
 
@@ -5755,7 +5796,7 @@ Caso migliore:
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Riassunto sulla pipeline
 \end_layout
 
@@ -5830,7 +5871,7 @@ non la latenza
 .
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Riassunto tipi di Data hazards
 \end_layout
 
@@ -5860,7 +5901,7 @@ r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Complex pipelining
 \end_layout
 
@@ -5895,7 +5936,7 @@ Diverse funzioni e unità di memoria
 Sistemi di memoria con tempo di accesso variabile
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Complex In-order Pipeline
 \end_layout
 
@@ -5932,7 +5973,7 @@ Le istruzioni vengono inviate in ordine (di modo da gestire le eccezioni
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Altri concetti base e definizioni
 \end_layout
 
@@ -5995,7 +6036,7 @@ Non ci sono Control hazards.
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 2-issue MIPS Pipeline architecture
 \end_layout
 
@@ -6054,7 +6095,7 @@ CPI_{ideale}=0.5
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Dipendenze
 \end_layout
 
@@ -6096,7 +6137,7 @@ Control Dependences
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Name dependences
 \end_layout
 
@@ -6216,7 +6257,7 @@ renaming
  può essere fatto dal compilatore dinamicamente o dall'hardware.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Data dependences e Hazards
 \end_layout
 
@@ -6255,7 +6296,7 @@ Le dipendenze sono una proprietà del programma, mentre gli hazards sono
  una proprietà della pipeline.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Control dependences
 \end_layout
 
@@ -6287,7 +6328,7 @@ control dependence non è la proprietà critica
  che deve essere preservata.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Program Properties
 \end_layout
 
@@ -6319,7 +6360,7 @@ Exception behavior
  in cui le eccezioni vengono sollevate nel programma.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Instruction Level Parallelism
 \end_layout
 
@@ -6355,7 +6396,7 @@ hardware intensive
  dominano il mercato desktop e server.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Assunzioni
 \end_layout
 
@@ -6404,7 +6445,7 @@ Lo stadio di esecuzione può richiede più di un ciclo, a seconda del tipo
  di operazione.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Dynamic Scheduling
 \end_layout
 
@@ -6443,7 +6484,7 @@ commit
 ).
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Esempio di Dynamic Scheduling
 \end_layout
 
@@ -6484,7 +6525,7 @@ out-of-order execution
 ).
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Dynamic Scheduling
 \end_layout
 
@@ -6604,7 +6645,7 @@ out-of-order
 , a meno di un buffer che riordina i risultati prima che vengano scritti.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Static Scheduling
 \end_layout
 
@@ -6694,7 +6735,7 @@ Può aumentare la dimensione del segmento codice
 Aumenta la complessità del compilatore
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 I vari passi per ottenere più parallelismo delle istruzioni
 \end_layout
 
@@ -6709,7 +6750,7 @@ I vari passi per ottenere più parallelismo delle istruzioni
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Esecuzione superscalare
 \end_layout
 
@@ -6769,7 +6810,7 @@ dipendenza dati e controllo
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Struttura dello scheduler dinamico
 \end_layout
 
@@ -6821,7 +6862,7 @@ limite
  su quante istruzioni possono essere verificate durante un ciclo di clock.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Lo scheduling dinamico costa!
 \end_layout
 
@@ -6845,7 +6886,7 @@ Il tempo di ciclo è limitato dalla logica di scheduling (dispatcher e la
 La verifica del design è molto complicata e la logica è complessa e irregolare.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Il numero di issue parallele è limitato nella pratica
 \end_layout
 
@@ -6924,7 +6965,7 @@ Richiede troppo tempo la computazione di scheduling (non riesce a restare
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsubsection
 Riassunto di processori superscalari e scheduling dinamico
 \end_layout
 
@@ -6959,7 +7000,7 @@ Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
 \end_layout
 
 \end_deeper
-\begin_layout Section*
+\begin_layout Section
 Very Long Instruction Word (VLIW)
 \end_layout
 
@@ -7040,7 +7081,7 @@ hitettura.
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsection
 Scheduling Software vs.
  Scheduling Hardware
 \end_layout
@@ -7094,7 +7135,7 @@ Portabilità del compilato
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection*
+\begin_layout Subsection
 Processori superscalari e VLIW
 \end_layout
 
@@ -7117,7 +7158,7 @@ I processori VLIW hanno successo per dispositivi embedded (TriMedia media
  2)
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Funzionamento del Dynamic scheduling
 \end_layout
 
@@ -7186,7 +7227,7 @@ scoreboard
  ci sono 1 o 2 fermate, senza aspettare altre istruzioni.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Schema generale della scoreboard
 \end_layout
 
@@ -7544,7 +7585,7 @@ imprecise
 \end_layout
 
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 I 4 stadi di controllo della scoreboard
 \end_layout
 
@@ -7743,7 +7784,7 @@ register renaming
 
 \end_deeper
 \end_deeper
-\begin_layout Subsection*
+\begin_layout Subsection
 Struttura della scoreboard
 \end_layout
 
@@ -7814,7 +7855,7 @@ Register result status: Indica quale unità funzionale scriverà quale registro.
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Subsection
 Esempio di funzionamento della scoreboard
 \end_layout
 
