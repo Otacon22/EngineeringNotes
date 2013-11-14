@@ -566,56 +566,56 @@ funct
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 Opcode
 \series default
-: Identifica il tipo di istruzione ALU
+ Identifica il tipo di istruzione ALU
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rs
 \series default
-: Primo operando 
+ Primo operando 
 \series bold
 sorgente
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rt
 \series default
-: Secondo operando 
+ Secondo operando 
 \series bold
 sorgente
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rd
 \series default
-: Registro di destinazione
+ Registro di destinazione
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 shamt
 \series default
-: Quantità di shift
+ Quantità di shift
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 funct
 \series default
-: Identifica diversi tipi di istruzioni ALU
+ Identifica diversi tipi di istruzioni ALU
 \end_layout
 
 \begin_layout Subsubsection
@@ -751,36 +751,36 @@ offset
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 Opcode
 \series default
-: Identifica il tipo di istruzione ALU
+ Identifica il tipo di istruzione ALU
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rs
 \series default
-: Registro base
+ Registro base
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rt
 \series default
-: Registro destinazione o sorgente per i dati caricati o salvati in memoria
+ Registro destinazione o sorgente per i dati caricati o salvati in memoria
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 offset
 \series default
-: Viene utilizzato (estendendolo in segno) sommato con l'indirizzo del base
+ Viene utilizzato (estendendolo in segno) sommato con l'indirizzo del base
  register
 \end_layout
 
@@ -917,36 +917,36 @@ immediate
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 Opcode
 \series default
-: Identifica il tipo di istruzione ALU
+ Identifica il tipo di istruzione ALU
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rs
 \series default
-: Registro sorgente
+ Registro sorgente
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rt
 \series default
-: Registro destinazione
+ Registro destinazione
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 immediate
 \series default
-: Contiene il valore dell'operando immediato (nel range 
+ Contiene il valore dell'operando immediato (nel range 
 \begin_inset Formula $-2^{15}$
 \end_inset
 
@@ -1090,37 +1090,37 @@ address
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 Opcode
 \series default
-: Identifica il tipo di istruzione branch
+ Identifica il tipo di istruzione branch
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rs
 \series default
-: Primo registro da comparare
+ Primo registro da comparare
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 rt
 \series default
-: Secondo registro da comparare
+ Secondo registro da comparare
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 address
 \series default
-: Indica l'offset di parole relative alla posizione del program counter
- (PC-relative word address)
+ Indica l'offset di parole relative alla posizione del program counter (PC-relat
+ive word address)
 \end_layout
 
 \begin_layout Subsubsection
@@ -1256,20 +1256,20 @@ address
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 Opcode
 \series default
-: Identifica il tipo di istruzione Jump
+ Identifica il tipo di istruzione Jump
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Description
 
 \series bold
 address
 \series default
-: Contiene i 26 bit più significativi dei 32 dell'indirizzo assoluto della
+ Contiene i 26 bit più significativi dei 32 dell'indirizzo assoluto della
  parola di memoria
 \end_layout
 
@@ -1304,20 +1304,24 @@ IF
 
 \begin_deeper
 \begin_layout Enumerate
-Invia i contenuti del 
-\series bold
+Invia il contenuto del 
+\emph on
 program counter
-\series default
+\emph default
  register alla 
-\series bold
+\emph on
 instruction memory
-\series default
- e leggi l'istruzione corrente.
+\emph default
+ e legge l'istruzione corrente.
 \end_layout
 
 \begin_layout Enumerate
-Aggiorna il program counter aggiungendo 4 all'indirizzo corrente (ogni istruzion
-e sono 4 Bytes / 32 bits)
+
+\emph on
+Aggiorna il program counter
+\emph default
+ aggiungendo 4 all'indirizzo corrente (ogni istruzione sono 4 Bytes = 32
+ bits)
 \end_layout
 
 \end_deeper
@@ -1335,16 +1339,27 @@ ID
 
 \begin_deeper
 \begin_layout Enumerate
-Decodifica l'istruzione corrente e 
-\bar under
+
+\emph on
+Decodifica
+\emph default
+ l'istruzione corrente e 
+\emph on
 legge i vari registri
+\bar under
+ 
+\emph default
 \bar default
- specificati nell'istruzione dal register file.
+specificati nell'istruzione.
+ La lettura avviene dal register file.
 \end_layout
 
 \begin_layout Enumerate
-L'estensione del segno nel campo dell'offset dell'istruzione viene fatta
- in questo punto
+L'
+\emph on
+estensione del segno
+\emph default
+ nel campo offset dell'istruzione viene fatta in questo punto
 \end_layout
 
 \end_deeper
@@ -1362,11 +1377,8 @@ EX
 
 \begin_deeper
 \begin_layout Enumerate
-La 
-\series bold
-ALU opera sugli operandi
-\series default
- preparati nei cicli precedenti a seconda del tipo di istruzione:
+La ALU opera sugli operandi preparati nei cicli precedenti a seconda del
+ tipo di istruzione:
 \end_layout
 
 \begin_deeper
@@ -1399,11 +1411,12 @@ Memory Reference
 \series bold
 Conditional branches
 \series default
-: Vengono comparati due registri letti e computate possibili indirizzi 
+: Vengono comparati i due registri specificati e computati possibili indirizzi
+ di salto (
 \series bold
-branch target address
+Branch Target Address
 \series default
- aggiungendo l'estensione di segno al PC.
+) aggiungendo l'estensione del segno al PC.
 \end_layout
 
 \end_deeper
@@ -1424,18 +1437,31 @@ ME
 
 \begin_deeper
 \begin_layout Enumerate
-Le istruzioni di LOAD richiedono un accesso in lettura alla Data Memory
+Le istruzioni di LOAD richiedono un 
+\emph on
+accesso in lettura alla Data Memory
+\emph default
  utilizzando l'indirizzo effettivo
 \end_layout
 
 \begin_layout Enumerate
-Le istruzioni di STORE richiedono un accesso in scrittura alla Data Memory
- utilizzando l'indirizzo effettivo per scrivere i dati dall'indirizzo sorgente
+Le istruzioni di STORE richiedono un 
+\emph on
+accesso in scrittura alla Data Memory 
+\emph default
+utilizzando l'indirizzo effettivo per scrivere i dati dall'indirizzo sorgente
 \end_layout
 
 \begin_layout Enumerate
-I branch condizionali possono aggiornare il contenuto del Program Counter
- con i branch target address, se il risultato è 
+I branch condizionali possono 
+\emph on
+aggiornare il 
+\emph default
+contenuto del 
+\emph on
+Program Counter 
+\emph default
+con i branch target address, se il risultato è 
 \emph on
 true
 \end_layout
@@ -1470,6 +1496,10 @@ Le istruzioni ALU scrivono i risultati della ALU nel registro di destinazione
 
 \end_deeper
 \begin_layout Subsection
+Dettagli tecnici delle istruzioni MIPS
+\end_layout
+
+\begin_layout Subsubsection
 Latenza delle istruzioni
 \end_layout
 
@@ -1907,8 +1937,8 @@ Jump
 
 \end_layout
 
-\begin_layout Subsection
-Operazioni MIPS fase per fase
+\begin_layout Subsubsection
+Operazioni MIPS riassunte fase per fase
 \end_layout
 
 \begin_layout Itemize
@@ -2029,11 +2059,11 @@ WB:
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
+\begin_layout Subsubsection
 Schema delle implementazioni
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione base del data path MIPS
 \end_layout
 
@@ -2074,7 +2104,7 @@ RF
 ) con due porte in lettura e una porta in scrittura
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione della fase di Instruction Fetch
 \end_layout
 
@@ -2089,7 +2119,7 @@ Implementazione della fase di Instruction Fetch
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione delle istruzioni ALU
 \end_layout
 
@@ -2104,7 +2134,7 @@ Implementazione delle istruzioni ALU
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione delle istruzioni LOAD/STORE
 \end_layout
 
@@ -2119,7 +2149,7 @@ Implementazione delle istruzioni LOAD/STORE
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione dei branch condizionali
 \end_layout
 
@@ -2134,7 +2164,7 @@ Implementazione dei branch condizionali
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione del data path MIPS
 \end_layout
 
@@ -2149,7 +2179,7 @@ Implementazione del data path MIPS
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione del data path MIPS con unità di controllo
 \end_layout
 
@@ -2164,7 +2194,7 @@ Implementazione del data path MIPS con unità di controllo
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Implementazione multi-cycle
 \end_layout
 
@@ -2499,7 +2529,7 @@ Le varie fasi della pipeline riviste per i vari tipi di istruzione
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Implementazione della pipeline MIPS
 \end_layout
 
@@ -2514,8 +2544,8 @@ Implementazione della pipeline MIPS
 
 \end_layout
 
-\begin_layout Subsubsection
-Risorse utilizzate nella pipeline
+\begin_layout Paragraph
+Schema di utilizzo delle risorse nella pipeline
 \end_layout
 
 \begin_layout Standard
@@ -2542,15 +2572,11 @@ DM = Data Memory
 \end_layout
 
 \begin_layout Subsection
-Il problema degli 
-\begin_inset Quotes eld
-\end_inset
+Hazards (pericoli)
+\end_layout
 
-hazards
-\begin_inset Quotes erd
-\end_inset
-
- (pericoli)
+\begin_layout Subsubsection
+Il problema
 \end_layout
 
 \begin_layout Itemize
@@ -2584,7 +2610,7 @@ riducono le performance
  dello speedup ideale guadagnato dalla pipeline.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Paragraph
 Tipi di hazards
 \end_layout
 
@@ -2715,7 +2741,7 @@ La situazione risulta abbastanza chiara dalla figura seguente:
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Data Hazards: Possibili soluzioni
 \end_layout
 
@@ -2792,7 +2818,7 @@ bypassing
 \end_layout
 
 \end_deeper
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Inserimento di nops
 \end_layout
 
@@ -2807,7 +2833,7 @@ Inserimento di nops
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Scheduling
 \end_layout
 
@@ -2822,7 +2848,7 @@ Scheduling
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Inserimento di 
 \emph on
 stalls
@@ -2839,7 +2865,7 @@ stalls
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Forwarding
 \end_layout
 
@@ -2902,7 +2928,7 @@ MEM / EX path
 MEM / ID path
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Implementazione di MIPS con la forwarding unit
 \end_layout
 
@@ -2917,7 +2943,7 @@ Implementazione di MIPS con la forwarding unit
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Data Hazards: Load/Use hazard
 \end_layout
 
@@ -2975,8 +3001,8 @@ Con un forwarding su MEM / MEM path si risolve:
 
 \end_layout
 
-\begin_layout Subsubsection
-Forwarding paths
+\begin_layout Paragraph
+Forwarding paths: un esempio
 \end_layout
 
 \begin_layout Standard
@@ -3010,7 +3036,7 @@ MEM / ID
 MEM / MEM (per LOAD/STORE)
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Pipeline ottimizzata
 \end_layout
 
@@ -3303,7 +3329,7 @@ In realtà il pipelineing aumenta leggermente la latenza di tutte le istruzioni
 \end_layout
 
 \begin_layout Subsubsection
-Metriche di Performance
+Metriche base di Performance
 \end_layout
 
 \begin_layout Standard
@@ -3350,7 +3376,7 @@ MIPS=\frac{f_{clock}}{\left(CPI\cdot10^{6}\right)}
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Esempio
 \end_layout
 
@@ -3410,7 +3436,7 @@ MIPS=208.3
 \end_layout
 
 \begin_layout Subsubsection
-Metriche di performance (2)
+Altre metriche di performance
 \end_layout
 
 \begin_layout Standard
