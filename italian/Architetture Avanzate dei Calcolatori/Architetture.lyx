@@ -2727,7 +2727,9 @@ sw $15, 100($2)     # Registro base ($2) dipende da un sub
 \end_layout
 
 \begin_layout Standard
-La situazione risulta abbastanza chiara dalla figura seguente:
+La situazione risulta abbastanza chiara dalla figura seguente.
+ Le prime tre dipendenze costituiscono un problema in quanto richiedono
+ che sia pronto un dato che la pipeline sta ancora lavorando.
 \end_layout
 
 \begin_layout Standard
