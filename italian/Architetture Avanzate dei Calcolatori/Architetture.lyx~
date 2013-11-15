@@ -4609,7 +4609,7 @@ L'idea alla base è che quando abbiamo dei branch che puntano
 forward
 \emph default
  stiamo eseguendo degli if e quindi stiamo valutando eccezioni nel codice
- che si presume vengano effettivamente eseguite meno di frequente; in presenza
+ che si presume vengano effettivamente valutate meno di frequente; in presenza
  di branch che puntano 
 \emph on
 backward

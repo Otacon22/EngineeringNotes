@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="865.00146"
+   height="296.54343"
+   id="svg14903"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 49">
+  <defs
+     id="defs14905">
+    <clipPath
+       id="clipPath14931"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path14933"
+         d="m 0,841.98 595.2,0 L 595.2,0 0,0 0,841.98 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath14925"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path14927"
+         clip-rule="evenodd"
+         d="m 588.84,0.11053 -582.84,0 0,841.86 582.84,0 0,-841.86 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="481.5636"
+     inkscape:cy="1.8836206"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:window-width="954"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata14908">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(106.5636,-237.70236)">
+    <text
+       id="text14953"
+       x="-33.526699"
+       y="345.80148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-33.526699 -17.348299 -1.169899 15.008499 31.186903 47.365299 63.543697 79.722099 95.900505 112.0978 128.2762 144.4735 160.6519 176.8492 193.0276 209.20599"
+         y="345.80148"
+         sodipodi:role="line"
+         id="tspan14955">If(a==2) a = 0;</tspan>
+    </text>
+    <text
+       id="text14957"
+       x="225.3736"
+       y="345.80148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="225.3736 241.57089 257.76819"
+         y="345.80148"
+         sodipodi:role="line"
+         id="tspan14959">bb1</tspan>
+    </text>
+    <text
+       id="text14961"
+       x="-98.251099"
+       y="378.20148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-98.251099 -82.07 -65.888901 -49.707798 -33.5294 -17.348305 -1.1671976 15.0139 31.194996 47.376102 63.557201 79.738304 95.919395 112.09779 128.2789 144.45729 160.6384 176.8168 192.99791 209.179"
+         y="378.20148"
+         sodipodi:role="line"
+         id="tspan14963">L1: If(b==2) b = 0;</tspan>
+    </text>
+    <text
+       id="text14965"
+       x="225.3736"
+       y="378.20148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="225.3736 241.57089 257.76819"
+         y="378.20148"
+         sodipodi:role="line"
+         id="tspan14967">bb2</tspan>
+    </text>
+    <text
+       id="text14969"
+       x="-98.251099"
+       y="410.60147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-98.251099 -82.064598 -65.878098 -49.691601 -33.507801 -17.321297 -1.1348013 15.051703 31.238197 47.424702 63.611198 79.797699 95.984207 112.168 128.35451 144.54099 160.72749"
+         y="410.60147"
+         sodipodi:role="line"
+         id="tspan14971">L2: If(a!=b) {};</tspan>
+    </text>
+    <text
+       id="text14973"
+       x="225.3736"
+       y="410.60147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="225.3736 241.57089 257.76819 273.96548"
+         y="410.60147"
+         sodipodi:role="line"
+         id="tspan14975">bb3</tspan>
+    </text>
+    <text
+       id="text14977"
+       x="507.52359"
+       y="264.80148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.7074 539.89117 556.07501 572.25879 588.45612 604.63989 620.82373 637.00751 653.19128 669.37512 685.5589"
+         y="264.80148"
+         sodipodi:role="line"
+         id="tspan14979">subi r3,r1,2</tspan>
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.7074 539.89117 556.07501 572.25879 588.45612 604.63989 620.82373 637.00751 653.19128 669.37512 685.5589"
+         y="297.20148"
+         sodipodi:role="line"
+         id="tspan14981">bnez r3,L1;</tspan>
+    </text>
+    <text
+       id="text14983"
+       x="701.69952"
+       y="297.20148"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="701.69952 717.89679 734.09412"
+         y="297.20148"
+         sodipodi:role="line"
+         id="tspan14985">bb1</tspan>
+    </text>
+    <text
+       id="text14987"
+       x="507.52359"
+       y="329.60147"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.7074 539.89117 556.07501 588.39398 604.57782 620.7616 636.94537 653.12921 669.31299 685.49677 701.6806"
+         y="329.60147"
+         sodipodi:role="line"
+         id="tspan14989">add r1,r0,r0</tspan>
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="410.3992 426.58301 442.76682 458.95059 507.48581 523.66962 539.85339 556.03717 572.22101 588.39941 604.58319 620.76703 636.95081 653.13458 669.31842 685.5022"
+         y="361.92587"
+         sodipodi:role="line"
+         id="tspan14991">L1: subi r3,r2,2</tspan>
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.7074 539.89117 556.07501 572.25879 588.45612 604.63989 620.82373 637.00751 653.19128 669.37512 685.5589"
+         y="394.32587"
+         sodipodi:role="line"
+         id="tspan14993">bnez r3,L2;</tspan>
+    </text>
+    <text
+       id="text14995"
+       x="701.69952"
+       y="394.32587"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="701.69952 717.89679 734.09412"
+         y="394.32587"
+         sodipodi:role="line"
+         id="tspan14997">bb2</tspan>
+    </text>
+    <text
+       id="text14999"
+       x="507.52359"
+       y="426.72586"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.71008 539.89661 556.08307 588.4021 604.58862 620.77509 636.96161 653.14813 669.33459 685.52112 701.70758 717.8941"
+         y="426.72586"
+         sodipodi:role="line"
+         id="tspan15001">add r2,r0,r0</tspan>
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="410.3992 426.58569 442.77219 507.4939 523.68042 539.86688 556.05341 588.37238 604.5589 620.74542 636.93188 653.11841 669.30487 685.49139 701.67792"
+         y="459.05026"
+         sodipodi:role="line"
+         id="tspan15003">L2:sub r3,r1,r2</tspan>
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="507.52359 523.7074 539.89117 556.07501 572.25879 588.45612 604.63989 620.82373 637.00751 653.19128 669.37512 685.5589"
+         y="491.45026"
+         sodipodi:role="line"
+         id="tspan15005">beqz r3,L3;</tspan>
+    </text>
+    <text
+       id="text15007"
+       x="701.69952"
+       y="491.45026"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="701.69952 717.89679 734.09412"
+         y="491.45026"
+         sodipodi:role="line"
+         id="tspan15009">bb3</tspan>
+    </text>
+    <text
+       id="text15011"
+       x="410.3992"
+       y="523.85028"
+       style="font-size:15px">
+      <tspan
+         style="font-size:27px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="410.3992 426.5965 442.79379"
+         y="523.85028"
+         sodipodi:role="line"
+         id="tspan15013">L3:</tspan>
+    </text>
+    <g
+       id="g15015"
+       transform="matrix(0,1.25,1.25,0,309.5988,367.77647)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 0,47.34 -8.1,0 16.2,15.78 16.14,-15.78 -8.04,0 0,-47.34"
+         style="fill:#00cc99;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path15017" />
+    </g>
+    <g
+       id="g15019"
+       transform="matrix(0,1.25,1.25,0,309.0738,367.25147)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 0,47.76 0.42,-0.42 -9.12,0 17.22,16.74 17.16,-16.74 -9.06,0 0.36,0.42 L 16.98,0 0,0 z m 16.62,0.78 -0.42,-0.36 0,47.76 8.46,0 -0.24,-0.72 -16.2,15.78 0.54,0 -16.2,-15.78 -0.24,0.72 8.46,0 0,-47.76 -0.36,0.36"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="path15021" />
+    </g>
+  </g>
+</svg>
