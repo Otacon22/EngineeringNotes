@@ -2689,7 +2689,7 @@ Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
 \end_layout
 
 \begin_layout Subsubsection
-Data Hazards
+Data Hazards: introduzione
 \end_layout
 
 \begin_layout Standard
@@ -2759,9 +2759,17 @@ Compilation Techniques
 \begin_layout Itemize
 Inserire delle istruzioni 
 \series bold
-nop
+NOP
 \series default
- (no operation)
+ (
+\series bold
+n
+\series default
+o 
+\series bold
+op
+\series default
+eration)
 \end_layout
 
 \begin_layout Itemize
@@ -2777,7 +2785,7 @@ Il compilatore tenta di inserire istruzioni indipendenti tra quelle correlate
 \begin_layout Itemize
 Quando il compilatore non trova istruzioni indipendenti, inserisce 
 \series bold
-nop
+NOP
 \end_layout
 
 \end_deeper
@@ -2821,7 +2829,7 @@ bypassing
 
 \end_deeper
 \begin_layout Paragraph
-Inserimento di nops
+Inserimento di NOPs
 \end_layout
 
 \begin_layout Standard
@@ -2867,7 +2875,7 @@ stalls
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Forwarding
 \end_layout
 
@@ -2945,8 +2953,18 @@ Implementazione di MIPS con la forwarding unit
 
 \end_layout
 
-\begin_layout Subsubsection
-Data Hazards: Load/Use hazard
+\begin_layout Paragraph
+Esempi di Data Hazards: il caso Load/Use
+\end_layout
+
+\begin_layout Standard
+Un tipico esempio di Data Hazard è il 
+\emph on
+load/use hazard
+\emph default
+: rientrano in questa categoria tutti gli schedule in cui l'utilizzo di
+ un registro avviene poco dopo la sua inizializzazione tramite load.
+ Le immagini che seguono mostrano esempi di questa situazione.
 \end_layout
 
 \begin_layout Standard
@@ -3004,7 +3022,7 @@ Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Paragraph
-Forwarding paths: un esempio
+Schema riasssuntivo 
 \end_layout
 
 \begin_layout Standard
@@ -3038,8 +3056,8 @@ MEM / ID
 MEM / MEM (per LOAD/STORE)
 \end_layout
 
-\begin_layout Subsection
-Pipeline ottimizzata
+\begin_layout Subsubsection
+Ottimizzazione della pipeline
 \end_layout
 
 \begin_layout Itemize
@@ -3152,27 +3170,34 @@ MEM / MEM path (for LOAD/STOREs)
 
 \end_deeper
 \begin_layout Subsubsection
-Data Hazards
+Classificazione dei Data Hazards (RAW - WAW - WAR)
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Paragraph
 
 \series bold
-RAW (READ AFTER WRITE) hazards
+RAW - Read After Write
 \series default
-: Istruzione n+1 tenta di leggere un registro sorgente scritto prima che
- l'istruzione 
+ 
+\end_layout
+
+\begin_layout Standard
+Istruzione 
+\begin_inset Formula $n+1$
+\end_inset
+
+ tenta di leggere un registro sorgente scritto prima che l'istruzione 
 \emph on
 n
 \emph default
  lo abbia scritto nel register file.
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Esempio:
 \end_layout
 
+\begin_deeper
 \begin_layout LyX-Code
 add $r1, $r2, $r3
 \end_layout
@@ -3181,29 +3206,13 @@ add $r1, $r2, $r3
 sub $r4, $r1, $r5
 \end_layout
 
-\begin_layout Itemize
+\end_deeper
+\begin_layout Standard
 Utilizzando il forwarding è sempre possibile questo conflitto senza introdurre
  stalls, eccetto per i load/use hazards 
 \end_layout
 
-\end_deeper
-\begin_layout Standard
-Ci sono anche altri tipi di data hazards nella pipeline:
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-WAW (WRITE AFTER WRITE)
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-WAR (WRITE AFTER READ)
-\end_layout
-
-\begin_layout Subsubsection
+\begin_layout Paragraph
 WAW - Write After Write
 \end_layout
 
@@ -3262,7 +3271,7 @@ Se assumiamo che le operazioni ALU floating point richiedano una esecuzione
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 WAR - Write After Read
 \end_layout
 
