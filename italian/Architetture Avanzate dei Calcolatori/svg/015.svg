@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="790.41577"
+   height="334.621"
+   id="svg15516"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 40">
+  <defs
+     id="defs15518">
+    <clipPath
+       id="clipPath15544"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path15546"
+         d="m 0,841.98 595.2,0 L 595.2,0 0,0 0,841.98 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       id="clipPath15538"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path15540"
+         clip-rule="evenodd"
+         d="m 588.84,0.11053 -582.84,0 0,841.86 582.84,0 0,-841.86 z"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="217.97685"
+     inkscape:cy="457.68733"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:window-width="954"
+     inkscape:window-height="1028"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata15521">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(159.72492,-413.04939)">
+    <g
+       style="fill:#ffdd55"
+       transform="matrix(0,1.0435566,1.3328821,0,292.7219,510.84453)"
+       id="g15863">
+      <path
+         id="path15865"
+         style="fill:#ffdd55;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         d="m 0,0 c -37.2,0 -67.32,55.08 -67.32,123 0,67.98 30.12,123.06 67.32,123.06 37.14,0 67.32,-55.08 67.32,-123.06 C 67.32,55.08 37.14,0 0,0"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g15562"
+       transform="matrix(0,1.0435566,1.3328821,0,-149.72492,667.41818)"
+       style="fill:#ffdd55">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 c -37.2,0 -67.32,55.08 -67.32,123 0,67.98 30.12,123.06 67.32,123.06 37.14,0 67.32,-55.08 67.32,-123.06 C 67.32,55.08 37.14,0 0,0"
+         style="fill:#ffdd55;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path15564" />
+    </g>
+    <text
+       id="text15578"
+       x="-102.27326"
+       y="439.93362"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27326 -87.763733 -73.254196"
+         y="439.93362"
+         sodipodi:role="line"
+         id="tspan15580">sub</tspan>
+    </text>
+    <text
+       id="text15582"
+       x="-27.047743"
+       y="439.93362"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="-27.047743 -12.574662"
+         y="439.93362"
+         sodipodi:role="line"
+         id="tspan15584">$2</tspan>
+    </text>
+    <text
+       id="text15586"
+       x="1.90327"
+       y="439.93362"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="1.90327 16.40551 30.917471 45.419712 59.921951 74.424187 88.93615 103.43839 346.8855 361.38776 375.88998"
+         y="439.93362"
+         sodipodi:role="line"
+         id="tspan15588">, $1, $3sub</tspan>
+    </text>
+    <text
+       id="text15590"
+       x="458.57803"
+       y="439.93362"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="458.57803 473.05112"
+         y="439.93362"
+         sodipodi:role="line"
+         id="tspan15592">$2</tspan>
+    </text>
+    <text
+       id="text15594"
+       x="487.52905"
+       y="439.93362"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="487.52905 502.0386 516.55054 531.06006 545.56964 560.07916 574.59113 589.10065 603.61017"
+         y="439.93362"
+         sodipodi:role="line"
+         id="tspan15596">, $1, $3</tspan>
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27082 -87.768562 -73.266342 -41.618011 -27.069595 -12.567375 1.9348828 16.437103"
+         y="480.73331"
+         sodipodi:role="line"
+         id="tspan15598">and$12,</tspan>
+    </text>
+    <text
+       id="text15600"
+       x="30.929621"
+       y="480.73331"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="30.929621 45.478031"
+         y="480.73331"
+         sodipodi:role="line"
+         id="tspan15602">$2</tspan>
+    </text>
+    <text
+       id="text15604"
+       x="59.953545"
+       y="480.73331"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="59.953545 74.450928 88.962883 103.46027 346.90738 361.40479 375.90216 390.39954 404.91147 419.40887 433.90625 448.40363 462.91559 477.41296 491.91034 506.40771 520.90515 535.41705 549.91443 564.4118 578.90918"
+         y="480.73331"
+         sodipodi:role="line"
+         id="tspan15606">, $5add $4, $10, $11</tspan>
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27082 -87.761307 -73.251762 -58.778687 -44.269154 -29.759628 -15.250093 -0.74056304 13.732512 28.242044 42.751575 57.261105"
+         y="515.68402"
+         sodipodi:role="line"
+         id="tspan15608">or $13, $6,</tspan>
+    </text>
+    <text
+       id="text15610"
+       x="71.804657"
+       y="515.68402"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="71.804657 86.27774"
+         y="515.68402"
+         sodipodi:role="line"
+         id="tspan15612">$2</tspan>
+    </text>
+    <text
+       id="text15614"
+       x="346.90497"
+       y="515.68402"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="346.90497 361.40964 375.91431 390.41898 404.91879 419.42346 433.92813 448.4328 462.93259 477.43729 491.94196 506.44662 520.94641 535.45111 549.95575"
+         y="515.68402"
+         sodipodi:role="line"
+         id="tspan15616">and $7, $8, $9</tspan>
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27084 -87.766136 -73.261475 -41.610741 -27.059883 -12.555223 1.9494394 16.454102"
+         y="550.6347"
+         sodipodi:role="line"
+         id="tspan15618">add$14,</tspan>
+    </text>
+    <text
+       id="text15620"
+       x="30.929621"
+       y="550.6347"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="30.929621 45.478031"
+         y="550.6347"
+         sodipodi:role="line"
+         id="tspan15622">$2</tspan>
+    </text>
+    <text
+       id="text15624"
+       x="59.953545"
+       y="550.6347"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="59.953545 74.426628"
+         y="550.6347"
+         sodipodi:role="line"
+         id="tspan15626">,</tspan>
+    </text>
+    <text
+       id="text15628"
+       x="88.97747"
+       y="550.6347"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="88.97747 103.45055"
+         y="550.6347"
+         sodipodi:role="line"
+         id="tspan15630">$2</tspan>
+    </text>
+    <text
+       id="text15632"
+       x="346.90253"
+       y="550.6347"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="346.90253 361.40475 375.90701 390.38007 404.88232 419.38455 433.88681 448.38904 462.86212 477.36435 491.86661 506.36884 520.87109 535.37335 549.87555 564.37781"
+         y="550.6347"
+         sodipodi:role="line"
+         id="tspan15634">lw $16, 100($18)</tspan>
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27328 -87.77346 -73.273643 -58.800568 -44.300751 -29.800934 -15.301116 -0.80133742 13.69848 28.198296 42.698112"
+         y="591.43439"
+         sodipodi:role="line"
+         id="tspan15636">sw $15,100(</tspan>
+    </text>
+    <text
+       id="text15638"
+       x="57.326721"
+       y="591.43439"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="57.326721 71.799797"
+         y="591.43439"
+         sodipodi:role="line"
+         id="tspan15640">$2</tspan>
+    </text>
+    <text
+       id="text15642"
+       x="86.277733"
+       y="591.43439"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="86.277733 346.90009 361.44849 375.94589 444.04419 458.54156 473.03897 487.53635 502.03372"
+         y="591.43439"
+         sodipodi:role="line"
+         id="tspan15644">)and$12,</tspan>
+    </text>
+    <text
+       id="text15646"
+       x="516.55298"
+       y="591.43439"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="516.55298 531.10138"
+         y="591.43439"
+         sodipodi:role="line"
+         id="tspan15648">$2</tspan>
+    </text>
+    <text
+       id="text15650"
+       x="545.5769"
+       y="591.43439"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="545.5769 560.04999 574.59839 589.07147"
+         y="591.43439"
+         sodipodi:role="line"
+         id="tspan15652">, $5</tspan>
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27322 -87.770996 -73.268776 -58.766514 -44.276424 -29.774204 -15.271947 -0.76972628 13.720363 28.222622 42.724842 57.2271 71.729317 86.219406 100.72166 115.22388 346.82233 361.37076 375.87299 390.36307 404.86533 419.36755 433.86981 448.37204 462.86212 477.36438 491.86661 506.36884"
+         y="632.23407"
+         sodipodi:role="line"
+         id="tspan15654">add $4, $10, $11or $13, $6,</tspan>
+    </text>
+    <text
+       id="text15656"
+       x="520.97559"
+       y="632.23407"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="520.97559 535.44867"
+         y="632.23407"
+         sodipodi:role="line"
+         id="tspan15658">$2</tspan>
+    </text>
+    <text
+       id="text15660"
+       x="-102.27326"
+       y="673.03381"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27326 -87.773453 -73.273643 -58.773827 -44.274021 -29.774208 -15.274397 -0.77458942 13.725218 28.225025 42.724842 57.224651 71.724464 86.224266 346.84662 361.34644 375.84625 443.94458 458.49301 472.99277 487.49258 501.9924"
+         y="673.03381"
+         sodipodi:role="line"
+         id="tspan15662">and $7, $8, $9add$14,</tspan>
+    </text>
+    <text
+       id="text15664"
+       x="516.55298"
+       y="673.03381"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="516.55298 531.10138"
+         y="673.03381"
+         sodipodi:role="line"
+         id="tspan15666">$2</tspan>
+    </text>
+    <text
+       id="text15668"
+       x="545.5769"
+       y="673.03381"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="545.5769 560.04999"
+         y="673.03381"
+         sodipodi:role="line"
+         id="tspan15670">,</tspan>
+    </text>
+    <text
+       id="text15672"
+       x="574.60083"
+       y="673.03381"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="574.60083 589.07391"
+         y="673.03381"
+         sodipodi:role="line"
+         id="tspan15674">$2</tspan>
+    </text>
+    <text
+       id="text15676"
+       x="-102.27326"
+       y="713.8335"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="-102.27326 -87.773453 -73.273643 -58.80056 -44.300747 -29.80094 -15.301128 -0.80132091 13.671764 28.171581 42.671379 57.171188 71.671005 86.170799 100.67062 115.17043 346.76886 361.26868 375.76849 390.24158 404.74139 419.24118 433.741 448.24081 462.74063 477.24045 491.74023"
+         y="713.8335"
+         sodipodi:role="line"
+         id="tspan15678">lw $16, 100($18)sw $15,100(</tspan>
+    </text>
+    <text
+       id="text15680"
+       x="506.5025"
+       y="713.8335"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:bold;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPS-BoldMT"
+         x="506.5025 520.97559"
+         y="713.8335"
+         sodipodi:role="line"
+         id="tspan15682">$2</tspan>
+    </text>
+    <text
+       id="text15684"
+       x="535.45349"
+       y="713.8335"
+       style="font-size:15px">
+      <tspan
+         style="font-size:24.30000114px;font-variant:normal;font-weight:normal;font-stretch:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Courier New;-inkscape-font-specification:CourierNewPSMT"
+         x="535.45349"
+         y="713.8335"
+         id="tspan15686">)</tspan>
+    </text>
+    <g
+       id="g15692"
+       transform="matrix(0.72545265,1.0179482,1.0179482,-0.72545265,197.99085,587.22883)"
+       style="fill:#008080">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 0,48.54 -16.2,0 32.4,16.2 32.34,-16.2 -16.14,0 0,-48.54"
+         style="fill:#008080;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         id="path15694" />
+    </g>
+  </g>
+</svg>

@@ -2689,7 +2689,7 @@ Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
 \end_layout
 
 \begin_layout Subsubsection
-Data Hazards
+Data Hazards: introduzione
 \end_layout
 
 \begin_layout Standard
@@ -2727,7 +2727,9 @@ sw $15, 100($2)     # Registro base ($2) dipende da un sub
 \end_layout
 
 \begin_layout Standard
-La situazione risulta abbastanza chiara dalla figura seguente:
+La situazione risulta abbastanza chiara dalla figura seguente.
+ Le prime tre dipendenze costituiscono un problema in quanto richiedono
+ che sia pronto un dato che la pipeline sta ancora lavorando.
 \end_layout
 
 \begin_layout Standard
@@ -2757,9 +2759,17 @@ Compilation Techniques
 \begin_layout Itemize
 Inserire delle istruzioni 
 \series bold
-nop
+NOP
 \series default
- (no operation)
+ (
+\series bold
+n
+\series default
+o 
+\series bold
+op
+\series default
+eration)
 \end_layout
 
 \begin_layout Itemize
@@ -2775,7 +2785,7 @@ Il compilatore tenta di inserire istruzioni indipendenti tra quelle correlate
 \begin_layout Itemize
 Quando il compilatore non trova istruzioni indipendenti, inserisce 
 \series bold
-nop
+NOP
 \end_layout
 
 \end_deeper
@@ -2819,7 +2829,7 @@ bypassing
 
 \end_deeper
 \begin_layout Paragraph
-Inserimento di nops
+Inserimento di NOPs
 \end_layout
 
 \begin_layout Standard
@@ -2865,7 +2875,7 @@ stalls
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Forwarding
 \end_layout
 
@@ -2943,8 +2953,18 @@ Implementazione di MIPS con la forwarding unit
 
 \end_layout
 
-\begin_layout Subsubsection
-Data Hazards: Load/Use hazard
+\begin_layout Paragraph
+Esempi di Data Hazards: il caso Load/Use
+\end_layout
+
+\begin_layout Standard
+Un tipico esempio di Data Hazard è il 
+\emph on
+load/use hazard
+\emph default
+: rientrano in questa categoria tutti gli schedule in cui l'utilizzo di
+ un registro avviene poco dopo la sua inizializzazione tramite load.
+ Le immagini che seguono mostrano esempi di questa situazione.
 \end_layout
 
 \begin_layout Standard
@@ -3002,7 +3022,7 @@ Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Paragraph
-Forwarding paths: un esempio
+Schema riasssuntivo 
 \end_layout
 
 \begin_layout Standard
@@ -3036,8 +3056,8 @@ MEM / ID
 MEM / MEM (per LOAD/STORE)
 \end_layout
 
-\begin_layout Subsection
-Pipeline ottimizzata
+\begin_layout Subsubsection
+Ottimizzazione della pipeline
 \end_layout
 
 \begin_layout Itemize
@@ -3150,27 +3170,34 @@ MEM / MEM path (for LOAD/STOREs)
 
 \end_deeper
 \begin_layout Subsubsection
-Data Hazards
+Classificazione dei Data Hazards (RAW - WAW - WAR)
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Paragraph
 
 \series bold
-RAW (READ AFTER WRITE) hazards
+RAW - Read After Write
 \series default
-: Istruzione n+1 tenta di leggere un registro sorgente scritto prima che
- l'istruzione 
+ 
+\end_layout
+
+\begin_layout Standard
+Istruzione 
+\begin_inset Formula $n+1$
+\end_inset
+
+ tenta di leggere un registro sorgente scritto prima che l'istruzione 
 \emph on
 n
 \emph default
  lo abbia scritto nel register file.
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Esempio:
 \end_layout
 
+\begin_deeper
 \begin_layout LyX-Code
 add $r1, $r2, $r3
 \end_layout
@@ -3179,29 +3206,13 @@ add $r1, $r2, $r3
 sub $r4, $r1, $r5
 \end_layout
 
-\begin_layout Itemize
+\end_deeper
+\begin_layout Standard
 Utilizzando il forwarding è sempre possibile questo conflitto senza introdurre
  stalls, eccetto per i load/use hazards 
 \end_layout
 
-\end_deeper
-\begin_layout Standard
-Ci sono anche altri tipi di data hazards nella pipeline:
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-WAW (WRITE AFTER WRITE)
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-WAR (WRITE AFTER READ)
-\end_layout
-
-\begin_layout Subsubsection
+\begin_layout Paragraph
 WAW - Write After Write
 \end_layout
 
@@ -3260,7 +3271,7 @@ Se assumiamo che le operazioni ALU floating point richiedano una esecuzione
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 WAR - Write After Read
 \end_layout
 
@@ -4525,7 +4536,7 @@ taken
 \end_layout
 
 \begin_layout Subparagraph*
-Note
+Note sulla Branch Always Taken
 \end_layout
 
 \begin_layout Itemize
@@ -4555,7 +4566,7 @@ prima
 branch outcome
 \series default
 .
- Quindi per MIPS questa tecnica non è utilizzabile.
+ Quindi per MIPS questa tecnica non è utile.
 \end_layout
 
 \begin_layout Paragraph
@@ -4609,7 +4620,7 @@ L'idea alla base è che quando abbiamo dei branch che puntano
 forward
 \emph default
  stiamo eseguendo degli if e quindi stiamo valutando eccezioni nel codice
- che si presume vengano effettivamente valutate meno di frequente; in presenza
+ che si presume vengano effettivamente eseguite meno di frequente; in presenza
  di branch che puntano 
 \emph on
 backward
@@ -4668,7 +4679,7 @@ delay
 \end_inset
 
  dei branch istruzioni indipendenti dal branch stesso, le quali vengono
- eseguite sia che il branch risulti taken, sia che risulti untaken.
+ eseguite sia che il branch risulti taken sia che risulti untaken.
 \end_layout
 
 \begin_layout Itemize
@@ -4684,8 +4695,9 @@ In realtà è possibile avere processori con pipiline che utilizzano degli
 
 \begin_layout Itemize
 Però quasi tutti i processori che utilizzano la tecnica di delayed branch
- hanno un singolo slot di delay (anche perché è difficile per il compilatore
- trovare più istruzioni da inserire in più di uno slot.
+ hanno un singolo slot di delay.
+ Ciò avviene perché è particolarmente difficile per il compilatore trovare
+ più istruzioni da inserire in più di uno slot.
 \end_layout
 
 \end_deeper
@@ -4858,7 +4870,7 @@ nei casi
 \begin_inset Quotes eld
 \end_inset
 
-target
+from target
 \begin_inset Quotes erd
 \end_inset
 
@@ -4866,11 +4878,11 @@ target
 \begin_inset Quotes eld
 \end_inset
 
-fall-though
+from fall-though
 \begin_inset Quotes erd
 \end_inset
 
-, deve essere consentito eseguire l'istruzione spostata quando il branch
+ deve essere consentito eseguire l'istruzione spostata quando il branch
  va nella direzione opposta a quella prevista.
  Per 
 \begin_inset Quotes eld
@@ -4892,8 +4904,8 @@ lavoro
  viene soltanto sprecato e il programma può continuare correttamente anche
  dopo aver eseguito quella istruzione inutile, ovvero l'istruzione nel delay
  slot non ha sporcato lo stato dell'esecuzione.
- Per esempio va bene se il registro destinazione è un registro utilizzato
- solo nel ramo errato del flusso di esecuzione.
+ Per esempio va bene se il registro destinazione dell'operazione inutile
+ è un registro utilizzato solo nel ramo errato del flusso di esecuzione.
 \end_layout
 
 \begin_deeper
@@ -4902,7 +4914,7 @@ In generale, i compilatori sono in grado di riempire circa il 50% dei delayed
  brach slots con istruzioni valide e utili.
  Gli slot rimanenti sono riempiti con operazioni 
 \series bold
-nop
+NOP
 \series default
 .
 \end_layout
@@ -4923,11 +4935,11 @@ limitazioni
 
 \begin_deeper
 \begin_layout Itemize
-Restrizioni sulle istruzioni che possiamo inserire nel branch delay slot
+Restrizioni sulle istruzioni che possiamo inserire nel branch delay slot.
 \end_layout
 
 \begin_layout Itemize
-L'abilità del compilatore di predire staticamente il risultato dei branch
+L'abilità del compilatore di predire staticamente il risultato dei branch.
 \end_layout
 
 \end_deeper
@@ -4956,20 +4968,27 @@ nullifying branch
 \end_inset
 
 .
- In questo tipo speciale di branch l'istruzione include al suo interno anche
- un bit che indica la direzione in cui è previsto che il branch vada.
+ In questo 
+\bar under
+tipo speciale di branch
+\bar default
+ l'istruzione include al suo interno anche un 
+\bar under
+bit che indica la direzione
+\bar default
+ in cui è previsto che il branch vada.
  Così facendo abbiamo che:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Quando il branch agisce come previsto: l'istruzione nel branch delay slot
- è eseguita normalmente
+ è eseguita normalmente.
 \end_layout
 
 \begin_layout Itemize
 Quando il branch non agisce come previsto: l'istruzione nel branch delay
- slot viene trasformata in una NOP
+ slot viene trasformata in una NOP.
 \end_layout
 
 \end_deeper
@@ -5035,11 +5054,7 @@ Partiamo con uno schema di predizione di branch semplice e poi esaminiamo
 \end_layout
 
 \begin_layout Standard
-I 
-\bar under
-meccanismi principali
-\bar default
- di predizione sono due:
+I meccanismi principali di predizione sono due:
 \end_layout
 
 \begin_layout Itemize
@@ -5089,9 +5104,9 @@ Branch History Table - BHT (o Branch Prediction Buffer)
 \series bold
 taken
 \series default
- recentemente o no.
- Questa tabella è indicizzata dalla parte meno significativa dell'indirizzo
- dell'istruzione di branch
+ recentemente o untaken.
+ Questa tabella è indicizzata, come indice si usa la parte meno significativa
+ del campo indirizzo dell'istruzione di branch.
 \end_layout
 
 \begin_layout Itemize
@@ -5117,10 +5132,12 @@ hit
 \end_inset
 
 ) e il bit di predizione può essere messo da un'altra branch con lo stesso
- indirizzo meno significativo, ma non importa.
- Questo tipo di predizione 
+ indice, ma non importa.
+ La predizione 
 \series bold
-fornisce solo un indizio.
+fornisce solo una traccia
+\series default
+.
 \end_layout
 
 \begin_layout Standard
@@ -5134,37 +5151,42 @@ fornisce solo un indizio.
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subparagraph
 
 \series bold
 Accuratezza della Branch History Table
-\series default
-:
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Abbiamo una predizione errata quando: la predizione è sbagliata per quel
- branch oppure se lo stesso indice è stato utilizzato per due branch diversi.
- Per risolvere il secondo problema è succificente aumentare il numero di
- righe nella tabella o utilizzare una buona funzione di hash.
+\begin_layout Standard
+Abbiamo una predizione errata quando: 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
+la predizione è sbagliata per quel branch OPPURE 
+\end_layout
+
+\begin_layout Itemize
+se lo stesso indice è stato utilizzato per due branch diversi.
+ 
+\end_layout
+
+\begin_layout Standard
+Per risolvere il secondo problema è sufficiente aumentare il numero di righe
+ nella tabella o utilizzare una buona funzione di hash.
+\end_layout
+
+\begin_layout Subparagraph
 
 \series bold
-Altri problemi:
+Altri problemi si hanno
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 In una branch che fa parte di un loop, poiché utilizziamo un solo bit per
  la tabella, abbiamo una predizione errata due volte quando il loop termina
  (invece di una volta sola).
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Nell'ultimo ciclo del loop, poichè la predizione dice 
 \begin_inset Quotes eld
@@ -5174,29 +5196,26 @@ taken
 \begin_inset Quotes erd
 \end_inset
 
- mentre noi dobbiamo uscire dal loop
+ mentre noi dobbiamo uscire dal loop.
 \end_layout
 
 \begin_layout Itemize
 Quando ri-entriamo di nuovo nello stesso loop, sbagliamo di nuovo a prevedere
- il branch perché avevamo cambiato il bit quando eravamo usciti
+ il branch perché avevamo cambiato il bit quando eravamo usciti.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
-Sembra un problema trascurabile, ma se consideriamo che abbiamo 2 predizioni
- scorrette e 8 corrette significa che l'accuratezza della predizione è solo
- dell'80%!
+\begin_layout Standard
+Sembra un problema trascurabile, ma se consideriamo che, per esempio, abbiamo
+ 2 predizioni scorrette e 8 corrette significa che l'accuratezza della predizion
+e è solo dell'80%!
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subparagraph
 
 \series bold
 Modifica utilizzando 2 bit
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Se utilizziamo due bit invece di uno possiamo fare che per modificare la
  predizione sono necessari due 
@@ -5213,7 +5232,7 @@ errori
 
 \begin_layout Itemize
 In questo modo nel caso precedente del loop sbagliamo solo 1 volta la predizione
- → 90% di accuratezza
+ → 90% di accuratezza.
 \end_layout
 
 \begin_layout Itemize
@@ -5221,7 +5240,6 @@ I due bit vengono utilizzati per memorizzare uno dei 4 stati di una macchina
  a stati finiti.
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -5233,17 +5251,18 @@ I due bit vengono utilizzati per memorizzare uno dei 4 stati di una macchina
 
 \end_layout
 
-\end_deeper
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subparagraph
 
 \series bold
 Branch History Table a n-bit
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-I valori vanno da 0 a 
+I valori vanno da 
+\begin_inset Formula $0$
+\end_inset
+
+ a 
 \begin_inset Formula $2^{n}-1$
 \end_inset
 
@@ -5278,7 +5297,6 @@ n-bit
  mostrano come il caso a 2-bit sia comunque sufficiente e abbastanza performante.
 \end_layout
 
-\end_deeper
 \begin_layout Paragraph
 Correlare i predittori dei branch
 \end_layout
@@ -5349,12 +5367,13 @@ correlating branch predictors
 \end_layout
 
 \begin_layout Itemize
-Per esempio un 
+Un 
 \emph on
 correlating predictor 
 \emph default
-(1,1) significa un predittore ad 1 bit con 1 bit di correlazione.
- Il comportamento dell'ultimo branche è utilizzato per scegliere
+(1,1) è un predittore ad 1 bit con 1 bit di correlazione.
+ Il comportamento dell'ultimo branch è utilizzato per scegliere da quale
+ predittore osservare la predizione finale.
 \end_layout
 
 \begin_layout Itemize
@@ -5389,12 +5408,12 @@ Il branch viene previsto in base a quello che è successo nel branch precedente
 \begin_deeper
 \begin_layout Itemize
 Una predizione viene utilizzata se l'ultima branch eseguita (non necessariamente
- la stessa branch) era taken
+ la stessa branch) era taken.
 \end_layout
 
 \begin_layout Itemize
 L'altra predizione viene utilizzata se l'ultima branch eseguita (non necessariam
-ente la stessa branch) era not taken
+ente la stessa branch) era not taken.
 \end_layout
 
 \end_deeper
