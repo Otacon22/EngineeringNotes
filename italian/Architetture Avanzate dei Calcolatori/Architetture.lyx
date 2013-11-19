@@ -5454,8 +5454,11 @@ Branch History Tables, ognuna delle quali è un predittore a
 \end_layout
 
 \begin_layout Itemize
-Esempio: Correlating Branch Predictor (2,2): Abbiamo 4 Branch History Tables
- da 2 bit ciascuna.
+Esempio: Correlating Branch Predictor (2,2): Abbiamo 
+\begin_inset Formula $2^{2}=4$
+\end_inset
+
+ Branch History Tables da 2 bit ciascuna.
 \end_layout
 
 \begin_deeper
@@ -5487,15 +5490,15 @@ I 2 bit di history globale vengono utilizzati per scegliere una di 4 entries
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Un predittore a 2 bit senza global history lo possiamo vedere come un predittore
+ (0,2).
+\end_layout
+
 \begin_layout Paragraph
 
 \series bold
 Accuratezza dei correlating predictors
-\end_layout
-
-\begin_layout Itemize
-Un predittore a 2 bit senza global history lo possiamo vedere come un predittore
- (0,2).
 \end_layout
 
 \begin_layout Standard
@@ -5549,7 +5552,7 @@ Una volta che il contatore a 2 bit viene selezionato, la predizione viene
 \end_layout
 
 \begin_layout Paragraph
-GA Predictor
+Global Adaptive Predictor
 \end_layout
 
 \begin_layout Itemize
@@ -5601,8 +5604,19 @@ GShare
 
 \begin_deeper
 \begin_layout Itemize
-È indirizzato dallo XOR tra i bit meno significativi del PC (branch address)
- e il contenuto di BHR (history globale)
+È indirizzato dallo 
+\series bold
+XOR
+\series default
+ tra i bit meno significativi del PC (
+\series bold
+branch address
+\series default
+) e il contenuto di 
+\series bold
+BHR
+\series default
+ (history globale)
 \end_layout
 
 \begin_deeper
@@ -5634,7 +5648,7 @@ Branch Target Buffer (Branch Target Predictor) è una cache che memorizza
 
 \begin_layout Itemize
 Possiamo accedere al BTB nello stadio IF utilizzando l'indirizzo istruzione
- dell'istruzione detchata (un possibile branch) come indice per questa cache.
+ dell'istruzione fetchata (un possibile branch) come indice per questa cache.
 \end_layout
 
 \begin_layout Itemize
@@ -5707,7 +5721,17 @@ Struttura del Branch Target Buffer
 \end_deeper
 \begin_layout Itemize
 Nella BTB dobbiamo memorizzare il target address previsto solo per i branch
- taken.
+ taken
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Perché? Se non presente suppongo Not Taken (?)
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -5738,15 +5762,8 @@ Commenti sulla branch prediction
 \end_layout
 
 \begin_layout Standard
-Senza la branch prediction, la quantità di 
-\begin_inset Quotes eld
-\end_inset
-
-parallelismo
-\begin_inset Quotes erd
-\end_inset
-
- è abbastanza limitata poiché è limitata ad una singolo 
+Senza la branch prediction, la quantità di parallelismo è abbastanza limitata
+ poiché è possibile agire solo all'interno di un singolo 
 \series bold
 basic block
 \series default
@@ -5755,23 +5772,20 @@ basic block
 
 \begin_layout Standard
 Le tecniche di predizione di branch ci aiutano a migliorare il parallelismo.
- 
+ Nei metodi di predizione che abbiamo mostrato, facciamo fetch, issue ed
+ execute di istruzioni successive come se le predizioni fossero sempre corrette,
+ avendo però sempre pronto un metodo per risolvere le situazioni di predizione
+ errata.
 \end_layout
 
 \begin_layout Standard
-Nei metodi di predizione che abbiamo mostrato, facciamo fatch, issue e execute
- di istruzione come se le predizioni fossero sempre corrette, mostrando
- però sempre un metodo per risolvere le situazioni in cui non lo sono.
-\end_layout
-
-\begin_layout Standard
-Queste operazioni possono essere supportate dal 
+Queste speculazioni possono essere supportate dal 
 \series bold
 compilatore
 \series default
- o 
+ o dall'
 \series bold
-dall'hardware
+hardware
 \series default
 .
 \end_layout
