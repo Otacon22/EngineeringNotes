@@ -214,6 +214,13 @@ Computer Architecture, A Quantitative Approach
 ", John Hennessy, David Patterson, Morgan Kaufmann, Fourth Edition
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part
 Pipeline
 \end_layout
@@ -3672,6 +3679,13 @@ Pipeline\, speedup\,=\,\frac{Pipeline\, depth}{1+Pipe\, Stall\, Cycles\, per\, i
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Tecniche di predizione dei branch
 \end_layout
@@ -5790,6 +5804,13 @@ hardware
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Instruction Level Parallelism
 \end_layout
@@ -7059,6 +7080,13 @@ Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Very Long Instruction Word (VLIW)
 \end_layout
@@ -7215,6 +7243,13 @@ stato dell'arte
 I processori VLIW hanno successo per dispositivi embedded (TriMedia media
  processors, C600 DSP, STMicroelectronics ST200 family, SHARC DSP, Itanium
  2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
