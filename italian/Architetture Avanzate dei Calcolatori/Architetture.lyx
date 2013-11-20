@@ -6516,7 +6516,7 @@ Exception behavior
 \end_layout
 
 \begin_layout Subsection
-Scheduling ILP
+Scheduling ILP e processori superscalari
 \end_layout
 
 \begin_layout Standard
@@ -6528,7 +6528,7 @@ Ci sono due strategie per supportare ILP:
 \series bold
 Dynamic Scheduling
 \series default
-: L'hardware si occupa di identificare il parallelismo
+: L'hardware si occupa di identificare il parallelismo.
 \end_layout
 
 \begin_layout Itemize
@@ -6536,7 +6536,7 @@ Dynamic Scheduling
 \series bold
 Static Scheduling
 \series default
-: Il software si occupa di identificare il parallelismo
+: Il software si occupa di identificare il parallelismo.
 \end_layout
 
 \begin_layout Standard
@@ -6799,16 +6799,16 @@ Static Scheduling
 \end_layout
 
 \begin_layout Standard
-I compilatori utilizzano algoritmi sofisticati per lo scheduling del codice,
- per ottenere l'
+I compilatori utilizzano algoritmi sofisticati per lo scheduling del codice
+ per ottenere 
 \emph on
 instruction level parallelism
 \emph default
 .
 \end_layout
 
-\begin_layout Itemize
-La dimensione di un 
+\begin_layout Standard
+Un 
 \series bold
 \emph on
 basic block
@@ -6819,15 +6819,14 @@ basic block
 \series bold
 piccolo
 \series default
- e la quantità disponibile di parallelismo di un basic block è comunque
- poca.
+ e la quantità disponibile di parallelismo all'interno un basic block è
+ comunque poca.
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-Ad esempio per un tipico programma MIPS la frequenza media di branche è
- da 15% e 25%, che significa che ci sono tra 4 e 7 istruzioni da eseguire
- tra due branch.
+Ad esempio per un tipico programma MIPS la frequenza media di branch è da
+ 15% e 25%, che significa che ci sono tra 4 e 7 istruzioni da eseguire tra
+ due branch.
 \end_layout
 
 \begin_layout Itemize
@@ -6836,7 +6835,7 @@ Le
 dipendenze dati
 \series default
  possono limitare ancora di più la quantità di parallelismo che possiamo
- ottenere da un basic block ancora meno di quanto abbiamo visto.
+ ottenere da un basic block.
 \end_layout
 
 \begin_layout Itemize
@@ -6847,8 +6846,7 @@ Quindi, per ottenere dei miglioramenti di performance sostanziali, dobbiamo
 parallelismo tra diversi basic blocks.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Standard
 L'esempio tipico sono i processori 
 \series bold
 VLIW
@@ -6861,31 +6859,31 @@ Very Long Instruction Word
 \end_layout
 
 \begin_layout Standard
-Abbiamo anche alcuni 
+Abbiamo però alcuni 
 \series bold
 limiti
 \series default
- dell'utilizzo dello scheduling statico:
+ di utilizzo dello scheduling statico:
 \end_layout
 
 \begin_layout Itemize
-I branch non sono prevedibili
+I branch non sono prevedibili.
 \end_layout
 
 \begin_layout Itemize
-Latenza della memoria variabile (non possiamo prevedere i miss nella cache)
+La latenza della memoria è variabile (non possiamo prevedere i cache miss).
 \end_layout
 
 \begin_layout Itemize
-Può aumentare la dimensione del segmento codice
+Può aumentare la dimensione del segmento codice.
 \end_layout
 
 \begin_layout Itemize
-Aumenta la complessità del compilatore
+Aumenta la complessità del compilatore.
 \end_layout
 
 \begin_layout Subsubsection
-I vari passi per ottenere più parallelismo delle istruzioni
+Evoluzione del parallelismo
 \end_layout
 
 \begin_layout Standard
@@ -6909,15 +6907,19 @@ Esecuzione superscalare
 \end_layout
 
 \begin_layout Standard
-L'
+L'idea
 \series bold
-idea
+ 
 \series default
- è
+è
 \series bold
- iniziare l'esecuzione 
+ 
 \series default
-(issue)
+iniziare l'esecuzione (
+\series bold
+issue
+\series default
+)
 \series bold
  di più di una istruzione per ciclo
 \series default
@@ -6937,7 +6939,7 @@ Fare il
 \bar under
 fetch di più di una istruzione per ciclo
 \bar default
-: Non è difficile dato che la cache istruzioni può sostenere la banda
+: Non è difficile dato che la cache istruzioni può sostenere la banda.
 \end_layout
 
 \begin_layout Itemize
@@ -6945,7 +6947,7 @@ Decidere riguardo alla
 \bar under
 dipendenza dati e controllo
 \bar default
-: Lo scheduling dinamico si prende già cura di questo
+: Lo scheduling dinamico si prende già cura di questo.
 \end_layout
 
 \begin_layout Standard
@@ -7011,7 +7013,7 @@ limite
  su quante istruzioni possono essere verificate durante un ciclo di clock.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Lo scheduling dinamico costa!
 \end_layout
 
@@ -7028,14 +7030,14 @@ Nel PowerPC 750 l'instruction sequencer è circa il 70% dell'area di tutte
 \end_deeper
 \begin_layout Itemize
 Il tempo di ciclo è limitato dalla logica di scheduling (dispatcher e la
- logica di controllo associata)
+ logica di controllo associata).
 \end_layout
 
 \begin_layout Itemize
 La verifica del design è molto complicata e la logica è complessa e irregolare.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Il numero di issue parallele è limitato nella pratica
 \end_layout
 
@@ -7051,11 +7053,11 @@ issue width
 \emph on
 multiple-issue
 \emph default
- (chiamato anche ILP)
+ (chiamato anche ILP).
 \end_layout
 
 \begin_layout Itemize
-Quando l'architettura superscalare fu inventata, furono inventati processori
+Quando l'architettura superscalare fu inventata, furono realizzati processori
  a 2 e 4 issue
 \end_layout
 
@@ -7098,19 +7100,19 @@ Il massimo (raro) numero di issue parallelle è 6
 
 \end_deeper
 \begin_layout Itemize
-Questo perché è troppo difficile trovare 8 o 16 istruzioni da eseguire in
- ogni ciclo (sono troppe!)
+Questo perché è estremamente difficile trovare 8 o 16 istruzioni da eseguire
+ in ogni ciclo (sono troppe!)
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Richiede troppo tempo la computazione di scheduling (non riesce a restare
- in un ciclo di clock)
+ in un ciclo di clock).
 \end_layout
 
 \begin_layout Itemize
 È necessario ridurre la frequenza del processore (guadagnando quindi in
- parallelismo ma perdendo in latenza e velocità)
+ parallelismo ma perdendo in latenza e velocità).
 \end_layout
 
 \end_deeper
@@ -7130,7 +7132,7 @@ CPI_{ideal}=\frac{1}{\text{issue width}}
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Paragraph
 
 \series bold
 Svantaggi
@@ -7138,17 +7140,15 @@ Svantaggi
 :
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-È molto costosa la logica per trovare le dipendenze
+È molto costosa la logica per trovare le dipendenze.
 \end_layout
 
 \begin_layout Itemize
 Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
- di dover rallentare il clock)
+ di dover rallentare il clock).
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
