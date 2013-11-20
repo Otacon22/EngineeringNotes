@@ -5890,7 +5890,7 @@ Gli Hazards limitano le performance
 \series bold
 Hazards strutturali
 \series default
-: abbiamo bisogno più 
+: risolviamo con più 
 \bar under
 risorse hardware
 \end_layout
@@ -5900,7 +5900,7 @@ risorse hardware
 \series bold
 Hazards dati
 \series default
-: abbiamo bisogno il 
+: risolviamo con il 
 \bar under
 forwarding
 \bar default
@@ -5971,6 +5971,41 @@ r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
 \end_layout
 
 \begin_layout Standard
+Determiniamo i vari dipi di dipendenze che esistono tra di esse:
+\end_layout
+
+\begin_layout Description
+Data-dependence la seconda istruzione deve aspettare il risultato della
+ prima per avere il valore del registro operando.
+ Può causare un 
+\series bold
+RAW hazard
+\series default
+.
+\end_layout
+
+\begin_layout Description
+Anti-dependence la prima istruzione utilizza come operando un registro che
+ viene usato come destinazione dall'istruzione successiva.
+ La prima istruzione deve leggere il registro prima che venga sovrascritto.
+ Può causare un 
+\series bold
+WAR hazard
+\series default
+.
+\end_layout
+
+\begin_layout Description
+Output-dependence due istruzioni scrivono sullo stesso registro destinazione.
+ Deve essere mantenuto l'ordine di commit delle istruzioni.
+ Può causare un 
+\series bold
+WAW hazard
+\series default
+.
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename 056.png
@@ -5982,7 +6017,16 @@ r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
 \end_layout
 
 \begin_layout Subsection
+Evoluzioni della pipeline
+\end_layout
+
+\begin_layout Subsubsection
 Complex pipelining
+\end_layout
+
+\begin_layout Standard
+Aggiungendo risorse hardware per parallelizzare ulteriormente arriviamo
+ a uno schema di questo tipo
 \end_layout
 
 \begin_layout Standard
@@ -6016,8 +6060,17 @@ Diverse funzioni e unità di memoria
 Sistemi di memoria con tempo di accesso variabile
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Complex In-order Pipeline
+\end_layout
+
+\begin_layout Standard
+Il precedente schema non garantisce l'
+\emph on
+in-order commit
+\emph default
+.
+ Aggiungiamo quindi uno stadio allo schema
 \end_layout
 
 \begin_layout Standard
@@ -6058,8 +6111,8 @@ Altri concetti base e definizioni
 \end_layout
 
 \begin_layout Itemize
-Per raggiungere le performance più elevate (per una data tecnologia), il
- maggior parallelismo deve essere estratto dal programma.
+Per raggiungere le performance più elevate (per una data tecnologia), maggior
+ parallelismo deve essere estratto dal programma.
  In altre parole: 
 \series bold
 \bar under
@@ -6068,29 +6121,42 @@ multiple-issue
 
 \begin_layout Itemize
 Le dipendenze devono essere individuate e risolte e le istruzioni devono
- essere re-ordinate (
+ essere riordinate (
 \series bold
 scheduled
 \series default
 ) in modo da ottenere il parallelismo di istruzioni eseguibili più elevato
- con le risorse a disposizione.
+ possibile con le risorse a disposizione.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
 
 \series bold
-ILP - Instruction Level Parallelism = Sfrutta potenziali overlap di esecuzione
- tra istruzioni non correlate tra loro
+Instruction Level Parallelism
+\end_layout
+
+\begin_layout Description
+
+\series bold
+ILP Instruction Level Parallelism
 \series default
+.
+
+\series bold
+ 
+\series default
+\emph on
+\bar under
+Sfruttare potenziali overlap di esecuzione tra istruzioni non correlate
+ tra loro
+\series bold
 .
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-L'overlapping è possibile quando:
+\begin_layout Standard
+L'overlapping è possibile solo quando:
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Non ci sono hazards strutturali
 \end_layout
@@ -6103,7 +6169,6 @@ Non ci sono hazards RAW, WAR o WAW.
 Non ci sono Control hazards.
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -6115,7 +6180,6 @@ Non ci sono Control hazards.
 
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection
 2-issue MIPS Pipeline architecture
 \end_layout
@@ -6176,20 +6240,17 @@ CPI_{ideale}=0.5
 \end_layout
 
 \begin_layout Subsection
-Dipendenze
+Approfondimenti sulle dipendenze
 \end_layout
 
-\begin_layout Itemize
-Determinare le dipendenze tra le istruzione è critico per riuscire a definire
- la quantità di parallelismo esistente in un programma
+\begin_layout Standard
+Determinare le dipendenze tra le istruzioni è un punto critico per riuscire
+ a definire la quantità di parallelismo esistente in un programma.
+ Se due istruzioni sono dipendenti, non possono essere eseguite in parallelo:
+ devono essere seguite in modo da essere solo parzialmente sovrapposte.
 \end_layout
 
-\begin_layout Itemize
-Se due istruzioni sono dipendenti, non possono essere eseguite in parallelo:
- devono essere seguite in modo da essere solo partialmente sovrapposte.
-\end_layout
-
-\begin_layout Itemize
+\begin_layout Standard
 Ci sono 
 \series bold
 tre diversi tipi di dipendenze
@@ -6197,7 +6258,6 @@ tre diversi tipi di dipendenze
 :
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -6216,7 +6276,6 @@ Data dependences (or True Data Depencences)
 Control Dependences
 \end_layout
 
-\end_deeper
 \begin_layout Subsubsection
 Name dependences
 \end_layout
@@ -6229,19 +6288,23 @@ Sono quelle dipendenze che si presentano quando due istruzioni utilizzano
 
 
 \series bold
-\bar under
+\emph on
 name
 \series default
-\bar default
+\emph default
 
 \begin_inset Quotes erd
 \end_inset
 
-), ma non c'è un flusso di dati tra le istruzioni associate a quel nome.
+), ma non c'è un flusso di dati tra le istruzioni associate a quel 
+\emph on
+name
+\emph default
+.
 \end_layout
 
 \begin_layout Itemize
-Due tipi di name dependences tra una istruzione 
+Esistono due tipi di name dependences tra una istruzione 
 \begin_inset Formula $i$
 \end_inset
 
@@ -6266,7 +6329,11 @@ Antidependence
 \begin_inset Formula $i$
 \end_inset
 
- legge (può generare un WAR).
+ legge (può generare un 
+\series bold
+WAR
+\series default
+).
  L'ordine delle istruzioni originale deve essere preservato per assicurarsi
  che 
 \begin_inset Formula $i$
@@ -6288,7 +6355,11 @@ Output Dependence
 \begin_inset Formula $j$
 \end_inset
 
- scrivono lo stesso registro o locazione di memoria (può generare un WAW).
+ scrivono lo stesso registro o locazione di memoria (può generare un 
+\series bold
+WAW
+\series default
+).
  L'ordine originale delle istruzioni deve essere preservato per assicurarsi
  che il valore scritto alla fine corrisponda a quello di 
 \begin_inset Formula $j$
@@ -6304,13 +6375,17 @@ Le name dependeces non sono delle vere data dependeces poiché non c'è nessun
 \end_layout
 
 \begin_layout Itemize
-Se il name può essere cambiato in base alla semantica del programma, le
- istruzioni non vanno in conflitto
+Se il 
+\emph on
+name
+\emph default
+ può essere cambiato in base alla semantica del programma, le istruzioni
+ non vanno in conflitto
 \end_layout
 
 \begin_layout Itemize
-Le dipendenze in locazioni di memoria sono più difficili da individuare
- (problema della 
+Le dipendenze in locazioni di memoria sono difficili da individuare (problema
+ della 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6325,7 +6400,7 @@ memory disambiguation
 \end_inset
 
 ) perché due indirizzi possono riferirsi alla stessa locazione ma possono
- apparire diversi (ad esempio uno puntamento diretto, un altro per offset).
+ apparire diversi (ad esempio uno a puntamento diretto, un altro per offset).
  I conflitti sui registri invece sono più semplici da individuare.
 \end_layout
 
@@ -6342,9 +6417,9 @@ Data dependences e Hazards
 \end_layout
 
 \begin_layout Standard
-Una dipendenza dati o name può generare un data hazard (RAW, WAW, WAR),
- ma l'hazard e il numero di stalli per eliminare gli hazards sono una proprietà
- della pipeline.
+Una dipendenza dati o name può generare un data hazard (RAW, WAW, WAR) ma
+ la presenza o meno di un hazard (e del numero di stalli necessari a risolverlo)
+ dipende strettamente dalla pipeline considerata.
 \end_layout
 
 \begin_layout Itemize
@@ -6427,7 +6502,7 @@ che sono critiche per la correttezza di un programma (e sono normalmente
 Data flow
 \series default
 : Il flusso corretto di dati tra le varie istruzioni, che produce il risultato
- corretto
+ corretto.
 \end_layout
 
 \begin_layout Enumerate
@@ -6441,7 +6516,7 @@ Exception behavior
 \end_layout
 
 \begin_layout Subsection
-Instruction Level Parallelism
+Scheduling ILP
 \end_layout
 
 \begin_layout Standard
@@ -6539,13 +6614,15 @@ La
 \series bold
 soluzione
 \series default
- è quella di permette alle 
+ è quella di permettere alle 
 \series bold
 istruzioni dietro uno stallo di procedere
 \series default
 .
- L'hardware ri-arrangia dinamicamente l'esecuzione delle istruzioni per
- ridurre gli stalli
+ 
+\bar under
+L'hardware ri-arrangia dinamicamente l'esecuzione delle istruzioni per ridurre
+ gli stalli.
 \end_layout
 
 \begin_layout Itemize
@@ -6555,7 +6632,7 @@ out-of-order esecution
 \series default
  e 
 \series bold
-completion
+out-of-order completion
 \series default
  (
 \series bold
@@ -6564,7 +6641,7 @@ commit
 ).
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Esempio di Dynamic Scheduling
 \end_layout
 
@@ -6590,29 +6667,15 @@ SUBD dovrebbe andare in stallo anche se non c'è nessuna dipendenza dati
 \end_layout
 
 \begin_layout Standard
-Ergo la nostra 
-\series bold
-idea 
-\series default
-è quella di 
-\series bold
-permette a SUBD di procedere
-\series default
- (
+Ergo la nostra idea è quella di permettere a SUBD di procedere (
 \emph on
 out-of-order execution
 \emph default
 ).
 \end_layout
 
-\begin_layout Subsubsection
-Dynamic Scheduling
-\end_layout
-
-\begin_layout Itemize
-L'hardware ri-ordina l'esecuzione delle istruzioni per ridurre gli stalli
- nella pipeline, mantenendo però il flusso dati e il comportamento corretto
- delle eccezioni.
+\begin_layout Paragraph
+Pro e Contro
 \end_layout
 
 \begin_layout Itemize
@@ -6627,11 +6690,11 @@ vantaggi
 \begin_layout Itemize
 Permette di gestire alcuni casi dove le dipendenze sono sconosciute a 
 \emph on
-compile time
+compile time.
 \end_layout
 
 \begin_layout Itemize
-Permette di semplificare i compilatori
+Permette di semplificare i compilatori.
 \end_layout
 
 \begin_layout Itemize
@@ -6650,11 +6713,11 @@ svantaggi
 
 \begin_deeper
 \begin_layout Itemize
-Aumenta parecchio la complessità dell'hardware
+Aumenta parecchio la complessità dell'hardware.
 \end_layout
 
 \begin_layout Itemize
-Aumenta il consumo energetico del processore
+Aumenta il consumo energetico del processore.
 \end_layout
 
 \begin_layout Itemize
@@ -6666,20 +6729,24 @@ imprecise
 \begin_inset Quotes erd
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
+\begin_layout Paragraph
+Riassumendo
+\end_layout
+
 \begin_layout Standard
-Riassumendo: nella pipeline semplice abbiamo hazards a causa delle dipendenze
- dati che non possono essere nascosti con forwarding nella pipeline.
- Con il Dynamic scheduling invece l'hardware riordina l'esecuzione delle
+Nella pipeline semplice abbiamo hazards a causa delle dipendenze dati che
+ non possono essere risolti con forwarding nella pipeline.
+ Con il dynamic scheduling invece l'hardware riordina l'esecuzione delle
  istruzioni di modo da ridurre gli stalli, mantenere il flusso dati e il
  comportamento delle eccezioni.
  L'esempio tipico è il 
 \series bold
 \emph on
-superscalar processor.
+processore superscalare.
 \end_layout
 
 \begin_layout Itemize
@@ -6687,7 +6754,7 @@ Le istruzioni vengono fetchate ed inviate nell'ordine del programma (
 \emph on
 in-order-issue
 \emph default
-)
+).
 \end_layout
 
 \begin_layout Itemize
@@ -6696,7 +6763,7 @@ L'esecuzione inizia appena gli operandi sono disponibili, è possibile avere
 \emph on
 out-of-order execution
 \emph default
- 
+.
 \end_layout
 
 \begin_layout Itemize
@@ -6711,6 +6778,8 @@ WAR
  o 
 \series bold
 WAW
+\series default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -6718,7 +6787,7 @@ L'esecuzione
 \emph on
 out-of-order
 \emph default
- significa anche che il completamento sarà 
+ implica che anche il completamento sarà 
 \emph on
 out-of-order
 \emph default
