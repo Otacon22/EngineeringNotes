@@ -7318,7 +7318,7 @@ I processori VLIW hanno successo per dispositivi embedded (TriMedia media
 \end_layout
 
 \begin_layout Section
-Funzionamento del Dynamic scheduling
+Dynamic scheduling: scoreboard
 \end_layout
 
 \begin_layout Standard
@@ -7358,7 +7358,7 @@ ID
 \series bold
 Issue
 \series default
-: Decodifica le istruzioni, controlla gli hazards strutturali
+: Decodifica le istruzioni, controlla gli hazards strutturali.
 \end_layout
 
 \begin_layout Enumerate
@@ -7367,12 +7367,13 @@ Issue
 Read Operands (RR)
 \series default
 : Aspetta fino a quando non ci sono data hazards, poi leggi gli operandi
+ dai registri.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
- e non ci sono hazards
+ e non ci sono hazards.
 \end_layout
 
 \begin_layout Itemize
@@ -7382,8 +7383,8 @@ La
 scoreboard
 \series default
 \emph default
- (tabella dei punteggi), permette alle istruzioni di essere eseguite se
- ci sono 1 o 2 fermate, senza aspettare altre istruzioni.
+ (tabella dei punteggi) permette alle istruzioni di essere eseguite se ci
+ sono 1 o 2 fermate, senza aspettare altre istruzioni.
 \end_layout
 
 \begin_layout Subsection
@@ -7422,16 +7423,13 @@ dynamic scheduling
 \emph on
 in-oder
 \emph default
-, l'esecuzione è 
-\emph on
-out-of-order
-\emph default
- e anche il completamento è 
+, l'esecuzione e il completamento sono 
 \emph on
 out-of-order
 \emph default
 .
- Non c'è forwarding e abbiamo un modello impreciso per interrupt ed eccezioni.
+ Non c'è forwarding e abbiamo un modello impreciso per la gestione di interrupt
+ ed eccezioni.
 \end_layout
 
 \end_deeper
@@ -7461,7 +7459,15 @@ Issue
 \series bold
 Read Operands
 \series default
- (aka Read Registers)
+ (aka 
+\series bold
+R
+\series default
+ead 
+\series bold
+R
+\series default
+egisters)
 \end_layout
 
 \end_deeper
@@ -7470,7 +7476,7 @@ La scoreboard permette alle istruzioni
 \bar under
 senza dipendenze
 \bar default
- di essere eseguite
+ di andare subito in esecuzione.
 \end_layout
 
 \begin_layout Itemize
@@ -7511,7 +7517,7 @@ read operands
 \emph on
 out-of-order
 \emph default
- e (avendo latenze diverse), arrivare a completamento 
+ e (avendo latenze diverse) arrivare a completamento 
 \emph on
 out-of-order
 \emph default
@@ -7519,19 +7525,22 @@ out-of-order
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
+Hazard e dipendenze
+\end_layout
+
+\begin_layout Standard
 Se il completamento può essere 
 \emph on
 out-of-order
 \emph default
-, questo significa che gli hazards di tipo 
+ significa che gli hazards di tipo 
 \series bold
 WAR e WAW possono presentarsi
 \series default
 .
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Per gli hazards 
 \series bold
@@ -7571,7 +7580,10 @@ WAW
  a quando l'altra istruzione non ha completato.
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+Inoltre:
+\end_layout
+
 \begin_layout Itemize
 Non facciamo renaming dei registri.
 \end_layout
@@ -7607,28 +7619,28 @@ resolution
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Enumerate
 Ogni istruzione passa per la scoreboard, dove viene costruito un record
  che tiene traccia delle dipendenze di quella istruzione.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 La scoreboard determina se l'istruzione può leggere gli operandi e iniziare
  l'esecuzione.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 Se la scoreboard decide che l'istruzione non può andare in esecuzione subito,
  controlla ogni modifica e decide quando l'istruzione può partire in esecuzione.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 La scoreboard controlla quando l'istruzione può scrivere il suo risultato
  nel registro di destinazione.
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 
 \series bold
 Gestione delle eccezioni
@@ -7636,8 +7648,7 @@ Gestione delle eccezioni
 :
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Il problema del completamento 
 \emph on
 out-of-order 
@@ -7661,8 +7672,7 @@ in-order
 .
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Paragraph
 
 \series bold
 Eccezioni 
@@ -7678,8 +7688,7 @@ imprecise
 :
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Una eccezione si dice 
 \emph on
 
@@ -7692,19 +7701,18 @@ imprecise
 \begin_inset Quotes erd
 \end_inset
 
- se, quando viene sollevata l'eccezione, lo stato del processore non appare
- esattamente come quello di quando le istruzioni vengono eseguite 
+ se, quando viene sollevata, lo stato del processore non appare esattamente
+ come quello di quando le istruzioni vengono eseguite 
 \emph on
 in-order
 \emph default
 .
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Possibili cause sono:
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 La pipeline ha 
 \bar under
@@ -7714,7 +7722,7 @@ già completato
 \series bold
 dopo
 \series default
- l'istruzione che causa l'eccezione nell'ordine corretto del programma 
+ l'istruzione che causa l'eccezione nell'ordine corretto del programma.
 \end_layout
 
 \begin_layout Itemize
@@ -7729,8 +7737,7 @@ prima
  l'istruzione che causa l'eccezione nell'ordine corretto del programma.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Le eccezioni 
 \begin_inset Quotes eld
 \end_inset
@@ -7743,7 +7750,6 @@ imprecise
  (perché ci si trova in uno stato non previsto).
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 I 4 stadi di controllo della scoreboard
 \end_layout
