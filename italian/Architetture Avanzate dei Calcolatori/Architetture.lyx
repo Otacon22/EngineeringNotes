@@ -7149,14 +7149,7 @@ Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
  di dover rallentare il clock).
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage pagebreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
+\begin_layout Subsection
 Very Long Instruction Word (VLIW)
 \end_layout
 
@@ -7203,27 +7196,30 @@ In questo modo semplifichiamo l'hardware (non c'è il dynamic scheduler)
  e riduciamo l'area del chip.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
 
 \series bold
 Compilatore
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Il compilatore deve trovare molto paralleismo per mantenere le unità funzionali
- del processore occupate
+ del processore occupate.
+ Laddove non riesce a trovare sufficienti istruzioni per occupare la pipeline
+ riempie il codice di NOP.
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
+Aumenta la dimensione del codice.
+\end_layout
+
+\begin_layout Paragraph
 
 \series bold
 Incompatibilità binaria
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 Come conseguenza perdiamo la 
 \begin_inset Quotes eld
 \end_inset
@@ -7232,12 +7228,11 @@ portabilità
 \begin_inset Quotes erd
 \end_inset
 
- perché il processore è costretto a fare molte scelte dipendenti dalla micro-arc
-hitettura.
+ perché il processore è costretto a fare molte scelte strettamente dipendenti
+ dalla micro-architettura.
 \end_layout
 
-\end_deeper
-\begin_layout Subsection
+\begin_layout Subsubsection
 Scheduling Software vs.
  Scheduling Hardware
 \end_layout
@@ -7252,7 +7247,7 @@ Scheduling Software
 
 \begin_deeper
 \begin_layout Itemize
-Codice sorgente disponibile
+Codice sorgente disponibile.
 \end_layout
 
 \begin_layout Itemize
@@ -7264,12 +7259,12 @@ globali
 \begin_inset Quotes erd
 \end_inset
 
- possibili 
+ possibili.
 \end_layout
 
 \begin_layout Itemize
 C'è più tempo disponibile perché non siamo dentro un ciclo di clock della
- CPU
+ CPU.
 \end_layout
 
 \end_deeper
@@ -7283,16 +7278,17 @@ Scheduling Hardware
 
 \begin_deeper
 \begin_layout Itemize
-Abbiamo informazioni a runtime (i dati attuali, indirizzi, puntatori, ...)
+Abbiamo informazioni a runtime (i dati attuali, indirizzi, puntatori, ...).
 \end_layout
 
 \begin_layout Itemize
-Portabilità del compilato
+Portabilità del compilato.
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
-Processori superscalari e VLIW
+\begin_layout Subsubsection
+Processori superscalari vs.
+ VLIW
 \end_layout
 
 \begin_layout Itemize
@@ -7305,13 +7301,13 @@ stato dell'arte
 \end_inset
 
  commerciale per scopi generali (Intel Core i, Alpha, PowerPC, MIPS e Sparc
- sono superscalari)
+ sono superscalari).
 \end_layout
 
 \begin_layout Itemize
 I processori VLIW hanno successo per dispositivi embedded (TriMedia media
  processors, C600 DSP, STMicroelectronics ST200 family, SHARC DSP, Itanium
- 2)
+ 2).
 \end_layout
 
 \begin_layout Standard
