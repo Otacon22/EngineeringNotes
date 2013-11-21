@@ -7759,13 +7759,14 @@ I 4 stadi di controllo della scoreboard
 \series bold
 Issue
 \series default
-: Decodifica l'istruzione e controlla per hazards strutturali e WAW hazards
+: Decodifica l'istruzione e controlla la presenza di hazards strutturali
+ e WAW hazards
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Le istruzioni vengono inviate nell'ordine del programma (per controllare
- gli hazards)
+ gli hazards).
 \end_layout
 
 \begin_layout Itemize
