@@ -7153,6 +7153,10 @@ Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
 Very Long Instruction Word (VLIW)
 \end_layout
 
+\begin_layout Subsubsection
+Idea di base
+\end_layout
+
 \begin_layout Standard
 È un modo alternativo per ottenere l'
 \emph on
@@ -7161,12 +7165,152 @@ instruction level parallelism
 .
 \end_layout
 
+\begin_layout Itemize
+Aumenta le risorse hardware aumentando il numero di unità pipeline invece
+ di complicare la stessa pipeline.
+\end_layout
+
+\begin_layout Itemize
+Utilizza scheduling statico.
+\end_layout
+
+\begin_layout Itemize
+Ogni unità in un ciclo esegue ciecamente quello che è già stato deciso a
+ compile time.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Spostiamo dunque la complessità dall'hardware al compilatore.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 066.png
-	lyxscale 40
-	scale 40
+	filename svg/VLIW_01.svg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Come funziona
+\end_layout
+
+\begin_layout Itemize
+Il compilatore raggruppa più istruzioni in un singolo 
+\emph on
+issue bundle
+\emph default
+, anche detto 
+\series bold
+word
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Un bundle si compone di 
+\series bold
+slot
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Ciascuno slot del bundle viene riempito con un'istruzione, anche detta 
+\series bold
+sillaba
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Ad ogni slot corrisponde una fissata 
+\series bold
+unità funzionale
+\series default
+ (
+\series bold
+FU
+\series default
+)
+\series bold
+ 
+\series default
+che si farà carico di eseguire quella sillaba.
+ 
+\end_layout
+
+\begin_layout Itemize
+Le unità funzionali sono specializzate per eseguire una certa categoria
+ di istruzioni: unità per operazioni ALU decimali, unità di branch, unità
+ di load/store e così via.
+\end_layout
+
+\begin_layout Itemize
+L'hardware eseguirà la fetch di una word ad ogni ciclo di clock.
+\end_layout
+
+\begin_layout Itemize
+Il compilatore deve assicurarsi che non siano presenti 
+\emph on
+dipendenze
+\emph default
+ all'interno di un bundle o tra bundle vicini
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Nei processori 
+\emph on
+
+\begin_inset Quotes eld
+\end_inset
+
+pure VLIW
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ non è ammessa la presenza di dipendenze tuttavia alcune implementazioni
+ consentono al compilatore di inserire e segnalare una dipendenza.
+ In questi casi la dipendenza verrà gestita dall'hardware attraverso tecniche
+ di forwarding semplificate.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+L'hardware esegue le istruzioni fetchate
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+senza controllare la presenza di eventuali dipendenze.
+\end_layout
+
+\begin_layout Itemize
+senza dover scegliere a quale FU mandare l'istruzione caricata.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW_02.svg
+	lyxscale 50
+	scale 50
 
 \end_inset
 
@@ -7185,21 +7329,14 @@ instruction level parallelism
 
 \end_layout
 
-\begin_layout Itemize
-Ogni unità fa in un ciclo quello che è già stato deciso a compile time dal
- compilatore.
- Spostiamo dunque il problema.
-\end_layout
-
-\begin_layout Itemize
-In questo modo semplifichiamo l'hardware (non c'è il dynamic scheduler)
- e riduciamo l'area del chip.
-\end_layout
-
 \begin_layout Subsubsection
 
 \series bold
-Compilatore
+Limiti di VLIW
+\end_layout
+
+\begin_layout Paragraph
+Parallelismo
 \end_layout
 
 \begin_layout Standard
@@ -7213,6 +7350,20 @@ Il compilatore deve trovare molto paralleismo per mantenere le unità funzionali
 Aumenta la dimensione del codice.
 \end_layout
 
+\begin_layout Standard
+Per sfruttare parallelismo tra diversi basic blocks alcune implementazioni
+ supportano una funzionalità chiamata 
+\emph on
+predication via select execution
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Il processore esegue entrambi i rami di una branch e quando il risultato
+ (predicato) è noto decide quale dei due rami confermare e portare avanti.
+\end_layout
+
 \begin_layout Paragraph
 
 \series bold
@@ -7220,7 +7371,7 @@ Incompatibilità binaria
 \end_layout
 
 \begin_layout Standard
-Come conseguenza perdiamo la 
+Perdiamo la 
 \begin_inset Quotes eld
 \end_inset
 
@@ -7230,8 +7381,96 @@ portabilità
 
  perché il processore è costretto a fare molte scelte strettamente dipendenti
  dalla micro-architettura.
+ La compilazione infatti si basa su:
 \end_layout
 
+\begin_layout Itemize
+ISA.
+\end_layout
+
+\begin_layout Itemize
+Numero e tipo di FU disponibili.
+\end_layout
+
+\begin_layout Itemize
+Latenza di ciascuna FU.
+\end_layout
+
+\begin_layout Subsubsection
+Vantaggi e svantaggi
+\end_layout
+
+\begin_layout Standard
+Vantaggi:
+\end_layout
+
+\begin_layout Itemize
+Scheduling statico a compile time:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Grazie ad una visione globale del codice consente di sfruttare più parallelismo
+ di quanto l'hardware non riuscisse a trovare.
+\end_layout
+
+\begin_layout Itemize
+Non è limitato dal tempo di un ciclo di clock.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+L'hardware non deve effettuare alcun controllo su possibili dipendenze e
+ hazard.
+\end_layout
+
+\begin_layout Itemize
+Ogni unità funzionale è specializzata, la decode è molto semplice: i bit
+ di ciascun campo sono noti a priori.
+\end_layout
+
+\begin_layout Itemize
+La pipeline è più semplice:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+si riduce l'area del chip (e quindi anche il prezzo).
+\end_layout
+
+\begin_layout Itemize
+si riduce il consumo di potenza.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Svantaggi:
+\end_layout
+
+\begin_layout Itemize
+Il compilatore deve fare tutto lui:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si perde la portabilità del codice.
+\end_layout
+
+\begin_layout Itemize
+I compilatori sono molto più complessi.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Invece di inserire stalli, vengono inserite NOP.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La dimensione del codice aumenta notevolmente.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Scheduling Software vs.
  Scheduling Hardware
@@ -7308,6 +7547,18 @@ stato dell'arte
 I processori VLIW hanno successo per dispositivi embedded (TriMedia media
  processors, C600 DSP, STMicroelectronics ST200 family, SHARC DSP, Itanium
  2).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 066.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
