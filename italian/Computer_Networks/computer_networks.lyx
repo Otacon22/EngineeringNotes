@@ -37018,7 +37018,9 @@ Utilizzando il NAPT sono possibili fino a 65536 (numero di porte disponibili)
 \end_layout
 
 \begin_layout Itemize
-N.B: Spesso gli apparati che implementano il NAT non 
+N.B: Spesso gli apparati che implementano il NAT 
+\bar under
+non 
 \begin_inset Quotes eld
 \end_inset
 
@@ -37026,8 +37028,9 @@ modificano
 \begin_inset Quotes erd
 \end_inset
 
- la porta sorgente, se è libera sull'indirizzo pubblico su cui effettuano
- la traduzione.
+ la porta sorgente
+\bar default
+, se è libera sull'indirizzo pubblico su cui effettuano la traduzione.
  Questa assunzione permette tra l'altro la realizzazione di alcune tecniche
  di 
 \begin_inset Quotes eld
@@ -37046,8 +37049,10 @@ nat traversal
 \end_inset
 
 
+\series bold
 \emph on
 UDP hole punching
+\series default
 \emph default
 
 \begin_inset Quotes erd
@@ -37086,25 +37091,91 @@ Nel seguito di questo paragrafo useremo la parola NAT per restare conformi
  Da ciò sono scaturiti svariatissimi tipi di NAT, che presentano comportamenti
  leggermente diversi.
  Le differenze si concentrano principalmente nelle politiche applicate sui
- pacchetti in ingresso
+ pacchetti in ingresso, in particolare su quali campi vengono controllati.
 \end_layout
 
 \begin_layout Standard
-Partiamo da questa assunzione di base: abbiamo un client dietro la NAT che
- apre una connessione verso un host con indirizzo pubblico, cosa succede
- quando tornano indietro le risposte
+La classificazione che faremo di seguito è basata sulla RFC3489 (L'RFC della
+ prima versione del protocollo STUN).
+ Questa classificazione è utile per capire vari comportamenti generali,
+ anche se ad oggi ci sono anche altri tipi di NAT leggermente differenti
+ da quelli elencati.
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Full Cone NAT
-\series default
-: È il tipo meno restrittivo di NAT.
- 
+Assunzione di base: 
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Un client dietro la NAT con indirizzo 
+\series bold
+sorgente 
+\series default
+interno 
+\begin_inset Formula $\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Il client apre una connessione verso un host su Internet con 
+\series bold
+destinazione
+\series default
+ indirizzo 
+\begin_inset Formula $\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host su Internet risponde al NAT usando come proprio indirizzo con indirizzo
+ 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host su Internet può rispondere eventualmente con un altro indirizzo 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Un altro host su Internet può rispondere eventualmente con indirizzo 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Vediamo cosa succede quando tornano indietro le risposte dalla destinazione.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Full Cone NAT
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+È il tipo meno restrittivo di NAT.
+ 
+\end_layout
+
 \begin_layout Itemize
 Quando arrivano pacchetti da Internet verso la NAT, viene effettuato un
  controllo nel pacchetto ricevuto:
@@ -37120,12 +37191,20 @@ IP di destinazione
 \end_layout
 
 \begin_layout Itemize
+Sul 
+\series bold
+protocollo
+\series default
+ (TCP e UDP solitamente)
+\end_layout
+
+\begin_layout Itemize
 La 
 \series bold
 porta di destinazione
 \series default
- (e ovviamente protocollo TCP o UDP) del pacchetto deve esse, viene fatto
- un lookup nella tabella del NAPT e viene inoltrato il pacchetto.
+ : viene fatto un lookup nella tabella del NAPT e viene inoltrato il pacchetto
+ se la quella porta è stata allocata per qualche host sulla rete interna.
  
 \end_layout
 
@@ -37154,19 +37233,464 @@ verifiche
  significa meno costo computazionale, ma ci sono evidenti problemi di sicurezza.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-Nel caso in cui arriva un pacchetto su una porta non allocata dal NAT può
- tornare indietro un errore ICMP in alcuni casi, in altri no.
+Un attaccante può tentare di inviare pacchetti in una connessione esistente,
+ senza necessità di fare spoofing dell'indirizzo IP sorgente
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
+Nel caso in cui arriva un pacchetto su una porta non allocata dal NAT può:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tornare al mittente un segmento TCP contenente un RST
+\end_layout
+
+\begin_layout Itemize
+Tornare al mittente un errore ICMP
+\end_layout
+
+\begin_layout Itemize
+Non accade nulla
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 009.svg
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Riassumendo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host interno invia una richiesta ad un host esterno: 
+\begin_inset Formula $\left(S_{IP},S_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+ su un certo protocollo 
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT genera una nuova riga nella tabella delle connessioni e salva all'interno
+ 
+\begin_inset Formula $S_{IP},S_{SPort},Protocol$
+\end_inset
+
+ e lascia la colonna relativa a 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ vuota.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il NAT sceglie una porta sorgente libera 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ sul suo indirizzo esterno 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e aggiunge la porta nella riga appena creata della tabella di mapping,
+ che è ora completa.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A questo punto il NAT utilizza il proprio indirizzo IP pubblico e inoltra
+ il pacchetto modificandolo: 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host esterno riceve il pacchetto da 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+, alloca una porta 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ per la nuova connessione e risponde inviando il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\end_inset
+
+,cerca nella tabella e vede che c'è una riga che ha un 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ 
+\series bold
+\bar under
+corrispondenti
+\series default
+\bar default
+.
+ Inoltre anche 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ è corretto, poiché il pacchetto è stato ricevuto.
+ Quindi il NAT trasforma il pacchetto in: 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Ogni successivo pacchetto da/a l'host interno segue le regole della tabella
+ come sopra
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo che lo stesso 
+\bar under
+host esterno decida di aprire un'altra connessione verso l'host interno
+\bar default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host esterno genera un pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali.
+ Non viene fatto nessun ulteriore controllo.
+\end_layout
+
+\begin_layout Itemize
+Il NAT modifica il pacchetto e inoltra 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ che viene ricevuto dall'host interno.
+\end_layout
+
+\begin_layout Itemize
+Quindi l'operazione ha 
+\series bold
+\bar under
+successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ammettiamo che 
+\series bold
+un altro
+\series default
+ host decida di aprire una connessione verso l'host interno
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il nuovo host esterno genera un pacchetto 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali.
+ Non viene fatto nessun ulteriore controllo.
+\end_layout
+
+\begin_layout Itemize
+Il NAT modifica il pacchetto e inoltra 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ che viene ricevuto dall'host interno.
+\end_layout
+
+\begin_layout Itemize
+Quindi l'operazione ha 
+\series bold
+\bar under
+successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection*
 
 \series bold
 (Address) Restricted Cone NAT
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Quando arrivano pacchetti da Internet verso la NAT, viene effettuato un
  controllo:
@@ -37174,19 +37698,25 @@ Quando arrivano pacchetti da Internet verso la NAT, viene effettuato un
 
 \begin_deeper
 \begin_layout Itemize
-Su 
+Sull'indirizzo 
 \series bold
 IP di destinazione
 \series default
- 
+ (che deve essere uguale a quello del NAT)
+\end_layout
+
+\begin_layout Itemize
+Sul 
+\series bold
+protocollo
+\series default
+ (TCP e UDP solitamente)
 \end_layout
 
 \begin_layout Itemize
 Sulla 
 \series bold
 porta di destinazione
-\series default
- (e protocollo)
 \end_layout
 
 \begin_layout Itemize
@@ -37195,30 +37725,531 @@ Sull'
 IP sorgente
 \series default
 : nella tabella di mapping del NAPT viene salvato anche l'indirizzo IP dell'host
- remoto con cui è effettuata la connessione, quindi viene verificato anche
- quello, tuttavia la porta sorgente non viene verificata.
+ remoto con cui è effettuata la connessione, quindi viene verificato che
+ il pacchetto in ingresso dal mittente stia arrivando dall'indirizzo IP
+ precedentemente salvato nella tabella.
+ Tuttavia la porta sorgente del mittente non viene verificata, quindi l'host
+ remoto può 
+\bar under
+aprire una nuova connessione sulla stessa porta
+\bar default
+.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Notiamo che l'aggiunta anche dell'indirizzo IP dell'host remoto nella tabella
- di mapping del NAPT permette di aumentare il numero di connessioni contemporane
-e con l'indirizzo del NAPT.
+In questo modo un host remoto può collegarsi ad un host dietro NAT solo
+ se l'host dietro NAT lo aveva già contattato il precedenza.
+\end_layout
+
+\begin_layout Itemize
+Notiamo anche l'aggiunta anche dell'indirizzo IP dell'host remoto nella
+ tabella di mapping del NAPT permette di aumentare il numero di connessioni
+ contemporanee con l'indirizzo del NAPT.
 \end_layout
 
 \begin_layout Itemize
 Anche in questo caso se il pacchetto fallisce la verifica potrebbe essere
- ritornato un errore ICMP.
+ ritornato un errore ICMP, TCP o nulla.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 010.svg
+	scale 40
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
+Riassumendo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host interno invia una richiesta ad un host esterno: 
+\begin_inset Formula $\left(S_{IP},S_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+ su un certo protocollo 
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT genera una nuova riga nella tabella delle connessioni e salva all'interno
+ 
+\begin_inset Formula $S_{IP},S_{SPort},D_{IP},Protocol$
+\end_inset
+
+ e lascia la colonna relativa a 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ vuota.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il NAT sceglie una porta sorgente libera 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ sul suo indirizzo esterno 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e aggiunge la porta nella riga appena creata della tabella di mapping,
+ che è ora completa.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A questo punto il NAT utilizza il proprio indirizzo IP pubblico e inoltra
+ il pacchetto modificandolo: 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host esterno riceve il pacchetto da 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+, alloca una porta 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ per la nuova connessione e risponde inviando il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\end_inset
+
+,cerca nella tabella e vede che c'è una riga che ha un 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ 
+\series bold
+\bar under
+corrispondenti
+\series default
+\bar default
+.
+ Inoltre anche 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ è corretto, poiché il pacchetto è stato ricevuto.
+ Quindi il NAT trasforma il pacchetto in: 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Ogni successivo pacchetto da/a l'host interno segue le regole della tabella
+ come sopra
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo che lo stesso 
+\bar under
+host esterno decida di aprire un'altra connessione verso l'host interno
+\bar default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host esterno genera un pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali.
+ Non viene fatto nessun ulteriore controllo.
+\end_layout
+
+\begin_layout Itemize
+Il NAT modifica il pacchetto e inoltra 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+ che viene ricevuto dall'host interno.
+\end_layout
+
+\begin_layout Itemize
+Quindi l'operazione ha 
+\series bold
+\bar under
+successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ammettiamo che 
+\series bold
+un altro
+\series default
+ host decida di aprire una connessione verso l'host interno
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il nuovo host esterno genera un pacchetto 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali ma 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ è diverso.
+ Quindi 
+\series bold
+\bar under
+non è possibile inoltrare
+\series default
+\bar default
+ il pacchetto.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene inviato un errore ICMP, TCP 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D2_{IP},D2_{SPort}\right)$
+\end_inset
+
+ o nulla.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi l'operazione 
+\series bold
+\bar under
+non ha successo
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection*
 
 \series bold
 Port-restricted cone NAT
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Quando arrivano pacchetti da Internet verso la NAT, viene effettuato un
  controllo:
@@ -37226,19 +38257,25 @@ Quando arrivano pacchetti da Internet verso la NAT, viene effettuato un
 
 \begin_deeper
 \begin_layout Itemize
-Su 
+Sull'indirizzo 
 \series bold
 IP di destinazione
 \series default
- 
+ (che deve essere uguale a quello del NAT)
+\end_layout
+
+\begin_layout Itemize
+Sul 
+\series bold
+protocollo
+\series default
+ (TCP e UDP solitamente)
 \end_layout
 
 \begin_layout Itemize
 Sulla 
 \series bold
 porta di destinazione
-\series default
- (e protocollo)
 \end_layout
 
 \begin_layout Itemize
@@ -37264,9 +38301,727 @@ Aggiungiamo overhead nella tabella del NAPT senza aumentare particolarmente
 \end_layout
 
 \begin_layout Itemize
-Possibilità di un errore ICMP nel caso in cui fallisce la verifica
+Come prima c'è la possibilità di un errore ICMP o TCP nel caso in cui fallisce
+ la verifica
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 011.svg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Riassumendo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host interno invia una richiesta ad un host esterno: 
+\begin_inset Formula $\left(S_{IP},S_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+ su un certo protocollo 
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT genera una nuova riga nella tabella delle connessioni e salva all'interno
+ 
+\begin_inset Formula $S_{IP},S_{SPort},D_{IP},Protocol$
+\end_inset
+
+ e lascia le colonne relative a 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ vuote.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il NAT sceglie una porta sorgente libera 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ sul suo indirizzo esterno 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e aggiunge la porta nella riga appena creata della tabella di mapping.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A questo punto il NAT utilizza il proprio indirizzo IP pubblico e inoltra
+ il pacchetto modificandolo: 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host esterno riceve il pacchetto da 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+, alloca una porta 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ per la nuova connessione e risponde inviando il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\end_inset
+
+,cerca nella tabella e vede che c'è una riga che ha un 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ 
+\series bold
+\bar under
+corrispondenti
+\series default
+\bar default
+ e 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ non è ancora definito.
+ Inoltre anche 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ è corretto, poiché il pacchetto è stato ricevuto.
+ Quindi il NAT trasforma il pacchetto in: 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+, lo inoltra e inoltre aggiorna la tabella del mapping aggiungendo il valore
+ di 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ mancante.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni successivo pacchetto da/a l'host interno segue le regole della tabella
+ come sopra
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo che lo stesso 
+\bar under
+host esterno decida di aprire un'altra connessione verso l'host interno
+\bar default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host esterno genera un pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali ma 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ è 
+\series bold
+\bar under
+diverso
+\series default
+\bar default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene inviato un errore ICMP, TCP 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D{}_{IP},D{}_{SPort}\right)$
+\end_inset
+
+ o nulla.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi l'operazione 
+\series bold
+\bar under
+non ha
+\series default
+\bar default
+ 
+\series bold
+\bar under
+successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ammettiamo che 
+\series bold
+un altro
+\series default
+ host decida di aprire una connessione verso l'host interno
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il nuovo host esterno genera un pacchetto 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali ma 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ è diverso.
+ Quindi 
+\series bold
+\bar under
+non è possibile inoltrare
+\series default
+\bar default
+ il pacchetto.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene inviato a un errore ICMP, TCP 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D2_{IP},D2_{SPort}\right)$
+\end_inset
+
+ o nulla.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi l'operazione 
+\series bold
+\bar under
+non ha successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -37280,9 +39035,64 @@ Si tratta di un NAT di tipo
 \series bold
 port-restricted cone
 \series default
- dotato di più di un indirizzo IP pubblico.
+ dotato di 
+\bar under
+più di un indirizzo IP pubblico
+\bar default
+.
 \end_layout
 
+\begin_layout Itemize
+Come prima avremo che quando arrivano pacchetti da Internet verso la NAT,
+ viene effettuato un controllo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sull'indirizzo 
+\series bold
+IP di destinazione
+\series default
+ (che deve essere 
+\series bold
+\bar under
+uno di quelli
+\series default
+\bar default
+ del NAT)
+\end_layout
+
+\begin_layout Itemize
+Sul 
+\series bold
+protocollo
+\series default
+ (TCP e UDP solitamente)
+\end_layout
+
+\begin_layout Itemize
+Sulla 
+\series bold
+porta di destinazione
+\end_layout
+
+\begin_layout Itemize
+Sull'
+\series bold
+IP sorgente
+\end_layout
+
+\begin_layout Itemize
+Sulla 
+\series bold
+porta sorgente
+\series default
+, che deve essere quindi salvata nella tabella del NAT al momento dell'instauraz
+ione della connessione (arrivo del primo pacchetto SYN/ACK da parte dell'host
+ remoto).
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Quando un host dietro la NAT effettua una connessione con un host esterno
  viene utilizzato un certo indirizzo IP sorgente dal NAT.
@@ -37317,6 +39127,816 @@ Questo tipo di NAT viene solitamente adottato in grandi reti aziendali,
  ottenere con un unico indirizzo IP sorgente (vedi nei paragrafi seguenti).
 \end_layout
 
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 012.svg
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Riassumendo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host interno invia una richiesta ad un host esterno: 
+\begin_inset Formula $\left(S_{IP},S_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+ su un certo protocollo 
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT genera una nuova riga nella tabella delle connessioni e salva all'interno
+ 
+\begin_inset Formula $S_{IP},S_{SPort},D_{IP},Protocol$
+\end_inset
+
+ e lascia le colonne relative a 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+, 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ vuote.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Il NAT sceglie una porta sorgente libera 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ sul 
+\series bold
+\bar under
+uno dei vari indirizzi
+\series default
+\bar default
+ esterni 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e aggiunge la porta nella riga appena creata della tabella di mapping.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Notiamo che se viene aperta un'altra connessione, potrebbe essere selezionato
+ un indirizzo 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ completamente diverso, che è proprio la proprietà del 
+\emph on
+symmetric NAT.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+A questo punto il NAT utilizza il proprio indirizzo IP pubblico e inoltra
+ il pacchetto modificandolo: 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D_{IP},D_{DPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+L'host esterno riceve il pacchetto da 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+, alloca una porta 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ per la nuova connessione e risponde inviando il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\end_inset
+
+,cerca nella tabella e vede che c'è una riga che ha un 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+, 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ 
+\series bold
+\bar under
+corrispondenti
+\series default
+\bar default
+ e 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ non è ancora definito.
+ Quindi il NAT trasforma il pacchetto in: 
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(S_{IP},S_{SPort}\right)$
+\end_inset
+
+, lo inoltra e inoltre aggiorna la tabella del mapping aggiungendo il valore
+ di 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ mancante.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Protocol$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni successivo pacchetto da/a l'host interno segue le regole della tabella
+ come sopra
+\end_layout
+
+\begin_layout Itemize
+Ammettiamo che lo stesso 
+\bar under
+host esterno decida di aprire un'altra connessione verso l'host interno
+\bar default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'host esterno genera un pacchetto 
+\begin_inset Formula $\left(D_{IP},D_{SPort2}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+, 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ , 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali ma 
+\begin_inset Formula $D_{SPort}$
+\end_inset
+
+ è 
+\series bold
+\bar under
+diverso
+\series default
+\bar default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene inviato un errore ICMP, TCP 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D{}_{IP},D{}_{SPort}\right)$
+\end_inset
+
+ o nulla.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi l'operazione 
+\series bold
+\bar under
+non ha
+\series default
+\bar default
+ 
+\series bold
+\bar under
+successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ammettiamo che 
+\series bold
+un altro
+\series default
+ host decida di aprire una connessione verso l'host interno
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il nuovo host esterno genera un pacchetto 
+\begin_inset Formula $\left(D2_{IP},D2_{SPort}\right)\rightarrow\left(NAT_{IP},NAT_{SPort}\right)$
+\end_inset
+
+ e lo inoltra.
+\end_layout
+
+\begin_layout Itemize
+Il NAT riceve il pacchetto e trova nella tabella una riga con 
+\begin_inset Formula $NAT_{IP}$
+\end_inset
+
+, 
+\begin_inset Formula $NAT_{SPort}$
+\end_inset
+
+ e 
+\begin_inset Formula $Protocol$
+\end_inset
+
+ uguali ma 
+\begin_inset Formula $D_{IP}$
+\end_inset
+
+ è diverso.
+ Quindi 
+\series bold
+\bar under
+non è possibile inoltrare
+\series default
+\bar default
+ il pacchetto.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene inviato a un errore ICMP, TCP 
+\begin_inset Formula $\left(NAT_{IP},NAT_{SPort}\right)\rightarrow\left(D2_{IP},D2_{SPort}\right)$
+\end_inset
+
+ o nulla.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quindi l'operazione 
+\series bold
+\bar under
+non ha successo
+\series default
+\bar default
+.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Subsection*
 Altre complicazioni del NAPT
@@ -64992,9 +67612,29 @@ Domain Name System
 \end_layout
 
 \begin_layout Standard
-È il servizio che permette la traduzione di indirizzi simbolici in indirizzi
+È il servizio che permette principalmente la traduzione di nomi in indirizzi
  IP.
- Gli indirizzi sono strutturati in modo gerarchico e ogni parte è separata
+ Il DNS è in realtà un database distribuito, dove ogni 
+\emph on
+zona
+\emph default
+ contiene le informazioni relative a se stessa, però queste zone riescono
+ a cooperare e condividere i propri dati tra di loro quando uno necessita
+ i dati dell'altro, inoltre le varie zone sono organizzate in modo gerarchico.
+\end_layout
+
+\begin_layout Standard
+Il DNS fu specificato formalmente da 
+\emph on
+Paul Mockapetris
+\emph default
+ negli RFC 882 e RFC 883, nel 1983.
+ Successivamente le specifiche furono aggiornate con RFC 1034 e RFC 1035
+ nel 1987.
+\end_layout
+
+\begin_layout Standard
+Gli indirizzi sono strutturati in modo gerarchico e ogni parte è separata
  da un punto ed è gestita da una autorità diversa.
 \end_layout
 
@@ -65048,6 +67688,14 @@ polimi.it
 \emph default
  .
  Questa terza parte dell'indirizzo viene gestita internamente dal politecnico.
+\end_layout
+
+\begin_layout Standard
+I nomi utilizzati nei DNS sono 
+\emph on
+case-insensitive
+\emph default
+, POLIMI.IT è come scrivere Polimi.it che è come scrivere polimi.it .
 \end_layout
 
 \begin_layout Standard
@@ -65400,6 +68048,10 @@ disegni go-back-n vs.
 
 \begin_layout Itemize
 Criteri implementativi per decidere gli intervalli di interrogazione ARP.
+\end_layout
+
+\begin_layout Itemize
+TCP Timestamp option
 \end_layout
 
 \begin_layout Bibliography
