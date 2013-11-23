@@ -5815,6 +5815,10 @@ hardware
 Instruction Level Parallelism
 \end_layout
 
+\begin_layout Subsection
+Portare il parallelismo a livello di istruzione
+\end_layout
+
 \begin_layout Standard
 In una macchina dotata di pipeline, il CPI viene derivato come: 
 \begin_inset Formula 
@@ -5876,7 +5880,7 @@ Caso migliore:
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto sulla pipeline
 \end_layout
 
@@ -5951,7 +5955,7 @@ non la latenza
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto tipi di Data hazards
 \end_layout
 
@@ -6016,11 +6020,11 @@ WAW hazard
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Evoluzioni della pipeline
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex pipelining
 \end_layout
 
@@ -6060,7 +6064,7 @@ Diverse funzioni e unità di memoria
 Sistemi di memoria con tempo di accesso variabile
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex In-order Pipeline
 \end_layout
 
@@ -6106,7 +6110,7 @@ Le istruzioni vengono inviate in ordine (di modo da gestire le eccezioni
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
+\begin_layout Subsubsection
 Altri concetti base e definizioni
 \end_layout
 
@@ -6129,7 +6133,7 @@ scheduled
  possibile con le risorse a disposizione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 
 \series bold
 Instruction Level Parallelism
@@ -6180,7 +6184,7 @@ Non ci sono Control hazards.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 2-issue MIPS Pipeline architecture
 \end_layout
 
@@ -6897,7 +6901,7 @@ Evoluzione del parallelismo
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Esecuzione superscalare
 \end_layout
 
@@ -7011,6 +7015,10 @@ C'è un
 limite
 \series default
  su quante istruzioni possono essere verificate durante un ciclo di clock.
+\end_layout
+
+\begin_layout Subsubsection
+Limiti
 \end_layout
 
 \begin_layout Paragraph
@@ -7141,12 +7149,20 @@ Svantaggi
 \end_layout
 
 \begin_layout Itemize
-È molto costosa la logica per trovare le dipendenze.
+È molto costosa la 
+\bar under
+logica per trovare le dipendenze
+\bar default
+.
 \end_layout
 
 \begin_layout Itemize
-Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
- di dover rallentare il clock).
+
+\bar under
+Non scala
+\bar default
+: è complicatissimo aumentare la issue a più di 4 (e rischiamo di dover
+ rallentare il clock).
 \end_layout
 
 \begin_layout Subsection
