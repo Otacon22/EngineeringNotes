@@ -5815,6 +5815,10 @@ hardware
 Instruction Level Parallelism
 \end_layout
 
+\begin_layout Subsection
+Portare il parallelismo a livello di istruzione
+\end_layout
+
 \begin_layout Standard
 In una macchina dotata di pipeline, il CPI viene derivato come: 
 \begin_inset Formula 
@@ -5876,7 +5880,7 @@ Caso migliore:
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto sulla pipeline
 \end_layout
 
@@ -5951,7 +5955,7 @@ non la latenza
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto tipi di Data hazards
 \end_layout
 
@@ -6016,11 +6020,11 @@ WAW hazard
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Evoluzioni della pipeline
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex pipelining
 \end_layout
 
@@ -6060,7 +6064,7 @@ Diverse funzioni e unità di memoria
 Sistemi di memoria con tempo di accesso variabile
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex In-order Pipeline
 \end_layout
 
@@ -6106,7 +6110,7 @@ Le istruzioni vengono inviate in ordine (di modo da gestire le eccezioni
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
+\begin_layout Subsubsection
 Altri concetti base e definizioni
 \end_layout
 
@@ -6129,7 +6133,7 @@ scheduled
  possibile con le risorse a disposizione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 
 \series bold
 Instruction Level Parallelism
@@ -6180,7 +6184,7 @@ Non ci sono Control hazards.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 2-issue MIPS Pipeline architecture
 \end_layout
 
@@ -6897,7 +6901,7 @@ Evoluzione del parallelismo
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Esecuzione superscalare
 \end_layout
 
@@ -7011,6 +7015,10 @@ C'è un
 limite
 \series default
  su quante istruzioni possono essere verificate durante un ciclo di clock.
+\end_layout
+
+\begin_layout Subsubsection
+Limiti
 \end_layout
 
 \begin_layout Paragraph
@@ -7141,12 +7149,20 @@ Svantaggi
 \end_layout
 
 \begin_layout Itemize
-È molto costosa la logica per trovare le dipendenze.
+È molto costosa la 
+\bar under
+logica per trovare le dipendenze
+\bar default
+.
 \end_layout
 
 \begin_layout Itemize
-Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
- di dover rallentare il clock).
+
+\bar under
+Non scala
+\bar default
+: è complicatissimo aumentare la issue a più di 4 (e rischiamo di dover
+ rallentare il clock).
 \end_layout
 
 \begin_layout Subsection
@@ -7591,20 +7607,25 @@ scoreboard dynamic scheduling algorithm
 
 \end_layout
 
+\begin_layout Subsection
+Caratteristiche generali della scoreboard
+\end_layout
+
 \begin_layout Itemize
-L'esecuzione 
-\emph on
-out-of-order
-\emph default
- suddivide lo stadio 
-\series bold
-ID
-\series default
- in:
+La scoreboard rimpiazza gli stadi ID, EX, WB con 4 stadi:
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
+\begin_layout Itemize
+Lo stadio 
+\series bold
+ID
+\series default
+ viene suddiviso in:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
 
 \series bold
 Issue
@@ -7612,21 +7633,60 @@ Issue
 : Decodifica le istruzioni, controlla gli hazards strutturali.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 
 \series bold
-Read Operands (RR)
+Read Operands
 \series default
-: Aspetta fino a quando non ci sono data hazards, poi leggi gli operandi
- dai registri.
+ (aka 
+\series bold
+R
+\series default
+ead 
+\series bold
+R
+\series default
+egister): Aspetta fino a quando non ci sono data hazards, poi leggi gli
+ operandi dai registri.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
- e non ci sono hazards.
+Una istruzione è nello stadio di 
+\series bold
+esecuzione
+\series default
+ (EX) nell'intervallo di tempo tra quando 
+\emph on
+inizia
+\emph default
+ l'esecuzione e quando la 
+\emph on
+completa
+\emph default
+.
+ La scoreboard registra quindi:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Execution completed
+\series default
+: l'istante in cui l'esecuzione viene completata.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Write Result
+\series default
+: si accerta dell'assenza di hazard e finalizza il risultato.
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Itemize
 La 
 \series bold
@@ -7634,22 +7694,75 @@ La
 scoreboard
 \series default
 \emph default
- (tabella dei punteggi) permette alle istruzioni di essere eseguite se ci
- sono 1 o 2 fermate, senza aspettare altre istruzioni.
+ (tabella dei punteggi) permette alle istruzioni di essere eseguite se i
+ primi due stadi sono pronti, senza aspettare altre istruzioni.
 \end_layout
 
-\begin_layout Subsection
-Schema generale della scoreboard
+\begin_deeper
+\begin_layout Itemize
+Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
+ e non ci sono hazards.
 \end_layout
 
 \begin_layout Itemize
-Una istruzione è 
-\series bold
-in esecuzione
-\series default
- nell'intervallo di tempo tra quando inizia l'esecuzione e quando la completa.
+Le istruzioni 
+\bar under
+senza dipendenze
+\bar default
+ vanno 
+\bar under
+subito in esecuzione
+\bar default
+.
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+Anche se l'issue è 
+\emph on
+in-order
+\emph default
+, se abbiamo una lettura 
+\emph on
+out-of-order
+\emph default
+ degli operandi, avremo una esecuzione e completamento 
+\emph on
+out-of-order
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tutte le istruzioni passano 
+\emph on
+in-order 
+\emph default
+attraverso lo stage 
+\series bold
+\emph on
+issue
+\series default
+\emph default
+, ma possono andare in stallo o sorpassarsi a vicenda nello stadio 
+\series bold
+\emph on
+read operands
+\series default
+\emph default
+ e quindi iniziare l'esecuzione 
+\emph on
+out-of-order
+\emph default
+ e (avendo latenze diverse) arrivare a completamento 
+\emph on
+out-of-order
+\emph default
+.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Assumiamo che la pipeline permetta l'esecuzione di più istruzioni allo stesso
  tempo.
@@ -7696,86 +7809,6 @@ out-of-order
 
 \end_layout
 
-\begin_layout Itemize
-La scoreboard rimpiazza gli stadi ID, EX, WB con 4 stadi:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Lo stadio ID viene diviso in due parti: 
-\series bold
-Issue
-\series default
- e 
-\series bold
-Read Operands
-\series default
- (aka 
-\series bold
-R
-\series default
-ead 
-\series bold
-R
-\series default
-egisters)
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-La scoreboard permette alle istruzioni 
-\bar under
-senza dipendenze
-\bar default
- di andare subito in esecuzione.
-\end_layout
-
-\begin_layout Itemize
-Anche se l'issue è 
-\emph on
-in-order
-\emph default
-, se abbiamo una lettura 
-\emph on
-out-of-order
-\emph default
- degli operandi, avremo una esecuzione e completamento 
-\emph on
-out-of-order
-\emph default
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Tutte le istruzioni passano 
-\emph on
-in-order 
-\emph default
-attraverso lo stage 
-\series bold
-\emph on
-issue
-\series default
-\emph default
- , ma possono andare in stallo o bypassarsi a vicenda nello stadio 
-\series bold
-\emph on
-read operands
-\series default
-\emph default
- e quindi iniziare l'esecuzione 
-\emph on
-out-of-order
-\emph default
- e (avendo latenze diverse) arrivare a completamento 
-\emph on
-out-of-order
-\emph default
-.
-\end_layout
-
-\end_deeper
 \begin_layout Subsubsection
 Hazard e dipendenze
 \end_layout
@@ -7915,8 +7948,8 @@ in-order
 \begin_layout Itemize
 La soluzione è quella di assicurarsi che non ci siano istruzioni che possono
  generare eccezione.
- Quando il processore sa che l'istruzione che lancia l'eccezione viene lanciata
- eseguirà le istruzioni critiche 
+ Quando il processore trova che l'istruzione che lancia l'eccezione viene
+ lanciata eseguirà le istruzioni critiche 
 \emph on
 in-order
 \emph default
@@ -8232,7 +8265,7 @@ Fi: Indica il registro di destinazione
 \end_layout
 
 \begin_layout Itemize
-Fj,Fk: Registri sorgente
+Fj, Fk: Registri sorgente
 \end_layout
 
 \begin_layout Itemize
