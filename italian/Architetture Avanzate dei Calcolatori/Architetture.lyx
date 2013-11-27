@@ -7700,7 +7700,7 @@ scoreboard
 
 \begin_deeper
 \begin_layout Itemize
-Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
+Le istruzioni vengono eseguite se non sono dipendenti da altre precedenti
  e non ci sono hazards.
 \end_layout
 
@@ -8085,7 +8085,11 @@ Read Operands
 
 \begin_deeper
 \begin_layout Itemize
-Un operando sorgente è disponibile se:
+Un operando sorgente è 
+\series bold
+disponibile
+\series default
+ se:
 \end_layout
 
 \begin_deeper
@@ -8094,7 +8098,7 @@ Non c'erano istruzioni attive mandate in issue a scrivere quell'operando
 \end_layout
 
 \begin_layout Itemize
-Oppure una unità funzionale sta scrivendo il suo lavore in un registro
+Oppure una unità funzionale sta scrivendo il suo valore in un registro
 \end_layout
 
 \end_deeper
@@ -8116,7 +8120,6 @@ risolti dinamicamente
  Le istruzioni possono essere inviate in esecuzione 
 \emph on
 out-of-order
-\series bold
 \emph default
 .
 \end_layout
@@ -8156,8 +8159,8 @@ Intervallo di inizializzazione (il numero di cicli che devono passare tra
 \end_layout
 
 \begin_layout Itemize
-La latenza delle operazioni di load/store dipende dall'HIT o MISS sulla
- data cache.
+La latenza delle operazioni di load/store dipende dalla data cache (HIT
+ o MISS ?).
 \end_layout
 
 \end_deeper
@@ -8176,15 +8179,19 @@ WAR
 
 \begin_deeper
 \begin_layout Itemize
-Una volta che la scoreboard sà che l'unità funzionale ha completato l'esecuzione
-, la scoreboard 
+Una volta che la scoreboard sa che l'unità funzionale ha completato l'esecuzione
+, essa stessa si preoccupa di 
 \series bold
-controlla per la presenza di hazards di tipo WAR
+controllare 
+\series default
+l'eventuale presenza di 
+\series bold
+hazards di tipo WAR
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Se non ce ne sono, scrive direttamente il risultato
+Se non ce ne sono, scrive direttamente il risultato.
 \end_layout
 
 \begin_layout Itemize
@@ -8226,10 +8233,13 @@ Inoltre deve andare in stallo su MULD nello stage di issue, fino a quando
 
 \end_deeper
 \begin_layout Itemize
-Può eventualmente risolvere utilizzando il 
+Si può anche risolvere utilizzando il 
 \series bold
 \emph on
 register renaming
+\series default
+\emph default
+.
 \end_layout
 
 \end_deeper
