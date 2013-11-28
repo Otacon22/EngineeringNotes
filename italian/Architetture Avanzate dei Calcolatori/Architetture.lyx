@@ -194,7 +194,7 @@ Soluzioni ancora più avanzate
 
 \begin_deeper
 \begin_layout Itemize
-Memory hearchy
+Memory hierarchy
 \end_layout
 
 \begin_layout Itemize
@@ -2279,7 +2279,7 @@ Idea base:
 \end_layout
 
 \begin_layout Itemize
-Gli stages sonocollegati tra di loro dalla pipeline: l'istruzione entra
+Gli stages sono collegati tra di loro dalla pipeline: l'istruzione entra
  nella pipeline da una parte, passa per vari stages e esce dall'altra parte,
  come su una catena d'assemblaggio.
 \end_layout
@@ -7577,6 +7577,193 @@ I processori VLIW hanno successo per dispositivi embedded (TriMedia media
 
 \end_layout
 
+\begin_layout Subsection
+Scheduling VLIW
+\end_layout
+
+\begin_layout Standard
+Come abbiamo visto finora il livello di parallelismo massimo raggiungibile
+ è fortemente limitato.
+ Le principali ragioni sono:
+\end_layout
+
+\begin_layout Itemize
+Dipendenze tra le istruzioni.
+\end_layout
+
+\begin_layout Itemize
+Dimensione ridotta del blocco basico.
+\end_layout
+
+\begin_layout Subsubsection
+Grafo delle dipendenze
+\end_layout
+
+\begin_layout Standard
+È possibile costruire un grafo delle dipendenze tra le istruzioni in modo
+ da facilitare lo scheduling.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inserire esempio / immagine.
+ Definire critical path.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Loop unrolling
+\end_layout
+
+\begin_layout Standard
+Per aumentare ulteriormente il parallelismo è necessario andare oltre la
+ dimensione del blocco basico.
+ Una tecnica non speculativa è il loop unrolling.
+\end_layout
+
+\begin_layout Standard
+Il 
+\emph on
+compilatore
+\emph default
+ riconosce i cicli e, 
+\emph on
+\bar under
+laddove è possibile determinare staticamente il numero di iterazioni del
+ loop
+\emph default
+\bar default
+, srotola il ciclo.
+ Quando viene srotolato un ciclo viene 
+\series bold
+aumentata la dimensione del blocco basico
+\series default
+ formato istruzioni contenute nel ciclo 
+\series bold
+accorpando più iterazioni 
+\series default
+tra loro indipendenti.
+ 
+\end_layout
+
+\begin_layout Standard
+In un blocco basico di dimensione maggiore è possibile trovare maggiore
+ parallelismo riordinando le istruzioni.
+\end_layout
+
+\begin_layout Paragraph
+I problemi del loop unrolling
+\end_layout
+
+\begin_layout Itemize
+dipenenze tra una iterazione e la successiva.
+\end_layout
+
+\begin_layout Itemize
+terminazione del ciclo.
+\end_layout
+
+\begin_layout Standard
+Possono esistere dipendenze tra le istruzioni di una iterazione e la successiva
+ (
+\series bold
+loop carried dependences
+\series default
+).
+ In questo caso si può gestire le dipendenze introdotte oppure rinunciare
+ ad eseguire l'unrolling.
+\end_layout
+
+\begin_layout Standard
+La condizione di terminazione del ciclo deve essere adattata in modo da
+ eseguire lo stesso numero di istruzioni per cui il ciclo era stato scritto.
+ È possibile che srotolare il ciclo su base 4 (fondere 4 iterazioni assieme)
+ possa portare ad avere 
+\series bold
+iterazioni residue
+\series default
+ se l'originale numero di iterazioni non era multiplo di 4.
+ In questo caso è necessario gestire come caso particolare le iterazioni
+ residue accodandole al ciclo srotolato.
+\end_layout
+
+\begin_layout Subsubsection
+Loop peeling
+\end_layout
+
+\begin_layout Standard
+Una tecnica simile allo srotolamento dei cicli è 
+\emph on
+sbucciare i cicli
+\emph default
+.
+ Questa tecnica consiste nell'
+\series bold
+eliminare
+\series default
+ un determinato numero di 
+\series bold
+iterazioni da un loop
+\series default
+ aggiungendole poi in coda (o in testa) ad esso.
+ Questo consente al compilatore di eseguire altre ottimizzazioni altrimenti
+ non fattibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for(i = 0; i < 102; i++)  b[i] = b[i + 2] + c;  //loop A
+\end_layout
+
+\begin_layout Plain Layout
+
+for(j = 0; j < 100; j++)  a[j] = a[j] * 2;      //loop B
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i = 0; i < 100; i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+     b[i] = b[i + 2] + c;
+\end_layout
+
+\begin_layout Plain Layout
+
+     a[i] = a[j] * 2; }             //fused loops
+\end_layout
+
+\begin_layout Plain Layout
+
+b[100] = b[102] + c;
+\end_layout
+
+\begin_layout Plain Layout
+
+b[101] = b[103] + c;                //peeled from loop A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -7785,7 +7972,7 @@ dynamic scheduling
 \emph default
 ) la issue è 
 \emph on
-in-oder
+in-order
 \emph default
 , l'esecuzione e il completamento sono 
 \emph on
@@ -8155,7 +8342,7 @@ Latenza variabile
 
 \begin_layout Itemize
 Intervallo di inizializzazione (il numero di cicli che devono passare tra
- l'issuing di due operazioni alla stessa unità funzionale).
+ l'issue di due operazioni alla stessa unità funzionale).
 \end_layout
 
 \begin_layout Itemize
@@ -8267,7 +8454,7 @@ Busy: L'unità è occupata o no
 \end_layout
 
 \begin_layout Itemize
-Op: Indica l'operazione da effettuare con l'unità (+,-,...)
+Op: Indica l'operazione da effettuare con l'unità (+, -, ...)
 \end_layout
 
 \begin_layout Itemize
