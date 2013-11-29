@@ -2098,7 +2098,7 @@ data memory
 \begin_layout Itemize
 I 32 registri 
 \emph on
-general-purpose
+general purpose
 \emph default
  sono organizzati in un 
 \series bold
@@ -2601,7 +2601,7 @@ L'
 \emph on
 hazard
 \emph default
- impedice alla prossima istruzione della pipeline di essere eseguita nel
+ impedisce alla prossima istruzione della pipeline di essere eseguita nel
  suo ciclo di clock previsto
 \end_layout
 
@@ -2656,7 +2656,7 @@ Ad esempio: istruzione dipendente dal risultato di una precedente istruzione
 \series bold
 Control Hazards
 \series default
-: Tentativo di fare una decisone riguardo alla prossima istruzione da eseguire,
+: Tentativo di fare una decisione riguardo alla prossima istruzione da eseguire,
  prima che la condizione sia valutata
 \end_layout
 
@@ -2780,7 +2780,7 @@ eration)
 \end_layout
 
 \begin_layout Itemize
-Fare scheduling dele istruzioni (scambiare l'ordine etc...) per evitare che
+Fare scheduling delle istruzioni (scambiare l'ordine etc...) per evitare che
  istruzioni correlate siano troppo vicine
 \end_layout
 
@@ -3029,7 +3029,7 @@ Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Paragraph
-Schema riasssuntivo 
+Schema riassuntivo 
 \end_layout
 
 \begin_layout Standard
@@ -3341,7 +3341,7 @@ Come abbiamo visto la Pipeline aumenta il throughput ma non la latenza delle
 \end_layout
 
 \begin_layout Standard
-In realtà il pipelineing aumenta leggermente la latenza di tutte le istruzioni
+In realtà il pipelining aumenta leggermente la latenza di tutte le istruzioni
  a causa di overhead e sbilanciamento tra le latenze delle istruzioni.
  
 \end_layout
@@ -3518,7 +3518,7 @@ Consideriamo
 \begin_inset Formula $k$
 \end_inset
 
- stalli per iterazione (nel segutio 
+ stalli per iterazione (nel seguito 
 \begin_inset Formula $AS$
 \end_inset
 
@@ -3593,7 +3593,7 @@ CPI_{medio}PIPE\,=\, CPI\, Ideal+Pipe\, Stall\, Cycles_{\text{per istruzione}}=1
 
 \begin_layout Standard
 I cicli di stallo per iterazione sono dovuti a structural hazards, data
- harzards, control hazards e memory stalls
+ hazards, control hazards e memory stalls
 \end_layout
 
 \begin_layout Subsubsection
@@ -3944,9 +3944,9 @@ pipeline
 \begin_layout Itemize
 I 
 \emph on
-control harzard 
+control hazards 
 \emph default
-riducono le performance dallo speedup ideale guadagnato dal pipelining perchè
+riducono le performance dallo speedup ideale guadagnato dal pipelining perché
  potrebbero rendere necessari degli stalli nella pipeline.
 \end_layout
 
@@ -3970,7 +3970,7 @@ ritardo
  per determinare la prossima istruzione è chiamato appunto 
 \series bold
 \emph on
-control harzard
+control hazard
 \series default
 \emph default
  o 
@@ -4063,7 +4063,7 @@ stalling until resolution
 
 \begin_deeper
 \begin_layout Itemize
-Se utilizzamo il fowarding: lo faccio in 3 cicli di clock
+Se utilizziamo il forwarding: lo faccio in 3 cicli di clock
 \end_layout
 
 \begin_deeper
@@ -4278,7 +4278,7 @@ riduzione dei costi
 \series default
  associati ad ogni branch (
 \series bold
-branch penality
+branch penalty
 \series default
 )
 \end_layout
@@ -4389,7 +4389,7 @@ Tecniche di predizione
 statica
 \series default
 \bar default
-: A compile time decidiamo quale politica attuare in corrispondenza di cascun
+: A compile time decidiamo quale politica attuare in corrispondenza di ciascun
  branch
 \end_layout
 
@@ -4408,7 +4408,7 @@ Tecniche di predizione
 dinamica
 \series default
 \bar default
-: A run time prendiamo decisioni sulle predizioni dei branch, che possono
+: A runtime prendiamo decisioni sulle predizioni dei branch, che possono
  cambiare durante l'esecuzione del programma.
 \end_layout
 
@@ -4504,8 +4504,8 @@ Se la predizione è
 errata
 \series default
 : dobbiamo fare flush della prossima istruzione già fetchata (trasformiamo
- l'instruzione letta in precedenza in una NOP) e riavviamo l'esecuzione
- prendendo l'istruzione al 
+ l'istruzione letta in precedenza in una NOP) e riavviamo l'esecuzione prendendo
+ l'istruzione al 
 \emph on
 branch target address
 \emph default
@@ -4659,7 +4659,7 @@ Profile-driven prediction
 \end_layout
 
 \begin_layout Standard
-La tecnica profile-drivien consiste nel raccogliere statistiche sul numero
+La tecnica profile-driven consiste nel raccogliere statistiche sul numero
  di volte che ciascun branch viene preso e non preso.
  A valle di questo profiling svolto su un sufficiente numero di simulazioni
  (o esecuzioni) del software ogni branch viene marcato con il valore di
@@ -4703,7 +4703,7 @@ Se assumiamo che il branch delay sia 1 ciclo (come nel caso di MIPS ottimizzato)
 
 \begin_deeper
 \begin_layout Itemize
-In realtà è possibile avere processori con pipiline che utilizzano degli
+In realtà è possibile avere processori con pipeline che utilizzano degli
  slot di delay più lunghi.
 \end_layout
 
@@ -4892,7 +4892,7 @@ from target
 \begin_inset Quotes eld
 \end_inset
 
-from fall-though
+from fall-through
 \begin_inset Quotes erd
 \end_inset
 
@@ -4925,7 +4925,7 @@ lavoro
 \begin_deeper
 \begin_layout Itemize
 In generale, i compilatori sono in grado di riempire circa il 50% dei delayed
- brach slots con istruzioni valide e utili.
+ branch slots con istruzioni valide e utili.
  Gli slot rimanenti sono riempiti con operazioni 
 \series bold
 NOP
@@ -5027,7 +5027,7 @@ L'istruzione nel branch delay slot viene eseguita se il branch è taken.
 
 \begin_layout Itemize
 L'istruzione nel branch delay slot non viene eseguita (viene trasformata
- in nop) se il branch è untaken
+ in NOP) se il branch è untaken
 \end_layout
 
 \begin_layout Itemize
@@ -5058,7 +5058,7 @@ prevedere il futuro
 
 \begin_layout Standard
 Utilizziamo hardware per prevedere dinamicamente il risultato di un branch.
- La predizione dipenderà sul comportamento del branch a run time e cambierà
+ La predizione dipenderà sul comportamento del branch a runtime e cambierà
  se il branch cambia il suo comportamento durante l'esecuzione.
 \end_layout
 
@@ -5131,7 +5131,7 @@ Predizione: abbiamo un indizio che si assume essere corretto e iniziamo
 \begin_deeper
 \begin_layout Itemize
 Se scopriamo che la predizione era sbagliata, il bit di predizione viene
- invertito e risalvato.
+ invertito e ri-salvato.
  La pipeline viene ripulita e la sequenza corretta viene eseguita.
 \end_layout
 
@@ -5141,7 +5141,7 @@ La tabella non ha tags (ogni accesso è un
 \begin_inset Quotes eld
 \end_inset
 
-hit
+HIT
 \begin_inset Quotes erd
 \end_inset
 
@@ -5202,7 +5202,7 @@ In una branch che fa parte di un loop, poiché utilizziamo un solo bit per
 \end_layout
 
 \begin_layout Itemize
-Nell'ultimo ciclo del loop, poichè la predizione dice 
+Nell'ultimo ciclo del loop, poiché la predizione dice 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5353,7 +5353,7 @@ e
  bb2
 \series default
 .
- Se i branch precedenti sono entrmabi 
+ Se i branch precedenti sono entrambi 
 \emph on
 not taken
 \emph default
@@ -5416,7 +5416,7 @@ Registro se gli ultimi
 
 \begin_layout Itemize
 Il branch viene previsto in base a quello che è successo nel branch precedente
- selezionando appropriamente un bit dalla tabella:
+ selezionando appropriatamente un bit dalla tabella:
 \end_layout
 
 \begin_deeper
@@ -5975,7 +5975,7 @@ r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
 \end_layout
 
 \begin_layout Standard
-Determiniamo i vari dipi di dipendenze che esistono tra di esse:
+Determiniamo i vari tipi di dipendenze che esistono tra di esse:
 \end_layout
 
 \begin_layout Description
@@ -6045,7 +6045,7 @@ Aggiungendo risorse hardware per parallelizzare ulteriormente arriviamo
 \end_layout
 
 \begin_layout Itemize
-Unità floating-point con alta latenza o 
+Unità floating point con alta latenza o 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6277,7 +6277,7 @@ Data dependences (or True Data Depencences)
 \begin_layout Itemize
 
 \series bold
-Control Dependences
+Control dependences
 \end_layout
 
 \begin_layout Subsubsection
@@ -6632,7 +6632,7 @@ L'hardware ri-arrangia dinamicamente l'esecuzione delle istruzioni per ridurre
 \begin_layout Itemize
 Viene aggiunta la possibilità della 
 \series bold
-out-of-order esecution
+out-of-order execution
 \series default
  e 
 \series bold
@@ -6756,7 +6756,7 @@ processore superscalare.
 \begin_layout Itemize
 Le istruzioni vengono fetchate ed inviate nell'ordine del programma (
 \emph on
-in-order-issue
+in-order issue
 \emph default
 ).
 \end_layout
@@ -7082,7 +7082,7 @@ Quando l'architettura superscalare fu inventata, furono realizzati processori
 \end_layout
 
 \begin_layout Itemize
-Il massimo (raro) numero di issue parallelle è 6
+Il massimo (raro) numero di issue parallele è 6
 \end_layout
 
 \begin_deeper
@@ -7356,7 +7356,7 @@ Parallelismo
 \end_layout
 
 \begin_layout Standard
-Il compilatore deve trovare molto paralleismo per mantenere le unità funzionali
+Il compilatore deve trovare molto parallelismo per mantenere le unità funzionali
  del processore occupate.
  Laddove non riesce a trovare sufficienti istruzioni per occupare la pipeline
  riempie il codice di NOP.
@@ -7607,8 +7607,7 @@ Grafo delle dipendenze
 status open
 
 \begin_layout Plain Layout
-Inserire esempio / immagine.
- Definire critical path.
+Definire critical path.
 \end_layout
 
 \end_inset
@@ -7616,6 +7615,118 @@ Inserire esempio / immagine.
 
 \end_layout
 
+\begin_layout Standard
+Dato il frammento di codice
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+  i) A = B + 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //codeblock
+\end_layout
+
+\begin_layout Plain Layout
+
+i+k) X = A + C;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //codeblock
+\end_layout
+
+\begin_layout Plain Layout
+
+i+n) A = E + C;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+possiamo ricavare il grafo
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_01.svg
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+List based scheduling
+\end_layout
+
+\begin_layout Standard
+Si basa sul grafo delle dipendenze e mira ad ottenere uno schedule 
+\emph on
+subottimo per un blocco basico
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Prima di iniziare lo scheduling, si costruisca il grafo delle dipendenze.
+ Si definisca inoltre il 
+\emph on
+ready set
+\emph default
+ come l'insieme di istruzioni pronte ad andare in esecuzione; si inizializzi
+ il ready set con le istruzioni radice del grafo (quelle senza alcuna dipendenza
+).
+ Inoltre ad ogni ciclo:
+\end_layout
+
+\begin_layout Itemize
+schedulare istruzioni che:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+sono contenute nel ready set.
+\end_layout
+
+\begin_layout Itemize
+a parità di altro, hanno priorità maggiore (percorso più lungo verso il
+ fondo del grafo).
+\end_layout
+
+\begin_layout Itemize
+non impegnano una risorsa (FU) già impegnata in questo ciclo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aggiungere al ready set tutte le istruzioni che hanno:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+tutti i predecessori già schedulati.
+\end_layout
+
+\begin_layout Itemize
+tutti gli operandi pronti.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Loop unrolling
 \end_layout
@@ -7661,7 +7772,7 @@ I problemi del loop unrolling
 \end_layout
 
 \begin_layout Itemize
-dipenenze tra una iterazione e la successiva.
+dipendenze tra una iterazione e la successiva.
 \end_layout
 
 \begin_layout Itemize
@@ -7693,7 +7804,7 @@ iterazioni residue
 \end_layout
 
 \begin_layout Subsubsection
-Loop peeling
+Loop peeling & fusion
 \end_layout
 
 \begin_layout Standard
@@ -7757,6 +7868,100 @@ b[100] = b[102] + c;
 \begin_layout Plain Layout
 
 b[101] = b[103] + c;                //peeled from loop A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'esempio qui sopra è possibile vedere come sbucciare due iterazioni
+ dal primo loop consenta di fondere assieme i due loop.
+ Il compilatore può inoltre decidere di srotolare il ciclo per aumentare
+ ulteriormente la dimensione del blocco basico.
+\end_layout
+
+\begin_layout Subsubsection
+Software Pipelining
+\end_layout
+
+\begin_layout Standard
+Questa tecnica si applica a cicli nei quali vengono riconosciute istruzioni
+ tra loro indipendenti inserite in diverse iterazioni.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inserire figura esempio.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se una situazione simile viene individuata allora è possibile riorganizzare
+ il ciclo in modo che le istruzioni tra loro indipendenti facciano parte
+ della stessa iterazione del nuovo ciclo.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inserire codice esempio.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Trace Scheduling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Superblock Scheduling
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Predicated execution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
 \end_layout
 
 \end_inset
@@ -8254,7 +8459,7 @@ Se un hazard strutturale o un hazards WAW esiste, allora l'issue va in stallo
 
 \begin_deeper
 \begin_layout Itemize
-Notiamo che quando lo stage di issue va in stall, il buffer tra lo stadio
+Notiamo che quando lo stage di issue va in stallo, il buffer tra lo stadio
  IF e Issue si riempie.
  Se il buffer ha una singola entry va in stall tutto lo stadio IF, se il
  buffer è una coda allora lo stadio IF va in stallo quando la coda si riempie.
