@@ -7889,12 +7889,13 @@ Software Pipelining
 \begin_layout Standard
 Questa tecnica si applica a cicli nei quali vengono riconosciute istruzioni
  tra loro indipendenti inserite in diverse iterazioni.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Inserire figura esempio.
 \end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_04.svg
+	scale 50
 
 \end_inset
 
@@ -7905,13 +7906,77 @@ Inserire figura esempio.
 Se una situazione simile viene individuata allora è possibile riorganizzare
  il ciclo in modo che le istruzioni tra loro indipendenti facciano parte
  della stessa iterazione del nuovo ciclo.
- 
-\begin_inset Note Note
+\end_layout
+
+\begin_layout Standard
+Per avere un esempio di applicazione si consideri il seguente frammento
+ di codice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
 status open
 
 \begin_layout Plain Layout
-Inserire codice esempio.
+
+for (i = 0; i < 100; i++) {
 \end_layout
+
+\begin_layout Plain Layout
+
+	A[i] = B[i];       //stage X
+\end_layout
+
+\begin_layout Plain Layout
+
+	A[i] = A[i+1];     //stage Y
+\end_layout
+
+\begin_layout Plain Layout
+
+	C[i] = A[i];       //stage Z
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Analizzando le diverse iterazioni di questo ciclo possiamo osservare blocchi
+ di istruzioni tra loro indipendenti a cavallo di iterazioni successive
+ (nell'immagine seguente sono evidenziate in diversi riquadri).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_05.svg
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cercando una ricorrenza in queste indipendenze possiamo creare un nuovo
+ loop riscrivendo in modo ottimizzato il codice dato.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_06.svg
+	lyxscale 40
+	scale 50
 
 \end_inset
 
