@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="VLIW2_04.svg">
   <defs
      id="defs4">
     <pattern
@@ -108,7 +108,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -119,14 +119,16 @@
      transform="translate(-117.82585,-389.1294)">
     <g
        id="g3053"
-       transform="matrix(1.3815,0,0,1.1309875,-106.30066,151.94075)">
+       transform="matrix(1.3815,0,0,1.1309875,-106.30066,151.94075)"
+       style="fill:#ff0000;fill-opacity:0.15625">
       <g
          id="g3055"
-         transform="translate(582.004,360.152)">
+         transform="translate(582.004,360.152)"
+         style="fill:#ff0000;fill-opacity:0.15625">
         <path
            inkscape:connector-curvature="0"
            d="m 0,0 c 0,-2.122 -1.737,-3.846 -3.909,-3.846 l -335.223,0 c -2.171,0 -3.908,1.724 -3.908,3.846 l 0,30.438 c 0,2.122 1.737,3.846 3.908,3.846 l 335.223,0 C -1.737,34.284 0,32.56 0,30.438 L 0,0 z"
-           style="fill:url(#pattern3057);fill-opacity:1;fill-rule:evenodd;stroke:#dd0806;stroke-width:1.31400001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+           style="fill:#ff0000;fill-opacity:0.15625;fill-rule:evenodd;stroke:#dd0806;stroke-width:1.31400001000000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
            id="path3070" />
       </g>
     </g>

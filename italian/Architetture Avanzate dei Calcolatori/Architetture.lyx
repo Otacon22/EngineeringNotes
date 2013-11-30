@@ -3097,7 +3097,7 @@ Potremmo aver bisogno di un clock a frequenza doppia di quello normale della
 \end_layout
 
 \begin_layout Itemize
-Evitiamo così di dover inserire delle stall.
+Evitiamo così di dover inserire degli stalli.
 \end_layout
 
 \end_deeper
@@ -3144,7 +3144,7 @@ In questo caso è necessario inserire
 \series bold
 due
 \series default
- stalls, oppure usare i forwarding paths
+ stalli, oppure usare i forwarding paths
 \end_layout
 
 \begin_layout Standard
@@ -6170,7 +6170,7 @@ Non ci sono hazards RAW, WAR o WAW.
 \end_layout
 
 \begin_layout Itemize
-Non ci sono Control hazards.
+Non ci sono control hazards.
 \end_layout
 
 \begin_layout Standard
@@ -7983,6 +7983,12 @@ Cercando una ricorrenza in queste indipendenze possiamo creare un nuovo
 
 \end_layout
 
+\begin_layout Standard
+Si noti che in confronto al loop unrolling questa tecnica presenta il vantaggio
+ di creare un binario più compatto (non necessita di duplicare il corpo
+ del ciclo) e vengono gestite anche le dipendenze loop carried.
+\end_layout
+
 \begin_layout Subsubsection
 Trace Scheduling
 \end_layout
@@ -8526,7 +8532,7 @@ Se un hazard strutturale o un hazards WAW esiste, allora l'issue va in stallo
 \begin_layout Itemize
 Notiamo che quando lo stage di issue va in stallo, il buffer tra lo stadio
  IF e Issue si riempie.
- Se il buffer ha una singola entry va in stall tutto lo stadio IF, se il
+ Se il buffer ha una singola entry va in stallo tutto lo stadio IF, se il
  buffer è una coda allora lo stadio IF va in stallo quando la coda si riempie.
 \end_layout
 
