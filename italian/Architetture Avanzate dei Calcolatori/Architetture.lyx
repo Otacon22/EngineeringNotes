@@ -7883,7 +7883,7 @@ Nell'esempio qui sopra è possibile vedere come sbucciare due iterazioni
 \end_layout
 
 \begin_layout Subsubsection
-Software Pipelining
+Software pipelining
 \end_layout
 
 \begin_layout Standard
@@ -7990,16 +7990,72 @@ Si noti che in confronto al loop unrolling questa tecnica presenta il vantaggio
 \end_layout
 
 \begin_layout Subsubsection
-Trace Scheduling
+Trace scheduling
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+Trace scheduling è una tecnica di 
+\series bold
+global scheduling
+\series default
+, differente dalle tecniche viste finora che si limitavano ad eseguire un
+ local scheduling (scheduling limitato a un blocco basico o a un ciclo).
+ Fare global scheduling significa andare ad analizzare il software nel suo
+ complesso e non limitandosi ad un blocco basico.
 \end_layout
+
+\begin_layout Standard
+Trace scheduling si compone di due fasi:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Trace Selection
+\series default
+.
+ In base al grafo di flusso del programma identifica la 
+\emph on
+traccia
+\emph default
+ di esecuzione più probabile.
+ La sequenza di blocchi basici più probabile può essere determinata per:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+predizione statica.
+\end_layout
+
+\begin_layout Itemize
+predizione per profiling.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Trace Compaction
+\series default
+.
+ Compatta la traccia individuata in un ristretto numero di istruzioni VLIW.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+necessita di mantenere una procedura di 
+\emph on
+recovery
+\emph default
+ in caso di predizione mancata (necessita di altri registri in più).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_08.svg
+	scale 60
 
 \end_inset
 
@@ -8007,7 +8063,17 @@ TODO
 \end_layout
 
 \begin_layout Subsubsection
-Superblock Scheduling
+Superblock scheduling
+\end_layout
+
+\begin_layout Standard
+Evoluzione della tecnica trace scheduling.
+ Si definisce 
+\series bold
+superblocco
+\series default
+ un insieme di blocchi basici collegati con un singolo punto di ingresso
+ e multiple uscite.
 \end_layout
 
 \begin_layout Standard
