@@ -8827,11 +8827,11 @@ register renaming
 Struttura della scoreboard
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Instruction status
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Function Unit status
 \end_layout
 
@@ -8876,7 +8876,7 @@ no
 
 \end_deeper
 \end_deeper
-\begin_layout Enumerate
+\begin_layout Itemize
 Register result status: Indica quale unità funzionale scriverà quale registro.
  Non conterrà nulla se non ci sono istruzioni in coda che scriveranno quel
  registro
@@ -8914,11 +8914,41 @@ Struttura generale:
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph
+Passo 1
+\end_layout
 
+\begin_layout Standard
+Supponiamo che il codice inizi l'esecuzione dalla prima LD senza hazard
+ di alcun tipo.
+ Al ciclo 1 possiamo eseguire la issue dell'istruzione.
+ Scriviamo quindi 1 nella colonna Issue in corrispondenza della prima LD.
+\end_layout
+
+\begin_layout Standard
+LD (
 \series bold
-\bar under
-Mancano le slides dalla 26 alla 55.
+L
+\series default
+oad 
+\series bold
+D
+\series default
+ecimal) è una operazione che lavora su dati di tipo 
+\emph on
+Integer
+\emph default
+.
+ Verrà quindi occupata una FU per operazioni integer.
+ Aggiorniamo quindi la tabella delle FU indicando che la FU Integer è 
+\emph on
+busy
+\emph default
+ e sta eseguendo una Load.
+ Indichiamo inoltre i registri coinvolti (F6 destinazione, F2 registro sorgente
+ 2).
+ Il registro sorgente F2 è inoltre subito disponibile, riportiamo questa
+ informazione nell'ultima colonna della tabella.
 \end_layout
 
 \end_body
