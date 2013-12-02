@@ -371,7 +371,7 @@ bne $s1, $s2, L1          # go to L1 if ($s1 != $s2)
 \begin_layout Itemize
 Istruzioni di 
 \series bold
-branch incondizionali
+branch incondizionati
 \series default
 :
 \end_layout
@@ -2274,7 +2274,7 @@ utilizza il parallelismo tra le istruzioni in uno stream sequenziale
 \series bold
 Idea base:
 \series default
- L'esecuzione di una istruzione viene divisa in più fasi (pipelines stages)
+ L'esecuzione di una istruzione viene divisa in più fasi (pipeline stages)
  che richiedono una frazione del tempo necessario per completare l'istruzione.
 \end_layout
 
@@ -4429,7 +4429,7 @@ always not taken
 \series default
  (
 \series bold
-Predicted-Not-Taken
+Predicted Not Taken
 \series default
 )
 \end_layout
@@ -4441,7 +4441,7 @@ always taken
 \series default
 (
 \series bold
-Predicted-Taken
+Predicted Taken
 \series default
 )
 \end_layout
@@ -4625,7 +4625,7 @@ forward-going branches
 \emph default
 : considerati 
 \emph on
-not-taken
+not taken
 \end_layout
 
 \begin_layout Standard
@@ -7266,7 +7266,7 @@ che si farà carico di eseguire quella sillaba.
 
 \begin_layout Itemize
 Le unità funzionali sono specializzate per eseguire una certa categoria
- di istruzioni: unità per operazioni ALU decinmali, unità di branch, unità
+ di istruzioni: unità per operazioni ALU decimali, unità di branch, unità
  di load/store e così via.
 \end_layout
 
@@ -8949,6 +8949,34 @@ busy
  2).
  Il registro sorgente F2 è inoltre subito disponibile, riportiamo questa
  informazione nell'ultima colonna della tabella.
+\end_layout
+
+\begin_layout Standard
+Infine procediamo ad aggiornare lo stato dei registri.
+ Indichiamo che in F6 è ora presente un valore di tipo intero.
+\end_layout
+
+\begin_layout Paragraph
+Passo 2
+\end_layout
+
+\begin_layout Standard
+Al ciclo 2 è possibile iniziare la fase di Read Operands della prima LD.
+ Scriviamo 2 nella seconda colonna della prima riga.
+ 
+\end_layout
+
+\begin_layout Standard
+Non vi sono variazioni nello stato delle FU né nello stato dei registri.
+\end_layout
+
+\begin_layout Standard
+La pipeline potrebbe proseguire con la issue della seconda LD tuttavia non
+ sono disponibili risorse hardware per poter eseguire questa istruzione
+ (l'unica FU integer è già occupata).
+ La seconda LD deve quindi attendere.
+ La issue deve essere fatta in-order quindi le seguenti istruzioni non possono
+ procedere.
 \end_layout
 
 \end_body
