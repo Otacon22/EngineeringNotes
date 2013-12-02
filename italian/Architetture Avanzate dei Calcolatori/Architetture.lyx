@@ -7266,7 +7266,7 @@ che si farà carico di eseguire quella sillaba.
 
 \begin_layout Itemize
 Le unità funzionali sono specializzate per eseguire una certa categoria
- di istruzioni: unità per operazioni ALU decimali, unità di branch, unità
+ di istruzioni: unità per operazioni ALU decinmali, unità di branch, unità
  di load/store e così via.
 \end_layout
 
@@ -8077,16 +8077,37 @@ superblocco
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+L'obiettivo è ottimizzare l'esecuzione del superblocco e trattare il resto
+ del flusso di esecuzione come una eccezione.
+ Il superblocco viene mantenuto il più compatto possibile, eventuali porzioni
+ di codice con multipli ingressi vengono duplicate per mantenere la compattezza
+ il più elevata possibile.
+ 
 \end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_09.svg
+	lyxscale 40
+	scale 20
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Vantaggi:
+\end_layout
+
+\begin_layout Itemize
+ottimizzazione più semplice da realizzare.
+\end_layout
+
+\begin_layout Itemize
+gestione delle eccezioni limitata alle uscite (in ingresso non ci sono mai
+ problemi)
 \end_layout
 
 \begin_layout Subsubsection
@@ -8094,16 +8115,45 @@ Predicated execution
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+Questa tecnica richiede una apposita estensione dell'ISA.
+ Vengono introdotte 
+\emph on
+istruzioni condizionali
+\emph default
+ nel formato
 \end_layout
 
-\end_inset
+\begin_layout LyX-Code
+(p)      op Rd, Ra, Rb
+\end_layout
 
+\begin_layout Standard
+dove p è un predicato o un registro a cui viene affiancata una normale operazion
+e ternaria.
+ Nella semantica delle istruzioni condizionali l'istruzione viene va in
+ fase di commit solo se il predicato è true altrimenti viene trasformata
+ in NOP.
+\end_layout
 
+\begin_layout Standard
+L'introduzione di questo tipo di operazioni consente di tradurre costrutti
+ di selezione in blocchi basici contenti istruzioni condizionali.
+\end_layout
+
+\begin_layout Standard
+Vantaggi:
+\end_layout
+
+\begin_layout Itemize
+è possibile applicare riorganizzazione del codice in base alle dipendenze.
+\end_layout
+
+\begin_layout Itemize
+non è necessario predire il risultato del branch per un if.
+\end_layout
+
+\begin_layout Itemize
+la dimensione del blocco basico aumenta.
 \end_layout
 
 \begin_layout Standard
