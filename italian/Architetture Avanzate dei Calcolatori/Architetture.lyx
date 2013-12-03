@@ -194,7 +194,7 @@ Soluzioni ancora più avanzate
 
 \begin_deeper
 \begin_layout Itemize
-Memory hearchy
+Memory hierarchy
 \end_layout
 
 \begin_layout Itemize
@@ -371,7 +371,7 @@ bne $s1, $s2, L1          # go to L1 if ($s1 != $s2)
 \begin_layout Itemize
 Istruzioni di 
 \series bold
-branch incondizionali
+branch incondizionati
 \series default
 :
 \end_layout
@@ -2098,7 +2098,7 @@ data memory
 \begin_layout Itemize
 I 32 registri 
 \emph on
-general-purpose
+general purpose
 \emph default
  sono organizzati in un 
 \series bold
@@ -2274,12 +2274,12 @@ utilizza il parallelismo tra le istruzioni in uno stream sequenziale
 \series bold
 Idea base:
 \series default
- L'esecuzione di una istruzione viene divisa in più fasi (pipelines stages)
+ L'esecuzione di una istruzione viene divisa in più fasi (pipeline stages)
  che richiedono una frazione del tempo necessario per completare l'istruzione.
 \end_layout
 
 \begin_layout Itemize
-Gli stages sonocollegati tra di loro dalla pipeline: l'istruzione entra
+Gli stages sono collegati tra di loro dalla pipeline: l'istruzione entra
  nella pipeline da una parte, passa per vari stages e esce dall'altra parte,
  come su una catena d'assemblaggio.
 \end_layout
@@ -2601,7 +2601,7 @@ L'
 \emph on
 hazard
 \emph default
- impedice alla prossima istruzione della pipeline di essere eseguita nel
+ impedisce alla prossima istruzione della pipeline di essere eseguita nel
  suo ciclo di clock previsto
 \end_layout
 
@@ -2656,7 +2656,7 @@ Ad esempio: istruzione dipendente dal risultato di una precedente istruzione
 \series bold
 Control Hazards
 \series default
-: Tentativo di fare una decisone riguardo alla prossima istruzione da eseguire,
+: Tentativo di fare una decisione riguardo alla prossima istruzione da eseguire,
  prima che la condizione sia valutata
 \end_layout
 
@@ -2780,7 +2780,7 @@ eration)
 \end_layout
 
 \begin_layout Itemize
-Fare scheduling dele istruzioni (scambiare l'ordine etc...) per evitare che
+Fare scheduling delle istruzioni (scambiare l'ordine etc...) per evitare che
  istruzioni correlate siano troppo vicine
 \end_layout
 
@@ -3029,7 +3029,7 @@ Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Paragraph
-Schema riasssuntivo 
+Schema riassuntivo 
 \end_layout
 
 \begin_layout Standard
@@ -3097,7 +3097,7 @@ Potremmo aver bisogno di un clock a frequenza doppia di quello normale della
 \end_layout
 
 \begin_layout Itemize
-Evitiamo così di dover inserire delle stall.
+Evitiamo così di dover inserire degli stalli.
 \end_layout
 
 \end_deeper
@@ -3144,7 +3144,7 @@ In questo caso è necessario inserire
 \series bold
 due
 \series default
- stalls, oppure usare i forwarding paths
+ stalli, oppure usare i forwarding paths
 \end_layout
 
 \begin_layout Standard
@@ -3341,7 +3341,7 @@ Come abbiamo visto la Pipeline aumenta il throughput ma non la latenza delle
 \end_layout
 
 \begin_layout Standard
-In realtà il pipelineing aumenta leggermente la latenza di tutte le istruzioni
+In realtà il pipelining aumenta leggermente la latenza di tutte le istruzioni
  a causa di overhead e sbilanciamento tra le latenze delle istruzioni.
  
 \end_layout
@@ -3518,7 +3518,7 @@ Consideriamo
 \begin_inset Formula $k$
 \end_inset
 
- stalli per iterazione (nel segutio 
+ stalli per iterazione (nel seguito 
 \begin_inset Formula $AS$
 \end_inset
 
@@ -3593,7 +3593,7 @@ CPI_{medio}PIPE\,=\, CPI\, Ideal+Pipe\, Stall\, Cycles_{\text{per istruzione}}=1
 
 \begin_layout Standard
 I cicli di stallo per iterazione sono dovuti a structural hazards, data
- harzards, control hazards e memory stalls
+ hazards, control hazards e memory stalls
 \end_layout
 
 \begin_layout Subsubsection
@@ -3944,9 +3944,9 @@ pipeline
 \begin_layout Itemize
 I 
 \emph on
-control harzard 
+control hazards 
 \emph default
-riducono le performance dallo speedup ideale guadagnato dal pipelining perchè
+riducono le performance dallo speedup ideale guadagnato dal pipelining perché
  potrebbero rendere necessari degli stalli nella pipeline.
 \end_layout
 
@@ -3970,7 +3970,7 @@ ritardo
  per determinare la prossima istruzione è chiamato appunto 
 \series bold
 \emph on
-control harzard
+control hazard
 \series default
 \emph default
  o 
@@ -4063,7 +4063,7 @@ stalling until resolution
 
 \begin_deeper
 \begin_layout Itemize
-Se utilizzamo il fowarding: lo faccio in 3 cicli di clock
+Se utilizziamo il forwarding: lo faccio in 3 cicli di clock
 \end_layout
 
 \begin_deeper
@@ -4278,7 +4278,7 @@ riduzione dei costi
 \series default
  associati ad ogni branch (
 \series bold
-branch penality
+branch penalty
 \series default
 )
 \end_layout
@@ -4389,7 +4389,7 @@ Tecniche di predizione
 statica
 \series default
 \bar default
-: A compile time decidiamo quale politica attuare in corrispondenza di cascun
+: A compile time decidiamo quale politica attuare in corrispondenza di ciascun
  branch
 \end_layout
 
@@ -4408,7 +4408,7 @@ Tecniche di predizione
 dinamica
 \series default
 \bar default
-: A run time prendiamo decisioni sulle predizioni dei branch, che possono
+: A runtime prendiamo decisioni sulle predizioni dei branch, che possono
  cambiare durante l'esecuzione del programma.
 \end_layout
 
@@ -4429,7 +4429,7 @@ always not taken
 \series default
  (
 \series bold
-Predicted-Not-Taken
+Predicted Not Taken
 \series default
 )
 \end_layout
@@ -4441,7 +4441,7 @@ always taken
 \series default
 (
 \series bold
-Predicted-Taken
+Predicted Taken
 \series default
 )
 \end_layout
@@ -4504,8 +4504,8 @@ Se la predizione è
 errata
 \series default
 : dobbiamo fare flush della prossima istruzione già fetchata (trasformiamo
- l'instruzione letta in precedenza in una NOP) e riavviamo l'esecuzione
- prendendo l'istruzione al 
+ l'istruzione letta in precedenza in una NOP) e riavviamo l'esecuzione prendendo
+ l'istruzione al 
 \emph on
 branch target address
 \emph default
@@ -4625,7 +4625,7 @@ forward-going branches
 \emph default
 : considerati 
 \emph on
-not-taken
+not taken
 \end_layout
 
 \begin_layout Standard
@@ -4659,7 +4659,7 @@ Profile-driven prediction
 \end_layout
 
 \begin_layout Standard
-La tecnica profile-drivien consiste nel raccogliere statistiche sul numero
+La tecnica profile-driven consiste nel raccogliere statistiche sul numero
  di volte che ciascun branch viene preso e non preso.
  A valle di questo profiling svolto su un sufficiente numero di simulazioni
  (o esecuzioni) del software ogni branch viene marcato con il valore di
@@ -4703,7 +4703,7 @@ Se assumiamo che il branch delay sia 1 ciclo (come nel caso di MIPS ottimizzato)
 
 \begin_deeper
 \begin_layout Itemize
-In realtà è possibile avere processori con pipiline che utilizzano degli
+In realtà è possibile avere processori con pipeline che utilizzano degli
  slot di delay più lunghi.
 \end_layout
 
@@ -4892,7 +4892,7 @@ from target
 \begin_inset Quotes eld
 \end_inset
 
-from fall-though
+from fall-through
 \begin_inset Quotes erd
 \end_inset
 
@@ -4925,7 +4925,7 @@ lavoro
 \begin_deeper
 \begin_layout Itemize
 In generale, i compilatori sono in grado di riempire circa il 50% dei delayed
- brach slots con istruzioni valide e utili.
+ branch slots con istruzioni valide e utili.
  Gli slot rimanenti sono riempiti con operazioni 
 \series bold
 NOP
@@ -5027,7 +5027,7 @@ L'istruzione nel branch delay slot viene eseguita se il branch è taken.
 
 \begin_layout Itemize
 L'istruzione nel branch delay slot non viene eseguita (viene trasformata
- in nop) se il branch è untaken
+ in NOP) se il branch è untaken
 \end_layout
 
 \begin_layout Itemize
@@ -5058,7 +5058,7 @@ prevedere il futuro
 
 \begin_layout Standard
 Utilizziamo hardware per prevedere dinamicamente il risultato di un branch.
- La predizione dipenderà sul comportamento del branch a run time e cambierà
+ La predizione dipenderà sul comportamento del branch a runtime e cambierà
  se il branch cambia il suo comportamento durante l'esecuzione.
 \end_layout
 
@@ -5131,7 +5131,7 @@ Predizione: abbiamo un indizio che si assume essere corretto e iniziamo
 \begin_deeper
 \begin_layout Itemize
 Se scopriamo che la predizione era sbagliata, il bit di predizione viene
- invertito e risalvato.
+ invertito e ri-salvato.
  La pipeline viene ripulita e la sequenza corretta viene eseguita.
 \end_layout
 
@@ -5141,7 +5141,7 @@ La tabella non ha tags (ogni accesso è un
 \begin_inset Quotes eld
 \end_inset
 
-hit
+HIT
 \begin_inset Quotes erd
 \end_inset
 
@@ -5202,7 +5202,7 @@ In una branch che fa parte di un loop, poiché utilizziamo un solo bit per
 \end_layout
 
 \begin_layout Itemize
-Nell'ultimo ciclo del loop, poichè la predizione dice 
+Nell'ultimo ciclo del loop, poiché la predizione dice 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5353,7 +5353,7 @@ e
  bb2
 \series default
 .
- Se i branch precedenti sono entrmabi 
+ Se i branch precedenti sono entrambi 
 \emph on
 not taken
 \emph default
@@ -5416,7 +5416,7 @@ Registro se gli ultimi
 
 \begin_layout Itemize
 Il branch viene previsto in base a quello che è successo nel branch precedente
- selezionando appropriamente un bit dalla tabella:
+ selezionando appropriatamente un bit dalla tabella:
 \end_layout
 
 \begin_deeper
@@ -5815,6 +5815,10 @@ hardware
 Instruction Level Parallelism
 \end_layout
 
+\begin_layout Subsection
+Portare il parallelismo a livello di istruzione
+\end_layout
+
 \begin_layout Standard
 In una macchina dotata di pipeline, il CPI viene derivato come: 
 \begin_inset Formula 
@@ -5876,7 +5880,7 @@ Caso migliore:
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto sulla pipeline
 \end_layout
 
@@ -5951,7 +5955,7 @@ non la latenza
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Riassunto tipi di Data hazards
 \end_layout
 
@@ -5971,7 +5975,7 @@ r_{k}\leftarrow\left(r_{i}\right)\: op\:\left(r_{j}\right)
 \end_layout
 
 \begin_layout Standard
-Determiniamo i vari dipi di dipendenze che esistono tra di esse:
+Determiniamo i vari tipi di dipendenze che esistono tra di esse:
 \end_layout
 
 \begin_layout Description
@@ -6016,11 +6020,11 @@ WAW hazard
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Evoluzioni della pipeline
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex pipelining
 \end_layout
 
@@ -6041,7 +6045,7 @@ Aggiungendo risorse hardware per parallelizzare ulteriormente arriviamo
 \end_layout
 
 \begin_layout Itemize
-Unità floating-point con alta latenza o 
+Unità floating point con alta latenza o 
 \begin_inset Quotes eld
 \end_inset
 
@@ -6060,7 +6064,7 @@ Diverse funzioni e unità di memoria
 Sistemi di memoria con tempo di accesso variabile
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 Complex In-order Pipeline
 \end_layout
 
@@ -6106,7 +6110,7 @@ Le istruzioni vengono inviate in ordine (di modo da gestire le eccezioni
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
+\begin_layout Subsubsection
 Altri concetti base e definizioni
 \end_layout
 
@@ -6129,7 +6133,7 @@ scheduled
  possibile con le risorse a disposizione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 
 \series bold
 Instruction Level Parallelism
@@ -6166,7 +6170,7 @@ Non ci sono hazards RAW, WAR o WAW.
 \end_layout
 
 \begin_layout Itemize
-Non ci sono Control hazards.
+Non ci sono control hazards.
 \end_layout
 
 \begin_layout Standard
@@ -6180,7 +6184,7 @@ Non ci sono Control hazards.
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Paragraph
 2-issue MIPS Pipeline architecture
 \end_layout
 
@@ -6273,7 +6277,7 @@ Data dependences (or True Data Depencences)
 \begin_layout Itemize
 
 \series bold
-Control Dependences
+Control dependences
 \end_layout
 
 \begin_layout Subsubsection
@@ -6628,7 +6632,7 @@ L'hardware ri-arrangia dinamicamente l'esecuzione delle istruzioni per ridurre
 \begin_layout Itemize
 Viene aggiunta la possibilità della 
 \series bold
-out-of-order esecution
+out-of-order execution
 \series default
  e 
 \series bold
@@ -6752,7 +6756,7 @@ processore superscalare.
 \begin_layout Itemize
 Le istruzioni vengono fetchate ed inviate nell'ordine del programma (
 \emph on
-in-order-issue
+in-order issue
 \emph default
 ).
 \end_layout
@@ -6897,7 +6901,7 @@ Evoluzione del parallelismo
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Esecuzione superscalare
 \end_layout
 
@@ -7013,6 +7017,10 @@ limite
  su quante istruzioni possono essere verificate durante un ciclo di clock.
 \end_layout
 
+\begin_layout Subsubsection
+Limiti
+\end_layout
+
 \begin_layout Paragraph
 Lo scheduling dinamico costa!
 \end_layout
@@ -7074,7 +7082,7 @@ Quando l'architettura superscalare fu inventata, furono realizzati processori
 \end_layout
 
 \begin_layout Itemize
-Il massimo (raro) numero di issue parallelle è 6
+Il massimo (raro) numero di issue parallele è 6
 \end_layout
 
 \begin_deeper
@@ -7141,12 +7149,20 @@ Svantaggi
 \end_layout
 
 \begin_layout Itemize
-È molto costosa la logica per trovare le dipendenze.
+È molto costosa la 
+\bar under
+logica per trovare le dipendenze
+\bar default
+.
 \end_layout
 
 \begin_layout Itemize
-Non scala: è complicatissimo aumentare la issue a più di 4 (e rischiamo
- di dover rallentare il clock).
+
+\bar under
+Non scala
+\bar default
+: è complicatissimo aumentare la issue a più di 4 (e rischiamo di dover
+ rallentare il clock).
 \end_layout
 
 \begin_layout Subsection
@@ -7340,7 +7356,7 @@ Parallelismo
 \end_layout
 
 \begin_layout Standard
-Il compilatore deve trovare molto paralleismo per mantenere le unità funzionali
+Il compilatore deve trovare molto parallelismo per mantenere le unità funzionali
  del processore occupate.
  Laddove non riesce a trovare sufficienti istruzioni per occupare la pipeline
  riempie il codice di NOP.
@@ -7561,6 +7577,585 @@ I processori VLIW hanno successo per dispositivi embedded (TriMedia media
 
 \end_layout
 
+\begin_layout Subsection
+Scheduling VLIW
+\end_layout
+
+\begin_layout Standard
+Come abbiamo visto finora il livello di parallelismo massimo raggiungibile
+ è fortemente limitato.
+ Le principali ragioni sono:
+\end_layout
+
+\begin_layout Itemize
+Dipendenze tra le istruzioni.
+\end_layout
+
+\begin_layout Itemize
+Dimensione ridotta del blocco basico.
+\end_layout
+
+\begin_layout Subsubsection
+Grafo delle dipendenze
+\end_layout
+
+\begin_layout Standard
+È possibile costruire un grafo delle dipendenze tra le istruzioni in modo
+ da facilitare lo scheduling.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Definire critical path.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dato il frammento di codice
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+  i) A = B + 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //codeblock
+\end_layout
+
+\begin_layout Plain Layout
+
+i+k) X = A + C;
+\end_layout
+
+\begin_layout Plain Layout
+
+  //codeblock
+\end_layout
+
+\begin_layout Plain Layout
+
+i+n) A = E + C;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+possiamo ricavare il grafo
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_01.svg
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+List based scheduling
+\end_layout
+
+\begin_layout Standard
+Si basa sul grafo delle dipendenze e mira ad ottenere uno schedule 
+\emph on
+subottimo per un blocco basico
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Prima di iniziare lo scheduling, si costruisca il grafo delle dipendenze.
+ Si definisca inoltre il 
+\emph on
+ready set
+\emph default
+ come l'insieme di istruzioni pronte ad andare in esecuzione; si inizializzi
+ il ready set con le istruzioni radice del grafo (quelle senza alcuna dipendenza
+).
+ Inoltre ad ogni ciclo:
+\end_layout
+
+\begin_layout Itemize
+schedulare istruzioni che:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+sono contenute nel ready set.
+\end_layout
+
+\begin_layout Itemize
+a parità di altro, hanno priorità maggiore (percorso più lungo verso il
+ fondo del grafo).
+\end_layout
+
+\begin_layout Itemize
+non impegnano una risorsa (FU) già impegnata in questo ciclo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aggiungere al ready set tutte le istruzioni che hanno:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+tutti i predecessori già schedulati.
+\end_layout
+
+\begin_layout Itemize
+tutti gli operandi pronti.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Loop unrolling
+\end_layout
+
+\begin_layout Standard
+Per aumentare ulteriormente il parallelismo è necessario andare oltre la
+ dimensione del blocco basico.
+ Una tecnica non speculativa è il loop unrolling.
+\end_layout
+
+\begin_layout Standard
+Il 
+\emph on
+compilatore
+\emph default
+ riconosce i cicli e, 
+\emph on
+\bar under
+laddove è possibile determinare staticamente il numero di iterazioni del
+ loop
+\emph default
+\bar default
+, srotola il ciclo.
+ Quando viene srotolato un ciclo viene 
+\series bold
+aumentata la dimensione del blocco basico
+\series default
+ formato istruzioni contenute nel ciclo 
+\series bold
+accorpando più iterazioni 
+\series default
+tra loro indipendenti.
+ 
+\end_layout
+
+\begin_layout Standard
+In un blocco basico di dimensione maggiore è possibile trovare maggiore
+ parallelismo riordinando le istruzioni.
+\end_layout
+
+\begin_layout Paragraph
+I problemi del loop unrolling
+\end_layout
+
+\begin_layout Itemize
+dipendenze tra una iterazione e la successiva.
+\end_layout
+
+\begin_layout Itemize
+terminazione del ciclo.
+\end_layout
+
+\begin_layout Standard
+Possono esistere dipendenze tra le istruzioni di una iterazione e la successiva
+ (
+\series bold
+loop carried dependences
+\series default
+).
+ In questo caso si può gestire le dipendenze introdotte oppure rinunciare
+ ad eseguire l'unrolling.
+\end_layout
+
+\begin_layout Standard
+La condizione di terminazione del ciclo deve essere adattata in modo da
+ eseguire lo stesso numero di istruzioni per cui il ciclo era stato scritto.
+ È possibile che srotolare il ciclo su base 4 (fondere 4 iterazioni assieme)
+ possa portare ad avere 
+\series bold
+iterazioni residue
+\series default
+ se l'originale numero di iterazioni non era multiplo di 4.
+ In questo caso è necessario gestire come caso particolare le iterazioni
+ residue accodandole al ciclo srotolato.
+\end_layout
+
+\begin_layout Subsubsection
+Loop peeling & fusion
+\end_layout
+
+\begin_layout Standard
+Una tecnica simile allo srotolamento dei cicli è 
+\emph on
+sbucciare i cicli
+\emph default
+.
+ Questa tecnica consiste nell'
+\series bold
+eliminare
+\series default
+ un determinato numero di 
+\series bold
+iterazioni da un loop
+\series default
+ aggiungendole poi in coda (o in testa) ad esso.
+ Questo consente al compilatore di eseguire altre ottimizzazioni altrimenti
+ non fattibili.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for(i = 0; i < 102; i++)  b[i] = b[i + 2] + c;  //loop A
+\end_layout
+
+\begin_layout Plain Layout
+
+for(j = 0; j < 100; j++)  a[j] = a[j] * 2;      //loop B
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for(i = 0; i < 100; i++){
+\end_layout
+
+\begin_layout Plain Layout
+
+     b[i] = b[i + 2] + c;
+\end_layout
+
+\begin_layout Plain Layout
+
+     a[i] = a[j] * 2; }             //fused loops
+\end_layout
+
+\begin_layout Plain Layout
+
+b[100] = b[102] + c;
+\end_layout
+
+\begin_layout Plain Layout
+
+b[101] = b[103] + c;                //peeled from loop A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'esempio qui sopra è possibile vedere come sbucciare due iterazioni
+ dal primo loop consenta di fondere assieme i due loop.
+ Il compilatore può inoltre decidere di srotolare il ciclo per aumentare
+ ulteriormente la dimensione del blocco basico.
+\end_layout
+
+\begin_layout Subsubsection
+Software pipelining
+\end_layout
+
+\begin_layout Standard
+Questa tecnica si applica a cicli nei quali vengono riconosciute istruzioni
+ tra loro indipendenti inserite in diverse iterazioni.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_04.svg
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se una situazione simile viene individuata allora è possibile riorganizzare
+ il ciclo in modo che le istruzioni tra loro indipendenti facciano parte
+ della stessa iterazione del nuovo ciclo.
+\end_layout
+
+\begin_layout Standard
+Per avere un esempio di applicazione si consideri il seguente frammento
+ di codice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+for (i = 0; i < 100; i++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	A[i] = B[i];       //stage X
+\end_layout
+
+\begin_layout Plain Layout
+
+	A[i] = A[i+1];     //stage Y
+\end_layout
+
+\begin_layout Plain Layout
+
+	C[i] = A[i];       //stage Z
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Analizzando le diverse iterazioni di questo ciclo possiamo osservare blocchi
+ di istruzioni tra loro indipendenti a cavallo di iterazioni successive
+ (nell'immagine seguente sono evidenziate in diversi riquadri).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_05.svg
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cercando una ricorrenza in queste indipendenze possiamo creare un nuovo
+ loop riscrivendo in modo ottimizzato il codice dato.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_06.svg
+	lyxscale 40
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si noti che in confronto al loop unrolling questa tecnica presenta il vantaggio
+ di creare un binario più compatto (non necessita di duplicare il corpo
+ del ciclo) e vengono gestite anche le dipendenze loop carried.
+\end_layout
+
+\begin_layout Subsubsection
+Trace scheduling
+\end_layout
+
+\begin_layout Standard
+Trace scheduling è una tecnica di 
+\series bold
+global scheduling
+\series default
+, differente dalle tecniche viste finora che si limitavano ad eseguire un
+ local scheduling (scheduling limitato a un blocco basico o a un ciclo).
+ Fare global scheduling significa andare ad analizzare il software nel suo
+ complesso e non limitandosi ad un blocco basico.
+\end_layout
+
+\begin_layout Standard
+Trace scheduling si compone di due fasi:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Trace Selection
+\series default
+.
+ In base al grafo di flusso del programma identifica la 
+\emph on
+traccia
+\emph default
+ di esecuzione più probabile.
+ La sequenza di blocchi basici più probabile può essere determinata per:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+predizione statica.
+\end_layout
+
+\begin_layout Itemize
+predizione per profiling.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Trace Compaction
+\series default
+.
+ Compatta la traccia individuata in un ristretto numero di istruzioni VLIW.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+necessita di mantenere una procedura di 
+\emph on
+recovery
+\emph default
+ in caso di predizione mancata (necessita di altri registri in più).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_08.svg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Superblock scheduling
+\end_layout
+
+\begin_layout Standard
+Evoluzione della tecnica trace scheduling.
+ Si definisce 
+\series bold
+superblocco
+\series default
+ un insieme di blocchi basici collegati con un singolo punto di ingresso
+ e multiple uscite.
+\end_layout
+
+\begin_layout Standard
+L'obiettivo è ottimizzare l'esecuzione del superblocco e trattare il resto
+ del flusso di esecuzione come una eccezione.
+ Il superblocco viene mantenuto il più compatto possibile, eventuali porzioni
+ di codice con multipli ingressi vengono duplicate per mantenere la compattezza
+ il più elevata possibile.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/VLIW2_09.svg
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vantaggi:
+\end_layout
+
+\begin_layout Itemize
+ottimizzazione più semplice da realizzare.
+\end_layout
+
+\begin_layout Itemize
+gestione delle eccezioni limitata alle uscite (in ingresso non ci sono mai
+ problemi)
+\end_layout
+
+\begin_layout Subsubsection
+Predicated execution
+\end_layout
+
+\begin_layout Standard
+Questa tecnica richiede una apposita estensione dell'ISA.
+ Vengono introdotte 
+\emph on
+istruzioni condizionali
+\emph default
+ nel formato
+\end_layout
+
+\begin_layout LyX-Code
+(p)      op Rd, Ra, Rb
+\end_layout
+
+\begin_layout Standard
+dove p è un predicato o un registro a cui viene affiancata una normale operazion
+e ternaria.
+ Nella semantica delle istruzioni condizionali l'istruzione viene va in
+ fase di commit solo se il predicato è true altrimenti viene trasformata
+ in NOP.
+\end_layout
+
+\begin_layout Standard
+L'introduzione di questo tipo di operazioni consente di tradurre costrutti
+ di selezione in blocchi basici contenti istruzioni condizionali.
+\end_layout
+
+\begin_layout Standard
+Vantaggi:
+\end_layout
+
+\begin_layout Itemize
+è possibile applicare riorganizzazione del codice in base alle dipendenze.
+\end_layout
+
+\begin_layout Itemize
+non è necessario predire il risultato del branch per un if.
+\end_layout
+
+\begin_layout Itemize
+la dimensione del blocco basico aumenta.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
@@ -7591,109 +8186,8 @@ scoreboard dynamic scheduling algorithm
 
 \end_layout
 
-\begin_layout Itemize
-L'esecuzione 
-\emph on
-out-of-order
-\emph default
- suddivide lo stadio 
-\series bold
-ID
-\series default
- in:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-Issue
-\series default
-: Decodifica le istruzioni, controlla gli hazards strutturali.
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-Read Operands (RR)
-\series default
-: Aspetta fino a quando non ci sono data hazards, poi leggi gli operandi
- dai registri.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Le istruzioni vengono quindi eseguite se non sono dipendenti da altre precedenti
- e non ci sono hazards.
-\end_layout
-
-\begin_layout Itemize
-La 
-\series bold
-\emph on
-scoreboard
-\series default
-\emph default
- (tabella dei punteggi) permette alle istruzioni di essere eseguite se ci
- sono 1 o 2 fermate, senza aspettare altre istruzioni.
-\end_layout
-
 \begin_layout Subsection
-Schema generale della scoreboard
-\end_layout
-
-\begin_layout Itemize
-Una istruzione è 
-\series bold
-in esecuzione
-\series default
- nell'intervallo di tempo tra quando inizia l'esecuzione e quando la completa.
-\end_layout
-
-\begin_layout Itemize
-Assumiamo che la pipeline permetta l'esecuzione di più istruzioni allo stesso
- tempo.
- Abbiamo bisogno quindi di 
-\series bold
-unità funzionali multiple
-\series default
- o 
-\series bold
-unità funzionali in pipeline
-\series default
- (o entrambe).
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Nel processore CDC 6600 (il primo ad avere la tecnica di 
-\emph on
-dynamic scheduling
-\emph default
-) la issue è 
-\emph on
-in-oder
-\emph default
-, l'esecuzione e il completamento sono 
-\emph on
-out-of-order
-\emph default
-.
- Non c'è forwarding e abbiamo un modello impreciso per la gestione di interrupt
- ed eccezioni.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename 068.png
-	lyxscale 60
-	scale 40
-
-\end_inset
-
-
+Caratteristiche generali della scoreboard
 \end_layout
 
 \begin_layout Itemize
@@ -7702,11 +8196,24 @@ La scoreboard rimpiazza gli stadi ID, EX, WB con 4 stadi:
 
 \begin_deeper
 \begin_layout Itemize
-Lo stadio ID viene diviso in due parti: 
+Lo stadio 
+\series bold
+ID
+\series default
+ viene suddiviso in:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
 \series bold
 Issue
 \series default
- e 
+: Decodifica le istruzioni, controlla gli hazards strutturali.
+\end_layout
+
+\begin_layout Itemize
+
 \series bold
 Read Operands
 \series default
@@ -7718,18 +8225,77 @@ ead
 \series bold
 R
 \series default
-egisters)
+egister): Aspetta fino a quando non ci sono data hazards, poi leggi gli
+ operandi dai registri.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-La scoreboard permette alle istruzioni 
+Una istruzione è nello stadio di 
+\series bold
+esecuzione
+\series default
+ (EX) nell'intervallo di tempo tra quando 
+\emph on
+inizia
+\emph default
+ l'esecuzione e quando la 
+\emph on
+completa
+\emph default
+.
+ La scoreboard registra quindi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Execution completed
+\series default
+: l'istante in cui l'esecuzione viene completata.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Write Result
+\series default
+: si accerta dell'assenza di hazard e finalizza il risultato.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+La 
+\series bold
+\emph on
+scoreboard
+\series default
+\emph default
+ (tabella dei punteggi) permette alle istruzioni di essere eseguite se i
+ primi due stadi sono pronti, senza aspettare altre istruzioni.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Le istruzioni vengono eseguite se non sono dipendenti da altre precedenti
+ e non ci sono hazards.
+\end_layout
+
+\begin_layout Itemize
+Le istruzioni 
 \bar under
 senza dipendenze
 \bar default
- di andare subito in esecuzione.
+ vanno 
+\bar under
+subito in esecuzione
+\bar default
+.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 Anche se l'issue è 
 \emph on
@@ -7758,7 +8324,7 @@ attraverso lo stage
 issue
 \series default
 \emph default
- , ma possono andare in stallo o bypassarsi a vicenda nello stadio 
+, ma possono andare in stallo o sorpassarsi a vicenda nello stadio 
 \series bold
 \emph on
 read operands
@@ -7776,6 +8342,52 @@ out-of-order
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Assumiamo che la pipeline permetta l'esecuzione di più istruzioni allo stesso
+ tempo.
+ Abbiamo bisogno quindi di 
+\series bold
+unità funzionali multiple
+\series default
+ o 
+\series bold
+unità funzionali in pipeline
+\series default
+ (o entrambe).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nel processore CDC 6600 (il primo ad avere la tecnica di 
+\emph on
+dynamic scheduling
+\emph default
+) la issue è 
+\emph on
+in-order
+\emph default
+, l'esecuzione e il completamento sono 
+\emph on
+out-of-order
+\emph default
+.
+ Non c'è forwarding e abbiamo un modello impreciso per la gestione di interrupt
+ ed eccezioni.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 068.png
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Hazard e dipendenze
 \end_layout
@@ -7915,8 +8527,8 @@ in-order
 \begin_layout Itemize
 La soluzione è quella di assicurarsi che non ci siano istruzioni che possono
  generare eccezione.
- Quando il processore sa che l'istruzione che lancia l'eccezione viene lanciata
- eseguirà le istruzioni critiche 
+ Quando il processore trova che l'istruzione che lancia l'eccezione viene
+ lanciata eseguirà le istruzioni critiche 
 \emph on
 in-order
 \emph default
@@ -8034,9 +8646,9 @@ Se un hazard strutturale o un hazards WAW esiste, allora l'issue va in stallo
 
 \begin_deeper
 \begin_layout Itemize
-Notiamo che quando lo stage di issue va in stall, il buffer tra lo stadio
+Notiamo che quando lo stage di issue va in stallo, il buffer tra lo stadio
  IF e Issue si riempie.
- Se il buffer ha una singola entry va in stall tutto lo stadio IF, se il
+ Se il buffer ha una singola entry va in stallo tutto lo stadio IF, se il
  buffer è una coda allora lo stadio IF va in stallo quando la coda si riempie.
 \end_layout
 
@@ -8052,7 +8664,11 @@ Read Operands
 
 \begin_deeper
 \begin_layout Itemize
-Un operando sorgente è disponibile se:
+Un operando sorgente è 
+\series bold
+disponibile
+\series default
+ se:
 \end_layout
 
 \begin_deeper
@@ -8061,7 +8677,7 @@ Non c'erano istruzioni attive mandate in issue a scrivere quell'operando
 \end_layout
 
 \begin_layout Itemize
-Oppure una unità funzionale sta scrivendo il suo lavore in un registro
+Oppure una unità funzionale sta scrivendo il suo valore in un registro
 \end_layout
 
 \end_deeper
@@ -8083,7 +8699,6 @@ risolti dinamicamente
  Le istruzioni possono essere inviate in esecuzione 
 \emph on
 out-of-order
-\series bold
 \emph default
 .
 \end_layout
@@ -8119,12 +8734,12 @@ Latenza variabile
 
 \begin_layout Itemize
 Intervallo di inizializzazione (il numero di cicli che devono passare tra
- l'issuing di due operazioni alla stessa unità funzionale).
+ l'issue di due operazioni alla stessa unità funzionale).
 \end_layout
 
 \begin_layout Itemize
-La latenza delle operazioni di load/store dipende dall'HIT o MISS sulla
- data cache.
+La latenza delle operazioni di load/store dipende dalla data cache (HIT
+ o MISS ?).
 \end_layout
 
 \end_deeper
@@ -8143,15 +8758,19 @@ WAR
 
 \begin_deeper
 \begin_layout Itemize
-Una volta che la scoreboard sà che l'unità funzionale ha completato l'esecuzione
-, la scoreboard 
+Una volta che la scoreboard sa che l'unità funzionale ha completato l'esecuzione
+, essa stessa si preoccupa di 
 \series bold
-controlla per la presenza di hazards di tipo WAR
+controllare 
+\series default
+l'eventuale presenza di 
+\series bold
+hazards di tipo WAR
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Se non ce ne sono, scrive direttamente il risultato
+Se non ce ne sono, scrive direttamente il risultato.
 \end_layout
 
 \begin_layout Itemize
@@ -8193,10 +8812,13 @@ Inoltre deve andare in stallo su MULD nello stage di issue, fino a quando
 
 \end_deeper
 \begin_layout Itemize
-Può eventualmente risolvere utilizzando il 
+Si può anche risolvere utilizzando il 
 \series bold
 \emph on
 register renaming
+\series default
+\emph default
+.
 \end_layout
 
 \end_deeper
@@ -8205,11 +8827,11 @@ register renaming
 Struttura della scoreboard
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Instruction status
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Function Unit status
 \end_layout
 
@@ -8224,7 +8846,7 @@ Busy: L'unità è occupata o no
 \end_layout
 
 \begin_layout Itemize
-Op: Indica l'operazione da effettuare con l'unità (+,-,...)
+Op: Indica l'operazione da effettuare con l'unità (+, -, ...)
 \end_layout
 
 \begin_layout Itemize
@@ -8232,7 +8854,7 @@ Fi: Indica il registro di destinazione
 \end_layout
 
 \begin_layout Itemize
-Fj,Fk: Registri sorgente
+Fj, Fk: Registri sorgente
 \end_layout
 
 \begin_layout Itemize
@@ -8254,7 +8876,7 @@ no
 
 \end_deeper
 \end_deeper
-\begin_layout Enumerate
+\begin_layout Itemize
 Register result status: Indica quale unità funzionale scriverà quale registro.
  Non conterrà nulla se non ci sono istruzioni in coda che scriveranno quel
  registro
@@ -8292,11 +8914,69 @@ Struttura generale:
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph
+Passo 1
+\end_layout
 
+\begin_layout Standard
+Supponiamo che il codice inizi l'esecuzione dalla prima LD senza hazard
+ di alcun tipo.
+ Al ciclo 1 possiamo eseguire la issue dell'istruzione.
+ Scriviamo quindi 1 nella colonna Issue in corrispondenza della prima LD.
+\end_layout
+
+\begin_layout Standard
+LD (
 \series bold
-\bar under
-Mancano le slides dalla 26 alla 55.
+L
+\series default
+oad 
+\series bold
+D
+\series default
+ecimal) è una operazione che lavora su dati di tipo 
+\emph on
+Integer
+\emph default
+.
+ Verrà quindi occupata una FU per operazioni integer.
+ Aggiorniamo quindi la tabella delle FU indicando che la FU Integer è 
+\emph on
+busy
+\emph default
+ e sta eseguendo una Load.
+ Indichiamo inoltre i registri coinvolti (F6 destinazione, F2 registro sorgente
+ 2).
+ Il registro sorgente F2 è inoltre subito disponibile, riportiamo questa
+ informazione nell'ultima colonna della tabella.
+\end_layout
+
+\begin_layout Standard
+Infine procediamo ad aggiornare lo stato dei registri.
+ Indichiamo che in F6 è ora presente un valore di tipo intero.
+\end_layout
+
+\begin_layout Paragraph
+Passo 2
+\end_layout
+
+\begin_layout Standard
+Al ciclo 2 è possibile iniziare la fase di Read Operands della prima LD.
+ Scriviamo 2 nella seconda colonna della prima riga.
+ 
+\end_layout
+
+\begin_layout Standard
+Non vi sono variazioni nello stato delle FU né nello stato dei registri.
+\end_layout
+
+\begin_layout Standard
+La pipeline potrebbe proseguire con la issue della seconda LD tuttavia non
+ sono disponibili risorse hardware per poter eseguire questa istruzione
+ (l'unica FU integer è già occupata).
+ La seconda LD deve quindi attendere.
+ La issue deve essere fatta in-order quindi le seguenti istruzioni non possono
+ procedere.
 \end_layout
 
 \end_body
