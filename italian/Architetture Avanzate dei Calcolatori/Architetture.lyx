@@ -8975,8 +8975,60 @@ La pipeline potrebbe proseguire con la issue della seconda LD tuttavia non
  sono disponibili risorse hardware per poter eseguire questa istruzione
  (l'unica FU integer è già occupata).
  La seconda LD deve quindi attendere.
- La issue deve essere fatta in-order quindi le seguenti istruzioni non possono
+ Si segnala quindi una issue stall dovuta a uno structural hazard.
+\end_layout
+
+\begin_layout Standard
+La issue deve essere fatta in-order quindi le seguenti istruzioni non possono
  procedere.
+\end_layout
+
+\begin_layout Paragraph
+Passo 3 
+\end_layout
+
+\begin_layout Standard
+La issue della seconda LD deve ancora aspettare per gli stessi motivi del
+ ciclo precendete.
+ Abbiamo una issue stall dovuta a uno structural hazard.
+\end_layout
+
+\begin_layout Standard
+La prima LD esegue legge il valore da memoria (cache HIT) e termina la sua
+ esecuzione.
+ Indichiamo che il completamento della sua esecuzione avviene al ciclo 3
+ nella tabella.
+ Le altre tabelle non subiscono variazioni.
+\end_layout
+
+\begin_layout Paragraph
+Passo 4
+\end_layout
+
+\begin_layout Standard
+La prima LD non ha problemi a eseguire la fase di write back.
+ Riportiamo quindi 4 nella tabella dello stato delle istruzioni.
+\end_layout
+
+\begin_layout Standard
+A questo punto l'istruzione è terminata e libera la FU.
+ Puliamo la riga della FU integer prima di passare oltre.
+\end_layout
+
+\begin_layout Standard
+La successiva LD non può ancora proseguire per consentire all'istruzione
+ precedente di eseguire la fase di write back.
+\end_layout
+
+\begin_layout Paragraph
+Passo 5
+\end_layout
+
+\begin_layout Standard
+La issue della seconda LD può finalmente procedere.
+ Indichiamo 5 nella colonna issue per la seconda LD.
+ Come per il passo 1 riserviamo la FU integer per eseguire questa istruzione
+ e aggiorniamo le altre tabelle.
 \end_layout
 
 \end_body
