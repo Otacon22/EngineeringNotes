@@ -8953,7 +8953,15 @@ busy
 
 \begin_layout Standard
 Infine procediamo ad aggiornare lo stato dei registri.
- Indichiamo che in F6 è ora presente un valore di tipo intero.
+ Indichiamo che in F6 è stato 
+\begin_inset Quotes eld
+\end_inset
+
+prenotato
+\begin_inset Quotes erd
+\end_inset
+
+ per la scrittura dalla FU integer.
 \end_layout
 
 \begin_layout Paragraph
@@ -8999,6 +9007,16 @@ La prima LD esegue legge il valore da memoria (cache HIT) e termina la sua
  Indichiamo che il completamento della sua esecuzione avviene al ciclo 3
  nella tabella.
  Le altre tabelle non subiscono variazioni.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inserire immagine
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -9029,6 +9047,73 @@ La issue della seconda LD può finalmente procedere.
  Indichiamo 5 nella colonna issue per la seconda LD.
  Come per il passo 1 riserviamo la FU integer per eseguire questa istruzione
  e aggiorniamo le altre tabelle.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Inserire immagine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Passo 6
+\end_layout
+
+\begin_layout Standard
+La seconda LD procede e inizia la fase di Read Operands.
+\end_layout
+
+\begin_layout Standard
+L'istruzione successiva è una MULTD e possiamo mandarla in issue.
+ Occupiamo quindi una FU moltiplicatore di quelle libere.
+ Aggiorniamo la tabella delle FU riportando i dettagli dell'operazione di
+ cui abbiamo fatto issue.
+ Notare che questa operazione richiede due registri ma solo uno di questi
+ è pronto.
+ F2 infatti è il risultato della LD, ora in fase Read Operands (quindi non
+ ancora terminata).
+\end_layout
+
+\begin_layout Standard
+Aggiorniamo anche la tabella di stato dei registri indicando che F0 è un
+ registro prenotato in scrittura dalla FU 
+\emph on
+mult1
+\emph default
+.
+\end_layout
+
+\begin_layout Paragraph
+Passo 7
+\end_layout
+
+\begin_layout Standard
+La LD continua la sua esecuzione e compie un cache HIT completando la sua
+ fase di esecuzione.
+\end_layout
+
+\begin_layout Standard
+La MULTD ha un registro sorgende (F2) non ancora pronto e deve quindi attendere
+ ancora.
+ Abbiamo uno stallo dovuto a un 
+\emph on
+RAW hazard
+\emph default
+.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+To Be Continued...
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
