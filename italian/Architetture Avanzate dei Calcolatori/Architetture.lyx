@@ -9075,7 +9075,9 @@ L'istruzione successiva è una MULTD e possiamo mandarla in issue.
  Notare che questa operazione richiede due registri ma solo uno di questi
  è pronto.
  F2 infatti è il risultato della LD, ora in fase Read Operands (quindi non
- ancora terminata).
+ ancora terminata); possiamo notare che quando un registro non è pronto
+ viene riportato anche l'id della FU che fornirà quel valore, per F2 si
+ tratta della FU integer.
 \end_layout
 
 \begin_layout Standard
@@ -9099,21 +9101,72 @@ La LD continua la sua esecuzione e compie un cache HIT completando la sua
 \begin_layout Standard
 La MULTD ha un registro sorgende (F2) non ancora pronto e deve quindi attendere
  ancora.
- Abbiamo uno stallo dovuto a un 
+ Abbiamo uno stallo della Read Operands dovuto a un 
 \emph on
 RAW hazard
 \emph default
 .
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-To Be Continued...
 \end_layout
 
-\end_inset
+\begin_layout Standard
+L'istruzione successiva è una SUBD, eseguiamo la sua issue assegnandole
+ la FU 
+\emph on
+add
+\emph default
+.
+ Aggiorniamo quindi le varie tabelle: nello stato delle FU possiamo vedere
+ che l'operando F2 è marcato come non pronto; nello stato dei registri è
+ riportato che F8 verrà fornito dalla FU add.
+\end_layout
 
+\begin_layout Paragraph
+Passo 8
+\end_layout
 
+\begin_layout Standard
+La prossima istruzione del programma è una DIVD e non ci sono problemi nel
+ caricarla nella FU 
+\emph on
+divide
+\emph default
+.
+ Avviene quindi la issue della DIVD.
+\end_layout
+
+\begin_layout Standard
+Aggiorniamo le tabelle in seguito alla avvenuta issue.
+ 
+\end_layout
+
+\begin_layout Standard
+La LD passa alla fase di write back senza problemi.
+ Dopo aver scritto il registro F2 è necessario avvisare tutti coloro che
+ erano in attesa di quel registro che il valore è pronto.
+ Andiamo a cambiare lo stato di un po' di celle 
+\emph on
+ready
+\emph default
+ nella tabella dello stato delle FU.
+\end_layout
+
+\begin_layout Paragraph
+Passo 9 - 10
+\end_layout
+
+\begin_layout Standard
+Al passo 9 eseguono la fase di Read Operands le istruzioni MULTD e SUBD.
+\end_layout
+
+\begin_layout Standard
+Al passo 10 le stesse iniziano l'esecuzione.
+ Queste FU tuttavia hanno latenza tra loro diversa, maggiore di 1.
+ È opportuno annotarsi ad ogni passo quanto manca al termine della fase
+ di esecuzione per poter riportare il valore esatto in tabella.
+\end_layout
+
+\begin_layout Standard
+La continuazione dell'esercizio è lasciata come facile esercizio al lettore.
 \end_layout
 
 \end_body
