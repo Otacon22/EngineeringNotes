@@ -2077,8 +2077,8 @@ Implementazione base del data path MIPS
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 001.png
-	scale 40
+	filename svg/001.svg
+	scale 50
 
 \end_inset
 
@@ -2118,7 +2118,7 @@ Implementazione della fase di Instruction Fetch
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 002.png
+	filename svg/002.svg
 	scale 40
 
 \end_inset
@@ -2133,8 +2133,8 @@ Implementazione delle istruzioni ALU
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 003.png
-	scale 40
+	filename svg/003.svg
+	scale 35
 
 \end_inset
 
@@ -2148,8 +2148,8 @@ Implementazione delle istruzioni LOAD/STORE
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 004.png
-	scale 30
+	filename svg/004.svg
+	scale 35
 
 \end_inset
 
@@ -2163,7 +2163,7 @@ Implementazione dei branch condizionali
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 005.png
+	filename svg/005.svg
 	scale 40
 
 \end_inset
@@ -2178,7 +2178,7 @@ Implementazione del data path MIPS
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 006.png
+	filename svg/006.svg
 	scale 40
 
 \end_inset
@@ -2193,7 +2193,7 @@ Implementazione del data path MIPS con unità di controllo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 007.png
+	filename svg/007.svg
 	scale 40
 
 \end_inset
@@ -2443,7 +2443,8 @@ Write Back
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 008.png
+	filename svg/008.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2528,7 +2529,8 @@ Le varie fasi della pipeline riviste per i vari tipi di istruzione
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 009.png
+	filename svg/009.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2543,7 +2545,8 @@ Implementazione della pipeline MIPS
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 010.png
+	filename svg/010.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2558,7 +2561,8 @@ Schema di utilizzo delle risorse nella pipeline
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 011.png
+	filename svg/011.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2687,7 +2691,8 @@ Il register file è utilizzato nello stesso ciclo di clock: Accesso in lettura
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 012.png
+	filename svg/011.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2742,7 +2747,8 @@ La situazione risulta abbastanza chiara dalla figura seguente.
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 013.png
+	filename svg/013.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2842,7 +2848,8 @@ Inserimento di NOPs
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 014.png
+	filename svg/014.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2857,7 +2864,8 @@ Scheduling
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 015.png
+	filename svg/015.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2874,7 +2882,8 @@ stalls
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 016.png
+	filename svg/016.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2910,7 +2919,8 @@ Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 017.png
+	filename svg/017.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2921,7 +2931,8 @@ Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 018.png
+	filename svg/018.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -2952,8 +2963,8 @@ Implementazione di MIPS con la forwarding unit
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 019.png
-	scale 40
+	filename svg/019.svg
+	scale 45
 
 \end_inset
 
@@ -2977,8 +2988,9 @@ load/use hazard
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 020.png
-	scale 40
+	filename svg/020.svg
+	lyxscale 50
+	scale 35
 
 \end_inset
 
@@ -2994,8 +3006,9 @@ necessario 1 stallo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 021.png
-	scale 40
+	filename svg/021.svg
+	lyxscale 50
+	scale 35
 
 \end_inset
 
@@ -3005,8 +3018,9 @@ necessario 1 stallo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 022.png
-	scale 40
+	filename svg/022.svg
+	lyxscale 50
+	scale 35
 
 \end_inset
 
@@ -3020,7 +3034,8 @@ Con un forwarding su MEM / MEM path si risolve:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 023.png
+	filename svg/023.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -3035,7 +3050,8 @@ Schema riassuntivo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 024.png
+	filename svg/024.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -3104,8 +3120,9 @@ Evitiamo così di dover inserire degli stalli.
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 025.png
-	scale 40
+	filename svg/025.svg
+	lyxscale 50
+	scale 45
 
 \end_inset
 
@@ -3131,8 +3148,9 @@ Data Hazards nella pipeline ottimizzata
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 026.png
-	scale 40
+	filename svg/026.svg
+	lyxscale 50
+	scale 45
 
 \end_inset
 
@@ -3150,7 +3168,8 @@ due
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 027.png
+	filename svg/027.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -3254,7 +3273,8 @@ Ad esempio, se assumiamo che la scrittura su registro delle istruzioni ALU
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 028.png
+	filename svg/028.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -3270,7 +3290,8 @@ Se assumiamo che le operazioni ALU floating point richiedano una esecuzione
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 029.png
+	filename svg/029.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
@@ -3445,7 +3466,8 @@ MIPS=208.3
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 030.png
+	filename svg/030.svg
+	lyxscale 50
 	scale 40
 
 \end_inset
