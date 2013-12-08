@@ -3215,8 +3215,8 @@ sub $r4, $r1, $r5
 
 \end_deeper
 \begin_layout Standard
-Utilizzando il forwarding è sempre possibile questo conflitto senza introdurre
- stalls, eccetto per i load/use hazards 
+Utilizzando il forwarding è sempre possibile risolvere questo conflitto
+ senza introdurre stalls, eccetto per i load/use hazards 
 \end_layout
 
 \begin_layout Paragraph
