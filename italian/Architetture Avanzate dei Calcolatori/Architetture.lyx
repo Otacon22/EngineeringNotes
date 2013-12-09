@@ -9191,5 +9191,71 @@ Al passo 10 le stesse iniziano l'esecuzione.
 La continuazione dell'esercizio è lasciata come facile esercizio al lettore.
 \end_layout
 
+\begin_layout Section
+Algoritmo di Tomasulo
+\end_layout
+
+\begin_layout Subsection
+Introduzione
+\end_layout
+
+\begin_layout Standard
+Si tratta di un altro algoritmo per effettuare scheduling dinamico.
+ L'obiettivo è sempre quello di ottenere elevate performance senza necessità
+ di compilatori particolari.
+\end_layout
+
+\begin_layout Subsubsection
+Rispetto a scoreboard
+\end_layout
+
+\begin_layout Itemize
+I buffer sono distribuiti nelle varie FU e non centralizzati.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I buffer delle FU vengono chiamati 
+\series bold
+Reservation Station
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nello stato delle istruzioni i registri vengono rimpiazzati dai valori o
+ puntatori alle reservation station (RS) per consentire 
+\series bold
+register rinaming
+\series default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\bar under
+Evita
+\bar default
+ così 
+\bar under
+WAW e WAR hazard
+\bar default
+ rinominando i risultati (usa numeri di RS invece di Register File).
+\end_layout
+
+\begin_layout Itemize
+Un numero di RS superiore al numero dei registri consente di effettuare
+ ottimizzazioni che il compilatore non riesce a vedere.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Utilizza il Common Data Bus invece dei registri per passare i valori da
+ una FU ad un'altra.
+\end_layout
+
 \end_body
 \end_document
