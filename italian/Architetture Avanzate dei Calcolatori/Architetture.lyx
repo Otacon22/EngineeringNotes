@@ -3415,6 +3415,14 @@ MIPS=\frac{f_{clock}}{\left(CPI\cdot10^{6}\right)}
 
 \end_layout
 
+\begin_layout Standard
+
+\series bold
+MIPS
+\series default
+: Million Instructions Per Second, è una unità di misura delle performance
+\end_layout
+
 \begin_layout Paragraph
 Esempio
 \end_layout
