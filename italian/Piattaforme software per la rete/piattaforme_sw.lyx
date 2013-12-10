@@ -9772,7 +9772,7 @@ pacchetto
 \end_inset
 
  in senso lato, può succedere che a livello 7 delle applicazioni utilizzino
- stringhe molto lunghe spezzare in più pacchetti.
+ stringhe molto lunghe spezzate in più pacchetti.
 \end_layout
 
 \begin_layout Standard
@@ -9884,6 +9884,8 @@ Vediamo un esempio di regola:
 \end_layout
 
 \begin_layout LyX-Code
+
+\size footnotesize
 alert tcp any any -> 192.168.1.0/24 80 (content: 
 \begin_inset Quotes eld
 \end_inset
@@ -9955,7 +9957,7 @@ Sono possibili più tipi di regole.
 \end_layout
 
 \begin_layout Itemize
-Ovviamente le epressioni regolari possono richiedere una quantità di lavoro
+Ovviamente le espressioni regolari possono richiedere una quantità di lavoro
  molto più grande, quindi si può lasciarle per solo specifiche macchine
  (facendo un filtraggio prima a livello 3 magari).
 \end_layout
@@ -10515,9 +10517,8 @@ Prendo il pacchetto, tiro fuori le regole che a livello 3/4 vanno bene per
  il pacchetto.
  Mi trovo con un set di regole (ammettiamo siano regole semplici i ricerca
  stringa).
- Come capisco se le regole vanno bene.
- La prima strada è che per ogni regola cerco la stringa nel pacchetto (con
- l'algoritmo 
+ Come capisco se le regole vanno bene? La prima strada è che per ogni regola
+ cerco la stringa nel pacchetto (con l'algoritmo 
 \series bold
 Boyer-Moore
 \series default
@@ -11034,7 +11035,7 @@ Inoltre cambiamo queste
 \end_layout
 
 \begin_layout Subsection*
-Bloom Filters (rivedere)
+Bloom Filters 
 \end_layout
 
 \begin_layout Standard
