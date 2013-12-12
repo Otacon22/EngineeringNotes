@@ -8935,7 +8935,7 @@ Struttura generale:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 071.png
+	filename svg/Scoreboard_passo0.svg
 	lyxscale 60
 	scale 40
 
@@ -8994,6 +8994,18 @@ prenotato
  per la scrittura dalla FU integer.
 \end_layout
 
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Scoreboard_passo1.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 Passo 2
 \end_layout
@@ -9037,16 +9049,6 @@ La prima LD esegue legge il valore da memoria (cache HIT) e termina la sua
  Indichiamo che il completamento della sua esecuzione avviene al ciclo 3
  nella tabella.
  Le altre tabelle non subiscono variazioni.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Inserire immagine
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Paragraph
@@ -9077,12 +9079,14 @@ La issue della seconda LD può finalmente procedere.
  Indichiamo 5 nella colonna issue per la seconda LD.
  Come per il passo 1 riserviamo la FU integer per eseguire questa istruzione
  e aggiorniamo le altre tabelle.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Inserire immagine
 \end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Scoreboard_passo5.svg
+	lyxscale 60
+	scale 40
 
 \end_inset
 
@@ -9150,6 +9154,18 @@ add
  riportato che F8 verrà fornito dalla FU add.
 \end_layout
 
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Scoreboard_passo7.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 Passo 8
 \end_layout
@@ -9199,12 +9215,28 @@ Al passo 10 le stesse iniziano l'esecuzione.
 La continuazione dell'esercizio è lasciata come facile esercizio al lettore.
 \end_layout
 
+\begin_layout Paragraph
+Alla fine
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Scoreboard_passo62.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Algoritmo di Tomasulo
 \end_layout
 
 \begin_layout Subsection
-Introduzione
+Caratteristiche principali
 \end_layout
 
 \begin_layout Standard
@@ -9213,8 +9245,8 @@ Si tratta di un altro algoritmo per effettuare scheduling dinamico.
  di compilatori particolari.
 \end_layout
 
-\begin_layout Subsubsection
-Rispetto a scoreboard
+\begin_layout Standard
+In particolare, rispetto a scoreboard:
 \end_layout
 
 \begin_layout Itemize
@@ -9262,7 +9294,196 @@ Un numero di RS superiore al numero dei registri consente di effettuare
 \end_deeper
 \begin_layout Itemize
 Utilizza il Common Data Bus invece dei registri per passare i valori da
- una FU ad un'altra.
+ una FU ad un'altra (FU broadcast).
+\end_layout
+
+\begin_layout Itemize
+Anche le istruzioni load e store hanno FU dedicate con RS.
+\end_layout
+
+\begin_layout Itemize
+Separa istruzioni intere da istruzioni Floating Point (FP ops) su diverse
+ code.
+\end_layout
+
+\begin_layout Subsection
+Schema architetturale
+\end_layout
+
+\begin_layout Subsubsection
+Schema generale di una architettura
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_01.svg
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Schema di una Floating Point Unit
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_02 novectorial.svg
+	lyxscale 50
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Componenti di una Reservation Station
+\end_layout
+
+\begin_layout Description
+Tag identificatore della RS.
+\end_layout
+
+\begin_layout Description
+Busy indica se la RS è occupata o meno.
+\end_layout
+
+\begin_layout Description
+OP tipo di operazione da eseguire.
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $V_{j}$
+\end_inset
+
+,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $V_{k}$
+\end_inset
+
+ valore degli operandi sorgente (per le load 
+\begin_inset Formula $V_{j}$
+\end_inset
+
+ contiene il valore di offset).
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $Q_{j}$
+\end_inset
+
+,
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $Q_{k}$
+\end_inset
+
+ puntatori alle RS che produrranno i valori 
+\begin_inset Formula $V_{j}$
+\end_inset
+
+, 
+\begin_inset Formula $V_{k}$
+\end_inset
+
+ (
+\begin_inset Formula $0$
+\end_inset
+
+ indica che gli operandi sono già pronti).
+\end_layout
+
+\begin_layout Standard
+Si noti che solo uno dei valori 
+\begin_inset Formula $V$
+\end_inset
+
+ o 
+\begin_inset Formula $Q$
+\end_inset
+
+ è significativo per un dato operando.
+\end_layout
+
+\begin_layout Standard
+L'accesso al register file avviene sempre passando dalle RS (o dalla commit
+ unit) per evitare conflitti.
+\end_layout
+
+\begin_layout Standard
+Per le operazioni di Load e Store il buffer della FU ha un campo 
+\series bold
+Address
+\series default
+ in cui viene memorizzato inizialmente l'offset (intero immediato) caricato
+ dall'istruzione, poi l'effettivo indirizzo di memoria a cui l'operazione
+ fa riferimento.
+\end_layout
+
+\begin_layout Subsection
+Gli stadi dell'algoritmo
+\end_layout
+
+\begin_layout Subsubsection
+Issue
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Execution
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Write Result
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
