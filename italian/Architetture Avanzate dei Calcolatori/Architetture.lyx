@@ -9417,12 +9417,12 @@ Si noti che solo uno dei valori
 \end_layout
 
 \begin_layout Standard
-L'accesso al register file avviene sempre passando dalle RS (o dalla commit
- unit) per evitare conflitti.
+L'accesso in scrittura al register file non avviene mai direttamente per
+ evitare conflitti.
 \end_layout
 
 \begin_layout Standard
-Per le operazioni di Load e Store il buffer della FU ha un campo 
+Per le operazioni di Load e Store la RS ha un campo 
 \series bold
 Address
 \series default
@@ -9439,21 +9439,76 @@ Gli stadi dell'algoritmo
 Issue
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+\begin_layout Itemize
+Preleva una istruzione dalla coda istruzioni (mantenuta FIFO)
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+viene garantita la 
+\series bold
+in-order issue
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Controlla se una RS è disponibile per il tipo di istruzione prelevato.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+se non ce n'è una disponibile si verifica uno 
+\series bold
+structural hazard
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+stallo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+se gli operandi richiesti non sono subito disponibili si tiene traccia di
+ quali FU produrranno quei valori tramite i puntatori 
+\begin_inset Formula $Q$
 \end_inset
 
-
+.
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+Rinomina i registri
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Risoluzione dei 
+\series bold
+WAR
+\series default
+, 
+\series bold
+WAW
+\series default
+: la issue di una istruzione che legge (o scrive) un registro destinazione
+ di un'altra istruzione già caricata salverà il riferimento alla RS dell'istruzi
+one che già occupa il registro in scrittura.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 Execution
+\end_layout
+
+\begin_layout Itemize
+La fase di esecuzione inizia quando entrambi gli operandi sono pronti e
+ una FU è disponibile.
 \end_layout
 
 \begin_layout Standard
