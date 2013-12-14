@@ -1482,7 +1482,7 @@ Questa fase di memory access non è presente in tutte le istruzioni! Alcune
 \begin_layout Enumerate
 
 \series bold
-Write-Back Cycle
+Write Back Cycle
 \series default
  (
 \series bold
@@ -9039,7 +9039,7 @@ Passo 3
 
 \begin_layout Standard
 La issue della seconda LD deve ancora aspettare per gli stessi motivi del
- ciclo precendete.
+ ciclo precedente.
  Abbiamo una issue stall dovuta a uno structural hazard.
 \end_layout
 
@@ -9133,7 +9133,7 @@ La LD continua la sua esecuzione e compie un cache HIT completando la sua
 \end_layout
 
 \begin_layout Standard
-La MULTD ha un registro sorgende (F2) non ancora pronto e deve quindi attendere
+La MULTD ha un registro sorgente (F2) non ancora pronto e deve quindi attendere
  ancora.
  Abbiamo uno stallo della Read Operands dovuto a un 
 \emph on
@@ -9232,7 +9232,7 @@ Alla fine
 \end_layout
 
 \begin_layout Section
-Algoritmo di Tomasulo
+Dynamic scheduling: algoritmo di Tomasulo
 \end_layout
 
 \begin_layout Subsection
@@ -9267,7 +9267,7 @@ Reservation Station
 Nello stato delle istruzioni i registri vengono rimpiazzati dai valori o
  puntatori alle reservation station (RS) per consentire 
 \series bold
-register rinaming
+register renaming
 \series default
 .
  
@@ -9507,25 +9507,142 @@ Execution
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 La fase di esecuzione inizia quando entrambi gli operandi sono pronti e
  una FU è disponibile.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO
+\begin_layout Itemize
+Se gli operandi non sono pronti 
+\series bold
+controlla il Common Data Bus 
+\series default
+(CDB) in attesa degli stessi.
 \end_layout
 
-\end_inset
+\begin_layout Itemize
 
+\bar under
+Ritardando l'esecuzione fino a quando gli operandi non sono pronti si evitano
+ i RAW.
+\end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Si noti che gli stalli dovuti ai conflitti RAW hanno durata inferiore in
+ quanto il dato quando viene pronto non deve aspettare la write back sul
+ Register File ma giunge alla RS tramite il CDB (è una specie di Forwarding).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Prima di mandare in esecuzione una istruzione pronta è necessario verificare
+ che sia disponibile una FU.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A causa degli stalli, è possibile che più di una istruzione diventi pronta
+ per essere eseguita nello stesso ciclo di clock causando 
+\bar under
+conflitto strutturale
+\bar default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph
+Gestione dei Branch
+\end_layout
+
+\begin_layout Standard
+Nessuna istruzione può iniziare la fase di esecuzione prima che il risultato
+ di tutti precedenti branch sia noto.
+\end_layout
+
+\begin_layout Standard
+Nel caso di branch prediction deve essere noto il risultato definitivo.
+\end_layout
+
+\begin_layout Paragraph
+Esecuzione di una Load / Store
+\end_layout
+
+\begin_layout Standard
+Avviene in due passi:
+\end_layout
+
+\begin_layout Enumerate
+Calcola l'effettivo indirizzo target.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Aspetta che il valore del registro base sia disponibile.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Calcola il valore e lo piazza nel load (o store) buffer.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invio all'unità di memoria:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+La load nel load buffer viene eseguita appena una unità di memoria è disponibile.
+ 
+\end_layout
+
+\begin_layout Itemize
+La store nello store buffer aspetta che il valore da scrivere venga pronto
+ prima di essere inviata all'unità di memoria.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Tramite il calcolo preventivo dell'indirizzo target è possibile mantenere
+ evitare 
+\emph on
+conflitti di memoria
+\emph default
+.
 \end_layout
 
 \begin_layout Subsubsection
 Write Result
+\end_layout
+
+\begin_layout Standard
+Quando il risultato è disponibile si passa nella fase di write result.
+\end_layout
+
+\begin_layout Itemize
+il risultato viene scritto sul CDB.
+\end_layout
+
+\begin_layout Itemize
+Dal CDB il risultato viene scritto sul Register File.
+\end_layout
+
+\begin_layout Itemize
+Dal CDB il risultato viene scritto in tutte le RS in attesa di quel dato.
+\end_layout
+
+\begin_layout Itemize
+Le istruzioni store scrivono il dato in memoria.
+\end_layout
+
+\begin_layout Standard
+Al termine di tutto ciò le RS liberate vengono marcate disponibili.
+\end_layout
+
+\begin_layout Subsection
+Altri dettagli
 \end_layout
 
 \begin_layout Standard
