@@ -9616,15 +9616,59 @@ La store nello store buffer aspetta che il valore da scrivere venga pronto
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-Tramite il calcolo preventivo dell'indirizzo target è possibile mantenere
- evitare 
-\emph on
-conflitti di memoria
-\emph default
-.
+\begin_layout Subparagraph
+Conflitti di memoria
 \end_layout
 
+\begin_layout Standard
+Tramite il calcolo preventivo dell'indirizzo target è possibile evitare
+ conflitti di memoria.
+ 
+\end_layout
+
+\begin_layout Itemize
+Load e store possono anche essere eseguite in ordine qualsiasi, purché accedano
+ a diversi indirizzi di memoria.
+\end_layout
+
+\begin_layout Itemize
+È necessario che prima di ogni operazione di accesso a memoria siano calcolati
+ gli indirizzi target di tutte le operazioni di memoria precedenti.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Viene controllata la presenza di un indirizzo target identico in istruzioni
+ precedenti.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ogni 
+\bar under
+load 
+\bar default
+che trova un indirizzo target identico in un 
+\bar under
+write buffer 
+\bar default
+attende.
+\end_layout
+
+\begin_layout Itemize
+Ogni 
+\bar under
+write 
+\bar default
+che trova un indirizzo target identico in un 
+\bar under
+write o load buffer 
+\bar default
+attende.
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Subsubsection
 Write Result
 \end_layout
@@ -9657,12 +9701,44 @@ Al termine di tutto ciò le RS liberate vengono marcate disponibili.
 Altri dettagli
 \end_layout
 
+\begin_layout Subsubsection
+Common Data Bus
+\end_layout
+
+\begin_layout Standard
+Il common data bus è un bus su cui viaggia una componente dati e una componente
+ che identifica la sorgente.
+ 
+\end_layout
+
+\begin_layout Itemize
+nel IBM 360/91 le dimensioni erano 64 bit dati + 4 bit sorgente.
+\end_layout
+
+\begin_layout Standard
+Ogni FU deve eseguire una ricerca associativa nella RS sui 4 bit di sorgente
+ per verificare se il dato sul CDB è di suo interesse o meno.
+\end_layout
+
+\begin_layout Standard
+Ogni RS deve avere un buffer associativo molto veloce.
+ 
+\end_layout
+
+\begin_layout Standard
+Un singolo CDB potrebbe essere un collo di bottiglia.
+\end_layout
+
+\begin_layout Subsection
+Esempio di funzionamento
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TODO
+TODO example
 \end_layout
 
 \end_inset
