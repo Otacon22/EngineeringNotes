@@ -5841,6 +5841,10 @@ hardware
 
 \end_layout
 
+\begin_layout Part
+ILP
+\end_layout
+
 \begin_layout Section
 Instruction Level Parallelism
 \end_layout
@@ -6549,8 +6553,8 @@ Exception behavior
  in cui le eccezioni vengono sollevate nel programma.
 \end_layout
 
-\begin_layout Subsection
-Scheduling ILP e processori superscalari
+\begin_layout Section
+Evoluzione dello scheduling ILP: processori superscalari
 \end_layout
 
 \begin_layout Standard
@@ -6585,7 +6589,7 @@ hardware intensive
  dominano il mercato desktop e server.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Assunzioni
 \end_layout
 
@@ -6634,7 +6638,7 @@ Lo stadio di esecuzione può richiede più di un ciclo, a seconda del tipo
  di operazione.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Dynamic Scheduling
 \end_layout
 
@@ -6708,7 +6712,7 @@ out-of-order execution
 ).
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Pro e Contro
 \end_layout
 
@@ -6767,7 +6771,7 @@ imprecise
 \end_layout
 
 \end_deeper
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Riassumendo
 \end_layout
 
@@ -6828,7 +6832,7 @@ out-of-order
 , a meno di un buffer che riordina i risultati prima che vengano scritti.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Static Scheduling
 \end_layout
 
@@ -7195,11 +7199,11 @@ Non scala
  rallentare il clock).
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Very Long Instruction Word (VLIW)
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Idea di base
 \end_layout
 
@@ -7373,6 +7377,10 @@ senza dover scegliere a quale FU mandare l'istruzione caricata.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Caratteristiche
 \end_layout
 
 \begin_layout Subsubsection
@@ -8193,8 +8201,12 @@ la dimensione del blocco basico aumenta.
 
 \end_layout
 
+\begin_layout Part
+Algoritmi e tecniche di dynamic scheduling
+\end_layout
+
 \begin_layout Section
-Dynamic scheduling: scoreboard
+Scoreboard
 \end_layout
 
 \begin_layout Standard
@@ -9232,7 +9244,7 @@ Alla fine
 \end_layout
 
 \begin_layout Section
-Dynamic scheduling: algoritmo di Tomasulo
+Algoritmo di Tomasulo
 \end_layout
 
 \begin_layout Subsection
