@@ -9733,12 +9733,90 @@ Un singolo CDB potrebbe essere un collo di bottiglia.
 Esempio di funzionamento
 \end_layout
 
+\begin_layout Paragraph
+Passo 1
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_ex_01.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Come vediamo dall'immagine, all'avvio parte la issue della LD.
+ Indichiamo lo stato della prima istruzione scrivendo che la issue inizia
+ al ciclo 1.
+ 
+\end_layout
+
+\begin_layout Standard
+In contemporanea viene occupata una FU Load: il primo operando, costante,
+ viene copiato nella Reservation Station.
+ Il secondo operando è un registro; il registro è subito disponibile, viene
+ quindi letto e il suo valore copiato nella Reservation Station.
+\end_layout
+
+\begin_layout Standard
+Rimane da aggiornare lo stato del Register File.
+ Questa prima istruzione scriverà su F6: riportiamo in corrispondenza del
+ registro F6 l'identificativo della FU che produrrà tale valore.
+\end_layout
+
+\begin_layout Paragraph
+Passo 2
+\end_layout
+
+\begin_layout Standard
+Al passo successivo la prima istruzione verifica che tutti i suoi operandi
+ sono pronti nella RS e inizia la fase di esecuzione.
+ Si riporta questa informazione in tabella.
+\end_layout
+
+\begin_layout Standard
+L'istruzione successiva è anch'essa una LD.
+ È disponibile un'altra FU Load, viene quindi occupata per eseguire la issue
+ di questa seconda istruzione.
+ Riportiamo sullo stato delle istruzioni che al ciclo 2 si esegue la issue
+ della seconda istruzione.
+ La RS viene riempita con i valori: una costante e il valore di un registro
+ già pronto.
+\end_layout
+
+\begin_layout Standard
+Aggiorniamo inoltre lo stato del RF indicando che il registro F2 verrà scritto
+ dalla FU appena allocata.
+\end_layout
+
+\begin_layout Standard
+La prima istruzione, entrata in fase di esecuzione, calcola l'indirizzo
+ effettivo di memoria e lo scrive nel load buffer.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_ex_02.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TODO example
+TODO continue example
 \end_layout
 
 \end_inset
