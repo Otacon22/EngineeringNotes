@@ -3209,7 +3209,7 @@ RAW - Read After Write
 
 \begin_layout Standard
 Istruzione 
-\begin_inset Formula $n+1$
+\begin_inset Formula $n+k$
 \end_inset
 
  tenta di leggere un registro sorgente scritto prima che l'istruzione 
@@ -3244,7 +3244,7 @@ WAW - Write After Write
 
 \begin_layout Standard
 L'istruzione 
-\begin_inset Formula $n+1$
+\begin_inset Formula $n+k$
 \end_inset
 
  tenta di scrivere un operando di destinazione prima che sia stato scritto
@@ -3305,7 +3305,7 @@ WAR - Write After Read
 
 \begin_layout Standard
 L'istruzione 
-\begin_inset Formula $n+1$
+\begin_inset Formula $n+k$
 \end_inset
 
  tenta di scrivere un operando di destinazione prima che venga letto dall'istruz
@@ -3589,7 +3589,7 @@ IC_{AS}=Instruction\, Count_{AS}=m\cdot n
 \begin_layout Standard
 \begin_inset Formula 
 \[
-CPI_{AS}=lim_{n\rightarrow\infty}\frac{\left(IC_{AS}+\#Stall\, Cycles_{AS}+4\right)}{IC_{AS}}=\frac{\left(m+k\right)}{m}
+CPI_{AS}=lim_{n\rightarrow\infty}\left(\frac{IC_{AS}+\#Stall\, Cycles_{AS}+4}{IC_{AS}}\right)=\frac{IC_{AS}+\#Stall\, Cycles_{AS}}{IC_{AS}}=\frac{\left(m+k\right)}{m}
 \]
 
 \end_inset
