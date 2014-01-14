@@ -3015,6 +3015,10 @@ necessario 1 stallo
 
 \end_layout
 
+\begin_layout Paragraph
+Esempi di Data Hazards: il caso Load/Store
+\end_layout
+
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -3214,7 +3218,11 @@ Istruzione
 
  tenta di leggere un registro sorgente scritto prima che l'istruzione 
 \emph on
-n
+
+\begin_inset Formula $n$
+\end_inset
+
+
 \emph default
  lo abbia scritto nel register file.
 \end_layout
@@ -8987,9 +8995,9 @@ Integer
 busy
 \emph default
  e sta eseguendo una Load.
- Indichiamo inoltre i registri coinvolti (F6 destinazione, F2 registro sorgente
+ Indichiamo inoltre i registri coinvolti (F6 destinazione, R2 registro sorgente
  2).
- Il registro sorgente F2 è inoltre subito disponibile, riportiamo questa
+ Il registro sorgente R2 è inoltre subito disponibile, riportiamo questa
  informazione nell'ultima colonna della tabella.
 \end_layout
 
