@@ -2940,22 +2940,6 @@ Dobbiamo aggiungere multiplexers agli inputs dell'ALU per prendere input
 
 \end_layout
 
-\begin_layout Standard
-Ci sono tre forwarding paths:
-\end_layout
-
-\begin_layout Itemize
-EX / EX path
-\end_layout
-
-\begin_layout Itemize
-MEM / EX path
-\end_layout
-
-\begin_layout Itemize
-MEM / ID path
-\end_layout
-
 \begin_layout Paragraph
 Implementazione di MIPS con la forwarding unit
 \end_layout
@@ -3048,7 +3032,7 @@ Con un forwarding su MEM / MEM path si risolve:
 \end_layout
 
 \begin_layout Paragraph
-Schema riassuntivo 
+I percorsi di forwarding
 \end_layout
 
 \begin_layout Standard
@@ -9842,29 +9826,21 @@ Passo 4
 \end_layout
 
 \begin_layout Standard
-La prima istruzione termina l'esecuzione e scrive i risultati: indichiamo
- in tabella che questi risultati vengono scritti al ciclo 4.
- Nel CDB sarà disponibile questo valore, aggiorniamo anche il RF.
+La prima istruzione termina l'accesso a memoria e scrive i risultati: indichiamo
+ in tabella che questi ultimi vengono scritti al ciclo 4.
+ 
 \end_layout
 
 \begin_layout Standard
 La seconda operazione deve attendere che la prima liberi il buffer e attende
  anche per questo ciclo.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-? <- da verificare
-\end_layout
-
-\end_inset
-
-
+ Si ricorda che l'esecuzione di una LD termina quando i dati sono stati
+ scritti.
 \end_layout
 
 \begin_layout Standard
-La MULT necessita del registro destinazione della seconda LD e attender
- fino a quando questo non sarà pronto.
+La MULT necessita del registro destinazione della seconda LD e attende fino
+ a quando questo non sarà pronto.
 \end_layout
 
 \begin_layout Standard
@@ -9872,6 +9848,13 @@ L'istruzione successiva è una SUBD e viene caricata nella prima RS della
  FU per le somme.
  Riportiamo in tabella l'avvenuta issue, l'occupazione della RS e nel RF
  status che il registro destinazione sarà prodotto dalla RS appena occupata.
+\end_layout
+
+\begin_layout Standard
+In questo ciclo nel CDB è disponibile il valore del registro da scrivere,
+ risultato della prima operazione; aggiorniamo anche il RF e le RS che attendeva
+no questo dato (nello specifico la RS della SUBD), in questo caso il CDB
+ viene usato per effettuare una sorta di forwarding del dato.
 \end_layout
 
 \begin_layout Standard
@@ -9884,6 +9867,23 @@ L'istruzione successiva è una SUBD e viene caricata nella prima RS della
 \end_inset
 
 
+\end_layout
+
+\begin_layout Paragraph
+Passo 5
+\end_layout
+
+\begin_layout Standard
+Al ciclo 5 la seconda LD inizia la fase di esecuzione e occupa il load buffer.
+ Le successive due istruzioni sono in attesa di un operando e quindi non
+ possono procedere oltre.
+\end_layout
+
+\begin_layout Standard
+Avviene la fase di issue della successiva istruzione, una DIVD che occupa
+ la seconda RS della FU per le moltiplicazioni.
+ Aggiorniamo lo stato della RS e indichiamo nel RF status che il registro
+ destinazione sarà fornito da questa RS.
 \end_layout
 
 \begin_layout Standard
