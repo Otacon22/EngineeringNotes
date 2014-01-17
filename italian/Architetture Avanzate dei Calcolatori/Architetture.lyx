@@ -9765,8 +9765,8 @@ Come vediamo dall'immagine, all'avvio parte la issue della LD.
 \end_layout
 
 \begin_layout Standard
-In contemporanea viene occupata una FU Load: il primo operando, costante,
- viene copiato nella Reservation Station.
+In contemporanea viene occupata una RS della FU Load: il primo operando,
+ costante, viene copiato nella Reservation Station.
  Il secondo operando è un registro; il registro è subito disponibile, viene
  quindi letto e il suo valore copiato nella Reservation Station.
 \end_layout
@@ -9789,8 +9789,8 @@ Al passo successivo la prima istruzione verifica che tutti i suoi operandi
 
 \begin_layout Standard
 L'istruzione successiva è anch'essa una LD.
- È disponibile un'altra FU Load, viene quindi occupata per eseguire la issue
- di questa seconda istruzione.
+ È disponibile un'altra RS per la FU Load, viene quindi occupata per eseguire
+ la issue di questa seconda istruzione.
  Riportiamo sullo stato delle istruzioni che al ciclo 2 si esegue la issue
  della seconda istruzione.
  La RS viene riempita con i valori: una costante e il valore di un registro
@@ -9811,6 +9811,73 @@ La prima istruzione, entrata in fase di esecuzione, calcola l'indirizzo
 \align center
 \begin_inset Graphics
 	filename svg/Tomasulo_ex_02.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Passo 3
+\end_layout
+
+\begin_layout Standard
+Al ciclo 3 la prima istruzione prosegue la fase di esecuzione (accesso a
+ memoria) mentre la seconda rimane in attesa della prima per poter accedere
+ al load buffer, quindi alla memoria.
+\end_layout
+
+\begin_layout Standard
+L'istruzione successiva è una MULT, una RS della FU adatta è libera e si
+ procede alla fase di issue.
+ Occupiamo una RS e indichiamo l'avvenuta issue in tabella.
+ Indichiamo inoltre che il registro destinazione di quest'operazione sarà
+ prodotto dalla RS appena occupata.
+\end_layout
+
+\begin_layout Paragraph
+Passo 4
+\end_layout
+
+\begin_layout Standard
+La prima istruzione termina l'esecuzione e scrive i risultati: indichiamo
+ in tabella che questi risultati vengono scritti al ciclo 4.
+ Nel CDB sarà disponibile questo valore, aggiorniamo anche il RF.
+\end_layout
+
+\begin_layout Standard
+La seconda operazione deve attendere che la prima liberi il buffer e attende
+ anche per questo ciclo.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+? <- da verificare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La MULT necessita del registro destinazione della seconda LD e attender
+ fino a quando questo non sarà pronto.
+\end_layout
+
+\begin_layout Standard
+L'istruzione successiva è una SUBD e viene caricata nella prima RS della
+ FU per le somme.
+ Riportiamo in tabella l'avvenuta issue, l'occupazione della RS e nel RF
+ status che il registro destinazione sarà prodotto dalla RS appena occupata.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_ex_04.svg
 	lyxscale 60
 	scale 40
 
