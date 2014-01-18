@@ -1552,7 +1552,7 @@ Instruct.
 \begin_layout Plain Layout
 
 \series bold
-Register read
+Register Read
 \end_layout
 
 \end_inset
@@ -7471,8 +7471,11 @@ L'hardware non deve effettuare alcun controllo su possibili dipendenze e
 \end_layout
 
 \begin_layout Itemize
-Ogni unità funzionale è specializzata, la decode è molto semplice: i bit
- di ciascun campo sono noti a priori.
+Ogni unità funzionale è specializzata, la 
+\emph on
+decode
+\emph default
+ è molto semplice: i bit di ciascun campo sono noti a priori.
 \end_layout
 
 \begin_layout Itemize
@@ -8884,19 +8887,59 @@ Op: Indica l'operazione da effettuare con l'unità (+, -, ...)
 \end_layout
 
 \begin_layout Itemize
-Fi: Indica il registro di destinazione
+\begin_inset Formula $\mbox{F}_{\mbox{i}}$
+\end_inset
+
+: Indica il registro di destinazione
 \end_layout
 
 \begin_layout Itemize
-Fj, Fk: Registri sorgente
+\begin_inset Formula $\mbox{F}_{\mbox{j}}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{F}_{\mbox{k}}$
+\end_inset
+
+: Registri sorgente
 \end_layout
 
 \begin_layout Itemize
-Qj, Qk: Unità funzionali che producono i registri sorgente Fj, Fk
+\begin_inset Formula $\mbox{Q}_{\mbox{j}}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{Q}_{\mbox{k}}$
+\end_inset
+
+: Unità funzionali che producono i registri sorgente 
+\begin_inset Formula $\mbox{F}_{\mbox{j}}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{F}_{\mbox{k}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Rj, Rk: Flags che indicano quando Fj e Fk sono pronti.
+\begin_inset Formula $\mbox{R}_{\mbox{j}}$
+\end_inset
+
+, 
+\begin_inset Formula $\mbox{R}_{\mbox{k}}$
+\end_inset
+
+: Flags che indicano quando 
+\begin_inset Formula $\mbox{F}_{\mbox{j}}$
+\end_inset
+
+ e 
+\begin_inset Formula $\mbox{F}_{\mbox{k}}$
+\end_inset
+
+ sono pronti.
  I Flags sono impostati su 
 \begin_inset Quotes eld
 \end_inset
@@ -9886,13 +9929,79 @@ Avviene la fase di issue della successiva istruzione, una DIVD che occupa
  destinazione sarà fornito da questa RS.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-TODO continue example
+\begin_layout Paragraph
+Passo 6
 \end_layout
+
+\begin_layout Standard
+Al ciclo 6 la seconda LD prosegue la fase di esecuzione; le successive istruzion
+i rimangono in attesa di operandi mancanti.
+\end_layout
+
+\begin_layout Standard
+Avviene la issue dell'ultima istruzione.
+ La ADDD viene caricata nella RS libera della FU per le addizioni.
+ Si noti come il registro destinazione di questa operazione sia anche registro
+ sorgente di una precedente istruzione che ancora deve essere eseguita.
+ Quest'ultima ha però già effettuato la fase di issue e ha letto il valore
+ precedentemente contenuto nel registro; il renaming implicito ha in questo
+ caso eliminato il conflitto WAR che si poteva presentare.
+\end_layout
+
+\begin_layout Paragraph
+Passo 7
+\end_layout
+
+\begin_layout Standard
+Al ciclo 7 la seconda LD termina l'accesso a memoria e scrive il valore
+ sul CDB.
+ Il valore viene quindi copiato in tutte le RS delle operazioni che richiedevano
+ quel valore.
+\end_layout
+
+\begin_layout Standard
+Le altre istruzioni ancora non possono partire in esecuzione.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_ex_07.svg
+	lyxscale 60
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Passo 8
+\end_layout
+
+\begin_layout Standard
+Al ciclo 8 le FU di moltiplicazione e addizione portano ciascuna in esecuzione
+ una delle loro operazioni, la MULTD e la SUBD.
+ La scelta è forzata in quanto sono le uniche ad avere tutti gli operandi
+ pronti.
+\end_layout
+
+\begin_layout Paragraph
+Passi successivi
+\end_layout
+
+\begin_layout Standard
+Supponendo che per ogni addizione la latenza di esecuzione sia di 2 cicli
+ di clock, 10 cicli per ogni moltiplicazione e 40 cicli per la divisione,
+ al termine dell'esecuzione si avrà la situazione seguente.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Tomasulo_ex_59.svg
+	lyxscale 60
+	scale 40
 
 \end_inset
 
