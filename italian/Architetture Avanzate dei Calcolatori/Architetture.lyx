@@ -9751,7 +9751,7 @@ nel IBM 360/91 le dimensioni erano 64 bit dati + 4 bit sorgente.
 \end_layout
 
 \begin_layout Standard
-Ogni FU deve eseguire una ricerca associativa nella RS sui 4 bit di sorgente
+Ogni FU deve eseguire una ricerca associativa nelle RS sui 4 bit di sorgente
  per verificare se il dato sul CDB è di suo interesse o meno.
 \end_layout
 
@@ -9761,9 +9761,168 @@ Ogni RS deve avere un buffer associativo molto veloce.
 \end_layout
 
 \begin_layout Standard
+
+\bar under
 Un singolo CDB potrebbe essere un collo di bottiglia.
 \end_layout
 
+\begin_layout Subsubsection
+Confronto Tomasulo vs Scoreboard
+\end_layout
+
+\begin_layout Itemize
+Le fasi
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Issue (in order)
+\end_layout
+
+\begin_layout Itemize
+Start Execution (out of order)
+\end_layout
+
+\begin_layout Itemize
+Write Result (out of order)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Scoreboard:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Issue (in order)
+\end_layout
+
+\begin_layout Itemize
+Read Operands (out of order)
+\end_layout
+
+\begin_layout Itemize
+Execution (out of order)
+\end_layout
+
+\begin_layout Itemize
+Write Result (out of order)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Conflitti strutturali
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo: in base alla disponibilità di RS
+\end_layout
+
+\begin_layout Itemize
+Scoreboard: in base alla disponibilità di FU
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Risoluzione conflitti WAR, WAW
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo: renaming implicito attraverso RS
+\end_layout
+
+\begin_layout Itemize
+Scoreboard: inserisce stalli prima del completamento
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Propagazione dei risultati
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo: broadcast tramite CDB
+\end_layout
+
+\begin_layout Itemize
+Scoreboard: scrive direttamente sul Register File, è possibile introdurre
+ il forwarding
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Controllo 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+di che?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo: distribuito nelle varie RS
+\end_layout
+
+\begin_layout Itemize
+Scoreboard: centralizzato attraverso la scoreboard
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Inoltre
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tomasulo esegue implicitamente loop unrolling via hardware con un effetto
+ paragonabile a quello della tecnica SSA (Single Static Assignment)
+\end_layout
+
+\begin_layout Itemize
+Tomasulo aumenta notevolmente la complessità hardware rispetto a Scoreboard
+\end_layout
+
+\begin_layout Itemize
+In entrambi gli algoritmi i limiti del parallelismo sono 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+i branch 
+\end_layout
+
+\begin_layout Itemize
+la gestione delle eccezioni
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+imprecisa non è garantita l'integrità degli operandi per l'handler di eccezioni
+\end_layout
+
+\begin_layout Description
+inesatta le modifiche apportate dall'handler vengono viste dalle istruzioni
+ solo dopo l'eccezione.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
 \begin_layout Subsection
 Esempio di funzionamento
 \end_layout
@@ -9857,7 +10016,7 @@ Al ciclo 3 la prima istruzione prosegue la fase di esecuzione (accesso a
 \end_layout
 
 \begin_layout Standard
-L'istruzione successiva è una MULT, una RS della FU adatta è libera e si
+L'istruzione successiva è una MULTD, una RS della FU adatta è libera e si
  procede alla fase di issue.
  Occupiamo una RS e indichiamo l'avvenuta issue in tabella.
  Indichiamo inoltre che il registro destinazione di quest'operazione sarà
