@@ -135,7 +135,7 @@ LatexCommand tableofcontents
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Part*
 Introduzione
 \end_layout
 
@@ -202,7 +202,7 @@ Cache organization
 \end_layout
 
 \end_deeper
-\begin_layout Subsection
+\begin_layout Subsection*
 Riferimenti
 \end_layout
 
@@ -6545,6 +6545,135 @@ Exception behavior
  in cui le eccezioni vengono sollevate nel programma.
 \end_layout
 
+\begin_layout Subsection
+Register Renaming
+\end_layout
+
+\begin_layout Standard
+Si tratta di una tecnica che consente di utilizzare diversi registri fisici
+ per la stessa locazione logica.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Quando una operazione desidera accedere in scrittura ad un registro, viene
+ prima cambiato nome al registro in modo che essa scriva invece su un nuovo
+ registro di appoggio.
+
+\emph default
+ Viene tenuta traccia dello storico dei registri usati tramite una tabella
+ di renaming; questa tabella viene interpellata ogni volta che una operazione
+ richiede la lettura di un registro, la tabella fornisce l'identificativo
+ del registro equivalente aggiornato più di recente.
+\end_layout
+
+\begin_layout Standard
+Questo 
+\bar under
+consente di evitare conflitti di tipo WAW e WAR
+\bar default
+.
+\end_layout
+
+\begin_layout Standard
+Il register renaming può avvenire:
+\end_layout
+
+\begin_layout Itemize
+dal 
+\series bold
+compilatore
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+effettuato a compile time.
+ 
+\end_layout
+
+\begin_layout Itemize
+In questo caso molto diffusa è la tecnica di portare il codice assembly
+ in forma Static Single Assignment (
+\series bold
+SSA
+\series default
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In questa forma ogni registro viene assegnato solamente una volta.
+ Tutte le successive scritture vengono redirette verso nuovi alias.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+dall'
+\series bold
+hardware in modo implicito
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+effettuato a runtime
+\end_layout
+
+\begin_layout Itemize
+L'
+\series bold
+hardware
+\series default
+ implicitamente rinomina i registri copiando ogni volta il valore del registro
+ in una locazione diversa
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+si veda 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sec:Algoritmo-di-Tomasulo"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+dall'
+\series bold
+hardaware in modo esplicito
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+effettuato a runtime
+\end_layout
+
+\begin_layout Itemize
+Si introduce una traduzione 
+\begin_inset Quotes eld
+\end_inset
+
+al volo
+\begin_inset Quotes erd
+\end_inset
+
+ dei registri mentre vengono caricate le istruzioni.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Necessita di hardware supplementare per la tabella di renaming.
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Section
 Evoluzione dello scheduling ILP: processori superscalari
 \end_layout
@@ -9278,7 +9407,36 @@ Alla fine
 
 \end_layout
 
+\begin_layout Subsection
+Scoreboard con renaming esplicito
+\end_layout
+
+\begin_layout Standard
+Al fine di ridurre l'attesa per la risoluzione dei conflitti WAW e WAR è
+ possibile introdurre il renaming esplicito dei registri come ulteriore
+ ottimizzazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Algoritmo-di-Tomasulo"
+
+\end_inset
+
 Algoritmo di Tomasulo
 \end_layout
 
