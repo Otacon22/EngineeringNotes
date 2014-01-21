@@ -6567,6 +6567,8 @@ Quando una operazione desidera accedere in scrittura ad un registro, viene
  di renaming; questa tabella viene interpellata ogni volta che una operazione
  richiede la lettura di un registro, la tabella fornisce l'identificativo
  del registro equivalente aggiornato più di recente.
+ La struttura della tabella di renaming varia a seconda di come il renaming
+ è effettuato.
 \end_layout
 
 \begin_layout Standard
@@ -6589,7 +6591,11 @@ compilatore
 
 \begin_deeper
 \begin_layout Itemize
-effettuato a compile time.
+Effettuato a 
+\bar under
+compile time
+\bar default
+.
  
 \end_layout
 
@@ -6618,7 +6624,11 @@ hardware in modo implicito
 
 \begin_deeper
 \begin_layout Itemize
-effettuato a runtime
+Effettuato a 
+\bar under
+runtime
+\bar default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -6627,12 +6637,12 @@ L'
 hardware
 \series default
  implicitamente rinomina i registri copiando ogni volta il valore del registro
- in una locazione diversa
+ in una locazione diversa.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-si veda 
+Si veda 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "sec:Algoritmo-di-Tomasulo"
@@ -6652,7 +6662,11 @@ hardaware in modo esplicito
 
 \begin_deeper
 \begin_layout Itemize
-effettuato a runtime
+Effettuato a 
+\bar under
+runtime
+\bar default
+.
 \end_layout
 
 \begin_layout Itemize
@@ -6669,10 +6683,25 @@ al volo
 
 \begin_deeper
 \begin_layout Itemize
-Necessita di hardware supplementare per la tabella di renaming.
+Necessita di hardware e logica supplementare per la tabella di renaming.
+\end_layout
+
+\begin_layout Itemize
+Si veda 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Scoreboard-con-renaming"
+
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Disaccoppia il renaming dallo scheduling.
+\end_layout
+
 \end_deeper
 \begin_layout Section
 Evoluzione dello scheduling ILP: processori superscalari
@@ -8330,6 +8359,99 @@ Algoritmi e tecniche di dynamic scheduling
 \end_layout
 
 \begin_layout Section
+Punti cardine
+\end_layout
+
+\begin_layout Subsection
+Mantenere l'ordine
+\end_layout
+
+\begin_layout Standard
+Mantenere l'ordine delle istruzioni in alcune fasi della pipeline semplifica
+ molto tuttavia può anche rappresentare un collo di bottiglia.
+ È necessario trovare un giusto bilanciamento.
+\end_layout
+
+\begin_layout Subsubsection
+Issue
+\end_layout
+
+\begin_layout Standard
+Eseguire la issue 
+\series bold
+in order
+\series default
+ consente di 
+\emph on
+conoscere il flusso di dati del programma
+\emph default
+ ovvero in che ordine le istruzioni accedono in lettura o scrittura ad un
+ registro.
+\end_layout
+
+\begin_layout Standard
+Con una issue out of order potremmo confondere conflitti WAR con conflitti
+ RAW e viceversa.
+\end_layout
+
+\begin_layout Standard
+Nel caso di multiple issue per ciclo di clock si tende a mantenere l'ordine
+ anche se questo può rappresentare un limite significativo.
+\end_layout
+
+\begin_layout Subsubsection
+Execution
+\end_layout
+
+\begin_layout Standard
+Eseguire le istruzioni in ordine semplifica il recupero degli operandi.
+ Tuttavia è facilmente gestibile il caso di una esecuzione 
+\series bold
+out of order
+\series default
+ con tecniche di scheduling dinamico.
+ Questo consente di 
+\emph on
+gestire meglio i conflitti strutturali e aumentare il thorughput
+\emph default
+.
+\end_layout
+
+\begin_layout Subsubsection
+Commit
+\end_layout
+
+\begin_layout Standard
+Il completamento delle istruzioni e scrittura su registro è facile se l'esecuzio
+ne è in order.
+ 
+\series bold
+In order
+\series default
+ commit significa 
+\emph on
+evitare conflitti WAR e WAW
+\emph default
+.
+ Il problema sorge nel caso in cui l'esecuzione sia out of order o le latenze
+ di esecuzione sia variabile.
+ In questi casi è necessario controllare la specifica assenza di conflitti
+ o attendere il completamento di tutte le istruzioni precedenti.
+\end_layout
+
+\begin_layout Standard
+Un commit in order consente inoltre una 
+\emph on
+gestione precisa delle eccezioni
+\emph default
+, ovvero che tutte le istruzioni prima del PC hanno eseguito commit con
+ successo e nessuna delle seguenti ha eseguito commit.
+ In alcuni casi si considera accettabile una gestine non precisa delle eccezioni
+, in molti altri casi si preferisce adottare delle tecniche che consentano
+ un in order commit.
+\end_layout
+
+\begin_layout Section
 Scoreboard
 \end_layout
 
@@ -9408,6 +9530,12 @@ Alla fine
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Scoreboard-con-renaming"
+
+\end_inset
+
 Scoreboard con renaming esplicito
 \end_layout
 
@@ -9417,12 +9545,95 @@ Al fine di ridurre l'attesa per la risoluzione dei conflitti WAW e WAR è
  ottimizzazione.
 \end_layout
 
+\begin_layout Itemize
+Non sono più necessari stalli in fase di commit.
+\end_layout
+
+\begin_layout Standard
+Questa variante dell'algoritmo prevede l'utilizzo di un numero di registri
+ superiore a quello specificato dall'ISA.
+\end_layout
+
+\begin_layout Itemize
+Il programma conosce solo un sottoinsieme dei registri effettivamente disponibil
+i (e usati).
+\end_layout
+
+\begin_layout Standard
+L'idea di base è allocare un nuovo registro ogni volta che un'istruzione
+ desidera scivere nel RF.
+\end_layout
+
+\begin_layout Itemize
+Si evitano conflitti WAR e WAR perché semplicemente non può accadere che
+ due istruzioni scrivano sullo stesso registro fisico.
+\end_layout
+
+\begin_layout Itemize
+Come la tecnica SSA, ma realizzata in hardware.
+\end_layout
+
+\begin_layout Standard
+Viene mantenuta una lista di registri liberi.
+ Un registro si dice libero quando non è ancora stato allocato; un registro
+ torna ad essere libero quando nessuna istruzione attiva usa più quel registro.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+inserire qui da qualche parte immagine struttura hw rename
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Variazioni
+\end_layout
+
+\begin_layout Enumerate
+Issue
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ad ogni issue, i registri vengono TUTTI rinominati.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Al registro destinazione viene assegnato una nuova locazione libera
+\end_layout
+
+\begin_layout Itemize
+Ai registri sorgente viene assegnato il nome del registro dove è (o sarà)
+ locato il valore più recente del registro richiesto.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Reorder buffer
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non tiene traccia dei valori.
+\end_layout
+
+\begin_layout Itemize
+Forza il commit in order.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TODO
+TODO continue
 \end_layout
 
 \end_inset
