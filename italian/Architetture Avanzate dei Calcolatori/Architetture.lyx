@@ -6566,7 +6566,7 @@ Quando una operazione desidera accedere in scrittura ad un registro, viene
  Viene tenuta traccia dello storico dei registri usati tramite una tabella
  di renaming; questa tabella viene interpellata ogni volta che una operazione
  richiede la lettura di un registro, la tabella fornisce l'identificativo
- del registro equivalente aggiornato più di recente.
+ del registro fisico equivalente aggiornato più di recente.
  La struttura della tabella di renaming varia a seconda di come il renaming
  è effettuato.
 \end_layout
@@ -9590,7 +9590,7 @@ inserire qui da qualche parte immagine struttura hw rename
 \end_layout
 
 \begin_layout Subsubsection
-Variazioni
+Variazioni rispetto alla versione base
 \end_layout
 
 \begin_layout Enumerate
@@ -9599,7 +9599,8 @@ Issue
 
 \begin_deeper
 \begin_layout Itemize
-Ad ogni issue, i registri vengono TUTTI rinominati.
+Ad ogni issue, i registri vengono TUTTI rinominati attraverso la renaming
+ table.
 \end_layout
 
 \begin_deeper
@@ -9613,6 +9614,11 @@ Ai registri sorgente viene assegnato il nome del registro dove è (o sarà)
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Se non sono disponibili nuovi registri liberi si ha uno stallo sulla fase
+ di issue per un conflitto strutturale.
+\end_layout
+
 \end_deeper
 \begin_layout Enumerate
 Reorder buffer
