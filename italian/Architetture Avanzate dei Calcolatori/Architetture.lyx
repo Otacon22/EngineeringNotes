@@ -3905,8 +3905,8 @@ Le risorse del processore per eseguire i branch condizionali
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 031.png
-	scale 40
+	filename svg/031.svg
+	scale 60
 
 \end_inset
 
@@ -3924,8 +3924,9 @@ Implementazione della pipeline a 5 stage MIPS
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 032.png
-	scale 30
+	filename svg/032.svg
+	lyxscale 80
+	scale 60
 
 \end_inset
 
@@ -4027,8 +4028,8 @@ Esempio
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 033.png
-	scale 40
+	filename svg/033.svg
+	scale 60
 
 \end_inset
 
@@ -4092,8 +4093,8 @@ Se utilizziamo il forwarding: lo faccio in 3 cicli di clock
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 035.png
-	scale 30
+	filename svg/035.svg
+	scale 50
 
 \end_inset
 
@@ -4109,8 +4110,8 @@ Senza forwarding: in 2 cicli di clock
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 034.png
-	scale 30
+	filename svg/034.svg
+	scale 50
 
 \end_inset
 
@@ -4204,8 +4205,8 @@ stadio ID
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 036.png
-	scale 30
+	filename svg/036.svg
+	scale 55
 
 \end_inset
 
@@ -4228,8 +4229,8 @@ uno stallo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 037.png
-	scale 30
+	filename svg/037.svg
+	scale 50
 
 \end_inset
 
@@ -4284,8 +4285,8 @@ Esempio
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 038.png
-	scale 30
+	filename svg/038.svg
+	scale 50
 
 \end_inset
 
@@ -4512,8 +4513,8 @@ corretta
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 039.png
-	scale 30
+	filename svg/039.svg
+	scale 50
 
 \end_inset
 
@@ -4545,8 +4546,8 @@ penalità di un ciclo
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 040.png
-	scale 30
+	filename svg/040.svg
+	scale 50
 
 \end_inset
 
@@ -4754,8 +4755,8 @@ branch delay slot
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 041.png
-	scale 30
+	filename svg/041.svg
+	scale 50
 
 \end_inset
 
@@ -4810,8 +4811,8 @@ Esempio:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 042.png
-	scale 30
+	filename svg/042.svg
+	scale 50
 
 \end_inset
 
@@ -4826,8 +4827,8 @@ Delayed branch technique: from target
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 043.png
-	scale 30
+	filename svg/043.svg
+	scale 50
 
 \end_inset
 
@@ -4853,8 +4854,8 @@ Delayed branch technique: from fall-through
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 044.png
-	scale 30
+	filename svg/044.svg
+	scale 50
 
 \end_inset
 
@@ -5353,8 +5354,8 @@ Esempio
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 047.png
-	scale 40
+	filename svg/047.svg
+	scale 50
 
 \end_inset
 
@@ -5471,7 +5472,7 @@ correlating branch predictor
 \begin_inset Formula $2^{m}$
 \end_inset
 
-Branch History Tables, ognuna delle quali è un predittore a 
+ Branch History Tables, ognuna delle quali è un predittore a 
 \begin_inset Formula $n$
 \end_inset
 
@@ -5540,8 +5541,8 @@ Accuratezza dei correlating predictors
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 050.png
-	scale 40
+	filename svg/050.svg
+	scale 50
 
 \end_inset
 
@@ -5622,8 +5623,8 @@ Predittore a 2 livelli: PHT indirizzata dal contenuto di BHR (history globale)
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 051.png
-	scale 30
+	filename svg/051.svg
+	scale 45
 
 \end_inset
 
@@ -5659,8 +5660,8 @@ BHR
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 052.png
-	scale 30
+	filename svg/052.svg
+	scale 45
 
 \end_inset
 
@@ -5784,8 +5785,8 @@ Bits per lo stato di predizione
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 054.png
-	scale 40
+	filename svg/054.svg
+	scale 50
 
 \end_inset
 
@@ -5898,8 +5899,8 @@ Caso migliore:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 055.png
-	scale 40
+	filename svg/055.svg
+	scale 50
 
 \end_inset
 
