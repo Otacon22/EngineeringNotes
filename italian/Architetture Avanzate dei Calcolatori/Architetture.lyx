@@ -8667,7 +8667,7 @@ out-of-order
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 068.png
+	filename svg/Scoreboard schema.svg
 	lyxscale 60
 	scale 40
 
@@ -9577,12 +9577,14 @@ Come la tecnica SSA, ma realizzata in hardware.
 Viene mantenuta una lista di registri liberi.
  Un registro si dice libero quando non è ancora stato allocato; un registro
  torna ad essere libero quando nessuna istruzione attiva usa più quel registro.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-inserire qui da qualche parte immagine struttura hw rename
 \end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename svg/Explicit Register Renaming - Scoreboard.svg
+	lyxscale 60
+	scale 40
 
 \end_inset
 
@@ -9605,7 +9607,7 @@ Ad ogni issue, i registri vengono TUTTI rinominati attraverso la renaming
 
 \begin_deeper
 \begin_layout Itemize
-Al registro destinazione viene assegnato una nuova locazione libera
+Al registro destinazione viene assegnato una nuova locazione libera.
 \end_layout
 
 \begin_layout Itemize
@@ -9634,12 +9636,26 @@ Forza il commit in order.
 \end_layout
 
 \end_deeper
+\begin_layout Enumerate
+Commit
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scrive direttamente il valore nel registro.
+\end_layout
+
+\begin_layout Itemize
+Libera i registri operandi se nessun altro li sta usando.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-TODO continue
+ho dimenticato qualcosa?
 \end_layout
 
 \end_inset
