@@ -7350,6 +7350,88 @@ Non scala
  rallentare il clock).
 \end_layout
 
+\begin_layout Subsection
+ReOrder Buffer (ROB)
+\end_layout
+
+\begin_layout Standard
+Al fine di ottimizzare le risorse hardware si consente alle istruzioni di
+ procedere fuori ordine.
+ 
+\end_layout
+
+\begin_layout Standard
+Assumendo che i conflitti RAW siano risolti, restano da gestire i conflitti
+ WAR e WAW; in questi casi le istruzioni che causano conflitto devono restare
+ in stallo prima di scrivere.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Il ReOrder Buffer è un componente che tiene traccia dei valori che le istruzioni
+ hanno prodotto ma non ancora scritto sui registri
+\emph default
+.
+ Questi valori restano nel buffer in attesa del completamento delle istruzioni
+ che le precedono e nel frattempo sono resi 
+\bar under
+disponibili per forwarding
+\bar default
+ dei dati.
+\end_layout
+
+\begin_layout Standard
+Questo consente:
+\end_layout
+
+\begin_layout Itemize
+Riordino delle istruzioni.
+\end_layout
+
+\begin_layout Itemize
+Gestione precisa delle eccezioni.
+\end_layout
+
+\begin_layout Itemize
+Boosting.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rollback sicuro in caso di errata speculazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Disaccoppiare l'esecuzione delle istruzioni dal loro commit.
+\end_layout
+
+\begin_layout Standard
+Solitamente si tratta di un buffer circolare con puntatore alla testa (prima
+ entry libera) e alla coda (la prima in attesa di commit).
+\end_layout
+
+\begin_layout Standard
+Di solito una entry del ROB contiene informazioni riguardo:
+\end_layout
+
+\begin_layout Itemize
+PC dell'istruzione.
+\end_layout
+
+\begin_layout Itemize
+Indirizzo del registro destinazione.
+\end_layout
+
+\begin_layout Itemize
+Risultato.
+\end_layout
+
+\begin_layout Itemize
+Stato dell'istruzione ed eventuali eccezioni.
+\end_layout
+
 \begin_layout Section
 Very Long Instruction Word (VLIW)
 \end_layout
@@ -10433,8 +10515,8 @@ La seconda operazione deve attendere che la prima liberi il buffer e attende
 \end_layout
 
 \begin_layout Standard
-La MULT necessita del registro destinazione della seconda LD e attende fino
- a quando questo non sarà pronto.
+La MULTD necessita del registro destinazione della seconda LD e attende
+ fino a quando questo non sarà pronto.
 \end_layout
 
 \begin_layout Standard
@@ -10557,6 +10639,210 @@ Supponendo che per ogni addizione la latenza di esecuzione sia di 2 cicli
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Variante speculativa
+\end_layout
+
+\begin_layout Subsubsection
+Tomasulo con ROB
+\end_layout
+
+\begin_layout Standard
+In questa variante i risultati non vengono più scritti alla fase di commit
+ ma passano da un ReOrder Buffer.
+ Si ha 
+\series bold
+in order commit
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+In caso di RAW, una istruzione memorizza l'indirizzo del ROB invece dell'indiriz
+zo della RS.
+\end_layout
+
+\begin_layout Standard
+Nel ROB viene allocata una entry per ogni istruzione quando questa viene
+ caricata (fase di issue).
+\end_layout
+
+\begin_layout Subsubsection
+Le fasi di Tomasulo speculativo
+\end_layout
+
+\begin_layout Enumerate
+Issue
+\end_layout
+
+\begin_layout Enumerate
+Execution
+\end_layout
+
+\begin_layout Enumerate
+Write Result
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Scrive il dato sul CDB e sul ROB.
+\end_layout
+
+\begin_layout Itemize
+Le RS in attesa del valore prodotto lo leggono.
+\end_layout
+
+\begin_layout Itemize
+Libera la RS.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Commit
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Commit Normale: il risultato dell'istruzione più vecchia è pronto nel ROB
+ e viene scritto nel RF.
+\end_layout
+
+\begin_layout Enumerate
+Store Commit: come prima, ma la scrittura avviene in memoria.
+\end_layout
+
+\begin_layout Enumerate
+Rollback: in caso di branch con predizione non corretta il ROB viene completamen
+te svuotato.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Contenuto del ROB
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="middle" width="15page%">
+<column alignment="center" valignment="middle" width="15page%">
+<column alignment="center" valignment="middle" width="15page%">
+<column alignment="center" valignment="middle" width="15page%">
+<row>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tipo di istruzione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Destinazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Valore
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ready
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Tipo di Istruzione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ALU / Load
+\end_layout
+
+\begin_layout Itemize
+Store
+\end_layout
+
+\begin_layout Itemize
+Branch
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Destinazione:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Registro destinazione (ALU / Load)
+\end_layout
+
+\begin_layout Itemize
+Indirizzo destinazione (Store)
+\end_layout
+
+\begin_layout Itemize
+vuoto (Branch)
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Altre variazioni
+\end_layout
+
+\begin_layout Paragraph
+Il caso della store
+\end_layout
+
+\begin_layout Standard
+Il ROB rimpiazza completamente lo store buffer.
+ La store viene eseguita in due fasi, l'accesso a memoria avviene durante
+ la fase di commit tramite il ROB.
+\end_layout
+
+\begin_layout Paragraph
+Renaming
+\end_layout
+
+\begin_layout Standard
+Il renaming non viene più fornito dalle RS ma dal ROB.
+ Tutti i puntatori puntano alle entry del ROB invece che alle RS.
+\end_layout
+
+\begin_layout Paragraph
+Le eccezioni
+\end_layout
+
+\begin_layout Standard
+Una eccezione non viene raccolta fino a quando non viene eseguito il commit
+ dell'istruzione associata.
+ Questo garantisce una gestione precisa delle eccezioni.
 \end_layout
 
 \end_body
