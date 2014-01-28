@@ -10845,5 +10845,745 @@ Una eccezione non viene raccolta fino a quando non viene eseguito il commit
  Questo garantisce una gestione precisa delle eccezioni.
 \end_layout
 
+\begin_layout Part
+Multiprocessori
+\end_layout
+
+\begin_layout Section
+Introduzione ai multiprocessori
+\end_layout
+
+\begin_layout Standard
+Con il termine multicore si intendono computer con poche coppie di processori,
+ a differenza dei manycore che contengono centinaia o più core per ogni
+ processore.
+\end_layout
+
+\begin_layout Subsection
+Topologie di connessione
+\end_layout
+
+\begin_layout Subsubsection
+Single bus vs network
+\end_layout
+
+\begin_layout Paragraph
+Single bus
+\end_layout
+
+\begin_layout Itemize
+Limite numero di processori connessi.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Massimo 36 processori.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Accesso al bus per ogni operazione di accesso a memoria.
+\end_layout
+
+\begin_layout Paragraph
+Network connected
+\end_layout
+
+\begin_layout Itemize
+Ogni processore ha una memoria interna.
+\end_layout
+
+\begin_layout Itemize
+Il bus viene usato solo per comunicare tra processori.
+\end_layout
+
+\begin_layout Itemize
+Diverse topologie (non necessariamente identiche per bus dati e bus indirizzi)
+\end_layout
+
+\begin_layout Subsubsection
+Varie topologie di connessione
+\end_layout
+
+\begin_layout Itemize
+Bus
+\end_layout
+
+\begin_layout Itemize
+Ring
+\end_layout
+
+\begin_layout Itemize
+Mesh
+\end_layout
+
+\begin_layout Itemize
+N-cube
+\end_layout
+
+\begin_layout Itemize
+Crossbar Network
+\end_layout
+
+\begin_layout Itemize
+Thorus
+\end_layout
+
+\begin_layout Subsection
+Prestazioni di una topologia
+\end_layout
+
+\begin_layout Standard
+Il costo di una topologia si misura in termini di:
+\end_layout
+
+\begin_layout Itemize
+numero di switch (connessioni tra link)
+\end_layout
+
+\begin_layout Itemize
+numero di link per switch
+\end_layout
+
+\begin_layout Itemize
+dimensione del link (larghezza in bit)
+\end_layout
+
+\begin_layout Itemize
+lunghezza dei link in hardware
+\end_layout
+
+\begin_layout Paragraph
+Metriche
+\end_layout
+
+\begin_layout Itemize
+Banda totale (caso ottimo)
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione (caso pessimo)
+\end_layout
+
+\begin_layout Standard
+in termini di
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b$
+\end_inset
+
+ banda del singolo bus
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p$
+\end_inset
+
+ numero di nodi
+\end_layout
+
+\begin_layout Subsubsection
+Singolo Bus
+\end_layout
+
+\begin_layout Itemize
+Banda totale 
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione 
+\begin_inset Formula $b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ring
+\end_layout
+
+\begin_layout Itemize
+Banda totale 
+\begin_inset Formula $p\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione 
+\begin_inset Formula $2b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Crossbar network
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+inserire immagine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda totale 
+\begin_inset Formula $\frac{\left(p\cdot\left(p-1\right)\right)\cdot b}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\left(\frac{p}{2}\right)^{2}\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+2D Mesh
+\end_layout
+
+\begin_layout Standard
+sia 
+\begin_inset Formula $N=\sqrt{p}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda totale 
+\begin_inset Formula $2N\left(N-1\right)\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione 
+\begin_inset Formula $N\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ipercubo
+\end_layout
+
+\begin_layout Standard
+sia 
+\begin_inset Formula $N=\mbox{n° di nodi vicini}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda totale 
+\begin_inset Formula $\frac{N\cdot p}{2}\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Banda di bisezione 
+\begin_inset Formula $2^{N-1}\cdot b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Modello di indirizzamento della memoria
+\end_layout
+
+\begin_layout Standard
+Come il multiprocessori condividono dati.
+\end_layout
+
+\begin_layout Subsubsection
+Organizzazione logica
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+inserire immagine confronto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Singola e logicamente condivisa.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+necessita una architettura di memoria condivisa.
+\end_layout
+
+\begin_layout Itemize
+può essere centralizzata o distribuita.
+\end_layout
+
+\begin_layout Itemize
+se è distribuita necessita di gestione coerenza.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Multipla, con spazi di indirizzamento privati.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+necessita di architettura message passing.
+\end_layout
+
+\begin_layout Itemize
+solitamente è distribuita.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Organizzazione fisica
+\end_layout
+
+\begin_layout Paragraph
+Centralizzata
+\end_layout
+
+\begin_layout Description
+UMA Uniform Memory Access time.
+\end_layout
+
+\begin_layout Standard
+Non importa quale processore richiede quale dato.
+\end_layout
+
+\begin_layout Paragraph
+Distribuita
+\end_layout
+
+\begin_layout Description
+NUMA Non Uniform Memory Access time.
+\end_layout
+
+\begin_layout Standard
+Il tempo di accesso dipende dalla locazione del processore e dall'indirizzo
+ del dato richiesto.
+\end_layout
+
+\begin_layout Subsubsection
+Esempi di architetture
+\end_layout
+
+\begin_layout Paragraph
+Centralized Shared Memory (CSM)
+\end_layout
+
+\begin_layout Standard
+È una architettura:
+\end_layout
+
+\begin_layout Itemize
+Centralizzata UMA.
+\end_layout
+
+\begin_layout Itemize
+Multiprocessore simmetrica (SMP).
+\end_layout
+
+\begin_layout Paragraph
+Small Scale MP Designs
+\end_layout
+
+\begin_layout Standard
+progetto multiprocessore di piccola scala.
+\end_layout
+
+\begin_layout Itemize
+CSM.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+...e quindi UMA.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Single bus.
+\end_layout
+
+\begin_layout Itemize
+Coerenza cache tramite snooping protocol (vedi 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Snooping"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Paragraph
+Distributed Shared Memory
+\end_layout
+
+\begin_layout Itemize
+NUMA.
+\end_layout
+
+\begin_layout Itemize
+da 8 a 32 core.
+\end_layout
+
+\begin_layout Itemize
+Coerenza cache tramite directory based protocol (vedi 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Directory-based"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Esiste la sottoclasse COMA (Cache Only Memory Access).
+\end_layout
+
+\begin_layout Paragraph
+Large scale MP Designs
+\end_layout
+
+\begin_layout Itemize
+DSM
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+...e quindi NUMA.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Interconnessioni scalabili.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+bassa latenza.
+\end_layout
+
+\begin_layout Itemize
+alta affidabilità.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Coerenza cache
+\end_layout
+
+\begin_layout Standard
+Deve fornire
+\end_layout
+
+\begin_layout Itemize
+Migrazione (movimento dei dati).
+\end_layout
+
+\begin_layout Itemize
+Duplicazione (replicare il dato).
+\end_layout
+
+\begin_layout Standard
+Come? 
+\end_layout
+
+\begin_layout Itemize
+Tenendo traccia dello stato di ogni blocco condiviso.
+\end_layout
+
+\begin_layout Standard
+La coerenza deve garantire che:
+\end_layout
+
+\begin_layout Itemize
+Tutte le letture di ogni processore devono restituire il valore scritto
+ più di recente.
+\end_layout
+
+\begin_layout Itemize
+Più scritture sulla stessa locazione di memoria effettuate da due processori
+ qualsiasi devono essere viste nello stesso ordine da tutti i processori.
+\end_layout
+
+\begin_layout Standard
+Due classi di protocolli:
+\end_layout
+
+\begin_layout Itemize
+Snooping
+\end_layout
+
+\begin_layout Itemize
+Directory based
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Snooping"
+
+\end_inset
+
+Snooping
+\end_layout
+
+\begin_layout Standard
+Ogni core ha conoscenza globale della condivisione cache, tiene traccia
+ dello stato di condivisione di ogni blocco di cache.
+\end_layout
+
+\begin_layout Standard
+Un controller monitora il bus analizzando le richieste.
+\end_layout
+
+\begin_layout Paragraph
+Write invalidate
+\end_layout
+
+\begin_layout Itemize
+Ogni scrittura di un blocco invalida le altre copie.
+\end_layout
+
+\begin_layout Itemize
+È il protocollo più comune.
+\end_layout
+
+\begin_layout Paragraph
+Write update
+\end_layout
+
+\begin_layout Itemize
+Ogni scrittura di un blocco aggiorna il valore delle altre copie.
+\end_layout
+
+\begin_layout Itemize
+È più costoso in termini di prestazioni per le write.
+\end_layout
+
+\begin_layout Itemize
+Meno utilizzato.
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Directory-based"
+
+\end_inset
+
+Directory based
+\end_layout
+
+\begin_layout Standard
+Lo stato condiviso di ogni blocco è mantenuto in un'unica locazione chiamata
+ directory.
+\end_layout
+
+\begin_layout Itemize
+Esiste un'unica directory per le CSM.
+\end_layout
+
+\begin_layout Itemize
+Multipla e distribuita per le DSM.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+una per ogni main memory.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Modelli di comunicazione
+\end_layout
+
+\begin_layout Itemize
+Shared Memory
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+architetture MIMD.
+\end_layout
+
+\begin_layout Itemize
+Comunicazione attraverso spazio di indirizzamento condiviso.
+\end_layout
+
+\begin_layout Itemize
+Conviene su piccola scala.
+\end_layout
+
+\begin_layout Itemize
+Vantaggi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Facile da programmare.
+\end_layout
+
+\begin_layout Itemize
+Facile da gestire (direttamente in hardware).
+\end_layout
+
+\begin_layout Itemize
+Bassa latenza.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ogni processore può indirizzare ogni locazione fisica, condivisa via time
+ sharing.
+\end_layout
+
+\begin_layout Itemize
+Fa uso di memoria virtuale per mappare memoria remota.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Message Passing
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Architetture MIMD.
+\end_layout
+
+\begin_layout Itemize
+Ogni processore ha uno spazio di memoria privato.
+\end_layout
+
+\begin_layout Itemize
+Vantaggi:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Meno hardware.
+\end_layout
+
+\begin_layout Itemize
+Solo le operazioni non locali sono costose 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+???
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Comunicazione I/O esplicita.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Send / Receive message.
+\end_layout
+
+\begin_layout Itemize
+Necessario esplicitare il buffer a cui accedere.
+\end_layout
+
+\begin_layout Itemize
+Può inviare solo ai vicini nella topologia.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solitamente sincrono.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Possibili estensioni con DMA e send non bloccanti.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Data parallel
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Architetture SIMD.
+\end_layout
+
+\begin_layout Itemize
+Un processore di controllo invia comandi in broadcast a multipli elementi
+ di esecuzione.
+\end_layout
+
+\begin_layout Itemize
+Necessita di sincronizzazione globale.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sono comuni i meccanismi a barriera.
+\end_layout
+
+\end_deeper
+\end_deeper
 \end_body
 \end_document
