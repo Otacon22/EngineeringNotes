@@ -11379,13 +11379,22 @@ name "sub:Snooping"
 Snooping
 \end_layout
 
-\begin_layout Standard
-Ogni core ha conoscenza globale della condivisione cache, tiene traccia
- dello stato di condivisione di ogni blocco di cache.
+\begin_layout Itemize
+Ogni core ha conoscenza globale della condivisione cache.
 \end_layout
 
-\begin_layout Standard
-Un controller monitora il bus analizzando le richieste.
+\begin_deeper
+\begin_layout Itemize
+Tiene traccia dello stato di condivisione di ogni blocco di cache.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+I controller monitorano il bus analizzando le richieste.
+\end_layout
+
+\begin_layout Itemize
+La comunicazione avviene in broadcast.
 \end_layout
 
 \begin_layout Paragraph
@@ -11398,6 +11407,63 @@ Ogni scrittura di un blocco invalida le altre copie.
 
 \begin_layout Itemize
 È il protocollo più comune.
+\end_layout
+
+\begin_layout Itemize
+Sistema di gestione blocchi MSI
+\end_layout
+
+\begin_layout Standard
+Ogni blocco di memoria può essere in uno dei seguenti tre stati:
+\end_layout
+
+\begin_layout Itemize
+Modified
+\end_layout
+
+\begin_layout Itemize
+Shared
+\end_layout
+
+\begin_layout Itemize
+In nessuna cache
+\end_layout
+
+\begin_layout Standard
+Ogni blocco di cache può essere in uno dei seguenti tre stati:
+\end_layout
+
+\begin_layout Itemize
+Modified
+\end_layout
+
+\begin_layout Itemize
+Shared
+\end_layout
+
+\begin_layout Itemize
+Invalidate
+\end_layout
+
+\begin_layout Standard
+Con la variante MESI si introduce lo stato Exclusive, nel quale si trova
+ un blocco valido e aggiornato nella cache e nessuna copia di esso esiste
+ in un'altra cache.
+ Quando un blocco in E viene modificato non è necessario inviare notifiche
+ di invalidazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+inserire FSM
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -11416,6 +11482,38 @@ Ogni scrittura di un blocco aggiorna il valore delle altre copie.
 Meno utilizzato.
 \end_layout
 
+\begin_layout Paragraph
+Confronto tra write invalidate e write update
+\end_layout
+
+\begin_layout Itemize
+write invalidate
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+richiede una transazione per write
+\end_layout
+
+\begin_layout Itemize
+usa località spaziale
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+write update
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+genera meno latenza tra write e read.
+\end_layout
+
+\begin_layout Itemize
+aumenta il consumo di banda per ridurre la latenza.
+\end_layout
+
+\end_deeper
 \begin_layout Subsubsection
 \begin_inset CommandInset label
 LatexCommand label
@@ -11449,11 +11547,10 @@ una per ogni main memory.
 Modelli di comunicazione
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Paragraph
 Shared Memory
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 architetture MIMD.
 \end_layout
@@ -11493,12 +11590,10 @@ Ogni processore può indirizzare ogni locazione fisica, condivisa via time
 Fa uso di memoria virtuale per mappare memoria remota.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Paragraph
 Message Passing
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Architetture MIMD.
 \end_layout
@@ -11559,12 +11654,10 @@ Possibili estensioni con DMA e send non bloccanti.
 \end_layout
 
 \end_deeper
-\end_deeper
-\begin_layout Itemize
+\begin_layout Paragraph
 Data parallel
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Architetture SIMD.
 \end_layout
@@ -11583,7 +11676,6 @@ Necessita di sincronizzazione globale.
 Sono comuni i meccanismi a barriera.
 \end_layout
 
-\end_deeper
 \end_deeper
 \end_body
 \end_document
