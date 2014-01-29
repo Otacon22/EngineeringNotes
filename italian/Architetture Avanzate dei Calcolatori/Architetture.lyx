@@ -6107,7 +6107,7 @@ in-order commit
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 058.png
+	filename svg/058.svg
 	scale 40
 
 \end_inset
@@ -6218,8 +6218,8 @@ Non ci sono control hazards.
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 060.png
-	scale 40
+	filename svg/060.svg
+	scale 50
 
 \end_inset
 
@@ -11028,12 +11028,10 @@ Crossbar network
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-inserire immagine
-\end_layout
+\begin_inset Graphics
+	filename svg/Multiproc_topol_crossbarNet.svg
+	lyxscale 50
+	scale 50
 
 \end_inset
 
@@ -11074,6 +11072,17 @@ Banda di bisezione
 \end_layout
 
 \begin_layout Standard
+\begin_inset Graphics
+	filename svg/Multiproc_topol_2dMesh.svg
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 sia 
 \begin_inset Formula $N=\sqrt{p}$
 \end_inset
@@ -11099,6 +11108,17 @@ Banda di bisezione
 
 \begin_layout Subsubsection
 Ipercubo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename svg/Multiproc_topol_hypercube.svg
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11458,7 +11478,7 @@ Con la variante MESI si introduce lo stato Exclusive, nel quale si trova
 status open
 
 \begin_layout Plain Layout
-inserire FSM
+inserire FSM di esempio
 \end_layout
 
 \end_inset
