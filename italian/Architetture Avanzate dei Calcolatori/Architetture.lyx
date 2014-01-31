@@ -11638,7 +11638,7 @@ Modified.
 \end_layout
 
 \begin_layout Standard
-Ogni blocco in cache può essere nelo stato:
+Ogni blocco in cache può essere nello stato:
 \end_layout
 
 \begin_layout Itemize
@@ -11758,7 +11758,7 @@ Owner
 \emph default
 .
  Specifica indirizzo.
- Richiede valore in codivisione.
+ Richiede valore in condivisione.
 \end_layout
 
 \begin_layout Description
