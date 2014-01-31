@@ -8430,6 +8430,438 @@ non è necessario predire il risultato del branch per un if.
 la dimensione del blocco basico aumenta.
 \end_layout
 
+\begin_layout Section
+Confronto architetture multiple issue
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="middle" width="12page%">
+<column alignment="center" valignment="middle" width="12page%">
+<column alignment="center" valignment="middle" width="12page%">
+<column alignment="center" valignment="middle" width="12page%">
+<column alignment="center" valignment="middle" width="15page%">
+<column alignment="center" valignment="middle" width="15page%">
+<row>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nome Architettura
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Struttura Issue
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Gestione Conflitti
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Scheduling
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Principali Carateristiche
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Esempi di Implementazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Superscalare (stiatico)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dinamica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hardware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Esecuzione in order
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sistemi embedded: MIPS, ARM (anche ARM Coretex A8)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Superscalare (dinamico)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dinamica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hardware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dinamico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Esecuzione 
+\end_layout
+
+\begin_layout Plain Layout
+in parte out of order,
+\end_layout
+
+\begin_layout Plain Layout
+nessuna speculazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Nessuna al momento
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Superscalare (speculativo)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dinamica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hardware
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dinamico con Speculazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Esecuzione 
+\end_layout
+
+\begin_layout Plain Layout
+out of order 
+\end_layout
+
+\begin_layout Plain Layout
+con speculazione
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Intel Core i3, i5, i7; 
+\end_layout
+
+\begin_layout Plain Layout
+AMD Phenom; 
+\end_layout
+
+\begin_layout Plain Layout
+IBM Power 7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+VLIW / LIW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Principalmente Software
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Statico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tutti gli hazard 
+\end_layout
+
+\begin_layout Plain Layout
+sono identificati 
+\end_layout
+
+\begin_layout Plain Layout
+e segnalati (implicitamente) 
+\end_layout
+
+\begin_layout Plain Layout
+dal compilatore
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+sistemi signal processing: 
+\end_layout
+
+\begin_layout Plain Layout
+TI C6x
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+EPIC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Principalmente Statica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Principalmente Software
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Per lo più Statico
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tutti gli hazard 
+\end_layout
+
+\begin_layout Plain Layout
+sono identificati 
+\end_layout
+
+\begin_layout Plain Layout
+e segnalati esplicitamente 
+\end_layout
+
+\begin_layout Plain Layout
+dal compilatore
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Itanium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ 
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
