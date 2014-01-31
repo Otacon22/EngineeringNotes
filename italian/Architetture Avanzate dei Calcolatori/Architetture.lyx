@@ -11399,6 +11399,14 @@ name "sub:Snooping"
 Snooping
 \end_layout
 
+\begin_layout Standard
+Sistemi 
+\emph on
+transaction based
+\emph default
+.
+\end_layout
+
 \begin_layout Itemize
 Ogni core ha conoscenza globale della condivisione cache.
 \end_layout
@@ -11545,6 +11553,14 @@ Directory based
 \end_layout
 
 \begin_layout Standard
+Sistemi 
+\emph on
+message oriented
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
 Lo stato condiviso di ogni blocco è mantenuto in un'unica locazione chiamata
  directory.
 \end_layout
@@ -11559,10 +11575,228 @@ Multipla e distribuita per le DSM.
 
 \begin_deeper
 \begin_layout Itemize
-una per ogni main memory.
+Una per ogni main memory.
+\end_layout
+
+\begin_layout Itemize
+Entry distribuite e 
+\series bold
+non replicate
+\series default
+.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Niente broadcast.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Comunicazione point to point tra i processori.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Scalano
+\series default
+ meglio rispetto ai protocolli snooping.
+\end_layout
+
+\begin_layout Standard
+Ogni entry contiene informazioni riguardo:
+\end_layout
+
+\begin_layout Itemize
+Stato del blocco.
+\end_layout
+
+\begin_layout Itemize
+Quali processori hanno una copia del blocco.
+\end_layout
+
+\begin_layout Itemize
+Quale processore è il proprietario del blocco.
+\end_layout
+
+\begin_layout Standard
+Ogni blocco nella directory può essere nello stato:
+\end_layout
+
+\begin_layout Itemize
+Uncached.
+\end_layout
+
+\begin_layout Itemize
+Shared.
+\end_layout
+
+\begin_layout Itemize
+Modified.
+\end_layout
+
+\begin_layout Standard
+Ogni blocco in cache può essere nelo stato:
+\end_layout
+
+\begin_layout Itemize
+Invalid.
+\end_layout
+
+\begin_layout Itemize
+Shared.
+\end_layout
+
+\begin_layout Itemize
+Modified.
+\end_layout
+
+\begin_layout Standard
+Le operazioni fondamentali da gestire sono:
+\end_layout
+
+\begin_layout Itemize
+Read miss.
+\end_layout
+
+\begin_layout Itemize
+Write su blocco shared.
+\end_layout
+
+\begin_layout Paragraph
+Tipi di messaggio
+\end_layout
+
+\begin_layout Description
+read
+\begin_inset space ~
+\end_inset
+
+miss da 
+\emph on
+Local
+\emph default
+ a 
+\emph on
+Home dir
+\emph default
+.
+ Specifica id sorgente e indirizzo.
+ Richiede lettura.
+\end_layout
+
+\begin_layout Description
+write
+\begin_inset space ~
+\end_inset
+
+miss da 
+\emph on
+Local
+\emph default
+ a 
+\emph on
+Home dir
+\emph default
+.
+ Specifica id sorgente e indirizzo.
+ Richiede scrittura.
+\end_layout
+
+\begin_layout Description
+data
+\begin_inset space ~
+\end_inset
+
+value
+\begin_inset space ~
+\end_inset
+
+reply da 
+\emph on
+Home dir
+\emph default
+ a 
+\emph on
+Local
+\emph default
+.
+ Fornisce valore.
+\end_layout
+
+\begin_layout Description
+invalidate da 
+\emph on
+Local
+\emph default
+ a 
+\emph on
+Home dir 
+\emph default
+oppure da 
+\emph on
+Home dir
+\emph default
+ a 
+\emph on
+Owner
+\emph default
+.
+ Specifica indirizzo da invalidare.
+\end_layout
+
+\begin_layout Description
+fetch da 
+\emph on
+Home dir
+\emph default
+ a 
+\emph on
+Owner
+\emph default
+.
+ Specifica indirizzo.
+ Richiede valore in codivisione.
+\end_layout
+
+\begin_layout Description
+fetch/inv da 
+\emph on
+Home dir
+\emph default
+ a 
+\emph on
+Owner
+\emph default
+.
+ Specifica indirizzo.
+ Richiede di acquisire valore e diritto di proprietà.
+\end_layout
+
+\begin_layout Description
+data
+\begin_inset space ~
+\end_inset
+
+write
+\begin_inset space ~
+\end_inset
+
+back da 
+\emph on
+Owner
+\emph default
+ a 
+\emph on
+Home dir
+\emph default
+.
+ Specifica indirizzo e valore.
+ Scrive un valore nella home.
+\end_layout
+
 \begin_layout Subsubsection
 Modelli di comunicazione
 \end_layout
