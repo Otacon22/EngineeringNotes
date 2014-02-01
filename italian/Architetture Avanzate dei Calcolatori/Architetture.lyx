@@ -13029,5 +13029,75 @@ Difficile identificare cosa funziona e cosa no.
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Prestazioni della cache
+\end_layout
+
+\begin_layout Subsubsection
+AMAT
+\end_layout
+
+\begin_layout Description
+AMAT Avarage Memory Access Time.
+ Tempo medio di accesso alla memoria.
+ Principale metrica per misurare le performance della memoria.
+\begin_inset Formula 
+\[
+AMAT=\left(Hit\, Rate\cdot Hit\, Time\right)+\left(Miss\, Rate\cdot Miss\, Time\right)=Hit\, Time+Miss\, Rate\cdot Miss\, Penalty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Alcune definizioni
+\end_layout
+
+\begin_layout Description
+Hit
+\begin_inset space ~
+\end_inset
+
+Time tempo necessario a recuperare un valore presente in cache.
+\end_layout
+
+\begin_layout Description
+Miss
+\begin_inset space ~
+\end_inset
+
+Time tempo necessario a recuperare un valore non in cache.
+\end_layout
+
+\begin_layout Description
+Miss
+\begin_inset space ~
+\end_inset
+
+Penalty 
+\begin_inset Formula $=Miss\, Time-Hit\, Time$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Local
+\begin_inset space ~
+\end_inset
+
+miss miss a livello della cache considerata.
+\end_layout
+
+\begin_layout Description
+Global
+\begin_inset space ~
+\end_inset
+
+miss miss in tutti i livelli di cache.
+\end_layout
+
 \end_body
 \end_document
