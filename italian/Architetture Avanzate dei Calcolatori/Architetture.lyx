@@ -12702,5 +12702,328 @@ Sono comuni i meccanismi a barriera.
 \end_layout
 
 \end_deeper
+\begin_layout Part
+Valutazione delle prestazioni
+\end_layout
+
+\begin_layout Section
+Confrontare diverse esecuzioni
+\end_layout
+
+\begin_layout Itemize
+Base di confronto.
+\end_layout
+
+\begin_layout Itemize
+Metriche di valutazione.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Throughput.
+\end_layout
+
+\begin_layout Itemize
+Latenza.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Formule
+\end_layout
+
+\begin_layout Standard
+Per ottenere i corrispondenti asintotici, annullare il parametro 
+\begin_inset Formula $\#cicli_{warm\, up}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Per ottenere i corrispondenti ideali per l'architettura, annullare i parametri
+ 
+\begin_inset Formula $\#stalli$
+\end_inset
+
+, 
+\begin_inset Formula $\#cicli_{warm\, up}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+IPC, CPI
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+IPC=\frac{Instruction\, Count}{\#cicli_{CLK}+\#stalli+\#cicli_{warm\, up}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPI=\frac{1}{IPC}=\frac{\#cicli_{CLK}+\#stalli+\#cicli_{warm\, up}}{IC}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Speedup
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Speedup=\frac{tempo\, esecuzione_{B}}{tempo\, esecuzione_{A}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Chi è più veloce?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A\mbox{ è }n\%\mbox{ più veloce di }B\Leftrightarrow\frac{tempo\, esecuzione_{B}}{tempo\, esecuzione_{A}}=1+\frac{n}{100}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+CPU time
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPU\, time=\frac{\#cicli_{CLK}}{f_{CLK}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+CPU\, time=IC\cdot CPI\cdot T_{CLK}=\frac{IC\cdot CPI}{f_{CLK}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+MIPS
+\end_layout
+
+\begin_layout Standard
+Millions of Instruction Per Second
+\begin_inset Formula 
+\[
+MIPS=\frac{IC}{tempo\, esecuzione\cdot10^{6}}=\frac{f_{CLK}}{CPI\cdot10^{6}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Quali metriche utilizzare
+\end_layout
+
+\begin_layout Standard
+È possibile misurare le performance a diversi livelli, dall'hardware del
+ singolo transistor all'ambiente applicativo mese per mese.
+ I primi sono troppo distanti dal reale impiego a cui è destinato il processore;
+ i secondi sono troppo specifici e di complicata misurazione.
+ Una ragionevole via di mezzo sta nel calcolare il parametro MIPS.
+\end_layout
+
+\begin_layout Subsection
+Legge di Amdahl
+\end_layout
+
+\begin_layout Standard
+Supponendo di introdurre un miglioramento 
+\begin_inset Formula $E$
+\end_inset
+
+ che riduce di 
+\begin_inset Formula $S$
+\end_inset
+
+ il tempo di esecuzione limitatamente alla frazione di codice 
+\begin_inset Formula $F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+tempo\, esecuzione_{con\, E}=\left(\left(1-F\right)+\frac{F}{S}\right)\cdot tempo\, esecuzione_{senza\, E}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Speedup_{con\, E}=\frac{1}{\left(1-F\right)+\frac{F}{S}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Basi di confronto
+\end_layout
+
+\begin_layout Subsubsection
+Microbenchmarks
+\end_layout
+
+\begin_layout Itemize
+Pro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+si vedono subito picchi di performance e colli di bottiglia.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Contro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+molto poco significativo.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Nucleo dell'applicazione
+\end_layout
+
+\begin_layout Itemize
+Pro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+facile da eseguire anche in fasi preliminari di progettazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Contro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+facile avere risultati fuorvianti.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Applicazione intera
+\end_layout
+
+\begin_layout Itemize
+Pro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Portabile.
+\end_layout
+
+\begin_layout Itemize
+Molto usato.
+\end_layout
+
+\begin_layout Itemize
+I miglioramenti misurati sono reali.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Contro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non completamente rappresentativo.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+A carico effettivo
+\end_layout
+
+\begin_layout Itemize
+Pro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rappresentativo della situazione.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Contro:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Molto specifico.
+\end_layout
+
+\begin_layout Itemize
+Difficile da eseguire, misurare.
+\end_layout
+
+\begin_layout Itemize
+Non portabile.
+\end_layout
+
+\begin_layout Itemize
+Difficile identificare cosa funziona e cosa no.
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
