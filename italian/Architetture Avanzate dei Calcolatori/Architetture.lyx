@@ -11277,12 +11277,351 @@ Una eccezione non viene raccolta fino a quando non viene eseguito il commit
  Questo garantisce una gestione precisa delle eccezioni.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part
-Multiprocessori
+Oltre ILP
 \end_layout
 
 \begin_layout Section
-Introduzione ai multiprocessori
+TLP e DLP
+\end_layout
+
+\begin_layout Description
+DLP Data Level Parallelism.
+ Eseguire in parallelo la 
+\bar under
+stessa istruzione su array di dati
+\bar default
+ tra loro indipendenti.
+\end_layout
+
+\begin_layout Description
+TLP Thread Level Parallelism.
+ Sfruttare 
+\bar under
+più flussi di istruzioni indipendenti alla volta
+\bar default
+ (multithreading).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Multithreading
+\end_layout
+
+\begin_layout Standard
+Funziona bene quando la quantità di parallelismo intrinseco nel programma
+ diventa collo di bottiglia.
+\end_layout
+
+\begin_layout Standard
+Il multithreading riduce il tempo di esecuzione più di quanto non aumenti
+ il consumo energetico.
+\end_layout
+
+\begin_layout Subsubsection
+I thread
+\end_layout
+
+\begin_layout Standard
+Vengono creati:
+\end_layout
+
+\begin_layout Itemize
+Esplicitamente dal programmatore.
+\end_layout
+
+\begin_layout Itemize
+Implicitamente dal sistema operativo.
+\end_layout
+
+\begin_layout Description
+Granularità quantità di computazione assegnata ad un thread.
+\end_layout
+
+\begin_layout Itemize
+Thread a granularità 
+\series bold
+fine
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+contengono solo alcune istruzioni.
+\end_layout
+
+\begin_layout Itemize
+ottimali per 
+\emph on
+multithreading uniprocessore
+\emph default
+ (
+\begin_inset Formula $1$
+\end_inset
+
+ processore, 
+\begin_inset Formula $n$
+\end_inset
+
+ thread).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Thread a granularità 
+\series bold
+grossolana
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+contengono centinaia o migliaia di istruzioni.
+\end_layout
+
+\begin_layout Itemize
+ottimali per 
+\emph on
+multithreading multiprocessore
+\emph default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Cosa si introduce
+\end_layout
+
+\begin_layout Itemize
+Multipli PC
+\end_layout
+
+\begin_layout Itemize
+Multipli RF
+\end_layout
+
+\begin_layout Itemize
+Memoria Virtuale
+\end_layout
+
+\begin_layout Itemize
+Thread context switch
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+rapido e più veloce del process context switch
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\bar under
+Non si replicano le FU
+\bar default
+.
+ Il multithreading consente di condividere le FU di uno stesso processore
+ tra diversi thread.
+ Si suppone comunque che il processore condiviso abbia diverse FU che possono
+ lavorare in parallelo.
+\end_layout
+
+\begin_layout Subsection
+Tipologie di TLP
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Multithreading a granularità grossolana
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Quando un thread si ferma per uno stallo, un altro thread viene eseguito.
+\end_layout
+
+\begin_layout Itemize
+Lunghi stalli (per esempio cache miss) vengono nascosti dal context switch.
+\end_layout
+
+\begin_layout Itemize
+Overhead di context switch
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ad ogni context switch è necessario attendere lo svuotamento della pipeline.
+\end_layout
+
+\begin_layout Itemize
+dopo ogni context switch ci sono alcuni cicli idle di penalità di ripresa.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Conviene quando 
+\begin_inset Formula $\mbox{stall}_{\mbox{time}}\gg\mbox{pipeline refill}_{\mbox{time}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Mutlithreading a granularità fine
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Si passa da un thread all'altro ad ogni istruzione.
+\end_layout
+
+\begin_layout Itemize
+Politica round robin per decidere da quale thread fare issue.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+ad eccezione dei thread in stallo (per evitare 0 issue).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Rallenta l'esecuzione dei singoli 
+\begin_inset Formula $n$
+\end_inset
+
+ thread ma aumenta il throughput.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $CPI_{thread}=n\times$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $CPI_{core}=1\times$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Essendo i core molto semplici, è facile combinarli in una architettura multicore.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Solitamente ogni core ha una architettura single issue o 
+\begin_inset Formula $2$
+\end_inset
+
+issue.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+
+\series bold
+Simultaneous multithreading
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Diversi thread mandano istruzioni in issue nello stesso ciclo di clock.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SMT
+\series default
+ = TLP + ILP
+\end_layout
+
+\begin_layout Itemize
+Tramite 
+\emph on
+register renaming
+\emph default
+ si riesce a non mischiare i dati.
+\end_layout
+
+\begin_layout Itemize
+La risoluzione delle dipendenze è lasciata ad uno scheduler dinamico.
+\end_layout
+
+\begin_layout Itemize
+Cerca di sfruttare al massimo le risorse hardware a disposizione.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tipologia di TLP maggiormente diffusa.
+\end_layout
+
+\begin_layout Itemize
+Processori di questo tipo riescono ad ottenere buoni speedup ad efficienza
+ energetica pressoché invariata.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Necessita di una unità di fetch migliorata, infatti deve:
+\end_layout
+
+\begin_layout Itemize
+Caricare istruzioni da più thread.
+\end_layout
+
+\begin_layout Itemize
+Scegliere da quale thread caricare.
+\end_layout
+
+\begin_layout Standard
+Possono essere combinati più core SMT in un unico processore.
+\end_layout
+
+\begin_layout Itemize
+la tecnologia 
+\emph on
+Intel hyperthreading
+\emph default
+ funziona esattamente così.
+\end_layout
+
+\begin_layout Section
+Multiprocessori
 \end_layout
 
 \begin_layout Standard
