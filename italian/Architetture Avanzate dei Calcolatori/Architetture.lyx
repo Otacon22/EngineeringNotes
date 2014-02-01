@@ -13038,7 +13038,7 @@ AMAT
 \end_layout
 
 \begin_layout Description
-AMAT Avarage Memory Access Time.
+AMAT Average Memory Access Time.
  Tempo medio di accesso alla memoria.
  Principale metrica per misurare le performance della memoria.
 \begin_inset Formula 
@@ -13049,6 +13049,11 @@ AMAT=\left(Hit\, Rate\cdot Hit\, Time\right)+\left(Miss\, Rate\cdot Miss\, Time\
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Si può poi verificare come variazioni di questo parametro influenzino il
+ CPU time.
 \end_layout
 
 \begin_layout Subsubsection
