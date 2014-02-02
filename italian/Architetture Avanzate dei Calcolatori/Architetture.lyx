@@ -452,12 +452,12 @@ Formato R per istruzioni ALU Register-Register
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="12col%">
 <column alignment="center" valignment="top" width="10col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
 <column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="12col%">
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -637,9 +637,9 @@ Formato I per istruzioni LOAD/STORE
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="12col%">
 <column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="10col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -671,7 +671,7 @@ rt
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="32col%">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="29.5col%">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -803,9 +803,9 @@ Formato I per istruzioni immediate ALU
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="12col%">
 <column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="10col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -837,7 +837,7 @@ rt
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="32col%">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="29.5col%">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -976,9 +976,9 @@ Formato I per istruzioni di branch condizionale
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="12col%">
 <column alignment="center" valignment="top" width="10col%">
-<column alignment="center" valignment="top" width="10col%">
+<column alignment="center" valignment="top" width="7.5col%">
+<column alignment="center" valignment="top" width="7.5col%">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -1010,7 +1010,7 @@ rt
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="32col%">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="29.5col%">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1142,7 +1142,7 @@ Formato J per i Jump incondizionati
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="12col%">
+<column alignment="center" valignment="top" width="10col%">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
 <column alignment="center" valignment="top" width="0">
@@ -1158,7 +1158,7 @@ Opcode
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="52col%">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" width="49col%">
 \begin_inset Text
 
 \begin_layout Plain Layout
