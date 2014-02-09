@@ -12547,7 +12547,7 @@ Iniziamo a rivedere la struttura alla base di Internet.
 \end_layout
 
 \begin_layout Standard
-La connettività ad Internet viene fornita da una serie di formitori chiamati
+La connettività ad Internet viene fornita da una serie di fornitori chiamati
  
 \emph on
 Internet Service Providers
@@ -12653,7 +12653,7 @@ Sono stati definiti nella RFC 1930 come
 \begin_inset Quotes eld
 \end_inset
 
-un guppo connesso di uno o più prefissi IP gestiti da una o più operatori
+un guppo connesso di uno o più prefissi IP gestiti da uno o più operatori
  di rete che hanno una politica di routing singola e ben definita
 \begin_inset Quotes erd
 \end_inset
@@ -12666,8 +12666,9 @@ In altre parole:
 \end_layout
 
 \begin_layout Itemize
-È un insieme di sottoreti controllate in modo consistente, connesse da router
- omogenei con una unica entità amministrativa e un unico protocollo di routing
+È un insieme di sotto-reti controllate in modo consistente, connesse da
+ router omogenei con una unica entità amministrativa e un unico protocollo
+ di routing
 \end_layout
 
 \begin_layout Itemize
@@ -12927,7 +12928,7 @@ Open Shortest Path First
 \end_layout
 
 \begin_layout Itemize
-Ogni router inviare informazioni riguardo ai propri links adiacenti inviando
+Ogni router invia informazioni riguardo ai propri links adiacenti inviando
  in 
 \emph on
 selective 
@@ -12956,17 +12957,17 @@ I pacchetti sono inviati in selective flooding cioè:
 
 \begin_deeper
 \begin_layout Itemize
-Si reinvia un pacchetto su tutte le interfaccie a parte quella dove lo si
- è ricevuto
+Si invia un pacchetto su tutte le interfacce a parte quella dove lo si è
+ ricevuto
 \end_layout
 
 \begin_layout Itemize
-Il router memorizza i pacchetti già inviati per evitare di reinviarli e
+Il router memorizza i pacchetti già inviati per evitare di re-inviarli e
  creare loop
 \end_layout
 
 \begin_layout Itemize
-Non si reinvia un pacchetto che contiene informazioni già inviate
+Non si re-invia un pacchetto che contiene informazioni già inviate
 \end_layout
 
 \end_deeper
@@ -13022,7 +13023,7 @@ Link State Advertisements
 
 \end_deeper
 \begin_layout Section*
-Border Gateway Protocol
+BGP - Border Gateway Protocol
 \end_layout
 
 \begin_layout Standard
@@ -13049,15 +13050,7 @@ BGP4
  Questa RFC è frutto di una serie di revisioni che sono iniziate dalla prima
  RFC del 1989.
  La RFC di BGP è in continua revisione (vista la sua fondamentale importanza).
- L'
-\begin_inset Quotes erd
-\end_inset
-
-ultimo
-\begin_inset Quotes erd
-\end_inset
-
- aggiornamento è la RFC 6286 del 2011.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -13113,7 +13106,7 @@ Clienti collegati ad uno o più ISP.
 \end_layout
 
 \begin_layout Itemize
-Providers di transito che intercollegano più ISP tra loro.
+Providers di transito che inter-collegano più ISP tra loro.
 \end_layout
 
 \begin_layout Itemize
@@ -13173,8 +13166,12 @@ IBGP viene utilizzato perché all'interno di un AS possono esserci più routers
 
 \end_deeper
 \begin_layout Itemize
-Problema: come colleghiamo due speakers via TCP se le informazioni di routing
- non sono ancora propagate? Solitamente i router BGP di frontiera sono collegati
+
+\series bold
+Problema
+\series default
+: come colleghiamo due speakers via TCP se le informazioni di routing non
+ sono ancora propagate? Solitamente i router BGP di frontiera sono collegati
  direttamente tra di loro e possono comunicare direttamente.
 \end_layout
 
@@ -13280,7 +13277,7 @@ Sfrutta sessioni affidabili per scambiare le informazioni.
 
 \begin_layout Itemize
 La rete viene rappresentata come un albero dove ogni nodo rappresenta un
- AS (identificato dal suo identificativo)
+ AS (identificato dal suo AS number)
 \end_layout
 
 \begin_layout Itemize
@@ -13351,7 +13348,7 @@ Procedure funzionali
 \begin_layout Itemize
 
 \series bold
-Acqusizione della rete
+Acquisizione della rete
 \end_layout
 
 \begin_deeper
@@ -13480,7 +13477,7 @@ Solo dei sottoinsiemi degli aggiornamenti ricevuti diventano effettivamente
 \end_layout
 
 \begin_layout Itemize
-I sottoinsiemei vengono selezionati in base ad una serie di policy di selezione
+I sottoinsiemi vengono selezionati in base ad una serie di policy di selezione
 \end_layout
 
 \end_deeper
@@ -13556,7 +13553,7 @@ Output policy engine
 
 \begin_deeper
 \begin_layout Itemize
-Si filtra l'insieme di aggiornamenti trovatinella tabella di routing IP,
+Si filtra l'insieme di aggiornamenti trovati nella tabella di routing IP,
  eliminando le rotte che non devono essere trasmesse pubblicamente.
 \end_layout
 
@@ -13618,7 +13615,7 @@ Ricevo
 updates
 \series default
 \emph default
- dai vicini e li memorizzo nell 
+ dai vicini e li memorizzo nel 
 \emph on
 Adj-RIBs-In
 \end_layout
@@ -13759,8 +13756,16 @@ Update
 \series bold
 Notification
 \series default
-: Viene utilizzato per chiudere in modo corretto una sessione (altrimenti
- una sessione viene chiusa quando non arrivano messaggi per un po' di tempo).
+: Viene utilizzato per 
+\bar under
+chiudere
+\bar default
+ in modo corretto 
+\bar under
+una sessione
+\bar default
+ (altrimenti una sessione viene chiusa quando non arrivano messaggi per
+ un po' di tempo).
 \end_layout
 
 \begin_layout Itemize
@@ -13776,7 +13781,7 @@ Keep-alive
 \series bold
 Route-refresh
 \series default
-: richiede al vicino BGP di reinviare gli update di tutti i prefissi.
+: richiede al vicino BGP di re-inviare gli update di tutti i prefissi.
 \end_layout
 
 \end_deeper
@@ -13833,6 +13838,7 @@ Length
 \begin_layout Itemize
 
 \series bold
+\bar under
 Path attributes
 \end_layout
 
@@ -13983,7 +13989,7 @@ AS_PATH
 \begin_deeper
 \begin_layout Itemize
 Dice la sequenza di AS che devono essere attraversati per raggiungere il
- prefisso della destinazione (utilizzato il percorso anche per evitare loops
+ prefisso della destinazione (utilizzato il percorso anche per evitare loop
  come già detto)
 \end_layout
 
@@ -14014,8 +14020,8 @@ Route aggregation
 
 \begin_deeper
 \begin_layout Itemize
-Ogni interlocautore BGP può decidere di aggregare più rotte e propagare
- il singolo annuncio (
+Ogni interlocutore BGP può decidere di aggregare più rotte e propagare il
+ singolo annuncio (
 \emph on
 prefix aggregation
 \emph default
@@ -14072,7 +14078,7 @@ Utile per fare load balancing
 \begin_layout Itemize
 Ha senso tra due AS collegati con più link.
  A collegato a B con i link 1 e 2.
- A indica a B che in base as A, B dovrebbe utilizzare il link 1 quando invia
+ A indica a B che in base ad A, B dovrebbe utilizzare il link 1 quando invia
  traffico ad A.
 \end_layout
 
@@ -14172,7 +14178,7 @@ well-known
 
 \begin_deeper
 \begin_layout Itemize
-Mandatory well-known: as-path,next-hop,origin
+Mandatory well-known: as-path, next-hop, origin
 \end_layout
 
 \begin_layout Itemize
@@ -14215,7 +14221,7 @@ migliore
 \end_inset
 
 .
- Il processo decisionare è basato sulla valutazione degli attributi BGP
+ Il processo decisionale è basato sulla valutazione degli attributi BGP
  ed è totalmente deterministico (non vengono prese scelte casuali)
 \end_layout
 
@@ -14236,7 +14242,7 @@ Best Route Determination
 \end_layout
 
 \begin_layout Standard
-Se, dopo avter filtrato, più di una rotta esiste, allora ne scelgo una in
+Se, dopo aver filtrato, più di una rotta esiste, allora ne scelgo una in
  questo ordine di preferenza:
 \end_layout
 
@@ -14277,8 +14283,8 @@ hot potato
 \end_layout
 
 \begin_layout Enumerate
-Preferisco la rotta che arriva dall'interlocuatore con il più basso router
- ID (il router ID è l'ip più alto del router)
+Preferisco la rotta che arriva dall'interlocutore con il più basso router
+ ID (il router ID è l'IP più alto del router)
 \end_layout
 
 \begin_layout Subsection*
@@ -14286,7 +14292,7 @@ Policy di Import/Export
 \end_layout
 
 \begin_layout Itemize
-Il routing tra AS dipende da accordi economici tra gli AS
+Il routing tra AS dipende da accordi economici tra gli AS.
 \end_layout
 
 \begin_layout Itemize
@@ -14392,8 +14398,8 @@ L'informazione è anche interamente comunicata al protocollo IGP di AS3
 \end_layout
 
 \begin_layout Itemize
-Il roter BGP ristribuite le informazioni a AS2 tramite EBGP prima che tutti
- i router IGP di AS3 siano aggiornati
+Il roter BGP ridistribuisce le informazioni a AS2 tramite EBGP prima che
+ tutti i router IGP di AS3 siano aggiornati
 \end_layout
 
 \begin_layout Itemize
@@ -14446,7 +14452,7 @@ redistribute
 \end_layout
 
 \begin_layout Itemize
-Ci sono problemi per la propagazione di errori, indirizzi privati trasmetti
+Ci sono problemi per la propagazione di errori, indirizzi privati trasmessi
  in pubblico
 \end_layout
 
