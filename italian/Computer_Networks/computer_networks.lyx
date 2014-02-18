@@ -40116,8 +40116,72 @@ NAPT trasforma Internet da una rete ad assenza di connessione
 \end_layout
 
 \begin_layout Itemize
-Solitamente ogni host collegato su Internet può effettuare delle connessioni
- a dei server, oppure 
+L'header IPv4 e quello TCP/UDP/ICMP contengono al loro interno dei 
+\series bold
+campi di checksum
+\series default
+.
+ Nell'header IPv4 andiamo a modificare sicuramente un indirizzo IP per implement
+are il NAPT, quindi dovremo ricalcolare il checksum dell'header IP.
+ TCP e ICMP contengono inoltre dei checksum di tutto il pacchetto, non solo
+ l'header.
+ Questi checksum comprendono anche una parte dell'header IP, quindi dovranno
+ essere ricalcolati.
+ Il router che si occupa di fare NAPT finirà per avere molto lavoro da fare
+ per poter calcolare tutti i checksums di tutti i pacchetti a velocità 
+\emph on
+wire-speed
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+Se un 
+\series bold
+pacchetto IPv4 viene frammentato
+\series default
+, il primo frammento conterrà l'header TCP/UDP/ICMP, ma gli altri frammenti
+ no.
+ Per poter identificare il pacchetto ed applicare una traduzione corretta,
+ il NAPT dovrà tenere traccia del 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Fragment Identifier
+\begin_inset Quotes erd
+\end_inset
+
+
+\emph default
+ di ogni pacchetto frammentato.
+ Se due host con gli stessi indirizzi IP comunicano tra di loro generando
+ due pacchetti frammentati con lo stesso 
+\emph on
+Fragment Identifier
+\emph default
+, il NAPT non sarà più in grado di effettuare la traduzione, non potendo
+ distinguere i due pacchetti.
+ È una situazione abbastanza rara e improbabile, ma possibile, specialmente
+ se stiamo lavorando con 
+\emph on
+links
+\emph default
+ ad alta capacità dove è attiva la frammentazione (Il 
+\emph on
+fragment identifier
+\emph default
+ è di soli 13 bit, ci sono solamente 8192 fragment id possibili).
+\end_layout
+
+\begin_layout Itemize
+Solitamente ogni 
+\emph on
+host
+\emph default
+ collegato su Internet può effettuare delle connessioni a dei server, oppure
+ 
 \series bold
 esporre dei propri servizi alla rete e permettere ad altri di collegarvisi
 \series default
@@ -40152,12 +40216,21 @@ fanno uso degli indirizzi IP degli host da cui si originano le connessioni
  in corso e non permette il passaggio.
  Su alcuni router sono stati implementati dei meccanismi per intercettare
  il traffico a livello applicativo di questi protocolli e sbloccare le porte
- in ingresso per mettergli di funzionare.
+ in ingresso per mettergli di funzionare (
+\series bold
+\emph on
+Application Level Gateways
+\series default
+\emph default
+).
  Questo è ancora più grave del primo punto perché con questo problema il
  router non deve solo andare a vedere il livello protocollare 4, ma addirittura
  anche i dati sul livello 7.
- Questo genera un overhead esagerato sulle operazioni di cui deve tenere
- traccia il povero router.
+ Questo genera un 
+\emph on
+overhead
+\emph default
+ esagerato sulle operazioni di cui deve tenere traccia il povero router.
  
 \end_layout
 
@@ -40192,7 +40265,7 @@ terminato
 \emph on
 registers
 \emph default
- regionali), non abbiamo al giorno d'oggi altra solzione che costringersi
+ regionali), non abbiamo al giorno d'oggi altra soluzione che costringersi
  ad utilizzare il NAT, nell'attesa dell'arrivo di IPv6 (che comunque già
  dal 2008 è 
 \begin_inset Quotes eld
@@ -40202,7 +40275,11 @@ ufficialmente
 \begin_inset Quotes erd
 \end_inset
 
- attivo su tutti i backbone di Internet).
+ attivo su tutti i 
+\emph on
+backbone
+\emph default
+ di Internet).
  
 \end_layout
 
@@ -40241,6 +40318,219 @@ evitare di creare una NAPT dentro la NAPT
 \bar default
 .
  Meglio ricorrere ad un semplice firewall se i problemi sono di sicurezza.
+\end_layout
+
+\begin_layout Subsection*
+NAT Traversal (
+\emph on
+approfondimento
+\emph default
+)
+\end_layout
+
+\begin_layout Standard
+Per risolvere i problemi di comunicazione 
+\emph on
+end-to-end 
+\emph default
+tra host dietro NAT è possibile utilizzare dei metodi di 
+\emph on
+NAT Traversal
+\emph default
+.
+ Purtroppo ce ne sono diversi e non tutti sono sempre disponibili e/o funzionant
+i.Perché? Come citato precedentemente nel paragrafo sui tipi di NAT, inizialmente
+ l'idea del NAT è stata criticata dalla comunità IETF che lavora sugli standard
+ di Internet, per diversi motivi tra cui quelli sopra citati.
+ Per questo motivo è andato a finire che i 
+\emph on
+vendors
+\emph default
+ che avevano bisogno di una soluzione al problema degli IPv4 pubblici hanno
+ iniziato ad implementare NAT comunque, anche se uno standard non era presente
+ e ben definito.
+ In questo modo ogni 
+\emph on
+vendor
+\emph default
+ ha finito per utilizzare una propria soluzione specifica e dedicata, spesso
+ senza rilasciarne le specifiche implementative.
+ Il risultato è che sono venuti a formarsi diversi tipi di NAT (sopra affrontati
+) che si comportano in modo diverso.
+ Ergo è difficile utilizzare una tecnica per 
+\begin_inset Quotes eld
+\end_inset
+
+attraversali
+\begin_inset Quotes erd
+\end_inset
+
+ che funzioni su tutti.
+\end_layout
+
+\begin_layout Standard
+Principalmente le tecniche sono:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Relay su un server esterno
+\series default
+: È la politica adottata dal protocollo TURN (che insieme a STUN forma il
+ protocollo ICE).
+ Si sceglie un server esterno che faccia da relay a livello applicativo
+ dei messaggi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Simultaneous SYN
+\series default
+: Nella RFC di TCP è considerato un caso in cui due host aprono una connessione
+ mandandosi un SYN a vicenda che arriva ad entrambi prima che l'altro abbia
+ inviato altro.
+ Sfruttando questo fatto e assumendo che questa funzionalità sia implementata
+ dal NAPT, dovrebbe essere possibile per due host dietro due NAPT, stabilire
+ una connessione tra loro, a patto di accordarsi (tramite qualche meccanismo
+ esterno) sui numeri di porta da utilizzare
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+UDP Hole punching
+\series default
+: Questa tecnica sfrutta una proprietà (citata come 
+\begin_inset Quotes eld
+\end_inset
+
+port preservation
+\begin_inset Quotes erd
+\end_inset
+
+ in RFC4787) che hanno molti NAPT riguardo al preservare la porta UDP sorgente
+ utilizzata da un client che stabilisce una connessione dall'interno di
+ una NAT verso l'esterno.
+ Sfruttando un qualche meccanismo di comunicazione esterno per il 
+\emph on
+signaling
+\emph default
+, due host, entrambi dietro NAPT, possono stabilire una connessione UDP
+ diretta tra di loro, a patto di accordarsi sui numeri di porta da utilizzare,
+ e dopo aver scoperto i propri indirizzi IP pubblici.
+ Anche se alcuni NAPT non modificano la porta UDP sorgente, potrebbero mandare
+ un ICMP port unreachable quando la richiesta del mittente arriva dalla
+ rete esterna sul NAPT prima che il destinatario abbia inviato anche lui
+ una richiesta.
+ Per risolvere questi problemi sono necessarie dei 
+\begin_inset Quotes eld
+\end_inset
+
+trucchi
+\begin_inset Quotes erd
+\end_inset
+
+ che comprendono una possibile modifica del TTL dei pacchetti inviati, di
+ modo da farli scadere prima che raggiungano il NAPT router di destinazione.
+ (Questo metodo era sfruttato molto da un software VPN free chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Hamachi
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NAT pinning
+\series default
+: Tecnica che permette a due host entrambi dietro NAPT, oppure entrambi
+ dietro due NAPT diverse che sono in cascata ad una NAPT più grande, di
+ stabilire una connessione tra di loro, 
+\begin_inset Quotes eld
+\end_inset
+
+rimbalzando
+\begin_inset Quotes erd
+\end_inset
+
+ i pacchetti sul NAPT di primo livello.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+UPnP 
+\emph on
+Internet Gateway Device 
+\emph default
+(IGD) Service
+\series default
+: È un servizio offerto da un router NAPT che implementa anche il protocollo
+ UPnP.
+ Il client può contattare il router senza autenticazione e richiedergli
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+aprire
+\begin_inset Quotes erd
+\end_inset
+
+ (fare un assegnamento statico di) una porta TCP o UDP dall'esterno verso
+ il proprio indirizzo interno.
+ In questo modo il client può facilmente stabilire canali diretti (a patto
+ di avere questo servizio installato sul router).
+ UPnP IGD è implementato solitamente sui router domestici e presenta comunque
+ diversi problemi di sicurezza sia per la mancanza di autenticazione che
+ per possibili attacchi dall'esterno (dipendenti dall'implementazione) dimostrat
+i da alcune ricerche.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NAT-PMP
+\series default
+: Molto simile a UPnP IGD ma meno famoso.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+STUN
+\series default
+: Sfrutta le proprietà dei tipi di NAPT mostrati in precedenza (Full Cone,
+ Port Restricted, ...) per stabilire una connessione UDP diretta tra due host.
+ Spesso funziona anche in presenza di più NAPT in cascata.
+ L'unico caso in cui non riesce a funzionare è quando entrambi gli 
+\emph on
+host
+\emph default
+ coinvolti nella comunicazione sono dietro 
+\emph on
+Symmetric NAT
+\emph default
+.
+ Insieme al protocollo TURN forma il protocollo ICE, che ad oggi è lo standard
+ più utilizzato per NAT Traversal.
+ Viene utilizzato anche da 
+\series bold
+\emph on
+Skype
+\series default
+\emph default
+.
 \end_layout
 
 \begin_layout Section*
