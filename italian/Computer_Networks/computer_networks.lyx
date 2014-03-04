@@ -21495,7 +21495,7 @@ leaky bucket
  siamo in grado di controllare rigidamente la frequenza in uscita dei pacchetti
  indipendentemente dal fattore di 
 \emph on
-burstness
+burstiness
 \emph default
  della sorgente.
  Questo significa che aumentiamo la latenza della connessione e se dobbiamo
@@ -21620,7 +21620,7 @@ Pacchetti a lunghezza variabile
 \end_layout
 
 \begin_layout Standard
-Anche con token bucket è possibile gestire i pacchetti a lungehezza variabile.
+Anche con token bucket è possibile gestire i pacchetti a lunghezza variabile.
  Per farlo è possibile trasformare il permesso per il pacchetto in un permesso
  per un certo numero di byte.
 \end_layout
@@ -21827,7 +21827,7 @@ Essere rigorosi nella trasmissione e tolleranti nella ricezione
 Pensare alla scalabilità
 \series default
 : Se il sistema deve poter gestire sia pochi host che milioni o miliardi
- in modo efficacie.
+ in modo efficace.
  Il carico deve essere il più distribuito possibile.
 \end_layout
 
@@ -21873,7 +21873,7 @@ comunicazione tra reti
 \end_layout
 
 \begin_layout Itemize
-Lo strato di trasporto prende i flussi da inviare e li sperara in datagrammi
+Lo strato di trasporto prende i flussi da inviare e li separa in datagrammi
  che passa allo strato network.
  In teoria ogni datagramma può essere grande 
 \series bold
@@ -24263,8 +24263,8 @@ Data
 \end_layout
 
 \begin_layout Standard
-La parte fissa dell'instazione è lunga 20 Byte, estendibile con opzioni.
- Viene trasmessa in ordine big endian: da dinistra a destra, a partire dal
+La parte fissa dell'intestazione è lunga 20 Byte, estendibile con opzioni.
+ Viene trasmessa in ordine big endian: da sinistra a destra, a partire dal
  bit di ordine più elevato del campo version.
 \end_layout
 
@@ -24290,10 +24290,10 @@ Version
 \series bold
 HLEN 
 \series default
-(4 bit): Viene utilizzato per indicare la lunghezza dell'instazione espressa
+(4 bit): Viene utilizzato per indicare la lunghezza dell'intestazione espressa
  in parole di 32 bit (poiché essa non è costante a causa del campo opzioni).
- Il valore massimo di questo campo è 15, quindi la dimensione massima dell'insta
-zione è 60 Byte, che escludendo i 20Byte fissi si traduce in un massimo
+ Il valore massimo di questo campo è 15, quindi la dimensione massima dell'intes
+tazione è 60 Byte, che escludendo i 20Byte fissi si traduce in un massimo
  di 40Byte di opzioni.
  In realtà alcune opzioni (come ad esempio quella 
 \emph on
@@ -36292,7 +36292,7 @@ subnet
 
 \end_deeper
 \begin_layout Itemize
-Se il confronto con le reti delle interfaccie non ha successo, si procede
+Se il confronto con le reti delle interfacce non ha successo, si procede
  in modo analogo confrontando la tabella di routing voce per voce: 
 \begin_inset Formula 
 \[
@@ -36610,7 +36610,7 @@ Use
 Interface
 \series default
 : Nome dell'interfaccia su cui inoltrare il pacchetto (utile se si utilizzano
- gli stessi indirizzi su due interfaccie distinte)
+ gli stessi indirizzi su due interfacce distinte)
 \end_layout
 
 \end_deeper
@@ -39943,9 +39943,9 @@ Altre complicazioni del NAPT
 \end_layout
 
 \begin_layout Itemize
-Su alcuni NAT è possibile tramite interfaccie web o protocolli appositi
- (NAT-PMP, UPnP, Zeroconf, interfacce web,...) impostare delle regole per stabilire
- un mapping fisso ingresso.
+Su alcuni NAT è possibile tramite interfacce web o protocolli appositi (NAT-PMP,
+ UPnP, Zeroconf, interfacce web,...) impostare delle regole per stabilire un
+ mapping fisso ingresso.
  Ad esempio se abbiamo un server web dietro NAPT è possibile istruire il
  nat dicendo 
 \begin_inset Quotes eld
@@ -43017,7 +43017,8 @@ code
 \begin_inset Quotes erd
 \end_inset
 
- in questo caso viene utilizzato per segnaare il motivo che ha causato l'errore.
+ in questo caso viene utilizzato per segnalare il motivo che ha causato
+ l'errore.
  Se la destinazione non è presente nella tabella di routing allora code
  è 7.
 \end_layout
@@ -56891,7 +56892,7 @@ Protocol ID (8 bit)
 \begin_inset Text
 
 \begin_layout Plain Layout
-UDP Length (16 bit)
+TCP Length (16 bit)
 \end_layout
 
 \end_inset
@@ -59923,7 +59924,7 @@ Window scale
 TCP
 \emph default
  (definita in RFC1323) che permette agli host di negoziare un fattore di
- scala per la dinesione della finestra di ricezione.
+ scala per la dimensione della finestra di ricezione.
  Su una linea T3 (44,736 Mbps) bastano 12 
 \emph on
 millisecondi
@@ -60862,7 +60863,7 @@ Delayed ACK
 \end_layout
 
 \begin_layout Itemize
-La tecnida di 
+La tecnica di 
 \emph on
 piggybacking
 \emph default
@@ -63044,7 +63045,7 @@ Path discovery
 
 \begin_layout Itemize
 In ogni caso con un algoritmo source routing dobbiamo decidere se mantenere
- un instradamento statico o dimanico.
+ un instradamento statico o dinamico.
  Nel caso in cui scegliamo di renderlo dinamico, la frequenza di interrogazione
  del path server o dell'utilizzo del path discovery diventano un parametro
  critico del sistema.
@@ -67933,7 +67934,7 @@ Ad esempio
 \emph on
 www.polimi.it
 \emph default
- , osservandolo da destra a dinistra vediamo 
+ , osservandolo da destra a sinistra vediamo 
 \emph on
 it
 \emph default
