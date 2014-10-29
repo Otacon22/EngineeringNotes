@@ -25879,7 +25879,7 @@ In seguito, IETF ha deciso di cambiare il significato del campo:
 \begin_inset Text
 
 \begin_layout Plain Layout
-Service class (6 bit)
+DSCP (6 bit)
 \end_layout
 
 \end_inset
@@ -25933,7 +25933,7 @@ Service class (6 bit)
 \begin_inset Text
 
 \begin_layout Plain Layout
-Not used (2 bit)
+ECN (2 bit)
 \end_layout
 
 \end_inset
@@ -25956,19 +25956,128 @@ Not used (2 bit)
 \end_layout
 
 \begin_layout Itemize
-Dove il campo 
-\series bold
-service class
-\series default
- identifica il tipo di servizio.
+Dove il campo DSCP sta per 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Differentiated Services Code Point
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+ (RFC 2474), e vuole indicare la 
+\begin_inset Quotes eld
+\end_inset
+
+classe
+\begin_inset Quotes erd
+\end_inset
+
+ di servizio da utilizzare per il pacchetto.
 \end_layout
 
 \begin_layout Itemize
-Nella pratica i router di Internet ignorano completamente il campo Service
- type.
- Viene sfruttato solo all'interno delle reti locali o con gli host finali.
+Il campo ECN (RFC 3168) viene utilizzato per comunicare al destinatario
+ se il mittente supporta la 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+Explicit Congestion Notification
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+, cioè la capacità di avvisare il destinatario di congestione, senza scartare
+ pacchetti.
+ (Altri dettagli in merito ad ECN verranno spiegati dopo TCP)
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+00 – Non ECN-Capable Transport, Non-ECT
+\end_layout
+
+\begin_layout Itemize
+10 – ECN Capable Transport, ECT(0)
+\end_layout
+
+\begin_layout Itemize
+01 – ECN Capable Transport, ECT(1)
+\end_layout
+
+\begin_layout Itemize
+11 – Congestion Encountered, CE.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Nella pratica i router di Internet ignorano completamente il campo DSCP.
+ Il campo DSCP viene solitamente utilizzato (all'interno della architettura
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+DiffServ
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+) nel modo seguente:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Il pacchetto arriva sul router di frontiera della rete di destinazione
+\end_layout
+
+\begin_layout Itemize
+Il pacchetto in ingresso alla rete viene analizzato controllando qual'è
+ la sorgente, destinazione, protocollo trasportato e relative porte (vedi
+ dopo il concetto di 
+\begin_inset Quotes eld
+\end_inset
+
+
+\emph on
+porta
+\emph default
+
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+In base ad una serie di regole locali, viene scelta una classe di servizio
+ per il pacchetto e viene quindi 
+\begin_inset Quotes eld
+\end_inset
+
+etichettato
+\begin_inset Quotes erd
+\end_inset
+
+ applicando una classe di servizio consona
+\end_layout
+
+\begin_layout Itemize
+Durante il transito del pacchetto nella rete di destinazione, i routers
+ intermedi utilizzando l'informazione sul DSCP per capire qual'è la priorità
+ del pacchetto (se deve essere messo in delle code o inoltrato subito)
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -26214,7 +26323,8 @@ http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="10" columns="3">
 <features rotate="0" tabularvalignment="middle">
@@ -31647,8 +31757,8 @@ Version
 \series bold
 Traffic class
 \series default
- (8 bit): Specifica il tipo di servizio distinguendolo in varie classi:
- dati che necessitano basso ritardo, alto throughtput,etc..
+ (8 bit): Specifica il tipo di servizio distinguendolo in varie classi,
+ esattamente come il campo relativo in IPv4.
 \end_layout
 
 \begin_layout Itemize
@@ -35977,8 +36087,9 @@ Esistono poi una serie di indirizzi delle classi A,B e C che non possono
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
+<lyxtabular version="3" rows="4" columns="4">
 <features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -36005,13 +36116,24 @@ Indirizzo iniziale
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
 Indirizzo finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Notazione VLSM
 \end_layout
 
 \end_inset
@@ -36036,11 +36158,20 @@ Indirizzo finale
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 10.255.255.255
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10.0.0.0/8
 \end_layout
 
 \end_inset
@@ -36065,11 +36196,20 @@ Indirizzo finale
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 172.31.255.255
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+172.16.0.0/12
 \end_layout
 
 \end_inset
@@ -36094,11 +36234,20 @@ Indirizzo finale
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 192.168.255.255
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+192.16.0.0/16
 \end_layout
 
 \end_inset
@@ -36157,6 +36306,37 @@ classe C
  65534 host in questo blocco)
 \end_layout
 
+\begin_layout Standard
+In realtà esistono anche altri blocchi di indirizzi 
+\begin_inset Quotes eld
+\end_inset
+
+privati
+\begin_inset Quotes erd
+\end_inset
+
+, che non possono essere utilizzati pubblicamente su Internet e sono stati
+ riservati per scopi specifici (
+\emph on
+carrier grade NAT
+\emph default
+, 
+\emph on
+ham radio
+\emph default
+, ...).
+ Spesso, per riferirsi a tutti questi indirizzi che non possono essere utilizzat
+i su Internet, si parla di 
+\series bold
+bogons
+\series default
+ (dall'inglese, 
+\emph on
+bogus IP addresses
+\emph default
+).
+\end_layout
+
 \begin_layout Subsection*
 Registers
 \end_layout
@@ -36184,11 +36364,12 @@ registers
 
 , 
 \emph default
-cioè di organizazioni che ricevono dalla IANA grandi blocchi di indirizzi,
- che risuddividono in blocchi più piccoli da assegnare.
+cioè di organizzazioni che ricevono dalla IANA grandi blocchi di indirizzi,
+ che ri-suddividono in blocchi più piccoli da assegnare a loro volta.
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features rotate="0" tabularvalignment="middle">
@@ -37403,7 +37584,7 @@ TTL
 
 \end_deeper
 \begin_layout Itemize
-Può capitare che due regole della tabella di routing soddifino l'uguagianza.
+Può capitare che due regole della tabella di routing soddisfino l'uguaglianza.
  In questo caso viene scelta la rete con la 
 \emph on
 netmask
@@ -37421,7 +37602,7 @@ default
 \end_inset
 
 , specifica a chi inoltrare tutti i pacchetti che non si sa come gestire.
- Viene utilizzata solo se nessuna delle altre regole è soddifatta, poiché
+ Viene utilizzata solo se nessuna delle altre regole è soddisfatta, poiché
  la lunghezza della sua 
 \emph on
 netmask
@@ -37727,8 +37908,8 @@ Il modo in cui sono suddivise le classi porta ad uno spreco enorme di indirizzi.
 \end_layout
 
 \begin_layout Standard
-Per introdurre una maggiore flessibilità si è deciso di abbandonare la struttura
- a classi e introdurre il 
+Per introdurre una maggiore flessibilità, nel 1993, si è deciso di abbandonare
+ la struttura a classi e introdurre il 
 \emph on
 Classless Inter-Domain Routing
 \emph default
@@ -37736,7 +37917,7 @@ Classless Inter-Domain Routing
 \emph on
 subnetting
 \emph default
- su tutta l'Internet.
+ su tutto Internet.
 \end_layout
 
 \begin_layout Standard
@@ -37780,7 +37961,7 @@ Network Address Translation
 
 \begin_layout Standard
 Poiché gli indirizzi IP(v4) iniziano a mancare e a diventare costosi, già
- dall'inizio degli anni 90 è stata introdotta la tecnica del NAT.
+ dall'inizio degli anni 90' è stata introdotta la tecnica del NAT.
  Una organizzazione spesso non ha tutti gli host collegati ad internet.
  È quindi possibile farsi assegnare un numero di indirizzi IP inferiore
  a quelli realmente necessari.
@@ -37934,7 +38115,7 @@ Modifica lindirizzo IP destinazione del pacchetto sostiuendolo con l'indirizzo
 
 \end_deeper
 \begin_layout Standard
-La tabella del NAPT è qualcosa simile alla seguente:
+La tabella del NAPT è simile alla seguente:
 \end_layout
 
 \begin_layout Author
@@ -41406,7 +41587,8 @@ NAT Traversal
 \emph default
 .
  Purtroppo ce ne sono diversi e non tutti sono sempre disponibili e/o funzionant
-i.Perché? Come citato precedentemente nel paragrafo sui tipi di NAT, inizialmente
+i.
+ Perché? Come citato precedentemente nel paragrafo sui tipi di NAT, inizialmente
  l'idea del NAT è stata criticata dalla comunità IETF che lavora sugli standard
  di Internet, per diversi motivi tra cui quelli sopra citati.
  Per questo motivo è andato a finire che i 
@@ -41422,13 +41604,13 @@ vendor
 \emph default
  ha finito per utilizzare una propria soluzione specifica e dedicata, spesso
  senza rilasciarne le specifiche implementative.
- Il risultato è che sono venuti a formarsi diversi tipi di NAT (sopra affrontati
-) che si comportano in modo diverso.
+ Il risultato è che sono venuti a formarsi tanti tipi di NAT (sopra affrontati)
+ che si comportano in modo diverso.
  Ergo è difficile utilizzare una tecnica per 
 \begin_inset Quotes eld
 \end_inset
 
-attraversali
+attraversarli
 \begin_inset Quotes erd
 \end_inset
 
@@ -41436,7 +41618,7 @@ attraversali
 \end_layout
 
 \begin_layout Standard
-Principalmente le tecniche sono:
+Principalmente le tecniche sono le seguenti:
 \end_layout
 
 \begin_layout Itemize
@@ -41461,7 +41643,7 @@ Simultaneous SYN
  Sfruttando questo fatto e assumendo che questa funzionalità sia implementata
  dal NAPT, dovrebbe essere possibile per due host dietro due NAPT, stabilire
  una connessione tra loro, a patto di accordarsi (tramite qualche meccanismo
- esterno) sui numeri di porta da utilizzare
+ esterno) sui numeri di porta da utilizzare.
 \end_layout
 
 \begin_layout Itemize
@@ -41560,8 +41742,8 @@ aprire
  di avere questo servizio installato sul router).
  UPnP IGD è implementato solitamente sui router domestici e presenta comunque
  diversi problemi di sicurezza sia per la mancanza di autenticazione che
- per possibili attacchi dall'esterno (dipendenti dall'implementazione) dimostrat
-i da alcune ricerche.
+ per possibili attacchi dall'esterno (a causa di implementazioni errate)
+ dimostrati da alcune ricerche.
 \end_layout
 
 \begin_layout Itemize
@@ -41591,13 +41773,24 @@ Symmetric NAT
 .
  Insieme al protocollo TURN forma il protocollo ICE, che ad oggi è lo standard
  più utilizzato per NAT Traversal.
- Viene utilizzato anche da 
+ Viene utilizzato da 
 \series bold
 \emph on
 Skype
 \series default
 \emph default
+ e 
+\emph on
+WebRTC
+\emph default
 .
+ In base a recenti statistiche circa il 70% dei NAT presenti supporta l'utilizzo
+ di STUN per fare traversal.
+\end_layout
+
+\begin_layout Itemize
+Esistono una serie di tecniche simili a STUN, basate su TCP invece di UDP,
+ raccolte nella RFC 6544.
 \end_layout
 
 \begin_layout Section*
@@ -41623,12 +41816,12 @@ La principale modifica di IPv6 a IPv4 è stata la lunghezza degl indirizzi.
 \end_layout
 
 \begin_layout Standard
-Poichè molti indirizzi possono contenere parecchi zeri, sono state introdotte
+Poiché molti indirizzi possono contenere parecchi zeri, sono state introdotte
  alcune ottimizzazioni:
 \end_layout
 
 \begin_layout Itemize
-È possibile ometter gli zero iniziali di un gruppo, quinidi nel gruppo 
+È possibile ometter gli zero iniziali di un gruppo, quindi nel gruppo 
 \begin_inset Formula $0123$
 \end_inset
 
@@ -41652,9 +41845,32 @@ Dove sono presenti blocchi nulli consecutivi, è possibile semplicemente
 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Tuttavia questa regola può essere applicata una sola volta nell'indirizzo.
+ Se l'indirizzo fosse 
+\begin_inset Formula $8000:0000:0000:1000:0000:0000:0000:0001$
+\end_inset
+
+, 
+\series bold
+non possiamo
+\series default
+ scrivere 
+\begin_inset Formula $8000::1000::0001$
+\end_inset
+
+, in quanto si perde l'informazione su dove sia il blocco 
+\begin_inset Formula $1000$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Infine gli indirizzi IPv4 possono essere scritti in notazione decimale a
- punti dopo una coppia di due punti: 
+ punti dopo una coppia di due punti all'interno di un IPv4: 
 \begin_inset Formula 
 \[
 ::192.31.20.46
@@ -41678,15 +41894,16 @@ Con
  indirizzi per metro quadro che, almeno per il momento, sembrano essere
  sufficienti per adesso e per il futuro...
  Gli indirizzi non saranno assegnati in modo efficiente, ma anche considerando
- il caso pessimo ci saranno più di 
+ un caso pessimo, con pessime scelte di allocazione e sprechi, ci saranno
+ almeno 
 \begin_inset Formula $1000$
 \end_inset
 
- indirizzi per metro quadro.
+ indirizzi per metro quadro terrestre.
 \end_layout
 
 \begin_layout Standard
-Ogni indirizzo IPv6 è suddiviso in quattro parti:
+Ogni indirizzo IPv6 è suddiviso idealmente in quattro parti:
 \end_layout
 
 \begin_layout Author
@@ -41797,7 +42014,11 @@ Tipo di indirizzo
 \begin_inset Quotes eld
 \end_inset
 
+
+\emph on
 format prefix
+\emph default
+
 \begin_inset Quotes erd
 \end_inset
 
@@ -42217,7 +42438,7 @@ i.
 
 \begin_layout Standard
 ICMP non corregge gli errori, si limita a segnalarli.
- I messaggi di errore contengono l'header del pacchetto ip che li ha generati
+ I messaggi di errore contengono l'header del pacchetto IP che li ha generati
  e i suoi primi 8 byte di dati.
  Per altre informazioni dettagliate riguardo alle opzioni di ogni tipo di
  struttura ICMP è possibile consultare la pagina web 
@@ -46258,6 +46479,10 @@ Reverse Address Resolution Protocol.
 Questo protocollo presenta alcune limitazioni, tra cui il fatto che viene
  inviato solo l'indirizzo IP (e nessun'altra informazione) e che può essere
  utilizzato solo se il server RARP è nella stessa rete locale dell'host.
+\end_layout
+
+\begin_layout Standard
+Non è un protocollo solitamente utilizzato o abilitato.
 \end_layout
 
 \begin_layout Subsection*
@@ -53501,20 +53726,11 @@ MTU
 Struttura del segmento TCP
 \end_layout
 
-\begin_layout Author
+\begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="10" columns="32">
+<lyxtabular version="3" rows="10" columns="22">
 <features rotate="0" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -53542,12 +53758,12 @@ Struttura del segmento TCP
 \begin_inset Text
 
 \begin_layout Plain Layout
-← 32 bit →
+← (32 bit) →
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53556,7 +53772,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53565,7 +53781,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53574,7 +53790,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53583,7 +53799,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53592,7 +53808,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53601,7 +53817,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53610,7 +53826,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53619,7 +53835,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53628,7 +53844,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53637,7 +53853,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53646,7 +53862,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53655,7 +53871,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53664,7 +53880,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53673,7 +53889,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53682,7 +53898,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53691,7 +53907,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53700,7 +53916,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53709,7 +53925,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53718,7 +53934,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53727,97 +53943,7 @@ Struttura del segmento TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53841,7 +53967,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53850,7 +53976,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53859,7 +53985,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53868,7 +53994,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53877,7 +54003,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53886,7 +54012,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53895,7 +54021,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53904,7 +54030,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53913,7 +54039,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53922,52 +54048,7 @@ Source port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53984,12 +54065,12 @@ Source port
 \series bold
 Destination port
 \series default
- (16 bit) 
+ (16 bit)
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -53998,7 +54079,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54007,7 +54088,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54016,7 +54097,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54025,7 +54106,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54034,7 +54115,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54043,7 +54124,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54052,7 +54133,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54061,7 +54142,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54070,52 +54151,7 @@ Destination port
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54132,14 +54168,14 @@ Destination port
 \begin_layout Plain Layout
 
 \series bold
-Sequence number
+Sequence number 
 \series default
- (32 bit)
+(32 bit)
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54148,7 +54184,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54157,7 +54193,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54166,7 +54202,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54175,7 +54211,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54184,7 +54220,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54193,7 +54229,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54202,7 +54238,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54211,7 +54247,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54220,7 +54256,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54229,7 +54265,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54238,7 +54274,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54247,7 +54283,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54256,7 +54292,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54265,7 +54301,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54274,7 +54310,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54283,7 +54319,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54292,7 +54328,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54301,7 +54337,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54310,7 +54346,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54319,97 +54355,7 @@ Sequence number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54426,14 +54372,14 @@ Sequence number
 \begin_layout Plain Layout
 
 \series bold
-Acknowledgement number
+Acknowledgement number 
 \series default
- (32 bit)
+(32 bit)
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54442,7 +54388,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54451,7 +54397,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54460,7 +54406,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54469,7 +54415,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54478,7 +54424,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54487,7 +54433,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54496,7 +54442,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54505,7 +54451,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54514,7 +54460,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54523,7 +54469,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54532,7 +54478,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54541,7 +54487,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54550,7 +54496,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54559,7 +54505,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54568,7 +54514,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54577,7 +54523,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54586,7 +54532,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54595,7 +54541,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54604,7 +54550,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54613,97 +54559,7 @@ Acknowledgement number
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54714,7 +54570,7 @@ Acknowledgement number
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54725,34 +54581,7 @@ TCP
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -54763,47 +54592,35 @@ Reserved
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+N
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+C
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+\series bold
+E
 \end_layout
 
 \end_inset
@@ -54964,51 +54781,6 @@ F
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -55020,7 +54792,7 @@ F
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55031,83 +54803,44 @@ HLEN
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+(3 bit)
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+S
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+W
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-(6 bit)
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+\series bold
+C
 \end_layout
 
 \end_inset
@@ -55191,7 +54924,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55200,7 +54933,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55209,7 +54942,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55218,7 +54951,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55227,7 +54960,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55236,7 +54969,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55245,7 +54978,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55254,7 +54987,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55263,52 +54996,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55328,7 +55016,7 @@ Window Size
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55337,7 +55025,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55346,7 +55034,7 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55355,65 +55043,24 @@ Window Size
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
+\series bold
+R
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="1" alignment="center" valignment="top" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+\series bold
+E
 \end_layout
 
 \end_inset
@@ -55493,7 +55140,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55502,7 +55149,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55511,7 +55158,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55520,7 +55167,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55529,7 +55176,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55538,7 +55185,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55547,7 +55194,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55556,7 +55203,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55565,52 +55212,7 @@ N
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -55639,51 +55241,6 @@ N
 Checksum
 \series default
  (16 bit)
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -55872,51 +55429,6 @@ Urgent pointer
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
@@ -55934,99 +55446,13 @@ Urgent pointer
 \begin_layout Plain Layout
 
 \series bold
-Option + padding
+Option
+\series default
+ + 
+\series bold
+padding
 \series default
  (0 o più parole da 32 bit)
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -56230,97 +55656,7 @@ Option + padding
 \series bold
 Dati
 \series default
- (facoltativo) (Nel caso migliore 65495 Byte)
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+ (facoltativi) (Nel caso migliore 65495 Byte)
 \end_layout
 
 \end_inset
@@ -56821,6 +56157,55 @@ final
  La chiusura della connessione deve essere fatta da ambo i lati.
 \end_layout
 
+\begin_layout Itemize
+Flags per ECN (
+\emph on
+Explicit Congestion Notification
+\emph default
+), una recente funzionalità avanzata per segnalare la congestione ai router
+ invece di iniziare a scartare pacchetti:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+NS
+\series default
+: ECN-nonce concealment protection (RFC 3540)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CWR
+\series default
+: Congestion Window Reduced, impostato dall'host che invia per indicare
+ che ha ricevuto un pacchetto con il flag ECE settato, e ha provveduto ad
+ influire l'algoritmo per il controllo di congestione (added to header by
+ RFC 3168).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ECE
+\series default
+: Sempre parte di ECN.
+ Se il flag SYN è a 1, indica che il peer è ECN-capable.
+ Se il SYN non è settato, indica che è stato ricevuto un pacchetto con il
+ flag 
+\begin_inset Quotes eld
+\end_inset
+
+Congestion Experienced
+\begin_inset Quotes erd
+\end_inset
+
+ nell'header IP (RFC 3168).
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -60851,7 +60236,11 @@ end-of-operation
 
 \end_deeper
 \begin_layout Subsection*
-Opzioni comuni di TCP
+Opzioni 
+\bar under
+molto
+\bar default
+ comuni di TCP
 \end_layout
 
 \begin_layout Subsubsection*
@@ -61642,7 +61031,7 @@ Al momento dell'instaurazione della connessione viene scelto l'ISN attuale.
 
 \begin_layout Itemize
 In realtà ci sono problemi di sicurezza poiché un eventuale attaccante potrebbe
- identificare i numeri di sequenza e sfrutturli per inserirsi in connessioni
+ identificare i numeri di sequenza e sfruttarli per inserirsi in connessioni
  esistenti.
  L'implementazione reale della generazione degli ISN dipende dal sistema
  operativo, ma non è (solitamente) come quella qui descritta teoricamente.
@@ -61756,18 +61145,21 @@ sequence number
 
 \begin_layout Itemize
 Per tenere traccia della scadenza di un pacchetto nel caso di reti molto
- veloci (ad esempio una rete 10 Gbit/s i numeri di sequenza si esauriscono
+ veloci (ad esempio in una rete 10 Gbit/s i numeri di sequenza si esauriscono
  in 
 \begin_inset Formula $3,43$
 \end_inset
 
- secondi) si utilizza l'opzione 
+ secondi) 
+\series bold
+si utilizza l'opzione 
 \emph on
 timestamp
 \emph default
  di 
 \emph on
 TCP
+\series default
 \emph default
  (vedi RFC1323) che pur utilizzando anch'essa un contatore a 32 bit, lo
  incrementa con passo più ampio
@@ -61785,6 +61177,19 @@ Nel sistema operativo GNU/Linux l'opzione timestamp è abilitata di default
 timestamp
 \emph default
  di TCP sia su IPv4 che su IPv6.
+ L'opzione 
+\emph on
+timestamp
+\emph default
+ di TCP è ormai adottata come una delle opzioni 
+\begin_inset Quotes eld
+\end_inset
+
+standard
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \end_inset
