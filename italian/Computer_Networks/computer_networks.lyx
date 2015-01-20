@@ -68825,6 +68825,10 @@ Finire figure parte sistemi a code
 bind() and source ports https://idea.popcount.org/2014-04-03-bind-before-connect/
 \end_layout
 
+\begin_layout Itemize
+Gratuitus ARP http://wiki.wireshark.org/Gratuitous_ARP
+\end_layout
+
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
