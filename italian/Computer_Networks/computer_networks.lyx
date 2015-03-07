@@ -457,7 +457,7 @@ Supponiamo che
 \begin_layout Itemize
 \begin_inset Formula $f\left(t\right)=\begin{cases}
 \lambda\cdot e^{-\lambda t} & \:\text{se}\ t\geq0\\
-0 & \:\text{se}\; t<0
+0 & \:\text{se}\;t<0
 \end{cases}$
 \end_inset
 
@@ -596,7 +596,7 @@ Inoltre dobbiamo soddisfare la condizione
 \begin_inset Formula $\begin{cases}
 \lambda\cdot p_{OFF}=\mu\cdot p_{ON}\\
 p_{OFF}+p_{ON}=1
-\end{cases}\:\Rightarrow\: p_{ON}=\frac{\lambda}{\lambda+\mu}\:,\: p_{OFF}=\frac{\mu}{\lambda+\mu}$
+\end{cases}\:\Rightarrow\:p_{ON}=\frac{\lambda}{\lambda+\mu}\:,\:p_{OFF}=\frac{\mu}{\lambda+\mu}$
 \end_inset
 
 
@@ -1376,7 +1376,7 @@ Calcoliamo l'equilibrio:
 
 \begin_inset Formula 
 \[
-\lambda\cdot p_{k-1}+\mu\cdot p_{k+1}=\left(\lambda+\mu\right)\cdot p_{k}\qquad k=1,\,2,\,...\,,\, L
+\lambda\cdot p_{k-1}+\mu\cdot p_{k+1}=\left(\lambda+\mu\right)\cdot p_{k}\qquad k=1,\,2,\,...\,,\,L
 \]
 
 \end_inset
@@ -1400,7 +1400,7 @@ Calcoliamo l'equilibrio:
 
 \begin_inset Formula 
 \[
-p_{k}=\frac{1-A_{0}}{1-A_{0}^{L+2}}\cdot A_{0}^{k}\qquad k=0,\,1\,...\,,\, L+1
+p_{k}=\frac{1-A_{0}}{1-A_{0}^{L+2}}\cdot A_{0}^{k}\qquad k=0,\,1\,...\,,\,L+1
 \]
 
 \end_inset
@@ -1859,8 +1859,8 @@ Esiste un solo cammino chiuso, ogni nodo è connesso solo con altri due nodi.
 
 \begin_layout Itemize
 \begin_inset Formula $\underset{(\text{cammino massimo})}{I_{Max}}=\begin{cases}
-\frac{N}{2} & \;\text{se\ensuremath{\: N\:}pari}\\
-\frac{N-1}{2} & \;\text{se\ensuremath{\: N\:}dispari}
+\frac{N}{2} & \;\text{se\ensuremath{\:N\:}pari}\\
+\frac{N-1}{2} & \;\text{se\ensuremath{\:N\:}dispari}
 \end{cases}$
 \end_inset
 
@@ -2026,7 +2026,7 @@ I coefficienti della serie di Fourier vengono calcolati come segue:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-a_{n}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}s\left(t\right)\cdot cos\left(2\pi\cdot n\cdot f_{0}\cdot t\right)\, dt
+a_{n}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}s\left(t\right)\cdot cos\left(2\pi\cdot n\cdot f_{0}\cdot t\right)\,dt
 \]
 
 \end_inset
@@ -2037,7 +2037,7 @@ a_{n}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}s\left(t\right)\cdot cos\left(
 \begin_layout Standard
 \begin_inset Formula 
 \[
-b_{n}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}s\left(t\right)\cdot sin\left(2\pi\cdot n\cdot f_{0}\cdot t\right)\, dt
+b_{n}=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}s\left(t\right)\cdot sin\left(2\pi\cdot n\cdot f_{0}\cdot t\right)\,dt
 \]
 
 \end_inset
@@ -2112,7 +2112,7 @@ passa basso
 \end_inset
 
  fino ad una certa frequenza 
-\begin_inset Formula $W\, Hz$
+\begin_inset Formula $W\,Hz$
 \end_inset
 
  .
@@ -2634,7 +2634,7 @@ Fibra ottica multimodo
 \begin_deeper
 \begin_layout Itemize
 Mantello spesso circa 
-\begin_inset Formula $125\, micron$
+\begin_inset Formula $125\,micron$
 \end_inset
 
 
@@ -2642,7 +2642,7 @@ Mantello spesso circa
 
 \begin_layout Itemize
 Nucleo spesso circa 
-\begin_inset Formula $50\, micron$
+\begin_inset Formula $50\,micron$
 \end_inset
 
 
@@ -2664,7 +2664,7 @@ Fibre ottiche monomodo
 \begin_deeper
 \begin_layout Itemize
 Nucleo di circa 
-\begin_inset Formula $10\: micron$
+\begin_inset Formula $10\:micron$
 \end_inset
 
  
@@ -14404,7 +14404,7 @@ Caso 1:
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $b=3\,\text{bit }\Rightarrow\: N=2^{3}=8$
+\begin_inset Formula $b=3\,\text{bit }\Rightarrow\:N=2^{3}=8$
 \end_inset
 
  
@@ -14449,7 +14449,7 @@ Caso 2:
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $b=7\,\text{bit }\Rightarrow\: N=2^{7}=128$
+\begin_inset Formula $b=7\,\text{bit }\Rightarrow\:N=2^{7}=128$
 \end_inset
 
  
@@ -16789,11 +16789,11 @@ Trama uguale a Ethernet classimo, cambiano i tempi:
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $T_{f\: MIN}=5,12\mu s$
+\begin_inset Formula $T_{f\:MIN}=5,12\mu s$
 \end_inset
 
  , 
-\begin_inset Formula $L_{f\: MIN}=64\,\text{Byte }$
+\begin_inset Formula $L_{f\:MIN}=64\,\text{Byte }$
 \end_inset
 
  , 
@@ -17126,11 +17126,11 @@ per garantire una lunghezza minima della trama di 512 Byte.
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $L_{f\: MIN}=512\text{ Byte }$
+\begin_inset Formula $L_{f\:MIN}=512\text{ Byte }$
 \end_inset
 
 , 
-\begin_inset Formula $T_{f\, MIN}=4,096\mu s$
+\begin_inset Formula $T_{f\,MIN}=4,096\mu s$
 \end_inset
 
  , 
@@ -20909,7 +20909,7 @@ Poisson
 \begin_deeper
 \begin_layout Itemize
 Il massimo si ottiene per 
-\begin_inset Formula $G=\frac{1}{2}\;\Rightarrow\; S=0,184$
+\begin_inset Formula $G=\frac{1}{2}\;\Rightarrow\;S=0,184$
 \end_inset
 
  cioè passa 
@@ -22527,7 +22527,7 @@ Se ogni pacchetto trasmesso è grande
  bucket sarà 
 \begin_inset Formula 
 \[
-A_{b\, max}=L_{p}\cdot v
+A_{b\,max}=L_{p}\cdot v
 \]
 
 \end_inset
@@ -22661,7 +22661,7 @@ Si presti attenzione al fatto che nell'algoritmo token bucket sono solo
 Anche in questo caso abbiamo: 
 \begin_inset Formula 
 \[
-A_{b\, max}=L_{p}\cdot v
+A_{b\,max}=L_{p}\cdot v
 \]
 
 \end_inset
@@ -22671,12 +22671,12 @@ A_{b\, max}=L_{p}\cdot v
 
 \begin_layout Standard
 Ovviamente 
-\begin_inset Formula $A_{b\: max}$
+\begin_inset Formula $A_{b\:max}$
 \end_inset
 
  non può mai eccedere la frequenza di trasmissione sulla linea di uscita,
  cioè 
-\begin_inset Formula $A_{b\, max}\leq P_{b}$
+\begin_inset Formula $A_{b\,max}\leq P_{b}$
 \end_inset
 
 .
@@ -37508,7 +37508,7 @@ Quando arriva un pacchetto viene estratto il suo indirizzo IP di destinazione
  e per ogni interfaccia di rete del router viene fatta l'operazione: 
 \begin_inset Formula 
 \[
-(\text{IP destinazione})\, AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete di destinazione}
+(\text{IP destinazione})\,AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete di destinazione}
 \]
 
 \end_inset
@@ -37522,7 +37522,7 @@ E la rete di destinazione viene confrontata con la rete dell'interfaccia,
  che può essere (pre)calcolata facendo: 
 \begin_inset Formula 
 \[
-\left(\text{IP interfaccia}\right)\, AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete interfaccia}
+\left(\text{IP interfaccia}\right)\,AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete interfaccia}
 \]
 
 \end_inset
@@ -37544,7 +37544,7 @@ Se il confronto con le reti delle interfacce non ha successo, si procede
  in modo analogo confrontando la tabella di routing voce per voce: 
 \begin_inset Formula 
 \[
-(\text{IP destinazione})\, AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete di destinazione}
+(\text{IP destinazione})\,AND\,\left(\text{Netmask interfaccia}\right)=\text{Rete di destinazione}
 \]
 
 \end_inset
@@ -37557,7 +37557,7 @@ Se il confronto con le reti delle interfacce non ha successo, si procede
 Confrontato con: 
 \begin_inset Formula 
 \[
-(\text{Destination regola n})\, AND\,\left(\text{Netmask regola n}\right)=\text{Rete della regola n}
+(\text{Destination regola n})\,AND\,\left(\text{Netmask regola n}\right)=\text{Rete della regola n}
 \]
 
 \end_inset
@@ -38799,7 +38799,7 @@ L'host esterno riceve il pacchetto da
 
 \begin_layout Itemize
 Il NAT riceve il pacchetto 
-\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\,NAT_{SPort}\right)$
 \end_inset
 
 ,cerca nella tabella e vede che c'è una riga che ha un 
@@ -39340,7 +39340,7 @@ L'host esterno riceve il pacchetto da
 
 \begin_layout Itemize
 Il NAT riceve il pacchetto 
-\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\,NAT_{SPort}\right)$
 \end_inset
 
 ,cerca nella tabella e vede che c'è una riga che ha un 
@@ -39939,7 +39939,7 @@ L'host esterno riceve il pacchetto da
 
 \begin_layout Itemize
 Il NAT riceve il pacchetto 
-\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\,NAT_{SPort}\right)$
 \end_inset
 
 ,cerca nella tabella e vede che c'è una riga che ha un 
@@ -40825,7 +40825,7 @@ L'host esterno riceve il pacchetto da
 
 \begin_layout Itemize
 Il NAT riceve il pacchetto 
-\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\, NAT_{SPort}\right)$
+\begin_inset Formula $\left(D_{IP},D_{SPort}\right)\rightarrow\left(NAT_{IP},\,NAT_{SPort}\right)$
 \end_inset
 
 ,cerca nella tabella e vede che c'è una riga che ha un 
@@ -61810,7 +61810,7 @@ timeout
 a:
 \begin_inset Formula 
 \[
-Timeout\,=\, RTT+n\cdot D
+Timeout\,=\,RTT+n\cdot D
 \]
 
 \end_inset
@@ -61916,7 +61916,7 @@ timeout
  si effettua l'operazione: 
 \begin_inset Formula 
 \[
-Timeout\,=\, Timeout\cdot2
+Timeout\,=\,Timeout\cdot2
 \]
 
 \end_inset
@@ -64095,7 +64095,7 @@ j
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $D_{j}^{h}=min_{i}\left\{ D_{i}^{h-1}+d_{ij}\;,\; D_{j}^{h-1}\right\} $
+\begin_inset Formula $D_{j}^{h}=min_{i}\left\{ D_{i}^{h-1}+d_{ij}\;,\;D_{j}^{h-1}\right\} $
 \end_inset
 
 
@@ -64503,7 +64503,7 @@ L'algoritmo di compone dei seguenti passi:
 
 \begin_layout Enumerate
 Scegli 
-\begin_inset Formula $k\in V\left(M\right)\,|\, D_{k}=min_{i\in V\left(M\right)}\left\{ D_{i}\right\} $
+\begin_inset Formula $k\in V\left(M\right)\,|\,D_{k}=min_{i\in V\left(M\right)}\left\{ D_{i}\right\} $
 \end_inset
 
 
@@ -68827,6 +68827,10 @@ bind() and source ports https://idea.popcount.org/2014-04-03-bind-before-connect
 
 \begin_layout Itemize
 Gratuitus ARP http://wiki.wireshark.org/Gratuitous_ARP
+\end_layout
+
+\begin_layout Itemize
+rfc3021: PtP Link RFC (utilizzo delle /31 invece delle /30 in IPv4)
 \end_layout
 
 \begin_layout Bibliography
